@@ -1,0 +1,11 @@
+Manifest-version: 1.40
+Specification-Title: Verhaar scheme as in "Verhaar H.J.M., Van Leeuven C., Hermens J.L.M.,Classifying Environmental Pollutants. 1: Structure-Activity Relationships for Prediction of Aquatic Toxicity, Chemosphere, Vol.25, No.4, pp.471-491, 1992."
+Class-Path: ../jars/cmlAll.jar ../jars/base.jar ../jars/pmrlib.jar ../jars/cdk-1.1.svn-19012008.jar ../jars/jgrapht-0.6.0.jar ../jars/vecmath1.2-1.14.jar ../jars/log4j.jar ../jars/gnuaxp.jar ../jars/jai_codec.jar ../jars/jai_core.jar
+Specification-Version: 1.40
+Specification-Vendor: Nina Jeliazkova
+Implementation-Title: Classes implementing Verhaar scheme
+Implementation-Version: 1.40
+Implementation-Vendor: AMBIT project http://ambit.acad.bg
+Package-Title: verhaar
+Package-Version: 1.40
+Package-Vendor: Nina Jeliazkova
