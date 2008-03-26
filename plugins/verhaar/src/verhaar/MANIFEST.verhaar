@@ -1,0 +1,11 @@
+Manifest-version: 1.0
+Specification-Title: Verhaar scheme as in "Verhaar H.J.M., Van Leeuven C., Hermens J.L.M.,Classifying Environmental Pollutants. 1: Structure-Activity Relationships for Prediction of Aquatic Toxicity, Chemosphere, Vol.25, No.4, pp.471-491, 1992."
+Class-Path: toxUI.jar toxCore.jar toxRules.jar toxConfig.jar toxFuncGroups.jar toxReactions.jar ../jars/cmlAll.jar ../jars/base.jar ../jars/pmrlib.jar ../jars/cdk-data.jar ../jars/cdk-core.jar ../jars/cdk-extra.jar ../jars/cdk-io.jar ../jars/cdk-interfaces.jar ../jars/cdk-libio.jar ../jars/cdk-render.jar ../jars/cdk-qsar.jar ../jars/cdk-qsar-cml.jar ../jars/cdk-standard.jar ../jars/cdk-applications.jar ../jars/cdk-swing.jar ../jars/cdk-jchempaint.jar ../jars/jgrapht-0.5.3.jar ../jars/vecmath1.2-1.14.jar ../jars/log4j.jar ../jars/gnuaxp.jar ../jars/jai_codec.jar ../jars/jai_core.jar
+Specification-Version: 0.01
+Specification-Vendor: Nina Jeliazkova
+Implementation-Title: Classes implementing Verhaar scheme
+Implementation-Version: 0.01
+Implementation-Vendor: AMBIT project http://ambit.acad.bg
+Package-Title: verhaar
+Package-Version: 0.01
+Package-Vendor: Nina Jeliazkova

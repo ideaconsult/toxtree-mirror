@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/toxTree"/>
+	<classpathentry kind="lib" path="/toxTree/jars/base_1.4.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/base_1.5.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/batik-awt-util.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/batik-dom.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/batik-svggen.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/batik-util.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/batik-xml.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/cdk-applications.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-core.jar">
+		<attributes>
+			<attribute value="jar:file:/E:/src/toxtree/jars/cdk-core.jar!/" name="javadoc_location"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/cdk/cdk" kind="lib" path="/toxTree/jars/cdk-data.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-experimental.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-extra.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-interfaces.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-io.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/cdk-io-jmol.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/cdk-jchempaint.application.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-jchempaint.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-libio-cml.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/cdk-pdb.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/cdk-pdb-cml.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-qsar.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/cdk-qsar-cml.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-render.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-standard.jar"/>
+	<classpathentry sourcepath="/cdk" kind="lib" path="/toxTree/jars/cdk-swing.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/cmlAll_1.4.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/cmlAll_1.5.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/gnujaxp.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/jai_codec.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/jai_core.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/jgrapht-0.5.3.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/junit.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/log4j.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/mysql-connector-java-3.1.7-bin.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/pmrdom_1.4.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/pmrdom_1.5.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/pmrlib.jar"/>
+	<classpathentry kind="lib" path="/toxTree/jars/vecmath1.2-1.14.jar"/>
+	<classpathentry kind="lib" path="/toxTree/installation/stream/toxTree/toxConfig.jar"/>
+	<classpathentry kind="lib" path="/toxTree/installation/stream/toxTree/toxCore.jar"/>
+	<classpathentry kind="lib" path="/toxTree/installation/stream/toxTree/toxCramer.jar"/>
+	<classpathentry kind="lib" path="/toxTree/installation/stream/toxTree/toxFuncGroups.jar"/>
+	<classpathentry kind="lib" path="/toxTree/installation/stream/toxTree/toxReactions.jar"/>
+	<classpathentry kind="lib" path="/toxTree/installation/stream/toxTree/toxRules.jar"/>
+	<classpathentry kind="lib" path="/toxTree/installation/stream/toxTree/toxTree.jar"/>
+	<classpathentry kind="lib" path="/toxTree/installation/stream/toxTree/toxUI.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
