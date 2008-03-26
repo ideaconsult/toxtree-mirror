@@ -1,0 +1,261 @@
+<!--
+
+Copyright Nina Jeliazkova (C) 2005-2006  
+Contact: nina@acad.bg
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+-->
+<project name="verhaar" default="verhaar" basedir=".">
+<echo message="Java home ${java.home}" />		
+  <echo message="List of paths to search when loading libraries: ${java.library.path}"/>
+  <echo message="Path of extension directory  or directories: ${java.ext.dirs}"/>
+	<property name="version" value="1.11" />
+        <!-- compile options -->
+        <property name="build.sysclasspath" value="ignore" />
+        <property name="build.compiler" value="modern" />
+        <property name="debug" value="on" />
+        <property name="deprecation" value="on" />
+        <property name="optimization" value="on" />
+        
+    <!-- directories -->
+    <property name="build" value="bin" />
+    <property name="sourcedist"	value="sourcedist" />
+    <property name="dist" value="dist" />
+    <property name="doc" value="doc" />	
+    <property name="src" value="src" />	
+    <property name="lib" value="../../../toxTree/jars" />
+    <property name="toxTreelib" value="../../../toxTree/dist" />	
+    
+    <property name="reports.tests" value="reports" />
+    <property name="appjars.dir" value="${dist}" />
+    
+	<property name="backup" value="../archive" />
+
+    <!-- CLASSPATH -->
+    <path id="project.class.path">
+	    <pathelement location="${java.ext.dirs}/rt.jar" />
+	    <fileset dir="${lib}">
+	        <!-- CDK jars -->	    	
+			<include name="cdk-core.jar" />	
+			<include name="cdk-charges.jar" />		    	
+            <include name="cdk-data.jar" />		
+			<include name="cdk-io.jar" />
+			<include name="cdk-libio-cml.jar" />	    	
+			<include name="cdk-standard.jar" />
+			<include name="cdk-experimental.jar" />	
+			<include name="cdk-smiles.jar" />	
+			<include name="cdk-valencycheck.jar" />
+			<include name="cdk-pdb.jar" />	    		    	
+			<include name="cdk-pdb-cml.jar" />	    		    		    	
+			<include name="cdk-render.jar" />
+			<include name="cdk-extra.jar" />
+			<include name="cdk-interfaces.jar" />
+			<include name="cdk-libio.jar" />
+			<include name="cdk-libio-cml.jar" />	    	
+			<include name="cdk-reqction.jar" />	    
+			<include name="cdk-qsar.jar" />	    	
+			<include name="cdk-qsar-cml.jar" />	    
+			<include name="cdk-qsar-pdb.jar" />		
+	    	
+		    	<!-- JCHEMPAINT -->
+			    <include name="cdk-jchempaint.application.jar" />	    	
+			    <include name="cdk-swing.jar" />	    	
+			    <include name="cdk-jchempaint.jar" />	    	
+		    	<include name="gnuaxp.jar" />	    		    	
+	    	<!-- MySQL is not (yet) necessary
+		    <include name="mysql-connector-java-3.1.7-gamma-bin.jar" />	
+		    <include name="printf.jar" />
+		    <include name="vecmath1.2-1.14.jar"	/>
+		    <include name="cmlAll_1.4.jar" />
+		    <include name="base_1.4.jar" />	
+		    <include name="pmrdom_1.4.jar" />
+		    <include name="pmrlib.jar" />	 
+		    		     -->	    		    	
+		    <include name="vecmath1.2-1.14.jar"	/>
+	    	<!-- Java Matrix library -->	    	
+			<include name="Jama-1.0.1.jar" />
+		    <include name="jcommon-0.9.6.jar" />
+	    	<!-- Logging -->
+		    <include name="log4j.jar" />	    	
+	    	
+	    	<!-- JPEG stuff -->
+		    <include name="jai-core.jar" />	    	
+		    <include name="jai-codec.jar" />	    		    	    	
+	    	<!-- JAVA Help system -->
+		    <include name="jh.jar" />	    	
+	    	<!-- JUnit support -->
+		    <include name="junit.jar" />	    	
+
+	    </fileset>
+    	<fileset dir="${toxTreelib}">
+		        <!-- toxTree jars -->	    	
+				<include name="toxconfig-1.11.jar" />			    	
+				<include name="toxcore-1.11.jar" />	
+	            <include name="toxfuncgroups-1.11.jar" />		
+				<include name="toxreactions-1.11.jar" />
+				<include name="toxrules-1.11.jar" />	    	
+				<include name="toxcramer-1.11.jar" />	   		    	
+		    </fileset>    	
+    </path>
+	<!-- backupTar target -->
+	<target name="backup" description="Backs up all source into a tar file.">
+		<mkdir dir="${backup}" />
+		<tstamp/>
+		<property name="backupFile" value ="${ant.project.name}_${DSTAMP}${TSTAMP}.tar.gz" />
+		
+		<tar tarfile="${backup}/${backupFile}" 
+			basedir="${src}" compression="gzip" />
+
+		<echo message="Backup file ${backupFile} has been created." />		
+	</target>
+
+	
+	<target id="init" name="init" depends="setupBuildDir"/>
+    <target id="setupBuildDir" name="setupBuildDir">
+            <tstamp />
+            <mkdir dir="${build}" />
+            <mkdir dir="${dist}" />
+    </target>
+	
+    <!-- clean -->	
+    <target id="clean" name="clean" description="Removes autogenerated files.">
+            <delete>
+                <fileset dir="." includes="**/*~" />
+                <fileset dir="." includes="*.rda" />
+                <fileset dir="${src}" includes="*.classes" />
+                <fileset dir="${src}" includes="*.javafiles">
+                    <exclude name="jmol*.javafiles" />
+                </fileset>
+   
+            </delete>
+            <delete dir="${build}" />
+            
+            <delete>
+            
+                <fileset dir="${dist}" includes="*.jar" />
+                
+   
+            </delete>
+    </target>
+
+    <target name="checklibs">	
+              <!-- testing which JavaDoc is present -->
+            <condition property="sunJavaDocInExt">
+              <or>
+                <available file="${java.ext.dirs}/tools.jar" />
+              </or>
+            </condition>
+            <condition property="sunJavaDocInLib">
+              <or>
+                <available file="${java.home}/lib/tools.jar" />
+                <available file="${java.home}/../lib/tools.jar" />
+              </or>
+            </condition>
+            <condition property="sunJavaDoc">
+              <or>
+                <available file="${java.ext.dirs}/tools.jar" />
+                <available file="${java.home}/../lib/tools.jar" />
+              </or>
+            </condition>
+            <condition property="gjdocJavaDoc">
+              <available file="/usr/share/java/gnu-classpath-tools-gjdoc.jar" />
+            </condition>
+    </target>
+    <target name= "compileDoclet" depends="checklibs">	 
+	    <javac srcdir="${doc}/src/" destdir="${doc}/src" optimize="${optimization}"
+		   debug="${debug}" deprecation="${deprecation}">
+			<include name="ListFilesDoclet.java" />	    	
+                <classpath>
+                  <fileset dir="${java.ext.dirs}">
+                    <include name="tools.jar" if="sunJavaDocInExt"/>
+                  </fileset>
+                  <fileset dir="${java.home}/lib">
+                    <include name="tools.jar" if="sunJavaDocInLib"/>
+                  </fileset>
+                  <fileset dir="${java.home}/../lib">
+                    <include name="tools.jar" if="sunJavaDocInLib"/>
+                  </fileset>
+                </classpath>
+	    </javac>    
+    </target>
+    <!-- generates classfiles and javafiles -->
+    <target name="runDoclet" id="runDoclet" depends="compileDoclet" >
+        <javadoc private="true"  maxmemory="128m">
+            <classpath>
+                <fileset dir="${lib}">
+                    <include name="*.jar" />
+                </fileset>
+                <fileset dir="${toxTreelib}">
+                        <include name="*.jar" />
+                </fileset>
+            </classpath>
+
+            <doclet name="ListFilesDoclet" path="${doc}/src"/>
+
+            <packageset dir="${src}">
+                <include name="verhaar/**"/>
+            </packageset>
+
+        </javadoc>
+        <move todir="${src}" failonerror="true">
+            <fileset dir=".">
+              <include name="*.javafiles"/>
+              <include name="*.classes"/>
+            </fileset>
+        </move>
+    </target>
+	
+    <target id="compile" name="runDoclet, compile"	
+	description="Compiles verhaar"
+	depends="init, compile-verhaar">
+    </target>
+    <target id="compile-verhaar" name="compile-verhaar" depends="init">
+	    <echo message="Compiling verhaar rule classes." />	
+
+	    <javac srcdir="${src}" destdir="${build}" optimize="${optimization}"
+		   debug="${debug}" deprecation="${deprecation}">
+			<includesfile name="${src}/rules.javafiles" />	    	
+			<includesfile name="${src}/VerhaarScheme.javafiles" />	    		    	
+			<includesfile name="${src}/query.javafiles" />	    		    	
+			<includesfile name="${src}/categories.javafiles" />	    		    	
+		<classpath refid="project.class.path" />
+	    </javac>
+    </target>
+	<!--
+    <target id="apps" name="apps" depends= "toxTreeDB, toxTree, toxRules, toxCore, toxdb, toxUI, toxCramer, verhaar"
+    description="Builds	the application	jar files for the toxTree application.">
+   <echo message="Compiling	toxTree applications." />	
+    </target>	
+	
+	-->
+    <!-- a jar to only contain  verhaar scheme  -->
+
+	<target	id="verhaar" name="verhaar" depends="compile-verhaar">
+		<jar jarfile="${dist}/toxVerhaarScheme-${version}.jar"
+			manifest="${src}/verhaar/MANIFEST.verhaar"
+			compress="true">
+		    <fileset dir="${build}">
+				<includesfile name="${src}/VerhaarScheme.classes" />	    		    	
+				<includesfile name="${src}/query.classes" />	    		    	
+				<includesfile name="${src}/rules.classes" />	    	
+				<includesfile name="${src}/categories.classes" />	    		    	
+		   </fileset>
+		</jar>
+	</target>	
+
+	
+	
+</project>
