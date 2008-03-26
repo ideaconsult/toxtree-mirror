@@ -1,0 +1,2 @@
+{SimpleDataFormat cannot be resolved to a typejava.text.SimpleDataFormat cannot be resolved to a typejava.text.SimpleDataFormat sf = new java.text.SimpleDateFormat("M/D/y,H:m");
+Date date = sf.parse("2001-01-04"); }

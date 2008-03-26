@@ -1,0 +1,72 @@
+<cml>
+<reactionList>
+<reaction id="reaction-hydrolize-P(=O)(OR)(OR)OR">
+<reactantList>
+<reactant>
+<molecule id="m1">
+<atomArray>
+<atom id="a1" title="O" elementType="Du" x2="79.0" y2="974.3253"/>
+<atom id="a2" elementType="P" x2="115.166" y2="974.3253"/>
+<atom id="a3" elementType="O" x2="133.24901" y2="943.00464"/>
+<atom id="a4" elementType="O" x2="133.24901" y2="1005.6459"/>
+<atom id="a5" title="R1" elementType="Du" x2="169.41501" y2="943.00464"/>
+<atom id="a13" elementType="O" x2="151.332" y2="974.1476"/>
+<atom id="a7" title="R2" elementType="Du" x2="168.41057" y2="1005.29065"/>
+<atom id="a11" title="R3" elementType="Du" x2="186.49359" y2="973.143"/>
+</atomArray>
+<bondArray>
+<bond id="b1" atomRefs2="a1 a2" order="D"/>
+<bond id="b2" atomRefs2="a2 a3" order="S"/>
+<bond id="b3" atomRefs2="a2 a4" order="S"/>
+<bond id="b4" atomRefs2="a3 a5" order="S"/>
+<bond id="b9" atomRefs2="a2 a13" order="S"/>
+<bond id="b11" atomRefs2="a4 a7" order="S"/>
+<bond id="b12" atomRefs2="a13 a11" order="S"/>
+</bondArray>
+</molecule>
+</reactant>
+<reactant>
+<molecule id="m2">
+<atomArray>
+<atom id="a6" elementType="O" x2="239.7378" y2="974.3253" hydrogenCount="2"/>
+</atomArray>
+</molecule>
+</reactant>
+</reactantList>
+<productList>
+<product>
+<molecule id="m3">
+<atomArray>
+<atom id="a15" elementType="O" x2="325.1297" y2="973.32074"/>
+<atom id="a8" elementType="P" x2="361.29575" y2="973.32074"/>
+<atom id="a9" elementType="O" x2="379.37875" y2="942.0" hydrogenCount="1"/>
+<atom id="a10" elementType="O" x2="379.37875" y2="1004.6413" hydrogenCount="1"/>
+<atom id="a14" elementType="O" x2="397.46167" y2="973.14294" hydrogenCount="1"/>
+</atomArray>
+<bondArray>
+<bond id="b5" atomRefs2="a15 a8" order="D"/>
+<bond id="b6" atomRefs2="a8 a9" order="S"/>
+<bond id="b7" atomRefs2="a8 a10" order="S"/>
+<bond id="b10" atomRefs2="a8 a14" order="S"/>
+</bondArray>
+</molecule>
+</product>
+<product>
+<molecule id="m4">
+<atomArray>
+<atom id="a16" title="R1" elementType="Du" x2="466.77988" y2="968.29767"/>
+<atom id="a12" elementType="O" x2="502.94586" y2="968.29767"/>
+<atom id="a17" title="R2" elementType="Du" x2="520.94586" y2="937.1207" hydrogenCount="3"/>
+<atom id="a18" title="R3" elementType="Du" x2="520.94586" y2="999.4746" hydrogenCount="3"/>
+</atomArray>
+<bondArray>
+<bond id="b8" atomRefs2="a16 a12" order="S"/>
+<bond id="b13" atomRefs2="a12 a17" order="S"/>
+<bond id="b14" atomRefs2="a12 a18" order="S"/>
+</bondArray>
+</molecule>
+</product>
+</productList>
+</reaction>
+</reactionList>
+</cml>

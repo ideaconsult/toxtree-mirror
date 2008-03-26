@@ -1,0 +1,12 @@
+Manifest-version: 1.40
+Main-Class: toxTree.apps.ToxTreeApp
+Class-Path: toxui-1.40.jar toxcramer-1.40.jar toxcore-1.40.jar toxrules-1.40.jar toxconfig-1.40.jar toxfuncgroups-1.40.jar toxreactions-1.40.jar ../jars/cdk-1.1.svn-19012008.jar ../jars/jgrapht-0.6.0.jar ../jars/vecmath1.2-1.14.jar ../jars/log4j.jar ../jars/gnuaxp.jar ../jars/jai_codec.jar ../jars/jai_core.jar ../jars/jh.jar ../jars/jumbo52.jar ../jars/joelib.jar ../jars/wizard.jar ../jars/l2fprod/l2fprod-common-all.jar ../jars/itext-1.4.5.jar ../jars/swing-layout-1.0.jar ../jars/prefuse.jar ../jars/ambit-smarts-2.0.jar
+Specification-Title: Toxtree Application - "Estimation of Toxic Hazard - A Decision Tree Approach"
+Specification-Version: 1.00
+Specification-Vendor: Ideaconsult LTD
+Package-Title: toxTree.apps
+Package-Version: 1.40
+Package-Vendor: Ideaconsult LTD
+Implementation-Title: Toxtree (Estimation of Toxic Hazard - A Decision Tree Approach)
+Implementation-Version: 1.40
+Implementation-Vendor: Ideaconsult LTD

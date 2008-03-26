@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jardesc>
+    <jar path="D:/src/toxtree/dist/toxTree.jar"/>
+    <options overwrite="false" compress="false" exportErrors="false" exportWarnings="true" saveDescription="true" descriptionLocation="/toxTree/src/apps/toxTreeJar.jardesc" useSourceFolders="false" buildIfNeeded="true"/>
+    <manifest manifestVersion="1.0" usesManifest="true" reuseManifest="false" saveManifest="true" generateManifest="true" manifestLocation="/toxTree/src/apps/toxTreeManifest" mainClassHandleIdentifier="=toxTree/src&lt;apps{toxTreeApp.java[toxTreeApp">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportOutputFolder="false" exportJavaFiles="false">
+        <javaElement handleIdentifier="=toxTree/src&lt;apps"/>
+        <javaElement handleIdentifier="=toxTree/src&lt;cramerTree"/>
+    </selectedElements>
+</jardesc>

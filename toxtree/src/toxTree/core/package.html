@@ -1,0 +1,46 @@
+<HTML><HEAD><TITLE>toxTree interfaces</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+
+</SCRIPT>
+
+<META NAME="Description" CONTENT="toxTree application">
+<META NAME="Keywords" CONTENT="source,decision tree,TTC,java">
+<!--  -->
+
+<body bgColor="#FFFFFF" link="#428EFF">
+
+
+This packages contains only interface definitions, defining essential classes in toxTree application.
+<UL>
+<LI>A decision tree should implement interface {@link toxTree.core.IDecisionMethod}
+<LI>A decision rule should implement interface {@link toxTree.core.IDecisionRule}
+<LI>The application of a decision tree on a query molecule 
+assigns it to a category {@link toxTree.core.IDecisionCategory}
+<LI>The path followed through the decision tree should be provided by  {@link toxTree.core.IDecisionResult}
+</UL>
+The existence of these interfaces allows various implementation of decision rules, trees and categories, 
+which can nevertheless be used interdependently.
+<P>
+A set of classes implementing these interfaces can be found in package {@link toxTree.tree}
+<p>
+<h3>Plugins</h3>
+Plugins are .jar files, containing any one or all of the following: 
+<ul>
+<li>Decision tree(s), i.e. classes implementing {@link toxTree.core.IDecisionMethod}
+<li>Rule(s), i.e. classes implementing {@link toxTree.core.IDecisionRule} 
+<li>Categories, i.e. classes implementing {@link toxTree.core.IDecisionCategory}
+</ul>
+Plugins are searched at run-time in the following directories:
+<ul>
+<li>The directory where toxTree.jar resides (current directory).
+<li>The directory "ext" below the current directory.
+</ul>
+Plugins containing decision trees are searched when presenting a list of available trees.
+Plugins containing rules are searched when presenting a list of available rules.
+Plugins containing categories are searched when presenting a list of available categories.
+<br>
+The Cramer tree {@link toxTree.tree.cramer.CramerRules} is used by default, but relies on the same mechanism. It is distributed in toxCramer.jar.
+A demo decision tree is available at {@link toxTree.tree.demo.SubstructureTree} and distributed in toxDemo.jar.
+
+
+</body></HTML>

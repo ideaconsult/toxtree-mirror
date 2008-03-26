@@ -1,0 +1,505 @@
+<project name="toxTree" default="apps" basedir=".">
+
+    <property name="version" value="1.40" />
+    <property name="version_forest" value="1.18" />
+        <!-- compile options -->
+        <property name="build.sysclasspath" value="ignore" />
+        <property name="build.compiler" value="modern" />
+        <property name="debug" value="off" />
+        <property name="deprecation" value="on" />
+        <property name="optimization" value="on" />
+
+    <!-- directories -->
+    <property name="build" value="bin" />
+    <property name="sourcedist"	value="sourcedist" />
+    <property name="dist" value="dist" />
+    <property name="doc" value="doc" />
+    <property name="src" value="src" />
+    <property name="lib" value="jars" />
+    <property name="cdklib" value="jars/cdk" />
+    <property name="sourcedist" value="sourcedist" />
+    <property name="src.tests" value="${src}/toxTree/test" />
+    <property name="reports.tests" value="reports" />
+    <property name="appjars.dir" value="${dist}/appjars" />
+
+	<property name="backup" value="../archive" />
+
+    <!-- CLASSPATH -->
+    <path id="project.class.path">
+	    <pathelement location="${java.ext.dirs}/rt.jar" />
+	    <fileset dir="${lib}">
+			<include name="*.jar" />
+
+			    <include name="cdk-1.1.svn-19012008.jar" />
+		    	<include name="gnuaxp.jar" />
+	    	<!-- MySQL is not (yet) necessary
+		    <include name="mysql-connector-java-3.1.7-gamma-bin.jar" />
+		    <include name="printf.jar" />
+		    <include name="vecmath1.2-1.14.jar"	/>
+		    <include name="cmlAll_1.4.jar" />
+		    <include name="base_1.4.jar" />
+		    <include name="pmrdom_1.4.jar" />
+		    <include name="pmrlib.jar" />
+		    		     -->
+		    <include name="vecmath1.2-1.14.jar"	/>
+	    	<!-- Java Matrix library -->
+			<include name="Jama-1.0.1.jar" />
+		    <include name="jcommon-0.9.6.jar" />
+	    	<!-- Logging -->
+		    <include name="log4j.jar" />
+
+	    	<!-- JPEG stuff -->
+		    <include name="jai-core.jar" />
+		    <include name="jai-codec.jar" />
+	    	<!-- JAVA Help system -->
+		    <include name="jh.jar" />
+	    	<!-- JUnit support -->
+		    <include name="junit.jar" />
+	    	<!-- JOElib support -->
+		    <include name="joelib.jar" />
+	    	<!-- L2fprod -->
+		    <include name="l2fprod/l2fprod-common-all.jar" />
+	    	<!-- wizard -->
+		    <include name="wizard.jar" />
+		    <include name="swing-layout-1.0.jar" />
+
+
+	    </fileset>
+    </path>
+    <target id="info" name="info" depends="check">
+        <!-- Gives information about the building process. -->
+        <echo message="Platform:" />
+        <echo message="             OS: ${os.name}" />
+        <echo message="   Architecture: ${os.arch}" />
+        <echo message="        Version: ${os.version}" />
+        <echo message=" Mac OS/X found: ${isMacOsX}" />
+        <echo message="" />
+        <echo message="Java/Ant Environment:" />
+        <echo message="   Java version: ${java.version}" />
+        <echo message="    Java vendor: ${java.vendor}" />
+        <echo message="       Java dir: ${java.home}" />
+        <echo message="   Java ext dir: ${java.ext.dirs}" />
+        <echo message="    Ant version: ${ant.version}" />
+        <echo message="    ${ANT_HOME}: ${ant.home}" />
+        <echo message="       hasAnt16: ${hasAnt16}" />
+        <echo message="" />
+        <echo message="    toxTree version: ${version}" />
+        <echo message="      build.xml: $Id: build.xml,v 1.0 nina@acad.bg$" />
+        <echo message="  Doclets found: ${docletsAreCompiled}" />
+        <echo message="" />
+        <echo message="Compiling:" />
+        <echo message="            for: ${build.compiler}" />
+        <echo message="          debug: ${debug}" />
+        <echo message="    deprecation: ${deprecation}" />
+        <echo message="   optimization: ${optimization}" />
+        <echo message="     skipDoclet: ${doSkipDoclet}" />
+    </target>
+
+    <target id="checkPlatforms" name="checkPlatforms">
+        <condition property="isMacOsX">
+            <and>
+                <os family="mac"/>
+                <os family="unix"/>
+            </and>
+        </condition>
+    </target>
+
+    <target id="check" name="check" depends="checkPlatforms">
+        <condition property="docletsAreCompiled">
+            <and>
+                <available classname="ListFilesFilesDoclet" classpath="${doc}/src"/>
+            </and>
+        </condition>
+        <condition property="hasAnt16">
+            <contains string="${ant.version}" substring="1.6"/>
+        </condition>
+        <condition property="isJava13">
+            <contains string="${java.version}" substring="1.3"/>
+        </condition>
+        <condition property="isJava14">
+            <contains string="${java.version}" substring="1.4"/>
+        </condition>
+        <condition property="isJava15">
+            <contains string="${java.version}" substring="1.5"/>
+        </condition>
+        <condition property="isJava14+">
+            <or>
+                <contains string="${java.version}" substring="1.4"/>
+                <contains string="${java.version}" substring="1.5"/>
+            </or>
+        </condition>
+        <condition property="isJava15">
+            <contains string="${java.version}" substring="1.5"/>
+        </condition>
+        <uptodate property="dotjavafiles.uptodate"
+            targetfile="${src}/core.javafiles">
+            <srcfiles dir="${src}" includes="**/*.java" />
+        </uptodate>
+        <condition property="doSkipDoclet">
+            <equals arg1="${skipDoclet}" arg2="true"/>
+        </condition>
+    </target>
+
+
+	<!-- backupTar target -->
+	<target name="backup" description="Backs up all source into a tar file.">
+		<mkdir dir="${backup}" />
+		<tstamp/>
+		<property name="backupFile" value ="${ant.project.name}-${version}-${DSTAMP}.tar.gz" />
+
+		<tar tarfile="${backup}/${backupFile}" 	basedir="${src}" compression="gzip" />
+		<echo message="Backup file ${backupFile} has been created." />
+	</target>
+
+	<!-- backupTar target -->
+	<target name="backupDoc" description="Backs up all doc/api into a tar file.">
+		<mkdir dir="${backup}" />
+		<tstamp/>
+		<property name="backupFile" value ="${ant.project.name}-doc-${version}-${DSTAMP}.tar.gz" />
+
+		<tar tarfile="${backup}/${backupFile}"
+			basedir="${doc}/api" compression="gzip" />
+			
+
+		<echo message="API documentation backup file ${backupFile} has been created." />
+	</target>
+
+	<!-- zipDoc target -->
+	<target name="zipDoc" description="Backs up all doc/api into a zip file.">
+		<mkdir dir="${backup}" />
+		<tstamp/>
+		<property name="backupFile" value ="${ant.project.name}-doc-${version}-${DSTAMP}.zip" />
+
+		<zip zipfile="${backup}/${backupFile}" basedir="${doc}/api"  />			
+
+		<echo message="API documentation backup file ${backupFile} has been created." />
+	</target>	
+
+
+
+	<target id="init" name="init" depends="setupBuildDir, runDoclet"/>
+    <target id="setupBuildDir" name="setupBuildDir">
+            <tstamp />
+            <mkdir dir="${build}" />
+            <mkdir dir="${dist}" />
+            <mkdir dir="${sourcedist}" />
+    </target>
+
+    <!-- clean -->
+    <target id="clean" name="clean" description="Removes autogenerated files.">
+            <delete>
+                <fileset dir="." includes="**/*~" />
+                <fileset dir="." includes="*.rda" />
+                <fileset dir="${src}" includes="*.classes" />
+                <fileset dir="${src}" includes="*.javafiles">
+                    <exclude name="jmol*.javafiles" />
+                </fileset>
+
+            </delete>
+            <delete dir="${build}" />
+
+            <delete>
+
+                <fileset dir="${dist}" includes="*.jar" />
+
+
+            </delete>
+    </target>
+
+    <target name="compileDoclet" id="compileDoclet" depends="check" unless="docletsAreCompiled">
+         <echo>Compiling doclets in doc/src that are required for compiling toxTree...</echo>
+         <antcall target="compileDoclet.MacOSX"/>
+         <antcall target="compileDoclet.Other" />
+    </target>
+
+    <target name="compileDoclet.MacOSX" id="compileDoclet.MacOSX" if="isMacOsX">
+        <javac srcdir="doc/src" destdir="doc/src"
+               includes="ListFilesDoclet.java" />
+    </target>
+
+    <target name="compileDoclet.Other" id="compileDoclet.Other" unless="isMacOsX">
+        <javac srcdir="doc/src" destdir="doc/src"
+               includes="ListFilesDoclet.java">
+            <classpath>
+                <fileset dir="${java.ext.dirs}">
+                    <include name="tools.jar" />
+                </fileset>
+                <fileset dir="${java.ext.dirs}/../../../lib">
+                    <include name="tools.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- generates classfiles and javafiles -->
+    <target name="runDoclet" id="runDoclet" >
+        <javadoc private="true"  maxmemory="128m">
+            <classpath>
+                <fileset dir="${lib}">
+                    <include name="*.jar" />
+                    <include name="l2fprod/*.jar" />
+                </fileset>
+            </classpath>
+
+            <doclet name="ListFilesDoclet" path="${doc}/src"/>
+
+            <packageset dir="${src}">
+                <include name="toxTree/**"/>
+            </packageset>
+
+        </javadoc>
+        <move todir="${src}" failonerror="true">
+            <fileset dir=".">
+              <include name="*.javafiles"/>
+              <include name="*.classes"/>
+            </fileset>
+        </move>
+    </target>
+
+    <target id="reactions" name="reactions">
+    <jar jarfile="${dist}/toxreactions-${version}.jar" compress="true">
+	<fileset dir="${src}">
+		<includesfile name="${src}/reactions.datafiles" />
+      </fileset>
+    </jar>
+	</target>
+
+    <target id="config" name="config">
+    <jar jarfile="${dist}/toxconfig-${version}.jar" compress="true">
+	<fileset dir="${src}">
+		<includesfile name="${src}/config.datafiles" />
+      </fileset>
+    </jar>
+	</target>
+
+    <target id="funcGroups" name="funcGroups">
+    <jar jarfile="${dist}/toxfuncgroups-${version}.jar" compress="true">
+	<fileset dir="${src}">
+		<includesfile name="${src}/funcgroups.datafiles" />
+      </fileset>
+    </jar>
+	</target>
+
+    <target id="compile" name="compile"
+	description="Compiles toxTree"
+	depends="init, compile-apps, compile-core, compile-data, compile-tree, compile-ui, compile-tests">
+    </target>
+    <target id="compile-core" name="compile-core" depends="init">
+	    <echo message="Compiling classes for toxTree-core module." />
+
+	    <javac srcdir="${src}" destdir="${build}" optimize="${optimization}"
+		   debug="${debug}" deprecation="${deprecation}">
+			<includesfile name="${src}/core.javafiles" />
+			<includesfile name="${src}/io.javafiles" />
+			<includesfile name="${src}/io.batch.javafiles" />
+			<includesfile name="${src}/exceptions.javafiles" />
+			<includesfile name="${src}/logging.javafiles" />
+			<includesfile name="${src}/query.javafiles" />
+			<includesfile name="${src}/qsar.javafiles" />
+
+		<classpath refid="project.class.path" />
+	    </javac>
+    </target>
+    <target id="compile-data"	name="compile-data" depends="init">
+	    <echo message="Compiling classes for toxTree-data module." />
+
+	    <javac srcdir="${src}" destdir="${build}" optimize="${optimization}"
+		   debug="${debug}" deprecation="${deprecation}">
+			<includesfile name="${src}/data.javafiles" />
+		<classpath refid="project.class.path" />
+	    </javac>
+    </target>
+    <target id="compile-tree"	name="compile-tree" depends="init">
+	    <echo message="Compiling classes for toxTree-tree module." />
+
+	    <javac srcdir="${src}" destdir="${build}" optimize="${optimization}"
+		   debug="${debug}" deprecation="${deprecation}">
+			<includesfile name="${src}/tree.javafiles" />
+			<includesfile name="${src}/tree.demo.javafiles" />
+			<includesfile name="${src}/tree.rules.javafiles" />
+			<includesfile name="${src}/tree.categories.javafiles" />
+	        <includesfile name="${src}/tree.cramer.javafiles" />
+
+		<classpath refid="project.class.path" />
+	    </javac>
+    </target>
+    <target id="compile-ui" name="compile-ui" depends="init">
+	    <echo message="Compiling classes for toxTree-ui	module." />
+
+	    <javac srcdir="${src}" destdir="${build}" optimize="${optimization}"
+		   debug="${debug}" deprecation="${deprecation}">
+			<includesfile name="${src}/ui.javafiles" />
+			<includesfile name="${src}/ui.actions.javafiles" />
+			<includesfile name="${src}/ui.tree.javafiles" />
+			<includesfile name="${src}/ui.batch.javafiles" />
+			<includesfile name="${src}/ui.molecule.javafiles" />
+			<includesfile name="${src}/ui.wizard.javafiles" />
+		<classpath refid="project.class.path" />
+	    </javac>
+    </target>
+    <target id="compile-apps" name="compile-apps" depends="init">
+	    <echo message="Compiling classes for apps module." />
+
+	    <javac srcdir="${src}" destdir="${build}" optimize="${optimization}"
+		   debug="${debug}" deprecation="${deprecation}">
+		   <includesfile name="${src}/apps.javafiles"/>
+	    	<includesfile name="${src}/apps.toxForest.javafiles" />
+		<classpath refid="project.class.path" />
+	    </javac>
+    </target>
+
+    <target id="compile-tests" name="compile-tests" depends="init">
+	    <echo message="Compiling classes for test module." />
+
+	    <javac srcdir="${src}" destdir="${build}" optimize="${optimization}"
+		   debug="${debug}" deprecation="${deprecation}">
+
+	    	<includesfile name="${src}/test.javafiles" />
+	    	<includesfile name="${src}/test.io.javafiles" />
+	    	<includesfile name="${src}/test.query.javafiles" />
+	    	<includesfile name="${src}/test.tree.javafiles" />
+		<classpath refid="project.class.path" />
+	    </javac>
+    </target>
+
+    <target id="compile-applets" name="compile-applets" depends="init">
+	    <echo message="Compiling classes for toxTree-applets module." />
+
+	    <javac srcdir="${src}" destdir="${build}" optimize="${optimization}"
+		   debug="${debug}" deprecation="${deprecation}">
+			<includesfile name="${src}/applets.javafiles" />
+		<classpath refid="project.class.path" />
+	    </javac>
+    </target>
+
+    <target id="apps" name="apps" depends= "toxTree, toxRules, toxCore,  toxUI, toxCramer, treeDemo, toxTest, toxForest"
+    description="Builds	the application	jar files for the toxTree application.">
+   <echo message="Compiling	toxTree applications." />
+    </target>
+
+    <!-- this is meant to be the core jar for toxTree application -->
+	<target	id="toxCore" name="toxCore" depends="compile-core, compile-tree, compile-data">
+		<jar jarfile="${dist}/toxcore-${version}.jar"
+			compress="true">
+		    <fileset dir="${build}">
+				<includesfile name="${src}/core.classes" />
+				<includesfile name="${src}/tree.classes" />
+				<includesfile name="${src}/qsar.classes" />
+				<includesfile name="${src}/data.classes" />
+				<includesfile name="${src}/exceptions.classes" />
+				<includesfile name="${src}/io.classes" />
+				<includesfile name="${src}/io.batch.classes" />
+				<includesfile name="${src}/logging.classes" />
+				<includesfile name="${src}/query.classes" />
+
+		   </fileset>
+		</jar>
+		<!-- uncomment and adjust settings to sign the jar
+        <signjar	jar="${dist}/toxCore.jar"
+				keystore="${keystore}"
+				alias="AmbitProject" storepass="pass"
+				keypass="pass" />
+				-->
+	</target>
+    <!-- a jar to only contain  rules  -->
+	<target	id="toxRules" name="toxRules" depends="compile-tree">
+		<jar jarfile="${dist}/toxrules-${version}.jar"
+			manifest="${src}/toxTree/apps/manifests/MANIFEST.rules"
+			compress="true">
+		    <fileset dir="${build}">
+			<includesfile name="${src}/tree.rules.classes" />
+			<includesfile name="${src}/tree.categories.classes" />
+		   </fileset>
+		</jar>
+	</target>
+    <!-- a jar to only contain  Cramer rules  -->
+	<target	id="toxCramer" name="toxCramer" depends="compile-tree">
+		<jar jarfile="${dist}/toxcramer-${version}.jar"
+			manifest="${src}/toxTree/apps/manifests/MANIFEST.cramer"
+			compress="true">
+		    <fileset dir="${build}">
+			<includesfile name="${src}/tree.cramer.classes" />
+		   </fileset>
+		</jar>
+	</target>
+    <!-- a jar to only contain  BfR rules rules
+	<target	id="toxSICRET" name="toxSICRET" depends="compile-tree">
+		<jar jarfile="${dist}/toxskinirritation-${version}.jar"
+			manifest="${src}/toxTree/apps/manifests/MANIFEST.sicret"
+			compress="true">
+		    <fileset dir="${build}">
+			<includesfile name="${src}/tree.sicret.classes" />
+		   </fileset>
+		</jar>
+	</target>
+	-->
+    <!-- a jar to only contain  UI  -->
+	<target	id="toxUI" name="toxUI" depends="compile-ui">
+		<jar jarfile="${dist}/toxui-${version}.jar"
+			manifest="${src}/toxTree/apps/manifests/MANIFEST.UI"
+			compress="true">
+		    <fileset dir="${build}">
+			<includesfile name="${src}/ui.classes" />
+			<includesfile name="${src}/ui.actions.classes" />
+			<includesfile name="${src}/ui.molecule.classes" />
+			<includesfile name="${src}/ui.tree.classes" />
+			<includesfile name="${src}/ui.batch.classes" />
+			<includesfile name="${src}/ui.wizard.classes" />
+		   </fileset>
+		</jar>
+
+	</target>
+
+    <!-- a jar to only contain  JUnit tests  -->
+	<target	id="toxTest" name="toxTest" depends="compile-tests">
+		<jar jarfile="${dist}/teststoxtree-${version}.jar"
+			manifest="${src}/toxTree/apps/manifests/MANIFEST.test"
+			compress="true">
+		    <fileset dir="${build}">
+		    	<includesfile name="${src}/test.classes" />
+		    	<includesfile name="${src}/test.io.classes" />
+		    	<includesfile name="${src}/test.query.classes" />
+		    	<includesfile name="${src}/test.tree.classes" />
+		   </fileset>
+		</jar>
+
+	</target>
+
+
+    <!-- This is the toxTree application itself  -->
+	<target	id="toxTree" name="toxTree" depends="compile-apps, compile-core, compile-tree, reactions, config, funcGroups">
+		<jar jarfile="${dist}/Toxtree-${version}.jar"
+			manifest="${src}/toxTree/apps/manifests/MANIFEST.MFT"
+			compress="true">
+		    <fileset dir="${build}">
+			<includesfile name="${src}/apps.classes" />
+		   </fileset>
+		</jar>
+
+	</target>
+
+    <!-- This is the toxForest application itself  -->
+	<target	id="toxForest" name="toxForest" depends="compile-apps, compile-core, compile-tree, reactions, config, funcGroups">
+		<jar jarfile="${dist}/Toxforest-${version_forest}.jar"
+			manifest="${src}/toxTree/apps/manifests/MANIFEST.forest"
+			compress="true">
+		    <fileset dir="${build}">
+			<includesfile name="${src}/apps.toxForest.classes" />
+		   </fileset>
+		</jar>
+
+	</target>
+
+    <!-- a jar to only contain  demo substructure tree  -->
+	<target	id= "treeDemo" name="treeDemo" depends="compile-tree">
+		<jar jarfile="${dist}/toxdemo-${version}.jar"
+			compress="true">
+		    <fileset dir="${build}">
+			<includesfile name="${src}/tree.demo.classes" />
+		   </fileset>
+		</jar>
+	</target>
+
+
+
+</project>
