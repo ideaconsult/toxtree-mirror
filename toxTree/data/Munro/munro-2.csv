@@ -1,0 +1,29 @@
+NAME,CAS,SMILES
+Acrilic acid,79-10-7,OC(=O)C=C
+Allyl alcohol,107-18-6,OCC=C
+Allyl heptanoate,142-19-8,CCCCCCC(=O)OCC=C
+Allyl hexanoate,123-68-2,CCCCCC(=O)OCC=C
+Butylated hydroxytoluene,128-37-0,CC1=CC(=C(O)C(=C1)C(C)(C)C)C(C)(C)C
+Caffeine,58-08-2,CN1C=NC2=C1C(=O)N(C)C(=O)N2C
+"Carotene, beta-",7235-40-7,CC1=C(\C=C\C(C)=C\C=C\C(C)=C\C=C\C=C(C)\C=C\C=C(C)\C=C\C2=C(C)CCCC2(C)C)C(C)(C)CCC1
+Carvone,99-49-0,CC(=C)C1CC=C(C)C(=O)C1
+"Carvone, d-",2244-16-8,CC(=C)[C@H]1CC=C(C)C(=O)C1
+Diacetyl,431-03-8,CC(=O)C(C)=O
+Diallyl phtalate,131-17-9,C=CCOC(=O)C1=C(C=CC=C1)C(=O)OCC=C
+Diketopiperazine,29990-68-9,O=C1NCCNC1=O
+Ethyl maltol,4940-11-8,CCC1=C(O)C(=O)C=CO1
+Ethyl vanillin,121-32-4,CCOC1=C(O)C=CC(C=O)=C1
+"Ethylhexyl phtalate, mono-2-",4376-20-9,CCCCC(CC)COC(=O)C1=CC=CC=C1C(O)=O
+Etretinate,54350-48-0,CCOC(=O)\C=C(C)\C=C\C=C(C)\C=C\C1=C(C)C(C)=C(OC)C=C1C
+Fenthion,55-38-9,COP(=S)(OC)OC1=CC(C)=C(SC)C=C1
+Furfural,98-01-1,O=CC1=CC=CO1
+Isobornyl acetate,125-12-2,CC(=O)O[C@@H]1C[C@@H]2CC[C@]1(C)C2(C)C
+Isophorone,78-59-1,CC1=CC(=O)CC(C)(C)C1
+Maltol,118-71-8,CC1=C(O)C(=O)C=CO1
+Methyl amyl ketone,110-43-0,CCCCCC(C)=O
+Methyl anthranilate,134-20-3,COC(=O)C1=C(N)C=CC=C1
+Piperidine,110-89-4,C1CCNCC1
+Piperonal,120-57-0,O=CC1=CC2=C(OCO2)C=C1
+Propargyl alcohol,107-19-7,OCC#C
+Pyridine,110-86-1,C1=CC=NC=C1
+Thujone,546-80-5,CC(C)C12CC(=O)C(C)C1C2

@@ -1,0 +1,10 @@
+Manifest-version: 1.36
+Specification-Title: Cramer scheme as in "Cramer G. M., R. A. Ford, R. L. Hall, Estimation of Toxic Hazard - A Decision Tree Approach,J. Cosmet. Toxicol.,Vol.16, pp. 255-276, Pergamon Press, 1978"
+Specification-Version: 1.00
+Specification-Vendor: Ideaconsult LTD
+Implementation-Title: Classes implementing JUnit test cases for toxTree application
+Implementation-Version: 1.36
+Implementation-Vendor: Ideaconsult LTD
+Package-Title: toxTree.test
+Package-Version: 1.36
+Package-Vendor: Ideaconsult LTD

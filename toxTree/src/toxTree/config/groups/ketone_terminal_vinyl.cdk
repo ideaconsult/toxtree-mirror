@@ -1,0 +1,33 @@
+{
+  QueryAtomContainer mol = new   QueryAtomContainer();
+  SymbolQueryAtom a1 = new SymbolQueryAtom("C");
+  mol.addAtom(a1);
+  InverseSymbolSetQueryAtom a2 = new InverseSymbolSetQueryAtom();
+  a2.addSymbol("O");  a2.addSymbol("S");  mol.addAtom(a2);
+  SymbolQueryAtom a3 = new SymbolQueryAtom("C");
+  mol.addAtom(a3);
+  SymbolQueryAtom a4 = new SymbolQueryAtom("O");
+  mol.addAtom(a4);
+  SymbolQueryAtom a5 = new SymbolQueryAtom("C");
+  mol.addAtom(a5);
+  SymbolQueryAtom a6 = new SymbolQueryAtom("H");
+  mol.addAtom(a6);
+  SymbolQueryAtom a7 = new SymbolQueryAtom("H");
+  mol.addAtom(a7);
+  SymbolQueryAtom a8 = new SymbolQueryAtom("H");
+  mol.addAtom(a8);
+  OrderQueryBond b1 = new OrderQueryBond(a2, a1, 1.0);
+  mol.addBond(b1);
+  OrderQueryBond b2 = new OrderQueryBond(a1, a3, 1.0);
+  mol.addBond(b2);
+  OrderQueryBond b3 = new OrderQueryBond(a1, a4, 2.0);
+  mol.addBond(b3);
+  OrderQueryBond b4 = new OrderQueryBond(a3, a5, 2.0);
+  mol.addBond(b4);
+  OrderQueryBond b5 = new OrderQueryBond(a5, a6, 1.0);
+  mol.addBond(b5);
+  OrderQueryBond b6 = new OrderQueryBond(a5, a7, 1.0);
+  mol.addBond(b6);
+  OrderQueryBond b7 = new OrderQueryBond(a3, a8, 1.0);
+  mol.addBond(b7);
+}

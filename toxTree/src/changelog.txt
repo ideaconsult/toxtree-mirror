@@ -1,0 +1,14 @@
+Changelog ToxTree 1.12 -> 1.13, ToxForest 1.01 -> 1.02
+- Fixed bug (last compound from the file is ignored when applying a decision tree)
+- Fixed bug (impossible to edit the example compound for a rule)
+- Fixed bug - changes in tree were not appearing instantly
+
+- Added possibility to delete decision tree from the decision forest.
+- Warning message when saving files to avoid overwriting.
+- Changed JChemPaint to launch in nonmodal window in some cases 
+- When selecting a file without extension, the selected extension is added automatically.
+- Added hints in compound properties area, to view the data if the row is too long
+- Added menu to delete unused categories
+- Added Compounds/Find menu to look for a compound by property
+- Added Compounds/Subsets menu to display subsets of compounds, belonging to certain category. 
+- Added XML based format for saving trees (.tml) and forests (.fml). This is because .tree and .forest formats are incompatible between different ToxForest/ToxTree versions.

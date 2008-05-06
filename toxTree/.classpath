@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="jars/gnujaxp.jar"/>
+	<classpathentry kind="lib" path="jars/hyperapplet.jar"/>
+	<classpathentry kind="lib" path="jars/jai_codec.jar"/>
+	<classpathentry kind="lib" path="jars/jai_core.jar"/>
+	<classpathentry kind="lib" path="jars/Jama-1.0.1.jar"/>
+	<classpathentry kind="lib" path="jars/jh.jar"/>
+	<classpathentry kind="lib" path="jars/junit.jar"/>
+	<classpathentry kind="lib" path="jars/log4j.jar"/>
+	<classpathentry kind="lib" path="jars/mysql-connector-java-3.1.11-bin.jar"/>
+	<classpathentry kind="lib" path="jars/vecmath1.2-1.14.jar"/>
+	<classpathentry kind="lib" path="jars/jgrapht-0.6.0.jar"/>
+	<classpathentry kind="lib" path="jars/joelib.jar" sourcepath="/JOELib-20040827"/>
+	<classpathentry kind="lib" path="jars/itext-0.94.jar"/>
+	<classpathentry kind="lib" path="jars/l2fprod/l2fprod-common-all.jar"/>
+	<classpathentry kind="lib" path="jars/wizard.jar"/>
+	<classpathentry kind="lib" path="jars/cdk-pure-0.99.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

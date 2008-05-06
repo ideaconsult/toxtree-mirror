@@ -1,0 +1,51 @@
+/*
+Copyright Ideaconsult Ltd.(C) 2006  
+Contact: nina@acad.bg
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+*/
+package sicret.rules;
+
+import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
+import toxTree.tree.rules.smarts.SMARTSException;
+
+/**
+ * Alkyl Alkanol Amines.<br>
+ * SMARTS pattern  <ul>
+ * <li>[OX2H][CX4][CX4][NX3;H2,H1;!$(NC=O)]
+ * </ul>
+ * @author Nina Jeliazkova nina@acad.bg
+ * @author Martin Martinov
+ * <b>Modified</b> Dec 17, 2006
+ */
+public class RuleAlkylAlkanolAmines extends  RuleSMARTSubstructure{
+	private static final long serialVersionUID = 0;
+	public RuleAlkylAlkanolAmines() {
+		//TODO fix sterically hindered condition (example NO fails)
+		super();		
+		try {
+			super.initSingleSMARTS(super.smartsPatterns,"1", "[OX2H][CX4][CX4][NX3;H2,H1;!$(NC=O)]");
+			id = "58";
+			title = "AlkylAlkanolAmines";
+			
+			examples[0] = "CCO";
+			examples[1] = "NCCO";	
+			editable = false;
+		} catch (SMARTSException x) {
+			logger.error(x);
+		}
+	}
+}

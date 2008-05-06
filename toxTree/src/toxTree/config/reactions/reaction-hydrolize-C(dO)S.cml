@@ -1,0 +1,61 @@
+<cml>
+<reactionList>
+<reaction id="reaction-hydrolize-C(=O)S">
+<reactantList>
+<reactant>
+<molecule id="m1">
+<atomArray>
+<atom id="a1" title="R" elementType="Du" x2="79.0" y2="974.17694"/>
+<atom id="a2" elementType="C" x2="115.00001" y2="974.17694"/>
+<atom id="a3" elementType="S" x2="133.00002" y2="943.0"/>
+<atom id="a4" elementType="O" x2="133.00002" y2="1005.3538"/>
+<atom id="a5" title="R" elementType="Du" x2="169.00002" y2="943.0"/>
+</atomArray>
+<bondArray>
+<bond id="b1" atomRefs2="a1 a2" order="S"/>
+<bond id="b2" atomRefs2="a2 a3" order="S"/>
+<bond id="b3" atomRefs2="a2 a4" order="D"/>
+<bond id="b4" atomRefs2="a3 a5" order="S"/>
+</bondArray>
+</molecule>
+</reactant>
+<reactant>
+<molecule id="m2">
+<atomArray>
+<atom id="a6" elementType="O" x2="239.00003" y2="974.17694" hydrogenCount="2"/>
+</atomArray>
+</molecule>
+</reactant>
+</reactantList>
+<productList>
+<product>
+<molecule id="m3">
+<atomArray>
+<atom id="a7" title="R" elementType="Du" x2="324.00003" y2="973.17694"/>
+<atom id="a8" elementType="C" x2="360.00006" y2="973.17694"/>
+<atom id="a9" elementType="O" x2="378.00006" y2="942.0" hydrogenCount="1"/>
+<atom id="a10" elementType="O" x2="378.00006" y2="1004.3538"/>
+</atomArray>
+<bondArray>
+<bond id="b5" atomRefs2="a7 a8" order="S"/>
+<bond id="b6" atomRefs2="a8 a9" order="S"/>
+<bond id="b7" atomRefs2="a8 a10" order="D"/>
+</bondArray>
+</molecule>
+</product>
+<product>
+<molecule id="m4">
+<atomArray>
+<atom id="a11" title="R" elementType="Du" x2="465.00006" y2="968.17694"/>
+<atom id="a12" elementType="S" x2="501.00006" y2="968.17694" hydrogenCount="1"/>
+</atomArray>
+<bondArray>
+<bond id="b8" atomRefs2="a11 a12" order="S"/>
+</bondArray>
+</molecule>
+</product>
+</productList>
+</reaction>
+
+</reactionList>
+</cml>

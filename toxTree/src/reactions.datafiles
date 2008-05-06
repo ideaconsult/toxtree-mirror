@@ -1,0 +1,10 @@
+toxTree/config/reactions/reaction-hydrolize-C(dO)O.cml
+toxTree/config/reactions/reaction-hydrolize-C(dO)S.cml
+toxTree/config/reactions/reaction-hydrolize-C(dS)O.cml
+toxTree/config/reactions/reaction-hydrolize-C(dS)S.cml
+toxTree/config/reactions/reaction-hydrolize-P(dO)(O)(O)O.cml
+toxTree/config/reactions/reaction-hydrolize-S(dO)(dO)O.cml
+toxTree/config/reactions/reaction-metabolize-CdC.cml
+toxTree/config/reactions/reaction-metabolize-NdN.cml
+toxTree/config/reactions/reaction-metabolize-Npd.cml
+toxTree/config/reactions/reaction-metabolize-R-N.cml
