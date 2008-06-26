@@ -66,8 +66,11 @@ public class PropertyEditor extends JPanel{
         	
         }
         
-        if (options != null)
+        if (options != null) {
+        	if (options instanceof OptionsPanel)
+        		optionsPanel = (OptionsPanel) options;
             add(options,BorderLayout.NORTH);
+        }
     }
     public String getPropertyValue() {
         return optionsPanel.getPropertyValue();
