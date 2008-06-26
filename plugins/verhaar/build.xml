@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 <project name="verhaar-plugin" default="plugin" basedir=".">
 
-	<property name="version" value="1.50" />
+	<property name="version" value="1.51" />
 	<property name="plugin" value="verhaar" />
 	<property name="plugin.jar.name" value="VerhaarScheme" />
         <!-- compile options -->

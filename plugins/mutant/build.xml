@@ -1,6 +1,6 @@
 <project name="mutant-plugin" default="plugin" basedir=".">
 
-	<property name="version" value="1.50" />
+	<property name="version" value="1.51" />
 	<property name="plugin" value="mutant" />
 	<property name="plugin.jar.name" value="mutant" />
         <!-- compile options -->

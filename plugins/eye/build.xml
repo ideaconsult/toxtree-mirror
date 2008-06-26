@@ -1,6 +1,6 @@
 <project name="eye-plugin" default="plugin" basedir=".">
 
-	<property name="version" value="1.50" />
+	<property name="version" value="1.51" />
 	<property name="plugin" value="eye" />
 	<property name="plugin.jar.name" value="EyeIrritation" />
         <!-- compile options -->

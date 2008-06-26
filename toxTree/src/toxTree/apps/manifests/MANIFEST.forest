@@ -1,6 +1,6 @@
 Manifest-version: 1.19
 Main-Class: toxTree.apps.toxForest.ToxForestApp
-Class-Path: toxTree-1.50.jar toxui-1.50.jar toxcramer-1.50.jar toxcore-1.50.jar toxrules-1.50.jar toxconfig-1.50.jar toxfuncgroups-1.50.jar toxreactions-1.50.jar ../jars/cdk-1.1.svn-19012008.jar ../jars/jgrapht-0.6.0.jar ../jars/vecmath1.2-1.14.jar ../jars/log4j.jar ../jars/gnuaxp.jar ../jars/jai_codec.jar ../jars/jai_core.jar ../jars/jh.jar ../jars/jumbo52.jar ../jars/joelib.jar ../jars/wizard.jar ../jars/l2fprod/l2fprod-common-all.jar ../jars/itext-1.4.5.jar ../jars/swing-layout-1.0.jar ../jars/prefuse.jar ../jars/ambit-smarts-2.0.jar
+Class-Path: toxTree-1.51.jar toxui-1.51.jar toxcramer-1.51.jar toxcore-1.51.jar toxrules-1.51.jar toxconfig-1.51.jar toxfuncgroups-1.51.jar toxreactions-1.51.jar ../jars/cdk-1.1.svn-19012008.jar ../jars/jgrapht-0.6.0.jar ../jars/vecmath1.2-1.14.jar ../jars/log4j.jar ../jars/gnuaxp.jar ../jars/jai_codec.jar ../jars/jai_core.jar ../jars/jh.jar ../jars/jumbo52.jar ../jars/joelib.jar ../jars/wizard.jar ../jars/l2fprod/l2fprod-common-all.jar ../jars/itext-1.4.5.jar ../jars/swing-layout-1.0.jar ../jars/prefuse.jar ../jars/ambit-smarts-2.0.jar
 Specification-Title: Toxforest Application - Multiple Decision Trees
 Specification-Version: 1.19
 Specification-Vendor: Ideaconsult LTD

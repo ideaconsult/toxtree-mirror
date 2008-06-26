@@ -1,6 +1,6 @@
 <project name="sicret-plugin" default="plugin" basedir=".">
 
-	<property name="version" value="1.50" />
+	<property name="version" value="1.51" />
 	<property name="plugin" value="sicret" />
 	<property name="plugin.jar.name" value="SkinIrritation" />
         <!-- compile options -->
