@@ -75,17 +75,15 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 	 */
 	public UserDefinedTree(IDecisionNodesFactory nodesFactory) {
 		super(new CategoriesList(), nodesFactory.createNodesList());
+		setNodesFactory(new DecisionNodesFactory());
 		treeRoot = 0;
 	}
 	public UserDefinedTree() {
 		this(new DecisionNodesFactory());
-		treeRoot = 0;
 	}
 	
 	public UserDefinedTree(IDecisionCategories classes, IDecisionRuleList rules){
-		super();
-		setNodesFactory(new DecisionNodesFactory());
-		treeRoot = 0;
+		this();
 		this.categories = classes;
 		this.rules = rules;
 		if (rules instanceof Observable) ((Observable)rules).addObserver(this);
