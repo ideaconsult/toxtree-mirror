@@ -126,7 +126,12 @@ public class MutantTreeResult extends TreeResult {
 		    		RuleResult r = ((RuleResult)ruleResults.get(i));
 		    		if (r.isSilent()) continue;
 
-		    		if (r.getCategory() == null) { //not a leaf node
+		    		if ((r.getCategory() == null) 
+		    			|| (r.getRule() instanceof IAlertCounter)
+		    			|| (
+		    			(r.getRule() instanceof DecisionNode) && (((DecisionNode)r.getRule()).getRule() instanceof IAlertCounter)
+		    			)
+		    			) { //not a leaf node or an alert
 		    			if (r.isResult())
 		    				b.put(r.getRule().getID(),Answers.toString(Answers.YES));
 		    			else 
