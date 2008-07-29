@@ -111,7 +111,6 @@ public class RuleExampleEditAction extends RuleMoleculeEditAction {
 			}
 			if (m==null) {
 				m = new org.openscience.cdk.Molecule();
-				m.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON));
 			}
 			setMolecule(m);
 			super.actionPerformed(arg0);
