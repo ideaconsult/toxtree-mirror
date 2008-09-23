@@ -66,7 +66,7 @@ public class RuleDACancerogenicityAromaticAmines extends LinearDiscriminantRule 
 		b.append("<br>");
 		b.append("Threshold =  29.08");
 		b.append("</b>");
-        b.append(" If the outcome of the model is less than the threshold, returns YES, otherwise - NO.");
+        b.append(" If the outcome of the model is >= threshold, returns YES, otherwise - NO.");
 		b.append("<br>");
 		b.append("The algorithm was generated through Canonical Discriminant Analysis. <br>	W(mean, Class) is the average value for each of the two classes in the training set. When calculated for an individual chemical, W indicates to which class the chemical should be assigned, based on the Threshold (given above) that separates the two classes."); 
 		b.append("The model originally published contained standardized coefficients, so it could be applied only after standardization of the descriptors. The present model has been re-calculated, and has  raw coefficients. In this way it can be applied directly to the descriptors, without any preliminary transformation of the values."); 
@@ -98,8 +98,8 @@ public class RuleDACancerogenicityAromaticAmines extends LinearDiscriminantRule 
         b.append("C. Hansch, A. Leo and D. Hoeckman, (1995) Exploring QSAR, hydrophobic, electronic and steric constants, ACS, Washington DC");
 		b.append("</ul></html>");
 		setExplanation(b.toString());
-		examples[0] = "CC(C)OC(=O)NC1=CC(=CC=C1)Cl";
-		examples[1] = "C1=CC=C2C=C(C=CC2=C1)N";
+		examples[1] = "C1(=CC(=CC(=C1N)C)C)C.[H]Cl"; //"CC(C)OC(=O)NC1=CC(=CC=C1)Cl";
+		examples[0] = "C1=CC=C2C=C(C=CC2=C1)N";
 	}
 
 	public static LinearQSARModel createCancerogenicityAromaticAminesModel() {
@@ -171,7 +171,7 @@ The variables "_s" are the final (corrected) values of the variables; the variab
 	
 	@Override
 	protected boolean compare(double value, double threshold) {
-		return value < threshold;
+		return value >= threshold;
 	}
     /**
 Thus, if calculated w >29.08, then the substance should be carcinogen 
@@ -179,7 +179,7 @@ if calculated w< 29.08, then the substance should be noncarcinogen
      */
 	public String getImplementationDetails() {
 		StringBuffer b = new StringBuffer();
-		b.append("The answer is YES if the value calculated by the linear discriminant model is W < ");
+		b.append("The answer is YES if the value calculated by the linear discriminant model is W >= ");
 		b.append(threshold);
 		b.append("\n");
 		b.append("W = ");

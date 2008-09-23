@@ -166,7 +166,7 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
         {42,42,0,0}, //Rule 41 (ii)     
         {0,43,0,0}, //Rule 42 ar amine 
         {0,44,8,0}, //Rule 43 user input 
-        {45,45,6,7}, //Rule 44 QSAR8
+        {45,45,7,6}, //Rule 44 QSAR8
         //{0,46,0,0}, //Rule 45 QSAR6 applicable 
         {0,0,5,4}, //Rule 45 QSAR6 
         
