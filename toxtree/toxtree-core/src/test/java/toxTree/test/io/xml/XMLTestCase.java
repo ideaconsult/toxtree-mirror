@@ -28,7 +28,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.StringWriter;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -40,15 +39,13 @@ import junit.framework.TestCase;
 
 import org.w3c.dom.Document;
 
-import com.sun.org.apache.xml.internal.serialize.OutputFormat;
-import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
-
 public abstract class XMLTestCase extends TestCase {
 
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(XMLTestCase.class);
 	}
 	public static String print(Document doc) throws Exception {
+		/*
 	   		 StringWriter outWriter = new StringWriter();
 	  		 OutputFormat format = new OutputFormat(doc);
 	   		 format.setLineWidth(65);
@@ -58,6 +55,8 @@ public abstract class XMLTestCase extends TestCase {
 	   		 XMLSerializer output = new XMLSerializer(outWriter, format);
 	   		 output.serialize(doc);
 	         return outWriter.toString();
+	         */
+		return "";
 	}
 	public static void save(Document doc, File file) throws Exception {
         Source source = new DOMSource(doc);
