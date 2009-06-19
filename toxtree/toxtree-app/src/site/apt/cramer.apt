@@ -1,0 +1,26 @@
+ -----
+ Cramer rules
+ -----
+ Background
+ -----
+
+
+Introduction
+
+  Cramer rules
+
+  Developed by IdeaConsult Ltd., (Sofia, Bulgaria) for {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC}}
+  
+* Reference
+
+ [Cramer, 1978] Cramer GM, Ford RA, Hall RL (1978) Estimation of Toxic Hazard - A Decision Tree Approach. J. Cosmet. Toxicol. 16, 255-276.
+
+ [Patlewicz, 2008] Patlewicz G, Jeliazkova N, Safford RJ, Worth AP, Aleksiev B. (2008) An evaluation of the implementation of the Cramer classification scheme in the Toxtree software. SAR QSAR Environ Res. ;19(5-6):495-524.
+
+* Forum
+
+ {{{http://sourceforge.net/forum/forum.php?forum_id=867719}Cramer rules forum}}
+
+* Source 
+
+ {{{http://toxtree.svn.sourceforge.net/viewvc/toxtree/toxTree/src/toxTree/tree/cramer/}source code}}

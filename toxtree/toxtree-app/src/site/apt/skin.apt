@@ -1,0 +1,29 @@
+ -----
+ Skin irritation
+ -----
+ Background
+ -----
+ 
+ 
+Introduction
+
+ Estimates skin corrosion and irritatiion potential by physicochemical property limits and structural rules
+ 
+ Developed by IdeaConsult Ltd., (Sofia, Bulgaria) for {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC}}
+  
+* Reference
+
+ [Gerner 2004] Ingrid Gerner, Kerstin Schlegel, John D. Walker, and Etje Hulzebosc, Use of Physicochemical Property Limits to Develop Rules for Identifying Chemical Substances with no Skin Irritation or Corrosion Potential, QSAR Comb. Sci. 2004, 23, pp.726-733  
+ 
+ [Hulzebos 2005] Etje Hulzebos, John D. Walker, Ingrid Gerner, and Kerstin Schlegel, Use of structural alerts to develop rules for identifying chemical substances with skin irritation or skin corrosion potential, QSAR Comb. Sci. 2005, 24, pp.332-342
+ 
+ [Walker 2005] John D. Walker, Ingrid Gerner, Etje Hulzebos, Kerstin Schlegel, The Skin Irritation Corrosion Rules Estimation Tool (SICRET), QSAR Comb. Sci. 2005, 24, pp378-384. 
+
+ 
+* Forum
+
+ {{{http://sourceforge.net/forum/forum.php?forum_id=867721}Skin irritation forum}}
+ 
+* Source 
+
+ {{{http://toxtree.svn.sourceforge.net/viewvc/toxtree/plugins/sicret/}source code}}

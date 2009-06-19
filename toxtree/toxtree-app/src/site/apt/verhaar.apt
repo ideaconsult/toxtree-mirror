@@ -1,0 +1,27 @@
+ -----
+ Verhaar scheme
+ -----
+ Background
+ -----
+ 
+ 
+Introduction
+
+ Verhaar scheme for predicting toxicity mode of action
+ 
+ Developed by IdeaConsult Ltd., (Sofia, Bulgaria) for {{{http://ambit.sourceforge.net}CEFIC LRI AMBIT project}}
+  
+* Reference
+
+ [Verhaar, 1992] Verhaar HJM, van Leeuwen CJ and Hermens JLM (1992) Classifying environmental pollutants. 1. Structure-activity relationships for prediction of aquatic toxicity. Chemosphere 25, 471-491. 
+ 
+ [Verhaar, 2000] Verhaar HJM, Solbe J, Speksnijder J, van Leeuwen CJ and Hermens JLM (2000) Classifying environmental pollutants: Part 3. External validation of the classification system. Chemosphere 40, 875-883 
+
+ 
+* Forum
+
+ {{{http://sourceforge.net/forum/forum.php?forum_id=867720}Verhaar scheme forum}}
+ 
+* Source 
+
+ {{{http://toxtree.svn.sourceforge.net/viewvc/toxtree/plugins/verhaar/}source code}} 

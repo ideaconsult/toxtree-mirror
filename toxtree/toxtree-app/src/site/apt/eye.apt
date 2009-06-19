@@ -1,0 +1,22 @@
+ -----
+ Eye irritation
+ -----
+ Background
+ -----
+ 
+ 
+Introduction
+
+ Estimates eye irritation and corrosion potential by physicochemical property limits and structural rules.
+  
+* Reference
+
+ [Gerner 2005] Gerner, I., Liebsch, M., Spielmann, H. (2005). Assessment of the eye irritating properties of chemicals by applying alternatives to the Draize rabbit eye test: the use of QSARs and in vitro tests for the classification of eye irritation. Alternatives to Laboratory Animals 33, 215-237.
+ 
+* Forum
+
+ {{{http://sourceforge.net/forum/forum.php?forum_id=867723}Eye irritation forum}}
+ 
+* Source 
+
+ {{{http://toxtree.svn.sourceforge.net/viewvc/toxtree/plugins/eye/}source code}}

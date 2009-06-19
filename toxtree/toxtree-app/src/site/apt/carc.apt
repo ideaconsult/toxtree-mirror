@@ -1,0 +1,27 @@
+ -----
+Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity)
+ -----
+ Background
+ -----
+ 
+ 
+Introduction
+
+ Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity). 
+
+ Predicts the possibility of carcinogenicity and mutagenicity by discriminant analysis and structural rules.
+  
+* Reference
+
+ [Benigni 2007] R. Benigni, C. Bossa, T. Netzeva, A. Rodomonte, and I. Tsakovska (2007) Mechanistic QSAR of aromatic amines: new models for discriminating between mutagens and nonmutagens, and validation of models for carcinogens. Environ mol mutag 48:754-771 
+
+ [Benigni 2008] A software tool for predicting mutagenicity and carcinogenicity {{{http://ecb.jrc.it/documents/QSAR/EUR_23241_EN.pdf}(accompanying document for Toxtree)}}
+
+ 
+* Forum
+
+  {{{http://sourceforge.net/forum/forum.php?forum_id=867722}Benigni/Bossa rulebase forum}}
+  
+* Source 
+
+ {{{http://toxtree.svn.sourceforge.net/viewvc/toxtree/plugins/mutant/}source code}}
