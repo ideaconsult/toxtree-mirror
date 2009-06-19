@@ -143,13 +143,14 @@ public class TreePrefuse extends Display implements ITreeView {
     			VisualItem.STROKECOLOR, ColorLib.gray(200));
     	ColorAction edgeFillColor = new ColorAction(EDGES, 
     			VisualItem.FILLCOLOR, ColorLib.gray(200));    	
-
+/* doesn't compile with current prefuse library
+ * 
    		edgeStrokeColor.add(ExpressionParser.predicate("answer == '" + AbstractRule.MSG_YES + "'"), ColorLib.rgba(0,255,0,100));
    		edgeStrokeColor.add(ExpressionParser.predicate("answer == '" + AbstractRule.MSG_NO + "'"), ColorLib.rgba(255,0,0,100));
 
    		edgeFillColor.add(ExpressionParser.predicate("answer == '" + AbstractRule.MSG_YES + "'"), ColorLib.rgba(0,255,0,100));
    		edgeFillColor.add(ExpressionParser.predicate("answer == '" + AbstractRule.MSG_NO + "'"), ColorLib.rgba(255,0,0,100));
-
+*/
    		
    		draw.add(edgeStrokeColor);
    		draw.add(edgeFillColor);
