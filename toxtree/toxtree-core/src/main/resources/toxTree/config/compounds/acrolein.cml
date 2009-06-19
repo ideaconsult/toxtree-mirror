@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cml>
+<molecule id="m2">
+<atomArray>
+<atom id="a1" elementType="C" x2="244.0" y2="983.0"/>
+<atom id="a2" elementType="C" x2="275.1769" y2="965.0"/>
+<atom id="a3" elementType="C" x2="306.35382" y2="983.0"/>
+<atom id="a4" elementType="O" x2="337.53073" y2="965.0"/>
+<atom id="a5" elementType="H" x2="244.0" y2="1019.0"/>
+<atom id="a6" elementType="H" x2="212.82309" y2="965.0"/>
+<atom id="a7" elementType="H" x2="275.1769" y2="929.0"/>
+<atom id="a8" elementType="H" x2="306.35382" y2="1019.0"/>
+</atomArray>
+<bondArray>
+<bond id="b1" atomRefs2="a2 a1" order="D"/>
+<bond id="b2" atomRefs2="a3 a2" order="S"/>
+<bond id="b3" atomRefs2="a4 a3" order="D"/>
+<bond id="b4" atomRefs2="a1 a5" order="S"/>
+<bond id="b5" atomRefs2="a1 a6" order="S"/>
+<bond id="b6" atomRefs2="a2 a7" order="S"/>
+<bond id="b7" atomRefs2="a3 a8" order="S"/>
+</bondArray>
+</molecule>
+</cml>
