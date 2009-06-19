@@ -82,7 +82,8 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
      */
     public ToxTreeModule(JFrame frame, File inputFile, DecisionMethodsList methods) {
         super(frame,inputFile,methods);
-        setRules(methods.getMethod(0));
+        if (methods.size()>0)
+        	setRules(methods.getMethod(0));
         
         actions = new ToxTreeActions(frame,this);
 
