@@ -1,0 +1,26 @@
+ -----
+ Extended Cramer rules
+ -----
+ Background
+ -----
+
+
+Introduction
+
+  Cramer rules, with extensions. Like the original Cramer rules, these rules predict a level of toxicological concern (when administered orally) from the molecular structure. <br>- I: low concern, <br>- II: intermediate concern, <br>- III: high concern (unknown/unsafe compound).
+  
+  Available since ToxTree 1.60
+
+* Reference
+
+ [Cramer, 1978] Cramer GM, Ford RA, Hall RL (1978) Estimation of Toxic Hazard - A Decision Tree Approach. J. Cosmet. Toxicol. 16, 255-276.
+
+ [Patlewicz, 2008] G. Patlewicz, N. Jeliakova, R.J. Safford, A.P. Worth, An evaluation of the implementation of the Cramer classification scheme in the Toxtree software, SAR QSAR Env Res Toxtree (in print) (2008)
+
+* Forum
+
+ {{{http://sourceforge.net/forum/forum.php?forum_id=867719}Cramer rules forum}}
+ 
+* Source 
+
+ {{{http://toxtree.svn.sourceforge.net/viewvc/toxtree/plugins/cramer2/}source code}} 

@@ -1,0 +1,33 @@
+ -----
+Structure Alerts for the in vivo micronucleus assay in rodents
+ -----
+ Background
+ -----
+ 
+ 
+Introduction
+
+ Structure Alerts for the in vivo micronucleus assay in rodents
+ 
+ Developed by {{{http://www.iss.it}Istituto Superiore di Sanita}} 2009 
+  
+* Download
+
+	{{{http://ecb.jrc.ec.europa.eu/produits/ToxMic.zip}Download plugin for ToxTree 1.51}}
+	
+	The plugin will be distributed with the main ToxTree release starting with Toxtree 1.60
+	  
+* Reference
+
+ 
+ {{{http://ecb.jrc.ec.europa.eu/DOCUMENTS/QSAR/QSAR_TOOLS/Toxtree_ToxMic_manual.pdf}Installation and user manual}}	
+ 
+ {{{http://ecb.jrc.ec.europa.eu/DOCUMENTS/QSAR/EUR_23844_EN.pdf}JRC report on ToxMic rulebase}}
+ 
+* Forum
+
+  {{{https://sourceforge.net/forum/forum.php?forum_id=966732}ToxMic rulebase forum}}
+  
+* Source 
+
+ {{{http://toxtree.svn.sourceforge.net/viewvc/toxtree/plugins/mic/}source code}}
