@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.test;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.test.tree.cramer.RulesTestCase;
 import verhaar.VerhaarScheme;
 
 public class VerhaarSchemeTest extends RulesTestCase {

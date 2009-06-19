@@ -32,7 +32,6 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
-import toxTree.test.tree.cramer.RulesTestCase;
 
 /**
  * TODO Add SicretRulesTest description
