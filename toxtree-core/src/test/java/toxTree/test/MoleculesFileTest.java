@@ -26,26 +26,28 @@ package toxTree.test;
 
 import java.io.File;
 import java.io.FileReader;
-import java.util.Iterator;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Test;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
-import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.data.MoleculesFile;
 import toxTree.io.MyIteratingMDLReader;
+import toxTree.tree.rules.RuleStructuresList;
 
-public class MoleculesFileTest extends TestCase {
-	public void test() {
-		try {
+public class MoleculesFileTest  {
+	@Test
+	public void test() throws Exception  {
+
 			DefaultChemObjectBuilder b = DefaultChemObjectBuilder.getInstance();
-			MoleculesFile mf = new MoleculesFile(new File("substituents.sdf"),b);
-			MyIteratingMDLReader reader = new MyIteratingMDLReader(new FileReader("substituents.sdf"),b);
+			File file = RuleStructuresList.getFileFromResource("substituents.sdf");
+			MoleculesFile mf = new MoleculesFile(file,b);
+			File file1 = RuleStructuresList.getFileFromResource("substituents.sdf");
+			MyIteratingMDLReader reader = new MyIteratingMDLReader(new FileReader(file1),b);
 			int record=0;
             int found = 0;
 			while (reader.hasNext()) {
@@ -77,11 +79,8 @@ public class MoleculesFileTest extends TestCase {
 				}
 				
 			}
-			assertEquals(record,found);
-		} catch (Exception x) {
-            x.printStackTrace();
-			fail(x.getMessage());
-		}
+			Assert.assertEquals(record,found);
+
 	}
 }
 

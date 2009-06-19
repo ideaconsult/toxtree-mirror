@@ -101,12 +101,14 @@ public class RuleStructuresPanel extends RuleEditor implements IDecisionRuleEdit
 		File file = ToxTreeActions.selectFile(this, 
         		MolFileFilter.supported_extensions,MolFileFilter.supported_exts_description
         		, true);
-		if (file != null) {
+		if (file != null) try {
 			((RuleStructuresList)rule).setFile(file);
 			fileLabel.setText("File: " +file.getName());
 			fileLabel.setToolTipText(file.getAbsolutePath());
 
-		}	
+		}	catch (Exception x) {
+			
+		}
 	}
 	
 
