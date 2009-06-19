@@ -36,7 +36,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.io.StringReader;
-import java.security.AccessController;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
@@ -47,8 +46,6 @@ import org.openscience.cdk.io.listener.IChemObjectIOListener;
 import org.openscience.cdk.io.listener.IReaderListener;
 import org.openscience.cdk.io.setting.IOSetting;
 import org.openscience.cdk.tools.LoggingTool;
-
-import sun.security.action.GetPropertyAction;
 
 /**
  * TODO index to be stored and loaded
@@ -259,7 +256,7 @@ public abstract class RandomAccessReader extends DefaultIteratingChemObjectReade
         fireFrameRead();
     }
 
-    protected synchronized void makeIndex() throws IOException {
+    protected synchronized void makeIndex() throws Exception {
     	File indexFile = getIndexFile(filename);
     	if (indexFile.exists()) 
     		try {
@@ -320,14 +317,20 @@ public abstract class RandomAccessReader extends DefaultIteratingChemObjectReade
     private void updateIndex() {
     	
     }
-	public static File getIndexFile(String filename) {
-		GetPropertyAction a = new GetPropertyAction("java.io.tmpdir");
-		String tmpDir = ((String) AccessController.doPrivileged(a));
+    /**
+     * Opens the file index <filename>_cdk.index</filename> in a orary folder, as specified by "java.io.tmpdir" property.
+     * 
+     * @param filename
+     * @throws Exception
+     */
+	public static File getIndexFile(String filename) throws Exception {
+		String tmpDir = System.getProperty("java.io.tmpdir");
         File f = new File(filename);
         File indexFile = new File(tmpDir,f.getName()+"_toxtree.index");
         f = null;
         return indexFile;
-	}
+	}    
+
     /* (non-Javadoc)
      * @see java.io.Reader#read(char[], int, int)
      */
