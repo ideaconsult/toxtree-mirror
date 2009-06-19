@@ -1,4 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<description>Skin irritation prediction rules as in &quot;The Skin Irritation Corrosion Rules Estimation Tool (SICRET), John D. Walker, Ingrid Gerner, Etje Hulzebos, Kerstin Schlegel, QSAR Comb. Sci. 2005, 24, pp378-384&quot;</description>
   <parent>
     <artifactId>toxtree-plugins</artifactId>
     <groupId>toxtree</groupId>
@@ -7,9 +8,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-sicret</artifactId>
-  <name>SICRET</name>
+  <name>Skin irritation prediction rules</name>
   <version>2.0.0-SNAPSHOT</version>
-  <description>Skin irritation</description>
   <dependencies>
   	<dependency>
   		<groupId>toxtree</groupId>

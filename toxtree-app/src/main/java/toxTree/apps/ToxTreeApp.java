@@ -33,7 +33,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import toxTree.data.DataModule;
-import toxTree.data.ToxTreeActions;
 import toxTree.data.ToxTreeModule;
 import toxTree.tree.DecisionMethodsList;
 import toxTree.tree.cramer.CramerRules;
@@ -97,7 +96,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 		}
 		if (methods.size() == 0) {
 			try {methods.add(new CramerRules());} catch (Exception x) {x.printStackTrace();}
-			logger.warning("No decision trees found! Have you installed the application correctly?");
+			logger.warn("No decision trees found! Have you installed the application correctly?");
 		}
 		return new ToxTreeModule(mainFrame, fileToOpen,methods);
 	}
