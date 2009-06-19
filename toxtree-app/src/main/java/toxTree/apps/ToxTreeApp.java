@@ -36,6 +36,7 @@ import toxTree.data.DataModule;
 import toxTree.data.ToxTreeActions;
 import toxTree.data.ToxTreeModule;
 import toxTree.tree.DecisionMethodsList;
+import toxTree.tree.cramer.CramerRules;
 import toxTree.ui.DataModulePanel;
 import toxTree.ui.HazardPanel;
 
@@ -95,7 +96,8 @@ public class ToxTreeApp extends CompoundMethodApplication {
 			logger.error(x);
 		}
 		if (methods.size() == 0) {
-			ToxTreeActions.showMsg("Warning","No decision trees found! Have you installed the application correctly?");
+			try {methods.add(new CramerRules());} catch (Exception x) {x.printStackTrace();}
+			logger.warning("No decision trees found! Have you installed the application correctly?");
 		}
 		return new ToxTreeModule(mainFrame, fileToOpen,methods);
 	}
