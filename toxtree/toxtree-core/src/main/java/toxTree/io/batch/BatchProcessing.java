@@ -30,13 +30,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.security.AccessController;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Observable;
 import java.util.TimeZone;
 
-import sun.security.action.GetPropertyAction;
 import toxTree.logging.TTLogger;
 
 /**
@@ -376,8 +374,7 @@ public abstract class BatchProcessing extends Observable implements
 
 	public String getTempDir() {
 		if (tmpDir == null) {
-			GetPropertyAction a = new GetPropertyAction("java.io.tmpdir");
-			tmpDir = ((String) AccessController.doPrivileged(a));
+			tmpDir = System.getProperty("java.io.tmpdir");
 		}
 		return tmpDir;
 	}
