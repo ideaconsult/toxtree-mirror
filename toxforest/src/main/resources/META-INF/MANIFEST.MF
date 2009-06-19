@@ -1,0 +1,11 @@
+Manifest-version: 2.0.0
+Main-Class: toxTree.apps.toxForest.ToxForestApp
+Specification-Title: Toxforest Application - Multiple Decision Trees
+Specification-Version: 2.0.0
+Specification-Vendor: Ideaconsult LTD
+Package-Title: toxTree.apps.toxForest
+Package-Version: 2.0.0
+Package-Vendor: Ideaconsult LTD
+Implementation-Title: Toxforest
+Implementation-Version: 2.0.0
+Implementation-Vendor: Ideaconsult LTD
