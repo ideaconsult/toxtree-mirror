@@ -37,6 +37,8 @@ import javax.swing.JPanel;
 import org.openscience.cdk.event.ICDKChangeListener;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import ambit2.core.io.CompoundImageTools;
+
 
 /**
  * 2D structure diagram
