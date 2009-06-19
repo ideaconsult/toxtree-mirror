@@ -35,8 +35,6 @@ import javax.swing.JOptionPane;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
-
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionInteractive;

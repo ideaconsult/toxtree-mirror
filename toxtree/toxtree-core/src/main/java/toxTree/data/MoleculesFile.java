@@ -31,15 +31,11 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 
-import javax.help.UnsupportedOperationException;
-
-import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.ChemObject;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.fingerprint.Fingerprinter;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IChemObjectChangeEvent;
 import org.openscience.cdk.interfaces.IChemObjectListener;
@@ -52,7 +48,6 @@ import toxTree.io.RandomAccessReader;
 import toxTree.io.RandomAccessSDFReader;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
-import toxTree.query.MolAnalyser;
 
 public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChemObjectListener {
 	/**
