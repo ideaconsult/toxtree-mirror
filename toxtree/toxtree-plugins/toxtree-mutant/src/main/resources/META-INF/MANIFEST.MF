@@ -1,5 +1,4 @@
 Manifest-version: 1.60
-Class-Path: toxMutant-1.60.jar toxui-1.60.jar
 Specification-Title: Benigni / Bossa rulebase (for mutagenicity and carcinogenicity)
 Specification-Version: 1.60
 Specification-Vendor: Ideaconsult LTD
