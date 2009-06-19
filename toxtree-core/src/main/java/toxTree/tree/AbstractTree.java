@@ -35,21 +35,14 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BoxLayout;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.l2fprod.common.swing.JOutlookBar;
-
 import toxTree.core.IDecisionCategories;
-import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionMethodEditor;
 import toxTree.core.IDecisionResult;
@@ -58,13 +51,11 @@ import toxTree.core.IDecisionRuleList;
 import toxTree.core.IProcessRule;
 import toxTree.core.XMLSerializable;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.exceptions.DecisionMethodIOException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.exceptions.XMLDecisionMethodException;
 import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
-import toxTree.ui.PropertyEditor;
 import toxTree.ui.tree.TreeEditorPanel;
 import toxTree.ui.tree.TreeOptions;
 

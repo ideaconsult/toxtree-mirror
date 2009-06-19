@@ -30,12 +30,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import joelib.jcamp.LabelData;
-
 import org.jdesktop.layout.GroupLayout;
 import org.jdesktop.layout.GroupLayout.ParallelGroup;
 import org.jdesktop.layout.GroupLayout.SequentialGroup;
-import org.openscience.cdk.qsar.IDescriptor;
 
 public abstract class OptionsPanel<T> extends JPanel {
 	protected T object;
