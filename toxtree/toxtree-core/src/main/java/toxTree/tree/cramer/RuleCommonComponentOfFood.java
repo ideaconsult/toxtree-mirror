@@ -32,7 +32,7 @@ public class RuleCommonComponentOfFood extends RuleStructuresList {
 	 * 
 	 */
 	public RuleCommonComponentOfFood() {
-		 this(new File(Introspection.getToxTreeRoot()+"foodmol.sdf"));
+		 super("foodmol.sdf");
 	}
 	public RuleCommonComponentOfFood(File file) {		
 		super(file);

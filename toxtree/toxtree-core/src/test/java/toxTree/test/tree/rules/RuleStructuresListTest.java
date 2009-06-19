@@ -1,5 +1,5 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2009 
 
 Contact: nina@acad.bg
 
@@ -26,13 +26,15 @@ package toxTree.test.tree.rules;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.ChemFile;
@@ -50,8 +52,6 @@ import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.exceptions.MolAnalyseException;
 import toxTree.io.IteratingDelimitedFileReader;
 import toxTree.io.MDLWriter;
 import toxTree.logging.TTLogger;
@@ -61,83 +61,48 @@ import toxTree.tree.cramer.RuleCommonComponentOfFood;
 import toxTree.tree.rules.RuleStructuresList;
 
 /**
- * TODO add description
+ * Test for {@link RuleStructuresList}
  * @author Nina Jeliazkova
- * <b>Modified</b> 2005-9-6
+ * <b>Modified</b> 2009-6-17
  */
-public class RuleStructuresListTest extends TestCase {
+public class RuleStructuresListTest  {
 	protected static TTLogger logger = new TTLogger(RuleStructuresListTest.class);
 
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(RuleStructuresListTest.class);
-	}
-
-	/*
-	 * @see TestCase#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	/*
-	 * @see TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
-	/**
-	 * Constructor for RuleStructuresListTest.
-	 * @param arg0
-	 */
-	public RuleStructuresListTest(String arg0) {
-		super(arg0);
+	@Before
+	public void setUp() throws Exception {
 		TTLogger.configureLog4j(true);
 	}
-	public void testRule() {
-		RuleStructuresList rule = new RuleStructuresList(new File("toxTree/bodymol.sdf"));
-		assertTrue(rule.isImplemented());
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testRule() throws Exception  {
+		RuleStructuresList rule = new RuleStructuresList(new File("bodymol.sdf"));
+		Assert.assertTrue(rule.isImplemented());
 		//default file
 		IAtomContainer c = FunctionalGroups.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
-		try {
-			MolAnalyser.analyse(c);
-		} catch (MolAnalyseException x) {
-			x.printStackTrace();
-			fail();
-		}
-		try {
-			assertTrue(rule.verifyRule(c));
-		} catch (DecisionMethodException x) {
-			x.printStackTrace();
-			fail();
-		}
+		MolAnalyser.analyse(c);
+		Assert.assertTrue(rule.verifyRule(c));
 	}
 	//CSCCCN=C=S
-	public void testCachedRule() {
-		RuleCommonComponentOfFood rule = new RuleCommonComponentOfFood(new File("toxTree/foodmol.sdf"));
+	@Test
+	public void testCachedRule() throws Exception  {
+		RuleCommonComponentOfFood rule = new RuleCommonComponentOfFood(new File("foodmol.sdf"));
+		Assert.assertTrue(rule.isImplemented());
 		//default file
 		IAtomContainer c = FunctionalGroups.createAtomContainer("O=C(C(=O)C)C");
 		for (int i=0;i<2;i++) {
-			try {
-				MolAnalyser.analyse(c);
-			} catch (MolAnalyseException x) {
-				x.printStackTrace();
-				fail();
-			}
-			try {
-				boolean b = rule.verifyRule(c);
-				assertTrue(b);
-			} catch (DecisionMethodException x) {
-				x.printStackTrace();
-				fail();
-			}
+			MolAnalyser.analyse(c);
+			boolean b = rule.verifyRule(c);
+			Assert.assertTrue(b);
 		}
 	}	
 	//MDL Writer assumes properties are of type String 
-	public void testMDLWriterWriteProperties() {
-		try {
+	@Test
+	public void testMDLWriterWriteProperties() throws Exception {
+
 			MDLWriter writer = new MDLWriter(new FileOutputStream(new File("bodymol.test.sdf")));
 			writer.dontWriteAromatic();
 			SmilesGenerator gen = new SmilesGenerator();
@@ -145,7 +110,7 @@ public class RuleStructuresListTest extends TestCase {
 			//adenine NC1=C2N=CN=C2N=CN1
 			//guanine NC1=NC2=C(NC=N2)C(=O)N1
 			IAtomContainer c = FunctionalGroups.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
-			try {
+
 				MolAnalyser.analyse(c);
 				c.setProperty("SMILES",gen.createSMILES((IMolecule)c));
 				writer.setSdFields(c.getProperties());
@@ -155,19 +120,12 @@ public class RuleStructuresListTest extends TestCase {
 				System.out.print(c.getAtomCount());
 				System.out.print("\t");
 				System.out.println(c.getBondCount());			
-				
-			} catch (CDKException x) {
-				x.printStackTrace();
-				fail();
-			}
-		} catch (Exception x) {
-			x.printStackTrace();	
-		}								
+							
 		
 	}
-		
-	public void testBug() {	
-		try {
+	@Test
+	public void testBug() throws Exception {	
+
 			MDLWriter writer = new MDLWriter(new FileOutputStream(new File("bodymol.test.sdf")));
 			writer.dontWriteAromatic();
 			SmilesGenerator gen = new SmilesGenerator();
@@ -175,17 +133,9 @@ public class RuleStructuresListTest extends TestCase {
 			MolAnalyser.analyse(c);
 			
 			IIteratingChemObjectReader reader;
-			File file = new File("bodymol.sdf");
-			System.out.println(file.getAbsolutePath());
-			String f = file.getPath().toLowerCase();
-			
-				if (f.endsWith(".sdf")) reader = new IteratingMDLReader(new FileInputStream(file),DefaultChemObjectBuilder.getInstance());
-				else if (f.endsWith(".csv")) reader = new IteratingDelimitedFileReader(new FileInputStream(file));
-				else if (f.endsWith(".smi")) reader = new IteratingSMILESReader(new FileInputStream(file));
-				else {
-					
-					 return ; }
-				
+
+			InputStream in = this.getClass().getClassLoader().getResourceAsStream("bodymol.sdf");
+			reader = new IteratingMDLReader(in,DefaultChemObjectBuilder.getInstance());
 				int r = 0;
 				boolean ok = false;
 				while (reader.hasNext()) {
@@ -217,43 +167,27 @@ public class RuleStructuresListTest extends TestCase {
 				}
 				writer.close();
 				reader.close();
-				assertTrue(ok);
-		} catch (Exception x) {
-				x.printStackTrace();
-				fail();
-		}					
+				Assert.assertTrue(ok);
+			
 	}
-	public void testBodyMol() {
+	@Test
+	public void testBodyMol() throws Exception {
 		verifyFile("bodymol.sdf");
 	}
-	public void testFoodMol() {
+	@Test
+	public void testFoodMol() throws Exception {
 		verifyFile("foodmol.sdf");
 	}	
-	protected void verifyFile(String filename) {
+	protected void verifyFile(String filename) throws Exception {
 		ChemFile m = null;
-		try {
-			File file = new File(filename);
-			logger.debug(file.getAbsolutePath());
-			MDLReader reader = new MDLReader(new FileInputStream(file));
-			m = (ChemFile)reader.read((ChemObject)new ChemFile());
-			reader.close();
+		InputStream in = getClass().getClassLoader().getResourceAsStream(filename);
+		MDLReader reader = new MDLReader(in);
+		m = (ChemFile)reader.read((ChemObject)new ChemFile());
+		reader.close();
 
-		} catch(CDKException x) {
-			m = null;
-			x.printStackTrace();
-			fail();
-		} catch (FileNotFoundException x) {
-			m = null;
-		 	x.printStackTrace();
-		 	fail();
-		} catch (IOException x) {
-			m = null;
-			x.printStackTrace();
-			fail();
-		}
 		List c = ChemFileManipulator.getAllAtomContainers(m);
 		
-		assertNotNull(c);
+		Assert.assertNotNull(c);
 		int okCount = 0; int allCount = 0;
 		try {
 			
@@ -320,8 +254,7 @@ public class RuleStructuresListTest extends TestCase {
 			
 		}
 
-		System.out.println(okCount);
-		assertEquals(okCount,allCount);
+		Assert.assertEquals(okCount,allCount);
 		
 	}
 	protected void printBonds(AtomContainer m) {

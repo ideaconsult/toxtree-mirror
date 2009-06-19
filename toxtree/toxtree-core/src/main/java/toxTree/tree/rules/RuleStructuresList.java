@@ -30,8 +30,11 @@ import java.io.ObjectInputStream;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import ambit2.base.io.DownloadTool;
+
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.Introspection;
+import toxTree.exceptions.DRuleNotImplemented;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import toxTree.ui.tree.rules.RuleStructuresPanel;
@@ -45,7 +48,7 @@ import toxTree.ui.tree.rules.RuleStructuresPanel;
 public class RuleStructuresList extends AbstractRule {
 	
 	protected transient LookupFile lookupFile;
-    protected String filename = "bodymol.sdf";
+    protected String filename = null;
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
@@ -57,16 +60,28 @@ public class RuleStructuresList extends AbstractRule {
 		this(new File(Introspection.getToxTreeRoot()+"bodymol.sdf"));
 		
 	}
+	public RuleStructuresList(String resource) {
+		this(getFileFromResource(resource));
+	}
+	public static File getFileFromResource(String resource) {
+		try {
+			File file = new File(System.getProperty("java.io.tmpdir")+".toxtree");
+			file.mkdir();
+			file = new File(file.getAbsolutePath()+"/"+resource);
+			if (!file.exists())
+				DownloadTool.download(resource, file);
+			return file;
+		} catch (Exception x) {
+			return null;
+		}
+	}
 	public RuleStructuresList(File file) {
 		super();
 		
 		try {
-            
-		lookupFile = new LookupFile(file);
-		lookupFile.setLogger(logger);
-        setFilename(file.getAbsolutePath());
-		logger.debug("Will be using file\t",file.getAbsoluteFile());
+			setFile(file);
 		} catch (IOException x) {
+			try {setFile(getFileFromResource(file.getName()));} catch (Exception xx) { lookupFile = null;}
 			logger.error(x);
 		}
 		setExplanation("Returns true if the query is isomorphic to one of the structures loaded from a preconfigured file of a type SDF, SMI, CSV ");
@@ -77,7 +92,7 @@ public class RuleStructuresList extends AbstractRule {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		
+		if (lookupFile == null) throw new DRuleNotImplemented();
 		return lookupFile.find(mol);
 
 		
@@ -87,6 +102,7 @@ public class RuleStructuresList extends AbstractRule {
 	 */
 	@Override
 	public boolean isImplemented() {
+		if (lookupFile==null) return false;
 		File file = lookupFile.getFile(); 
 		return (file !=null) && (file.exists());
 	}
@@ -100,8 +116,12 @@ public class RuleStructuresList extends AbstractRule {
 	/**
 	 * @param file The file to set.
 	 */
-	public synchronized void setFile(File file) {
-		lookupFile.setFile(file);
+	public synchronized void setFile(File file) throws IOException {
+        
+		lookupFile = new LookupFile(file);
+		lookupFile.setLogger(logger);
+        setFilename(file.getAbsolutePath());
+		logger.debug("Will be using file\t",file.getAbsoluteFile());		
 		
 	}
 	/**
