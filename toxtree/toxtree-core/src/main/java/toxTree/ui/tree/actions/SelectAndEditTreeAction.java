@@ -32,9 +32,9 @@ import javax.swing.Icon;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.Introspection;
 import toxTree.data.DecisionMethodsDataModule;
+import toxTree.io.Tools;
 import toxTree.ui.tree.ListTableModel;
 import toxTree.ui.tree.SelectListDialog;
-import toxTree.ui.tree.images.ImageTools;
 
 /**
  * Selects available tree types, makes a copy if it is read-only and launches a decision tree editor
@@ -61,7 +61,7 @@ public class SelectAndEditTreeAction extends EditDecisionMethodAction {
 	 * @param name
 	 */
 	public SelectAndEditTreeAction(DecisionMethodsDataModule module, String name) {
-		this(module, name,ImageTools.getImage("plugin_edit.png"));
+		this(module, name,Tools.getImage("plugin_edit.png"));
 		
 	}
 

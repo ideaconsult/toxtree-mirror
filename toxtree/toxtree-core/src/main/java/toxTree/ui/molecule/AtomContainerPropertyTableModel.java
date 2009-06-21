@@ -35,7 +35,6 @@ import javax.swing.table.AbstractTableModel;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.result.DoubleResult;
-import org.openscience.cdk.qsar.result.IntegerResult;
 
 import toxTree.query.MolFlags;
 

@@ -27,8 +27,8 @@ import javax.swing.JOptionPane;
 
 import toxTree.data.DecisionMethodsDataModule;
 import toxTree.exceptions.FilterException;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
-import toxTree.ui.tree.images.ImageTools;
 
 public class ShowFilteredFileAction extends DataModuleAction {
 
@@ -42,7 +42,7 @@ public class ShowFilteredFileAction extends DataModuleAction {
 	}
 
 	public ShowFilteredFileAction(DecisionMethodsDataModule module, String name) {
-		this(module, name,ImageTools.getImage("application_cascade.png"));
+		this(module, name,Tools.getImage("application_cascade.png"));
 	}
 
 	public ShowFilteredFileAction(DecisionMethodsDataModule module, String name, Icon icon) {

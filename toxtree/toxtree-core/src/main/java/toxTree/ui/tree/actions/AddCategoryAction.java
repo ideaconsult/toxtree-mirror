@@ -32,8 +32,8 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 
 import toxTree.core.IDecisionCategory;
+import toxTree.io.Tools;
 import toxTree.ui.tree.SelectListDialog;
-import toxTree.ui.tree.images.ImageTools;
 
 /**
  * A descendant of {@link AbstractAction}
@@ -62,7 +62,7 @@ public class AddCategoryAction extends AbstractAction {
 	 * @param name Action name
 	 */
 	public AddCategoryAction(List list, String name) {
-		this(list,name,ImageTools.getImage("tag_blue_add.png"));
+		this(list,name,Tools.getImage("tag_blue_add.png"));
 		
 	}
 

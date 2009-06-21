@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleSubstructures;
 import toxTree.query.FunctionalGroups;

@@ -28,8 +28,8 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 
 import toxTree.data.DecisionMethodsDataModule;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
-import toxTree.ui.tree.images.ImageTools;
 
 public class ClearMethodsList extends DataModuleAction {
 
@@ -44,7 +44,7 @@ public class ClearMethodsList extends DataModuleAction {
 	}
 
 	public ClearMethodsList(DecisionMethodsDataModule module, String name) {
-		this(module, name,ImageTools.getImage("cross.png"));
+		this(module, name,Tools.getImage("cross.png"));
 	}
 
 	public ClearMethodsList(DecisionMethodsDataModule module, String name, Icon icon) {

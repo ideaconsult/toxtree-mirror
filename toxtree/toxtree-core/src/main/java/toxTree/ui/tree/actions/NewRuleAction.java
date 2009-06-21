@@ -35,6 +35,7 @@ import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.io.Tools;
 import toxTree.tree.DecisionMethodsList;
 import toxTree.tree.DecisionNode;
 import toxTree.tree.DefaultCategory;
@@ -42,7 +43,6 @@ import toxTree.tree.UserDefinedTree;
 import toxTree.tree.categories.DefaultClass1;
 import toxTree.tree.categories.DefaultClass2;
 import toxTree.tree.rules.RuleInitAlertCounter;
-import toxTree.ui.tree.images.ImageTools;
 import toxTree.ui.wizard.DecisionNodeWizard;
 
 /**
@@ -69,7 +69,7 @@ public class NewRuleAction extends AbstractTreeAction {
 	 * @param name
 	 */
 	public NewRuleAction(IDecisionMethod tree, String name) {
-		this(tree, name,ImageTools.getImage("tree_add.png"));
+		this(tree, name,Tools.getImage("tree_add.png"));
 	}
 
 	/**

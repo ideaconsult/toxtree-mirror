@@ -37,8 +37,8 @@ import toxTree.core.Introspection;
 import toxTree.data.DecisionMethodsDataModule;
 import toxTree.data.ToxTreeActions;
 import toxTree.io.MolFileFilter;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
-import toxTree.ui.tree.images.ImageTools;
 
 public class LiadMethodsListAction extends DataModuleAction {
 
@@ -53,7 +53,7 @@ public class LiadMethodsListAction extends DataModuleAction {
 	}
 
 	public LiadMethodsListAction(DecisionMethodsDataModule module, String name) {
-		this(module, name,ImageTools.getImage("open.gif"));
+		this(module, name,Tools.getImage("open.gif"));
 	}
 
 	public LiadMethodsListAction(DecisionMethodsDataModule module, String name, Icon icon) {

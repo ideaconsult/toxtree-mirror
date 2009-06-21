@@ -6,8 +6,8 @@ import javax.swing.JOptionPane;
 
 import toxTree.data.DataModule;
 import toxTree.data.DecisionMethodsDataModule;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
-import toxTree.ui.tree.images.ImageTools;
 
 public class GoToRecordAction  extends DataModuleAction {
 
@@ -21,7 +21,7 @@ public class GoToRecordAction  extends DataModuleAction {
 	}
 
 	public GoToRecordAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("page_go.png"));
+		this(module, name,Tools.getImage("page_go.png"));
 
 	}
 

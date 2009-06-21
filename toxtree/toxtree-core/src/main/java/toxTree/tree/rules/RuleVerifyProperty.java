@@ -41,7 +41,6 @@ import toxTree.core.IImplementationDetails;
 import toxTree.exceptions.DRuleNotImplemented;
 import toxTree.exceptions.DRulePropertyNotAvailable;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.query.FunctionalGroups;
 import toxTree.tree.AbstractRule;
 import toxTree.ui.OptionsPanel;
 import toxTree.ui.PropertyEditor;

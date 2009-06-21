@@ -30,7 +30,7 @@ import javax.swing.Icon;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Launches {@link toxTree.core.IDecisionRuleEditor} of a preset rule.
@@ -48,7 +48,7 @@ public class EditRuleAction extends AbstractTreeAction implements IRuleAction {
 	}
 
 	public EditRuleAction(IDecisionMethod tree, String arg0) {
-		this(tree, arg0,ImageTools.getImage("tree.png"));
+		this(tree, arg0,Tools.getImage("tree.png"));
 	}
 
 	public EditRuleAction(IDecisionMethod tree, String arg0, Icon arg1) {

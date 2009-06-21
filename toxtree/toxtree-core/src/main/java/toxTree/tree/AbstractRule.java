@@ -35,9 +35,6 @@ package toxTree.tree;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Observable;
 

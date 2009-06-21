@@ -47,8 +47,6 @@ import javax.vecmath.Vector2d;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.Molecule;
-import org.openscience.cdk.MoleculeSet;
-import org.openscience.cdk.geometry.GeometryTools;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
@@ -56,7 +54,6 @@ import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.query.FunctionalGroups;
-import toxTree.ui.Preferences;
 
 /**
  * A {@link javax.swing.JPanel} to enter a SMILES. Now it supports a history of entered SMILES that can be 

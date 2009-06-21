@@ -34,12 +34,12 @@ import javax.swing.JOptionPane;
 
 import toxTree.data.DataModule;
 import toxTree.data.DecisionMethodsDataModule;
+import toxTree.io.Tools;
 import toxTree.io.batch.BatchFactory;
 import toxTree.io.batch.BatchProcessingException;
 import toxTree.io.batch.IBatchProcessing;
 import toxTree.io.batch.ToxTreeBatchProcessing;
 import toxTree.ui.batch.BatchProcessingDialog;
-import toxTree.ui.tree.images.ImageTools;
 
 /**
  * Starts a batch {@link toxTree.io.batch.IBatchProcessing}
@@ -66,7 +66,7 @@ public class BatchAction extends DataModuleAction {
 	 * @param name
 	 */
 	public BatchAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("disk_multiple.png"));
+		this(module, name,Tools.getImage("disk_multiple.png"));
 	}
 
 	/**

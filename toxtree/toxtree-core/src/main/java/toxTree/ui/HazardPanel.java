@@ -54,7 +54,6 @@ import toxTree.data.ActionList;
 import toxTree.data.ToxTreeActions;
 import toxTree.data.ToxTreeModule;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.tree.CategoriesList;
 import toxTree.ui.tree.categories.CategoriesPanel;
 
 

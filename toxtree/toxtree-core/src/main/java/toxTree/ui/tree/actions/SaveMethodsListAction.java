@@ -40,8 +40,8 @@ import toxTree.core.Introspection;
 import toxTree.data.DecisionMethodsDataModule;
 import toxTree.data.ToxTreeActions;
 import toxTree.io.MolFileFilter;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
-import toxTree.ui.tree.images.ImageTools;
 
 public class SaveMethodsListAction extends DataModuleAction {
 
@@ -55,7 +55,7 @@ public class SaveMethodsListAction extends DataModuleAction {
 	}
 
 	public SaveMethodsListAction(DecisionMethodsDataModule module, String name) {
-		this(module, name,ImageTools.getImage("disk_multiple.png"));
+		this(module, name,Tools.getImage("disk_multiple.png"));
 	}
 
 	public SaveMethodsListAction(DecisionMethodsDataModule module, String name, Icon icon) {

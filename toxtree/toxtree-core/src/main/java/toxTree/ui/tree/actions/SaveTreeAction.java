@@ -41,11 +41,11 @@ import toxTree.core.IDecisionMethod;
 import toxTree.core.Introspection;
 import toxTree.data.ToxTreeActions;
 import toxTree.io.MolFileFilter;
+import toxTree.io.Tools;
 import toxTree.tree.DecisionMethodsList;
 import toxTree.tree.PDFTreePrinter;
 import toxTree.tree.ReportTreePrinter;
 import toxTree.tree.SimpleTreePrinter;
-import toxTree.ui.tree.images.ImageTools;
 
 /**
  * Saves a {@link toxTree.core.IDecisionMethod} to a file
@@ -65,7 +65,7 @@ public class SaveTreeAction extends AbstractTreeAction {
 	}
 
 	public SaveTreeAction(IDecisionMethod tree, String name) {
-		this(tree, name,ImageTools.getImage("save.png"));
+		this(tree, name,Tools.getImage("save.png"));
 	}
 
 	public SaveTreeAction(IDecisionMethod tree, String name, Icon icon) {

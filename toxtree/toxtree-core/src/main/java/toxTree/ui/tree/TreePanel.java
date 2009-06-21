@@ -45,7 +45,7 @@ import javax.swing.tree.TreeSelectionModel;
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 import toxTree.ui.tree.rules.RulePanel;
 
 /**
@@ -94,9 +94,9 @@ public class TreePanel extends JPanel implements TreeSelectionListener, Observer
 			this.treeModel = new DecisionTreeModel();
 		tree = new JTree(treeModel);
 		   // Retrieve the three icons
-	    Icon leafIcon = ImageTools.getImage("tick.png");
-	    Icon openIcon = ImageTools.getImage("open.gif");
-	    Icon closedIcon = ImageTools.getImage("open.gif");
+	    Icon leafIcon = Tools.getImage("tick.png");
+	    Icon openIcon = Tools.getImage("open.gif");
+	    Icon closedIcon = Tools.getImage("open.gif");
 	    
 	    // Update only one tree instance
 	    DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer)tree.getCellRenderer();

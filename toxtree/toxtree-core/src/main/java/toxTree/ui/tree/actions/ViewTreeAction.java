@@ -30,8 +30,8 @@ import javax.swing.Icon;
 
 import toxTree.data.DataModule;
 import toxTree.data.ToxTreeModule;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
-import toxTree.ui.tree.images.ImageTools;
 
 /**
  * Views a {@link toxTree.core.IDecisionMethod}
@@ -57,7 +57,7 @@ public class ViewTreeAction extends DataModuleAction {
 	 * @param name
 	 */
 	public ViewTreeAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("tree.png"));
+		this(module, name,Tools.getImage("tree.png"));
 	}
 
 	/**

@@ -32,7 +32,7 @@ import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
 import toxTree.data.DataContainer;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Creates new empty molecule
@@ -58,7 +58,7 @@ public class NewMoleculeAction extends DataContainerAction {
 	 * @param name
 	 */
 	public NewMoleculeAction(DataContainer dataContainer, String name) {
-		this(dataContainer, name,ImageTools.getImage("page_white.png"));
+		this(dataContainer, name,Tools.getImage("page_white.png"));
 	}
 
 	/**

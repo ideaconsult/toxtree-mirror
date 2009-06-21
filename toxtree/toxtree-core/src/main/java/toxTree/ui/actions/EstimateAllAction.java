@@ -29,7 +29,7 @@ import javax.swing.Icon;
 
 import toxTree.data.DataModule;
 import toxTree.data.DecisionMethodsDataModule;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Applies the decision tree on all loaded molecules
@@ -55,7 +55,7 @@ public class EstimateAllAction extends DataModuleAction {
 	 * @param name
 	 */
 	public EstimateAllAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("control_fastforward_blue.png"));
+		this(module, name,Tools.getImage("control_fastforward_blue.png"));
 	}
 
 	/**

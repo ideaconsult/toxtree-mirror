@@ -10,6 +10,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IProcessRule;
 import toxTree.exceptions.DecisionMethodIOException;
+import toxTree.io.Tools;
 import ambit2.core.io.CompoundImageTools;
 
 public abstract class AbstractTreePrinter implements IProcessRule {

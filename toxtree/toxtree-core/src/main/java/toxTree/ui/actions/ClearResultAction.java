@@ -31,7 +31,7 @@ import javax.swing.Icon;
 import toxTree.data.DataModule;
 import toxTree.data.DecisionMethodsDataModule;
 import toxTree.data.ToxTreeActions;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Clears the result of the current compound
@@ -57,7 +57,7 @@ public class ClearResultAction extends DataModuleAction {
 	 * @param name
 	 */
 	public ClearResultAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("cross.png"));
+		this(module, name,Tools.getImage("cross.png"));
 	}
 
 	/**

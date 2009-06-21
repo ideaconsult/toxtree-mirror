@@ -31,7 +31,7 @@ import javax.swing.Icon;
 
 import toxTree.data.DecisionMethodsDataModule;
 import toxTree.data.ToxTreeActions;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Launches JChempaint to edit a compound
@@ -57,7 +57,7 @@ public class EditCompoundAction extends DataModuleAction {
 	 * @param name
 	 */
 	public EditCompoundAction(DecisionMethodsDataModule module, String name) {
-		this(module, name,ImageTools.getImage("molecule.png"));
+		this(module, name,Tools.getImage("molecule.png"));
 	}
 
 	/**

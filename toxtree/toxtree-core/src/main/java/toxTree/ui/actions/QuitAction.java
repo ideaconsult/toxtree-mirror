@@ -31,8 +31,8 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 
 import toxTree.data.DataModule;
+import toxTree.io.Tools;
 import toxTree.ui.Preferences;
-import toxTree.ui.tree.images.ImageTools;
 
 /**
  * Quit {@link toxTree.apps.ToxTreeApp}
@@ -58,7 +58,7 @@ public class QuitAction extends DataModuleAction {
 	 * @param name
 	 */
 	public QuitAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("door_out.png"));
+		this(module, name,Tools.getImage("door_out.png"));
 	}
 
 	/**

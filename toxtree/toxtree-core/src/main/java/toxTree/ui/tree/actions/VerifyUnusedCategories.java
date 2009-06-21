@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
 
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionMethod;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 public class VerifyUnusedCategories extends AbstractTreeAction {
 
@@ -44,7 +44,7 @@ public class VerifyUnusedCategories extends AbstractTreeAction {
 	}
 
 	public VerifyUnusedCategories(IDecisionMethod tree, String name) {
-		this(tree, name,ImageTools.getImage("tag_blue_delete.png"));
+		this(tree, name,Tools.getImage("tag_blue_delete.png"));
 	}
 
 	public VerifyUnusedCategories(IDecisionMethod tree, String name, Icon icon) {

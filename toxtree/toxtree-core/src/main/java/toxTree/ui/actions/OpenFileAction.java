@@ -33,7 +33,7 @@ import javax.swing.Icon;
 import toxTree.data.DataModule;
 import toxTree.data.ToxTreeActions;
 import toxTree.io.MolFileFilter;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Loads a file inti {@link toxTree.data.ToxTreeModule#getDataContainer()}
@@ -59,7 +59,7 @@ public class OpenFileAction extends DataModuleAction {
 	 * @param name
 	 */
 	public OpenFileAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("folder.png"));
+		this(module, name,Tools.getImage("folder.png"));
 	}
 
 	/**

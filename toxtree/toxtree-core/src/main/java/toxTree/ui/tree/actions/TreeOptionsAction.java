@@ -31,8 +31,8 @@ import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionMethod;
 import toxTree.data.DataModule;
 import toxTree.data.ToxTreeModule;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
-import toxTree.ui.tree.images.ImageTools;
 
 public class TreeOptionsAction extends DataModuleAction {
 
@@ -46,7 +46,7 @@ public class TreeOptionsAction extends DataModuleAction {
 	}
 
 	public TreeOptionsAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("cog.png"));
+		this(module, name,Tools.getImage("cog.png"));
 	}
 
 	public TreeOptionsAction(DataModule module, String name, Icon icon) {

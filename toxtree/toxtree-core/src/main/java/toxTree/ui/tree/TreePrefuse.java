@@ -59,7 +59,6 @@ import prefuse.controls.ZoomControl;
 import prefuse.controls.ZoomToFitControl;
 import prefuse.data.Graph;
 import prefuse.data.Node;
-import prefuse.data.expression.parser.ExpressionParser;
 import prefuse.data.search.PrefixSearchTupleSet;
 import prefuse.data.search.SearchTupleSet;
 import prefuse.render.DefaultRendererFactory;
@@ -74,10 +73,9 @@ import prefuse.visual.VisualItem;
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
-import toxTree.tree.AbstractRule;
+import toxTree.io.Tools;
 import toxTree.tree.Tree2PrefuseGraph;
 import toxTree.ui.tree.categories.CategoriesRenderer;
-import toxTree.ui.tree.images.ImageTools;
 
 public class TreePrefuse extends Display implements ITreeView {
 	/**
@@ -329,7 +327,7 @@ public class TreePrefuse extends Display implements ITreeView {
         return null;
     }
     public Action getHelpAction() {
-        Action a = new AbstractAction("Help",ImageTools.getImage("help.png")) {
+        Action a = new AbstractAction("Help",Tools.getImage("help.png")) {
             
             public void actionPerformed(ActionEvent arg0) {
                 showHelp();

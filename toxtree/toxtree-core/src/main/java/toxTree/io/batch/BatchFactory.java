@@ -27,7 +27,6 @@ package toxTree.io.batch;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 
 import toxTree.core.Introspection;
 import toxTree.core.ToxTreeObjectInputStream;

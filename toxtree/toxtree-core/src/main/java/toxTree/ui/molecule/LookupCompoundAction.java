@@ -23,7 +23,6 @@ package toxTree.ui.molecule;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Enumeration;
 import java.util.Iterator;
 
 import javax.swing.AbstractAction;
@@ -37,8 +36,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.data.DataModule;
 import toxTree.data.DecisionMethodsDataModule;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
-import toxTree.ui.tree.images.ImageTools;
 
 public class LookupCompoundAction extends DataModuleAction {
 
@@ -52,7 +51,7 @@ public class LookupCompoundAction extends DataModuleAction {
 	}
 
 	public LookupCompoundAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("find.png"));
+		this(module, name,Tools.getImage("find.png"));
 
 	}
 
