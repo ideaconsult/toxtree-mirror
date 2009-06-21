@@ -37,16 +37,16 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.data.MoleculesFile;
 import toxTree.io.MyIteratingMDLReader;
-import toxTree.tree.rules.RuleStructuresList;
+import toxTree.io.Tools;
 
 public class MoleculesFileTest  {
 	@Test
 	public void test() throws Exception  {
 
 			DefaultChemObjectBuilder b = DefaultChemObjectBuilder.getInstance();
-			File file = RuleStructuresList.getFileFromResource("substituents.sdf");
+			File file = Tools.getFileFromResource("substituents.sdf");
 			MoleculesFile mf = new MoleculesFile(file,b);
-			File file1 = RuleStructuresList.getFileFromResource("substituents.sdf");
+			File file1 = Tools.getFileFromResource("substituents.sdf");
 			MyIteratingMDLReader reader = new MyIteratingMDLReader(new FileReader(file1),b);
 			int record=0;
             int found = 0;

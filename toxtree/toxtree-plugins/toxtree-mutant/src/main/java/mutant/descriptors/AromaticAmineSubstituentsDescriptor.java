@@ -32,6 +32,7 @@ import org.openscience.cdk.tools.manipulator.RingSizeComparator;
 
 import toxTree.core.Introspection;
 import toxTree.data.MoleculesFile;
+import toxTree.io.Tools;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.TopologySymbolQueryAtom;
 import toxTree.tree.rules.smarts.ISmartsPattern;
@@ -71,7 +72,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
 		super(aromaticAmine(FunctionalGroups.RING_NUMBERING));
 		setDescriptorNames(new String[] {MR,"LSTM","B1STM","B5STM"});
 		try {
-			lookup = new MoleculesFile(new File(Introspection.getToxTreeRoot()+"substituents.sdf"),DefaultChemObjectBuilder.getInstance());
+			lookup = new MoleculesFile(Tools.getFileFromResource("substituents.sdf"),DefaultChemObjectBuilder.getInstance());
             fusedrings_patterns = new Object[][] {
                     {AromAmine,new Boolean(true),new SmartsPatternCDK("Nc1c(~[*,#1])c(~[*,#1])c(~[*,#1])c(~[*,#1])c1(~[*,#1])")},                    
                     {MR,new Double(0.8),new SmartsPatternCDK("[cR2,cR3](:c)(:c)(:c)")},                    
