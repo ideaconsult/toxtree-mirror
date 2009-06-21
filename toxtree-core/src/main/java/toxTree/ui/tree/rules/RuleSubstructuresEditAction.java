@@ -28,7 +28,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
-import org.openscience.cdk.Atom;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtomContainer;

@@ -30,7 +30,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Help
@@ -55,7 +55,7 @@ public class HelpAction extends AbstractAction {
 	 * @param name
 	 */
 	public HelpAction(String name) {
-		this(name,ImageTools.getImage("help.png"));
+		this(name,Tools.getImage("help.png"));
 	}
 
 	/**

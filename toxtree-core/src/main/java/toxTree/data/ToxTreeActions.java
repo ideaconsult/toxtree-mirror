@@ -40,6 +40,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.text.DefaultEditorKit;
 
+import toxTree.io.Tools;
 import toxTree.ui.actions.BatchAction;
 import toxTree.ui.actions.ClearResultAction;
 import toxTree.ui.actions.EditCompoundAction;
@@ -60,7 +61,6 @@ import toxTree.ui.tree.actions.SelectAndEditTreeAction;
 import toxTree.ui.tree.actions.SelectTreeAction;
 import toxTree.ui.tree.actions.TreeOptionsAction;
 import toxTree.ui.tree.actions.ViewTreeAction;
-import toxTree.ui.tree.images.ImageTools;
 
 
 
@@ -180,7 +180,7 @@ public class ToxTreeActions extends ActionList {
 			public void actionPerformed(ActionEvent e) {
 			}
         };
-        a.putValue(Action.SMALL_ICON, ImageTools.getImage("plugin_edit.png"));
+        a.putValue(Action.SMALL_ICON, Tools.getImage("plugin_edit.png"));
 
         ActionList editTreeActions = new ActionList();
         editTreeActions.addAction(new NewTreeAction(model),title,mnemonic);

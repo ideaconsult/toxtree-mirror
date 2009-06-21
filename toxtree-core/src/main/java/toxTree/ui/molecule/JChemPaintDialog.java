@@ -49,7 +49,6 @@ import org.openscience.cdk.applications.jchempaint.JChemPaintModel;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
-import org.openscience.cdk.tools.manipulator.MoleculeSetManipulator;
 
 /**
  * A {@link javax.swing.JDialog} containing a {@link JChemPaintEditorPanel}.

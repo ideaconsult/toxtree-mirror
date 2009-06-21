@@ -34,11 +34,11 @@ import javax.swing.JFrame;
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
+import toxTree.io.Tools;
 import toxTree.tree.DecisionNode;
 import toxTree.tree.DecisionNodesList;
 import toxTree.ui.tree.ListPanel;
 import toxTree.ui.tree.ListTableModel;
-import toxTree.ui.tree.images.ImageTools;
 import toxTree.ui.tree.rules.DecisionNodesListTableModel;
 import toxTree.ui.wizard.DecisionNodeWizard;
 
@@ -72,7 +72,7 @@ public class SetBranchAction extends AbstractTreeAction implements INodeAction {
 	 * @param name
 	 */
 	public SetBranchAction(IDecisionMethod tree, boolean answer,String name) {
-		this(tree, answer, name,ImageTools.getImage("arrow_divide.png"));
+		this(tree, answer, name,Tools.getImage("arrow_divide.png"));
 	}
 
 	/**

@@ -36,7 +36,7 @@ import toxTree.core.Introspection;
 import toxTree.data.DataModule;
 import toxTree.data.ToxTreeActions;
 import toxTree.io.MolFileFilter;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Loads a decision tree from a file and launches a decision tree editor
@@ -62,7 +62,7 @@ public class LoadAndEditTreeAction extends EditDecisionMethodAction {
 	 * @param name
 	 */
 	public LoadAndEditTreeAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("folder.png"));
+		this(module, name,Tools.getImage("folder.png"));
 	}
 
 	/**

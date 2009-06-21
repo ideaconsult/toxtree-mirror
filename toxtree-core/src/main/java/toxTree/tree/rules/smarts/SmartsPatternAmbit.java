@@ -25,9 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxTree.tree.rules.smarts;
 
 import java.util.List;
-import java.util.Vector;
 
-import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import ambit2.smarts.SmartsManager;

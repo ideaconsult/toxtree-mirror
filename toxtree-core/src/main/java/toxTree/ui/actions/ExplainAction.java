@@ -28,7 +28,7 @@ import javax.swing.Icon;
 
 import toxTree.data.DataModule;
 import toxTree.data.DecisionMethodsDataModule;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Explains the result of {@link toxTree.ui.actions.EstimateAction}
@@ -54,7 +54,7 @@ public class ExplainAction extends DataModuleAction {
 	 * @param name
 	 */
 	public ExplainAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("report_magnify.png"));
+		this(module, name,Tools.getImage("report_magnify.png"));
 	}
 
 	/**

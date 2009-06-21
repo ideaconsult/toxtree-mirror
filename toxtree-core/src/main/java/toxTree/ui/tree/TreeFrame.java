@@ -35,7 +35,6 @@ import java.awt.HeadlessException;
 import java.awt.Rectangle;
 
 import javax.swing.JFrame;
-import javax.swing.JSplitPane;
 
 import toxTree.core.IDecisionMethod;
 

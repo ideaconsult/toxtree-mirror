@@ -30,7 +30,7 @@ import javax.swing.Icon;
 
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionMethod;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Edits a category
@@ -50,7 +50,7 @@ public class EditCategoryAction extends AbstractTreeAction  implements ICategory
 	}
 
 	public EditCategoryAction(IDecisionMethod tree, String name) {
-		this(tree, name,ImageTools.getImage("tag_blue_edit.png"));
+		this(tree, name,Tools.getImage("tag_blue_edit.png"));
 	}
 
 	public EditCategoryAction(IDecisionMethod tree, String name, Icon icon) {

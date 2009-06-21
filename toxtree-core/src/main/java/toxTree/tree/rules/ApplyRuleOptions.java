@@ -38,8 +38,6 @@ import javax.swing.JRadioButton;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import toxTree.core.IDecisionInteractive;
-
 public class ApplyRuleOptions implements Serializable {
 	/**
 	 * 

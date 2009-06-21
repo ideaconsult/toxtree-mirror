@@ -5,7 +5,6 @@ import java.io.File;
 import java.util.List;
 import java.util.Observable;
 
-import org.openscience.cdk.Atom;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;

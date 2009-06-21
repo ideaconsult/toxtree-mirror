@@ -30,7 +30,6 @@ import org.openscience.cdk.qsar.result.IDescriptorResult;
 import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.core.Introspection;
-import toxTree.core.SmilesParserWrapper.SMILES_PARSER;
 import toxTree.exceptions.ShellException;
 import toxTree.logging.TTLogger;
 import toxTree.ui.Preferences;

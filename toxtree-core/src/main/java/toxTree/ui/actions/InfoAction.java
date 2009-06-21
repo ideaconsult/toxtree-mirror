@@ -33,9 +33,9 @@ import javax.swing.JOptionPane;
 
 import toxTree.core.IDecisionRule;
 import toxTree.data.ToxTreeModule;
+import toxTree.io.Tools;
 import toxTree.tree.cramer.RuleCommonComponentOfFood;
 import toxTree.tree.cramer.RuleNormalBodyConstituent;
-import toxTree.ui.tree.images.ImageTools;
 
 /**
  * Provides inforation about files, etc.
@@ -61,7 +61,7 @@ public class InfoAction extends DataModuleAction {
 	 * @param name
 	 */
 	public InfoAction(ToxTreeModule module, String name) {
-		this(module, name,ImageTools.getImage("information.png"));
+		this(module, name,Tools.getImage("information.png"));
 	}
 
 	/**

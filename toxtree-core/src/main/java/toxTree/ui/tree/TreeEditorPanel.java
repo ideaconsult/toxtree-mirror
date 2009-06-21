@@ -54,11 +54,11 @@ import toxTree.core.IDecisionMethodEditor;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.io.Tools;
 import toxTree.logging.TTLogger;
 import toxTree.tree.AbstractTree;
 import toxTree.tree.DecisionNode;
 import toxTree.ui.tree.categories.CategoriesTableModel;
-import toxTree.ui.tree.images.ImageTools;
 import toxTree.ui.tree.rules.DecisionNodesListTableModel;
 import toxTree.ui.tree.rules.RulePanel;
 
@@ -316,7 +316,7 @@ public class TreeEditorPanel extends JPanel implements IDecisionMethodEditor {
     }
     protected ImageIcon getIcon() {
         try {
-        return ImageTools.getImage("bird.gif");
+        return Tools.getImage("bird.gif");
         } catch (Exception x) {
             return null;
         }

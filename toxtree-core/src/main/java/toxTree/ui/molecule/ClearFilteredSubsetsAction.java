@@ -28,8 +28,8 @@ import javax.swing.JOptionPane;
 import toxTree.data.DataModule;
 import toxTree.data.DecisionMethodsDataModule;
 import toxTree.exceptions.FilterException;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
-import toxTree.ui.tree.images.ImageTools;
 
 public class ClearFilteredSubsetsAction extends DataModuleAction {
 
@@ -43,7 +43,7 @@ public class ClearFilteredSubsetsAction extends DataModuleAction {
 	}
 
 	public ClearFilteredSubsetsAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("cross.png"));
+		this(module, name,Tools.getImage("cross.png"));
 	}
 
 	public ClearFilteredSubsetsAction(DataModule module, String name, Icon icon) {

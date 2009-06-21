@@ -33,7 +33,7 @@ import javax.swing.JOptionPane;
 
 import toxTree.data.DataModule;
 import toxTree.data.ToxTreeActions;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Saves a file 
@@ -60,7 +60,7 @@ public class SaveFileAction extends DataModuleAction {
 	 * @param name
 	 */
 	public SaveFileAction(DataModule module, String name) {
-		this(module, name,ImageTools.getImage("save.png"));
+		this(module, name,Tools.getImage("save.png"));
 	}
 
 	/**

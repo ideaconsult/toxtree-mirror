@@ -32,10 +32,10 @@ import javax.swing.Icon;
 import toxTree.core.IDecisionMethod;
 import toxTree.data.DecisionMethodsDataModule;
 import toxTree.data.ToxTreeModule;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
 import toxTree.ui.tree.ListTableModel;
 import toxTree.ui.tree.SelectListDialog;
-import toxTree.ui.tree.images.ImageTools;
 
 /**
  * 
@@ -52,7 +52,7 @@ public class SelectTreeAction extends DataModuleAction {
 	}
 
 	public SelectTreeAction(DecisionMethodsDataModule module, String name) {
-		this(module, name,ImageTools.getImage("plugin.png"));
+		this(module, name,Tools.getImage("plugin.png"));
 	}
 
 	public SelectTreeAction(DecisionMethodsDataModule module, String name, Icon icon) {

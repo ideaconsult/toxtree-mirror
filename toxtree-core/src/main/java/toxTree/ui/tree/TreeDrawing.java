@@ -43,9 +43,9 @@ import prefuse.util.display.ExportDisplayAction;
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
+import toxTree.io.Tools;
 import toxTree.tree.DecisionNode;
 import toxTree.ui.tree.actions.SaveTreeAction;
-import toxTree.ui.tree.images.ImageTools;
 import toxTree.ui.tree.rules.RulePanel;
 
 /**
@@ -124,7 +124,7 @@ public class TreeDrawing extends JPanel implements PropertyChangeListener {
         tb.add(new SaveTreeAction(treeMethod));
         if (treeComponent instanceof Display) {
             Action a = new ExportDisplayAction((Display)treeComponent);
-            a.putValue(Action.SMALL_ICON, ImageTools.getImage("picture.png"));
+            a.putValue(Action.SMALL_ICON, Tools.getImage("picture.png"));
             a.putValue(Action.SHORT_DESCRIPTION, "Export as .bmp, .jpg or .png image");
             a.putValue(Action.NAME, "Export as image");
             tb.add(a);

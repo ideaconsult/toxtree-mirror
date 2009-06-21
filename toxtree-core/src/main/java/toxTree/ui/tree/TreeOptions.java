@@ -45,9 +45,9 @@ import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleList;
+import toxTree.io.Tools;
 import toxTree.ui.PreferencesPanel;
 import toxTree.ui.PropertyEditor;
-import toxTree.ui.tree.images.ImageTools;
 
 import com.l2fprod.common.swing.JOutlookBar;
 import com.l2fprod.common.swing.PercentLayout;
@@ -88,7 +88,7 @@ public class TreeOptions extends JSplitPane {
         try {
             
    		   button.setUI((ButtonUI)Class.forName((String)UIManager.get("OutlookButtonUI")).newInstance());
-   		   button.setIcon(ImageTools.getImage("cog.png"));           
+   		   button.setIcon(Tools.getImage("cog.png"));           
 		} catch (Exception e) {
     	       e.printStackTrace();
    		}
@@ -140,7 +140,7 @@ public class TreeOptions extends JSplitPane {
 	            	try {
 	    		        button.setUI((ButtonUI)Class.forName(
 	    		          (String)UIManager.get("OutlookButtonUI")).newInstance());
-                           button.setIcon(ImageTools.getImage("arrow_divide.png"));                                   
+                           button.setIcon(Tools.getImage("arrow_divide.png"));                                   
 	    		      } catch (Exception e) {
 	    		        e.printStackTrace();
 	    		      }

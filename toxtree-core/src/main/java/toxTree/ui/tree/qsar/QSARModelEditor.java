@@ -26,17 +26,13 @@ package toxTree.ui.tree.qsar;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.util.List;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 
-
 import org.openscience.cdk.qsar.IDescriptor;
-import org.openscience.cdk.qsar.IMolecularDescriptor;
 
 import toxTree.core.IToxTreeEditor;
 import toxTree.qsar.AbstractQSARModel;

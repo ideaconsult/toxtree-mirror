@@ -32,7 +32,7 @@ import javax.swing.JOptionPane;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRuleList;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Verifies if there are unreachable rules; If found, ask user to delete them.
@@ -58,7 +58,7 @@ public class VerifyUnreachableRulesAction extends AbstractTreeAction  {
 	 * @param name
 	 */
 	public VerifyUnreachableRulesAction(IDecisionMethod tree, String name) {
-		this(tree, name,ImageTools.getImage("tree_delete.png"));
+		this(tree, name,Tools.getImage("tree_delete.png"));
 	}
 
 	/**

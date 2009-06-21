@@ -30,8 +30,8 @@ import javax.swing.Icon;
 
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionMethod;
+import toxTree.io.Tools;
 import toxTree.ui.tree.SelectListDialog;
-import toxTree.ui.tree.images.ImageTools;
 
 /**
  * Shows a list of available categories and adds the selected one to the list of categories.
@@ -57,7 +57,7 @@ public class SelectCategoryFromListAction extends AbstractTreeAction {
 	 * @param name
 	 */
 	public SelectCategoryFromListAction(IDecisionMethod tree, String name) {
-		this(tree, name,ImageTools.getImage("tag_blue.png"));
+		this(tree, name,Tools.getImage("tag_blue.png"));
 	}
 
 	/**

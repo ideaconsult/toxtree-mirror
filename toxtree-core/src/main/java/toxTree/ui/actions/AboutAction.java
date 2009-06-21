@@ -32,7 +32,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import toxTree.data.DataModule;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * Launches About dialog
@@ -50,7 +50,7 @@ public class AboutAction extends DataModuleAction {
 	 * @param module
 	 */
 	public AboutAction(DataModule module) {
-		this(module,"About",ImageTools.getImage("information.png"));
+		this(module,"About",Tools.getImage("information.png"));
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class AboutAction extends DataModuleAction {
 */
     	ImageIcon toxTreeIcon = null;
 		try {
-			toxTreeIcon = ImageTools.getImage("bird.gif");
+			toxTreeIcon = Tools.getImage("bird.gif");
         } catch (Exception x) {
             toxTreeIcon = null;
         }

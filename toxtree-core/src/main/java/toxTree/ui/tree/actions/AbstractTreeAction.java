@@ -30,7 +30,7 @@ import javax.swing.Icon;
 import javax.swing.JFrame;
 
 import toxTree.core.IDecisionMethod;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * An {@link javax.swing.AbstractAction} descendant, performing an action on a preset {@link toxTree.core.IDecisionMethod}
@@ -51,7 +51,7 @@ public abstract class AbstractTreeAction extends AbstractAction implements ITree
 	 * @param name
 	 */
 	public AbstractTreeAction(IDecisionMethod tree,String name) {
-		this(tree,name,ImageTools.getImage("tree.png"));
+		this(tree,name,Tools.getImage("tree.png"));
 	}
 
 	/**

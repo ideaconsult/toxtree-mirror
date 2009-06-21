@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.io.MDLReader;
 import org.openscience.cdk.io.MDLV2000Reader;
 
 import toxTree.exceptions.ShellException;

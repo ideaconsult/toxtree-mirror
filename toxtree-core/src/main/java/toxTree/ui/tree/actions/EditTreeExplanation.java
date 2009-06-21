@@ -39,7 +39,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import toxTree.core.IDecisionMethod;
-import toxTree.ui.tree.images.ImageTools;
+import toxTree.io.Tools;
 
 /**
  * modifies tree explanation
@@ -66,7 +66,7 @@ public class EditTreeExplanation extends AbstractTreeAction {
 	 * @param name
 	 */
 	public EditTreeExplanation(IDecisionMethod tree, String name) {
-		this(tree, name,ImageTools.getImage("plugin.png"));
+		this(tree, name,Tools.getImage("plugin.png"));
 	}
 
 	/**

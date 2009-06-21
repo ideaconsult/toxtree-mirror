@@ -40,8 +40,8 @@ import toxTree.data.DecisionMethodsDataModule;
 import toxTree.data.ToxTreeActions;
 import toxTree.exceptions.IntrospectionException;
 import toxTree.io.MolFileFilter;
+import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
-import toxTree.ui.tree.images.ImageTools;
 
 public class LoadTreeAction extends DataModuleAction {
 
@@ -55,7 +55,7 @@ public class LoadTreeAction extends DataModuleAction {
 	}
 
 	public LoadTreeAction(DecisionMethodsDataModule module, String name) {
-		this(module, name,ImageTools.getImage("folder.png"));
+		this(module, name,Tools.getImage("folder.png"));
 	}
 
 	public LoadTreeAction(DecisionMethodsDataModule module, String name, Icon icon) {

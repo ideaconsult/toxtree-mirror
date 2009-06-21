@@ -30,12 +30,11 @@ import java.io.ObjectInputStream;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import ambit2.base.io.DownloadTool;
-
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.Introspection;
 import toxTree.exceptions.DRuleNotImplemented;
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.io.Tools;
 import toxTree.tree.AbstractRule;
 import toxTree.ui.tree.rules.RuleStructuresPanel;
 
@@ -61,27 +60,16 @@ public class RuleStructuresList extends AbstractRule {
 		
 	}
 	public RuleStructuresList(String resource) {
-		this(getFileFromResource(resource));
+		this(Tools.getFileFromResourceSilent(resource));
 	}
-	public static File getFileFromResource(String resource) {
-		try {
-			File file = new File(System.getProperty("java.io.tmpdir")+".toxtree");
-			file.mkdir();
-			file = new File(file.getAbsolutePath()+"/"+resource);
-			if (!file.exists())
-				DownloadTool.download(resource, file);
-			return file;
-		} catch (Exception x) {
-			return null;
-		}
-	}
+
 	public RuleStructuresList(File file) {
 		super();
 		
 		try {
 			setFile(file);
 		} catch (IOException x) {
-			try {setFile(getFileFromResource(file.getName()));} catch (Exception xx) { lookupFile = null;}
+			try {setFile(Tools.getFileFromResource(file.getName()));} catch (Exception xx) { lookupFile = null;}
 			logger.error(x);
 		}
 		setExplanation("Returns true if the query is isomorphic to one of the structures loaded from a preconfigured file of a type SDF, SMI, CSV ");

@@ -30,8 +30,8 @@ import javax.swing.Icon;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.data.DecisionMethodsDataModule;
+import toxTree.io.Tools;
 import toxTree.tree.UserDefinedTree;
-import toxTree.ui.tree.images.ImageTools;
 
 /**
  * Creates new {@link UserDefinedTree} and launches {@link toxTree.ui.tree.EditTreeFrame} 
@@ -57,7 +57,7 @@ public class NewTreeAction extends EditDecisionMethodAction {
 	 * @param name
 	 */
 	public NewTreeAction(DecisionMethodsDataModule module, String name) {
-		this(module, name,ImageTools.getImage("page_white.png"));
+		this(module, name,Tools.getImage("page_white.png"));
 	}
 
 	/**
