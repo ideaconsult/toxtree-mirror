@@ -3,7 +3,6 @@ package toxTree.test.smarts;
 
 import junit.framework.TestCase;
 
-
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.query.FunctionalGroups;

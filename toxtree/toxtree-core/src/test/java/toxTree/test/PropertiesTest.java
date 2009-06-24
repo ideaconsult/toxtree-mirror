@@ -27,7 +27,7 @@ package toxTree.test;
 import java.util.Properties;
 
 import junit.framework.TestCase;
-import toxTree.ui.Preferences;
+import ambit2.base.config.Preferences;
 
 public class PropertiesTest extends TestCase {
 	public void test() throws Exception  {

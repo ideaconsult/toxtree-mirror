@@ -32,7 +32,6 @@ import joelib.smarts.JOESmartsPattern;
 import joelib.smiles.JOESmilesParser;
 import junit.framework.TestCase;
 
-import org.openscience.cdk.Atom;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;

@@ -21,12 +21,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 package toxTree.test.tree.rules;
 
+import junit.framework.TestCase;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.RuleVerifyProperty;
-import junit.framework.TestCase;
 
 public class RuleVerifyPropertyTest extends TestCase {
 

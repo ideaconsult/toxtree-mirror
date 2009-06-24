@@ -31,16 +31,15 @@ import java.io.IOException;
 import junit.framework.TestCase;
 
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.io.SMILESWriter;
 
 import toxTree.core.IDecisionResult;
-import toxTree.core.SmilesParserWrapper;
-import toxTree.core.SmilesParserWrapper.SMILES_PARSER;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.tree.cramer.CramerRules;
+import ambit2.core.smiles.SmilesParserWrapper;
+import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
 
 /**
  * This is to test the classification by CramerRules class.

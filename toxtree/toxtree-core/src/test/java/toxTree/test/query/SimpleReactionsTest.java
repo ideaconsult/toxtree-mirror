@@ -26,21 +26,19 @@ package toxTree.test.query;
 
 import java.util.List;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.Molecule;
-import org.openscience.cdk.Reaction;
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IReaction;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.templates.MoleculeFactory;
 
-import toxTree.exceptions.ReactionException;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.SimpleReactions;
@@ -50,66 +48,54 @@ import toxTree.query.SimpleReactions;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-8-18
  */
-public class SimpleReactionsTest extends TestCase {
+public class SimpleReactionsTest {
 	public static TTLogger logger=new TTLogger(SimpleReactionsTest.class); 
 	protected SimpleReactions sr = null;
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
 		sr = new SimpleReactions();
-		assertNotNull(sr);
+		Assert.assertNotNull(sr);
 	}
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		// TODO Auto-generated method stub
-		super.tearDown();
-		sr = null;
-	}
+	@Test
 	public void testSimpleReactions() {
 		TTLogger.configureLog4j(false);
 	}
-
+	@Test
 	public void testLoadHydrolysisReaction() throws Exception{
 			for (int i=0; i < SimpleReactions.getHydrolysisReactionCount(); i++) {
 				IReaction hr = sr.getHydrolysisReaction(i);
-				assertNotNull(hr);
-				assertEquals(2,hr.getReactantCount());
-				assertEquals(2,hr.getProductCount());
+				Assert.assertNotNull(hr);
+				Assert.assertEquals(2,hr.getReactantCount());
+				Assert.assertEquals(2,hr.getProductCount());
 			}
 
 	}
-
+	@Test
 	public void testLoadMetabolicReaction() throws Exception {
 			
 			for (int i=0; i < SimpleReactions.getMetabolicReactionCount(); i++) {
 				IReaction mr = sr.getMetabolicReaction(i);
-				assertNotNull(mr);
-				assertEquals(1,mr.getReactantCount());
-				assertEquals(2,mr.getProductCount());
+				Assert.assertNotNull(mr);
+				Assert.assertEquals(1,mr.getReactantCount());
+				Assert.assertEquals(2,mr.getProductCount());
 			}			
 			
 	
 	}
-
+	@Test
 	public void testGetHydrolysisReactionCount()  {
-		assertEquals(6,SimpleReactions.getHydrolysisReactionCount());
+		Assert.assertEquals(6,SimpleReactions.getHydrolysisReactionCount());
 	}
-
+	@Test
 	public void testGetMetabolicReactionCount() {
-		assertEquals(4,SimpleReactions.getMetabolicReactionCount());
+		Assert.assertEquals(4,SimpleReactions.getMetabolicReactionCount());
 	}
 	protected IAtomContainerSet processHydrolysis(IAtomContainer mol,int index) throws Exception  {
 
 			IReaction hr = sr.getHydrolysisReaction(index);
-			assertNotNull(hr);
-			assertEquals(2,hr.getReactantCount());
-			assertEquals(2,hr.getProductCount());
+			Assert.assertNotNull(hr);
+			Assert.assertEquals(2,hr.getReactantCount());
+			Assert.assertEquals(2,hr.getProductCount());
 			IAtomContainerSet sc = 
 				SimpleReactions.process(mol,hr);
 			
@@ -137,70 +123,75 @@ public class SimpleReactionsTest extends TestCase {
 	
 
 	}
+	@Test
 	public void testHydrolysis0() throws Exception {
-		IAtomContainer mol =MoleculeFactory.makeAlkane(5);
-			assertNull(processHydrolysis(mol,0));
+			IAtomContainer mol =MoleculeFactory.makeAlkane(5);
+			Assert.assertNull(processHydrolysis(mol,0));
 			mol = FunctionalGroups.acrylicAcid();
-			assertNull(processHydrolysis(mol,0));
+			Assert.assertNull(processHydrolysis(mol,0));
 			mol = FunctionalGroups.createAtomContainer("CCCC(=O)OCCCCCCC");
 			IAtomContainerSet results = processHydrolysis(mol,0);
-			assertNotNull(results);
-			assertEquals(2,results.getAtomContainerCount());
+			Assert.assertNotNull(results);
+			Assert.assertEquals(2,results.getAtomContainerCount());
 			
 
 	}
+	@Test
 	public void testHydrolysis2() throws Exception {
 		int index = 2;
 		IAtomContainer mol =MoleculeFactory.makeAlkane(5);
 
-			assertNull(processHydrolysis(mol,index));
+			Assert.assertNull(processHydrolysis(mol,index));
 			mol = FunctionalGroups.acrylicAcid();
-			assertNull(processHydrolysis(mol,index));
+			Assert.assertNull(processHydrolysis(mol,index));
 			//CCCC(=S)OCCCCCCC
 			mol = FunctionalGroups.createAtomContainer("O(C(CCC)=S)CCCCCCC");
 			IAtomContainerSet results = processHydrolysis(mol,index);
-			assertNotNull(results);
-			assertEquals(2,results.getAtomContainerCount());
+			Assert.assertNotNull(results);
+			Assert.assertEquals(2,results.getAtomContainerCount());
 	}
+	@Test
 	public void testHydrolysis1() throws Exception {
 		int index = 1;
 		IAtomContainer mol =MoleculeFactory.makeAlkane(5);
 
-			assertNull(processHydrolysis(mol,index));
+			Assert.assertNull(processHydrolysis(mol,index));
 			mol = FunctionalGroups.acrylicAcid();
-			assertNull(processHydrolysis(mol,index));
+			Assert.assertNull(processHydrolysis(mol,index));
 			//CCCC(=S)OCCCCCCC
 			mol = FunctionalGroups.createAtomContainer("O=C(CCC)SCCCCCCC");
 			IAtomContainerSet results = processHydrolysis(mol,index);
-			assertNotNull(results);
-			assertEquals(2,results.getAtomContainerCount());
+			Assert.assertNotNull(results);
+			Assert.assertEquals(2,results.getAtomContainerCount());
 	}
+	@Test
 	public void testHydrolysis3() throws Exception {
 		int index = 3;
 		IAtomContainer mol =MoleculeFactory.makeAlkane(5);
-			assertNull(processHydrolysis(mol,index));
+			Assert.assertNull(processHydrolysis(mol,index));
 			mol = FunctionalGroups.acrylicAcid();
-			assertNull(processHydrolysis(mol,index));
+			Assert.assertNull(processHydrolysis(mol,index));
 			//CCCC(=S)OCCCCCCC
 			mol = FunctionalGroups.createAtomContainer("S=C(CCC)SCCCCCCC");
 			IAtomContainerSet results = processHydrolysis(mol,index);
-			assertNotNull(results);
-			assertEquals(2,results.getAtomContainerCount());
+			Assert.assertNotNull(results);
+			Assert.assertEquals(2,results.getAtomContainerCount());
 
 	}
+	@Test
 	public void testHydrolysis4() throws Exception{
 		int index = 4;
 		IAtomContainer mol =MoleculeFactory.makeAlkane(5);
 
-			assertNull(processHydrolysis(mol,index));
+			Assert.assertNull(processHydrolysis(mol,index));
 			mol = FunctionalGroups.acrylicAcid();
-			assertNull(processHydrolysis(mol,index));
+			Assert.assertNull(processHydrolysis(mol,index));
 			//CCCC(=S)OCCCCCCC
 			//tuk triabwa da se kusat wsicki edinicni wryzki, ne samo edna
 			mol = FunctionalGroups.createAtomContainer("O=P(OCC)(OCC)OCCC");
 			IAtomContainerSet results = processHydrolysis(mol,index);
-			assertNotNull(results);
-			assertEquals(2,results.getAtomContainerCount());
+			Assert.assertNotNull(results);
+			Assert.assertEquals(2,results.getAtomContainerCount());
 			/*
 			mol = FunctionalGroups.createAtomContainer("O=P(O)(OCC)OCC");
 			results = processHydrolysis(mol,index);
@@ -210,6 +201,9 @@ public class SimpleReactionsTest extends TestCase {
 	}	
 	protected void printProducts(IAtomContainerSet products,
 			IReaction reaction) throws Exception {
+		return;
+		/*
+		
 		SmilesGenerator g = new SmilesGenerator();
 			logger.debug("");
 			logger.debug(reaction.getID());
@@ -217,10 +211,11 @@ public class SimpleReactionsTest extends TestCase {
 			logger.debug("Products");
 			if (products == null) return;
 			for (int p=0; p< products.getAtomContainerCount(); p++)
-				/*System.out.println((p+1)+".\n"+
-					FunctionalGroups.mapToString((Molecule)products.getAtomContainer(p)));*/
+				System.out.println((p+1)+".\n"+
+					FunctionalGroups.mapToString((Molecule)products.getAtomContainer(p)));
 				logger.debug((p+1)+".\t"+
 					g.createSMILES((Molecule)products.getAtomContainer(p)));
+				*/
 		
 	}
 	protected int verifyProducts(IAtomContainerSet products,
@@ -245,9 +240,9 @@ public class SimpleReactionsTest extends TestCase {
 	}
 	protected IAtomContainerSet processMetabolic(AtomContainer mol,int index) throws Exception  {
 			IReaction hr = sr.getMetabolicReaction(index);
-			assertNotNull(hr);
-			assertEquals(1,hr.getReactantCount());
-			assertEquals(2,hr.getProductCount());
+			Assert.assertNotNull(hr);
+			Assert.assertEquals(1,hr.getReactantCount());
+			Assert.assertEquals(2,hr.getProductCount());
 			IAtomContainerSet sc = SimpleReactions.process(mol,hr);
 			
 			if (sc != null) {
@@ -257,6 +252,7 @@ public class SimpleReactionsTest extends TestCase {
 			return sc;
 
 	}
+	@Test
 	public void testcanMetabolize() throws Exception {
 		logger.debug("testcanMetabolize");
 		Object[][] answers = {
@@ -297,10 +293,10 @@ public class SimpleReactionsTest extends TestCase {
 
 					}
 				}	
-				assertEquals(success,answers.length);
+				Assert.assertEquals(success,answers.length);
 		
 	}		
-	
+	@Test
 	public void testMetabolic() throws Exception {
 		logger.debug("testMetabolic");
 		Object[][] answers = {
@@ -325,10 +321,10 @@ public class SimpleReactionsTest extends TestCase {
 					if (((Boolean) answers[r][index+1]).booleanValue()) {
 						verifyProducts(results,mr);
 						logger.debug(Integer.toString(r+1),"\tReactant\t" + (String)answers[r][0]);
-						assertNotNull(results)	;						
-						assertEquals(2,results.getAtomContainerCount());
+						Assert.assertNotNull(results)	;						
+						Assert.assertEquals(2,results.getAtomContainerCount());
 					} else {
-						assertNull(results);
+						Assert.assertNull(results);
 					}
 				}	
 	
@@ -336,6 +332,7 @@ public class SimpleReactionsTest extends TestCase {
 
 		
 	}
+	@Test
 	public void testMultipleReactions() throws Exception  {
 		logger.debug("MultipleReactions");
 		Molecule Gr3 = (Molecule) FunctionalGroups.createAtomContainer(
@@ -344,8 +341,8 @@ public class SimpleReactionsTest extends TestCase {
 		SimpleReactions sr = new SimpleReactions();
 
 			IAtomContainerSet results = sr.canMetabolize(Gr3,true);
-			assertNotNull(results);
-			assertEquals(3,results.getAtomContainerCount());
+			Assert.assertNotNull(results);
+			Assert.assertEquals(3,results.getAtomContainerCount());
 	}
 	
 }
