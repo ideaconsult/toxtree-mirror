@@ -36,8 +36,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.data.MoleculesFile;
-import toxTree.io.MyIteratingMDLReader;
 import toxTree.io.Tools;
+import ambit2.core.io.MyIteratingMDLReader;
 
 public class MoleculesFileTest  {
 	@Test

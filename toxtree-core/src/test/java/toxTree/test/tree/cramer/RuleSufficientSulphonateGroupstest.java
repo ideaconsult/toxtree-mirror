@@ -25,9 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.test.tree.cramer;
 
 import toxTree.core.IDecisionRule;
-import toxTree.core.SmilesParserWrapper;
-import toxTree.core.SmilesParserWrapper.SMILES_PARSER;
 import toxTree.tree.cramer.RuleSufficientSulphonateGroups;
+import ambit2.core.smiles.SmilesParserWrapper;
+import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
 
 /**
  * Tests {@link RuleSufficientSulphonateGroups}

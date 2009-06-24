@@ -25,7 +25,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.test.tree.rules;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
@@ -47,12 +46,10 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.MDLReader;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
-import org.openscience.cdk.io.iterator.IteratingSMILESReader;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
-import toxTree.io.IteratingDelimitedFileReader;
 import toxTree.io.MDLWriter;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
@@ -79,7 +76,7 @@ public class RuleStructuresListTest  {
 
 	@Test
 	public void testRule() throws Exception  {
-		RuleStructuresList rule = new RuleStructuresList(new File("bodymol.sdf"));
+		RuleStructuresList rule = new RuleStructuresList("bodymol.sdf");
 		Assert.assertTrue(rule.isImplemented());
 		//default file
 		IAtomContainer c = FunctionalGroups.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");

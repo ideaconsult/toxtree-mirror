@@ -30,7 +30,7 @@ import junit.framework.TestCase;
 
 import org.openscience.cdk.Molecule;
 
-import toxTree.io.IteratingDelimitedFileReader;
+import ambit2.core.io.IteratingDelimitedFileReader;
 
 /**
  * A test for {@link toxTree.io.IteratingDelimitedFileReader} class

@@ -34,7 +34,6 @@ import java.io.ObjectOutputStream;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.Atom;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IBond;

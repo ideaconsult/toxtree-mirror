@@ -33,7 +33,6 @@ import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
 import org.openscience.cdk.qsar.model.QSARModelException;
 import org.openscience.cdk.templates.MoleculeFactory;
 
-
 import toxTree.logging.TTLogger;
 import toxTree.qsar.LinearQSARModel;
 import toxTree.query.MolAnalyser;

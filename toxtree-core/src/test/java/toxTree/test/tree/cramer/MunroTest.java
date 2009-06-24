@@ -36,11 +36,11 @@ import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.io.IteratingDelimitedFileReader;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.tree.DefaultCategory;
 import toxTree.tree.cramer.CramerRules;
+import ambit2.core.io.IteratingDelimitedFileReader;
 
 public class MunroTest extends TestCase {
 	protected CramerRules rules;

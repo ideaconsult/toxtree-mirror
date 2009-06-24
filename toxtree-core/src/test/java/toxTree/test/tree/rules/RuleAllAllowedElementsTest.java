@@ -29,7 +29,6 @@ import junit.framework.TestCase;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.templates.MoleculeFactory;
 
-
 import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.RuleAllAllowedElements;
