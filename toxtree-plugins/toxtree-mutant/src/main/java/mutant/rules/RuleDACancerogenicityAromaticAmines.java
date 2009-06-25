@@ -25,7 +25,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package mutant.rules;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 
 import mutant.categories.CategoryError;
@@ -38,11 +37,11 @@ import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.model.QSARModelException;
 
 import toxTree.exceptions.DRuleException;
-import toxTree.qsar.DescriptorMopacShell;
 import toxTree.qsar.IDescriptorPreprocessor;
 import toxTree.qsar.LinearDiscriminantRule;
 import toxTree.qsar.LinearPreprocessor;
 import toxTree.qsar.LinearQSARModel;
+import ambit2.mopac.DescriptorMopacShell;
 
 public class RuleDACancerogenicityAromaticAmines extends LinearDiscriminantRule {
 
@@ -126,7 +125,7 @@ public class RuleDACancerogenicityAromaticAmines extends LinearDiscriminantRule 
 		AromaticAmineSubstituentsDescriptor d = new AromaticAmineSubstituentsDescriptor();
 		List<IMolecularDescriptor> descriptors = new ArrayList<IMolecularDescriptor>();
 
-		descriptors.add(d);
+		descriptors.add(d); 
 		descriptors.add(d);
 		try {
 			DescriptorMopacShell mopac = new DescriptorMopacShell();		
