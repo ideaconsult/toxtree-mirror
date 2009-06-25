@@ -55,7 +55,7 @@ import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.logging.TTLogger;
-import toxTree.ui.Preferences;
+import ambit2.base.config.Preferences;
 
 
 /**

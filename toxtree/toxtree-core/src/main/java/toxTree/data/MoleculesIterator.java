@@ -55,13 +55,13 @@ import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
 import toxTree.core.IMoleculesIterator;
 import toxTree.exceptions.ToxTreeIOException;
-import toxTree.io.DelimitedFileFormat;
-import toxTree.io.DelimitedFileReader;
-import toxTree.io.DelimitedFileWriter;
 import toxTree.io.MDLWriter;
-import toxTree.io.MyIteratingMDLReader;
 import toxTree.io.PDFWriter;
 import toxTree.logging.TTLogger;
+import ambit2.core.io.DelimitedFileFormat;
+import ambit2.core.io.DelimitedFileReader;
+import ambit2.core.io.DelimitedFileWriter;
+import ambit2.core.io.MyIteratingMDLReader;
 
 
 /**

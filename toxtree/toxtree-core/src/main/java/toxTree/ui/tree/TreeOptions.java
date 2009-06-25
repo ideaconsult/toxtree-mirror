@@ -46,8 +46,10 @@ import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleList;
 import toxTree.io.Tools;
-import toxTree.ui.PreferencesPanel;
 import toxTree.ui.PropertyEditor;
+import ambit2.base.config.Preferences;
+import ambit2.base.config.Preferences.VTAGS;
+import ambit2.ui.editors.PreferencesPanel;
 
 import com.l2fprod.common.swing.JOutlookBar;
 import com.l2fprod.common.swing.PercentLayout;
@@ -82,7 +84,9 @@ public class TreeOptions extends JSplitPane {
        		@Override
        		public void actionPerformed(ActionEvent e) {
 
-       			setRightComponent(new PreferencesPanel());
+       			setRightComponent(new PreferencesPanel(
+       					new Preferences.VTAGS[] {VTAGS.General,VTAGS.Structure,VTAGS.Conversion3D}
+       					).getJComponent());
        		}
        	});
         try {

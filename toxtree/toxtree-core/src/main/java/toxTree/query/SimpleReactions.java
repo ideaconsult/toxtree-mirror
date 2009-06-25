@@ -119,9 +119,10 @@ public class SimpleReactions {
 			String filename) throws CDKException {
 		logger.debug("Reading reaction from file\t", filename);
 		IReaction newReaction = null;
+		
 		InputStream stream = this.getClass().getClassLoader()
 				.getResourceAsStream(filename);
-
+		if (stream ==null) throw new CDKException("Can't find "+filename);
 		CMLReader reader = new CMLReader(new InputStreamReader(stream));
 		IChemFile chemFile = (IChemFile) reader.read((IChemObject) new org.openscience.cdk.ChemFile());
 		for (int i = 0; i < chemFile.getChemSequenceCount(); i++) {
@@ -720,6 +721,7 @@ public class SimpleReactions {
 	public IAtomContainerSet canMetabolize(
 			IAtomContainer mol,
 			boolean allPossible) throws ReactionException {
+		if (mol==null) throw new ReactionException("Null molecule");
 		logger.info("Verifying if molecule can be metabolised\t"
 				+ mol.getAtomCount() + "\t", mol.getID());
 		IAtomContainerSet result = null;

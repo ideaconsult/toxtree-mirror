@@ -37,10 +37,10 @@ import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
-import toxTree.io.IteratingDelimitedFileReader;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
+import ambit2.core.io.IteratingDelimitedFileReader;
 
 public class LookupFile implements Serializable {
 	protected File file;

@@ -39,11 +39,11 @@ import org.openscience.cdk.io.IChemObjectWriter;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingSMILESReader;
 
-import toxTree.io.DelimitedFileFormat;
-import toxTree.io.DelimitedFileWriter;
-import toxTree.io.IteratingDelimitedFileReader;
 import toxTree.io.MDLWriter;
-import toxTree.io.MyIteratingMDLReader;
+import ambit2.core.io.DelimitedFileFormat;
+import ambit2.core.io.DelimitedFileWriter;
+import ambit2.core.io.IteratingDelimitedFileReader;
+import ambit2.core.io.MyIteratingMDLReader;
 
 
 /**

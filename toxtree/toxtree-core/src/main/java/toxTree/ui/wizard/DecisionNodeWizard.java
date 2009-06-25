@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005-2006  
+Copyright (C) 2005-2009 
 
 Contact: nina@acad.bg
 
@@ -45,7 +45,6 @@ import toxTree.core.ToxTreePackageEntry;
 import toxTree.tree.DecisionNode;
 import toxTree.tree.DecisionNodesList;
 import toxTree.tree.DefaultCategory;
-import toxTree.tree.cramer.RuleHeteroaromatic;
 import toxTree.tree.rules.RuleAllSubstructures;
 import toxTree.tree.rules.RuleAnySubstructure;
 import toxTree.tree.rules.RuleAromatic;
@@ -64,16 +63,115 @@ import toxTree.ui.tree.rules.DecisionNodesListTableModel;
 import com.nexes.wizard.WizardPanelDescriptor;
 
 public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelectionListener {
-	protected static String options_allsubtructure = "All substructures";
-	protected static String options_anysubtructure = "Any substructure";
-	protected static String options_smarts = "SMARTS";
-	protected static String options_structure = "Exact structures (from file)";
-	protected static String options_heteroaromatic = "Heteroaromatic";
-	protected static String options_aromatic = "Aromatic";
-	protected static String options_aromaticrings = "Number of aromatic rings";
-	protected static String options_descriptorrrange = "Descriptor";
-	protected static String options_property = "Property";
-	protected static String options_molweight = "Molecular weight";
+	public enum RuleOptions {
+		options_allsubtructure {
+			@Override
+			public String toString() {
+				return "All substructures";
+			}
+			@Override
+			IDecisionRule getRule() {
+				return new RuleAllSubstructures();
+			}
+		},
+		options_anysubtructure {
+			@Override
+			public String toString() {
+				return "Any substructure";
+			}
+			@Override
+			IDecisionRule getRule() {
+				return new RuleAnySubstructure();
+			}
+		},	
+		options_smarts {
+			@Override
+			public String toString() {
+				return "SMARTS";
+			}
+			@Override
+			IDecisionRule getRule() {
+				return new RuleSMARTSubstructure();
+			}
+		},
+		options_structure {
+			@Override
+			public String toString() {
+				return "Exact structures (from file)";
+			}
+			@Override
+			IDecisionRule getRule() {
+				return new RuleStructuresList();
+			}
+		},
+		options_aromatic {
+			@Override
+			public String toString() {
+				return "Aromatic";
+			}
+			@Override
+			IDecisionRule getRule() {
+				return new RuleAromatic();
+			}
+		},		
+		options_heteroaromatic {
+			@Override
+			public String toString() {
+				return "Heteroaromatic";
+			}
+			@Override
+			IDecisionRule getRule() {
+				try {
+					return (IDecisionRule) Introspection.loadCreateObject("toxTree.tree.cramer.RuleHeteroaromatic");
+				} catch (Exception x) {
+					return null;
+				}
+			}
+		},
+	
+		options_aromaticrings {
+			@Override
+			public String toString() {
+				return "Number of aromatic rings";
+			}
+			@Override
+			IDecisionRule getRule() {
+				return new RuleManyAromaticRings();
+			}
+		},
+		options_descriptorrrange {
+			@Override
+			public String toString() {
+				return "Descriptor";
+			}
+			@Override
+			IDecisionRule getRule() {
+				return new RuleDescriptorRange();
+			}
+		},			
+		options_property {
+			@Override
+			public String toString() {
+				return "Property";
+			}
+			@Override
+			IDecisionRule getRule() {
+				return new RuleVerifyProperty();
+			}
+		},
+		options_molweight {
+			@Override
+			public String toString() {
+				return "Molecular weight";
+			}
+			@Override
+			IDecisionRule getRule() {
+				return new RuleMolecularMassRange();
+			}
+		};		
+		abstract IDecisionRule getRule();
+	};
+
     protected static String[] pages = {"options","categoryoptions","ruleoptions","panel","details","introspection"};
     public static int pageOptions = 0;
     public static int pageCategoryOptions = 1;
@@ -231,87 +329,22 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
         ArrayList ruleOptions = new ArrayList();
         ruleOptions.add("Select from rules used in the tree");
         ruleOptions.add("Select from all available rules");
-        ruleOptions.add(options_allsubtructure);
-        ruleOptions.add(options_anysubtructure);
-        ruleOptions.add(options_smarts);
-        ruleOptions.add(options_structure);
-        ruleOptions.add(options_aromatic);
-        ruleOptions.add(options_aromaticrings);
-        ruleOptions.add(options_heteroaromatic);
-        //ruleOptions.add(options_descriptorrrange);
-        ruleOptions.add(options_property);
-        ruleOptions.add(options_molweight);
+        for (RuleOptions o : RuleOptions.values()) 
+        	ruleOptions.add(o);
         
         RadioBoxPanel ruleOptionsPanel = new RadioBoxPanel("Select",ruleOptions,0) {
             @Override
 			public void selectObject(ActionEvent e, Object object) {
-            	if (object.equals(options_smarts)) {
-            		RuleSMARTSubstructure c = new RuleSMARTSubstructure();
-                    setSelectedObject(c);
-                    nodePanel.setEditor(c.getEditor());
-            		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
-            		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);
-            		//createNewNode(c);
-            	} else 	if (object.equals(options_allsubtructure)) {
-            		RuleAllSubstructures c = new RuleAllSubstructures();
-                    setSelectedObject(c);
-                    nodePanel.setEditor(c.getEditor());
-            		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
-            		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);
-            	} else 	if (object.equals(options_anysubtructure)) {
-            		RuleAnySubstructure c = new RuleAnySubstructure();
-                    setSelectedObject(c);
-                    nodePanel.setEditor(c.getEditor());
-            		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
-            		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);
-                    //createNewNode(c);
-            	} else 	if (object.equals(options_structure)) { //structures from file
-            		RuleStructuresList c = new RuleStructuresList();
-                    setSelectedObject(c);
-                    nodePanel.setEditor(c.getEditor());
-            		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
-            		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);
-            	} else 	if (object.equals(options_aromatic)) { //structures from file
-            		RuleAromatic c = new RuleAromatic();
-                    setSelectedObject(c);
-                    nodePanel.setEditor(c.getEditor());
-            		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
-            		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);
-            	} else 	if (object.equals(options_heteroaromatic)) { 
-            		RuleHeteroaromatic c = new RuleHeteroaromatic();
-                    setSelectedObject(c);
-                    nodePanel.setEditor(c.getEditor());
-            		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
-            		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);            		
-            	} else 	if (object.equals(options_aromaticrings)) { 
-            		RuleManyAromaticRings c = new RuleManyAromaticRings();
-                    setSelectedObject(c);
-                    nodePanel.setEditor(c.getEditor());
-            		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
-            		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);
-            		            		
-            	} else 	if (object.equals(options_descriptorrrange)) { //descriptor
-            		RuleDescriptorRange c = new RuleDescriptorRange();
-                    setSelectedObject(c);
-                    nodePanel.setEditor(c.getEditor());
-            		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
-            		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);
-                    //createNewNode(c);
-            	} else 	if (object.equals(options_property)) { //property
-            		RuleVerifyProperty c = new RuleVerifyProperty();
-                    setSelectedObject(c);
-                    nodePanel.setEditor(c.getEditor());
-            		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
-            		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);
-                    //createNewNode(c);
-            	} else 	if (object.equals(options_molweight)) { //property
-            		RuleMolecularMassRange c = new RuleMolecularMassRange();
-                    setSelectedObject(c);
-                    nodePanel.setEditor(c.getEditor());
-            		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
-            		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);            		
-            		
-            	} else if (object.equals("Select from all available rules")) {
+            	
+            	try {
+	            	RuleOptions option = RuleOptions.valueOf(object.toString());
+	            	IDecisionRule c = option.getRule();
+	                setSelectedObject(c);
+	                nodePanel.setEditor(c.getEditor());
+	        		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
+	        		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);
+            	} catch (Exception x) {
+            		if (object.equals("Select from all available rules")) {
             		if (rulesListPanel == null) {
 	           			ToxTreePackageEntries ruleTypes = Introspection.getAvailableRuleTypes(this.getClass().getClassLoader());
 	           			rulesListPanel = new ListPanel("Rules",new ToxTreePackageEntryModel(ruleTypes),null);
@@ -354,6 +387,7 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
             		descriptors[pageRuleOptions].setNextId(pages[pagePanel]);
             		descriptors[pagePanel].setBackId(pages[pageRuleOptions]);
             	}	
+            	}
             };
         };        
         

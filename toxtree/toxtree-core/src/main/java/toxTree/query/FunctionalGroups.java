@@ -79,9 +79,9 @@ import org.openscience.cdk.tools.MFAnalyser;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.ConnectionMatrix;
-import toxTree.core.SmilesParserWrapper;
 import toxTree.logging.TTLogger;
 import toxTree.tree.AbstractRule;
+import ambit2.core.smiles.SmilesParserWrapper;
 
 /**
  * This class provides static methods for various functional groups
