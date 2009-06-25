@@ -33,12 +33,12 @@ import junit.framework.TestCase;
 import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionResult;
-import toxTree.core.SmilesParserWrapper;
-import toxTree.core.SmilesParserWrapper.SMILES_PARSER;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
+import ambit2.core.smiles.SmilesParserWrapper;
+import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
 import cramer2.CramerRulesWithExtensions;
 
 /**

@@ -30,7 +30,7 @@ import toxTree.core.IDecisionRule;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
-import toxTree.tree.cramer.RuleSimplyBranchedAliphaticHydrocarbon;
+import cramer2.rules.RuleSimplyBranchedAliphaticHydrocarbon;
 
 /**
  * A test for Cramer rule No 5 {@link RuleSimplyBranchedAliphaticHydrocarbon}
