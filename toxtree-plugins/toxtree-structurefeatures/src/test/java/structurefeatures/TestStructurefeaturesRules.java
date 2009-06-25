@@ -1,42 +1,39 @@
-package structurefeatures.test;
+package structurefeatures;
 
 
 import junit.framework.TestCase;
-import toxTree.query.FunctionalGroups;
-import toxTree.tree.rules.RuleAnySubstructure;
-
+import structurefeatures.rules.RuleAlcohol;
+import structurefeatures.rules.RuleAlkylAldehyde;
+import structurefeatures.rules.RuleAlkylHydrazine;
 import structurefeatures.rules.RuleAlkylPhosphonate;
+import structurefeatures.rules.RuleAmine;
+import structurefeatures.rules.RuleAromaticAldehyde;
 import structurefeatures.rules.RuleAromaticAzo;
 import structurefeatures.rules.RuleAromaticNitro;
-import structurefeatures.rules.RuleNitrosamine;
-import structurefeatures.rules.RuleUrethaneDerivatives;
-import structurefeatures.rules.RulePropiolactone;
-import structurefeatures.rules.RuleprimaryAlkylHalide;
 import structurefeatures.rules.RuleArylMethylHalide;
-import structurefeatures.rules.RuleNitrogenMustard;
-import structurefeatures.rules.RuleAmine;
-import structurefeatures.rules.RuleNOxide;
-import structurefeatures.rules.RuleNMethylol;
-import structurefeatures.rules.RuleAlkylAldehyde;
 import structurefeatures.rules.RuleAziridine;
+import structurefeatures.rules.RuleBenzene;
 import structurefeatures.rules.RuleEpoxide;
-import structurefeatures.rules.RuleAlkylHydrazine;
-import structurefeatures.rules.RuleNChloramine;
-import structurefeatures.rules.RuleNHydroxy;
-
-import structurefeatures.rules.RuleNitroso;
-import structurefeatures.rules.RuleNitro;
+import structurefeatures.rules.RuleEther;
+import structurefeatures.rules.RuleFuran;
+import structurefeatures.rules.RuleHalide;
 import structurefeatures.rules.RuleHeterocycle;
 import structurefeatures.rules.RuleIminomethyl;
 import structurefeatures.rules.RuleKetone;
-import structurefeatures.rules.RuleHalide;
-import structurefeatures.rules.RuleFuran;
-import structurefeatures.rules.RuleEther;
-import structurefeatures.rules.RuleBenzene;
-import structurefeatures.rules.RuleAromaticAldehyde;
-import structurefeatures.rules.RuleAlcohol;
+import structurefeatures.rules.RuleNChloramine;
+import structurefeatures.rules.RuleNHydroxy;
+import structurefeatures.rules.RuleNMethylol;
+import structurefeatures.rules.RuleNOxide;
+import structurefeatures.rules.RuleNitro;
+import structurefeatures.rules.RuleNitrogenMustard;
+import structurefeatures.rules.RuleNitrosamine;
+import structurefeatures.rules.RuleNitroso;
 import structurefeatures.rules.RuleNucleosides;
 import structurefeatures.rules.RulePhosphoricGroups;
+import structurefeatures.rules.RulePropiolactone;
+import structurefeatures.rules.RuleUrethaneDerivatives;
+import structurefeatures.rules.RuleprimaryAlkylHalide;
+import toxTree.query.FunctionalGroups;
 
 
 
