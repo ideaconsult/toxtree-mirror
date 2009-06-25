@@ -63,7 +63,7 @@ import toxTree.tree.ProgressStatus;
  */
 public class Introspection {
     public static final String TOXTREE_HOME="TOXTREE";
-	protected static String[] defaultLocation = { ".", "dist","ext","toxTree/dist" };
+	protected static String[] defaultLocation = { "dist","ext","toxTree/dist" };
 
 	protected static TTLogger logger = new TTLogger(Introspection.class);
 
@@ -123,6 +123,7 @@ public class Introspection {
 	public static Class implementsInterface(String className,
 			String interfaceName) throws toxTree.exceptions.IntrospectionException {
 		try {
+			System.out.println(className);
 			Class clazz = Class.forName(className);
 			int modifier = clazz.getModifiers();
 			if (Modifier.isAbstract(modifier))
@@ -268,6 +269,7 @@ public class Introspection {
 				Enumeration entries = jar.entries();
 				if (loader != null)
 					loader.addURL(files[i].toURL());
+				System.out.println(files[i]);
 				while (entries.hasMoreElements()) {
 					JarEntry entry = (JarEntry) entries.nextElement();
 					if (!entry.getName().endsWith("class"))
@@ -278,8 +280,14 @@ public class Introspection {
 					name = name.replaceAll("/", ".").substring(0,
 							name.indexOf(".class"));
 
-					Class rule = Introspection.implementsInterface(name,
-							interfaceName);
+					Class rule = null;
+					try {
+						rule = Introspection.implementsInterface(name,
+								interfaceName);
+					} catch (Exception x) {
+						rule = null;
+					}
+					
 
 					if (rule != null) {
 						logger.debug("Class\t", name, "\timplements\t",

@@ -50,13 +50,13 @@ import javax.swing.JTextField;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.templates.MoleculeFactory;
 
-import toxTree.core.SmilesParserWrapper;
 import toxTree.tree.rules.smarts.ISmartsPattern;
 import toxTree.tree.rules.smarts.ISmartsPatternFactory;
 import toxTree.tree.rules.smarts.SMARTSException;
 import toxTree.tree.rules.smarts.SmartsPatternFactory;
 import toxTree.ui.molecule.MoleculeEditAction;
 import toxTree.ui.molecule.Panel2D;
+import ambit2.core.smiles.SmilesParserWrapper;
 
 public class SmartsPanelEditor extends JPanel  {
 	/**

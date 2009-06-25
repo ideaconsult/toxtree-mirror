@@ -32,10 +32,10 @@ import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
 import toxTree.core.IDecisionRule;
+import toxTree.core.Introspection;
 import toxTree.data.ToxTreeModule;
 import toxTree.io.Tools;
-import toxTree.tree.cramer.RuleCommonComponentOfFood;
-import toxTree.tree.cramer.RuleNormalBodyConstituent;
+import toxTree.tree.rules.RuleStructuresList;
 
 /**
  * Provides inforation about files, etc.
@@ -91,19 +91,19 @@ public class InfoAction extends DataModuleAction {
         	b.append('\n');
         	b.append('\n');
         	
-        	IDecisionRule r = new RuleNormalBodyConstituent();
+        	RuleStructuresList r  = (RuleStructuresList)Introspection.loadCreateObject("toxTree.tree.cramer.RuleNormalBodyConstituent");
         	if (r != null) {
 	        	b.append("File with '" + r.getTitle() + "' compounds: ");
-	        	File f = ((RuleNormalBodyConstituent)r).getFile(); 
+	        	File f = r.getFile(); 
 	        	if ((f!=null) && f.exists())	b.append(f.getAbsolutePath());
 	        	else b.append(" NOT FOUND!");	        	
 	        	b.append('\n');
         	}
         	
-        	r = new RuleCommonComponentOfFood();
+        	r = (RuleStructuresList)Introspection.loadCreateObject("toxTree.tree.cramer.RuleCommonComponentOfFood");
         	if (r != null) {
 	        	b.append("File with '" + r.getTitle() + "' compounds: ");
-	        	File f = ((RuleCommonComponentOfFood)r).getFile(); 
+	        	File f = r.getFile(); 
 	        	if ((f!=null) && f.exists())	b.append(f.getAbsolutePath());
 	        	else b.append(" NOT FOUND!");
 	        	b.append('\n');

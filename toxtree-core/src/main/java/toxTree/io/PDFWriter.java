@@ -45,6 +45,7 @@ import org.openscience.cdk.io.formats.IResourceFormat;
 import org.openscience.cdk.tools.DataFeatures;
 
 import ambit2.core.io.CompoundImageTools;
+import ambit2.core.io.FilesWithHeaderWriter;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.Image;

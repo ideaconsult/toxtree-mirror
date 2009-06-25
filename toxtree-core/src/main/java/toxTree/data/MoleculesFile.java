@@ -44,10 +44,11 @@ import org.openscience.cdk.io.listener.IReaderListener;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
-import toxTree.io.RandomAccessReader;
-import toxTree.io.RandomAccessSDFReader;
+import toxTree.io.Tools;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
+import ambit2.core.io.RandomAccessReader;
+import ambit2.core.io.RandomAccessSDFReader;
 
 public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChemObjectListener {
 	/**
@@ -73,7 +74,9 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
     */
     
     protected SortedPropertyList sortedProperties;
-
+    public MoleculesFile(String resource,IChemObjectBuilder builder,IReaderListener listener) throws Exception {
+    	this(Tools.getFileFromResource(resource),builder,listener);
+    }
 	public MoleculesFile(File file,IChemObjectBuilder builder) throws Exception {
     	this(file,builder,null);
     }

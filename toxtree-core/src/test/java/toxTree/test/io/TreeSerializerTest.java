@@ -48,8 +48,6 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.AbstractRule;
 import toxTree.tree.DefaultCategory;
-import toxTree.tree.cramer.CramerRules;
-import toxTree.tree.cramer.RuleRingComplexSubstituents30;
 import toxTree.tree.rules.RuleAllSubstructures;
 import toxTree.tree.rules.RuleAnySubstituents;
 import toxTree.tree.rules.RuleAnySubstructure;
@@ -145,75 +143,7 @@ public class TreeSerializerTest extends TestCase {
 		}
 		
 	}
-	
-	
-	public void testTreeResult() {
-		CramerRules cr=null;
-		try {
-			cr = new CramerRules();
-		} catch (DecisionMethodException x) {
-			fail();
-		}
-		IDecisionResult tr = cr.createDecisionResult();
-		tr.setDecisionMethod(cr);
-		try {
-		    tr.classify(MoleculeFactory.makeAlkane(3));
-		} catch (DecisionResultException x) {
-			x.printStackTrace();
-			fail();			    
-		}
-		try {
-			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream("test.tresult"));
-			out.writeObject(tr);
-			out.close();
-			ObjectInputStream in = new ObjectInputStream(
-					new FileInputStream("test.tresult"));
-			Object tr1 = in.readObject();
-			assertTrue(tr1 instanceof IDecisionResult);
-			//System.out.println(tr.explain(true).toString());
-			//System.out.println(((IDecisionResult)tr1).explain(true).toString());
-			assertEquals(tr,tr1);
-			in.close();
-		//} catch (DecisionResultException x) {
-			
-		} catch (ClassNotFoundException x) {
-			x.printStackTrace();
-			fail();
-		} catch (IOException x) {
-			x.printStackTrace();
-			fail();
-		}
-	}
-	public void testTreeResultNullMethod() {
-		CramerRules rules = null;
-		try {
-			rules = new CramerRules();
-		} catch (DecisionMethodException x) {
-			fail();
-		}
-		IDecisionResult tr = rules.createDecisionResult();
-		tr.setDecisionMethod(null);
-		assertEquals(tr.getCategory(),null);
-		try {
-			ObjectOutputStream out = new ObjectOutputStream (
-					new FileOutputStream("test.tresult"));
-			out.writeObject(tr);
-			out.close();
-			ObjectInputStream in = new ObjectInputStream(
-					new FileInputStream("test.tresult"));
-			
-			IDecisionResult tr1 = (IDecisionResult) in.readObject();
-			assertEquals(tr,tr1);
-			assertNull(tr1.getCategory());
-		} catch (ClassNotFoundException x) {
-			x.printStackTrace();
-			fail();
-		} catch (IOException x) {
-			x.printStackTrace();
-			fail();
-		}
-	}			
+
 	public void testCategoryRoundTrip() {
 		DefaultCategory c1 = new DefaultCategory("My Class",100);
 		DefaultCategory c2 = new DefaultCategory();
@@ -276,7 +206,6 @@ public class TreeSerializerTest extends TestCase {
 		//ruleRoundTrip(new RuleSubstructures());
 		ruleRoundTrip(new RuleAnySubstructure());
 		
-		ruleRoundTrip(new RuleRingComplexSubstituents30());
 		ruleRoundTrip(new RuleRingAllowedSubstituents());
 		ruleRoundTrip(new RuleReadilyHydrolised());
 		ruleRoundTrip(new RuleOpenChain());
@@ -313,13 +242,5 @@ public class TreeSerializerTest extends TestCase {
 		ruleRoundTrip(new RuleStructuresList());
 	}
 	
-	public void testCramer() {
-		CramerRules rules = null;
-		try {
-			rules = new CramerRules();
-		} catch (DecisionMethodException x) {
-			fail();
-		}
-		objectRoundTrip(rules,"CramerRules");
-	}
+
 }

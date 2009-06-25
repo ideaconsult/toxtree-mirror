@@ -38,8 +38,8 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 import toxTree.io.MolFileFilter;
-import toxTree.ui.Preferences;
 import toxTree.ui.actions.DataModuleAction;
+import ambit2.base.config.Preferences;
 
 public class ActionList extends ActionMap {
 	private static final long serialVersionUID = 5579378925985803990L;

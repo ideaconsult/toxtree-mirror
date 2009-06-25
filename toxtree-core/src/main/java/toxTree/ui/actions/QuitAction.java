@@ -32,7 +32,7 @@ import javax.swing.Icon;
 
 import toxTree.data.DataModule;
 import toxTree.io.Tools;
-import toxTree.ui.Preferences;
+import ambit2.base.config.Preferences;
 
 /**
  * Quit {@link toxTree.apps.ToxTreeApp}
