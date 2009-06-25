@@ -77,7 +77,7 @@ public interface IDecisionResult extends Comparable, Serializable , IProgressSta
 	/**
 	 * Returns the name of the property that will contain the result
 	 */
-	String getResultPropertyName();
+	String[] getResultPropertyNames();
 	public List<CategoryFilter> getFilters();
     void setNotify(boolean value);
 }

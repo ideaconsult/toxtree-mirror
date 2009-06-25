@@ -77,7 +77,7 @@ public class MutantTreeResult extends TreeResult {
 	                result);
 		}
 
-        String paths = getResultPropertyName()+"#explanation";
+        String paths = getClass().getName()+"#explanation";
         if (getDecisionMethod().getRules().size() > 1) {
 	        mol.setProperty(
 	        		paths,
@@ -94,6 +94,14 @@ public class MutantTreeResult extends TreeResult {
 
 	}
 
+	@Override
+	public String[] getResultPropertyNames() {
+		IDecisionCategories c = decisionMethod.getCategories();
+		String[] names = new String[c.size()];
+		for (int i=0; i < c.size();i++) 
+			names[i] = c.get(i).toString();
+		return names;
+	}
 	protected ArrayList<IAtomContainer> getAllAssignedMolecules() {
         ArrayList<IAtomContainer> residues = new ArrayList<IAtomContainer>();
         return residues;

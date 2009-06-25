@@ -456,12 +456,12 @@ public class TreeResult implements IDecisionResult {
 		if (mol == null) return;
 		if (getCategory() != null)
 	        mol.setProperty(
-	        		getResultPropertyName(),
+	        		getResultPropertyNames()[0],
 	                getCategory());
 		else
 			mol.removeProperty(
-	        		getResultPropertyName());
-        String paths = getResultPropertyName()+"#explanation";
+	        		getResultPropertyNames()[0]);
+        String paths = getResultPropertyNames()[0]+"#explanation";
         if (getDecisionMethod().getRules().size() > 1)
 	        mol.setProperty(
 	        		paths,
@@ -479,9 +479,9 @@ public class TreeResult implements IDecisionResult {
         */
         firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);        
 	}
-	public String getResultPropertyName() {
-		if (getDecisionMethod() == null) return "Unassigned method";
-		else return getDecisionMethod().getTitle();
+	public String[] getResultPropertyNames() {
+		if (getDecisionMethod() == null) return new String[] {"Unassigned method"};
+		else return new String[] {getDecisionMethod().getTitle()};
 	}
 	public ArrayList<RuleResult> getRuleResults() {
 		return ruleResults;
@@ -505,7 +505,7 @@ public class TreeResult implements IDecisionResult {
     	IDecisionCategories c = getDecisionMethod().getCategories();
 		for (int i=0; i < c.size();i++) 
 		try { 
-    		l.add(new CategoryFilter(getResultPropertyName() , c.get(i)));
+    		l.add(new CategoryFilter(getResultPropertyNames()[0] , c.get(i)));
     	} catch (Exception x) {
     		logger.error(x);
     	}

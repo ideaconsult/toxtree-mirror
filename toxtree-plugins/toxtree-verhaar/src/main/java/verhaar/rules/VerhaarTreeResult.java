@@ -50,8 +50,8 @@ public class VerhaarTreeResult extends TreeResult {
         firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);        
     }   
     
-    public String getResultPropertyName() {
-    	if (getDecisionMethod() == null) return "Verhaar scheme";
-    	else return getDecisionMethod().getClass().getName();
+    public String[] getResultPropertyName() {
+    	if (getDecisionMethod() == null) return new String[] {"Verhaar scheme"};
+    	else return new String[] {getDecisionMethod().getClass().getName()};
     }
 }

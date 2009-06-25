@@ -9,6 +9,7 @@ import org.openscience.cdk.qsar.result.IDescriptorResult;
 
 import toxTree.exceptions.DecisionResultException;
 
+import ambit2.core.data.ArrayResult;
 import ambit2.core.data.StringDescriptorResultType;
 
 public class ToxTreeDescriptor implements IMolecularDescriptor {
@@ -30,15 +31,22 @@ public class ToxTreeDescriptor implements IMolecularDescriptor {
 		try {
 			result.classify(mol);
 			result.assignResult(mol);
-			descriptorNames[0] = result.getResultPropertyName();
 			
-			Object value = mol.getProperty(descriptorNames[0]);
+			
+			descriptorNames = result.getResultPropertyNames();
+			ArrayResult<String> value = new ArrayResult<String>(new String[descriptorNames.length]);
+			for (int i=0; i <  descriptorNames.length;i++)
+				try {
+					value.set(i,mol.getProperty(descriptorNames[i]).toString());
+				} catch (Exception x) {
+					value.set(i,null);
+				}
 
 			return new DescriptorValue(
 						getSpecification(),
 						getParameterNames(),
 						getParameters(),
-						new StringDescriptorResultType(value==null?null:value.toString()),
+						value,
 						descriptorNames
 						);				
 

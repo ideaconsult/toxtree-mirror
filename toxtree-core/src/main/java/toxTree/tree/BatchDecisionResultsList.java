@@ -393,7 +393,7 @@ public class BatchDecisionResultsList extends DecisionResultsList implements IDe
     	// TODO Auto-generated method stub
     	return null;
     }
-    public String getResultPropertyName() {
+    public String[] getResultPropertyNames() {
     	// TODO Auto-generated method stub
     	return null;
     }
