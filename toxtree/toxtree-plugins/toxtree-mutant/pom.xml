@@ -9,4 +9,22 @@
   <artifactId>toxtree-mutant</artifactId>
   <name>Benigni-Bossa rule base for carcinogenicity and mutagenicity</name>
   <version>2.0.0-SNAPSHOT</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>ambit</groupId>
+  		<artifactId>ambit2-mopac</artifactId>
+  		<version>2.0.0-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>ambit</groupId>
+  		<artifactId>ambit2-smi23d</artifactId>
+  		<version>2.0.0-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-core</artifactId>
+  		<version>2.0.0-SNAPSHOT</version>
+  		<scope>provided</scope>
+  	</dependency>
+  </dependencies>
 </project>

@@ -33,10 +33,10 @@ import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.io.IteratingDelimitedFileReader;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.ui.tree.actions.SaveTreeAction;
+import ambit2.core.io.IteratingDelimitedFileReader;
 
 
 public class MutantDataTest extends TestCase {

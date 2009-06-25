@@ -28,20 +28,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mutant.categories.CategoryError;
-import mutant.categories.QSARApplicable;
 import mutant.descriptors.AromaticAmineSubstituentsDescriptor;
 import mutant.descriptors.DescriptorIDist;
 
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.model.QSARModelException;
 
-import toxTree.core.IDecisionCategory;
 import toxTree.exceptions.DRuleException;
-import toxTree.qsar.DescriptorMopacShell;
 import toxTree.qsar.IDescriptorPreprocessor;
 import toxTree.qsar.LinearDiscriminantRule;
 import toxTree.qsar.LinearPreprocessor;
 import toxTree.qsar.LinearQSARModel;
+import ambit2.mopac.DescriptorMopacShell;
 /**
  * Returns true if structure is predicted as mutagen , based on linear discriminant analysis. AM1
  * <pre>
