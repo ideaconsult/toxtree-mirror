@@ -28,14 +28,13 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Observable;
 
-import cramer2.categories.CramerTreeResult;
-
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.CategoriesList;
 import toxTree.tree.DecisionNodesList;
 import toxTree.tree.UserDefinedTree;
+import cramer2.categories.CramerTreeResult;
 
 /**
  * TODO update

@@ -33,13 +33,13 @@ package cramer2.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.exceptions.ReactionException; //
-import toxTree.query.SimpleReactions; //
+import toxTree.exceptions.ReactionException;
 import toxTree.query.MolFlags;
+import toxTree.query.SimpleReactions;
 import toxTree.tree.rules.RuleReadilyHydrolised;
-import org.openscience.cdk.tools.MFAnalyser;
 /**
  * cleaves PO4's from compounds, and analyses the remaining fragments
  * <b>Modified</b> Dec, 2008

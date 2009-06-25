@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package cramer2.test;
 
 import toxTree.core.IDecisionRule;
-import toxTree.tree.cramer.RuleHeteroaromatic;
+import cramer2.rules.RuleHeteroaromatic;
 
 public class RuleHeteroaromaticTest extends AbstractRuleTest {
 

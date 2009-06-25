@@ -30,7 +30,7 @@ import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
-import toxTree.tree.cramer.RuleAliphaticWithSomeFuncGroups;
+import cramer2.rules.RuleAliphaticWithSomeFuncGroups;
 
 /**
  * Test for {@link RuleAliphaticWithSomeFuncGroups} rule.

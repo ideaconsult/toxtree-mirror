@@ -29,7 +29,7 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
-import toxTree.tree.cramer.RuleKetoneAlcoholEtc;
+import cramer2.rules.RuleKetoneAlcoholEtc;
 
 /**
  * TODO add description

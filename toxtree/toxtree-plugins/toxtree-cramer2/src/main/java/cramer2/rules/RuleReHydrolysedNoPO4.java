@@ -34,14 +34,13 @@ package cramer2.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.exceptions.ReactionException; //
-import toxTree.query.SimpleReactions; //
+import toxTree.exceptions.ReactionException;
 import toxTree.query.MolFlags;
-import toxTree.tree.rules.RuleReadilyHydrolised; //TODO
-import org.openscience.cdk.tools.MFAnalyser; // TRY
-//import toxTree.tree.AbstractRule; //TODO
+import toxTree.query.SimpleReactions;
+import toxTree.tree.rules.RuleReadilyHydrolised;
 
 public class RuleReHydrolysedNoPO4 extends RuleReadilyHydrolised {
 
