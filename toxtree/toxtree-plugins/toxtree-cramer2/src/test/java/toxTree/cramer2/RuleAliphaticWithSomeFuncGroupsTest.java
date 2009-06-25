@@ -22,7 +22,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-package cramer2.test;
+package toxTree.cramer2;
 
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
@@ -30,7 +30,7 @@ import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
-import toxTree.tree.cramer.RuleAliphaticWithSomeFuncGroups;
+import cramer2.rules.RuleAliphaticWithSomeFuncGroups;
 
 /**
  * Test for {@link RuleAliphaticWithSomeFuncGroups} rule.

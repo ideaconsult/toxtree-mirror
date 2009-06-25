@@ -22,7 +22,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-package cramer2.test;
+package toxTree.cramer2;
 
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
@@ -33,12 +33,12 @@ import junit.framework.TestCase;
 import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionResult;
-import toxTree.core.SmilesParserWrapper;
-import toxTree.core.SmilesParserWrapper.SMILES_PARSER;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
+import ambit2.core.smiles.SmilesParserWrapper;
+import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
 import cramer2.CramerRulesWithExtensions;
 
 /**
