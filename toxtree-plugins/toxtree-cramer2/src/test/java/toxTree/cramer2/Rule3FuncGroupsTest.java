@@ -22,7 +22,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-package cramer2.test;
+package toxTree.cramer2;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -35,8 +35,8 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.query.MolFlags;
 import toxTree.tree.AbstractRule;
-import toxTree.tree.cramer.Rule3FuncGroups;
-import toxTree.tree.cramer.RuleHasOnlySaltSulphonateSulphate;
+import cramer2.rules.Rule3FuncGroups;
+import cramer2.rules.RuleHasOnlySaltSulphonateSulphate;
 
 /**
  * @author nina

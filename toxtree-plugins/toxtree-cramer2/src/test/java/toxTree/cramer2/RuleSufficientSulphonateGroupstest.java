@@ -22,12 +22,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-package cramer2.test;
+package toxTree.cramer2;
 
 import toxTree.core.IDecisionRule;
-import toxTree.core.SmilesParserWrapper;
-import toxTree.core.SmilesParserWrapper.SMILES_PARSER;
-import toxTree.tree.cramer.RuleSufficientSulphonateGroups;
+import ambit2.core.smiles.SmilesParserWrapper;
+import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
+import cramer2.rules.RuleSufficientSulphonateGroups;
 
 /**
  * Tests {@link RuleSufficientSulphonateGroups}

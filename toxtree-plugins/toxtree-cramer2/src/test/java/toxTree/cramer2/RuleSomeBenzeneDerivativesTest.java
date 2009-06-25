@@ -22,21 +22,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-package cramer2.test;
-
-import junit.framework.TestCase;
+package toxTree.cramer2;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.core.IDecisionRule;
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.exceptions.MolAnalyseException;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
-import toxTree.query.MolAnalyser;
-import toxTree.tree.cramer.RuleSomeBenzeneDerivatives;
+import cramer2.rules.RuleSomeBenzeneDerivatives;
 
 /**
  * TODO add description

@@ -22,10 +22,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-package cramer2.test;
+package toxTree.cramer2;
 
 import toxTree.core.IDecisionRule;
-import toxTree.tree.cramer.RuleOnlyFuncGroupsQ30;
+import cramer2.rules.RuleOnlyFuncGroupsQ30;
 
 public class RuleOnlyFuncGroupsQ30Test extends AbstractRuleTest {
 

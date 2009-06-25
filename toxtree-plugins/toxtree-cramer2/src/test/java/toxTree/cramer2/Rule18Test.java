@@ -22,14 +22,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-package cramer2.test;
+package toxTree.cramer2;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
-import toxTree.tree.cramer.RuleKetoneAlcoholEtc;
+import cramer2.rules.RuleKetoneAlcoholEtc;
 
 /**
  * TODO add description

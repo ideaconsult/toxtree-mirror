@@ -22,7 +22,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-package cramer2.test;
+package toxTree.cramer2;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,10 +36,10 @@ import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.io.IteratingDelimitedFileReader;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.tree.DefaultCategory;
+import ambit2.core.io.IteratingDelimitedFileReader;
 import cramer2.CramerRulesWithExtensions;
 
 public class MunroTest extends TestCase {
