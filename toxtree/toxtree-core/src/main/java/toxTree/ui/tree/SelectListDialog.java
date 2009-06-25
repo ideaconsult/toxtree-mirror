@@ -145,15 +145,17 @@ public class SelectListDialog {
 		
 		Object name = selectFromList(parent,"Select a rule","Available rules:", 
 				new ToxTreePackageEntryModel(ruleTypes), null);
-		if ((name != null) && (name instanceof ToxTreePackageEntry)) {
-			Object o = Introspection.loadCreateObject(((ToxTreePackageEntry) name).getClassName());
-			if (o instanceof IDecisionRule)
-				return (IDecisionRule) o;
-			else {
-				o = null;
-				return null;
-			}
-		} else
+		if ((name != null) && (name instanceof ToxTreePackageEntry)) 
+			try {
+				Object o = Introspection.loadCreateObject(((ToxTreePackageEntry) name).getClassName());
+				if (o instanceof IDecisionRule)
+					return (IDecisionRule) o;
+				else {
+					o = null;
+					return null;
+				}
+			} catch (Exception x) { x.printStackTrace(); return null;}
+		else
 			return null;
 	}
 	/**
@@ -166,7 +168,8 @@ public class SelectListDialog {
 	public static DecisionNode selectNewNode(Component parent,ClassLoader classLoader) {
 		ToxTreePackageEntries ruleTypes = Introspection.getAvailableRuleTypes(classLoader);
 		Object name = selectFromList(parent,"Select a rule","Available rules:", new ToxTreePackageEntryModel(ruleTypes), null);
-		if ((name != null) && (name instanceof ToxTreePackageEntry)) {
+		if ((name != null) && (name instanceof ToxTreePackageEntry)) 
+		try {
 			Object o = Introspection.loadCreateObject(((ToxTreePackageEntry) name).getClassName());
 			if (o instanceof IDecisionRule)
 				return new DecisionNode((IDecisionRule) o);
@@ -174,7 +177,8 @@ public class SelectListDialog {
 				o = null;
 				return null;
 			}
-		} else
+		} catch (Exception x) {x.printStackTrace(); return null;}
+		else
 			return null;
 	}
 
@@ -189,7 +193,7 @@ public class SelectListDialog {
 		ArrayList ruleTypes = Introspection.getAvailableTreeTypes(classLoader);
 		Object name = selectFromList(parent,"Select a tree","Available decision trees:", new ListTableModel(ruleTypes),
 				null);
-		if ((name != null) && (name instanceof ToxTreePackageEntry)) {
+		if ((name != null) && (name instanceof ToxTreePackageEntry)) try {
 			Object o = Introspection.loadCreateObject(((ToxTreePackageEntry) name).getClassName());
 			if (o instanceof IDecisionMethod)
 				return (IDecisionMethod) o;
@@ -197,7 +201,8 @@ public class SelectListDialog {
 				o = null;
 				return null;
 			}
-		} else
+		} catch (Exception x) {x.printStackTrace(); return null;} 
+		else
 			return null;
 	}
 
@@ -211,7 +216,7 @@ public class SelectListDialog {
 	public static IDecisionCategory selectNewCategory(Component parent,ClassLoader classLoader) {
 		ArrayList ruleTypes = Introspection.getAvailableCategoryTypes(classLoader);
 		Object name = selectFromList(parent,"Select category","Available category:", new ListTableModel(ruleTypes), null);
-		if ((name != null) && (name instanceof ToxTreePackageEntry)) {
+		if ((name != null) && (name instanceof ToxTreePackageEntry)) try {
 			Object o = Introspection.loadCreateObject(((ToxTreePackageEntry) name).getClassName());
 			if (o instanceof IDecisionCategory)
 				return (IDecisionCategory) o;
@@ -219,7 +224,8 @@ public class SelectListDialog {
 				o = null;
 				return null;
 			}
-		} else
+		} catch (Exception x) { return null;}
+		else
 			return null;
 	}
 	

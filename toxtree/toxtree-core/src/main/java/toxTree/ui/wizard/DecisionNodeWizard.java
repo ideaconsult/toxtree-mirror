@@ -466,13 +466,13 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
     }
     
     public void processSelectedObject(Object o) {
-        if (o instanceof ToxTreePackageEntry) {
+        if (o instanceof ToxTreePackageEntry) try {
         	o = Introspection.loadCreateObject(((ToxTreePackageEntry) o).getClassName());
         	if (o instanceof DecisionNode) {
         		setNextFinishButtonEnabled(false);    
         		return;
         	}
-    	}                    
+    	} catch (Exception x) {x.printStackTrace();}                     
         
         if (o instanceof DecisionNode) o = ((DecisionNode)o).getRule();
         setSelectedObject(o);

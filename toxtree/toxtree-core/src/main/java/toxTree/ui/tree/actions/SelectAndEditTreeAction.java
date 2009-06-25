@@ -92,7 +92,7 @@ public class SelectAndEditTreeAction extends EditDecisionMethodAction {
     			new ListTableModel(((DecisionMethodsDataModule)module).getMethods()),null);
     	if ((selectedObject != null) && (selectedObject instanceof IDecisionMethod)) {
     		IDecisionMethod tree = (IDecisionMethod) selectedObject;
-    		if (!tree.isEditable()) {
+    		if (!tree.isEditable()) try {
     			Object o = Introspection.loadCreateObject(tree.getClass().getName());
     			if (o != null) {
     				tree = (IDecisionMethod) o;
@@ -101,7 +101,8 @@ public class SelectAndEditTreeAction extends EditDecisionMethodAction {
     				//module.getMethods().addDecisionMethod(tree);
     			}
     			else tree =null;
-    		} else tree.setModified(false);
+    		} catch (Exception x) {tree = null;} 
+    		else tree.setModified(false);
     		
     		if (tree !=null)
     			launchEditor(tree);

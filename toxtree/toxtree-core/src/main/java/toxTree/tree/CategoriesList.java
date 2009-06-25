@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -83,7 +84,9 @@ public class CategoriesList extends Observable implements IDecisionCategories, O
     	this();
     	setMultilabel(multilabel);
    		for (int i = 0; i < classes.length; i++)
+   		try{
    		   addCategory((IDecisionCategory) Introspection.loadCreateObject(classes[i]));
+   		} catch (Exception x) { x.printStackTrace();}
     }
 
     public IDecisionCategory getCategory(IDecisionCategory key) {
