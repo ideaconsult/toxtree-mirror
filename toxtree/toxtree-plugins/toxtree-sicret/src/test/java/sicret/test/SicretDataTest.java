@@ -34,9 +34,9 @@ import sicret.rules.RuleMeltingPoint;
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.io.IteratingDelimitedFileReader;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
+import ambit2.core.io.IteratingDelimitedFileReader;
 
 
 public class SicretDataTest extends TestCase {

@@ -23,7 +23,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
-import toxTree.tree.rules.RuleAnySubstructure;;
+import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
  * Catechols, Resorcinols Hydroquinones.<br>
