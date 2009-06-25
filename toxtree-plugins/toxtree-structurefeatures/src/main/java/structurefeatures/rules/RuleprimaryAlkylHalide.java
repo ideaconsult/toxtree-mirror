@@ -1,0 +1,25 @@
+package structurefeatures.rules;
+
+import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import toxTree.tree.rules.smarts.SMARTSException;
+public class RuleprimaryAlkylHalide extends RuleSMARTSubstructureCDK {
+	private static final long serialVersionUID = 0;
+	public RuleprimaryAlkylHalide() {
+		super();		
+		try {
+			super.initSingleSMARTS(super.smartsPatterns,"1", "[CX4,CH,CH2,CH3][#6][F,Cl,Br,I]");			
+			id = "20";
+			title = "primary alkyl halide";
+			
+			examples[0] = "";
+			examples[1] = "";	
+			editable = false;		
+		} catch (SMARTSException x) {
+			logger.error(x);
+		}
+
+	}
+
+}
+
+

@@ -1,0 +1,11 @@
+Manifest-version: 1.60
+Specification-Title: Structure features (TODO add reference Yang 2008)
+Class-Path: ../jars/cmlAll.jar ../jars/base.jar ../jars/pmrlib.jar ../jars/cdk-1.1.svn-19012008.jar ../jars/jgrapht-0.6.0.jar ../jars/vecmath1.2-1.14.jar ../jars/log4j.jar ../jars/gnuaxp.jar ../jars/jai_codec.jar ../jars/jai_core.jar
+Specification-Version: 1.60
+Specification-Vendor: Nina Jeliazkova
+Implementation-Title: Classes implementing functional groups scheme
+Implementation-Version: 1.60
+Implementation-Vendor: AMBIT project http://ambit.sourceforge.net
+Package-Title: structurefeatures
+Package-Version: 1.60
+Package-Vendor: Martin Martinov
