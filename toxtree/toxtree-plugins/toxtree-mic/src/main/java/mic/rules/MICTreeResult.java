@@ -63,7 +63,7 @@ public class MICTreeResult extends TreeResult {
 	                result);
 		}
 
-        String paths = getResultPropertyName()+"#explanation";
+        String paths = getClass().getName()+"#explanation";
         if (getDecisionMethod().getRules().size() > 1) {
 	        mol.setProperty(
 	        		paths,

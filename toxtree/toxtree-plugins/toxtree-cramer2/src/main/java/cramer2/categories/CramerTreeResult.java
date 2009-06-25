@@ -65,7 +65,7 @@ public class CramerTreeResult extends TreeResult {
     	if (mol ==null) return;
     	if (getCategory()!=null)
         mol.setProperty(
-        		getResultPropertyName(),
+        		getResultPropertyNames()[0],
                 getCategory().toString());
         mol.setProperty(
                 getClass().getName(),
@@ -73,9 +73,9 @@ public class CramerTreeResult extends TreeResult {
         firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);
     }
     @Override
-    public String getResultPropertyName() {
-    	if (getDecisionMethod() == null) return "Cramer rules (extended)";
-    	else return getDecisionMethod().getClass().getName();
+    public String[] getResultPropertyNames() {
+    	if (getDecisionMethod() == null) return new String[] {"Cramer rules (extended)"};
+    	else return new String[] {getDecisionMethod().getClass().getName()};
     }
     
 }

@@ -1,4 +1,4 @@
-package toxTree;
+package mutant.test;
 
 import junit.framework.Assert;
 
@@ -15,11 +15,13 @@ public class ToxTreeDescriptorTest {
 	@Test
 	public void test() throws Exception {
 		ToxTreeDescriptor d = new ToxTreeDescriptor();
-		d.setParameters(new Object[] {"toxTree.tree.cramer.CramerRules"});
+		d.setParameters(new Object[] {"mutant.BB_CarcMutRules"});
 		IMolecule mol = MoleculeFactory.makeAlkane(10);
 		DescriptorValue value = d.calculate(mol);
 		IDescriptorResult result = value.getValue();
 		Assert.assertTrue(result instanceof ArrayResult);
-		Assert.assertEquals("Low (Class I)",((ArrayResult)result).get(0));
+		Assert.assertEquals("YES",((ArrayResult)result).get(2));
+		Assert.assertEquals("No alerts for carcinogenic activity", value.getNames()[2]);
+
 	}
 }
