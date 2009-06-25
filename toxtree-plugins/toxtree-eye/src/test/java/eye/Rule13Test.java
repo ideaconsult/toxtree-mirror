@@ -22,11 +22,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-package eye.test;
+package eye;
 
-import eye.rules.Rule13_AliphaticMonoalcohols;
 import toxTree.core.IDecisionRule;
 import toxTree.logging.TTLogger;
+import eye.rules.Rule13_AliphaticMonoalcohols;
 
 public class Rule13Test extends TestExamples {
 	@Override

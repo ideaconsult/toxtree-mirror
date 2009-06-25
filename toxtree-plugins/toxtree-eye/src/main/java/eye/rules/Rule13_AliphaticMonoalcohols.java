@@ -30,9 +30,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 
-import com.sun.media.jai.opimage.MaxCRIF;
-
-import toxTree.exceptions.DRuleException;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import toxTree.tree.rules.smarts.SMARTSException;
