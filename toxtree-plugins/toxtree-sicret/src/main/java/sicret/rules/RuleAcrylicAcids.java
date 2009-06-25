@@ -22,7 +22,6 @@ package sicret.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.tree.rules.RuleAllSubstructures;

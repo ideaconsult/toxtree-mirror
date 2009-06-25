@@ -21,9 +21,9 @@ package sicret.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.tree.rules.RuleAnySubstructure;
-import toxTree.exceptions.DecisionMethodException;
 
 /**
  * Tri And Tetra Halogenated Benzenes.<br>

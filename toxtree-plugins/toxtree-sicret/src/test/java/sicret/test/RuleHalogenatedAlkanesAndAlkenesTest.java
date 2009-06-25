@@ -21,11 +21,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package sicret.test;
 
 import junit.framework.TestCase;
+import sicret.rules.RuleAliphaticSaturatedAcidsAndHalogenatedAcids;
+import sicret.rules.RuleC10_C20AliphaticAlcohols;
+import sicret.rules.RuleEthyleneGlycolEthers;
 import sicret.rules.RuleHalogenatedAlkanesAndAlkenes;
 import sicret.rules.RulePhenols;
-import sicret.rules.RuleAliphaticSaturatedAcidsAndHalogenatedAcids;
-import sicret.rules.RuleEthyleneGlycolEthers;
-import sicret.rules.RuleC10_C20AliphaticAlcohols;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 

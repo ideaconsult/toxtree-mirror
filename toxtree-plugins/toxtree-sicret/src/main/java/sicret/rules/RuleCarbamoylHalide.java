@@ -23,10 +23,9 @@ package sicret.rules;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
-
 import toxTree.exceptions.DecisionMethodException;
-import verhaar.query.FunctionalGroups;
 import toxTree.tree.rules.RuleAnySubstructure;
+import verhaar.query.FunctionalGroups;
 
 
 /**
