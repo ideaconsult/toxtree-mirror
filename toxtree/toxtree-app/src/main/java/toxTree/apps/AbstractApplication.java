@@ -32,7 +32,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import toxTree.data.DataModule;
 import toxTree.logging.TTLogger;
-import toxTree.ui.Preferences;
+import ambit2.base.config.Preferences;
 
 public abstract class AbstractApplication {
 	// Specify the look and feel to use. Valid values:
