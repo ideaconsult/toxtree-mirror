@@ -1,4 +1,4 @@
-package michaelacceptors.test;
+package michaelacceptors;
 
 import junit.framework.TestCase;
 import michaelacceptors.MichaelAcceptorRules;
