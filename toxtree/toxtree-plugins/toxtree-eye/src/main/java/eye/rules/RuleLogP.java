@@ -18,12 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
 package eye.rules;
-import org.openscience.cdk.DefaultChemObjectBuilder;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
-
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.query.FunctionalGroups;
 
 /**
  * LogP > 9.0<br>

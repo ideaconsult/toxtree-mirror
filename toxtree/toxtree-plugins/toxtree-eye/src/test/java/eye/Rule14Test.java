@@ -22,10 +22,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-package eye.test;
+package eye;
 
-import eye.rules.Rule14Aliphatic_glycerol_monoethers;
 import toxTree.core.IDecisionRule;
+import eye.rules.Rule14Aliphatic_glycerol_monoethers;
 
 public class Rule14Test extends TestExamples {
 	@Override

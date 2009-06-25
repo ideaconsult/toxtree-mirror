@@ -22,7 +22,6 @@ package eye;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.Observable;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -35,7 +34,6 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.CategoriesList;
 import toxTree.tree.DecisionNodesFactory;
-import toxTree.tree.DecisionNodesList;
 import toxTree.tree.UserDefinedTree;
 
 /**
