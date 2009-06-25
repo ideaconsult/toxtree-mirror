@@ -17,7 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-package eye.test;
+package eye;
 
 
 
@@ -30,8 +30,6 @@ import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.MolAnalyser;
-import toxTree.test.tree.cramer.RulesTestCase;
-import eye.EyeIrritationRules;
 
 /**
  * TODO Add SicretRulesTest description
