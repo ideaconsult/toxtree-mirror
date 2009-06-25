@@ -183,9 +183,13 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	      }
 	      return object;
 	      */
-		Object object = Introspection.loadCreateObject(className);
-		if (object == null) throw new DecisionMethodException("Error creating rule\t"+className);
-		else return (IDecisionRule) object;
+		try {
+			Object object = Introspection.loadCreateObject(className);
+			if (object == null) throw new DecisionMethodException("Error creating rule\t"+className);
+			else return (IDecisionRule) object;
+		} catch (Exception x) {
+			throw new DecisionMethodException(x);
+		}
 	}
 	/**
 	 * This is to ensure each derived class will provide an example of a molecule which resolves to the yes and no rule outcome

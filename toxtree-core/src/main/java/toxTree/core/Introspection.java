@@ -395,24 +395,12 @@ public class Introspection {
 		return object;
 	}
 
-	public static Object loadCreateObject(String className) {
+	public static Object loadCreateObject(String className) throws InstantiationException,IllegalAccessException,ClassNotFoundException {
 		if (loader == null)
 			return createObject(className);
 		Object object = null;
-		try {
-			Class classDefinition = loader.loadClass(className);
-			object = classDefinition.newInstance();
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			logger.error(e);
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			logger.error(e);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			logger.error(e);
-		}
-		return object;
+		Class classDefinition = loader.loadClass(className);
+		return classDefinition.newInstance();
 	}
 
 	public static ClassLoader getLoader() {
