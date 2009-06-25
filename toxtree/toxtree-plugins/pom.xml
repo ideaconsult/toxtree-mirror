@@ -20,6 +20,7 @@
   	<module>toxtree-cramer2</module>
   	<module>toxtree-mic</module>
   	<module>toxtree-michaelacceptors</module>
+        <module>toxtree-structurefeatures</module>
   </modules>
   <dependencies>
   	<dependency>

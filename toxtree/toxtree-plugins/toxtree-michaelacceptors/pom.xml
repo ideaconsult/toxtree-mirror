@@ -1,4 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<description>T. Wayne Schultz, Jason W. Yarbrough, Robert S. Hunter, Aynur O. Aptula (2007) Verification of the Structural Alerts for Michael Acceptors.Chem. Res. Toxicol. 20, 1359–1363</description>
   <parent>
     <artifactId>toxtree-plugins</artifactId>
     <groupId>toxtree</groupId>
@@ -7,5 +8,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-michaelacceptors</artifactId>
+  <name>Michael acceptors</name>
   <version>2.0.0-SNAPSHOT</version>
 </project>
