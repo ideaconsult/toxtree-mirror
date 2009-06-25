@@ -1,4 +1,4 @@
-package toxTree.test.tree.cramer;
+package toxTree.cramer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.tree.cramer.RuleLactoneOrCyclicDiester;
