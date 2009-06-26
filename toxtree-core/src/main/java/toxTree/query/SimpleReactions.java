@@ -120,8 +120,7 @@ public class SimpleReactions {
 		logger.debug("Reading reaction from file\t", filename);
 		IReaction newReaction = null;
 		
-		InputStream stream = this.getClass().getClassLoader()
-				.getResourceAsStream(filename);
+		InputStream stream = SimpleReactions.class.getClassLoader().getResourceAsStream(filename);
 		if (stream ==null) throw new CDKException("Can't find "+filename);
 		CMLReader reader = new CMLReader(new InputStreamReader(stream));
 		IChemFile chemFile = (IChemFile) reader.read((IChemObject) new org.openscience.cdk.ChemFile());
