@@ -37,6 +37,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
+import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 
 import toxTree.core.IDecisionCategories;
@@ -65,7 +66,7 @@ import ambit2.core.data.StringDescriptorResultType;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-11-10
  */
-public class UserDefinedTree extends AbstractTree implements IDecisionInteractive {
+public class UserDefinedTree extends AbstractTree implements IDecisionInteractive , IMolecularDescriptor {
 	protected boolean editable = true;
 	protected IDecisionNodesFactory nodesFactory;
     protected boolean interactive = false;	
