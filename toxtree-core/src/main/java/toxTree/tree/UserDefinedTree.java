@@ -32,8 +32,12 @@ import java.util.Observable;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.qsar.DescriptorSpecification;
+import org.openscience.cdk.qsar.DescriptorValue;
+import org.openscience.cdk.qsar.result.IDescriptorResult;
 
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionCategory;
@@ -50,6 +54,8 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionMethodIOException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.query.MolFlags;
+import ambit2.core.data.ArrayResult;
+import ambit2.core.data.StringDescriptorResultType;
 
 /**
  * A default decision tree class, implementing {@link toxTree.core.IDecisionMethod} interface.
@@ -426,6 +432,57 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 		this.interactive = value;
 	}
 	
+	public DescriptorValue calculate(IAtomContainer mol) throws CDKException {
+		IDecisionResult result = createDecisionResult();
+		try {
+			result.classify(mol);
+			result.assignResult(mol);
+			
+			
+			String[] descriptorNames = result.getResultPropertyNames();
+			ArrayResult<String> value = new ArrayResult<String>(new String[descriptorNames.length]);
+			for (int i=0; i <  descriptorNames.length;i++)
+				try {
+					value.set(i,mol.getProperty(descriptorNames[i]).toString());
+				} catch (Exception x) {
+					value.set(i,null);
+				}
+
+			return new DescriptorValue(
+						getSpecification(),
+						getParameterNames(),
+						getParameters(),
+						value,
+						descriptorNames
+						);				
+
+		} catch (DecisionResultException x) {
+			throw new CDKException(x.getMessage());
+		}
+	}
+	public IDescriptorResult getDescriptorResultType() {
+		return new StringDescriptorResultType("");
+	}
+	public String[] getParameterNames() {
+		return null;
+	}
+	public Object[] getParameters() {
+		return null;
+	}
+	public Object getParameterType(String arg0) {
+		return null;
+	}
+	public void setParameters(Object[] arg0) throws CDKException {
+	
+	}
+	public DescriptorSpecification getSpecification() {
+        return new DescriptorSpecification(
+                "http://toxtree.sourceforge.net",
+                getTitle(),
+                this.getClass().getName(),                
+                "Toxtree plugin");
+	}
+	
 }
 
 class UnvisitedRules implements IProcessRule {
@@ -471,5 +528,7 @@ class UnvisitedRules implements IProcessRule {
 		for (int i=0; i < nodes.size();i++) 
 			nodes.getNode(i).setVisited(false);		
 	}
+	
+	
 	
 }
