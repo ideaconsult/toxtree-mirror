@@ -56,13 +56,15 @@
     </site>    
    <snapshotRepository>
       <id>ambit_acad</id>
-      <url>scp://nina@unicom.acad.bg/var/www/html/ambit/maven</url>
+      <url>scp://iris.acad.bg/home/nina/ambit/maven</url>
 	 </snapshotRepository>
+
     <repository>
-      <id>website_toxtree</id>
-      <url>scp://web.sourceforge.net/home/groups/t/to/toxtree/htdocs/jars</url>
-    </repository>        
+      <id>website_ambit</id>
+      <url>scp://web.sourceforge.net/home/groups/a/am/ambit/htdocs/jars</url>
+    </repository>    
   </distributionManagement>
+
   <inceptionYear>2004</inceptionYear>
   <issueManagement>
   	<system>Subversion</system>
