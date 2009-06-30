@@ -31,7 +31,6 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
-import toxTree.core.IDecisionRule;
 import toxTree.core.Introspection;
 import toxTree.data.ToxTreeModule;
 import toxTree.io.Tools;

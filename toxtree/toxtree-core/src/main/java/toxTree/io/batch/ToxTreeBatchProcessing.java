@@ -38,7 +38,7 @@ import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionResult;
 import toxTree.core.Introspection;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.io.MDLWriter;
+import ambit2.core.io.MDLWriter;
 
 /**
  * A {@link toxTree.io.batch.ChemObjectBatchProcessing} descendant , where processing is performed by {@link toxTree.core.IDecisionMethod} 

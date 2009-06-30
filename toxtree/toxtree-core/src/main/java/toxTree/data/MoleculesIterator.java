@@ -55,12 +55,12 @@ import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
 import toxTree.core.IMoleculesIterator;
 import toxTree.exceptions.ToxTreeIOException;
-import toxTree.io.MDLWriter;
 import toxTree.io.PDFWriter;
 import toxTree.logging.TTLogger;
 import ambit2.core.io.DelimitedFileFormat;
 import ambit2.core.io.DelimitedFileReader;
 import ambit2.core.io.DelimitedFileWriter;
+import ambit2.core.io.MDLWriter;
 import ambit2.core.io.MyIteratingMDLReader;
 
 
@@ -226,7 +226,7 @@ public class MoleculesIterator implements IMoleculesIterator {
       	      reader = new DelimitedFileReader(new FileReader(input));
               logger.info("Expecting SMILES format...");
             } else if (fe.endsWith(".txt")) {  
-      	      reader = new DelimitedFileReader(new FileReader(input),new DelimitedFileFormat('\t','"'));
+      	      reader = new DelimitedFileReader(new FileReader(input),new DelimitedFileFormat("\t ",'"'));
               logger.info("Expecting TXT format...");              
             } else if (fe.endsWith(".smi")) {  
         	      reader = new SMILESReader(new FileReader(input));
@@ -296,7 +296,7 @@ public class MoleculesIterator implements IMoleculesIterator {
 		    	writer = new DelimitedFileWriter(new FileWriter(output));
 		    	mdlWriter = null;
 	    	} else	if (filename.toLowerCase().endsWith(".txt")) { 
-		    	writer = new DelimitedFileWriter(new FileWriter(output),new DelimitedFileFormat('\t','"'));
+		    	writer = new DelimitedFileWriter(new FileWriter(output),new DelimitedFileFormat("\t " ,'"'));
 		    	mdlWriter = null;
             } else  if (filename.toLowerCase().endsWith(".pdf")) { 
                 writer = new PDFWriter(new FileOutputStream(output));

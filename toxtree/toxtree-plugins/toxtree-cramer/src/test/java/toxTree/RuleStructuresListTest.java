@@ -49,12 +49,12 @@ import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
-import toxTree.io.MDLWriter;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.cramer.RuleCommonComponentOfFood;
 import toxTree.tree.rules.RuleStructuresList;
+import ambit2.core.io.MDLWriter;
 
 /**
  * Test for {@link RuleStructuresList}

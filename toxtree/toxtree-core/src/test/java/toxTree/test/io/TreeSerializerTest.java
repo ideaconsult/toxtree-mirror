@@ -39,10 +39,8 @@ import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.core.IDecisionMethod;
-import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
