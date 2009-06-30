@@ -39,10 +39,10 @@ import org.openscience.cdk.io.IChemObjectWriter;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingSMILESReader;
 
-import toxTree.io.MDLWriter;
 import ambit2.core.io.DelimitedFileFormat;
 import ambit2.core.io.DelimitedFileWriter;
 import ambit2.core.io.IteratingDelimitedFileReader;
+import ambit2.core.io.MDLWriter;
 import ambit2.core.io.MyIteratingMDLReader;
 
 
@@ -112,7 +112,7 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 				return new IteratingDelimitedFileReader(new FileInputStream(file.getFile()));
 			else if (fname.endsWith(extensions[TXT_INDEX]))
 				return new IteratingDelimitedFileReader(new FileInputStream(file.getFile()),
-						new DelimitedFileFormat(' ','"'));			
+						new DelimitedFileFormat(" \t",'"'));			
 			else throw new BatchProcessingException(MSG_UNSUPPORTEDFORMAT+file.filename,this);
 		} catch (FileNotFoundException x) {
 			logger.error(x);
@@ -169,7 +169,7 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 				writer = new DelimitedFileWriter(new FileOutputStream(outputFile.getFile(),append));
 			else if ((fname.endsWith(extensions[TXT_INDEX]))) 
 				writer = new DelimitedFileWriter(new FileOutputStream(outputFile.getFile(),append),
-						new DelimitedFileFormat(' ','"'));
+						new DelimitedFileFormat(" \t",'"'));
 			else throw new BatchProcessingException(MSG_UNSUPPORTEDFORMAT+outputFile.filename,this);
 		} catch (Exception x) {
 			logger.error(MSG_ERRORSAVE,outputFile.filename);

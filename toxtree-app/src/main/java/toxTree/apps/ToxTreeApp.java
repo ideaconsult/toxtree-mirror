@@ -32,10 +32,12 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import toxTree.core.IDecisionMethod;
 import toxTree.core.Introspection;
 import toxTree.data.DataModule;
 import toxTree.data.ToxTreeModule;
 import toxTree.tree.DecisionMethodsList;
+import toxTree.tree.demo.SubstructureTree;
 import toxTree.ui.DataModulePanel;
 import toxTree.ui.HazardPanel;
 
@@ -98,7 +100,9 @@ public class ToxTreeApp extends CompoundMethodApplication {
 			try {methods.add(
 					Introspection.loadCreateObject("toxTree.tree.cramer.CramerRules")
 					);
-			} catch (Exception x) {x.printStackTrace();}
+			} catch (Exception x) { 
+				try {methods.add( new SubstructureTree()); } catch (Exception e) {}
+			}
 			logger.warn("No decision trees found! Have you installed the application correctly?");
 		}
 		return new ToxTreeModule(mainFrame, fileToOpen,methods);
