@@ -34,6 +34,7 @@ import java.beans.PropertyChangeSupport;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
+
 import mic.rules.MICTreeResult;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -138,7 +139,7 @@ public class MICRules extends UserDefinedTree implements IDecisionInteractive{
         {34,34,0,0}, //33
         {35,35,0,0}, //34
         {36,36,0,0}, //35
-      
+        {37,37,0,0}, //35
         {0,0,2,1}, //42
        
         
