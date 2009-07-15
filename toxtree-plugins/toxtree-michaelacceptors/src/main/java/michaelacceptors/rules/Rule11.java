@@ -7,9 +7,9 @@ public class Rule11 extends RuleSMARTSubstructureCDK {
 		super();		
 		try {
 			//super.initSingleSMARTS(super.smartsPatterns,"1", "C=[CH]C(=O)[OX1]");
-			super.initSingleSMARTS(super.smartsPatterns,"1", "C=[CH][CX3](=O)[OX2H1]");
-			id = "13";
-			title = "Olefinic-containing carboxylic acid";
+			super.initSingleSMARTS(super.smartsPatterns,"1", "C=[CH][CX3](=O)[OX2H1]"  );
+			id = "11";
+			title = "Vinylene carboxylic acid";
 			
 			examples[0] = "";
 			examples[1] = "";	

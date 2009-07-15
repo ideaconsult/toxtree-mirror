@@ -12,7 +12,7 @@ public class Rule2 extends RuleSMARTSubstructureCDK {
 			super.initSingleSMARTS(super.smartsPatterns,"2", "[CH2]=[CH]C=O");
 			super.initSingleSMARTS(super.smartsPatterns,"3", "C=[CH][CH]=O");
 			id = "2";
-			title = "Vinylene- and an internal carbonyl";
+			title = "Vinyl or vinylene with a carbonyl";
 			
 			examples[0] = "O=C=NC";
 			examples[1] = "O=C1CN1";	

@@ -11,7 +11,7 @@ public class Rule1 extends RuleSMARTSubstructureCDK {
 			super.initSingleSMARTS(super.smartsPatterns,"2", "[CH]#CC=O");
 			super.initSingleSMARTS(super.smartsPatterns,"3", "C#C[CH]=O");
 			id = "1";
-			title = "Acetylenic- and an internal carbonyl";
+			title = "Ethynylene or acetylenic with a carbonyl";
 			
 			examples[0] = "";
 			examples[1] = "";	

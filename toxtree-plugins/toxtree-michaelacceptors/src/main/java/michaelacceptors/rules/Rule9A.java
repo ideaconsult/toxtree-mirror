@@ -8,7 +8,7 @@ public class Rule9A extends RuleSMARTSubstructureCDK {
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"1", "C#Cc1ncccc1");			
 			id = "9";
-			title = "Ortho-olefinic azaarine";
+			title = "Ortho-ethynylene azaarene";
 			
 			examples[0] = "";
 			examples[1] = "";	

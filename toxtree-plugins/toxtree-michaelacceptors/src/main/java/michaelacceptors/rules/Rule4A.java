@@ -8,8 +8,8 @@ public class Rule4A extends RuleSMARTSubstructureCDK {
 		try {
 			//super.initSingleSMARTS(super.smartsPatterns,"1", "C(=O)=CC(=O)");
 			super.initSingleSMARTS(super.smartsPatterns,"1", "[CX3](=[OX1])[$(C=C),$([CX3](=[OX1]))]");
-			id = "4";
-			title = "";
+			id = "4A";
+			title = "alpha-C-atom substituted with a second carbonyl";
 			
 			examples[0] = "";
 			examples[1] = "";	
