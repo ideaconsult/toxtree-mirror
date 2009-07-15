@@ -7,8 +7,8 @@ public class Rule4B extends RuleSMARTSubstructureCDK {
 		super();		
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"1", "C=C(C)[CH]=O");			
-			id = "4";
-			title = "";
+			id = "4B";
+			title = "alpha-C-atom substituted with a second carbonyl";
 			
 			examples[0] = "O=C=NC";
 			examples[1] = "O=C1CN1";	

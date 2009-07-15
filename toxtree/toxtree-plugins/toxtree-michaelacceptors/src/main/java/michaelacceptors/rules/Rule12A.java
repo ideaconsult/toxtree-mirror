@@ -7,8 +7,8 @@ public class Rule12A extends RuleSMARTSubstructureCDK {
 		super();		
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"1", "O=[c,CR]1[c,CR]=[c,CR][c,CR](=O)cc1");			
-			id = "14";
-			title = "Ortho quinone";
+			id = "12A";
+			title = "Ortho-quinone";
 			
 			examples[0] = "";
 			examples[1] = "";	

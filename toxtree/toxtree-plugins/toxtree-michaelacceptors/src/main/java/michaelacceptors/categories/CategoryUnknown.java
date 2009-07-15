@@ -13,8 +13,8 @@ public class CategoryUnknown extends DefaultCategory {
 	 * 
 	 */
 	public CategoryUnknown() {
-		super("Unknown",2);
-		setExplanation("Unable to classify");
+		super("Not reactive via Michael addition",2);
+		setExplanation("Chemical is not reactive via Michael addition");
 
 	}
 }

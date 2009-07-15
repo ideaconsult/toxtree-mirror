@@ -8,7 +8,7 @@ public class Rule8 extends RuleSMARTSubstructureCDK {
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"1", "C=CC#N");			
 			id = "8";
-			title = "Slow reacting, olefinic cyano";
+			title = "Olefinic cyano";
 			
 			examples[0] = "";
 			examples[1] = "";	

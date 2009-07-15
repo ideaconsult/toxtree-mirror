@@ -6,9 +6,9 @@ public class Rule6 extends RuleSMARTSubstructureCDK {
 	public Rule6() {
 		super();		
 		try {
-			super.initSingleSMARTS(super.smartsPatterns,"1", "C#CS(=O)=O");			
+			super.initSingleSMARTS(super.smartsPatterns,"1", "C#CS(=O)");			
 			id = "6";
-			title = "Acetylenic- and sulfone- or sulfonate";
+			title = "Ethylnylene or acetylenic with a sulfonyl";
 			
 			examples[0] = "";
 			examples[1] = "";	

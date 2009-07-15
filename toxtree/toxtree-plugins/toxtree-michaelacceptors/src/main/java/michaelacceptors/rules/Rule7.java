@@ -8,7 +8,7 @@ public class Rule7 extends RuleSMARTSubstructureCDK {
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"1", "C=CS=O");			
 			id = "7";
-			title = "Vinyl- and sulfone- or sulfonate";
+			title = "Vinyl or vinylene with a sulfonyl";
 			
 			examples[0] = "";
 			examples[1] = "";	

@@ -8,7 +8,7 @@ public class Rule9B extends RuleSMARTSubstructureCDK {
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"1", "C=[CH]c1ncccc1");			
 			id = "10";
-			title = "Ortho-olefinic azaarine";
+			title = "ortho-vinyl azaarene";
 			
 			examples[0] = "";
 			examples[1] = "";	

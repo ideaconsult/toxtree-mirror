@@ -12,7 +12,7 @@ public class Rule3 extends RuleSMARTSubstructureCDK {
 			super.initSingleSMARTS(super.smartsPatterns,"2", "[CH2]=C(C)C=O");
 			super.initSingleSMARTS(super.smartsPatterns,"3", "C=C(C)[CH]=O");
 			id = "3";
-			title = "slow reacting methacrylate";
+			title = "alpha-C atom alkyl-substituted with a carbonyl";
 			
 			examples[0] = "O=C=NC";
 			examples[1] = "O=C1CN1";	

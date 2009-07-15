@@ -7,8 +7,8 @@ public class Rule10B extends RuleSMARTSubstructureCDK {
 		super();		
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"1", "C=[CH]c1ccncc1");			
-			id = "12";
-			title = "Para-olefinic azaarine";
+			id = "10B";
+			title = "Para-vinyl azaarene";
 			
 			examples[0] = "";
 			examples[1] = "";	

@@ -8,8 +8,8 @@ public class Rule13A extends RuleSMARTSubstructureCDK {
 		try {			
 			super.initSingleSMARTS(super.smartsPatterns,"1", "C1=CC(=O)C=CC1=O");			
 			
-			id = "16";
-			title = "Para quinone";
+			id = "13A";
+			title = "Para-quinone";
 			
 			examples[0] = "";
 			examples[1] = "";	
