@@ -5,9 +5,9 @@
  -----
  
  
-Introduction
+A decision tree for  estimating skin irritation and corrosion  potential
 
- Estimates skin corrosion and irritatiion potential by physicochemical property limits and structural rules
+ Estimates skin corrosion and irritatiion potential by physicochemical property ranges and structural rules
  
  Developed by IdeaConsult Ltd., (Sofia, Bulgaria) for {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC}}
   

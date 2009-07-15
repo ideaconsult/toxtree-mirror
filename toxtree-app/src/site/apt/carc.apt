@@ -5,11 +5,9 @@ Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity)
  -----
  
  
-Introduction
+Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity). 
 
- Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity). 
-
- Predicts the possibility of carcinogenicity and mutagenicity by discriminant analysis and structural rules.
+ A decision tree for estimating carcinogenicity and mutagenicity by discriminant analysis and structural rules, based on published in  the document:  “The Benigni  / Bossa  rulebase for mutagenicity and carcinogenicity – a module of Toxtree”, by R. Benigni,  C. Bossa, N. Jeliazkova, T. Netzeva, and A. Worth. European Commission  report EUR 23241 EN;
   
 * Reference
 
