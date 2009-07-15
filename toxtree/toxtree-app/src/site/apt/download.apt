@@ -4,9 +4,47 @@ Download
 Download
  -----
 
-JRC Computational Toxicology
+Toxtree 1.60
 
-	{{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}Toxtree 1.51}}
+  {{{https://sourceforge.net/projects/toxtree/files/}Toxtree 1.60}} is the latest release, including 4 new plugins and several bug fixes.
+
+	* {{{https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v1.60-setup.exe/download}Windows installer}}
+
+	* {{{https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v1.60.zip/download}ZIP archive}}  (source and executable, platform independent)
+
+	* Installation manual
+
+	* User manual
+	
+    * Change log
+    	
+	   * added Cramer rules with extensions plugin and updated bodymol.sdf;
+	
+	   * added  Structure Alerts  for the  in vivo  micronucleus assay  in rodents plugin;
+	
+	   * added START biodegradation and persistence plugin;
+	
+	   * added Structural Alerts for identification of Michael Acceptors plugin;
+	
+	   * Skin irritation plugin: fixed bugs in rules Q52 and Q53;
+	
+	   * Cramer rules plugin: fixed bugs in Q8 and Q21;
+	
+	   * Begnini/Bossa rulebase  plugin: fixed issue  when results for  structural alerts (e.g. SA10) are not displayed if the outcome is YES;
+	
+	   *  Begnini/Bossa  rulebase  plugin:  QSAR8  question  rephrased,  to  avoid confusion;
+	
+	   * fixed issue when editing an  example in the decision tree editor  was not working;
+	
+	   * introduced TOXTREE environment variable, which should be set to point  to the <Toxtree-version.jar>  and helps  locating SDF  files and  plugins when Toxtree is used by third party software;
+	
+	   * fixed issue when after creating a new tree it could not be saved.
+
+
+
+Previous versions
+
+     * {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}Toxtree 1.51}} at JRC Computational Toxicology
 
 	* Windows installer
 
@@ -15,13 +53,8 @@ JRC Computational Toxicology
 	* Installation manual
 
 	* User manual
-
-
-
-Previous versions
-
-  * Sourceforge
-	{{{http://sourceforge.net/project/showfiles.php?group_id=152702}Toxtree 1.20}}
+	
+  * {{{http://sourceforge.net/project/showfiles.php?group_id=152702}Toxtree 1.20}} at Sourceforge
 
 
   * {{{http://ambit.acad.bg/toxTree/download.php}Toxtree 1.20-1.51}}
