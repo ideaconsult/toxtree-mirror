@@ -38,6 +38,12 @@
     <menu ref="modules" />
     <menu ref="parent"/>
   </body>
+
+  <poweredBy>
+    <logo name="SourceForge" href="http://sourceforge.net/projects/toxtree"
+          img="http://sflogo.sourceforge.net/sflogo.php?group_id=152702&amp;type=12"/>
+  </poweredBy>
+
 <!-- 
   <skin>
     <groupId>org.apache.maven.skins</groupId>
