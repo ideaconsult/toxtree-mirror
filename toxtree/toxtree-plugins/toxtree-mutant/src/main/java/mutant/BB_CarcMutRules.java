@@ -58,7 +58,7 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
  
 
         public final static transient String[] c_rules = { 
-            "mutant.rules.RuleAlertsForCarcinogenicity", // Rule  1         
+            "mutant.rules.RuleAlertsForGenotoxicCarcinogenicity", // Rule  1         
             "mutant.rules.SA1", //2
             "mutant.rules.SA2", //3
             "mutant.rules.SA3", //4
@@ -88,7 +88,7 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
             "mutant.rules.SA28ter", //28   
             "mutant.rules.SA29",    //29
             "mutant.rules.SA30", //30
-            "toxTree.tree.rules.RuleVerifyAlertsCounter", //31
+            "mutant.rules.VerifyAlertsGenotoxic", //31
             "mutant.rules.RuleAlertsNongenotoxicCarcinogenicity", //32
             "mutant.rules.SA17", //33 nongenotoxic
             "mutant.rules.SA20", //34 nongenotoxic
@@ -119,86 +119,88 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
             "mutant.rules.UserInputABUnsaturatedAldehyde", //56
             "mutant.rules.RuleDAMutagenicityABUnsaturatedAldehydes", //QSAR13 Rule 57
             };
-    private final static transient int c_transitions[][] ={
-        //{if no go to, if yes go to, assign if no, assign if yes}
-        {2,2,0,0}, //Rule 1  1
-        {3,3,0,0}, //sa1 2
-        {4,4,0,0}, //sa2 3
-        {5,5,0,0}, //sa3  4
-        {6,6,0,0}, //sa4 5
-        {7,7,0,0}, //sa5 6
-        {8,8,0,0}, //sa6 7
-        {9,9,0,0}, //sa7 8
-        {10,10,0,0}, //sa8 9
-        {11,11,0,0}, //sa9 10
-        {12,12,0,0}, //sa11 11
-        {13,13,0,0}, //sa12 12
-        {14,14,0,0}, //sa13 13 
-        {15,15,0,0}, //sa14 14
-        {16,16,0,0}, //sa15 15
-        {17,17,0,0}, //sa16 16 
-        {18,18,0,0}, //sa18 17
-        {19,19,0,0}, //sa19 18
-        {20,20,0,0}, //sa21 19
-        {21,21,0,0}, //sa22 20
-        {22,22,0,0}, //sa23 21
-        {23,23,0,0}, //sa24 22
-        {24,24,0,0}, //sa25 23
-        {25,25,0,0}, //sa26 24
-        {26,26,0,0}, //sa27 25
-        {27,27,0,0}, //sa28 26
-        {28,28,0,0}, //sa28bis 27
-        {29,29,0,0}, //sa28ter 28
-        {30,30,0,0}, //sa29 29
-        {31,31,0,0}, //sa30 30
-        {46,32,3,1}, //any alert 31
-        //if yes go to nongenotoxic alerts #32, if no, go to nongenotoxic alerts #x
-        {33,33,0,0}, //nongenotoxic alerts 32
-        {34,34,0,0}, //sa17 33
-        {35,35,0,0}, //sa20 34
-        {36,36,0,0}, //sa31a 35
-        {37,37,0,0}, //sa31b 36 
-        {38,38,0,0}, //sa31c 37
-        {39,39,3,2}, //any alert 38
-        {40,40,0,1}, //SA10 39 if yes assign SA for genotoxic carc. 
-        //amines
-        {41,41,0,0}, //Rule 40 aN=Na  - if yes will be split into ar amines, otherwise will work with the original compound 41
-        {42,42,0,0}, //Rule 41 (ii)     
-        {0,43,0,0}, //Rule 42 ar amine 
-        {0,44,8,0}, //Rule 43 user input 
-        {45,45,7,6}, //Rule 44 QSAR8
-        //{0,46,0,0}, //Rule 45 QSAR6 applicable 
-        {0,0,5,4}, //Rule 45 QSAR6 
-        
-        //No alerts for genotoxic carc
-        {47,47,0,0}, //nongenotoxic alerts 46
-        {48,48,0,0}, //sa17 47
-        {49,49,0,0}, //sa20 48
-        {50,50,0,0}, //sa31a 49
-        {51,51,0,0}, //sa31b 50 
-        {52,52,0,0}, //sa31c 51
-        {53,39,3,2}, //any alert 52
-        
-        {39,54,0,0}, //Rule 53 a,b aldehyde; if no  can't be aldehyde and apply QSAR13 , go to check SA10 at the other branch
-        {55,55,0,1}, //SA10 54 if yes assign SA for genotoxic carc.;if no, can still be (aromatic) aldehyde and apply QSAR13 
-        //come here when SA10 is applied on NO_ALERTS branch (no genotoxic, no non genotoxic alerts). 
-        //the only option is to apply sa10 and then qsar13 if a,b unsaturated aldehyde 
-        {0,56,8,0}, //Rule 55 user input 
-        {40,40,5,4}, //Rule 56 QSAR13 //that's it, the end 
+        private final static transient int c_transitions[][] ={
+            //{if no go to, if yes go to, assign if no, assign if yes}
+            {2,2,0,0}, //Rule 1  1
+            {3,3,0,0}, //sa1 2
+            {4,4,0,0}, //sa2 3
+            {5,5,0,0}, //sa3  4
+            {6,6,0,0}, //sa4 5
+            {7,7,0,0}, //sa5 6
+            {8,8,0,0}, //sa6 7
+            {9,9,0,0}, //sa7 8
+            {10,10,0,0}, //sa8 9
+            {11,11,0,0}, //sa9 10
+            {12,12,0,0}, //sa11 11
+            {13,13,0,0}, //sa12 12
+            {14,14,0,0}, //sa13 13 
+            {15,15,0,0}, //sa14 14
+            {16,16,0,0}, //sa15 15
+            {17,17,0,0}, //sa16 16 
+            {18,18,0,0}, //sa18 17
+            {19,19,0,0}, //sa19 18
+            {20,20,0,0}, //sa21 19
+            {21,21,0,0}, //sa22 20
+            {22,22,0,0}, //sa23 21
+            {23,23,0,0}, //sa24 22
+            {24,24,0,0}, //sa25 23
+            {25,25,0,0}, //sa26 24
+            {26,26,0,0}, //sa27 25
+            {27,27,0,0}, //sa28 26
+            {28,28,0,0}, //sa28bis 27
+            {29,29,0,0}, //sa28ter 28
+            {30,30,0,0}, //sa29 29
+            {31,31,0,0}, //sa30 30
+            {46,32,9,1}, //any alert 31
+            //if yes go to nongenotoxic alerts #32, if no, go to nongenotoxic alerts #x
+            {33,33,0,0}, //nongenotoxic alerts 32
+            {34,34,0,0}, //sa17 33
+            {35,35,0,0}, //sa20 34
+            {36,36,0,0}, //sa31a 35
+            {37,37,0,0}, //sa31b 36 
+            {38,38,0,0}, //sa31c 37
+            {39,39,10,2}, //any alert 38
+            {40,40,0,1}, //SA10 39 if yes assign SA for genotoxic carc. 
+            //amines
+            {41,41,0,0}, //Rule 40 aN=Na  - if yes will be split into ar amines, otherwise will work with the original compound 41
+            {42,42,0,0}, //Rule 41 (ii)     
+            {0,43,0,0}, //Rule 42 ar amine 
+            {0,44,8,0}, //Rule 43 user input 
+            {45,45,6,7}, //Rule 44 QSAR8
+            //{0,46,0,0}, //Rule 45 QSAR6 applicable 
+            {0,0,5,4}, //Rule 45 QSAR6 
+            
+            //No alerts for genotoxic carc
+            {47,47,0,0}, //nongenotoxic alerts 46
+            {48,48,0,0}, //sa17 47
+            {49,49,0,0}, //sa20 48
+            {50,50,0,0}, //sa31a 49
+            {51,51,0,0}, //sa31b 50 
+            {52,52,0,0}, //sa31c 51
+            {53,39,10,2}, //any alert 52
+            
+            {39,54,0,0}, //Rule 53 a,b aldehyde; if no  can't be aldehyde and apply QSAR13 , go to check SA10 at the other branch
+            {55,55,0,1}, //SA10 54 if yes assign SA for genotoxic carc.;if no, can still be (aromatic) aldehyde and apply QSAR13 
+            //come here when SA10 is applied on NO_ALERTS branch (no genotoxic, no non genotoxic alerts). 
+            //the only option is to apply sa10 and then qsar13 if a,b unsaturated aldehyde 
+            {0,56,8,0}, //Rule 55 user input 
+            {40,40,5,4}, //Rule 56 QSAR13 //that's it, the end 
 
-        
-    };	
-	private final static transient String c_categories[] ={
-		"mutant.categories.CategoryPositiveAlertGenotoxic", //1
-		"mutant.categories.CategoryPositiveAlertNongenotoxic", //2
-		"mutant.categories.CategoryNoAlert",		//3
-		"mutant.categories.CategoryMutagenTA100",	//4
-		"mutant.categories.CategoryNonMutagen",	//5
-		"mutant.categories.CategoryCarcinogen",		//6
-		"mutant.categories.CategoryNotCarcinogen", //7
-		"mutant.categories.QSARApplicable",	//8
-		"mutant.categories.CategoryError"	//9		
-	};
+            
+        };	
+	
+		private final static transient String c_categories[] ={
+			"mutant.categories.CategoryPositiveAlertGenotoxic", //1
+			"mutant.categories.CategoryPositiveAlertNongenotoxic", //2
+			//"mutant.categories.CategoryNoAlert",		//3
+			"mutant.categories.CategoryMutagenTA100",	//4
+			"mutant.categories.CategoryNonMutagen",	//5
+			"mutant.categories.CategoryCarcinogen",		//6
+			"mutant.categories.CategoryNotCarcinogen", //7
+			"mutant.categories.QSARApplicable",	//8
+			"mutant.categories.CategoryNoGenotoxicAlert", //9
+			"mutant.categories.CategoryNoNongenotoxicAlert"	//10
+		};
 	/**
 	 * 
 	 */
