@@ -2,6 +2,11 @@ package michaelacceptors;
 
 import junit.framework.TestCase;
 import michaelacceptors.rules.Rule1;
+import michaelacceptors.rules.Rule10A;
+import michaelacceptors.rules.Rule11;
+import michaelacceptors.rules.Rule12B;
+import michaelacceptors.rules.Rule13A;
+import michaelacceptors.rules.Rule14;
 import michaelacceptors.rules.Rule2;
 import michaelacceptors.rules.Rule3;
 import michaelacceptors.rules.Rule4A;
@@ -10,13 +15,7 @@ import michaelacceptors.rules.Rule6;
 import michaelacceptors.rules.Rule7;
 import michaelacceptors.rules.Rule8;
 import michaelacceptors.rules.Rule9B;
-import michaelacceptors.rules.Rule10A;
-import michaelacceptors.rules.Rule11;
-import michaelacceptors.rules.Rule12B;
-import michaelacceptors.rules.Rule13A;
-import michaelacceptors.rules.Rule14;
 import toxTree.query.FunctionalGroups;
-import toxTree.tree.rules.RuleAnySubstructure;
 
 public  class TestMichaelAcceptorRules extends TestCase {
 	public static void main(String[] args) {
@@ -255,7 +254,7 @@ public  class TestMichaelAcceptorRules extends TestCase {
 			String smile ="C1=CC=C2C(=C1)C=CC(=O)C2=O";			
 			boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
 			assertTrue(result);
-			assertFalse(RuleSmiles_asertFalse((RuleAnySubstructure)rule));
+			assertFalse(RuleSmiles_asertFalse(rule));
 						
 		} catch (Exception x) {
 			x.printStackTrace();

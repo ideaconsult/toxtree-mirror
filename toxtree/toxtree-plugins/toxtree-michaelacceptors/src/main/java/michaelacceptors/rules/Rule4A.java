@@ -1,7 +1,7 @@
 package michaelacceptors.rules;
-import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import toxTree.tree.rules.StructureAlertCDK;
 import toxTree.tree.rules.smarts.SMARTSException;
-public class Rule4A extends RuleSMARTSubstructureCDK {
+public class Rule4A extends StructureAlertCDK {
 	private static final long serialVersionUID = 0;
 	public Rule4A() {
 		super();		
