@@ -24,8 +24,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.BitSet;

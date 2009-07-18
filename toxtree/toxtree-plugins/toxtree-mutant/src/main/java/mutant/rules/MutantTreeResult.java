@@ -50,6 +50,7 @@ import toxTree.tree.DecisionNode;
 import toxTree.tree.ProgressStatus;
 import toxTree.tree.RuleResult;
 import toxTree.tree.TreeResult;
+import toxTree.tree.rules.IAlertCounter;
 
 public class MutantTreeResult extends TreeResult {
     protected static String SUFFIX = "SUFFIX";

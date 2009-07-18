@@ -34,6 +34,7 @@ import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.tree.rules.StructureAlertCDK;
 import toxTree.tree.rules.smarts.SMARTSException;
 
 public class SA10 extends StructureAlertCDK {

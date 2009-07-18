@@ -5,7 +5,6 @@ import java.util.List;
 import junit.framework.TestCase;
 import mutant.rules.SA27;
 
-import org.openscience.cdk.Atom;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.config.Elements;
