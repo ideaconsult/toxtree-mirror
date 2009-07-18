@@ -1,22 +1,24 @@
 package michaelacceptors.rules;
-import toxTree.query.FunctionalGroups;
-import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
-import toxTree.tree.rules.smarts.SMARTSException;
-import toxTree.tree.rules.RuleAnySubstructure;
-public class Rule12B extends RuleAnySubstructure {
+
+import toxTree.tree.rules.StructureAlertCDK;
+
+public class Rule12B extends StructureAlertCDK {
 	private static final long serialVersionUID = 0;
 	public Rule12B() {
 		super();		
-		
-			addSubstructure(FunctionalGroups.createAtomContainer("O=C1C=CC=CC1(=O)",false));
-			addSubstructure(FunctionalGroups.createAtomContainer("C1=CC=C2C(=C1)C=CC(=O)C2=O",false));
+			try {
+				addSubstructure("O=C1C=CC=CC1(=O)");
+				addSubstructure("C1=CC=C2C(=C1)C=CC(=O)C2=O");
+			} catch (Exception x) {
+				x.printStackTrace();
+			}
 			id = "12B";
 			title = "Ortho-quinone";
 			
 			examples[0] = "";
 			examples[1] = "";	
 			editable = false;		
-			
+			setContainsAllSubstructures(false);
 
 	}
 

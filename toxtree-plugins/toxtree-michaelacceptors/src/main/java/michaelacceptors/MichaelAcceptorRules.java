@@ -1,12 +1,9 @@
 package michaelacceptors;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.Observable;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-
-
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -22,6 +19,7 @@ public class MichaelAcceptorRules extends UserDefinedTree implements IDecisionIn
 	private static final long serialVersionUID = 0;
     protected boolean residuesIDVisible;
     public final static transient String[] c_rules = { 
+    	 "toxTree.tree.rules.RuleInitAlertCounter",
     	 "michaelacceptors.rules.Rule1", // Rule  1         
          "michaelacceptors.rules.Rule2", //2
          "michaelacceptors.rules.Rule3", //3
@@ -40,29 +38,32 @@ public class MichaelAcceptorRules extends UserDefinedTree implements IDecisionIn
          "michaelacceptors.rules.Rule12B", //12B
          "michaelacceptors.rules.Rule13A", //13A
          "michaelacceptors.rules.Rule13B", //13B
-         "michaelacceptors.rules.Rule14", //14       
+         "michaelacceptors.rules.Rule14", //14
+         "toxTree.tree.rules.RuleVerifyAlertsCounter"
         };
     private final static transient int c_transitions[][] ={
         //{if no go to, if yes go to, assign if no, assign if yes}
-        {2,2,0,1}, //Rule1 1  
-        {3,3,0,1}, //Rule2 2
-        {4,4,0,1}, //Rule3 3
-        {5,5,0,1}, //Rule4A  4
-        {6,6,0,1}, //Rule4B 5
-        {7,7,0,1}, //Rule5 6
-        {8,8,0,1}, //Rule6 7
-        {9,9,0,1}, //Rule7 8
-        {10,10,0,1}, //Rule8 9
-        {11,11,0,1}, //Rule9A 10
-        {12,12,0,1}, //Rule9B 11
-        {13,13,0,1}, //Rule10A 12
-        {14,14,0,1}, //Rule10B 13 
-        {15,15,0,1}, //Rule11 14
-        {16,16,0,1}, //Rule12A 15
-        {17,17,0,1}, //Rule12B 16 
-        {18,18,0,1}, //Rule13A 17
-        {19,19,0,1}, //Rule13B 18
-        {0,0,2,1}, //Rule14 19        
+        {2,2,0,0},   
+        {3,3,0,0}, //Rule1 1
+        {4,4,0,0}, //Rule2 2
+        {5,5,0,0}, //Rule3 3
+        {6,6,0,0}, //Rule4A  4
+        {7,7,0,0}, //Rule4B 5
+        {8,8,0,0}, //Rule5 6
+        {9,9,0,0}, //Rule6 7
+        {10,10,0,0}, //Rule7 8 
+        {11,11,0,0}, //Rule8 9
+        {12,12,0,0}, //Rule9A 10
+        {13,13,0,0}, //Rule9B 11
+        {14,14,0,0},  //Rule10A 12
+        {15,15,0,0}, //Rule10B 13
+        {16,16,0,0}, //Rule11 14
+        {17,17,0,0}, //Rule12A 15
+        {18,18,0,0}, //Rule12B 16 
+        {19,19,0,0}, //Rule13A 17
+        {20,20,0,0}, //Rule13B 18
+        {21,21,0,0}, //Rule14 19
+        {0,0,2,1},  //Any alert?        
     };	
     private final static transient String c_categories[] ={
 		"michaelacceptors.categories.CategoryMichaelAcceptor", //1

@@ -1,7 +1,6 @@
 package michaelacceptors;
 
 import junit.framework.TestCase;
-import michaelacceptors.MichaelAcceptorRules;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.logging.TTLogger;
