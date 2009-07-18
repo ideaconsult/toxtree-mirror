@@ -1,6 +1,5 @@
 		package mutant.descriptors;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -24,13 +23,10 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.smarts.AnyAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AnyOrderQueryBond;
 import org.openscience.cdk.isomorphism.matchers.smarts.AromaticQueryBond;
-import org.openscience.cdk.isomorphism.matchers.smarts.LogicalOperatorBond;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.result.DoubleArrayResult;
-import org.openscience.cdk.tools.manipulator.RingSizeComparator;
 
-import toxTree.core.Introspection;
 import toxTree.data.MoleculesFile;
 import toxTree.io.Tools;
 import toxTree.query.FunctionalGroups;

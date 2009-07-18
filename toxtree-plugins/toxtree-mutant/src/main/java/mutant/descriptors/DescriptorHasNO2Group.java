@@ -28,7 +28,6 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 
-import toxTree.query.FunctionalGroups;
 import toxTree.tree.rules.smarts.ISmartsPattern;
 import toxTree.tree.rules.smarts.SmartsPatternCDK;
 

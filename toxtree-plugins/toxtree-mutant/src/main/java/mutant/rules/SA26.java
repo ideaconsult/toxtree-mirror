@@ -28,6 +28,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.tree.rules.DefaultAlertCounter;
+import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**

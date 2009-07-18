@@ -28,7 +28,6 @@ import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -61,7 +60,6 @@ import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
-import toxTree.tree.rules.smarts.IRuleSMARTSubstructures;
 import toxTree.tree.rules.smarts.ISmartsPattern;
 import toxTree.ui.tree.actions.NewRuleAction;
 

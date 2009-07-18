@@ -29,6 +29,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRing;
 
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.tree.rules.DefaultAlertCounter;
+import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleRingSubstituents;
 
 public class SA20 extends RuleRingSubstituents implements IAlertCounter {

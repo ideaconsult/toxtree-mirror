@@ -29,12 +29,12 @@
 
 package mutant.test;
 
+import junit.framework.TestCase;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.SmartsPatternCDK;
-
-import junit.framework.TestCase;
 
 public class SMARTSTest extends TestCase {
 

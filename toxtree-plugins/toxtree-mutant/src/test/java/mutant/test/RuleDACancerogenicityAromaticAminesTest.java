@@ -36,7 +36,6 @@ import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.interfaces.IReaction;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
-import toxTree.core.IDecisionResult;
 import toxTree.exceptions.ReactionException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
