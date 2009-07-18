@@ -11,6 +11,8 @@ START biodegradation  and persistence plug-in
  
  Developed by {{{http://www.molecular-networks.com}Molecular Networks GmbH}} (Erlangen, Germany) for {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC}}
   
+ Screenshots: {{{images/start/screen.jpg}Main screen}} , {{{images/start/tree.jpg}Decision tree}}
+  
 * Download
 
 	{{{http://ecb.jrc.ec.europa.eu/produits/toxBiodegradation.zip}Download plugin for ToxTree 1.51}}

@@ -11,6 +11,8 @@ Cramer rules
     
   Developed by IdeaConsult Ltd., (Sofia, Bulgaria) for {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC}}
   
+  Screenshots: {{{images/cramer/screen.jpg}Main screen}} , {{{images/cramer/tree.jpg}Decision tree}}
+   
 * Reference
 
  [Cramer, 1978] Cramer GM, Ford RA, Hall RL (1978) Estimation of Toxic Hazard - A Decision Tree Approach. J. Cosmet. Toxicol. 16, 255-276.

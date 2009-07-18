@@ -1,46 +1,34 @@
  -----
-Toxtree
+Toxtree Support
  -----
-Toxtree
- ----- 
- 
-Toxtree - Toxic Hazard Estimation by decision tree approach 
+Toxtree Support
+ -----
 
-    Toxtree  is  a  full-featured   and  flexible  user-friendly  open  source application, which is able to estimate toxic hazard by applying a  decision tree approach. 
-    
-    Toxtree could  be applied  to datasets from various compatible file  types.
-    User-defined  molecular  structures  are also  supported  -  they could  be
-    entered by  SMILES, or by using the built-in  2D structure diagram  editor.
+Support
+	   
+	   Tell us what do you think about ToxTree 1.60. Your feedback is crucial!
+	   
+* Online support (your comments and bug reports will be publicly accessible)
+	   
+	   	* {{{http://sourceforge.net/forum/forum.php?forum_id=510090} Post a comment}}
+	   
+	   	* {{{http://sourceforge.net/tracker/?group_id=152702&atid=785126} Report a bug}}
+	   
+	   	* {{{http://sourceforge.net/tracker/?group_id=152702&atid=785129} Suggest a new feature}}
+	   	
+	   	* {{{mailto:toxtree-users@lists.sourceforge.net} Send an email to Toxtree users mailing list}}
+	   	
+	   	* {{{mailto:toxtree-users@lists.sourceforge.net} Join the development}}    
 
-*Multiplatform
-
-	The  Toxtree  application  is suitable  for a  standalone PC and can run on any platform, supported by Java 1.5 or higher. 
-	  
-*Modular plugin design
-
-    Toxtree has  been   designed with  flexible capabilities  for future  extensions in  mind (e.g.
-    other classification schemes that could be developed at a future date). New
-    decision trees with arbitrary rules can be built with the help of graphical
-    user interface or by developing new plug-ins. Toxtree was commissioned by {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC Computational Toxicology}} and developed by Ideaconsult Ltd. (Sofia, Bulgaria).
-	Plugins are currently being developed by several different organisations.  
-   
-*Plugins
-
-	* Cramer rules
-	
-	* Verhaar scheme
-	
-	* Skin irritation prediction
-	
-	* Eye irritation prediction
-	
-	* Benigni  / Bossa  rulebase for     mutagenicity and carcinogenicity
-	
-	* START biodegradation  and     persistence
-	
-	* Structure Alerts for the in vivo micronucleus assay in rodents
-	
-	* Cramer  rules with  extensions
-	
-	* Structure Alerts  for identification of  Michael Acceptors
-	
+* Targeted users support
+	   	
+	   	{{{mailto:nina@acad.bg?cc=ecb.qsar@jrc.it&amp;subject=Feedback%20on%20Toxtree}Send a request or report an issue}} to {{{http://vedina.users.sourceforge.net}Nina Jeliazkova}} (Ideaconsult Ltd) 
+	   	with copy to the {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}Computational Toxicology Group}} at EC Joint Research Centre
+	   	
+		* Stay private
+		   	
+		* Request an extension
+		   	 
+		* Request a development of new module
+	   
+ 			   	

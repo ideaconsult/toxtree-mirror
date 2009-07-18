@@ -11,6 +11,8 @@ A decision tree for  estimating skin irritation and corrosion  potential
  
  Developed by IdeaConsult Ltd., (Sofia, Bulgaria) for {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC}}
   
+ Screenshots: {{{images/sicret/screen.jpg}Main screen}} , {{{images/sicret/tree.jpg}Decision tree}}
+  
 * Reference
 
  [Gerner 2004] Ingrid Gerner, Kerstin Schlegel, John D. Walker, and Etje Hulzebosc, Use of Physicochemical Property Limits to Develop Rules for Identifying Chemical Substances with no Skin Irritation or Corrosion Potential, QSAR Comb. Sci. 2004, 23, pp.726-733  

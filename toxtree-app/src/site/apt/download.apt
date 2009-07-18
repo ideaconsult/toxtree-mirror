@@ -12,9 +12,9 @@ Toxtree 1.60
 
 	* {{{https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v1.60.zip/download}ZIP archive}}  (source and executable, platform independent)
 
-	* {{{https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree_installation_manual.pdf/download}}Installation manual}
+	* {{{https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree_installation_manual.pdf/download}Installation manual}}
 
-	* {{{https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree_user_manual.pdf/download}}User manual}
+	* {{{https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree_user_manual.pdf/download}User manual}}
 	
     * Change log
     	
@@ -40,8 +40,34 @@ Toxtree 1.60
 	
 	   * fixed issue when after creating a new tree it could not be saved.
 
+* Support
+	   
+	   Tell us what do you think about ToxTree 1.60. Your feedback is crucial!
+	   
+** Online support (your comments and bug reports will be publicly accessible)
+	   
+	   	* {{{http://sourceforge.net/forum/forum.php?forum_id=510090} Post a comment}}
+	   
+	   	* {{{http://sourceforge.net/tracker/?group_id=152702&atid=785126} Report a bug}}
+	   
+	   	* {{{http://sourceforge.net/tracker/?group_id=152702&atid=785129} Suggest a new feature}}
+	   	
+	   	* {{{mailto:toxtree-users@lists.sourceforge.net} Send an email to Toxtree users mailing list}}
+	   	
+	   	* {{{mailto:toxtree-users@lists.sourceforge.net} Join the development}}    
 
-
+** Targeted users support
+	   	
+	   	{{{mailto:nina@acad.bg?cc=ecb.qsar@jrc.it&amp;subject=Feedback%20on%20Toxtree}Send a request or report an issue}} to {{{http://vedina.users.sourceforge.net}Nina Jeliazkova}} (Ideaconsult Ltd) 
+	   	with copy to the {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}Computational Toxicology Group}} at EC Joint Research Centre
+	   	
+		* Stay private
+		   	
+		* Request an extension
+		   	 
+		* Request a development of new module
+	   
+	    			   	
 Previous versions
 
      * {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}Toxtree 1.51}} at JRC Computational Toxicology
