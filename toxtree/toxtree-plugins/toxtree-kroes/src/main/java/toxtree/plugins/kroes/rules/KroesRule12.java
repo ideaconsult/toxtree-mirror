@@ -10,7 +10,7 @@ import toxTree.tree.AbstractRule;
  * @author nina
  *
  */
-public class KroesRule12 extends AbstractRule {
+public class KroesRule12 extends RuleVerifyIntake {
 
 	/**
 	 * 
@@ -20,9 +20,7 @@ public class KroesRule12 extends AbstractRule {
 		setID("Q12");
 		setTitle("Does estimated intake exceed 1800 \u00B5g/day ?");
 		setExplanation(getTitle());
+		propertyStaticValue = 1800;
 	}
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
-		throw new DecisionMethodException("Not implemented");
-	}
+
 }
