@@ -1,16 +1,15 @@
 package toxtree.plugins.kroes.rules;
 
-import org.openscience.cdk.interfaces.IAtomContainer;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import toxTree.tree.rules.smarts.SMARTSException;
 
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.AbstractRule;
 
 /**
  * Is the chemical an aflatoxin-like, azoxy-, or N-nitroso compound
  * @author nina
  *
  */
-public class KroesRule3 extends AbstractRule {
+public class KroesRule3 extends RuleSMARTSSubstructureAmbit {
 
 	/**
 	 * 
@@ -20,10 +19,15 @@ public class KroesRule3 extends AbstractRule {
 		setID("Q3");
 		setTitle("Is the chemical an aflatoxin-like, azoxy-, or N-nitroso compound");
 		setExplanation(getTitle());
-	}
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
-		throw new DecisionMethodException("Not implemente");
+		try {
+			addSubstructure("aflatoxin","COC1=C2C3=C(C(=O)OCC3)C(=O)OC2=C2C3C=COC3OC2=C1");
+			addSubstructure("azoxy","N=[N+][O-]");
+			addSubstructure("N-nitroso","NN=O");
+		} catch (SMARTSException x) {
+			smartsPatterns.clear();
+		}
+		examples[0] = "c1ccccc1N=Nc2ccccc2";
+		examples[1] = "COC1=C2C3=C(C(=O)OCC3)C(=O)OC2=C2C3C=COC3OC2=C1";
 	}
 
 }
