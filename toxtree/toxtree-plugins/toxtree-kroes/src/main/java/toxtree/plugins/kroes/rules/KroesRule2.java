@@ -1,16 +1,13 @@
 package toxtree.plugins.kroes.rules;
 
-import org.openscience.cdk.interfaces.IAtomContainer;
-
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.AbstractRule;
+import toxTree.tree.rules.RuleVerifyAlertsCounter;
 
 /**
  * Are there structural alerts that raise concern for potential genotoxicity?
  * @author nina
  *
  */
-public class KroesRule2 extends AbstractRule {
+public class KroesRule2 extends RuleVerifyAlertsCounter {
 
 	/**
 	 * 
@@ -20,10 +17,6 @@ public class KroesRule2 extends AbstractRule {
 		setID("Q2");
 		setTitle("Are there structural alerts that raise concern for potential genotoxicity?");
 		setExplanation(getTitle());
-	}
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
-		throw new DecisionMethodException("Not implemented");
 	}
 
 }

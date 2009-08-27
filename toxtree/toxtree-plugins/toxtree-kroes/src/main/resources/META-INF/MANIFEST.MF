@@ -1,5 +1,5 @@
 Manifest-version: 2.0.0
-Class-Path: toxtree-kroes-2.0.0-SNAPSHOT.jar
+Class-Path: toxtree-mutant-2.0.0-SNAPSHOT.jar toxtree-cramer-2.0.0-SNAPSHOT.jar toxtree-cramer2-2.0.0-SNAPSHOT.jar
 Specification-Title: Decision tree proposed by ILSI Europe
 Specification-Version: 2.0.0
 Specification-Vendor: Decision tree proposed by ILSI Europe

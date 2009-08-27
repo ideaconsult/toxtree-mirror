@@ -52,4 +52,8 @@ public class KroesRule8 extends AbstractRule {
 			return result.equals(category.toString());
 		}
 	}
+	@Override
+	public boolean isImplemented() {
+		return true;
+	}
 }
