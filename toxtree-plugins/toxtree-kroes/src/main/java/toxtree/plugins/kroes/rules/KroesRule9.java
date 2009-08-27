@@ -1,16 +1,12 @@
 package toxtree.plugins.kroes.rules;
 
-import org.openscience.cdk.interfaces.IAtomContainer;
-
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.AbstractRule;
 
 /**
  * 
  * @author nina
  *
  */
-public class KroesRule9 extends AbstractRule {
+public class KroesRule9 extends RuleVerifyIntake {
 
 	/**
 	 * 
@@ -20,10 +16,8 @@ public class KroesRule9 extends AbstractRule {
 		setID("Q9");
 		setTitle("Does estimated intake exceed 90 \u00B5g/day ?");
 		setExplanation(getTitle());
+		propertyStaticValue = 90;
 	}
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
-		throw new DecisionMethodException("Not implemented");
-	}
+
 
 }
