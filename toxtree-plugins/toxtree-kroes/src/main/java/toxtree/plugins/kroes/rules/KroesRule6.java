@@ -3,14 +3,14 @@ package toxtree.plugins.kroes.rules;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.AbstractRule;
+import cramer2.rules.RuleUnchargedOrganophosphates;
 
 /**
  * Is the compound an organophosphate?
  * @author nina
  *
  */
-public class KroesRule6 extends AbstractRule {
+public class KroesRule6 extends RuleUnchargedOrganophosphates {
 
 	/**
 	 * 

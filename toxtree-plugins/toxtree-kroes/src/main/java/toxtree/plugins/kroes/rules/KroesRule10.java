@@ -1,16 +1,13 @@
 package toxtree.plugins.kroes.rules;
 
-import org.openscience.cdk.interfaces.IAtomContainer;
-
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.AbstractRule;
+import toxTree.tree.cramer.CramerClass2;
 
 /**
  * 
  * @author nina
  * Is the compound in Cramer structural class II?
  */
-public class KroesRule10 extends AbstractRule {
+public class KroesRule10 extends KroesRule8 {
 
 	/**
 	 * 
@@ -20,9 +17,9 @@ public class KroesRule10 extends AbstractRule {
 		setID("Q10");
 		setTitle("Is the compound in Cramer structural class II?");
 		setExplanation(getTitle());
+		category = new CramerClass2();
+		examples[0]="O=C2OC(COc1ccccc1(OC))CN2";
+		examples[1]="O=C1C=COC(=C1(O))CC";		
 	}
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
-		throw new DecisionMethodException("Not implemented");
-	}
+
 }
