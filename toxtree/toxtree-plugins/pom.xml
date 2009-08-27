@@ -12,15 +12,16 @@
   <version>2.0.0-SNAPSHOT</version>
   <description>Parent project for toxtree plugins</description>
   <modules>
-  	<module>toxtree-sicret</module>
-  	<module>toxtree-verhaar</module>
-  	<module>toxtree-mutant</module>
-  	<module>toxtree-cramer</module>
-  	<module>toxtree-eye</module>
-  	<module>toxtree-cramer2</module>
-  	<module>toxtree-mic</module>
-  	<module>toxtree-michaelacceptors</module>
+        <module>toxtree-sicret</module>
+        <module>toxtree-verhaar</module>
+        <module>toxtree-mutant</module>
+        <module>toxtree-cramer</module>
+        <module>toxtree-eye</module>
+        <module>toxtree-cramer2</module>
+        <module>toxtree-mic</module>
+        <module>toxtree-michaelacceptors</module>
         <module>toxtree-structurefeatures</module>
+        <module>toxtree-kroes</module>
   </modules>
   <dependencies>
   	<dependency>
