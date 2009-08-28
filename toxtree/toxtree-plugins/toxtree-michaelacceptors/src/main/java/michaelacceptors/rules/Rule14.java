@@ -1,17 +1,18 @@
 package michaelacceptors.rules;
-import toxTree.tree.rules.StructureAlertCDK;
+import toxTree.tree.rules.StructureAlertAmbit;
 import toxTree.tree.rules.smarts.SMARTSException;
-public class Rule14 extends StructureAlertCDK {
+
+public class Rule14 extends StructureAlertAmbit {
 	private static final long serialVersionUID = 0;
 	public Rule14() {
 		super();		
 		try {
-			super.initSingleSMARTS(super.smartsPatterns,"1", "[CH2]=[CH][CH]=O");			
-			id = "18";
-			title = "Acrolein";
-			
+					
+			id = "14";
+			setTitle("Acrolein");
+			addSubstructure(getTitle(), "[CH2]=[CH][CH]=O");
 			examples[0] = "";
-			examples[1] = "";	
+			examples[1] = "C=CC=O";	
 			editable = false;		
 		} catch (SMARTSException x) {
 			logger.error(x);

@@ -1,18 +1,19 @@
 package michaelacceptors.rules;
-import toxTree.tree.rules.StructureAlertCDK;
+import toxTree.tree.rules.StructureAlertAmbit;
 import toxTree.tree.rules.smarts.SMARTSException;
 
-public class Rule12A extends StructureAlertCDK {
+public class Rule12A extends StructureAlertAmbit {
 	private static final long serialVersionUID = 0;
 	public Rule12A() {
 		super();		
 		try {
-			super.initSingleSMARTS(super.smartsPatterns,"1", "O=[c,CR]1[c,CR]=[c,CR][c,CR](=O)cc1");			
+			setTitle("Ortho-quinone");
+			addSubstructure(getTitle(),"C1=,:CC=,:CC(=O)C1=O");			
 			id = "12A";
-			title = "Ortho-quinone";
+			
 			
 			examples[0] = "";
-			examples[1] = "";	
+			examples[1] = "O=C1C=CC=CC1=O";	
 			editable = false;		
 		} catch (SMARTSException x) {
 			logger.error(x);

@@ -1,17 +1,17 @@
 package michaelacceptors.rules;
-import toxTree.tree.rules.StructureAlertCDK;
+import toxTree.tree.rules.StructureAlertAmbit;
 import toxTree.tree.rules.smarts.SMARTSException;
-public class Rule9A extends StructureAlertCDK {
+
+public class Rule9A extends StructureAlertAmbit {
 	private static final long serialVersionUID = 0;
 	public Rule9A() {
 		super();		
 		try {
-			super.initSingleSMARTS(super.smartsPatterns,"1", "C#Cc1ncccc1");			
-			id = "9";
-			title = "Ortho-ethynylene azaarene";
-			
+			setTitle("Ortho-ethynylene azaarene");
+			addSubstructure(getTitle(), "C#Cc1ncccc1");			
+			id = "9A";
 			examples[0] = "";
-			examples[1] = "";	
+			examples[1] = "C#Cc1ncccc1";	
 			editable = false;		
 		} catch (SMARTSException x) {
 			logger.error(x);

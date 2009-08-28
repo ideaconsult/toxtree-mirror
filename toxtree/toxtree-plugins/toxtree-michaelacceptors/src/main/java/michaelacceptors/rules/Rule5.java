@@ -1,19 +1,22 @@
 package michaelacceptors.rules;
 
-import toxTree.tree.rules.StructureAlertCDK;
+import toxTree.tree.rules.StructureAlertAmbit;
 import toxTree.tree.rules.smarts.SMARTSException;
-public class Rule5 extends StructureAlertCDK {
+
+public class Rule5 extends StructureAlertAmbit {
 	private static final long serialVersionUID = 0;
 	public Rule5() {
 		super();		
 		try {
 			//super.initSingleSMARTS(super.smartsPatterns,"1", "C=CN(=O)=O");	
-			super.initSingleSMARTS(super.smartsPatterns,"1", "[$([NX3](=O)=O),$([NX3+](=O)[O-])][!#8]");
-			id = "5";
-			title = "Olefinic nitro";
 			
+			id = "5";
+			setTitle("Olefinic nitro");
+			//addSubstructure(getTitle(), "[$([NX3](=O)=O),$([NX3+](=O)[O-])][!#8]");
+			addSubstructure(getTitle(), "[#6]=,:[#6][$([NX3](=O)=O),$([NX3+](=O)[O-])]");
+			//"C=CN(=O)=O"
 			examples[0] = "";
-			examples[1] = "";	
+			examples[1] = "C1CCCC=C1[N+](=O)[O-]";	
 			editable = false;		
 		} catch (SMARTSException x) {
 			logger.error(x);
