@@ -36,7 +36,7 @@ import ambit2.smarts.SmartsManager;
  *
  */
 public class SmartsPatternAmbit extends AbstractSmartsPattern<IAtomContainer> {
-	protected SmartsManager sman;
+	protected transient SmartsManager sman;
 	/**
 	 * 
 	 */
