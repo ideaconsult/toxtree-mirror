@@ -1,14 +1,18 @@
  -----
-Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity)
+ Benigni/ Bossa rulebase (for mutagenicity and carcinogenicity)
  -----
- Background
+ Nina Jeliazkova
+ -----
+ 2009/07/19
  -----
  
  
 Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity). 
 
  A decision tree for estimating carcinogenicity and mutagenicity by discriminant analysis and structural rules, based on published in  the document:  “The Benigni  / Bossa  rulebase for mutagenicity and carcinogenicity – a module of Toxtree”, by R. Benigni,  C. Bossa, N. Jeliazkova, T. Netzeva, and A. Worth. European Commission  report EUR 23241 EN;
-  
+ 
+ Developed by by IdeaConsult Ltd., (Sofia, Bulgaria) and {{{http://www.iss.it}Istituto Superiore di Sanita}} for for {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC}}
+   
  Screenshots: {{{images/mutant/screen.jpg}Main screen}} , {{{images/mutant/tree.jpg}Decision tree}}
   
 * Reference

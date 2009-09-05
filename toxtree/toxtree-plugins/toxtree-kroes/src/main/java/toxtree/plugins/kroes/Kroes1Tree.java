@@ -3,8 +3,8 @@ package toxtree.plugins.kroes;
 
 import java.util.Observable;
 
-import toxTree.core.IDecisionCategories;
-import toxTree.core.IDecisionRuleList;
+import org.openscience.cdk.qsar.DescriptorSpecification;
+
 import toxTree.tree.CategoriesList;
 import toxTree.tree.DecisionNodesList;
 import toxTree.tree.UserDefinedTree;
@@ -22,14 +22,10 @@ public class Kroes1Tree extends UserDefinedTree
         setChanged();
         notifyObservers();
         setExplanation("Kroes, R., Renwick, A.G., Cheeseman, M., Kleiner, J., Mangelsdorf, I., Piersma, A., Schilter, B., Schlatter, J., van Schothorst, F., Vos, J.G., Würtzen, G. (2004). Structure based thresholds of toxicological concern (TTC): guidance for application to substances present at low levels in the diet. Food Chem. Toxicol. 42, 65–83");
+        
     }
 
-    public Kroes1Tree(IDecisionCategories arg0, IDecisionRuleList arg1)
-    {
-        super(arg0, arg1);
-    }
-
-
+ 
     private static final long serialVersionUID = 0x4b97b63a593def3bL;
     public static final transient String c_rules[] = {
         "toxtree.plugins.kroes.rules.RuleKroesFig1Q1",
@@ -131,5 +127,14 @@ public class Kroes1Tree extends UserDefinedTree
         "toxtree.plugins.kroes.categories.NegligibleRisk", //2
         "toxtree.plugins.kroes.categories.RequireCompoundSpecificToxicityData",  //3
     };
+	public DescriptorSpecification getSpecification() {
+        return new DescriptorSpecification(
+                "http://toxtree.sourceforge.net/ttc.html",
+                getTitle(),
+                this.getClass().getName(),                
+                "Toxtree plugin");
+	}
+	
+
 
 }

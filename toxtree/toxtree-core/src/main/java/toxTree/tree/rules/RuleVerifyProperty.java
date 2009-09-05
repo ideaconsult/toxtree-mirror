@@ -24,10 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.tree.rules;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
-
-import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.InvalidSmilesException;
@@ -42,8 +41,7 @@ import toxTree.exceptions.DRuleNotImplemented;
 import toxTree.exceptions.DRulePropertyNotAvailable;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
-import toxTree.ui.OptionsPanel;
-import toxTree.ui.PropertyEditor;
+import toxTree.ui.PropertyInput;
 import toxTree.ui.tree.rules.RulePropertyEditor;
 
 /**
@@ -63,21 +61,36 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 	 * 
 	 */
 	private static final long serialVersionUID = 2634387005293933539L;
-	protected double propertyStaticValue;
+	protected Double propertyStaticValue = 0.0;
     protected String propertyName = "property" ;
     protected String propertyUnits = "" ;
-    protected boolean interactive = true;
+    protected UserOptions options = UserOptions.YES;
 
-    public static String condition_higher=">";
+    public UserOptions getOptions() {
+		return options;
+	}
+	public void setOptions(UserOptions options) {
+		this.options = options;
+	}
+	public static String condition_higher=">";
     public static String condition_lower="<";
     public static String condition_equals="=";
     protected String condition =condition_equals;
     protected static NumberFormat nf = NumberFormat.getInstance();
     protected double[] propertyExamples= new double[] {Double.NaN,Double.NaN};
+    protected PropertyChangeListener listener;
     
-    public RuleVerifyProperty() {
+
+	public PropertyChangeListener getListener() {
+		return listener;
+	}
+	public void setListener(PropertyChangeListener listener) {
+		this.listener = listener;
+	}
+	public RuleVerifyProperty() {
     	super();
     	nf.setMaximumFractionDigits(4);
+    	setListener(new PropertyInput());
     }
     public RuleVerifyProperty(String propertyName, String units, String condition, double value) {
     	this();
@@ -96,7 +109,7 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
         	Object value = mol.getProperty(this.propertyName);
  
         	if ((value == null) || ("".equals(value))){
-                if (interactive) {
+                if (getInteractive()) {
             		value = inputProperty(mol);
             		mol.setProperty(propertyName, value.toString());
                 } else throw new DRuleNotImplemented(propertyName + " not assigned ");
@@ -112,6 +125,18 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
         	//or the getProperty might be null
         	throw new DRulePropertyNotAvailable(propertyName,propertyName + " not assigned ",x);
         }
+    }    
+      
+    public String inputProperty(IAtomContainer mol) throws DecisionMethodException {
+    	Object value = mol.getProperty(this.propertyName);
+    	 
+    	if ((value == null) || ("".equals(value))){
+            if (getListener() !=null) {
+            	getListener().propertyChange(new PropertyChangeEvent(this,propertyName,null,mol));
+            	value = mol.getProperty(this.propertyName);
+            } else throw new DRuleNotImplemented(String.format("%s %s not assigned ",propertyName,propertyUnits));
+    	}
+    	return value.toString();
     }
     public void setProperty(double propertyStaticValue ){        
         this.propertyStaticValue = propertyStaticValue;
@@ -168,11 +193,11 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 	public IDecisionRuleEditor getEditor() {
 		return new RulePropertyEditor(this);
 	}
+
 	/**
-	 * Called when mol.getProperty(getPropertyName()) is null.
-	 * @return
-	 */
+
     public String inputProperty(IAtomContainer mol) {
+    	
     	PropertyEditor p = new PropertyEditor(mol,new OptionsPanel(toString(),mol, this));
     	if (JOptionPane.showConfirmDialog(null,p,"Rule " + getID() + "." + getCaption(),
                     JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE) == JOptionPane.OK_OPTION) {
@@ -181,6 +206,7 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
         } else return null;
     	//return JOptionPane.showInputDialog("Enter " + propertyName + "," + propertyUnits);
     }
+    */
 	public String getPropertyUnits() {
 		return propertyUnits;
 	}
@@ -188,17 +214,19 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 		this.propertyUnits = propertyUnits;
 	}
     public boolean getInteractive() {
-        return interactive;
+        return options.isInteractive();
     }
     public void setInteractive(boolean value) {
-        this.interactive = value;
+        setOptions(options.setInteractive(value));
     }
+    /*
     public JComponent optionsPanel(IAtomContainer atomContainer) {
         
-        if (interactive && ((atomContainer==null) || (atomContainer.getProperty(this.propertyName) == null))) {
+        if (options.isInteractive() && ((atomContainer==null) || (atomContainer.getProperty(this.propertyName) == null))) {
             return  new OptionsPanel(toString(),atomContainer, this);
         } else return null;
     }
+    */
 	public String getImplementationDetails() {
 		StringBuffer b = new StringBuffer();
 		b.append("The value is expected to be assigned as a molecule property, available by IMolecule.getProperty(\"");
@@ -215,6 +243,10 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 		b.append(">\n");
 		b.append("If value is not assigned, the user is prompted to enter the value interactively.");
 		return b.toString();
+	}
+	public void removeListener() {
+		this.listener = null;
+		
 	}
 	
 } 

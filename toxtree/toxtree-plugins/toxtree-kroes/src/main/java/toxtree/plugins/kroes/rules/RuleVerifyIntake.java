@@ -19,6 +19,7 @@ public class RuleVerifyIntake extends RuleVerifyProperty {
 		propertyUnits = "\u00B5g/day";
 		condition = condition_higher;
 		setTitle(getCaption());
+		setInteractive(true);
 		
 	}
 	

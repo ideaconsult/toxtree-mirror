@@ -130,6 +130,7 @@ public class TreeOptions extends JSplitPane {
 		    IDecisionRuleList rules = tree.getRules();
 	        for (int i=0;i< rules.size(); i++) {
 	            IDecisionRule rule = rules.getRule(i);
+	            /*
 	            if (rule instanceof IDecisionInteractive) {
 	                JComponent c = ((IDecisionInteractive) rule).optionsPanel(null);
 	                if (c == null) continue;
@@ -155,6 +156,7 @@ public class TreeOptions extends JSplitPane {
 	    		      }
 	    		      panel.add(button);	            	
 	            }
+	            */
 	        } 
 	        
 	        if (panel != null) {

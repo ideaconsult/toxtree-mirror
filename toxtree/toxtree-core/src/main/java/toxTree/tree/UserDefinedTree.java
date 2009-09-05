@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.tree;
 
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Iterator;
@@ -69,7 +70,20 @@ import ambit2.core.data.StringDescriptorResultType;
 public class UserDefinedTree extends AbstractTree implements IDecisionInteractive , IMolecularDescriptor {
 	protected boolean editable = true;
 	protected IDecisionNodesFactory nodesFactory;
-    protected boolean interactive = false;	
+    protected UserOptions options = UserOptions.YEStoALL;	
+    public UserOptions getOptions() {
+		return options;
+	}
+	public void setOptions(UserOptions options) {
+		this.options = options;
+	}
+	public PropertyChangeListener getListener() {
+		return listener;
+	}
+	public void setListener(PropertyChangeListener listener) {
+		this.listener = listener;
+	}
+	protected PropertyChangeListener listener;
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
@@ -427,10 +441,10 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 		this.nodesFactory = nodesFactory;
 	}
 	public boolean getInteractive() {
-		return interactive;
+		return options.isInteractive();
 	}
 	public void setInteractive(boolean value) {
-		this.interactive = value;
+		setOptions(options.setInteractive(value));
 	}
 	
 	public DescriptorValue calculate(IAtomContainer mol) throws CDKException {
@@ -483,6 +497,17 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
                 this.getClass().getName(),                
                 "Toxtree plugin");
 	}
+	public void removeListener() {
+		this.listener = null;
+		IDecisionRuleList rules = getRules();
+		for (int i=0; i < rules.size();i++) {
+			IDecisionRule rule = rules.get(i);
+			if (rule instanceof DecisionNode) 
+				rule = ((DecisionNode)rule).getRule();
+			if (rule instanceof IDecisionInteractive) 
+				((IDecisionInteractive)rule).removeListener();
+		}		
+	}
 	
 }
 
@@ -530,6 +555,8 @@ class UnvisitedRules implements IProcessRule {
 			nodes.getNode(i).setVisited(false);		
 	}
 	
+	
+
 	
 	
 }

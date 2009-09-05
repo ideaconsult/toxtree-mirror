@@ -6,6 +6,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.qsar.DescriptorSpecification;
 
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionResult;
@@ -169,7 +170,7 @@ public class MichaelAcceptorRules extends UserDefinedTree implements IDecisionIn
 	}
     @Override
     public void setParameters(IAtomContainer mol) {
-        if (interactive) {
+        if (getInteractive()) {
             JComponent c = optionsPanel(mol);
             if (c != null)
                 JOptionPane.showMessageDialog(null,c,"Enter properties",JOptionPane.PLAIN_MESSAGE);
@@ -177,17 +178,11 @@ public class MichaelAcceptorRules extends UserDefinedTree implements IDecisionIn
         
     }
 
-
-    public boolean getInteractive() {
-        return interactive;
-    }
-
-
-
-
-    public void setInteractive(boolean value) {
-        interactive=value;
-        
-    }
-
+	public DescriptorSpecification getSpecification() {
+        return new DescriptorSpecification(
+                "http://toxtree.sourceforge.net/michaelacceptors.html",
+                getTitle(),
+                this.getClass().getName(),                
+                "Toxtree plugin");
+	}
 }

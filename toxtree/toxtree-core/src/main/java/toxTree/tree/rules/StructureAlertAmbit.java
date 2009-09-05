@@ -54,7 +54,7 @@ public class StructureAlertAmbit extends RuleSMARTSSubstructureAmbit implements 
 	public String getImplementationDetails() {
 		StringBuffer b = new StringBuffer();
 		b.append(alertsCounter.getImplementationDetails());
-		b.append("Uses NK SMARTS<br>");
+		b.append("Uses Ambit SMARTS<br>");
 		b.append(super.getImplementationDetails());
 		
 		return b.toString();

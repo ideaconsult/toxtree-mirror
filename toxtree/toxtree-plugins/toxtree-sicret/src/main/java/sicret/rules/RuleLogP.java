@@ -27,6 +27,7 @@ import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
 import org.openscience.cdk.qsar.result.DoubleResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 
+import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.RuleVerifyProperty;
 
 /**
@@ -61,7 +62,7 @@ public class RuleLogP extends RuleVerifyProperty
 	}
 	
 	@Override
-	public String inputProperty(IAtomContainer mol) {
+	public String inputProperty(IAtomContainer mol) throws DecisionMethodException  {
 		
 		if (descriptor ==null) descriptor = new XLogPDescriptor();
 		logger.info("Calculating "+ descriptor.getClass().getName());
@@ -76,10 +77,12 @@ public class RuleLogP extends RuleVerifyProperty
 		}
 		
 	}
+	/*
     @Override
     public JComponent optionsPanel(IAtomContainer atomContainer) {
         return null;
     }
+    */
     @Override
     public String getImplementationDetails() {
     	StringBuffer b = new StringBuffer();

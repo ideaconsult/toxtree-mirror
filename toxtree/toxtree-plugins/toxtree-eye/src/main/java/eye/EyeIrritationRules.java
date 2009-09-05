@@ -27,6 +27,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.qsar.DescriptorSpecification;
 
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionResult;
@@ -350,4 +351,11 @@ public class EyeIrritationRules extends UserDefinedTree implements IDecisionInte
         interactive=value;
         
     }
+	public DescriptorSpecification getSpecification() {
+        return new DescriptorSpecification(
+                "http://toxtree.sourceforge.net/eye.html",
+                getTitle(),
+                this.getClass().getName(),                
+                "Toxtree plugin");
+	}
 }
