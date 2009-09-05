@@ -32,23 +32,26 @@ public class ToxTreeDescriptor implements IMolecularDescriptor {
 			result.classify(mol);
 			result.assignResult(mol);
 			
-			
-			descriptorNames = result.getResultPropertyNames();
+			String[] d = result.getResultPropertyNames();
+			String[] descriptorNames = new String[d.length+1];			
 			ArrayResult<String> value = new ArrayResult<String>(new String[descriptorNames.length]);
-			for (int i=0; i <  descriptorNames.length;i++)
+			for (int i=0; i <  d.length;i++)
 				try {
-					value.set(i,mol.getProperty(descriptorNames[i]).toString());
+					value.set(i,mol.getProperty(d[i]).toString());
+					descriptorNames[i]=d[i];
 				} catch (Exception x) {
 					value.set(i,null);
 				}
-
+			StringBuffer b = result.explain(true);	
+			value.set(descriptorNames.length-1, b.toString());
+			descriptorNames[descriptorNames.length-1] = String.format("%s#explanation", descriptorNames[0]) ;
 			return new DescriptorValue(
 						getSpecification(),
 						getParameterNames(),
 						getParameters(),
 						value,
 						descriptorNames
-						);				
+						);					
 
 		} catch (DecisionResultException x) {
 			throw new CDKException(x.getMessage());
