@@ -21,8 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 package toxTree.tree.rules;
 
-import javax.swing.JComponent;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
@@ -68,10 +66,12 @@ public class RuleInitAlertCounter extends RuleVerifyProperty {
 		b.append("\" property of the verified molecule to zero.");
 		return b.toString();
 	}
+	/*
 	@Override
 	public JComponent optionsPanel(IAtomContainer atomContainer) {
 		return null;
 	}
+	*/
 }
 
 

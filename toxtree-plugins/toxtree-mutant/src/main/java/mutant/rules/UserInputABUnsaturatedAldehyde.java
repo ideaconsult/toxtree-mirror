@@ -16,6 +16,9 @@ public class UserInputABUnsaturatedAldehyde extends UserInputRule {
 		setSilentvalue(true);
 	}
 
-
+	public void removeListener() {
+		this.listener = null;
+		
+	}
 
 }

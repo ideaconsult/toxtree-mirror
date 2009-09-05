@@ -28,6 +28,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Observable;
 
+import org.openscience.cdk.qsar.DescriptorSpecification;
+
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
@@ -271,5 +273,11 @@ public class CramerRulesWithExtensions extends UserDefinedTree  {
 		return toShallowXML(document);
 	}
 	*/
-    
+	public DescriptorSpecification getSpecification() {
+        return new DescriptorSpecification(
+                "http://toxtree.sourceforge.net/cramer2.html",
+                getTitle(),
+                this.getClass().getName(),                
+                "Toxtree plugin");
+	}    
 }

@@ -38,6 +38,7 @@ import javax.swing.JOptionPane;
 import mic.rules.MICTreeResult;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.qsar.DescriptorSpecification;
 
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionResult;
@@ -163,7 +164,14 @@ public class MICRules extends UserDefinedTree implements IDecisionInteractive{
 				);
         setPriority(20);
         setFalseIfRuleNotImplemented(false);};
-
+        
+    	public DescriptorSpecification getSpecification() {
+            return new DescriptorSpecification(
+                    "http://toxtree.sourceforge.net/mic.html",
+                    getTitle(),
+                    this.getClass().getName(),                
+                    "Toxtree plugin");
+    	}
 
 	/* (non-Javadoc)
      * @see toxTree.core.IDecisionMethod#addPropertyChangeListener(java.beans.PropertyChangeListener)

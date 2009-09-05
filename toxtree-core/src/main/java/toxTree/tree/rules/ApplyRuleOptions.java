@@ -26,6 +26,8 @@ package toxTree.tree.rules;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 
 import javax.swing.AbstractAction;
@@ -33,76 +35,82 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-public class ApplyRuleOptions implements Serializable {
+import toxTree.core.IDecisionInteractive.UserOptions;
+import toxTree.ui.PropertyEditor;
+
+public class ApplyRuleOptions implements Serializable,PropertyChangeListener {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3494906179654154028L;
-	public static final String[] user_options = {"Yes","No","Yes to all","No to all"};
-	public boolean interactive = false;
-	public boolean answer = true;
 
-	public ApplyRuleOptions(boolean interactive, boolean answer) {
-		setInteractive(interactive);
-		setAnswer(answer);
+
+	public ApplyRuleOptions() {
 	}
-	public boolean getInteractive() {
-		return interactive;
-	}
-	
-	public JComponent optionsPanel(String message,String hint, String title, IAtomContainer atomContainer) {
-		JPanel p = new JPanel();
-		p.setLayout(new GridLayout(2,1));
-		JLabel label = new JLabel(message);
-		label.setToolTipText(hint);
-		p.add(label);
-		
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.add(new JLabel(title));
-		ButtonGroup g = new ButtonGroup();
-		
-		int selected = 0;
-		if (interactive)
-			if (answer) selected = 0; else selected = 1;
-		else
-			if (answer) selected = 2; else selected = 3;
+
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (evt.getSource() instanceof UserInputRule) {
+			final UserInputRule rule = (UserInputRule) evt.getSource();
 			
-		for (int i=0; i < user_options.length;i++) {
-			JRadioButton b = new JRadioButton(new AbstractAction(user_options[i]) {
-				public void actionPerformed(ActionEvent e) {
-					String a = e.getActionCommand();
-					for (int j=0; j < user_options.length;j++) {
-						if (a.equals(user_options[j])) {
-							interactive = j<2;
-							if ((j % 2) == 0) answer = true; else answer = false;
-							break;
-						}
-					}
-			}}
-			);
-			b.setSelected(selected == i);
-			b.setActionCommand(user_options[i]);
-			g.add(b);
-			buttonPanel.add(b);
+			String message = evt.getPropertyName();
+			String hint = evt.getOldValue().toString();
+
+			Object o = evt.getNewValue();
+			if (o instanceof IAtomContainer) {
+				IAtomContainer mol = (IAtomContainer)o;
+				PropertyEditor p = new PropertyEditor(mol,optionsPanel(rule,message,hint));
+				if (JOptionPane.showConfirmDialog(null,p,String.format("Rule %s.%s",rule.getID(),rule.getTitle()),
+			                JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE) == JOptionPane.OK_OPTION) {
+			        
+
+			    }			
+			}
 		}
-		p.add(buttonPanel);
-		p.setBorder(BorderFactory.createEtchedBorder());
-		return p; 
+		
 	}
-	public void setInteractive(boolean value) {
-		this.interactive = value;		
-	}		
-	public void setAnswer(boolean value) {
-		this.answer = value;		
-	}		
-	public boolean isAnswer() {
-		return answer;
-	}	
+	public JComponent optionsPanel(final UserInputRule rule,String message, String hint) {
+
+			UserOptions options = rule.getOptions();
+			JPanel p = new JPanel();
+			p.setLayout(new GridLayout(2,1));
+			JLabel label = new JLabel(message);
+			label.setToolTipText(hint);
+			p.add(label);
+			
+			JPanel buttonPanel = new JPanel();
+			buttonPanel.add(new JLabel(rule.getID()));
+			ButtonGroup g = new ButtonGroup();
+			
+			int selected = options.ordinal();
+			
+			for (UserOptions value : UserOptions.values()) {
+				JRadioButton b = new JRadioButton(new AbstractAction(value.toString()) {
+					public void actionPerformed(ActionEvent e) {
+						String a = e.getActionCommand();
+						for (UserOptions o : UserOptions.values()) 
+							if (o.toString().equals(a)) {
+								rule.setOptions(o);
+								break;
+							}
+				}}
+				);
+				b.setSelected(selected == value.ordinal());
+				b.setActionCommand(value.toString());
+				g.add(b);
+				buttonPanel.add(b);
+			}
+			p.add(buttonPanel);
+			p.setBorder(BorderFactory.createEtchedBorder());
+			return p;
+		
+	}
+
 }
 
 

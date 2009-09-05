@@ -53,7 +53,7 @@ public class RuleMolWeight extends RuleVerifyProperty {
 		propertyExamples[1] = 674.567985;		
 
 	}
-
+	
 	@Override
 	public String inputProperty(IAtomContainer mol) {
 		MFAnalyser mf = new MFAnalyser(mol);

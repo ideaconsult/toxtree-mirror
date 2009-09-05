@@ -33,6 +33,7 @@ import javax.swing.JOptionPane;
 import mutant.rules.MutantTreeResult;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.qsar.DescriptorSpecification;
 
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionResult;
@@ -263,6 +264,14 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
        name = value;
 
     }
+    
+	public DescriptorSpecification getSpecification() {
+        return new DescriptorSpecification(
+                "http://toxtree.sourceforge.net/mutant.html",
+                getTitle(),
+                this.getClass().getName(),                
+                "Toxtree plugin");
+	}    
 	public StringBuffer explainRules(IDecisionResult result,boolean verbose) throws DecisionMethodException{
 		try {
 			StringBuffer b = result.explain(verbose);

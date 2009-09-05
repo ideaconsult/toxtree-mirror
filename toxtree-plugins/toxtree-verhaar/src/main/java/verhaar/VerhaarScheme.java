@@ -22,6 +22,8 @@ package verhaar;
 
 import java.util.Observable;
 
+import org.openscience.cdk.qsar.DescriptorSpecification;
+
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.CategoriesList;
 import toxTree.tree.DecisionNodesList;
@@ -147,5 +149,11 @@ public class VerhaarScheme extends UserDefinedTree {
 		notifyObservers();
         setPriority(10);
 	}	
-
+	public DescriptorSpecification getSpecification() {
+        return new DescriptorSpecification(
+                "http://toxtree.sourceforge.net/verhaar.html",
+                getTitle(),
+                this.getClass().getName(),                
+                "Toxtree plugin");
+	}  
 }

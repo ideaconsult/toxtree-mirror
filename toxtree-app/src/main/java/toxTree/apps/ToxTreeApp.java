@@ -97,10 +97,13 @@ public class ToxTreeApp extends CompoundMethodApplication {
 			logger.error(x);
 		}
 		if (methods.size() == 0) {
-			try {methods.add(
-					Introspection.loadCreateObject("toxTree.tree.cramer.CramerRules")
-					);
+			try {
+				methods.add(Introspection.loadCreateObject("toxTree.tree.cramer.CramerRules"));
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.kroes.Kroes1Tree"));
+				methods.add(Introspection.loadCreateObject("sicret.SicretRules"));
+				methods.add(Introspection.loadCreateObject("mutant.BB_CarcMutRules"));
 			} catch (Exception x) { 
+				x.printStackTrace();
 				try {methods.add( new SubstructureTree()); } catch (Exception e) {}
 			}
 			logger.warn("No decision trees found! Have you installed the application correctly?");

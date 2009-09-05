@@ -29,10 +29,9 @@
 
 package mutant.rules;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Map;
-
-import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.MFAnalyser;
@@ -48,9 +47,16 @@ public class QSAR6Applicable extends RuleSMARTSubstructureCDK implements IDecisi
      */
     private static final long serialVersionUID = 1840810866408347284L;
     protected static String aromatic_amine="For QSAR6 calculation of mutagenicity of aromatic amines, molecules that contain also NA_27 (aromatic nitro), should be excluded.";
-    protected ApplyRuleOptions options = new ApplyRuleOptions(false,false);
+    protected UserOptions options = UserOptions.NO;
+    protected PropertyChangeListener listener;
     
-    public QSAR6Applicable() throws Exception {
+    public UserOptions getOptions() {
+		return options;
+	}
+	public void setOptions(UserOptions options) {
+		this.options = options;
+	}
+	public QSAR6Applicable() throws Exception {
 
             setContainsAllSubstructures(true);
             
@@ -90,7 +96,8 @@ public class QSAR6Applicable extends RuleSMARTSubstructureCDK implements IDecisi
             setExplanation(e.toString());
             examples[0] = "c1ccc(N)cc1[N+](=O)[O-]";
             examples[1] = "c1ccccc1N"; 
-
+            setListener(new ApplyRuleOptions());
+            setInteractive(true);
     }
     @Override
     protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
@@ -102,31 +109,12 @@ public class QSAR6Applicable extends RuleSMARTSubstructureCDK implements IDecisi
         }
         return false;
     }
-    
+    /*
 	public JComponent optionsPanel(IAtomContainer atomContainer) {
 		return options.optionsPanel("Skip this rule?","If yes, the answer of the rule will always be YES, regardless of the structure.",  getID(), atomContainer);
-		/*
-		JPanel p = new JPanel();
-		JCheckBox b = new JCheckBox(new AbstractAction("Skip this rule") {
-			public void actionPerformed(ActionEvent e) {
-	            JCheckBox cb = (JCheckBox)e.getSource();
-	            setSkipRule(cb.isSelected());
-			}
-		});		
-		b.setToolTipText("If checked, the answer of the rule will always be YES (might be usefull for testing)");
-		p.add(b);
-		b = new JCheckBox(new AbstractAction("Don't ask anymore!") {
-			public void actionPerformed(ActionEvent e) {
-	            JCheckBox cb = (JCheckBox)e.getSource();
-	            setInteractive(cb.isSelected());
-			}
-		});
-		b.setToolTipText("Don't bring this question while applying the rule.");
-		p.add(b);
-		return p;
-		*/
+	
 	}
-
+*/
 	public void setInteractive(boolean value) {
 		options.setInteractive(value);
 		
@@ -136,19 +124,43 @@ public class QSAR6Applicable extends RuleSMARTSubstructureCDK implements IDecisi
 		
 	}
 	public boolean isSkipRule() {
-		return options.isAnswer();
+		return options.getAnswer();
 	}
 	
 	@Override
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+        if (getInteractive() && (getListener() !=null)) {
+        	getListener().propertyChange(new PropertyChangeEvent(
+        			this,
+        			"Skip this rule?",
+        			"If yes, the answer of the rule will always be YES, regardless of the structure.",
+        			mol));
+
+        } 
+		if (isSkipRule()) {
+			logger.info("Skip the rule");
+			return true;			
+		} else return super.verifyRule(mol);
+        /*
 		if (getInteractive()) 
 			JOptionPane.showMessageDialog(null, optionsPanel(mol),getTitle(),JOptionPane.PLAIN_MESSAGE,null);
 		if (isSkipRule()) {
 			logger.info("Skip the rule");
 			return true;			
 		} else return super.verifyRule(mol);
+		*/
 	}
 	public boolean getInteractive() {
-		return options.getInteractive();
+		return options.isInteractive();
+	}
+	public PropertyChangeListener getListener() {
+		return listener;
+	}
+	public void setListener(PropertyChangeListener listener) {
+		this.listener = listener;
+	}
+	public void removeListener() {
+		this.listener = null;
+		
 	}
 }    

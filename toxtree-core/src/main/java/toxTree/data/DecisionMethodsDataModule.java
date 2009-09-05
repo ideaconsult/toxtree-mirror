@@ -97,6 +97,7 @@ public class DecisionMethodsDataModule extends DataModule {
     public void setRules(IDecisionMethod rules) {
         
         this.rules = rules; 
+        
         IDecisionResult newResult = rules.createDecisionResult();
         newResult.setDecisionMethod(rules);
         

@@ -17,6 +17,7 @@ public class Rule1 extends StructureAlertAmbit {
 			id = "1";
 			setTitle("Ethynylene or acetylenic with a carbonyl");			
 			addSubstructure(getTitle(), "C#CC=O");
+			//addSubstructure(getTitle(), "[CH]#CC=O");
 //			addSubstructure("2", "[CH]#CC=O");
 			//addSubstructure("3", "C#C[CH]=O");
 			setContainsAllSubstructures(false);

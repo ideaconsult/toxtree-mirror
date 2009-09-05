@@ -38,6 +38,10 @@ public class UserInputAromaticAmine extends UserInputRule {
 		setID("Proceed with QSAR6 and QSAR8?");
 		setSilentvalue(true);
 	}
+	public void removeListener() {
+		this.listener = null;
+		
+	}
 }
 
 
