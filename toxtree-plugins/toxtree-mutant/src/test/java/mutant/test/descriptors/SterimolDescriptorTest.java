@@ -1,6 +1,6 @@
-/* SMARTSTest.java
+/* SterimolDescriptor.java
  * Author: Nina Jeliazkova
- * Date: Feb 17, 2008 
+ * Date: Feb 16, 2008 
  * Revision: 0.1 
  * 
  * Copyright (C) 2005-2008  Nina Jeliazkova
@@ -27,35 +27,44 @@
  * 
  */
 
-package mutant.test;
+package mutant.test.descriptors;
 
-import junit.framework.TestCase;
+import mutant.descriptors.AromaticAmineSubstituentsDescriptor;
 
-import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.qsar.IMolecularDescriptor;
 
-import toxTree.query.MolAnalyser;
-import ambit2.smarts.query.SmartsPatternCDK;
-
-public class SMARTSTest extends TestCase {
+public class SterimolDescriptorTest extends DescriptorsTest {
 
     protected void setUp() throws Exception {
         super.setUp();
+        addPropertiesToTest("b5stm1","B5STM1");
+        addPropertiesToTest("lstm1", "LSTM1");
+      
     }
 
     protected void tearDown() throws Exception {
         super.tearDown();
     }
-    public void test() throws Exception {
-        //"[cR1r6]!@[cR1r6]"
-        String smarts = "c1ccccc1!@c2ccccc2";
-        assertEquals(0,match(smarts,"C=1C=CC=2NC(=CC=2(C=1))C=3C=CC=C(C=3)Cl"));
-        assertTrue(match(smarts,"c1ccccc1-c2ccccc2")>0);
+
+    @Override
+    protected IMolecularDescriptor createDescriptorToTest() throws Exception {
+        return new AromaticAmineSubstituentsDescriptor();
     }
-    public int match(String smarts, String smiles) throws Exception {
-        IAtomContainer mol = toxTree.query.FunctionalGroups.createAtomContainer(smiles);
-        MolAnalyser.analyse(mol);
-        SmartsPatternCDK sm = new SmartsPatternCDK();
-        sm.setSmarts(smarts);
-        return sm.match(mol);
-    }    
+
+    @Override
+    public String getResultsFile() {
+        return "aromatic_amines/qsar8train_results.csv";      
+    }
+
+    @Override
+    public String getSourceFile() {
+        return "aromatic_amines/qsar8train.csv";
+
+    }
+
+    @Override
+    public String getStructureID() {
+        return "CAS Number";
+    }
+
 }
