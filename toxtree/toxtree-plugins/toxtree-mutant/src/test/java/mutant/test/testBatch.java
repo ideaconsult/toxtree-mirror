@@ -40,8 +40,8 @@ public class testBatch  {
 	public void run() {
 		try {
 			ToxTreeBatchProcessing bp = new ToxTreeBatchProcessing(
-					"plugins/mutant/data/iss2_rid.sdf",
-					"plugins/mutant/data/iss2_rid_results.sdf"
+					"/data/iss2_rid.sdf",
+					"/data/iss2_rid_results.sdf"
 					);
 			bp.setDecisionMethod(new BB_CarcMutRules());
 			bp.addObserver(new Observer() {

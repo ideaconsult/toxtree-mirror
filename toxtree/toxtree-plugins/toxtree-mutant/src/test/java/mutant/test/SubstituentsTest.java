@@ -111,7 +111,7 @@ public class SubstituentsTest extends TestCase {
 		try {
 
 			// LookupFile lookup = new
-			// LookupFile("plugins/mutant/src/mutant/descriptors/substituents.sdf");
+			// LookupFile("/src/mutant/descriptors/substituents.sdf");
 			// LookupFile lookup = new LookupFile("substituents.sdf");
 			MoleculesFile lookup = new MoleculesFile("substituents.sdf",
 					DefaultChemObjectBuilder.getInstance(), null);

@@ -55,13 +55,14 @@ import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
+import toxTree.core.IImplementationDetails;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
-import toxTree.tree.rules.smarts.ISmartsPattern;
 import toxTree.ui.tree.actions.NewRuleAction;
+import ambit2.smarts.query.ISmartsPattern;
 
 public abstract class TestMutantRules extends TestCase {
 	protected static TTLogger logger = new TTLogger(TestMutantRules.class);
@@ -90,9 +91,9 @@ public abstract class TestMutantRules extends TestCase {
 		applyRule(rule, getTestFileName(), resultsfile,resultsFolder);
 	}
 	protected void applyRule(IDecisionRule rule,  String sourcefile, String resultsfile, String resultsFolder) throws Exception {
-		InputStream in_source = new FileInputStream("plugins/mutant/data/"+sourcefile);
-		InputStream in_results = new FileInputStream("plugins/mutant/data/" + resultsfile);
-		applyRule(rule, in_source,in_results,getSubstanceID() ,"plugins/mutant/data/"+resultsFolder);
+		InputStream in_source = new FileInputStream("/data/"+sourcefile);
+		InputStream in_results = new FileInputStream("/data/" + resultsfile);
+		applyRule(rule, in_source,in_results,getSubstanceID() ,"/data/"+resultsFolder);
 		in_source.close();
 		in_results.close();
 	}	
@@ -291,7 +292,7 @@ public abstract class TestMutantRules extends TestCase {
 	}
     public int printAromaticity() throws Exception {
     	IteratingMDLReader resultsReader = new IteratingMDLReader(
-    			new FileInputStream("plugins/v 1.11/mutant/data/"+getHitsFile()),DefaultChemObjectBuilder.getInstance());
+    			this.getClass().getClassLoader().getResourceAsStream("/data/"+getHitsFile()),DefaultChemObjectBuilder.getInstance());
     	int aromaticCompounds = 0;
     	while (resultsReader.hasNext()) {
     		Object o = resultsReader.next();
@@ -363,9 +364,9 @@ public abstract class TestMutantRules extends TestCase {
             f.delete();
             System.out.println(ruleToTest.toString());
             System.out.println("old");
-            System.out.println(((AbstractRuleSmartSubstructure)ruleToTest).getImplementationDetails());
+            System.out.println(((IImplementationDetails)ruleToTest).getImplementationDetails());
             System.out.println("new");
-            System.out.println(((AbstractRuleSmartSubstructure)rule2).getImplementationDetails());
+            System.out.println(((IImplementationDetails)rule2).getImplementationDetails());
             assertEquals(ruleToTest,rule2);
     }   
         
