@@ -28,7 +28,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IDescriptor;
+
+import ambit2.base.interfaces.IProcessor;
 
 import toxTree.core.Introspection;
 import toxTree.tree.AbstractRule;
@@ -86,5 +89,8 @@ public abstract class RuleDescriptor extends AbstractRule {
 		if (obj instanceof RuleDescriptor)
 			return descriptorClass.equals(((RuleDescriptor)obj).descriptorClass);
 		else return false;
+	}
+	public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+		return null;
 	}
 }

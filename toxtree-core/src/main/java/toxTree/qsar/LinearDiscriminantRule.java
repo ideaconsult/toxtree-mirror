@@ -30,6 +30,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.model.QSARModelException;
 
+import ambit2.base.interfaces.IProcessor;
+
 import toxTree.core.IDescriptorBased;
 import toxTree.core.IImplementationDetails;
 import toxTree.exceptions.DRuleException;
@@ -122,6 +124,9 @@ public abstract class LinearDiscriminantRule extends AbstractRule implements IIm
     public void setCalculated(IMolecularDescriptor descriptor,String name, boolean calculated) {
         if (model != null)
             model.setCalculated(descriptor,name, calculated);
+    }
+    public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+    	return null;
     }
 }
 

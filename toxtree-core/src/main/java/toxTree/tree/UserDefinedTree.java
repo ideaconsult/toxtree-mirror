@@ -396,10 +396,7 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 		DecisionNodesList nodes = (DecisionNodesList) rules;
 		return nodes.getNode(id);
 	}
-	@Override
-	public IDecisionRule getRule(String name) {
-		return null;
-	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#clone()
 	 */

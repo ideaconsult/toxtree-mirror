@@ -44,7 +44,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 /*
  * 	ar-N=CH2

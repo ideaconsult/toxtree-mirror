@@ -28,6 +28,10 @@ import joelib.smarts.JOESmartsPattern;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+
+import ambit2.smarts.query.AbstractSmartsPattern;
+import ambit2.smarts.query.SMARTSException;
 
 /**
  * Encapsulates Joelib SMARTS parser.
@@ -61,6 +65,7 @@ public class SmartsPattern extends  AbstractSmartsPattern<JOEMol>{
 	public String getSmarts() {
 		return smarts;
 	}
+	
 	public void setSmarts(String smarts) throws SMARTSException {
 		joeSmartsPatern = null;
 		joeSmartsPatern = new JOESmartsPattern();
@@ -84,5 +89,19 @@ public class SmartsPattern extends  AbstractSmartsPattern<JOEMol>{
     }
 	public List<List<Integer>> getUniqueMatchingAtoms() throws SMARTSException {
 		throw new SMARTSException("Not implemented!");
+	}
+	public IAtomContainer getMatchingStructure(IAtomContainer mol)
+			throws UnsupportedOperationException, SMARTSException {
+		throw new UnsupportedOperationException();
+		
+	}
+	public QueryAtomContainer getQuery() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void useMOEvPrimitive(boolean flag)
+			throws UnsupportedOperationException {
+		throw new UnsupportedOperationException();
+		
 	}
 }

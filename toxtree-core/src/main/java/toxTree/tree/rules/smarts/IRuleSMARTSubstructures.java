@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.tree.rules.smarts;
 
 import toxTree.core.IImplementationDetails;
+import ambit2.smarts.query.SMARTSException;
 
 
 

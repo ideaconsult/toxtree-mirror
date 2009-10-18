@@ -34,7 +34,6 @@ import java.beans.PropertyChangeSupport;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
-
 import mic.rules.MICTreeResult;
 
 import org.openscience.cdk.interfaces.IAtomContainer;

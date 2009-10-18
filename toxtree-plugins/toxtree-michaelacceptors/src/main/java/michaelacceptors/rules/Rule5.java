@@ -1,7 +1,7 @@
 package michaelacceptors.rules;
 
 import toxTree.tree.rules.StructureAlertAmbit;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 public class Rule5 extends StructureAlertAmbit {
 	private static final long serialVersionUID = 0;

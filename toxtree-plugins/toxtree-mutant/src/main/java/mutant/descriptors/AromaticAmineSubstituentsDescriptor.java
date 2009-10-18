@@ -31,9 +31,9 @@ import toxTree.data.MoleculesFile;
 import toxTree.io.Tools;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.TopologySymbolQueryAtom;
-import toxTree.tree.rules.smarts.ISmartsPattern;
-import toxTree.tree.rules.smarts.SMARTSException;
-import toxTree.tree.rules.smarts.SmartsPatternCDK;
+import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.SMARTSException;
+import ambit2.smarts.query.SmartsPatternCDK;
 
 /**
  * returns "MR","LSTM","B1STM","B5STM" for substituents at postitions 1 to 6 (amine group at 1 position).

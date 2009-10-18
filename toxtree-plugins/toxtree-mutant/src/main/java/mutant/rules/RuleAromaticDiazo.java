@@ -35,7 +35,7 @@ import toxTree.query.MolFlags;
 import toxTree.query.SimpleReactions;
 import toxTree.tree.rules.RuleVerifyAlertsCounter;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 public class RuleAromaticDiazo extends RuleSMARTSubstructureCDK {
 	/**

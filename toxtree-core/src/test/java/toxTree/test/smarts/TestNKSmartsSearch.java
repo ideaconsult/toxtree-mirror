@@ -8,7 +8,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
-import toxTree.tree.rules.smarts.SmartsPatternAmbit;
+import ambit2.smarts.query.SmartsPatternAmbit;
 
 /**
  * Tests for {@link ambit2.smarts.SmartsManager} and derived rules.

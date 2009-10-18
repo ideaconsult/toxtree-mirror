@@ -2,6 +2,8 @@ package toxtree.plugins.kroes.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import ambit2.base.interfaces.IProcessor;
+
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.AbstractRule;
@@ -55,5 +57,8 @@ public class KroesRule8 extends AbstractRule {
 	@Override
 	public boolean isImplemented() {
 		return true;
+	}
+	public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+		return null;
 	}
 }

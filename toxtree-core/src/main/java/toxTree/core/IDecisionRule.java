@@ -40,6 +40,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.exceptions.DecisionMethodException;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * An interface definition to represent a rule, that will be used in a {@link toxTree.core.IDecisionMethod}.
@@ -144,6 +145,6 @@ public interface IDecisionRule extends Serializable, Cloneable {
 	boolean isEditable();
 	void setEditable(boolean value);
 	
-
+	IProcessor<IAtomContainer,IAtomContainer> getSelector();
 
 }

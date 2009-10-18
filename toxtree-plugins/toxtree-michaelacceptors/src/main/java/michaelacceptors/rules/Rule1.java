@@ -1,7 +1,7 @@
 package michaelacceptors.rules;
 
 import toxTree.tree.rules.StructureAlertAmbit;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 /**
  * TODO with StructureAlertAmbit [CH]#CC=O  doesn't match  COC(=O)C#C 

@@ -24,6 +24,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxTree.tree.rules.smarts;
 
+import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.SMARTSException;
+import ambit2.smarts.query.SmartsPatternAmbit;
+import ambit2.smarts.query.SmartsPatternCDK;
+
 /**
  * Creates any of SMARTS pattern classes.
  * @author Nina Jeliazkova nina@acad.bg

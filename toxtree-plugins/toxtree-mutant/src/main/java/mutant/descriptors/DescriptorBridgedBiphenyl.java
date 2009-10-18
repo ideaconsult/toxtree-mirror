@@ -4,8 +4,8 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 
-import toxTree.tree.rules.smarts.ISmartsPattern;
-import toxTree.tree.rules.smarts.SmartsPatternCDK;
+import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.SmartsPatternCDK;
 
 public class DescriptorBridgedBiphenyl extends DescriptorStructurePresence<IAtomContainer> {
 	protected static String BiBr = "I(BiBr)";

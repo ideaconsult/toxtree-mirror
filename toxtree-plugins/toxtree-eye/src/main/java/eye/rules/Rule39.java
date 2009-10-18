@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package eye.rules;
 
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 public class Rule39 extends RuleSMARTSSubstructureAmbit {
 	/**

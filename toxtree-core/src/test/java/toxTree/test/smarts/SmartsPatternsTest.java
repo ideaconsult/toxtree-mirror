@@ -31,9 +31,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 import junit.framework.TestCase;
-import toxTree.tree.rules.smarts.ISmartsPattern;
 import toxTree.tree.rules.smarts.SmartsPatternFactory;
 import toxTree.tree.rules.smarts.SmartsPatternFactory.SmartsParser;
+import ambit2.smarts.query.ISmartsPattern;
 
 public class SmartsPatternsTest extends TestCase {
 	  public void testXMLSerializingSmartsPatternsJoelib() throws Exception  {

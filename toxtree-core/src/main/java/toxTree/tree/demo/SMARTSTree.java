@@ -27,6 +27,8 @@ package toxTree.tree.demo;
 
 import org.openscience.cdk.templates.MoleculeFactory;
 
+import ambit2.smarts.query.SMARTSException;
+
 import toxTree.core.IDecisionCategory;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
@@ -55,7 +57,11 @@ public class SMARTSTree extends UserDefinedTree {
         
         RuleSMARTSubstructure rs = new RuleSMARTSubstructure();
         rs.setTitle("Aldehyde");
+        try {
         rs.addSubstructure("Aldehyde","[$([CX3H][#6]),$([CX3H2])]=[OX1]");
+		} catch (SMARTSException x) {
+			throw new DecisionMethodException(x);
+		}        
         rs.setID("1");
         rs.setExampleMolecule(MoleculeFactory.makeAlkane(4),false);
         rs.setExampleMolecule(FunctionalGroups.createAtomContainer("O=C([H])CCC", false),true);

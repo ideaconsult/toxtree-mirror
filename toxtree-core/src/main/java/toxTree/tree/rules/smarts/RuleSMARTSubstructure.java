@@ -30,6 +30,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.tree.rules.smarts.SmartsPatternFactory.SmartsParser;
+import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.SMARTSException;
 
 
 /**

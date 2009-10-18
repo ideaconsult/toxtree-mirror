@@ -44,7 +44,9 @@ public class RuleResult implements Serializable {
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = -7844039700306791740L;
-	
+	public static String ruleURL = "http://localhost/rule/";
+	public static String categoryURL = "http://localhost/category/";
+	public static String alertURL = "http://localhost/alerts/";
 	protected IDecisionRule rule = null;
 	protected boolean result = false;
 	protected IDecisionCategory category = null;
@@ -109,15 +111,16 @@ public class RuleResult implements Serializable {
 		StringBuffer b = new StringBuffer();
 		if (!silent) 
 			if (verbose) {
-				b.append(rule);
-				b.append('\t');
-				if (result) b.append("Yes\t");
-				else b.append("No\t");
-				
+				b.append(String.format("<a href=\"%s%s\"><img src='%s' border='0' alt='Hilight structure alert' title='Hilight structure alert'></a>",alertURL,rule.getTitle(),this.getClass().getResource("/toxTree/ui/tree/images/find.png").toString()));
+				b.append("&nbsp;");
+
+				b.append(String.format("<a href=\"%s%s\">%s</a>",ruleURL,rule.getTitle(),rule.toString()));
+				b.append("&nbsp;");
+				b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));
+				b.append("&nbsp;");
 				if (category != null) {
-					b.append("Class\t");
-					b.append(category);
-				} else b.append("\t");
+					b.append(String.format("Class&nbsp;<span style='color:orange'><a href=\"%s%s\">%s</a></span>",categoryURL,category.getID(),category.toString()));
+				} else b.append("&nbsp;");
 							
 				if ((molecule != null) && (molecule.getID() != null)) {
 					b.append("\t");

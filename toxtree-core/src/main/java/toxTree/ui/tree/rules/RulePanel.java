@@ -59,7 +59,7 @@ import org.openscience.cdk.interfaces.IMolecule;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.ui.molecule.Panel2D;
+import ambit2.ui.editors.Panel2D;
 
 /**
  * 

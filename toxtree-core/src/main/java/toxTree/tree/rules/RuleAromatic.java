@@ -26,6 +26,8 @@ package toxTree.tree.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import ambit2.base.interfaces.IProcessor;
+
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
 import toxTree.tree.AbstractRule;
@@ -72,4 +74,5 @@ public class RuleAromatic extends AbstractRule {
         return true;
     }	
 
+    
 }

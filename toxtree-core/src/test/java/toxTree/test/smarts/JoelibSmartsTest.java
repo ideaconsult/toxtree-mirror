@@ -145,7 +145,7 @@ public class JoelibSmartsTest extends TestCase {
 	        }
 	    }
 
-	    public void testDirectJoeMolMatch() {
+	    public void testDirectJoeMolMatch() throws Exception {
 	    	String[][] testSmarts = {
 	    			//name,smarts,smiles
 	    			{"Hydroperoxide","[OX2H][OX2]","OO"},
@@ -161,14 +161,10 @@ public class JoelibSmartsTest extends TestCase {
 	    	for (int i=0; i < testSmarts.length;i++) {
 	    		RuleSMARTSubstructure rule = new RuleSMARTSubstructure();
 	    		System.out.print(testSmarts[i][0]);
-	    		try {
-	    			rule.addSubstructure(testSmarts[i][1]);
-	    			assertTrue(rule.verifyRule(FunctionalGroups.createAtomContainer(testSmarts[i][2],true)));
-	    			System.out.println("\tOK");	
-	    		} catch (DecisionMethodException x) {
-	    			System.out.println(x.getMessage());
-	    			fail();
-	    		}
+    			rule.addSubstructure(testSmarts[i][1]);
+    			assertTrue(rule.verifyRule(FunctionalGroups.createAtomContainer(testSmarts[i][2],true)));
+    			System.out.println("\tOK");	
+
 	    	}
 	    	
 	    	/*

@@ -30,9 +30,12 @@ import java.util.List;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.MFAnalyser;
 
+import ambit2.base.interfaces.IProcessor;
+
 import toxTree.core.SmartElementsList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * Verifies if the molecule consists of only allowed elements
@@ -180,7 +183,6 @@ public class RuleElements extends AbstractRule {
 		this.mode = mode;
 	}
 	
-
 }
 
 

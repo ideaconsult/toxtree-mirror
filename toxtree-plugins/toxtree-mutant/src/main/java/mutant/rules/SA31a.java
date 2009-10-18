@@ -31,7 +31,7 @@ import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.StructureAlertCDK;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 /**
  * TODO Verify how many level of recursive smarts are supported

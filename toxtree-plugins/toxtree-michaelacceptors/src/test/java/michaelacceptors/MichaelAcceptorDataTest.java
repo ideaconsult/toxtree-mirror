@@ -3,7 +3,6 @@ package michaelacceptors;
 import java.io.InputStream;
 
 import junit.framework.Assert;
-
 import michaelacceptors.categories.CategoryMichaelAcceptor;
 
 import org.junit.Before;

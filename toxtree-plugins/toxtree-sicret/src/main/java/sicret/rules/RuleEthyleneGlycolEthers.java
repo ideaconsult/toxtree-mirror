@@ -21,7 +21,7 @@ package sicret.rules;
 
 
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 /**
  * Ethylene Glycol Ethers<br>

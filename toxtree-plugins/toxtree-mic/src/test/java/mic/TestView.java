@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 package mic;
 
-import mic.MICRules;
 import toxTree.core.Introspection;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.ui.tree.TreeFrame;
