@@ -33,9 +33,9 @@ import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 import org.openscience.cdk.qsar.result.IntegerResult;
 
-import toxTree.tree.rules.smarts.ISmartsPattern;
-import toxTree.tree.rules.smarts.SMARTSException;
-import toxTree.tree.rules.smarts.SmartsPatternCDK;
+import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.SMARTSException;
+import ambit2.smarts.query.SmartsPatternCDK;
 
 /**
   * The indicator variable Idist is a structural parameter coding for the

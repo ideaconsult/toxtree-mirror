@@ -31,8 +31,8 @@ import javax.swing.JPanel;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.MFAnalyser;
 
-import toxTree.ui.molecule.Panel2D;
 import toxTree.ui.molecule.PropertyPanel;
+import ambit2.ui.editors.Panel2D;
 
 public class PropertyEditor extends JPanel{
     /**

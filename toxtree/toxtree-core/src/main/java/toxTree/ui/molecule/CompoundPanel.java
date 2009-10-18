@@ -45,6 +45,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.data.DataContainer;
 import toxTree.tree.ProgressStatus;
+import ambit2.base.interfaces.IProcessor;
+import ambit2.ui.editors.Panel2D;
 
 
 
@@ -158,7 +160,11 @@ public class CompoundPanel extends JPanel implements   Observer, PropertyChangeL
         if ((evt.getNewValue() instanceof ProgressStatus) && ((ProgressStatus)evt.getNewValue()).isEstimated()) {
 
             display();
-        }
+        } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_selected.toString())) {
+        	picturePanel.setSelector((IProcessor<IAtomContainer,IAtomContainer>)evt.getNewValue());	
+        } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_molecule.toString())) {
+        	picturePanel.setAtomContainer((IAtomContainer)evt.getNewValue());	
+        }           	
         
         
     }

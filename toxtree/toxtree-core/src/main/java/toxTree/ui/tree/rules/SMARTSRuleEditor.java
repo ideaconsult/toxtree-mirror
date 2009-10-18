@@ -47,10 +47,10 @@ import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.tree.DecisionNode;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
-import toxTree.tree.rules.smarts.ISmartsPattern;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
-import toxTree.tree.rules.smarts.SMARTSException;
 import toxTree.ui.HashtableModel;
+import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.SMARTSException;
 
 /**
  * Editor for {@link RuleSMARTSubstructure}.

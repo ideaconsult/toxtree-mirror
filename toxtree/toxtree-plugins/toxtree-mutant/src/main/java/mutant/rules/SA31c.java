@@ -1,7 +1,7 @@
 package mutant.rules;
 
 import toxTree.tree.rules.StructureAlert;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 public class SA31c extends StructureAlert {
 	/**

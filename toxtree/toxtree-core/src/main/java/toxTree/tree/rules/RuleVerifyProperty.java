@@ -34,6 +34,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.smiles.SmilesParser;
 
+import ambit2.base.interfaces.IProcessor;
+
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IImplementationDetails;
@@ -247,6 +249,9 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 	public void removeListener() {
 		this.listener = null;
 		
+	}
+	public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+		return null;
 	}
 	
 } 

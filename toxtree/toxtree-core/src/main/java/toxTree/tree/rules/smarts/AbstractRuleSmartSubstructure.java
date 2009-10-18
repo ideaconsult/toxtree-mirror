@@ -28,11 +28,16 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import toxTree.ui.tree.rules.SMARTSRuleEditor;
+import ambit2.base.exceptions.AmbitException;
+import ambit2.base.interfaces.IProcessor;
+import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.SMARTSException;
 
 public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule implements
 		IRuleSMARTSubstructures, ISmartsPatternFactory {
@@ -85,50 +90,149 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
     }	
     protected abstract T getObjectToVerify(IAtomContainer mol);
     
-	public boolean  verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol) throws DecisionMethodException {
-		logger.info(getID());
-		T moltotest = getObjectToVerify(mol);		
-		if (!isAPossibleHit(mol,moltotest)) {
-			logger.debug("Not a possible hit due to the prescreen step.");
-			return false;
+    
+    public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+    	return new IProcessor<IAtomContainer, IAtomContainer>() {
+    		public IAtomContainer process(IAtomContainer mol)
+    				throws AmbitException {
+    			try {
+    				IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
+	    			verifyRule(mol, selected);
+	    			return selected;
+    			} catch (DecisionMethodException x) {
+    				throw new AmbitException(x);
+    			}
+    		}
+    		public boolean isEnabled() {
+    			return true;
+    		}
+    		public long getID() {
+    			return 0;
+    		}
+    		public void setEnabled(boolean arg0) {
+    		}
+    	};
+    }
+	
+	public boolean  verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol,IAtomContainer selected) throws DecisionMethodException {
+		try {
+			
+			logger.info(getID());
+			T moltotest = getObjectToVerify(mol);		
+			if (!isAPossibleHit(mol,moltotest)) {
+				logger.debug("Not a possible hit due to the prescreen step.");
+				return false;
+			}
+	
+			Enumeration e  = smartsPatterns.keys();
+			boolean is_true = false;
+			String temp_id = "";
+	    	while(e.hasMoreElements()){
+	    		temp_id = e.nextElement().toString();
+	    		
+	    		ISmartsPattern pattern = smartsPatterns.get(temp_id);
+	            if (pattern == null)
+	            {
+	            	throw new DecisionMethodException("ID '" + id + "' is missing in " +
+	            			getClass().getName());
+	            }
+	            
+	    		is_true = pattern.hasSMARTSPattern(moltotest)>0;
+	  
+	    		logger.debug("SMARTS " + temp_id,'\t',pattern.toString(),'\t',is_true);
+	    		
+	    		if (pattern.isNegate()) is_true = ! is_true;
+	    		
+	    		if (is_true && (selected!=null))
+	    			selected.add(pattern.getMatchingStructure(mol));
+	    		
+	    		if(containsAllSubstructures && !is_true){
+	    			
+	    			return false;
+	    		}
+	    		else if(!containsAllSubstructures && is_true){    			
+	    			is_true = true;
+	    			break;
+	    		}
+	    		
+	    		
+	    		
+	    	}
+	    	if (final_and_patch != null) {
+	    		boolean b = final_and_patch.hasSMARTSPattern(moltotest)>0;
+	    		if (b && (selected!=null))
+	    			selected.add(final_and_patch.getMatchingStructure(mol));
+	    			
+	    		if (final_and_patch.isNegate()) b = !b;
+	    		return is_true && b; 
+	    	} else return is_true;
+  		} catch (SMARTSException x) {
+			throw new DecisionMethodException(x);
+		} catch (DecisionMethodException x) {
+			throw x;
+		} catch (Exception x) {
+			throw new DecisionMethodException(x);
 		}
-
-		Enumeration e  = smartsPatterns.keys();
-		boolean is_true = false;
-		String temp_id = "";
-    	while(e.hasMoreElements()){
-    		temp_id = e.nextElement().toString();
-    		
-    		ISmartsPattern pattern = smartsPatterns.get(temp_id);
-            if (pattern == null)
-            {
-            	throw new DecisionMethodException("ID '" + id + "' is missing in " +
-            			getClass().getName());
-            }
-            
-    		is_true = pattern.hasSMARTSPattern(moltotest)>0;
-    		
-    		logger.debug("SMARTS " + temp_id,'\t',pattern.toString(),'\t',is_true);
-    		
-    		if (pattern.isNegate()) is_true = ! is_true;
-    		
-    		if(containsAllSubstructures && !is_true){
-    			
-    			return false;
-    		}
-    		else if(!containsAllSubstructures && is_true){    			
-    			is_true = true;
-    			break;
-    		}
-    		
-    		
-    		
-    	}
-    	if (final_and_patch != null) {
-    		boolean b = final_and_patch.hasSMARTSPattern(moltotest)>0;
-    		if (final_and_patch.isNegate()) b = !b;
-    		return is_true && b; 
-    	} else return is_true;
+	}	
+	/*
+	public boolean  verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol) throws DecisionMethodException {
+		try {
+			logger.info(getID());
+			T moltotest = getObjectToVerify(mol);		
+			if (!isAPossibleHit(mol,moltotest)) {
+				logger.debug("Not a possible hit due to the prescreen step.");
+				return false;
+			}
+	
+			Enumeration e  = smartsPatterns.keys();
+			boolean is_true = false;
+			String temp_id = "";
+	    	while(e.hasMoreElements()){
+	    		temp_id = e.nextElement().toString();
+	    		
+	    		ISmartsPattern pattern = smartsPatterns.get(temp_id);
+	            if (pattern == null)
+	            {
+	            	throw new DecisionMethodException("ID '" + id + "' is missing in " +
+	            			getClass().getName());
+	            }
+	            
+	    		is_true = pattern.hasSMARTSPattern(moltotest)>0;
+	  
+	    		logger.debug("SMARTS " + temp_id,'\t',pattern.toString(),'\t',is_true);
+	    		
+	    		if (pattern.isNegate()) is_true = ! is_true;
+	    		
+	    		if(containsAllSubstructures && !is_true){
+	    			
+	    			return false;
+	    		}
+	    		else if(!containsAllSubstructures && is_true){    			
+	    			is_true = true;
+	    			break;
+	    		}
+	    		
+	    		
+	    		
+	    	}
+	    	if (final_and_patch != null) {
+	    	
+	    		boolean b = final_and_patch.hasSMARTSPattern(moltotest)>0;
+	    		if (final_and_patch.isNegate()) b = !b;
+	    		return is_true && b; 
+	    	} else return is_true;
+  		} catch (SMARTSException x) {
+			throw new DecisionMethodException(x);
+		} catch (DecisionMethodException x) {
+			throw x;
+		} catch (Exception x) {
+			throw new DecisionMethodException(x);
+		}
+	}
+	*/
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol,null);
 	}
 	public void removeSingleSMARTS(Hashtable table, String id) throws SMARTSException
         {

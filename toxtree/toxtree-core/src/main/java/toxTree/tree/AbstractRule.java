@@ -56,6 +56,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.XMLDecisionMethodException;
 import toxTree.logging.TTLogger;
 import toxTree.ui.tree.rules.RulePanel;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * An abstract class implementing {@link IDecisionRule} interface.
@@ -343,5 +344,9 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	public void setExamples(String[] examples) {
 		this.examples = examples;
 	}		
-
+	
+	public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+		return null;
+	}
+	
 }

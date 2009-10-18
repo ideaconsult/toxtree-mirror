@@ -22,6 +22,8 @@ package sicret.rules;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import ambit2.smarts.query.SMARTSException;
+
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.MolAnalyser;
@@ -69,7 +71,11 @@ public class RuleC10_C20AliphaticAlcohols extends RuleAnySubstructure{
 		logger.info(toString());
 		RuleSMARTSubstructure rule = new RuleSMARTSubstructure();
 		String C10_C20_Aliphatic_alcohols = "[C][OX2H]";
+		try {
 		rule.initSingleSMARTS(rule.getSmartsPatterns(),"1", C10_C20_Aliphatic_alcohols);
+		} catch (SMARTSException x) {
+			throw new DecisionMethodException(x);
+		}
 		int c = 0;
 		
 		for (int i=0; i < mol.getAtomCount();i++) {

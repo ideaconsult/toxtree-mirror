@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package sicret.rules;
 
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 /**
  * Alkyl Alkanol Amines.<br>

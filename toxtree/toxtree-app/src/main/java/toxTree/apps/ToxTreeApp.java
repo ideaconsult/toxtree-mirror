@@ -32,7 +32,6 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-import toxTree.core.IDecisionMethod;
 import toxTree.core.Introspection;
 import toxTree.data.DataModule;
 import toxTree.data.ToxTreeModule;

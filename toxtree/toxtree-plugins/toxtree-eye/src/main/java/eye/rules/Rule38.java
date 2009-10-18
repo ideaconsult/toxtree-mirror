@@ -34,8 +34,8 @@ import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.interfaces.IBond.Order;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.rules.smarts.SMARTSException;
-import toxTree.tree.rules.smarts.SmartsPatternCDK;
+import ambit2.smarts.query.SMARTSException;
+import ambit2.smarts.query.SmartsPatternCDK;
 
 public class Rule38 extends Rule13_AliphaticMonoalcohols {
 	/**
@@ -69,23 +69,29 @@ public class Rule38 extends Rule13_AliphaticMonoalcohols {
 	}
 
     public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-        int r = smartsPattern.hasSMARTSPattern(mol);
-        if (r == 0) return false;
-        IMoleculeSet chains = extractChains(mol, smartsPattern.getUniqueMatchingAtoms());
-        
-        int okchains = 0;
-        int allchains = 0;
-        for (int i=0; i < chains.getMoleculeCount(); i++) 
-            try {
-                allchains++;                
-                if (acceptSubstituent(chains.getMolecule(i))) {
-                    okchains++;
-                }
-            } catch (DecisionMethodException x) {
-                logger.debug(x);
-                return false;
-            }
-        return okchains==allchains;
+    	try {
+	        int r = smartsPattern.hasSMARTSPattern(mol);
+	        if (r == 0) return false;
+	        IMoleculeSet chains = extractChains(mol, smartsPattern.getUniqueMatchingAtoms(mol));
+	        
+	        int okchains = 0;
+	        int allchains = 0;
+	        for (int i=0; i < chains.getMoleculeCount(); i++) 
+	            try {
+	                allchains++;                
+	                if (acceptSubstituent(chains.getMolecule(i))) {
+	                    okchains++;
+	                }
+	            } catch (DecisionMethodException x) {
+	                logger.debug(x);
+	                return false;
+	            }
+	        return okchains==allchains;
+    	} catch (SMARTSException x) {
+    		throw new DecisionMethodException(x);
+    	} catch (DecisionMethodException x) {
+    		throw x;
+    	}
     }
     
     protected boolean acceptSubstituent(IMolecule m) throws DecisionMethodException {

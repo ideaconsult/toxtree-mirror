@@ -80,4 +80,5 @@ public interface IDecisionResult extends Comparable, Serializable , IProgressSta
 	String[] getResultPropertyNames();
 	public List<CategoryFilter> getFilters();
     void setNotify(boolean value);
+    void hilightAlert(IDecisionRule rule) throws DecisionResultException;
 }

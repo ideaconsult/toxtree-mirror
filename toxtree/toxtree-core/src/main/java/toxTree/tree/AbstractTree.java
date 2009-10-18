@@ -279,8 +279,8 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 	public IDecisionRule getRule(String name) {
 		if (rules == null) return null;
 		for (int i = 0; i <rules.size(); i++) 
-			if (rules.getRule(i).getTitle().equals(name)) 
-				return rules.getRule(i);
+			if (getRule(i).getTitle().equals(name)) 
+				return getRule(i);
 		return null;	
 	}
 

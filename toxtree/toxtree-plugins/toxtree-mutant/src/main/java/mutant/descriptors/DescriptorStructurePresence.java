@@ -34,8 +34,8 @@ import org.openscience.cdk.qsar.result.BooleanResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 
 import toxTree.logging.TTLogger;
-import toxTree.tree.rules.smarts.ISmartsPattern;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.SMARTSException;
 
 public abstract class DescriptorStructurePresence<T> implements IMolecularDescriptor {
 	protected static  TTLogger logger = new TTLogger(DescriptorStructurePresence.class);

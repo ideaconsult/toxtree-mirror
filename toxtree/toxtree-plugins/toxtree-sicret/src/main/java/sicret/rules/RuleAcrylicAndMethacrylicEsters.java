@@ -23,7 +23,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 /**
  * 

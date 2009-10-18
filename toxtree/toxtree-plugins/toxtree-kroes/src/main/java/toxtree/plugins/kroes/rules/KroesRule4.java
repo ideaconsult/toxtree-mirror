@@ -1,9 +1,5 @@
 package toxtree.plugins.kroes.rules;
 
-import org.openscience.cdk.interfaces.IAtomContainer;
-
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.AbstractRule;
 
 /**
  * Does estimated intake exceed TTC of 0.15 \u00B5g/day ?

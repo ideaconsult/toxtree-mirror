@@ -42,6 +42,7 @@ import toxTree.exceptions.DMethodNotAssigned;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
+import ambit2.ui.editors.Panel2D;
 /**
  * A default class implementing {@link toxTree.core.IDecisionResult}
  * @author Nina Jeliazkova nina@acad.bg<br>
@@ -239,6 +240,12 @@ public class TreeResult implements IDecisionResult {
 		    	IAtomContainer ac = null;
 		    	boolean first = true;
 		    	String delimiter = "";
+		    	//b.append("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">");
+		    	b.append("<html><head><title>Toxtree</title></head>");
+		    	//b.append("<html><head><title>Toxtree</title>");
+		    //	b.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"></head>");
+		    	
+		    	b.append("<body>");
 		    	for (int i=0;i < ruleResults.size();i++) {
 		    		if ((!verbose) && (i>0)) delimiter = ",";
 		    		else delimiter = "";
@@ -249,14 +256,16 @@ public class TreeResult implements IDecisionResult {
 		    		if ((ac != null) && (ac.getID() != mol.getID())) {
 		    			if (!first)  if (!verbose) b.append(")"); else ;
 		    			else first = false;
-		    			if (verbose) b.append("\n"); else  b.append("(");
+		    			if (verbose) b.append("<br>"); else  b.append("(");
 		    			ac = mol;
 		    		} else b.append(delimiter);
 		    		
 		    		b.append(r.explain(verbose));
-		    		if (verbose) b.append("\n");
+		    		if (verbose) b.append("<br>");
 		    	}
-	    		if (!first) if (!verbose) b.append(")");		    	
+	    		if (!first) if (!verbose) b.append(")");		
+	    		b.append("</body>");
+	    		b.append("</html>");
 				return b;
 		    }
 		    
@@ -517,5 +526,10 @@ public class TreeResult implements IDecisionResult {
     public synchronized void setOriginalMolecule(IAtomContainer originalMolecule) {
         this.originalMolecule = originalMolecule;
     }
+    
+	public synchronized void hilightAlert(IDecisionRule rule) throws DecisionResultException {
+		firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(), null, originalMolecule);
+		firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, rule.getSelector());
+	}
 	
 }

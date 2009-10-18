@@ -31,6 +31,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.smarts.SmartsPatternFactory.SmartsParser;
+import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.SMARTSException;
 
 /**
  * An IDecisionRule, making use of CDK SMARTS parser.

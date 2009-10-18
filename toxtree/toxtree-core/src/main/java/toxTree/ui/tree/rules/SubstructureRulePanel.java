@@ -39,11 +39,11 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleSubstructures;
-import toxTree.ui.molecule.Panel2D;
 import toxTree.ui.tree.ListPanel;
 import toxTree.ui.tree.QueryAtomContainersModel;
 import toxTree.ui.tree.actions.SubstructureFromListAction;
 import toxTree.ui.tree.actions.SubstructuresFromFileAction;
+import ambit2.ui.editors.Panel2D;
 
 /**
  * TODO add description

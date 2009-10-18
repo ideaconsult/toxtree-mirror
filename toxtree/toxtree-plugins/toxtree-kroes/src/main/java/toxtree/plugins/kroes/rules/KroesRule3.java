@@ -1,7 +1,7 @@
 package toxtree.plugins.kroes.rules;
 
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.SMARTSException;
 
 
 /**

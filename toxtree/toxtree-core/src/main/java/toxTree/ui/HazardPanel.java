@@ -1,6 +1,6 @@
 
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2009 
 
 Contact: nina@acad.bg
 
@@ -41,20 +41,30 @@ import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.ToolTipManager;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 
 import toxTree.core.IDecisionCategories;
-import toxTree.core.IDecisionResult;
+import toxTree.core.IDecisionRule;
 import toxTree.data.ActionList;
 import toxTree.data.ToxTreeActions;
 import toxTree.data.ToxTreeModule;
 import toxTree.exceptions.DecisionResultException;
+import toxTree.tree.RuleResult;
 import toxTree.ui.tree.categories.CategoriesPanel;
+import toxTree.ui.tree.rules.RulePanel;
 
 
 /**
@@ -63,9 +73,9 @@ import toxTree.ui.tree.categories.CategoriesPanel;
  * @author Nina Jeliazkova <br>
  * <b>Modified</b> 2005-4-30
  */
-public class HazardPanel extends DataModulePanel {
+public class HazardPanel extends DataModulePanel<ToxTreeModule> {
     protected Action editAction;
-    protected ToxTreeModule model;
+
     /**
      * Comment for <code>serialVersionUID</code>
      */
@@ -75,7 +85,7 @@ public class HazardPanel extends DataModulePanel {
 	GridBagLayout gridBag;
 	JButton estimateButton;
 	JCheckBox explainOption;
-	JTextArea explainArea;
+	JEditorPane explainArea;
 	TitledBorder tBorder;
 	CategoriesPanel cPanel;
 	/**
@@ -83,7 +93,6 @@ public class HazardPanel extends DataModulePanel {
 	 */
 	public HazardPanel(ToxTreeModule toxModule) {
 		super(toxModule);
-		model = toxModule;
 		setBackground(Color.black);
 		setLayout(gridBag);
 		setBorder(BorderFactory.createMatteBorder(5,5,5,5,Color.black));
@@ -93,23 +102,23 @@ public class HazardPanel extends DataModulePanel {
      */
     public void update(Observable o, Object arg) {
         methodLabel.setText("<html><b> by <u>" + 
-                model.getRules().toString() + 
+                getDataModule().getRules().toString() + 
                 "</u></b></html>");
 
-        tBorder.setTitle(model.getRules().toString());
+        tBorder.setTitle(getDataModule().getRules().toString());
         
-        IDecisionCategories assignedCategories = model.getTreeResult().getAssignedCategories();
+        IDecisionCategories assignedCategories = getDataModule().getTreeResult().getAssignedCategories();
         for (int i=0; i < assignedCategories.size();i++)
-        	model.getRules().getCategories().setSelected(assignedCategories.get(i));
+        	getDataModule().getRules().getCategories().setSelected(assignedCategories.get(i));
         
         //model.getRules().getCategories().setSelected(model.getTreeResult().getCategory());
                 
-        cPanel.setData(model.getRules().getCategories(),model.getTreeResult());
+        cPanel.setData(getDataModule().getRules().getCategories(),getDataModule().getTreeResult());
         
         //setHazardClass(model.getClassID());
         StringBuffer b = new StringBuffer();
         try {
-            b = model.getTreeResult().explain(explainOption.isSelected());
+            b = getDataModule().getTreeResult().explain(explainOption.isSelected());
         } catch (DecisionResultException x) {
             b.append(x.getMessage());
         }
@@ -119,7 +128,7 @@ public class HazardPanel extends DataModulePanel {
     
 	@Override
 	protected void addWidgets(ActionList actions) {
-		model = (ToxTreeModule)dataModule;
+
 		gridBag = new GridBagLayout();
 		//setLayout(gridBag);
 		GridBagConstraints c = new GridBagConstraints();
@@ -169,7 +178,7 @@ public class HazardPanel extends DataModulePanel {
 		add(estimateButton);		
 
 		JPanel propertiesPanel = new JPanel(new BorderLayout());
-		cPanel = new CategoriesPanel(model.getRules().getCategories(),model.getTreeResult());
+		cPanel = new CategoriesPanel(getDataModule().getRules().getCategories(),getDataModule().getTreeResult());
 		cPanel.setMinimumSize(new Dimension(256,3*48+2));
 		cPanel.setPreferredSize(new Dimension(256,3*48+2));
 /*
@@ -194,8 +203,74 @@ public class HazardPanel extends DataModulePanel {
         c.fill = GridBagConstraints.BOTH;
         c.weighty = Integer.MAX_VALUE;
 
-		explainArea = new JTextArea("Cramer Rules");
+		explainArea = new JTextPane();
 		explainArea.setAutoscrolls(true);
+		explainArea.setContentType("text/html");	
+		//ToolTipManager.sharedInstance().registerComponent(explainArea);
+
+		
+		HTMLEditorKit kit = new HTMLEditorKit();
+		
+		explainArea.setEditorKit(kit);
+		explainArea.setEditable(false);
+		//TODO this is a hack to parse predefined URIs.  refactor to expose models/rules as URI
+		explainArea.addHyperlinkListener(new HyperlinkListener() {
+			public void hyperlinkUpdate(HyperlinkEvent he) {
+				HyperlinkEvent.EventType type = he.getEventType();
+				
+			    if (type == HyperlinkEvent.EventType.ACTIVATED) {
+			    	if (he.getURL().toString().startsWith(RuleResult.ruleURL)) {
+			    		String name = he.getURL().toString().substring(RuleResult.ruleURL.length());
+			    		
+			    		IDecisionRule rule = getDataModule().getRules().getRule(name);
+			    		if (rule != null) {
+			    			RulePanel panel = new RulePanel(rule);
+			    			panel.setRule(rule);
+			    			panel.setEditable(false);
+			    			panel.setPreferredSize(new Dimension(500,500));
+			    			JOptionPane.showMessageDialog(cPanel,panel,"Rule:"+rule.getTitle(),JOptionPane.PLAIN_MESSAGE,null);
+			    		}
+			    			
+			    	} else if (he.getURL().toString().startsWith(RuleResult.categoryURL)) {
+			    		/*
+				    	String name = he.getURL().toString().substring(RuleResult.categoryURL.length());
+				    	try {
+				    		IDecisionCategory category = model.getTreeResult().getDecisionMethod().getgory(Integer.parseInt(name));
+				    		
+				    		JOptionPane.showMessageDialog(cPanel,category.getEditor().getVisualCompoment());
+				    	} catch (Exception x) {
+				    		x.printStackTrace();
+				    	}
+				    	*/
+				    } else if (he.getURL().toString().startsWith(RuleResult.alertURL)) {
+			    		String name = he.getURL().toString().substring(RuleResult.alertURL.length());
+			    		
+			    		IDecisionRule rule = getDataModule().getRules().getRule(name);
+			    		if (rule != null) try {
+			    			//hilight alerts
+			    			getDataModule().getTreeResult().hilightAlert(rule);
+			    		} catch (Exception x) { x.printStackTrace();}
+				    }
+			    						    	
+			    }
+				
+			}
+		});
+		
+        // add some styles to the html
+		/*
+        StyleSheet styleSheet = kit.getStyleSheet();
+        styleSheet.addRule("body {color:#000; font-family:times; margin: 4px; }");
+        styleSheet.addRule("h1 {color: blue;}");
+        styleSheet.addRule("h2 {color: #ff0000;}");
+        styleSheet.addRule("pre {color : black; background-color : #fafafa; }");
+        styleSheet.addRule("yes { color : green; }");
+        styleSheet.addRule("no { color : red; }");	
+        */
+	    Document doc = kit.createDefaultDocument();
+	    explainArea.setDocument(doc);
+
+	        
 		tBorder = BorderFactory.createTitledBorder("");
 		explainArea.setBorder(tBorder);
         JScrollPane scrollText = new JScrollPane(explainArea);
@@ -216,7 +291,5 @@ public class HazardPanel extends DataModulePanel {
 	public void addActionListener(ActionListener l) {
 	    estimateButton.addActionListener(l);
 	}
-	public IDecisionResult getModel() {
-		return model.getTreeResult();
-	}
+
 }

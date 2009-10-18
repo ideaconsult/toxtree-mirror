@@ -429,4 +429,8 @@ public class BatchDecisionResultsList extends DecisionResultsList implements IDe
     	
     	return "A list of " + size() + " decision trees."; 
     }
+    public void hilightAlert(IDecisionRule rule) throws DecisionResultException {
+    	throw new DecisionResultException("Not implemented");
+    	
+    }
 }

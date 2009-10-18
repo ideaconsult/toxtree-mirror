@@ -32,8 +32,8 @@ import org.openscience.cdk.interfaces.IMoleculeSet;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
-import toxTree.tree.rules.smarts.SMARTSException;
-import toxTree.tree.rules.smarts.SmartsPatternCDK;
+import ambit2.smarts.query.SMARTSException;
+import ambit2.smarts.query.SmartsPatternCDK;
 
 
 /**
@@ -68,25 +68,31 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 	}
 
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		logger.info(getID());
-		int r = smartsPattern.hasSMARTSPattern(mol);
-		if (r == 0) return false;
-		IMoleculeSet chains = extractChains(mol, smartsPattern.getUniqueMatchingAtoms());
-		
-		int longchains = 0;
-		int allchains = 0;
-		for (int i=0; i < chains.getMoleculeCount(); i++) 
-			try {
-				int count = countChain(chains.getMolecule(i));
-				if (count == 0) continue;
-				allchains++;
-				if ((count >=getMinChainLength()) && (count <=getMaxChainLength()))
-					longchains++;
-			} catch (DecisionMethodException x) {
-				logger.debug(x);
-				return false;
-			}
-		return longchains==allchains;
+		try {
+			logger.info(getID());
+			int r = smartsPattern.hasSMARTSPattern(mol);
+			if (r == 0) return false;
+			IMoleculeSet chains = extractChains(mol, smartsPattern.getUniqueMatchingAtoms(mol));
+			
+			int longchains = 0;
+			int allchains = 0;
+			for (int i=0; i < chains.getMoleculeCount(); i++) 
+				try {
+					int count = countChain(chains.getMolecule(i));
+					if (count == 0) continue;
+					allchains++;
+					if ((count >=getMinChainLength()) && (count <=getMaxChainLength()))
+						longchains++;
+				} catch (DecisionMethodException x) {
+					logger.debug(x);
+					return false;
+				}
+			return longchains==allchains;
+    	} catch (SMARTSException x) {
+    		throw new DecisionMethodException(x);
+    	} catch (DecisionMethodException x) {
+    		throw x;
+    	}
 	}
 	protected int countChain(IMolecule m) throws DecisionMethodException {
 		int count = 0;

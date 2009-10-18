@@ -31,8 +31,8 @@ import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.StructureAlertCDK;
-import toxTree.tree.rules.smarts.ISmartsPattern;
-import toxTree.tree.rules.smarts.SMARTSException;
+import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.SMARTSException;
 
 /**
  * SA2
@@ -136,11 +136,15 @@ public class SA2 extends StructureAlertCDK {
 		
 		Map<String,Integer> elements = mfa.getFormulaHashtable();
 		boolean ok = false;
-		if (elements.containsKey("O")) {
-			if (elements.containsKey("S")) 
-				return prescreenSulphonic.match(mol)>0;
-			if (elements.containsKey("P")) 
-				return prescreenPhosphonic.match(mol)>0;
+		try {
+			if (elements.containsKey("O")) {
+				if (elements.containsKey("S")) 
+					return prescreenSulphonic.match(mol)>0;
+				if (elements.containsKey("P")) 
+					return prescreenPhosphonic.match(mol)>0;
+			}
+  		} catch (SMARTSException x) {
+			throw new DecisionMethodException(x);
 		}
 		return false;
 	}
