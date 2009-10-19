@@ -91,9 +91,9 @@ public abstract class TestMutantRules extends TestCase {
 		applyRule(rule, getTestFileName(), resultsfile,resultsFolder);
 	}
 	protected void applyRule(IDecisionRule rule,  String sourcefile, String resultsfile, String resultsFolder) throws Exception {
-		InputStream in_source = new FileInputStream("/data/"+sourcefile);
-		InputStream in_results = new FileInputStream("/data/" + resultsfile);
-		applyRule(rule, in_source,in_results,getSubstanceID() ,"/data/"+resultsFolder);
+		InputStream in_source = this.getClass().getClassLoader().getResourceAsStream("data/"+sourcefile);
+		InputStream in_results = this.getClass().getClassLoader().getResourceAsStream("data/" + resultsfile);
+		applyRule(rule, in_source,in_results,getSubstanceID() ,"data/"+resultsFolder);
 		in_source.close();
 		in_results.close();
 	}	
@@ -117,10 +117,19 @@ public abstract class TestMutantRules extends TestCase {
 		ArrayList<String> missedResults = new ArrayList<String>();
 		//IteratingMDLReader resultsReader = new IteratingMDLReader(results,b);
 		IIteratingChemObjectReader resultsReader = getReader(results, b);
-		
-        String filename_missed_hits = resultsFolder+"/"+getRuleID(rule) + "_missed_hits.sdf"; 
-        File f2 = new File(filename_missed_hits);
+		String tmpDir = String.format("%s/.toxtree/%s/",System.getProperty("java.io.tmpdir"),resultsFolder);
+		try {
+			File f2 = new File(String.format("%s/.toxtree",System.getProperty("java.io.tmpdir")));
+			f2.mkdir();
+			f2 = new File(String.format("%s/.toxtree/data",System.getProperty("java.io.tmpdir")));
+			f2.mkdir();			
+			f2 = new File(String.format("%s/.toxtree/%s/",System.getProperty("java.io.tmpdir"),resultsFolder));
+			f2.mkdir();			
+		} catch (Exception x) {x.printStackTrace();}
+        //String filename_missed_hits = resultsFolder+"/"+getRuleID(rule) + "_missed_hits.sdf"; 
+        File f2 = new File(tmpDir,String.format("%s_missed_hits.sdf",getRuleID(rule) ));
         if (f2.exists()) f2.delete();
+        f2 = new File(tmpDir,String.format("%s_missed_hits.sdf",getRuleID(rule) ));
 		OutputStream outMissed = new FileOutputStream(f2);
 		MDLWriter writerMissed = new MDLWriter(outMissed);
 		
@@ -170,8 +179,7 @@ public abstract class TestMutantRules extends TestCase {
 		//IteratingMDLReader sourceReader = new IteratingMDLReader(source,b);
 		
 		IIteratingChemObjectReader sourceReader = getReader(source, b);
-		
-		File f = new File(resultsFolder+"/"+getRuleID(rule)+"_wrong_hits.sdf");
+		File f = new File(tmpDir,String.format("%s_wrong_hits.sdf",getRuleID(rule) ));
         if (f.exists()) f.delete();
 		OutputStream outWrong = new FileOutputStream(f);
 		MDLWriter writerWrong = new MDLWriter(outWrong);
@@ -222,19 +230,14 @@ public abstract class TestMutantRules extends TestCase {
 			System.out.println("Rule " + rule.getID() + " wrong hits\t"+wronghits.size());
 			System.out.println(wronghits);
 		} else f.delete();
-		saveRuleAsTree(rule,resultsFolder+"/"+getRuleID(rule)+".tml");
+		saveRuleAsTree(rule,tmpDir+"/"+getRuleID(rule)+".tml");
 		assertEquals(0,missedhits.size());
 		assertEquals(0,wronghits.size());
 		
 				
 	}
-	public void test() {
-		try {
-			applyRule(ruleToTest, getHitsFile(),getResultsFolder());
-		} catch (Exception x) {
-			x.printStackTrace();
-			fail(x.getMessage());
-		}
+	public void test() throws Exception {
+		applyRule(ruleToTest, getHitsFile(),getResultsFolder());
 	}
 	
 	protected void saveRuleAsTree(IDecisionRule rule,String filename) throws Exception {
