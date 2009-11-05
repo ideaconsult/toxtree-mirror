@@ -27,8 +27,6 @@ package toxTree.tree.demo;
 
 import org.openscience.cdk.templates.MoleculeFactory;
 
-import ambit2.smarts.query.SMARTSException;
-
 import toxTree.core.IDecisionCategory;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
@@ -38,7 +36,8 @@ import toxTree.tree.DecisionNodesList;
 import toxTree.tree.UserDefinedTree;
 import toxTree.tree.categories.DefaultClass1;
 import toxTree.tree.categories.DefaultClass2;
-import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import ambit2.smarts.query.SMARTSException;
 
 public class SMARTSTree extends UserDefinedTree {
 
@@ -55,7 +54,7 @@ public class SMARTSTree extends UserDefinedTree {
         categories.add(c1);
         categories.add(c2);
         
-        RuleSMARTSubstructure rs = new RuleSMARTSubstructure();
+        RuleSMARTSSubstructureAmbit rs = new RuleSMARTSSubstructureAmbit();
         rs.setTitle("Aldehyde");
         try {
         rs.addSubstructure("Aldehyde","[$([CX3H][#6]),$([CX3H2])]=[OX1]");

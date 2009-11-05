@@ -28,9 +28,9 @@ package toxTree.tree.rules;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
-public class StructureAlert extends RuleSMARTSubstructure implements IAlertCounter {
+public class StructureAlert extends RuleSMARTSSubstructureAmbit implements IAlertCounter {
 	IAlertCounter alertsCounter;
 	/**
 	 * 
@@ -55,7 +55,7 @@ public class StructureAlert extends RuleSMARTSubstructure implements IAlertCount
 	public String getImplementationDetails() {
 		StringBuffer b = new StringBuffer();
 		b.append(alertsCounter.getImplementationDetails());
-		b.append("Uses Joelib SMARTS<br>");
+		b.append("Uses AMBIT SMARTS<br>");
 		b.append(super.getImplementationDetails());
 		
 		return b.toString();
