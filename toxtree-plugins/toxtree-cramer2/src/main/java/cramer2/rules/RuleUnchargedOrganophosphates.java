@@ -19,14 +19,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package cramer2.rules;
 
-import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import ambit2.smarts.query.SMARTSException;
 
 /**
  * Uncharged Organophosph(othion)ates
  * <b>Modified</b> Dec, 2008
  */
-public class RuleUnchargedOrganophosphates extends  RuleSMARTSubstructure{//jeroen
+public class RuleUnchargedOrganophosphates extends  RuleSMARTSSubstructureAmbit{//jeroen
 	private static final long serialVersionUID = 0;
 	public RuleUnchargedOrganophosphates() {
 		//TODO fix sterically hindered condition (example NO fails)
