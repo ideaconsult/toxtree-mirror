@@ -37,7 +37,7 @@ import ambit2.smarts.query.ISmartsPattern;
 
 public class SmartsPatternsTest extends TestCase {
 	  public void testXMLSerializingSmartsPatternsJoelib() throws Exception  {
-	    	XMLSerializingSmartsPatterns(SmartsParser.smarts_joelib,"[OX2H][OX2]");
+	    	XMLSerializingSmartsPatterns(SmartsParser.smarts_nk,"[OX2H][OX2]");
 	    	
 	    }
 	    public void testXMLSerializingSmartsPatternsCDK() throws Exception  {
@@ -60,7 +60,7 @@ public class SmartsPatternsTest extends TestCase {
 				decoder.close();
 	    }
 	    public void testComplexSmartsJoeLib() throws Exception {
-	        complexSmarts(SmartsParser.smarts_joelib);
+	        complexSmarts(SmartsParser.smarts_nk);
 	    }
         public void testComplexSmartsAmbit() throws Exception {
             complexSmarts(SmartsParser.smarts_nk);

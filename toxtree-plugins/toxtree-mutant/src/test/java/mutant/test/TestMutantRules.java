@@ -295,7 +295,7 @@ public abstract class TestMutantRules extends TestCase {
 	}
     public int printAromaticity() throws Exception {
     	IteratingMDLReader resultsReader = new IteratingMDLReader(
-    			this.getClass().getClassLoader().getResourceAsStream("/data/"+getHitsFile()),DefaultChemObjectBuilder.getInstance());
+    			this.getClass().getClassLoader().getResourceAsStream("data/"+getHitsFile()),DefaultChemObjectBuilder.getInstance());
     	int aromaticCompounds = 0;
     	while (resultsReader.hasNext()) {
     		Object o = resultsReader.next();

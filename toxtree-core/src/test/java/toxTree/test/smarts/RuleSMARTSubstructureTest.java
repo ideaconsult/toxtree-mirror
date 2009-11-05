@@ -42,7 +42,7 @@ import org.openscience.cdk.tools.LoggingTool;
 
 import toxTree.tree.rules.RuleAllSubstructures;
 import toxTree.tree.rules.smarts.IRuleSMARTSubstructures;
-import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
 
 
@@ -81,7 +81,7 @@ public class RuleSMARTSubstructureTest extends TestCase {
 		
 	}
 	public void testRuleSMARTSubstructure() throws Exception  {
-		RuleSMARTSubstructure rule = new RuleSMARTSubstructure();		
+		RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();		
 //		Molecule mol = MoleculeFactory.makeBenzene();
 		
         IMolecule mol = DefaultChemObjectBuilder.getInstance().newMolecule();
@@ -118,7 +118,7 @@ public class RuleSMARTSubstructureTest extends TestCase {
   
     
     public void testXMLSerializingRuleSmartsJoelib() throws Exception {
-    	XMLSerializingRule(new RuleSMARTSubstructure(),"[OX2H][OX2]");
+    	XMLSerializingRule(new RuleSMARTSSubstructureAmbit(),"[OX2H][OX2]");
     }
     
     public void testXMLSerializingRuleSmartsCDK() throws Exception {
@@ -126,7 +126,7 @@ public class RuleSMARTSubstructureTest extends TestCase {
     }
     
     public void testSerializingRuleSmartsJoelib() throws Exception {
-    	serializingRule(new RuleSMARTSubstructure(),"[OX2H][OX2]");
+    	serializingRule(new RuleSMARTSSubstructureAmbit(),"[OX2H][OX2]");
     }
     
     public void testSerializingRuleSmartsCDK() throws Exception {
@@ -182,7 +182,7 @@ public class RuleSMARTSubstructureTest extends TestCase {
 
     }
     public void testGetImplementationDetails() throws Exception  {
-		RuleSMARTSubstructure rule = new RuleSMARTSubstructure();
+		RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
 		String smarts = "[OX2H][OX2]";
 			rule.addSubstructure("1",smarts);
 			rule.addSubstructure("2","C=O",true);

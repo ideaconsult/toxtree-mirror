@@ -37,7 +37,6 @@ import ambit2.smarts.query.SmartsPatternCDK;
 public class SmartsPatternFactory implements ISmartsPatternFactory {
 
 	public static enum SmartsParser {
-			smarts_joelib,
 			smarts_cdk,
 			smarts_nk
 	};
@@ -45,7 +44,7 @@ public class SmartsPatternFactory implements ISmartsPatternFactory {
 
 	public SmartsPatternFactory() {
 		super();
-		setParserType(SmartsParser.smarts_joelib);
+		setParserType(SmartsParser.smarts_nk);
 	}
 	
 	public ISmartsPattern createSmartsPattern(String smarts, boolean negate) throws SMARTSException {
@@ -55,7 +54,7 @@ public class SmartsPatternFactory implements ISmartsPatternFactory {
 	public static ISmartsPattern createSmartsPattern(SmartsParser parser, String smarts,boolean negate) throws SMARTSException {
 		//System.out.println("createSmartsPattern "+parser);
 		switch (parser) {
-		case smarts_joelib: return new SmartsPattern(smarts,negate);
+		//case smarts_joelib: return new SmartsPattern(smarts,negate);
 		case smarts_cdk: return new SmartsPatternCDK(smarts,negate);
 		case smarts_nk: return new SmartsPatternAmbit(smarts,negate); 
 		default:  return new SmartsPattern(smarts,negate);	
