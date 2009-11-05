@@ -45,9 +45,6 @@ import toxTree.tree.RuleResult;
 import toxTree.tree.TreeResult;
 
 public class MICTreeResult extends TreeResult {
-   
-     {
-                      };
 	
 	private static final long serialVersionUID = -1505391697761215610L;
 
@@ -79,7 +76,14 @@ public class MICTreeResult extends TreeResult {
         firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);        
 
 	}
-
+	@Override
+	public String[] getResultPropertyNames() {
+		IDecisionCategories c = decisionMethod.getCategories();
+		String[] names = new String[c.size()];
+		for (int i=0; i < c.size();i++) 
+			names[i] = c.get(i).toString();
+		return names;
+	}
 	protected ArrayList<IAtomContainer> getAllAssignedMolecules() {
         ArrayList<IAtomContainer> residues = new ArrayList<IAtomContainer>();
         return residues;
@@ -131,12 +135,7 @@ public class MICTreeResult extends TreeResult {
 	}
 	
 	@Override
-
-		
-
-
-	
-    public List<CategoryFilter> getFilters() {
+   public List<CategoryFilter> getFilters() {
     	ArrayList<CategoryFilter> l = new ArrayList<CategoryFilter>();
     	IDecisionCategories c = getDecisionMethod().getCategories();
 		for (int i=0; i < c.size();i++) 
