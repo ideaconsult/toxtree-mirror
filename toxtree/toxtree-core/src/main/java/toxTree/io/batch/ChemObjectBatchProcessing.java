@@ -29,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.ProgressMonitorInputStream;
 
@@ -114,6 +115,9 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 				return new IteratingDelimitedFileReader(new FileInputStream(file.getFile()),
 						new DelimitedFileFormat(" \t",'"'));			
 			else throw new BatchProcessingException(MSG_UNSUPPORTEDFORMAT+file.filename,this);
+		} catch (UnsupportedEncodingException x) {
+			logger.error(x);
+			throw new BatchProcessingException(x,this);
 		} catch (FileNotFoundException x) {
 			logger.error(x);
 			throw new BatchProcessingException(x,this);
