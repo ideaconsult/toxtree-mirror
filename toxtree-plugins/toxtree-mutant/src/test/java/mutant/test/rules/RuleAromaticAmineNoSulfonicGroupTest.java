@@ -110,7 +110,12 @@ public class RuleAromaticAmineNoSulfonicGroupTest extends TestMutantRules {
 		}
 	}
     protected IIteratingChemObjectReader getReader(InputStream stream, DefaultChemObjectBuilder b) {
-    	return  new IteratingDelimitedFileReader(stream);
+    	try {
+    		return  new IteratingDelimitedFileReader(stream);
+    	} catch (Exception x) {
+    		logger.error(x);
+    		return null;
+    	}
     }
     @Override
     protected String getTestFileName() {
