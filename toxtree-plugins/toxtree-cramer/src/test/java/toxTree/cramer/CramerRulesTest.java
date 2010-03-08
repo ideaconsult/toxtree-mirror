@@ -24,6 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.cramer;
 
+import junit.framework.Assert;
+
+import org.junit.Test;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.exception.InvalidSmilesException;
@@ -53,7 +56,7 @@ public class CramerRulesTest extends RulesTestCase {
 			rules = new CramerRules();
 			((CramerRules)rules).setResiduesIDVisible(false);
 		} catch (DecisionMethodException x) {
-			fail();
+			Assert.fail();
 		}	
         gen = new SmilesParser(DefaultChemObjectBuilder.getInstance());
         
@@ -63,30 +66,26 @@ public class CramerRulesTest extends RulesTestCase {
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 	}
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#tearDown()
 	 */
 	@Override
-	protected void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		super.tearDown();
 	}
-
-	public void testVerifyRule2() {
+	@Test
+	public void testVerifyRule2() throws Exception {
 		Molecule mol = MoleculeFactory.makeAlkane(6);
-		try {
-			verifyRule(mol,2);
-		} catch (DecisionMethodException x) {
-			x.printStackTrace();
-			assertTrue(false);
-		}
+		verifyRule(mol,2);
 	}
 
 	/*
 	 * Class under test for int classify(Molecule)
 	 */
+	@Test
 	public void testClassifyMolecule() {
 		IMolecule mol = MoleculeFactory.makeAlkane(6);
 		classify(mol,rules,3);
@@ -106,17 +105,16 @@ public class CramerRulesTest extends RulesTestCase {
 	        return null;
 	    }    
     }
-	public void testCramer() {
+    @Test
+	public void testCramer() throws Exception {
 		CramerRules rulesNew = (CramerRules)objectRoundTrip(rules,"CramerRules");
 		rulesNew.setResiduesIDVisible(false);
 		rules = rulesNew;
 		tryImplementedRules();
 	}
-	public void testPrintCramer() {
-		try {
-			System.out.println(new CramerRules().getRules());
-		} catch (Exception x) {
-			x.printStackTrace();
-		}
+    @Test
+	public void testPrintCramer() throws Exception {
+		System.out.println(new CramerRules().getRules());
+
 	}
 }

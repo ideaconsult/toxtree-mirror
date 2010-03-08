@@ -36,14 +36,14 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
-import toxTree.tree.AbstractRule;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * Rule 12 of the Cramer scheme (see {@link toxTree.tree.cramer.CramerRules})
  * @author Nina Jeliazkova <br>
  * @version 0.1, 2005-5-2
  */
-public class RuleHeteroaromatic extends AbstractRule {
+public class RuleHeteroaromatic extends RuleSMARTSSubstructureAmbit {
 
     private static final long serialVersionUID = -4930724854762812531L;
     /**
@@ -53,11 +53,13 @@ public class RuleHeteroaromatic extends AbstractRule {
 	public RuleHeteroaromatic() {
 		super();
 		id = "12";
+		try {addSubstructure("heteroaromatic","[a;!c]"); } catch (Exception x) {x.printStackTrace();}
 		title = "Heteroaromatic";
 		explanation.append("<html>This question separates the aromatic heterocyclics for the purpose of considering whether they are polynuclear(Q14) or unsubstituted (Q13).</html>");
 		examples[0] = "S1C=CN=C1";
 		examples[1] = "O1C=CC=C1";
 		editable = false;
+		
 	}
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
