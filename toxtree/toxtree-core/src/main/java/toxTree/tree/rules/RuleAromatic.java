@@ -26,11 +26,9 @@ package toxTree.tree.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import ambit2.base.interfaces.IProcessor;
-
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
-import toxTree.tree.AbstractRule;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * Verifies if the molecule is aromatic by applying the Hueckel rule
@@ -38,7 +36,7 @@ import toxTree.tree.AbstractRule;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-9-2
  */
-public class RuleAromatic extends AbstractRule {
+public class RuleAromatic extends RuleSMARTSSubstructureAmbit {
 
 	/**
 	 * Comment for <code>serialVersionUID</code>
@@ -50,6 +48,7 @@ public class RuleAromatic extends AbstractRule {
 	 */
 	public RuleAromatic() {
 		super();
+		try {addSubstructure("aromatic","a~a"); } catch (Exception x) { x.printStackTrace();}
 		id = "[Aromatic]";
 		title = "Aromatic";
 		explanation.append("<html>Is the substance aromatic");
@@ -58,7 +57,7 @@ public class RuleAromatic extends AbstractRule {
 	}
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
-	 */
+	*/
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
 		logger.info(getID());
 	    //should be set via MolAnalyser
@@ -66,6 +65,7 @@ public class RuleAromatic extends AbstractRule {
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    return mf.isAromatic();
 	}
+
 	/* (non-Javadoc)
      * @see toxTree.tree.AbstractRule#isImplemented()
      */

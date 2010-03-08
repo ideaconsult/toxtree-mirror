@@ -28,7 +28,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.rules.StructureAlertCDK;
+import toxTree.tree.rules.StructureAlertAmbit;
 import ambit2.smarts.query.SMARTSException;
 
 /**
@@ -38,7 +38,7 @@ import ambit2.smarts.query.SMARTSException;
  * @author nina
  *
  */
-public class SA28 extends StructureAlertCDK {
+public class SA28 extends StructureAlertAmbit {
 	/**
 	 * 
 	 */
