@@ -50,11 +50,11 @@ import javax.swing.JTextField;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.templates.MoleculeFactory;
 
-import toxTree.tree.rules.smarts.ISmartsPatternFactory;
 import toxTree.tree.rules.smarts.SmartsPatternFactory;
 import toxTree.ui.molecule.MoleculeEditAction;
 import ambit2.core.smiles.SmilesParserWrapper;
 import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.ISmartsPatternFactory;
 import ambit2.smarts.query.SMARTSException;
 import ambit2.ui.editors.Panel2D;
 
