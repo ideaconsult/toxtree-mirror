@@ -37,6 +37,7 @@ import toxTree.ui.tree.rules.SMARTSRuleEditor;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.smarts.query.ISmartsPattern;
+import ambit2.smarts.query.ISmartsPatternFactory;
 import ambit2.smarts.query.SMARTSException;
 
 public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule implements
