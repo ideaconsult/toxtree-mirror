@@ -1,5 +1,5 @@
 Manifest-version: 1.60
-Class-Path: toxtree-verhaar-2.0.0-SNAPSHOT.jar
+Class-Path: toxtree-verhaar-2.1.0-SNAPSHOT.jar
 Specification-Title: Skin irritation prediction rules as in "The Skin Irritation Corrosion Rules Estimation Tool (SICRET), John D. Walker, Ingrid Gerner, Etje Hulzebos, Kerstin Schlegel, QSAR Comb. Sci. 2005, 24, pp378-384"
 Specification-Version: 1.60
 Specification-Vendor: Ideaconsult LTD
