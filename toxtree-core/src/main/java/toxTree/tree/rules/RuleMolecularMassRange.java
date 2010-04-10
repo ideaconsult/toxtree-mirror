@@ -24,13 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.tree.rules;
 
-import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.qsar.descriptors.molecular.WeightDescriptor;
 
 import toxTree.core.IDecisionRuleEditor;
-import toxTree.core.IRuleRange;
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.AbstractRule;
 import toxTree.ui.tree.rules.RuleRangeEditor;
 
 /**
@@ -39,9 +35,8 @@ import toxTree.ui.tree.rules.RuleRangeEditor;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class RuleMolecularMassRange extends AbstractRule implements IRuleRange {
-	protected double minValue;
-	protected double maxValue;
+public class RuleMolecularMassRange extends RuleDescriptorRange {
+
 	/**
 	 * 
 	 */
@@ -49,34 +44,11 @@ public class RuleMolecularMassRange extends AbstractRule implements IRuleRange {
 
 	public RuleMolecularMassRange() {
 		super();
-		minValue = 0;
-		maxValue = 600; //daltons
-	}
-	/**
-	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
-	 */
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		MFAnalyser mf = new MFAnalyser(mol);
-		double mass = mf.getMass();
-		logger.info("Molecular mass\t",Double.toString(mass));
-		return (mass >=minValue) && (mass <= maxValue);
+		setDescriptor(new WeightDescriptor());
+		setMaxValue(600.0);
+		setMinValue(0.0);
 	}
 
-	public double getMaxValue() {
-		return maxValue;
-	}
-
-	public void setMaxValue(double maxMass) {
-		this.maxValue = maxMass;
-	}
-
-	public double getMinValue() {
-		return minValue;
-	}
-
-	public void setMinValue(double minMass) {
-		this.minValue = minMass;
-	}
 	
 	@Override
 	public boolean isImplemented() {
@@ -89,10 +61,9 @@ public class RuleMolecularMassRange extends AbstractRule implements IRuleRange {
 		return e;
 	}
 	public Object getProperty() {
-		return "Molecular mass";
+		return "Molecular weight";
 	}
 	public void setProperty(Object value) {
-		// TODO Auto-generated method stub
-		
+	
 	}
 }

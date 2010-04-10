@@ -24,10 +24,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.test.io.batch;
 
-import junit.framework.TestCase;
+import java.net.URL;
+
+import junit.framework.Assert;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import toxTree.core.Introspection;
 import toxTree.io.batch.BatchProcessing;
-import toxTree.io.batch.BatchProcessingException;
 import toxTree.io.batch.ChemObjectBatchProcessing;
 
 /**
@@ -35,50 +40,22 @@ import toxTree.io.batch.ChemObjectBatchProcessing;
  * @author Vedina
  * <b>Modified</b> 2005-9-4
  */
-public class ChemObjectBatchProcessingTest extends TestCase {
+public class ChemObjectBatchProcessingTest {
 
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(ChemObjectBatchProcessingTest.class);
-	}
-
-	/*
-	 * @see TestCase#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
         Introspection.setLoader(getClass().getClassLoader());
 	}
+	@Test
+	public void testBatch() throws Exception {
+		URL url1 = this.getClass().getClassLoader().getResource("data/Misc/test.sdf");
 
-	/*
-	 * @see TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
-	/**
-	 * Constructor for ChemObjectBatchProcessingTest.
-	 * @param arg0
-	 */
-	public ChemObjectBatchProcessingTest(String arg0) {
-		super(arg0);
-	}
-
-	public void testBatch() {
-		try {
-			ChemObjectBatchProcessing bp = new ChemObjectBatchProcessing(
-					"toxTree/data/Misc/test.sdf",
-					"toxTree/data/Misc/batchResults.sdf"
+		ChemObjectBatchProcessing bp = new ChemObjectBatchProcessing(
+					url1.getFile(),
+					"batchResults.sdf"
 					);
 			bp.start();
-			assertTrue(bp.isStatus(BatchProcessing.STATUS_FINISHED));
-
-		} catch (BatchProcessingException x) {
-			x.printStackTrace();
-			fail();
-		}
+			Assert.assertTrue(bp.isStatus(BatchProcessing.STATUS_FINISHED));
 		
 	}
 

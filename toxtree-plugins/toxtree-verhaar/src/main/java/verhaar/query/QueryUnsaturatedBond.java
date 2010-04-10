@@ -70,7 +70,7 @@ public class QueryUnsaturatedBond extends Bond implements IQueryBond {
 	 * @param arg2
 	 * @param arg3
 	 */
-	public QueryUnsaturatedBond(IAtom arg0, IAtom arg1, IBond.Order arg2, int arg3) {
+	public QueryUnsaturatedBond(IAtom arg0, IAtom arg1, IBond.Order arg2, Stereo arg3) {
 		super(arg0, arg1, arg2, arg3);
 		// TODO Auto-generated constructor stub
 	}

@@ -29,11 +29,12 @@ import java.util.ArrayList;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.DefaultChemObjectBuilder;
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.io.iterator.IteratingSMILESReader;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
@@ -63,14 +64,17 @@ public class LookupFile implements Serializable {
 		}
 	}
 	public boolean find(IAtomContainer mol ) throws DecisionMethodException {
-		return lookup(mol) != null;
+		try {
+			return lookup(mol) != null;
+		} catch (CDKException x) {
+			throw new DecisionMethodException(x);
+		}
 	}
-	public IAtomContainer lookup(IAtomContainer mol ) throws DecisionMethodException {
+	public IAtomContainer lookup(IAtomContainer mol ) throws DecisionMethodException, CDKException {
 		if (file == null) return null;
 		
 		if (logger == null) setLogger(new TTLogger(getClass()));
-		MFAnalyser mf = new MFAnalyser(mol);
-		String molFormula = mf.getMolecularFormula();
+		String molFormula = MolecularFormulaManipulator.getString(MolecularFormulaManipulator.getMolecularFormula(mol));
 		
 		if (useCache && (fileCache != null) && (fileCache.indexOf(molFormula) == -1)) {
 			logger.info("Using cached information of file\t",file.getAbsoluteFile(),"\tCompound\t",molFormula,"\tNOT FOUND");
@@ -115,7 +119,7 @@ public class LookupFile implements Serializable {
 					try {
 						MolAnalyser.analyse(m);
 						if (formula.equals("")) 
-							fileCache.set(r-1,mf.analyseAtomContainer(m));
+							fileCache.set(r-1,MolecularFormulaManipulator.getString(MolecularFormulaManipulator.getMolecularFormula(m)));
 						
 						/*
 						m.setFlag(CDKConstants.ISAROMATIC,HueckelAromaticityDetector.detectAromaticity(m,true));			

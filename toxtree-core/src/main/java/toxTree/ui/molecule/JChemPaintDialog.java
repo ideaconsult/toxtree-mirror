@@ -42,13 +42,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import org.openscience.cdk.ChemModel;
+import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
-import org.openscience.cdk.applications.jchempaint.JChemPaintEditorPanel;
-import org.openscience.cdk.applications.jchempaint.JChemPaintModel;
+import org.openscience.cdk.interfaces.IChemModel;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.jchempaint.JChemPaintPanel;
+import org.openscience.jchempaint.application.JChemPaint;
 
 /**
  * A {@link javax.swing.JDialog} containing a {@link JChemPaintEditorPanel}.
@@ -59,7 +60,7 @@ import org.openscience.cdk.smiles.SmilesGenerator;
  *
  */
 public class JChemPaintDialog extends JDialog {
-	protected JChemPaintEditorPanel jcpep;
+	protected JChemPaintPanel jcpep;
 	protected int result;	
 	//protected DataModule data;
 	/**
@@ -67,27 +68,27 @@ public class JChemPaintDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 8382571970782141100L;
 
-	public JChemPaintDialog(JChemPaintModel jcpm) throws HeadlessException {
+	public JChemPaintDialog(IChemModel jcpm) throws HeadlessException {
 		super();
 		addWidgets(jcpm);
 	}
 
-	public JChemPaintDialog(Dialog arg0,JChemPaintModel jcpm) throws HeadlessException {
+	public JChemPaintDialog(Dialog arg0,IChemModel jcpm) throws HeadlessException {
 		super(arg0);
 		addWidgets(jcpm);
 	}
 
-	public JChemPaintDialog(Dialog arg0, boolean arg1,JChemPaintModel jcpm) throws HeadlessException {
+	public JChemPaintDialog(Dialog arg0, boolean arg1,IChemModel jcpm) throws HeadlessException {
 		super(arg0, arg1);
 		addWidgets(jcpm);
 	}
 
-	public JChemPaintDialog(Frame arg0,JChemPaintModel jcpm) throws HeadlessException {
+	public JChemPaintDialog(Frame arg0,IChemModel jcpm) throws HeadlessException {
 		super(arg0);
 		addWidgets(jcpm);
 	}
 
-	public JChemPaintDialog(Frame arg0, boolean arg1,JChemPaintModel jcpm) throws HeadlessException {
+	public JChemPaintDialog(Frame arg0, boolean arg1,IChemModel jcpm) throws HeadlessException {
 		super(arg0, arg1);
 		addWidgets(jcpm);
 	}
@@ -97,38 +98,41 @@ public class JChemPaintDialog extends JDialog {
 		addWidgets(jcpm);
 	}
 */
-	public JChemPaintDialog(Dialog arg0, String arg1, boolean arg2,JChemPaintModel jcpm)
+	public JChemPaintDialog(Dialog arg0, String arg1, boolean arg2,IChemModel jcpm)
 			throws HeadlessException {
 		super(arg0, arg1, arg2);
 		addWidgets(jcpm);
 	}
 
-	public JChemPaintDialog(Frame arg0, String arg1,JChemPaintModel jcpm) throws HeadlessException {
+	public JChemPaintDialog(Frame arg0, String arg1,IChemModel jcpm) throws HeadlessException {
 		super(arg0, arg1);
 		addWidgets(jcpm);
 	}
 
-	public JChemPaintDialog(Frame arg0, String arg1, boolean arg2,JChemPaintModel jcpm)
+	public JChemPaintDialog(Frame arg0, String arg1, boolean arg2,IChemModel jcpm)
 			throws HeadlessException {
 		super(arg0, arg1, arg2);
 		addWidgets(jcpm);
 	}
 
 	//protected void addWidgets(JChemPaintModel jcpm,DataModule toxdata) {
-    protected void addWidgets(JChemPaintModel jcpm) {
+    protected void addWidgets(IChemModel jcpm) {
         
 		//this.data = toxdata;
 		
         //setDefaultCloseOperation( JDialog.DISPOSE_ON_CLOSE ); 
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		jcpep = new JChemPaintEditorPanel(2,new Dimension(400,400),false,"stable");
+		
+		jcpep = new JChemPaintPanel(jcpm, JChemPaint.GUI_APPLICATION, false,null);
+		//new JChemPaintPanel(jcpm,JChemPaint.GUI_APPLICATION,true,null);
+		
 		Dimension dcp = new Dimension(400,400);
 		jcpep.setPreferredSize(dcp);
-		jcpep.setEmbedded();
-		jcpep.registerModel(jcpm);
-		jcpep.setJChemPaintModel(jcpm,dcp);
+		//jcpep.setEmbedded();
+		//jcpep.registerModel(jcpm);
+		//jcpep.setJChemPaintModel(jcpm,dcp);
 		getContentPane().add(jcpep);
-		setTitle(jcpm.getTitle());
+		//setTitle(jcpm.getTitle());
 		
 		JButton cancelButton = new JButton("Cancel");
 		JButton okButton = new JButton("OK");
@@ -191,7 +195,7 @@ public class JChemPaintDialog extends JDialog {
         
         IMolecule updatedMolecule = new Molecule(); 
         
-        IMoleculeSet m = jcpep.getJChemPaintModel().getChemModel().getMoleculeSet();  
+        IMoleculeSet m = jcpep.getChemModel().getMoleculeSet();  
         
         for (int i=0; i < m.getAtomContainerCount(); i++) 
                 updatedMolecule.add(m.getMolecule(i));
@@ -211,7 +215,7 @@ public class JChemPaintDialog extends JDialog {
 		return result;
 	}
 	public void cleanup() {
-        jcpep.scaleAndCenterMolecule((ChemModel)jcpep.getChemModel());   
+        //jcpep.scaleAndCenterMolecule((ChemModel)jcpep.getChemModel());   
     }
     /*
     public static void editMolecule(IMolecule mol boolean editable, JFrame frame) {

@@ -86,20 +86,22 @@ public class DescriptorIsAniline extends DescriptorStructurePresence<IAtomContai
         }
     }
     @Override
-    public DescriptorValue calculate(IAtomContainer container) throws CDKException {
+    public DescriptorValue calculate(IAtomContainer container)  {
     	boolean biphenyl = false;
     	try {
     		biphenyl = smp.match(container) > 0;
     	} catch (Exception x) {
-    		throw new CDKException(x.getMessage());
+            return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
+                    new BooleanResult(false), getDescriptorNames(),x);    		
     	}
     	if (biphenyl) {
     		logger.info("Diphenyl");
             return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
-                    new BooleanResult(false), new String[]{getResultName()});
+                    new BooleanResult(false), getDescriptorNames());
     	} else
     		return super.calculate(container);
     }
+    
     /*
     public DescriptorValue calculate(IAtomContainer container) throws CDKException {
         MolFlags mf = (MolFlags) container.getProperty(MolFlags.MOLFLAGS);

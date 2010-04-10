@@ -31,10 +31,9 @@ import java.io.ObjectOutputStream;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IDescriptor;
 
-import ambit2.base.interfaces.IProcessor;
-
 import toxTree.core.Introspection;
 import toxTree.tree.AbstractRule;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * An abstract class to allow for descriptor analysis

@@ -24,7 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.tree.rules;
 
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.IDescriptor;
@@ -63,6 +62,7 @@ public class RuleDescriptorRange extends RuleDescriptor implements IRuleRange {
 			    if (!(descriptor instanceof IMolecularDescriptor))
 			        throw new DecisionMethodException("Not a molecular descriptor "+descriptor.toString());
 				DescriptorValue value = ((IMolecularDescriptor)descriptor).calculate(mol);
+				if (value.getException()!= null) throw value.getException();
 				IDescriptorResult result = value.getValue();
 				if (result instanceof DoubleResult) {
 					double d = ((DoubleResult) result).doubleValue();
@@ -77,7 +77,10 @@ public class RuleDescriptorRange extends RuleDescriptor implements IRuleRange {
 				}  else 
 					throw new DecisionMethodException("UNSUPPORTED descriptor result " + result.getClass().getName());
 			} else throw new DecisionMethodException("Descriptor not assigned!");
-		} catch (CDKException x) {
+		} catch (DecisionMethodException x) {
+			throw x;
+	
+		} catch (Exception x) {
 			throw new DecisionMethodException(x);
 		}
 	}

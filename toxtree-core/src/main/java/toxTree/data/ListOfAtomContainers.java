@@ -26,7 +26,8 @@ package toxTree.data;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
@@ -81,22 +82,20 @@ public class ListOfAtomContainers extends ArrayList<IAtomContainer> implements	I
 		remove(pos);
 	}
 
-	public boolean setMultiplier(IAtomContainer container, double multiplier) {
-		return false;
-	}
 
-	public void setMultiplier(int position, double multiplier) {
+	public void setMultiplier(int position, Double multiplier) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public double[] getMultipliers() {
-		// TODO Auto-generated method stub
+	public Double getMultiplier(int arg0) {
+		return null;
+	}
+	public Double[] getMultipliers() {
 		return null;
 	}
 
-	public boolean setMultipliers(double[] newMultipliers) {
-		// TODO Auto-generated method stub
+	public boolean setMultipliers(Double[] newMultipliers) {
 		return false;
 	}
 
@@ -124,14 +123,12 @@ public class ListOfAtomContainers extends ArrayList<IAtomContainer> implements	I
 		return (IAtomContainer)get(number);
 	}
 
-	public double getMultiplier(int number) {
-		// TODO Auto-generated method stub
-		return 0;
+	public Double getMultiplier(IAtomContainer arg0) {
+		return 1.0;
 	}
 
-	public double getMultiplier(IAtomContainer container) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean setMultiplier(IAtomContainer arg0, Double arg1) {
+		return false;
 	}
 
 	public int getAtomContainerCount() {
@@ -235,10 +232,13 @@ public class ListOfAtomContainers extends ArrayList<IAtomContainer> implements	I
         // TODO Auto-generated method stub
 
     }
-
-	public Iterator atomContainers() {
-		return iterator();
-	}
+    public Iterable<IAtomContainer> atomContainers() {
+    	return this;
+    }
+    public void sortAtomContainers(Comparator<IAtomContainer> comparator) {
+    	Collections.sort(this,comparator);
+    	
+    }
 
 	public void replaceAtomContainer(int position, IAtomContainer container) {
 		set(position,container);

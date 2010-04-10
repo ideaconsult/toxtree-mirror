@@ -34,8 +34,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.smiles.SmilesParser;
 
-import ambit2.base.interfaces.IProcessor;
-
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IImplementationDetails;
@@ -45,6 +43,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import toxTree.ui.PropertyInput;
 import toxTree.ui.tree.rules.RulePropertyEditor;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * 

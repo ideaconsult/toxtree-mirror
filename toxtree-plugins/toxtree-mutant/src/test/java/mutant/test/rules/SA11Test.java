@@ -24,9 +24,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test.rules;
 
-import toxTree.core.IDecisionRule;
 import mutant.rules.SA11;
 import mutant.test.TestMutantRules;
+import toxTree.core.IDecisionRule;
 
 public class SA11Test extends TestMutantRules {
 	@Override

@@ -135,9 +135,9 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 		    		}
 		    	}
 		    	if (lactoneRing == null) throw new DecisionMethodException("Can't find C-O bond of the lactone!!!!");
-		    	List fusedRings = rings.getConnectedRings(lactoneRing); 
+		    	IRingSet fusedRings = rings.getConnectedRings(lactoneRing); 
 		    	//hmm, actually may not be fused, but just have a single atom in common ... will skip that for now
-		    	if (fusedRings.size()==0) {
+		    	if (fusedRings.getAtomContainerCount()==0) {
 		    		logger.debug("No ring is fused to the lactone ring.");
 		    		fusedRings = null;
 		    		return false;

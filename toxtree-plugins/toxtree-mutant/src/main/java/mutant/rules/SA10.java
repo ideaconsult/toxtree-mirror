@@ -28,9 +28,10 @@ import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
@@ -102,8 +103,8 @@ public class SA10 extends StructureAlertCDK {
 					if (FunctionalGroups.hasGroupMarked(sc.getAtomContainer(i),query.getID())) 
 						continue; 
 					else {
-						MFAnalyser mf = new MFAnalyser(sc.getAtomContainer(i));
-						int catoms = mf.getAtomCount("C");
+						IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(sc.getAtomContainer(i));
+						int catoms = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
 						if (catoms >=6) {
 							logger.debug("Substituent at beta carbon with >=6 C atoms\t",catoms);
 							return true;

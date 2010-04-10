@@ -26,8 +26,10 @@ package toxTree.test.io;
 
 import java.io.File;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.tools.LoggingTool;
 
 import toxTree.data.DecisionMethodData;
@@ -39,26 +41,18 @@ import toxTree.data.MoleculesIterator;
  * @author Vedina
  * <b>Modified</b> 2005-8-12
  */
-public class ToxtreeDataIOTest extends TestCase {
+public class ToxtreeDataIOTest {
 	protected DecisionMethodData data = null;
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
 	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
 		data = new DecisionMethodData(null);
         //logger = new LoggingTool(this);
         LoggingTool.configureLog4j();		
 	}
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-		data = null;
-	}
+
 	/*
     public void testReadCML() {
         String filename = "data/Misc/SN1_reaction.cml";
@@ -95,10 +89,11 @@ public class ToxtreeDataIOTest extends TestCase {
         }
     }
     */
+	@Test
 	public void testOpenFile() throws Exception {
 		MoleculesIterator m = new MoleculesIterator();
         m.openFile(new File("toxTree/data/Misc/emptyStructure.sdf"));
-        assertEquals(2,m.getMoleculesCount());
+        Assert.assertEquals(2,m.getMoleculesCount());
 	}
 
 }

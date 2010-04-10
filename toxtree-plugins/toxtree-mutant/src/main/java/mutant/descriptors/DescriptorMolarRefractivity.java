@@ -25,7 +25,7 @@ public class DescriptorMolarRefractivity implements IMolecularDescriptor {
 	protected static String[] names = {"MR"};
 	protected MolarRefractivity mr = new MolarRefractivity();
 	
-	public DescriptorValue calculate(IAtomContainer arg0) throws CDKException {
+	public DescriptorValue calculate(IAtomContainer arg0)  {
 		try {
 			JOEMol converted = Convertor.convert((IMolecule)arg0);
 	        return new DescriptorValue(getSpecification(), 
@@ -33,7 +33,9 @@ public class DescriptorMolarRefractivity implements IMolecularDescriptor {
 	                new DoubleResult(mr.getDoubleValue(converted)), names);
 			
 		} catch (Exception x) {
-			throw new CDKException(x.getMessage());
+	        return new DescriptorValue(getSpecification(), 
+	        		getParameterNames(), getParameters(),
+	                new DoubleResult(0), names,x);			
 		}
 	}
 
@@ -63,6 +65,9 @@ public class DescriptorMolarRefractivity implements IMolecularDescriptor {
 
 	public void setParameters(Object[] arg0) throws CDKException {
 		throw new CDKException("No parameters expected!");
+	}
+	public String[] getDescriptorNames() {
+		return names;
 	}
 
 }

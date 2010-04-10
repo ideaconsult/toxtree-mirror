@@ -22,14 +22,13 @@ package sicret.rules;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import ambit2.smarts.query.SMARTSException;
-
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.MolAnalyser;
 import toxTree.query.MolFlags;
 import toxTree.tree.rules.RuleAnySubstructure;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
+import ambit2.smarts.query.SMARTSException;
 
 
 /**

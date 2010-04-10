@@ -24,10 +24,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.test.io;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Test;
 import org.openscience.cdk.Molecule;
 
 import ambit2.core.io.IteratingDelimitedFileReader;
@@ -37,57 +38,23 @@ import ambit2.core.io.IteratingDelimitedFileReader;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-9-6
  */
-public class IteratingCSVReaderTest extends TestCase {
-
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(IteratingCSVReaderTest.class);
-	}
-
-	/*
-	 * @see TestCase#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	/*
-	 * @see TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
-	/**
-	 * Constructor for IteratingCSVReaderTest.
-	 * @param arg0
-	 */
-	public IteratingCSVReaderTest(String arg0) {
-		super(arg0);
-	}
-    public void testCSVFile() {
-        String filename = "toxTree/data/Misc/Debnath_smiles.csv";
-        System.out.println("Testing: " + filename);
-        //InputStream ins = this.getClass().getClassLoader().getResourceAsStream(filename);
-        try {
-        FileInputStream ins = new FileInputStream(filename);
+public class IteratingCSVReaderTest{
+	@Test
+    public void testCSVFile() throws Exception {
+		InputStream in = this.getClass().getClassLoader().getResourceAsStream("data/Misc/Debnath_smiles.csv");
         
-            IteratingDelimitedFileReader reader = new IteratingDelimitedFileReader(ins);
+            IteratingDelimitedFileReader reader = new IteratingDelimitedFileReader(in);
             
             int molCount = 0;
             while (reader.hasNext()) {
                 Object object = reader.next();
-                assertNotNull(object);
-                assertTrue(object instanceof Molecule);
+                Assert.assertNotNull(object);
+                Assert.assertTrue(object instanceof Molecule);
                 molCount++;
             }
             
-            assertEquals(88, molCount);
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+            Assert.assertEquals(88, molCount);
+
     }
 
 }

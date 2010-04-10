@@ -33,7 +33,8 @@ package cramer2.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.ReactionException;
@@ -84,10 +85,13 @@ public class RuleReadilyHydrolysedPO4 extends RuleReadilyHydrolised {
         }
         for (int i=0;i<sc.getAtomContainerCount();i++) {
             IAtomContainer iaci = sc.getAtomContainer(i);
-            MFAnalyser mfatemp = new MFAnalyser(iaci);
-            if ( !mfatemp.getElements().contains("C") &&
-                 !mfatemp.getElements().contains("N") &&
-                 !mfatemp.getElements().contains("S") ) {
+    	    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(iaci);
+    	    
+    	    if (
+    	    		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("C")) &&
+    	    		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N")) &&
+    	    		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("S"))     	    		
+    	    		) {
                 continue;
             }
             mf.addResidue(iaci);

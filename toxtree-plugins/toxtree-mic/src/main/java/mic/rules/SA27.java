@@ -29,10 +29,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mic.rules;
 
-import java.util.Map;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import ambit2.smarts.query.SMARTSException;
@@ -136,10 +135,10 @@ public class SA27 extends StructureAlertCDK {
 		editable = false;
 	}
 
-	protected boolean isAPossibleHit(IAtomContainer mol,
-			IAtomContainer processedObject) throws DecisionMethodException {
-		MFAnalyser mfa = new MFAnalyser(mol);
-		Map<String, Integer> elements = mfa.getFormulaHashtable();
-		return elements.containsKey("N") && elements.containsKey("O");
-	}
+	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
+		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		return 
+		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N")) &&
+		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("O"));
+	}   
 }

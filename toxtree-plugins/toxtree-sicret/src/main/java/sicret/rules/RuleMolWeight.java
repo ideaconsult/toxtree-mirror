@@ -22,7 +22,8 @@ package sicret.rules;
 import javax.swing.JComponent;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.tree.rules.RuleVerifyProperty;
 
@@ -56,8 +57,8 @@ public class RuleMolWeight extends RuleVerifyProperty {
 	
 	@Override
 	public String inputProperty(IAtomContainer mol) {
-		MFAnalyser mf = new MFAnalyser(mol);
-		return Double.toString(mf.getMass());
+		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		return Double.toString(MolecularFormulaManipulator.getMajorIsotopeMass(formula));
 	}
     public JComponent optionsPanel(IAtomContainer atomContainer) {
         return null;

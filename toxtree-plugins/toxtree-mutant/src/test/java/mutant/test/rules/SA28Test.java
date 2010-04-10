@@ -1,7 +1,6 @@
 package mutant.test.rules;
 
 import mutant.rules.SA28;
-import mutant.rules.SA31a;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 import toxTree.logging.TTLogger;

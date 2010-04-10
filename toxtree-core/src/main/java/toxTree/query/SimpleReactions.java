@@ -26,7 +26,6 @@ package toxTree.query;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,7 +121,7 @@ public class SimpleReactions {
 		
 		InputStream stream = SimpleReactions.class.getClassLoader().getResourceAsStream(filename);
 		if (stream ==null) throw new CDKException("Can't find "+filename);
-		CMLReader reader = new CMLReader(new InputStreamReader(stream));
+		CMLReader reader = new CMLReader(stream);
 		IChemFile chemFile = (IChemFile) reader.read((IChemObject) new org.openscience.cdk.ChemFile());
 		for (int i = 0; i < chemFile.getChemSequenceCount(); i++) {
 			IChemSequence seq = chemFile

@@ -34,7 +34,8 @@ import java.beans.PropertyChangeListener;
 import java.util.Map;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.core.IDecisionInteractive;
 import toxTree.exceptions.DecisionMethodException;
@@ -101,13 +102,9 @@ public class QSAR6Applicable extends RuleSMARTSubstructureCDK implements IDecisi
     }
     @Override
     protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
-        MFAnalyser mfa = new MFAnalyser(mol);
-        
-        Map<String,Integer> elements = mfa.getFormulaHashtable();
-        if (elements.containsKey("N")) {
-            return true;
-        }
-        return false;
+		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		return 
+		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N"));
     }
     /*
 	public JComponent optionsPanel(IAtomContainer atomContainer) {

@@ -5,7 +5,6 @@ import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -17,7 +16,6 @@ import org.openscience.cdk.templates.MoleculeFactory;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRuleList;
-import toxTree.exceptions.DecisionMethodException;
 import toxTree.logging.TTLogger;
 import toxTree.tree.DecisionNodesList;
 import toxTree.tree.RulesList;

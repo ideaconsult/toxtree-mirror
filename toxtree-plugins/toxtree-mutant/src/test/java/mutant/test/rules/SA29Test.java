@@ -36,7 +36,7 @@ public class SA29Test extends TestMutantRules {
 	
 	public int CDKSmarts(String smarts, String smiles) throws Exception  {
 
-	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts, true);
+	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
         
 	   SmilesParser sp = new SmilesParser(DefaultChemObjectBuilder.getInstance());
 	        	

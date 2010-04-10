@@ -1,8 +1,8 @@
 package mutant.test.rules;
 
-import toxTree.core.IDecisionRule;
 import mutant.rules.SA28bis;
 import mutant.test.TestMutantRules;
+import toxTree.core.IDecisionRule;
 
 public class SA28bisTest extends TestMutantRules {
 

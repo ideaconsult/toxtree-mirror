@@ -30,12 +30,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package mic.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import ambit2.smarts.query.SMARTSException;
 
 /**
+ *TODO - this is same as mutant.rules.SA28 -to reuse instead of copy
  * <pre>
  * [a;!$(a(a[A;!#1])(a[A;!#1]));!$(aa[CX3](=O)[OX2H1]);!$(aa[SX4](=[OX1])(=[OX1])([O-]));!$(aaa[SX4](=[OX1])(=[OX1])([O-]));!$(aaaa[SX4](=[OX1])(=[OX1])([O-]));!$(aaaaa[SX4](=[OX1])(=[OX1])([O-]));!$(aaaaaa[SX4](=[OX1])(=[OX1])([O-]));!$(aN(CC[Cl,Br,F,I])(CC[Cl,Br,F,I]));!$(aaN(CC[Cl,Br,F,I])(CC[Cl,Br,F,I]));!$(aaaN(CC[Cl,Br,F,I])(CC[Cl,Br,F,I]));!$(aaaaN(CC[Cl,Br,F,I])(CC[Cl,Br,F,I]));!$(aaaaaN(CC[Cl,Br,F,I])(CC[Cl,Br,F,I]))]!@[$([NX3;v3]([#1,CX4,CX3])([#1,CX4,CX3])),$([NX3;v3]([OX2H])([#1,CX4,CX3])),$([NX3;v3]([#1,CX4])OC=O)]
  * </pre>
@@ -191,9 +193,10 @@ public class SA28 extends StructureAlertCDK {
 		editable = false;
 	}
 
-	protected boolean isAPossibleHit(IAtomContainer mol,
-			IAtomContainer processedObject) throws DecisionMethodException {
-		MFAnalyser mfa = new MFAnalyser(mol);
-		return mfa.getFormulaHashtable().containsKey("N");
-	}
+
+	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
+		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		return 
+		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N"));
+	}   	
 }

@@ -77,7 +77,7 @@ public class RuleRingOtherThanAllowedSubstituentsTest extends TestCase {
 	public RuleRingOtherThanAllowedSubstituentsTest(String arg0) {
 		super(arg0);
 	}
-	public void testRuleRingOtherThanAllowedSubstituents() {
+	public void testRuleRingOtherThanAllowedSubstituents() throws Exception {
 	    Object[][] answer = {
 	            {"CCCCCCCCCCC",new Boolean(false),new Boolean(false)} 
 	            ,{"c1c(CCCCCC)cccc1",new Boolean(false),new Boolean(false)} 
@@ -131,13 +131,11 @@ public class RuleRingOtherThanAllowedSubstituentsTest extends TestCase {
 				assertEquals(((Boolean) answer[i][r+1]).booleanValue(), rule[r].verifyRule(mol));
 				
 			} catch (InvalidSmilesException x) {
-				fail();
+				throw x;
 			} catch (MolAnalyseException x) {
-				x.printStackTrace();
-				fail();
+				throw x;
 			} catch (DecisionMethodException x) {
-				x.printStackTrace();
-				fail();
+				throw x;
 			}
 			logger.debug("Fragment Ketone");
 		r = 1;
@@ -149,13 +147,11 @@ public class RuleRingOtherThanAllowedSubstituentsTest extends TestCase {
 					assertEquals(((Boolean) answer[i][r+1]).booleanValue(), rule[r].verifyRule(mol));					
 
 				} catch (InvalidSmilesException x) {
-					fail();
+					throw x;
 				} catch (MolAnalyseException x) {
-					x.printStackTrace();
-					fail();
+					throw x;
 				} catch (DecisionMethodException x) {
-					x.printStackTrace();
-					fail();
+					throw x;
 				}			
 	}
 

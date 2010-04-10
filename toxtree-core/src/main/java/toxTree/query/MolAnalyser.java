@@ -30,13 +30,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package toxTree.query;
 
-import java.util.Hashtable;
 import java.util.Iterator;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.atomtype.CDKAtomTypeMatcher;
-import org.openscience.cdk.config.Symbols;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtom;
@@ -52,6 +50,7 @@ import org.openscience.cdk.ringsearch.SSSRFinder;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
+import org.openscience.cdk.tools.periodictable.PeriodicTable;
 
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.logging.TTLogger;
@@ -68,7 +67,7 @@ public class MolAnalyser {
     //protected Molecule mol = null;
     //protected RingSet ringSet = null;
     protected static AllRingsFinder arf = new AllRingsFinder();
-    protected static Hashtable<String,Integer> elements = null;
+
 	public final static String HETEROCYCLIC = "Heterocyclic";
 	public final static String HETEROCYCLIC3 = "3-membered heterocyclic";
 	public final static String HETEROAROMATIC = "Heteroaromatic";
@@ -80,28 +79,16 @@ public class MolAnalyser {
         super();
     }
     
-    public static Hashtable<String,Integer> getElements() {
-    	if (elements != null) return elements;
-    	elements = new Hashtable<String, Integer>();
-    	for (int i=0; i < Symbols.byAtomicNumber.length; i++)
-    		elements.put(Symbols.byAtomicNumber[i], i);
-    	elements.put("R", 0);
-    	elements.put("*", 0);
-    	return elements;
-    	
-    }
     public static void analyse(IAtomContainer mol) throws MolAnalyseException {
     	
     	if (mol==null) throw new MolAnalyseException("Null molecule!",mol);
     	if (mol.getAtomCount()==0) throw new MolAnalyseException("No atoms!",mol);
-    	getElements();
-
         
     	try {
     		//New - 16 Jan 2008 - configure atom types
     		logger.debug("Configuring atom types ...");
 	        CDKAtomTypeMatcher matcher = CDKAtomTypeMatcher.getInstance(mol.getBuilder());
-	        Iterator<IAtom> atoms = mol.atoms();
+	        Iterator<IAtom> atoms = mol.atoms().iterator();
 	        while (atoms.hasNext()) {
 	           IAtom atom = atoms.next();
 	           IAtomType type = matcher.findMatchingAtomType(mol, atom);
@@ -143,11 +130,11 @@ public class MolAnalyser {
     		          logger.debug("Convert explicit hydrogens; atom count "+molPart.getAtomCount());    		          
         	      }
         	}
-        	atoms = mol.atoms();
+        	atoms = mol.atoms().iterator();
 	        while (atoms.hasNext()) {
 		           IAtom atom = atoms.next();
-		           if (atom.getAtomicNumber() == 0) {
-		        	   Integer no = elements.get(atom.getSymbol());
+		           if ((atom.getAtomicNumber() == null) || (atom.getAtomicNumber() == 0)) {
+		        	   Integer no = PeriodicTable.getAtomicNumber(atom.getSymbol());
 		        	   if (no != null)
 		        		   atom.setAtomicNumber(no.intValue());
 		           }	   

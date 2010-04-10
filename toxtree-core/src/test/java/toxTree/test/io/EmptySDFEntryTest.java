@@ -24,17 +24,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.test.io;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.List;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Test;
 import org.openscience.cdk.ChemFile;
 import org.openscience.cdk.ChemObject;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
@@ -42,25 +40,19 @@ import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
 import toxTree.logging.TTLogger;
 
-public class EmptySDFEntryTest extends TestCase {
-	public void testEmptyEntry() {
-		try {
-			MDLV2000Reader reader = new MDLV2000Reader(new FileInputStream("toxTree/data/Misc/emptyStructure.sdf"));
+public class EmptySDFEntryTest {
+	@Test
+	public void testEmptyEntry() throws Exception {
+			MDLV2000Reader reader = new MDLV2000Reader(
+					this.getClass().getClassLoader().getResourceAsStream("data/Misc/emptyStructure.sdf"));
         	ChemFile content = (ChemFile)reader.read((ChemObject)new ChemFile());
         	List c = ChemFileManipulator.getAllAtomContainers(content);
-        	assertNotNull(c);
-        	assertEquals(2,c.size());
+        	Assert.assertNotNull(c);
+        	Assert.assertEquals(2,c.size());
         	IAtomContainer a = (IAtomContainer)c.get(1);
-        	assertEquals(0,a.getAtomCount());
-        	assertEquals(0,a.getBondCount());
-        	
-		} catch (IOException x) {
-			x.printStackTrace();
-			fail();
-		} catch (CDKException x) {
-			x.printStackTrace();
-			fail();
-		}
+        	Assert.assertEquals(0,a.getAtomCount());
+        	Assert.assertEquals(0,a.getBondCount());
+
 	}
 	/*
 	public void testEmptyEntry30() {
@@ -83,24 +75,23 @@ public class EmptySDFEntryTest extends TestCase {
 		}
 	}
 	*/
-	public void testEmptyEntryIteratingReader() {
+	@Test
+	public void testEmptyEntryIteratingReader() throws Exception {
 		TTLogger.configureLog4j(true);
-		try {
-			IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream("toxTree/data/Misc/emptyStructure.sdf"),
+
+			IteratingMDLReader reader = new IteratingMDLReader(
+					this.getClass().getClassLoader().getResourceAsStream("data/Misc/emptyStructure.sdf"),
 			        DefaultChemObjectBuilder.getInstance());
             int molCount = 0;
             while (reader.hasNext()) {
                 Object object = reader.next();
-                assertNotNull(object);
-                assertTrue(object instanceof Molecule);
+                Assert.assertNotNull(object);
+                Assert.assertTrue(object instanceof Molecule);
                 molCount++;
             }
             
-            assertEquals(2,molCount);
-		} catch (Exception x) {
-			x.printStackTrace();
-			fail();
-		}
+            Assert.assertEquals(2,molCount);
+
 	}
 	
 }

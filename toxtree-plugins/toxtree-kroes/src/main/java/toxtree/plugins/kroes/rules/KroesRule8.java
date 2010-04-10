@@ -2,8 +2,6 @@ package toxtree.plugins.kroes.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import ambit2.base.interfaces.IProcessor;
-
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.AbstractRule;
@@ -11,6 +9,7 @@ import toxTree.tree.DefaultCategory;
 import toxTree.tree.cramer.CramerClass3;
 import toxTree.tree.cramer.CramerRules;
 import toxTree.tree.cramer.CramerTreeResult;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * Is the compound in Cramer structural class III?

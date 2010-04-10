@@ -27,6 +27,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
@@ -41,14 +42,14 @@ import org.openscience.cdk.interfaces.IChemObjectChangeEvent;
 import org.openscience.cdk.interfaces.IChemObjectListener;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.listener.IReaderListener;
+import org.openscience.cdk.io.random.RandomAccessReader;
+import org.openscience.cdk.io.random.RandomAccessSDFReader;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.io.Tools;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
-import ambit2.core.io.RandomAccessReader;
-import ambit2.core.io.RandomAccessSDFReader;
 
 public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChemObjectListener {
 	/**
@@ -387,7 +388,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
         return values;
     }
 	public void add(IAtomContainerSet arg0) {
-		Iterator i = arg0.atomContainers();
+		Iterator<IAtomContainer> i = arg0.atomContainers().iterator();
 		while (i.hasNext()) 
 			addAtomContainer((IAtomContainer)i.next());
 		sortedProperties.clear();
@@ -400,18 +401,18 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
 		addAtomContainer(arg0);
 		
 	}
-	public Iterator atomContainers() {
-		// TODO Auto-generated method stub
+
+	public Iterable<IAtomContainer> atomContainers() {
 		return null;
+	}	
+	public Double getMultiplier(int arg0) {
+		return 1.0;
 	}
-	public double getMultiplier(int arg0) {
-		return 0;
+	public Double getMultiplier(IAtomContainer arg0) {
+		return 1.0;
 	}
-	public double getMultiplier(IAtomContainer arg0) {
-		return 0;
-	}
-	public double[] getMultipliers() {
-		// TODO Auto-generated method stub
+
+	public Double[] getMultipliers() {
 		return null;
 	}
 	public void removeAtomContainer(IAtomContainer arg0) {
@@ -426,13 +427,13 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
 		// TODO Auto-generated method stub
 		
 	}
-	public boolean setMultiplier(IAtomContainer arg0, double arg1) {
+	public boolean setMultiplier(IAtomContainer arg0, Double arg1) {
 		return false;
 	}
-	public void setMultiplier(int arg0, double arg1) {
+	public void setMultiplier(int arg0, Double arg1) {
 		
 	}
-	public boolean setMultipliers(double[] arg0) {
+	public boolean setMultipliers(Double[] arg0) {
 		return false;
 	}
 	/*
@@ -505,6 +506,10 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
     }
     public BitSet getFingerprint(IAtomContainer mol) throws Exception {
     	return fp.getFingerprint(mol);
+    }
+    public void sortAtomContainers(Comparator<IAtomContainer> comparator) {
+    	
+    	
     }
 }
 

@@ -32,14 +32,17 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.tools.LoggingTool;
 
+import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.RuleAllSubstructures;
 import toxTree.tree.rules.smarts.IRuleSMARTSubstructures;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
@@ -48,38 +51,20 @@ import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
 
 
 
-public class RuleSMARTSubstructureTest extends TestCase {
+public class RuleSMARTSubstructureTest {
 	
 	public static LoggingTool logger = new LoggingTool(RuleAllSubstructures.class);
-	
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(RuleSMARTSubstructureTest.class);
-	}
+
 
 	/*
 	 * @see TestCase#setUp()
 	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	/*
-	 * @see TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
-	/**
-	 * Constructor for RuleAnySubstructureTest.
-	 * @param arg0
-	 */
-	public RuleSMARTSubstructureTest(String arg0) {
-		super(arg0);
+	@Before
+	public void setUp() throws Exception {
+		LoggingTool.configureLog4j();
 		
 	}
+	@Test
 	public void testRuleSMARTSubstructure() throws Exception  {
 		RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();		
 //		Molecule mol = MoleculeFactory.makeBenzene();
@@ -106,29 +91,30 @@ public class RuleSMARTSubstructureTest extends TestCase {
 			rule.setContainsAllSubstructures(false);
 			rule.addSubstructure(smarts);
 			rule.addSubstructure(smarts1);
+			MolAnalyser.analyse(mol);
 //			HueckelAromaticityDetector.detectAromaticity(mol);
 			//assertTrue(rule.verifyRule(mol,smarts));
 			//assertFalse(rule.verifyRule(mol,smarts1));
-			assertTrue(rule.verifyRule(mol));
+			Assert.assertTrue(rule.verifyRule(mol));
 			//assertFalse(rule.verifyRule(mol));
 			
 	}
  
 
   
-    
+    @Test
     public void testXMLSerializingRuleSmartsJoelib() throws Exception {
     	XMLSerializingRule(new RuleSMARTSSubstructureAmbit(),"[OX2H][OX2]");
     }
-    
+    @Test
     public void testXMLSerializingRuleSmartsCDK() throws Exception {
     	XMLSerializingRule(new RuleSMARTSubstructureCDK(),"[OX2H][OX2]");
     }
-    
+    @Test
     public void testSerializingRuleSmartsJoelib() throws Exception {
     	serializingRule(new RuleSMARTSSubstructureAmbit(),"[OX2H][OX2]");
     }
-    
+    @Test
     public void testSerializingRuleSmartsCDK() throws Exception {
     	serializingRule(new RuleSMARTSubstructureCDK(),"[OX2H][OX2]");
     }
@@ -136,11 +122,11 @@ public class RuleSMARTSubstructureTest extends TestCase {
     public void serializingRule(IRuleSMARTSubstructures rule, String smarts) throws Exception {
 		final String title = "1"; 
 			rule.addSubstructure(title,smarts);
-			assertEquals(smarts,rule.getSubstructure(title));
+			Assert.assertEquals(smarts,rule.getSubstructure(title));
 		String filename = "rulesmarts.xml";
 		Object rule1 = objectRoundTrip(rule, filename);
-		assertTrue(rule1 instanceof IRuleSMARTSubstructures);
-		assertEquals(rule.getSubstructure(title),((IRuleSMARTSubstructures)rule1).getSubstructure(title));
+		Assert.assertTrue(rule1 instanceof IRuleSMARTSubstructures);
+		Assert.assertEquals(rule.getSubstructure(title),((IRuleSMARTSubstructures)rule1).getSubstructure(title));
 		System.out.println(rule.getImplementationDetails());
         System.out.println(((IRuleSMARTSubstructures)rule1).getImplementationDetails());
     }
@@ -157,14 +143,14 @@ public class RuleSMARTSubstructureTest extends TestCase {
 			is.close();
 			f.delete();
 			System.out.println(rule.toString());
-			assertEquals(rule,rule2);
+			Assert.assertEquals(rule,rule2);
 			return rule2;
 
 	}	    
     public void XMLSerializingRule(IRuleSMARTSubstructures rule, String smarts) throws Exception {
     		final String title = "1"; 
    			rule.addSubstructure(title,smarts);
-   			assertEquals(smarts,rule.getSubstructure(title));
+   			Assert.assertEquals(smarts,rule.getSubstructure(title));
     		String filename = "rulesmarts.xml";
     		File file = new File(filename);
     		if (file.exists()) file.delete();
@@ -177,10 +163,11 @@ public class RuleSMARTSubstructureTest extends TestCase {
 			FileInputStream in = new FileInputStream(filename);
 			XMLDecoder decoder = new XMLDecoder(in);
 			IRuleSMARTSubstructures rule1 = (IRuleSMARTSubstructures)decoder.readObject();
-			assertEquals(smarts,rule1.getSubstructure(title));
+			Assert.assertEquals(smarts,rule1.getSubstructure(title));
 			decoder.close();
 
     }
+    @Test
     public void testGetImplementationDetails() throws Exception  {
 		RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
 		String smarts = "[OX2H][OX2]";
@@ -189,7 +176,7 @@ public class RuleSMARTSubstructureTest extends TestCase {
 		
 		
 		//System.out.println(rule.getImplementationDetails());
-		assertEquals("\t\tName\tSMARTS\n\tNOT\t\"2\"\tC=O\nOR\t\t\"1\"\t[OX2H][OX2]\n",rule.getImplementationDetails());
+			Assert.assertEquals("\t\tName\tSMARTS\n\tNOT\t\"2\"\tC=O\nOR\t\t\"1\"\t[OX2H][OX2]\n",rule.getImplementationDetails());
     }
     
 }

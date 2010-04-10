@@ -31,7 +31,7 @@ public class toxTreeEventTest  {
 	PropertyChangeListener resultListener;	
 
 	@Before
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		rules = new CramerRules();
 		rulesListener = new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent evt) {

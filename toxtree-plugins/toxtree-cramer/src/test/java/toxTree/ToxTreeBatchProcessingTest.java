@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree;
 
 import java.io.File;
+import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -50,18 +51,19 @@ import toxTree.tree.cramer.CramerRules;
 public class ToxTreeBatchProcessingTest {
 	static TTLogger logger = new TTLogger(ToxTreeBatchProcessing.class); 
 	protected ToxTreeBatchProcessing batch = null;
-	protected String config = "toxTree/data/Misc/batch.cfg";
-	protected String configInterrupted = "toxTree/data/Misc/batchInterrupted.cfg";
+	protected String config = "data/Misc/batch.cfg";
+	protected String configInterrupted = "data/Misc/batchInterrupted.cfg";
 	protected IDecisionMethod  rules;
 
 	@Before
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
         Introspection.setLoader(getClass().getClassLoader());
         rules = new CramerRules();
         try {
+        	URL url1 = getClass().getClassLoader().getResource("data/Misc/test.sdf");
             batch = new ToxTreeBatchProcessing(
-                    "toxTree/data/Misc/test.sdf",
-                    "toxTree/data/Misc/batchResults.sdf"
+                    url1.getFile(),
+                    "batchResults.sdf"
                     );
             ((ToxTreeBatchProcessing) batch).setDecisionMethod(rules);
             File f = new File(config);
@@ -77,10 +79,10 @@ public class ToxTreeBatchProcessingTest {
 	}
 	@Test
 	public void testSuccessfullBatch() throws Exception  {
-
+			URL url1 = getClass().getClassLoader().getResource("data/Misc/test.sdf");
 			ToxTreeBatchProcessing bp = new ToxTreeBatchProcessing(
-					"toxTree/data/Misc/test.sdf",
-					"toxTree/data/Misc/batchResults.sdf"
+					url1.getFile(),
+					"batchResults.sdf"
 					);
 			bp.setDecisionMethod(rules);
 			bp.addObserver(new Observer() {
@@ -120,12 +122,12 @@ public class ToxTreeBatchProcessingTest {
 	*/
 	@Test
 	public void testBatchInThread() throws Exception {
-
+		URL url1 = getClass().getClassLoader().getResource("data/Misc/test.sdf");
 			ToxTreeBatchProcessing bp = new ToxTreeBatchProcessing(
-					"toxTree/data/Misc/test.sdf",
+					url1.getFile(),
 					//"cellbox:/nina/Databases/ligand_info_subset_1_dos.sdf", space after property line
 					//"cellbox:/nina/Databases/nciopen_3D_fixed.sdf",
-					"toxTree/data/Misc/batchResults.sdf"
+					"batchResults.sdf"
 					);
 			
 			bp.addObserver(new Observer() {
@@ -150,8 +152,8 @@ public class ToxTreeBatchProcessingTest {
 	}
 	@Test
 	public void testBatchFromConfig() throws Exception {
-
-			ToxTreeBatchProcessing bp = (ToxTreeBatchProcessing)BatchFactory.createFromConfig(new File(config));
+		URL url1 = getClass().getClassLoader().getResource(config);
+			ToxTreeBatchProcessing bp = (ToxTreeBatchProcessing)BatchFactory.createFromConfig(new File(url1.getFile()));
 			Assert.assertNotNull(bp.getDecisionMethod());
 //			bp.setDecisionMethod(new CramerRules());			
 			bp.setSaveStateFrequency(10);
@@ -195,10 +197,10 @@ public class ToxTreeBatchProcessingTest {
 	@Test
 	public void testInterruptedJob() throws Exception  {
 		
-
+		URL url1 = getClass().getClassLoader().getResource("data/Misc/test.sdf");
 			batch = new ToxTreeBatchProcessing(
-					"toxTree/data/Misc/test.sdf",
-					"toxTree/data/Misc/batchInterruptedResults.sdf"
+					url1.getFile(),
+					"batchInterruptedResults.sdf"
 					);
 			batch.setDecisionMethod(new CramerRules());
 			File f = new File(configInterrupted);
@@ -226,8 +228,9 @@ public class ToxTreeBatchProcessingTest {
 			batch = null;			
 
 //------------------			
+			url1 = getClass().getClassLoader().getResource(configInterrupted);
 			ToxTreeBatchProcessing bp = (ToxTreeBatchProcessing)BatchFactory.
-							createFromConfig(new File(configInterrupted));
+							createFromConfig(new File(url1.getFile()));
 			
 			Assert.assertEquals(BatchProcessing.STATUS_PAUSED,bp.getStatus());
 			

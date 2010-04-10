@@ -28,9 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
@@ -97,11 +98,10 @@ public class RuleCarbohydrate extends RuleSubstructures {
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    
 	    FunctionalGroups.markCHn(mol);
-	    
-		MFAnalyser ma = new MFAnalyser(mol);
-		int c = ma.getAtomCount("C");
-		int h = ma.getAtomCount("H");
-		int o = ma.getAtomCount("O");
+		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
+		int h = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("H"));
+		int o = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("O"));
 		List list =null;
 	    if ((mol.getAtomCount() == (c+h+o)) && (o>0)) {
 			IRingSet rings = mf.getRingset();

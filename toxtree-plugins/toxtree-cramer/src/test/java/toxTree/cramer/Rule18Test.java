@@ -163,8 +163,10 @@ public class Rule18Test extends AbstractRuleTest {
 	    assertTrue(FunctionalGroups.hasGroup(
 	    		FunctionalGroups.createAtomContainer((String)answer[7][0],true),
 				q));
+	    IAtomContainer mol = FunctionalGroups.createAtomContainer((String)answer[8][0],true);
+	    assertNotNull(mol);
 	    assertFalse(FunctionalGroups.hasGroup(
-	    		FunctionalGroups.createAtomContainer((String)answer[8][0],true),
+	    		mol,
 				q));	    
 	    ruleTest(answer);
 	}

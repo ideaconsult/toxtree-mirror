@@ -27,7 +27,8 @@ package mutant.rules;
 import java.util.Map;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.StructureAlertCDK;
@@ -92,9 +93,10 @@ public class SA25 extends StructureAlertCDK {
         }
     }
 	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
-		MFAnalyser mfa = new MFAnalyser(mol);
-		Map<String,Integer> elements = mfa.getFormulaHashtable();
-		return elements.containsKey("N") && elements.containsKey("O");
+		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		return 
+		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N")) &&
+		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("O"));
 	}    
 }
 

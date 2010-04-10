@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import junit.framework.TestCase;
 import mutant.rules.RuleDACancerogenicityAromaticAmines;
 
+import org.junit.Assert;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorValue;
@@ -26,7 +27,7 @@ public class DescriptorMopacShellTest extends TestCase {
 	public void testCalculate() throws Exception {
 		DescriptorMopacShell d = new DescriptorMopacShell();
 		IAtomContainer ac = FunctionalGroups.createAtomContainer("c1ccccc1", true);
-		try {
+
 			DescriptorValue v = (DescriptorValue) d.calculate(ac);
 			assertEquals(Mopac7Reader.parameters.length,v.getNames().length);
 			assertEquals(DescriptorMopacShell.EHOMO,v.getNames()[7]);
@@ -38,39 +39,27 @@ public class DescriptorMopacShellTest extends TestCase {
 			assertEquals(78.113,r.get(6),1E-2); //Molecular weight
 			assertEquals(97.85217,r.get(2),1E-2); //FINAL HEAT OF FORMATION
 
-
-		} catch (CDKException x) {
-			fail(x.getMessage());
-		}
 	}
 //	NC1=C(F)C(N)=C(F)C(F)=C1(F).[H]Cl.[H]Cl
 
 	public void testCalculateUnsupportedAtom() throws Exception {
 		DescriptorMopacShell d = new DescriptorMopacShell();
 		IAtomContainer ac = FunctionalGroups.createAtomContainer("C[Si]", true);
-		try {
-			d.calculate(ac);
-			fail("Shouldn't get here");
-		} catch (CDKException x) {
-			assertEquals(" UNSUPPORTED TYPE " + "Si",x.getMessage());
-		}
+		DescriptorValue value = d.calculate(ac);
+		Assert.assertNotNull(value.getException());
+		assertEquals(" UNSUPPORTED TYPE " + "Si",value.getException().getMessage());
 	}
 	
 	public void testCalculate1() throws Exception  {
 		DescriptorMopacShell d = new DescriptorMopacShell();
 		
 		IAtomContainer ac = FunctionalGroups.createAtomContainer("CCCCCCCCCCC", true);
-		try {
-			DescriptorValue v = (DescriptorValue) d.calculate(ac);
-			assertEquals(Mopac7Reader.parameters.length,v.getNames().length);
-			assertEquals(DescriptorMopacShell.EHOMO,v.getNames()[7]);
-			assertEquals(DescriptorMopacShell.ELUMO,v.getNames()[8]);
+		DescriptorValue v = (DescriptorValue) d.calculate(ac);
+		assertEquals(Mopac7Reader.parameters.length,v.getNames().length);
+		assertEquals(DescriptorMopacShell.EHOMO,v.getNames()[7]);
+		assertEquals(DescriptorMopacShell.ELUMO,v.getNames()[8]);
+		assertNull(v.getException());
 
-
-
-		} catch (CDKException x) {
-			fail(x.getMessage());
-		}
 	}
 	public void testOptions() throws Exception {
 		IDescriptor d = new DescriptorMopacShell();

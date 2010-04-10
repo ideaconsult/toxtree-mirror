@@ -325,7 +325,7 @@ public abstract class TestMutantRules extends TestCase {
     }	
 	private void findAndConfigureAtomTypesForAllAtoms(IAtomContainer container) throws CDKException {
     	CDKAtomTypeMatcher matcher = CDKAtomTypeMatcher.getInstance(container.getBuilder());
-    	Iterator<IAtom> atoms = container.atoms();
+    	Iterator<IAtom> atoms = container.atoms().iterator();
     	while (atoms.hasNext()) {
     		IAtom atom = atoms.next();
     		IAtomType type = matcher.findMatchingAtomType(container, atom);
@@ -339,7 +339,7 @@ public abstract class TestMutantRules extends TestCase {
             return ruleToTest.verifyRule(no);
     }
     protected int[] match(String smarts, String smiles) throws Exception {
-        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts, true);
+        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
         SmilesParser sp = new SmilesParser(DefaultChemObjectBuilder.getInstance());
         IAtomContainer atomContainer = sp.parseSmiles(smiles);
         MolAnalyser.analyse(atomContainer);

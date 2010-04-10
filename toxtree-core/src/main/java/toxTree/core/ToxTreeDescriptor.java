@@ -8,7 +8,6 @@ import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 
 import toxTree.exceptions.DecisionResultException;
-
 import ambit2.core.data.ArrayResult;
 import ambit2.core.data.StringDescriptorResultType;
 
@@ -18,15 +17,31 @@ public class ToxTreeDescriptor implements IMolecularDescriptor {
 	protected transient IDecisionMethod decisionTree = null;
 	protected String[] descriptorNames =  new String[] {"default"};
 	
-	public DescriptorValue calculate(IAtomContainer mol) throws CDKException {
+	public DescriptorValue calculate(IAtomContainer mol)  {
 		if (decisionTree == null) 
 			try {
 				decisionTree = (IDecisionMethod) Introspection.loadCreateObject(getParameters()[0].toString());
 			} catch (Exception x) {
-				throw new CDKException(x.getMessage());
+				return new DescriptorValue(
+						getSpecification(),
+						getParameterNames(),
+						getParameters(),
+						null,
+						descriptorNames,
+						x
+						);	
 			}
 			
-		if (decisionTree == null) throw new CDKException("No decision tree!");
+		if (decisionTree == null) 
+			return new DescriptorValue(
+					getSpecification(),
+					getParameterNames(),
+					getParameters(),
+					null,
+					descriptorNames,
+					new CDKException("No decision tree!")
+					);	
+		
 		IDecisionResult result = decisionTree.createDecisionResult();
 		try {
 			result.classify(mol);
@@ -54,7 +69,14 @@ public class ToxTreeDescriptor implements IMolecularDescriptor {
 						);					
 
 		} catch (DecisionResultException x) {
-			throw new CDKException(x.getMessage());
+			return new DescriptorValue(
+					getSpecification(),
+					getParameterNames(),
+					getParameters(),
+					null,
+					descriptorNames,
+					x
+					);		
 		}
 	}
 
@@ -97,5 +119,7 @@ public class ToxTreeDescriptor implements IMolecularDescriptor {
 		}
 		
 	}
-
+	public String[] getDescriptorNames() {
+		return descriptorNames;
+	}
 }

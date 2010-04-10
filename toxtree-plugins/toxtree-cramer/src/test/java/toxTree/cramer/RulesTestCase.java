@@ -110,7 +110,7 @@ public abstract class RulesTestCase  {
 	public void testImplementedRules() {
 		tryImplementedRules();
 	}
-	@Test
+	
 	public void tryImplementedRules() {
 	    int nr = rules.getNumberOfRules();
 	    int ne = 0;
@@ -178,7 +178,7 @@ public abstract class RulesTestCase  {
     		System.err.println("Unvisited rules:");
     		System.err.println(unvisited);
     	}
-    	Assert.assertNull(unvisited);
+    	Assert.assertTrue((unvisited==null) || (unvisited.size()==0));
     }
 	protected Object objectRoundTrip(Object rule,String filename)  throws Exception {		
 

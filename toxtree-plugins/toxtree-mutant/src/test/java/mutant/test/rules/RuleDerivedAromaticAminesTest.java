@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 import mutant.rules.RuleDerivedAromaticAmines;
-import mutant.rules.SA11;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -12,7 +11,6 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
-import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.MolAnalyseException;
@@ -98,7 +96,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 				String s = g.createSMILES((IMolecule)sc.getAtomContainer(i));
 				System.out.println(s);
 				//assertNotNull(results.get(s));
-				MFAnalyser mf = new MFAnalyser(sc.getAtomContainer(i));
+				//MFAnalyser mf = new MFAnalyser(sc.getAtomContainer(i));
 				//assertEquals(results.get(s),new Integer(mf.getAtomCount("C")));
 				//System.out.println(FunctionalGroups.mapToString(sc.getAtomContainer(i)));
 //				System.out.println(FunctionalGroups.hasGroupMarked(sc.getAtomContainer(i),q.getID()));

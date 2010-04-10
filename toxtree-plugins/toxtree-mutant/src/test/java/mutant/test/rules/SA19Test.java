@@ -24,13 +24,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test.rules;
 
+import mutant.rules.SA19;
+import mutant.test.TestMutantRules;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
-import mutant.rules.SA19;
-import mutant.test.TestMutantRules;
 
 public class SA19Test extends TestMutantRules {
 	protected String[] smiles = {
