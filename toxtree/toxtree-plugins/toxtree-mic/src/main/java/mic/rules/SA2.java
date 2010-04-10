@@ -29,10 +29,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mic.rules;
 
-import java.util.Map;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import ambit2.smarts.query.ISmartsPattern;
@@ -162,16 +161,15 @@ public class SA2 extends StructureAlertCDK {
 	 */
 	protected boolean isAPossibleHit(IAtomContainer mol,
 			IAtomContainer processedObject) throws DecisionMethodException {
-		MFAnalyser mfa = new MFAnalyser(mol);
+	    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
 
-		Map<String, Integer> elements = mfa.getFormulaHashtable();
 		@SuppressWarnings("unused")
 		boolean ok = false;
 		try {
-			if (elements.containsKey("O")) {
-				if (elements.containsKey("S"))
+			if (MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("O"))) {
+				if (MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("S")))
 					return prescreenSulphonic.match(mol) > 0;
-				if (elements.containsKey("P"))
+				if (MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("P")))
 					return prescreenPhosphonic.match(mol) > 0;
 			}
   		} catch (SMARTSException x) {

@@ -27,12 +27,14 @@ package toxTree.test.io.batch;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URL;
 
-import junit.framework.TestCase;
-import toxTree.io.batch.BatchProcessingException;
+import junit.framework.Assert;
+
+import org.junit.Test;
+
 import toxTree.io.batch.FileState;
 
 /**
@@ -40,27 +42,24 @@ import toxTree.io.batch.FileState;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-9-4
  */
-public class FileStateTest extends TestCase {
+public class FileStateTest {
 
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(FileStateTest.class);
-	}
-	public void testMatch() {
-		File f = new File("toxTree/data/Misc/test.cml");
-		assertTrue(f.exists());
+	
+	@Test
+	public void testMatch() throws Exception {
+		URL url = this.getClass().getClassLoader().getResource("data/Misc/test.cml");
+		File f = new File(url.getFile());
+		Assert.assertTrue(f.exists());
 		
 		
 		FileState fs = new FileState(f);
-		try {
-			assertTrue(fs.match());
-			File f1 = new File("toxTree/data/Misc/test.cml");
-			assertTrue(fs.match(f1));
-		} catch (BatchProcessingException x) {
-			x.printStackTrace();
-			fail();
-		}
+		Assert.assertTrue(fs.match());
+		File f1 = new File(url.getFile());
+		Assert.assertTrue(fs.match(f1));
+
 	}
-	public void testRoundTrip() {
+	@Test
+	public void testRoundTrip() throws Exception {
 		FileState fs = new FileState();
 		fs.setFilename("test.cml");
 		fs.setLastModified(999);
@@ -69,17 +68,16 @@ public class FileStateTest extends TestCase {
 		fs.setCurrentRecord(10);
 		
 		FileState newFS = new FileState();
-		assertNotSame(fs,newFS);
+		Assert.assertNotSame(fs,newFS);
 		
-		try {
 			//writing
 			File fwrite = File.createTempFile("FileStateTest","test");
+			fwrite.deleteOnExit();
 			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fwrite));
 			os.writeObject(fs);
 			os.close();
 			
 			String filename = fwrite.getAbsolutePath();
-			System.out.println(filename);
 			
 			//reading
 			File fread = new File(filename);
@@ -87,16 +85,8 @@ public class FileStateTest extends TestCase {
 			newFS =(FileState) is.readObject();
 			is.close();
 			fread.delete();
-			assertEquals(fs,newFS);
-			
-			//f.delete();
-		} catch (IOException x) {
-			x.printStackTrace();
-			fail();
-		} catch (ClassNotFoundException x) {
-			x.printStackTrace();
-			fail();			
-		}
+			Assert.assertEquals(fs,newFS);
+
 		
 		
 		

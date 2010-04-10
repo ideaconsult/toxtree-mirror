@@ -56,6 +56,7 @@ public class RuleHeteroaromatic extends RuleSMARTSSubstructureAmbit {
 		try {addSubstructure("heteroaromatic","[a;!c]"); } catch (Exception x) {x.printStackTrace();}
 		title = "Heteroaromatic";
 		explanation.append("<html>This question separates the aromatic heterocyclics for the purpose of considering whether they are polynuclear(Q14) or unsubstituted (Q13).</html>");
+		//both examples are heteroaromatics!
 		examples[0] = "S1C=CN=C1";
 		examples[1] = "O1C=CC=C1";
 		editable = false;

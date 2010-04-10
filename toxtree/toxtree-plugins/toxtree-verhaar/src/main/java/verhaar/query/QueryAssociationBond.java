@@ -23,6 +23,7 @@ import org.openscience.cdk.Atom;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.ElectronContainer;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IBond.Stereo;
 import org.openscience.cdk.isomorphism.matchers.IQueryBond;
 
 import toxTree.query.MyAssociationBond;
@@ -74,7 +75,7 @@ public class QueryAssociationBond extends Bond implements IQueryBond {
 	 * @param arg2
 	 * @param arg3
 	 */
-	public QueryAssociationBond(Atom arg0, Atom arg1,IBond.Order arg2, int arg3) {
+	public QueryAssociationBond(Atom arg0, Atom arg1,IBond.Order arg2, Stereo arg3) {
 		super(arg0, arg1, arg2, arg3);
 	}
 

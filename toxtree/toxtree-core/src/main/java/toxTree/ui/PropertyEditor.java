@@ -29,7 +29,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.ui.molecule.PropertyPanel;
 import ambit2.ui.editors.Panel2D;
@@ -50,8 +50,7 @@ public class PropertyEditor extends JPanel{
         if (mol != null) {
 	        try {
 	            c = (IAtomContainer)mol.clone();
-	            MFAnalyser mfa = new MFAnalyser(c);
-	            c = mfa.removeHydrogensPreserveMultiplyBonded();    
+	            c = AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(c);    
 	            c.setProperties(mol.getProperties());
 	        } catch (Exception x) {
 	            c = mol;

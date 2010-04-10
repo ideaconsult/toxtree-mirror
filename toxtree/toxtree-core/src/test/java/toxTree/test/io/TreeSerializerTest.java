@@ -27,20 +27,19 @@ package toxTree.test.io;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
-import org.openscience.cdk.exception.CDKException;
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
-import toxTree.exceptions.DecisionMethodException;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
@@ -65,38 +64,16 @@ import toxTree.tree.rules.RuleStructuresList;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-9-5
  */
-public class TreeSerializerTest extends TestCase {
+public class TreeSerializerTest {
 	protected static TTLogger logger = new TTLogger(TreeSerializerTest.class);
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(TreeSerializerTest.class);
-	}
 
-	/*
-	 * @see TestCase#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	/*
-	 * @see TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
-	/**
-	 * Constructor for TreeSerializerTest.
-	 * @param arg0
-	 */
-	public TreeSerializerTest(String arg0) {
-		super(arg0);
+	@Before
+	public void setUp() throws Exception {
 		TTLogger.configureLog4j(true);
 	}
 
-	public void testAbstractRule() {
+	@Test
+	public void testAbstractRule() throws Exception {
 		IDecisionRule r = new RuleAromatic();
 		r.setID("100");
 		r.setNum(99);
@@ -105,49 +82,34 @@ public class TreeSerializerTest extends TestCase {
 		r.setExampleMolecule(MoleculeFactory.makeBenzene(),true);
 		r.setExampleMolecule(MoleculeFactory.makeAlkane(2),false);
 		
-		try {
-			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream("bin/toxTree/test/test.rule"));
+		File temp = File.createTempFile("test", ".rule");  
+		temp.deleteOnExit();
+			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(temp));
 			out.writeObject(r);
 			out.close();
 			ObjectInputStream in = new ObjectInputStream(
-					new FileInputStream("bin/toxTree/test/test.rule"));
+					new FileInputStream(temp));
 			
 			Object r1 = in.readObject();
-			assertEquals(r,r1);
+			Assert.assertEquals(r,r1);
 			
 			in.close();
-			try {
-				assertTrue(UniversalIsomorphismTester.isIsomorph(
+
+			Assert.assertTrue(UniversalIsomorphismTester.isIsomorph(
 						r.getExampleMolecule(true),((AbstractRule)r1).getExampleMolecule(true)
 						));
-				assertTrue(UniversalIsomorphismTester.isIsomorph(
+			Assert.assertTrue(UniversalIsomorphismTester.isIsomorph(
 						r.getExampleMolecule(false),((AbstractRule)r1).getExampleMolecule(false)
 						));
-			} catch (DecisionMethodException x) {
-				x.printStackTrace();
-				fail();
-			} catch (CDKException x) {
-				x.printStackTrace();
-				fail();
-			}
-			
-		} catch (ClassNotFoundException x) {
-			x.printStackTrace();
-			fail();
-		} catch (IOException x) {
-			x.printStackTrace();
-			fail();
-		}
+
 		
 	}
-
-	public void testCategoryRoundTrip() {
+	@Test
+	public void testCategoryRoundTrip() throws Exception {
 		DefaultCategory c1 = new DefaultCategory("My Class",100);
 		DefaultCategory c2 = new DefaultCategory();
-		assertNotSame(c1,c2);
+		Assert.assertNotSame(c1,c2);
 		
-		try {
 			//writing
 			File f = File.createTempFile("Category","test");
 			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));
@@ -159,22 +121,15 @@ public class TreeSerializerTest extends TestCase {
 			c2 =(DefaultCategory) is.readObject();
 			is.close();
 			f.delete();
-			assertEquals(c1,c2);
+			Assert.assertEquals(c1,c2);
 			
-		} catch (IOException x) {
-			x.printStackTrace();
-			fail();
-		} catch (ClassNotFoundException x) {
-			x.printStackTrace();
-			fail();			
-		}
 	}
 	
-	protected AbstractRule ruleRoundTrip(AbstractRule rule) {
+	protected AbstractRule ruleRoundTrip(AbstractRule rule) throws Exception {
 		return (AbstractRule)objectRoundTrip(rule,"Rule");
 	}
-	protected Object objectRoundTrip(Object rule,String filename) {		
-		try {
+	protected Object objectRoundTrip(Object rule,String filename) throws Exception {		
+
 			//writing
 			File f = File.createTempFile(filename,"test");
 			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));
@@ -187,20 +142,11 @@ public class TreeSerializerTest extends TestCase {
 			is.close();
 			f.delete();
 			logger.debug(rule.toString());
-			assertEquals(rule,rule2);
+			Assert.assertEquals(rule,rule2);
 			return rule2;
-			
-		} catch (IOException x) {
-			x.printStackTrace();
-			fail();
-		} catch (ClassNotFoundException x) {
-			x.printStackTrace();
-			fail();			
-		}
-		return null;
 	}	
-	
-	public void testRules() {
+	@Test
+	public void testRules() throws Exception {
 		//ruleRoundTrip(new RuleSubstructures());
 		ruleRoundTrip(new RuleAnySubstructure());
 		
@@ -218,17 +164,14 @@ public class TreeSerializerTest extends TestCase {
 		rule1.addSubstructure(FunctionalGroups.acrolein());
 		RuleAnySubstructure rule2 = (RuleAnySubstructure)ruleRoundTrip(rule1);
 		IAtomContainer m = FunctionalGroups.acrolein();
-		try {
+
 			MolAnalyser.analyse(m);
-			assertTrue(rule2.verifyRule(m));
+			Assert.assertTrue(rule2.verifyRule(m));
 			
 			m = FunctionalGroups.createAtomContainer("CCC(=O)OCCC");
 			MolAnalyser.analyse(m);
-			assertTrue(rule2.verifyRule(m));			
-		} catch (Exception x) {
-			x.printStackTrace();
-			fail();
-		}
+			Assert.assertTrue(rule2.verifyRule(m));			
+
 		
 		ruleRoundTrip(new RuleAnySubstituents());
 		ruleRoundTrip(new RuleAllSubstructures());

@@ -1,9 +1,8 @@
 package mic.rules;
 
-import java.util.Map;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import ambit2.smarts.query.SMARTSException;
@@ -83,10 +82,9 @@ public class SA28ter extends StructureAlertCDK {
 		}
 	}
 
-	protected boolean isAPossibleHit(IAtomContainer mol,
-			IAtomContainer processedObject) throws DecisionMethodException {
-		MFAnalyser mfa = new MFAnalyser(mol);
-		Map<String, Integer> elements = mfa.getFormulaHashtable();
-		return elements.containsKey("N");
-	}
+	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
+		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		return 
+		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N"));
+	}   
 }

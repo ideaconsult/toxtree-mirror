@@ -37,9 +37,10 @@ import java.util.List;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.Ring;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.SSSRFinder;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
@@ -125,8 +126,9 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 			logger.debug(CYCLIC_SUBSTITUENT);
 			b = false;
 		} else {
-			MFAnalyser mf = new MFAnalyser(a);
-			int c = mf.getAtomCount("C");
+			IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(a);
+			int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
+
 			if (c>5) {
 				logger.debug(LONGCHAIN_SUBSTITUENT,c);
 				b = true;

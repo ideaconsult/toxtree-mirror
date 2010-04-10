@@ -66,7 +66,7 @@ public class RuleSufficientSulphonateGroupstest extends AbstractRuleTest {
 	    try {
 	    	ruleTest(answer);
 	    } catch (Exception x) {
-	    	throw new Exception(x);
+	    	throw x;
 	    } finally {
 	    	System.out.println("restore");
 	    	parser.setParser(mode);

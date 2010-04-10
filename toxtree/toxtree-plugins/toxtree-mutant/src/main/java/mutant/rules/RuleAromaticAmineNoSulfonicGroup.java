@@ -27,7 +27,10 @@ package mutant.rules;
 import java.util.Map;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IElement;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
+import org.openscience.cdk.tools.periodictable.PeriodicTable;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
@@ -122,13 +125,8 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSubstructureCDK {
 	}
 	@Override
 	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
-		MFAnalyser mfa = new MFAnalyser(mol);
-		
-		Map<String,Integer> elements = mfa.getFormulaHashtable();
-		if (elements.containsKey("N")) {
-			return true;
-		}
-		return false;
+		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		return MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N"));
 	}
 
 }

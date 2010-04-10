@@ -21,20 +21,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 package toxTree.test.tree.rules;
 
-import junit.framework.TestCase;
-
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.RuleVerifyProperty;
 
-public class RuleVerifyPropertyTest extends TestCase {
+public class RuleVerifyPropertyTest  {
 
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(RuleVerifyPropertyTest.class);
-	}
-	public void test() {
+	@Test
+	public void test() throws Exception {
 		IAtomContainer a = MoleculeFactory.makeAlkane(10);
 		a.setProperty("a","1");
 		a.removeProperty("test");
@@ -45,12 +42,11 @@ public class RuleVerifyPropertyTest extends TestCase {
             
 		} catch (DecisionMethodException x) {
             try {
-            r.verifyRule(a);
+            	r.verifyRule(a);
             } catch (DecisionMethodException xx) {
                 
             }
-			x.printStackTrace();
-			fail();
+			throw x;
 		}
 	}
 }

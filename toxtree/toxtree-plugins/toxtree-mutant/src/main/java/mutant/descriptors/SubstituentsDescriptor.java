@@ -30,17 +30,23 @@ public abstract class SubstituentsDescriptor implements IMolecularDescriptor {
 		extractor = new SubstituentExtractor(query);
 	}
 
-	public DescriptorValue calculate(IAtomContainer arg0) throws CDKException {
-        Hashtable<String,IAtomContainerSet> substituents = extractor.extractSubstituents(arg0);
-        String mark = select(substituents);
-        Enumeration<String> marks = substituents.keys();
-        while (marks.hasMoreElements()) {
-            String m = marks.nextElement();
-            if (m.equals(mark)) continue;
-                for (int i=0; i < arg0.getAtomCount();i++)
-                    arg0.getAtom(i).removeProperty(m);
+	public DescriptorValue calculate(IAtomContainer arg0) {
+        try {
+	        Hashtable<String,IAtomContainerSet> substituents = extractor.extractSubstituents(arg0);
+	        String mark = select(substituents);
+	        Enumeration<String> marks = substituents.keys();
+	        while (marks.hasMoreElements()) {
+	            String m = marks.nextElement();
+	            if (m.equals(mark)) continue;
+	                for (int i=0; i < arg0.getAtomCount();i++)
+	                    arg0.getAtom(i).removeProperty(m);
+	        }
+	
+			return calculate(substituents.get(mark),mark);
+        } catch (Exception x) {
+    		return new DescriptorValue(getSpecification(), getParameterNames(),
+    				getParameters(), null, null ,x);
         }
-		return calculate(substituents.get(mark),mark);
 	}
     public abstract String select(Hashtable<String,IAtomContainerSet> substituents) throws CDKException;
 	

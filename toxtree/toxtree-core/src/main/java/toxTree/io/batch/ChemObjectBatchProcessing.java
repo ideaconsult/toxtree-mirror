@@ -115,6 +115,9 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 				return new IteratingDelimitedFileReader(new FileInputStream(file.getFile()),
 						new DelimitedFileFormat(" \t",'"'));			
 			else throw new BatchProcessingException(MSG_UNSUPPORTEDFORMAT+file.filename,this);
+		} catch (CDKException x) {
+			logger.error(x);
+			throw new BatchProcessingException(x,this);			
 		} catch (UnsupportedEncodingException x) {
 			logger.error(x);
 			throw new BatchProcessingException(x,this);

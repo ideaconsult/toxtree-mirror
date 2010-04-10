@@ -70,7 +70,7 @@ public class TreeSerializerTest {
 	protected static TTLogger logger = new TTLogger(TreeSerializerTest.class);
 
 	@Before
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		TTLogger.configureLog4j(true);
 	}
 
@@ -204,10 +204,10 @@ public class TreeSerializerTest {
 		
 		IAtomContainer mol = MoleculeFactory.makeBenzene();
 		//x.calculate(m);
-			//12.4
+			//2.218
 			Assert.assertFalse(dd.verifyRule(mol));
-			dd.setMaxValue(15);
-			dd.setMinValue(10);
+			dd.setMaxValue(3);
+			dd.setMinValue(2);
 			Assert.assertTrue(dd.verifyRule(mol));
 
 	}

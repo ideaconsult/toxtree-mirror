@@ -1,8 +1,9 @@
 package toxTree.test.smarts;
 
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.query.FunctionalGroups;
@@ -15,20 +16,21 @@ import ambit2.smarts.query.SmartsPatternAmbit;
  * @author nina
  *
  */
-public class TestNKSmartsSearch extends TestCase
+public class TestNKSmartsSearch
 {
-	
+	@Test
 	public void testSmartsPatternAmbit() throws Exception  {
 		SmartsPatternAmbit sp = new SmartsPatternAmbit("[$(*O);$(*CC)]");
 		IAtomContainer c = FunctionalGroups.createAtomContainer("OCCC");
-		assertTrue(sp.hasSMARTSPattern(c)>0);
+		Assert.assertTrue(sp.hasSMARTSPattern(c)>0);
 	}
+	@Test
 	public void testSmartsStructureAmbit() throws Exception  {
 		RuleSMARTSSubstructureAmbit sp = new RuleSMARTSSubstructureAmbit();
 		sp.addSubstructure("[$(*O);$(*CC)]");
 		IAtomContainer c = FunctionalGroups.createAtomContainer("OCCC");
 		MolAnalyser.analyse(c);
-		assertTrue(sp.verifyRule(c));
+		Assert.assertTrue(sp.verifyRule(c));
 	}	
 	/*
 	public void testSmartsAlertAmbit() throws Exception  {
@@ -39,11 +41,12 @@ public class TestNKSmartsSearch extends TestCase
 		assertTrue(sp.verifyRule(c));
 	}
 	*/
+	@Test
 	public void testSmartsAlertAmbit1() throws Exception  {
 		RuleSMARTSSubstructureAmbit sp = new RuleSMARTSSubstructureAmbit();
 		sp.addSubstructure("[!$([OH1,SH1])]C(=O)[Br,Cl,F,I]");
 		IAtomContainer c = FunctionalGroups.createAtomContainer("OCCC");
 		MolAnalyser.analyse(c);
-		assertTrue(sp.verifyRule(c));
+		Assert.assertTrue(sp.verifyRule(c));
 	}		
 }

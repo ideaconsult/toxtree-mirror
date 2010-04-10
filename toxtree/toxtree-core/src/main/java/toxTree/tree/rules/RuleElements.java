@@ -28,14 +28,13 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
-
-import ambit2.base.interfaces.IProcessor;
+import org.openscience.cdk.interfaces.IElement;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.core.SmartElementsList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
-import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * Verifies if the molecule consists of only allowed elements
@@ -121,12 +120,13 @@ public class RuleElements extends AbstractRule {
 	}
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
 		logger.info(toString());
-		MFAnalyser mfa = new MFAnalyser(mol);
+		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		//int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
 
-		List v = mfa.getElements();
+		List<IElement> v = MolecularFormulaManipulator.elements(formula);
 		SmartElementsList list = new SmartElementsList();
 		list.setHalogens(elements.getHalogens());
-		for (int i=0 ; i < v.size(); i++) list.add(v.get(i).toString());
+		for (int i=0 ; i < v.size(); i++) list.add(v.get(i).getSymbol());
 		
 		boolean ok = false;
 		switch (mode) {

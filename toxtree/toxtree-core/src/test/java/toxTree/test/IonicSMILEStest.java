@@ -24,54 +24,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.test;
 
-import junit.framework.TestCase;
-
+import org.junit.Test;
 import org.openscience.cdk.DefaultChemObjectBuilder;
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
-import org.openscience.cdk.tools.MFAnalyser;
 
 /**
  * TODO add description
  * @author ThinClient
  * <b>Modified</b> 2005-9-22
  */
-public class IonicSMILEStest extends TestCase {
-
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(IonicSMILEStest.class);
-	}
-	
-	public void testCHA() {
+public class IonicSMILEStest {
+	@Test
+	public void testCHA()  throws Exception {
 		ionicSmiles("[Cl-].[NH3+]C1CCCCC1");
 	}
-	public void test() {
+	@Test
+	public void test()  throws Exception  {
 		ionicSmiles("[Na+].[Na+].[Na+].OC1=C(N=NC2=CC=C(C=C2)S([O-])(=O)=O)C(=NN1C3=CC=C(C=C3)S([O-])(=O)=O)C([O-])=O");
 	}
-	public void ionicSmiles(String smiles) {
+	@Test
+	public void ionicSmiles(String smiles) throws Exception {
 		
 		SmilesParser p = new SmilesParser(DefaultChemObjectBuilder.getInstance());
-		
-		try {
+
 			IMolecule m = p.parseSmiles(smiles);
-			MFAnalyser mfa = new MFAnalyser(m);
 			IMoleculeSet c = ConnectivityChecker.partitionIntoMolecules(m);
-			System.out.println(mfa.getMolecularFormula());
 			System.out.println(c.getAtomContainerCount());
 			SmilesGenerator g = new SmilesGenerator();
 			for (int i=0; i < c.getAtomContainerCount(); i++) {
 				IMolecule m1 = (IMolecule) c.getAtomContainer(i); 
-				System.out.println(g.createSMILESWithoutCheckForMultipleMolecules(
-						m1,false,new boolean[m1.getBondCount()]));
+				//System.out.println(g.createSMILESWithoutCheckForMultipleMolecules(m1,false,new boolean[m1.getBondCount()]));
+				System.out.println(g.createSMILES(m1,false,new boolean[m1.getBondCount()]));
 			}
-		} catch (CDKException x) {
-			x.printStackTrace();
-			fail();
-		}		
+	
 		
 	}
 }

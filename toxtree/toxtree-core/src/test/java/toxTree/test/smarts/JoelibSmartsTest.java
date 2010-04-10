@@ -30,23 +30,25 @@ import joelib.molecule.JOEAtom;
 import joelib.molecule.JOEMol;
 import joelib.smarts.JOESmartsPattern;
 import joelib.smiles.JOESmilesParser;
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Test;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
-import org.openscience.cdk.exception.NoSuchAtomException;
 import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.IsomorphismTester;
 
-import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.Convertor;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
 
-public class JoelibSmartsTest extends TestCase {
+public class JoelibSmartsTest  {
+	@Test
 	   public void testCDKJoeMolMatch() {
 	        Molecule mol = new Molecule();
 	        
@@ -72,7 +74,7 @@ public class JoelibSmartsTest extends TestCase {
 	    	 {
 	    	    System.err.println("SMILES entry \"" + smiles + "\" could not be loaded.");
 	    	 }
-	    	 assertEquals(joemol.toString(),converted.toString());
+	    	 Assert.assertEquals(joemol.toString(),converted.toString());
 	    	
 
 	        JOESmartsPattern smartPatern = new JOESmartsPattern();
@@ -80,11 +82,12 @@ public class JoelibSmartsTest extends TestCase {
 				System.err.println("Invalid SMARTS pattern.");
 			}		
 			
-			assertTrue(smartPatern.match(converted));
+			Assert.assertTrue(smartPatern.match(converted));
 			
 
 	    }
-	    public void testCDKJoeMol() {
+	@Test
+	    public void testCDKJoeMol() throws Exception {
 	        Molecule mol = new Molecule();
 	        
 	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 0
@@ -92,21 +95,19 @@ public class JoelibSmartsTest extends TestCase {
 
 	        mol.addBond(0, 1, IBond.Order.SINGLE); // 1
 
+	        MolAnalyser.analyse(mol);
 		
 	        JOEMol converted = Convertor.convert(mol);
 	        IMolecule reverted = Convertor.convert(converted);
 
-	        assertEquals(mol.getAtomCount(), reverted.getAtomCount());
-	        assertEquals(mol.getBondCount(), reverted.getBondCount());
+	        Assert.assertEquals(mol.getAtomCount(), reverted.getAtomCount());
+	        Assert.assertEquals(mol.getBondCount(), reverted.getBondCount());
 	        
-	        try {
 	            IsomorphismTester it = new IsomorphismTester(mol);
-	            assertTrue(it.isIsomorphic(reverted));
-	        } catch (NoSuchAtomException e) {
-	        	e.printStackTrace();
-	            assertTrue(false);
-	        }
+	            Assert.assertTrue(it.isIsomorphic(reverted));
+	
 	    }
+	@Test
 	    public void testAtom() {
 	        IAtom a = DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON);
 	        a.setPoint3d(new Point3d(1,1,1));
@@ -114,15 +115,15 @@ public class JoelibSmartsTest extends TestCase {
 	        JOEAtom converted = Convertor.convert(a);
 	        IAtom reverted = Convertor.convert(converted);
 
-	        assertEquals(a.getAtomTypeName(), reverted.getAtomTypeName());
+	        Assert.assertEquals(a.getAtomTypeName(), reverted.getAtomTypeName());
 	        /*
 	        assertTrue(a.getPoint3d().x == reverted.getPoint3d().x);
 	        assertTrue(a.getPoint3d().y == reverted.getPoint3d().y);
 	        assertTrue(a.getPoint3d().z == reverted.getPoint3d().z);
 	        */
 	    }
-	    
-	    public void testCDKJoeMolAllC() {
+	    @Test
+	    public void testCDKJoeMolAllC() throws Exception {
 	        Molecule mol = new Molecule();
 	        
 	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 0
@@ -134,17 +135,14 @@ public class JoelibSmartsTest extends TestCase {
 	        JOEMol converted = Convertor.convert(mol);
 	        IMolecule reverted = Convertor.convert(converted);
 
-	        assertEquals(mol.getAtomCount(), reverted.getAtomCount());
-	        assertEquals(mol.getBondCount(), reverted.getBondCount());
+	        Assert.assertEquals(mol.getAtomCount(), reverted.getAtomCount());
+	        Assert.assertEquals(mol.getBondCount(), reverted.getBondCount());
 	        
-	        try {
 	            IsomorphismTester it = new IsomorphismTester(mol);
-	            assertTrue(it.isIsomorphic(reverted));
-	        } catch (NoSuchAtomException e) {
-	            assertTrue(false);
-	        }
-	    }
+	            Assert.assertTrue(it.isIsomorphic(reverted));
 
+	    }
+	    @Test
 	    public void testDirectJoeMolMatch() throws Exception {
 	    	String[][] testSmarts = {
 	    			//name,smarts,smiles
@@ -162,7 +160,9 @@ public class JoelibSmartsTest extends TestCase {
 	    		RuleSMARTSubstructure rule = new RuleSMARTSubstructure();
 	    		System.out.print(testSmarts[i][0]);
     			rule.addSubstructure(testSmarts[i][1]);
-    			assertTrue(rule.verifyRule(FunctionalGroups.createAtomContainer(testSmarts[i][2],true)));
+    			IAtomContainer mol= FunctionalGroups.createAtomContainer(testSmarts[i][2],true);
+    			//MolAnalyser.analyse(mol);
+    			Assert.assertTrue(rule.verifyRule(mol));
     			System.out.println("\tOK");	
 
 	    	}

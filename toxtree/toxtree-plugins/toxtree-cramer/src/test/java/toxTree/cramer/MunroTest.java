@@ -26,15 +26,17 @@ package toxTree.cramer;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.URL;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionResult;
-import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
@@ -42,33 +44,22 @@ import toxTree.tree.DefaultCategory;
 import toxTree.tree.cramer.CramerRules;
 import ambit2.core.io.IteratingDelimitedFileReader;
 
-public class MunroTest extends TestCase {
+public class MunroTest {
 	protected CramerRules rules;
 	protected static TTLogger logger = new TTLogger(MunroTest.class); 
-	public MunroTest(String arg0) {
-		super(arg0);
 
-		TTLogger.configureLog4j(true);
-		try {
-			rules = new CramerRules();
-		} catch (DecisionMethodException x) {
-			fail();
-		}	
-	}
 	
 
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
+		TTLogger.configureLog4j(true);
+		rules = new CramerRules();
 	}
 
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-	protected void testFile(String filename, IDecisionCategory category) {
+
+	protected void testFile(String filename, IDecisionCategory category) throws Exception {
 		logger.error("Should be\t",category);
-		try {
+		
 			IteratingDelimitedFileReader reader = new IteratingDelimitedFileReader(
 					new FileInputStream(new File(filename)));
 			IDecisionResult result = rules.createDecisionResult();
@@ -108,25 +99,28 @@ public class MunroTest extends TestCase {
 			logger.error("Empty\t",emptyMolecules);
 			logger.error("Error when applying rules\t",applyError);
 			logger.error("");			
-			assertTrue(records > 0);
-			assertEquals(records-applyError,ok);
-			assertEquals(emptyMolecules,0);
-			assertEquals(applyError,0);
-		} catch (Exception x) {
-			x.printStackTrace();
-			fail();
-		}
+			Assert.assertTrue(records > 0);
+			Assert.assertEquals(records-applyError,ok);
+			Assert.assertEquals(emptyMolecules,0);
+			Assert.assertEquals(applyError,0);
+
 	}
-	public void testMunroClass1() {
+	@Test
+	public void testMunroClass1() throws Exception {
 		IDecisionCategory c = rules.getCategories().getCategory(new DefaultCategory("",1));
-		testFile("toxTree/data/Munro/munro-1.csv",c);
+		URL url = getClass().getClassLoader().getResource("Munro/munro-1.csv");
+		testFile(url.getFile(),c);
 	}
-	public void testMunroClass2() {
+	@Test
+	public void testMunroClass2() throws Exception {
 		IDecisionCategory c = rules.getCategories().getCategory(new DefaultCategory("",2));
-		testFile("toxTree/data/Munro/munro-2.csv",c);
+		URL url = getClass().getClassLoader().getResource("Munro/munro-2.csv");
+		testFile(url.getFile(),c);
 	}	
-	public void testMunroClass3() {
+	@Test
+	public void testMunroClass3() throws Exception {
 		IDecisionCategory c = rules.getCategories().getCategory(new DefaultCategory("",3));
-		testFile("toxTree/data/Munro/munro-3.csv",c);
+		URL url = getClass().getClassLoader().getResource("Munro/munro-3.csv");
+		testFile(url.getFile(),c);
 	}	
 }

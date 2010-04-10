@@ -34,7 +34,8 @@ package toxTree.tree.cramer;
 
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
@@ -77,9 +78,10 @@ public class RuleSimplyBranchedAliphaticHydrocarbon extends RuleCarbohydrate {
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);	    
 		
-		MFAnalyser ma = new MFAnalyser(mol);
-		int c = ma.getAtomCount("C");
-		int h = ma.getAtomCount("H");
+	    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
+		int h = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("H"));
+
 	    if ((mol.getAtomCount() == (c+h))) {  //hydrocarbon
 	    	logger.info("Hydrocarbon ",MSG_YES);
 		    if (mf.isAliphatic()) {

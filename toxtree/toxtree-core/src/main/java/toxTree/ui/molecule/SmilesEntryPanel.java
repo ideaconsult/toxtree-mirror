@@ -46,14 +46,13 @@ import javax.swing.SwingConstants;
 import javax.vecmath.Vector2d;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
-import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.query.FunctionalGroups;
+import ambit2.core.config.AmbitCONSTANTS;
 
 /**
  * A {@link javax.swing.JPanel} to enter a SMILES. Now it supports a history of entered SMILES that can be 
@@ -64,7 +63,7 @@ import toxTree.query.FunctionalGroups;
 public class SmilesEntryPanel extends StructureEntryPanel implements ItemListener, ActionListener {
 	JComboBox smilesBox = null;
 	protected JPopupMenu popup;
-	protected MFAnalyser mf ;
+
     protected StructureDiagramGenerator sdg = null;
 	/**
 	 * Comment for <code>serialVersionUID</code>
@@ -86,7 +85,6 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 
 
 	private void addWidgets() {
-		mf = new MFAnalyser("",new Molecule());
 		//TODO history of entered SMILES to be persistent accross instances
 		//TODO select na cialoto edit pole pri click (kakto w IE
 		//TODO Go da prawi i estimate
@@ -193,8 +191,8 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
     	IMolecule a = (IMolecule) FunctionalGroups.createAtomContainer(smiles,false);
     	if (a != null) { 
 	    	a.setProperty(CDKConstants.COMMENT,"Created from SMILES");
-	    	a.setProperty("SMILES",smiles);
-	    	a.setProperty("FORMULA",mf.analyseAtomContainer(a));
+	    	a.setProperty(AmbitCONSTANTS.SMILES,smiles);
+	    	//a.setProperty(AmbitCONSTANTS.FORMULA,mf.analyseAtomContainer(a));
 
             //Preferences.getProperties().getProperty(arg0)
             try {

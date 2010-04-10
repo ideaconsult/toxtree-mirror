@@ -93,7 +93,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                 "Toxtree plugin");
 	}	
 	@Override
-	public DescriptorValue calculate(IAtomContainer a) throws CDKException {
+	public DescriptorValue calculate(IAtomContainer a)  {
         try {
             //checking for fused rings and assigning MR
             for (int p = 0; p < fusedrings_patterns.length;p++) {
@@ -136,7 +136,8 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
             }
             return super.calculate(a);
         } catch (SMARTSException x) {
-            throw new CDKException(x.getMessage());
+    		return new DescriptorValue(getSpecification(), getParameterNames(),
+    				getParameters(), null, null ,x);
         }
     }
 	@Override

@@ -55,6 +55,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IElement;
+import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.interfaces.IRing;
@@ -75,8 +76,8 @@ import org.openscience.cdk.isomorphism.matchers.smarts.AromaticSymbolAtom;
 import org.openscience.cdk.isomorphism.mcss.RMap;
 import org.openscience.cdk.ringsearch.SSSRFinder;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
-import org.openscience.cdk.tools.MFAnalyser;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.core.ConnectionMatrix;
 import toxTree.logging.TTLogger;
@@ -594,7 +595,7 @@ public class FunctionalGroups {
     	QueryAtomContainer aminoSulphate = FunctionalGroups.sulphateOfAmine(0);
 		//find [N+].[O-] bond and mark it as DONTMARK
 		for (int i=0; i <aminoSulphate.getBondCount();i++) {
-			Iterator ai = aminoSulphate.getBond(i).atoms();
+			Iterator ai = aminoSulphate.getBond(i).atoms().iterator();
 			IAtom n = null; 
 			IAtom o = null;
 			while (ai.hasNext()) {
@@ -3243,19 +3244,21 @@ public class FunctionalGroups {
     }
     public static boolean isCommonTerpene(IAtomContainer  mol, IRingSet rings) {
     	
-    	MFAnalyser mf = new MFAnalyser(mol);
-    	int c = mf.getAtomCount("C");
+		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+		int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
     	
     	if ((c % 5) != 0) return false;
     	int n = c / 5;
     	if (n < 2) return false;
-    	int h =mf.getAtomCount("H");
+		int h = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("H"));
+
     	
     	if (h/8  != n)  {
-    		logger.debug(mf.getFormulaHashtable());
+    		logger.debug(MolecularFormulaManipulator.getHillString(formula));
     		return false;
     	}
-    	if ((c + h + mf.getAtomCount("O")) < mol.getAtomCount()) return false; //athoms different than C,H,O
+    	int o = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("O"));
+    	if ((c + h + o) < mol.getAtomCount()) return false; //athoms different than C,H,O
     	
     	QueryAtomContainer q = isopreneUnit();
 		List list = FunctionalGroups.getBondMap(mol, q,false);
@@ -3287,7 +3290,7 @@ public class FunctionalGroups {
 			//za ostanalite neznam
 		} 
 		
-		if  (mf.getAtomCount("O")>0) { //check for alcohol, aldehyde, carboxylic acid
+		if  (o>0) { //check for alcohol, aldehyde, carboxylic acid
 			preProcess(mol);
 			q= alcohol(false); ids.add(q.getID());
 			list = FunctionalGroups.getBondMap(mol, q,true);
@@ -3314,8 +3317,8 @@ public class FunctionalGroups {
 		if ((rings == null) || (rings.getAtomContainerCount() ==0) ) return false;
 		int size = rings.getAtomContainerCount();
 		if (size==1) return true;
-		List allRings = rings.getConnectedRings((Ring)rings.getAtomContainer(0));
-		boolean b = (allRings.size() == size);
+		IRingSet allRings = rings.getConnectedRings((Ring)rings.getAtomContainer(0));
+		boolean b = (allRings.getAtomContainerCount() == size);
 		if (b) logger.debug("Single fused ring found");
 		allRings = null;
 		return b;
@@ -3377,12 +3380,12 @@ public class FunctionalGroups {
 		int groups = 0;
 		boolean group = false;
 		String metals[] = {"Na","K","Ca","Mg","Al"};
-		MFAnalyser mf= new MFAnalyser(mol);
+	    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
 		markCHn(mol);
-		List elements = mf.getElements();
+		List<IElement> elements = MolecularFormulaManipulator.elements(formula);
 		logger.debug("Checking for more than " + threshold ," groups");
 		for (int i=0; i< elements.size(); i++) {
-			String element = (String) elements.get(i);
+			String element = elements.get(i).getSymbol();
 			if (element.equals("H")) continue; 
 			if (element.equals("C")) {
 				if (isAcetylenic(mol)) groups++;

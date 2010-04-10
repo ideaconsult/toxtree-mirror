@@ -30,13 +30,12 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.model.QSARModelException;
 
-import ambit2.base.interfaces.IProcessor;
-
 import toxTree.core.IDescriptorBased;
 import toxTree.core.IImplementationDetails;
 import toxTree.exceptions.DRuleException;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * Uses {@link LinearQSARModel} and returns true if {@link LinearQSARModel#predict(IAtomContainer)} is >= {@link #getThreshold()} and false otherwise.

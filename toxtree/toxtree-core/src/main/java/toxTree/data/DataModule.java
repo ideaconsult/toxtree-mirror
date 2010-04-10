@@ -28,14 +28,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
 
-import org.openscience.cdk.applications.jchempaint.JCPPropertyHandler;
-import org.openscience.cdk.applications.jchempaint.JChemPaintModel;
+import org.openscience.cdk.DefaultChemObjectBuilder;
+import org.openscience.cdk.interfaces.IChemModel;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -54,7 +53,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
 	protected int useDatabase = 0; //-1 : not available; 0 - unknown, have to check; 1 : available
 	//jcp
 	protected JChemPaintDialog jcpDialog = null;
-	protected JChemPaintModel jcpModel = null;  //for JCP use
+	protected IChemModel jcpModel = null;  //for JCP use
 	//batch
 	protected BatchProcessing batch = null;	
 	/**
@@ -66,13 +65,19 @@ public abstract class DataModule extends Observable implements Serializable, Obs
 		super();
 		dataContainer = createDataContainer(inputFile);
 		if (dataContainer != null) dataContainer.addObserver(this);
-        jcpModel = new JChemPaintModel();        
-        jcpModel.setTitle("JChemPaint structure diagram editor");
-        jcpModel.setAuthor(JCPPropertyHandler.getInstance().getJCPProperties().getProperty("General.UserName"));
-        Package jcpPackage = Package.getPackage("org.openscience.cdk.applications.jchempaint");
-        String version = jcpPackage.getImplementationVersion();
-        jcpModel.setSoftware("JChemPaint " + version);
-        jcpModel.setGendate((Calendar.getInstance()).getTime().toString());
+        jcpModel = DefaultChemObjectBuilder.getInstance().newChemModel();  
+        /*
+        jcpModel.setMoleculeSet(jcpModel.getBuilder().newMoleculeSet());
+        jcpModel.getMoleculeSet().addAtomContainer(
+        		jcpModel.getBuilder().newMolecule());
+        		*/        
+        jcpModel.setID("JChemPaint");
+        //jcpModel.setTitle("JChemPaint structure diagram editor");
+        //jcpModel.setAuthor(JCPPropertyHandler.getInstance().getJCPProperties().getProperty("General.UserName"));
+        //Package jcpPackage = Package.getPackage("org.openscience.cdk.applications.jchempaint");
+        //String version = jcpPackage.getImplementationVersion();
+        //jcpModel.setSoftware("JChemPaint " + version);
+        //jcpModel.setGendate((Calendar.getInstance()).getTime().toString());
 
 	}
 	
@@ -103,6 +108,15 @@ public abstract class DataModule extends Observable implements Serializable, Obs
     public DataContainer getDataContainer() {
         return  dataContainer;
     }
+    /*
+    public void editMolecule(boolean editable, JFrame frame) {
+        ILoggingTool lg =
+            LoggingToolFactory.createLoggingTool(JChemPaintMenuHelper.class);
+  
+    	lg.debug("Creating menu: ", "sss");
+    	JChemPaint.showEmptyInstance(true);
+    }
+    */
 
     public void editMolecule(boolean editable, JFrame frame) {
     	IMoleculeSet molecule4edit = null;
@@ -115,7 +129,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
     	if (molecule4edit != null) { 
 	        if (jcpDialog == null) {
 
-	        	jcpModel.getChemModel().setMoleculeSet(molecule4edit );
+	        	jcpModel.setMoleculeSet(molecule4edit );
                 
 	        	jcpDialog = new JChemPaintDialog(frame,false,jcpModel) {
 					private static final long serialVersionUID = -492805673357520991L;
@@ -164,7 +178,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
                 });
 	            //TODO center it 
 	        	//TODO nonmodal
-	        } else jcpModel.getChemModel().setMoleculeSet(molecule4edit);
+	        } else jcpModel.setMoleculeSet(molecule4edit);
             
 
 
@@ -176,7 +190,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
 	              
     	}
     }
-    
+   
     
     public abstract ActionList getActions();
     protected abstract DataContainer createDataContainer(File inputFile);

@@ -74,7 +74,7 @@ public class TopologyAnyBond extends org.openscience.cdk.Bond implements IQueryB
 	 * @param arg2
 	 * @param arg3
 	 */
-	public TopologyAnyBond(IAtom arg0, IAtom arg1, IBond.Order arg2, int arg3,boolean inRing) {
+	public TopologyAnyBond(IAtom arg0, IAtom arg1, IBond.Order arg2, Stereo arg3,boolean inRing) {
 		super(arg0, arg1, arg2, arg3);
 		this.inRing = inRing;
 	}

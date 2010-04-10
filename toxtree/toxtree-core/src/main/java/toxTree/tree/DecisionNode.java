@@ -40,13 +40,12 @@ import java.util.Observer;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 
-import ambit2.base.interfaces.IProcessor;
-
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IDecisionTransition;
 import toxTree.exceptions.DecisionMethodException;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * A decision node to be used in {@link UserDefinedTree}. Implements {@link IDecisionRule}

@@ -31,20 +31,22 @@ import javax.vecmath.Point2d;
 import mutant.rules.SA10;
 import mutant.test.TestMutantRules;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.smiles.smarts.SMARTSQueryTool;
-import org.openscience.cdk.tools.HydrogenAdder;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.tools.CDKHydrogenAdder;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.MolAnalyseException;
@@ -104,8 +106,10 @@ public class SA10Test extends TestMutantRules {
 				String s = g.createSMILES((IMolecule)sc.getAtomContainer(i));
 //				System.out.println(s);
 				assertNotNull(results.get(s));
-				MFAnalyser mf = new MFAnalyser(sc.getAtomContainer(i));
-				assertEquals(results.get(s),new Integer(mf.getAtomCount("C")));
+				IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(sc.getAtomContainer(i));
+				int catoms = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
+				
+				assertEquals(results.get(s),new Integer(catoms));
 				//System.out.println(FunctionalGroups.mapToString(sc.getAtomContainer(i)));
 				//System.out.println(FunctionalGroups.hasGroupMarked(sc.getAtomContainer(i),q.getID()));
 			}	
@@ -236,14 +240,15 @@ public class SA10Test extends TestMutantRules {
 	}
 	
 	public void testException() throws Exception {
-		SmilesParser sp = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+		SmilesParser sp = new SmilesParser(NoNotificationChemObjectBuilder.getInstance());
 		IAtomContainer ac = sp.parseSmiles("CCCC(=O)C=C"); //"OC(=O)C=C");
-		HydrogenAdder h = new HydrogenAdder();
-		h.addExplicitHydrogensToSatisfyValency(ac);
+		CDKHydrogenAdder h = CDKHydrogenAdder.getInstance(NoNotificationChemObjectBuilder.getInstance());
+		h.addImplicitHydrogens(ac);
+		AtomContainerManipulator.convertImplicitToExplicitHydrogens(ac);
 		/**
 		 *  This runs fine
 		 */
-		SMARTSQueryTool sqt1 = new SMARTSQueryTool("[#6]=[#6][#6](=O)[!O]", true);
+		SMARTSQueryTool sqt1 = new SMARTSQueryTool("[#6]=[#6][#6](=O)[!O]");
 		assertTrue(sqt1.matches(ac));
 		
 		/**
@@ -257,13 +262,13 @@ public class SA10Test extends TestMutantRules {
 
 		 */
 		
-		SMARTSQueryTool sqt2 = new SMARTSQueryTool("[#6]!:;=[#6][#6](=O)[!O]", true);
+		SMARTSQueryTool sqt2 = new SMARTSQueryTool("[#6]!:;=[#6][#6](=O)[!O]");
 		assertTrue(sqt2.matches(ac));
 		
-		SMARTSQueryTool sqt3 = new SMARTSQueryTool("[N;$([N!X4])]!@;-[N;$([N!X4])]", true);
+		SMARTSQueryTool sqt3 = new SMARTSQueryTool("[N;$([N!X4])]!@;-[N;$([N!X4])]");
 		assertFalse(sqt3.matches(ac));		
 
-		SMARTSQueryTool sqt4 = new SMARTSQueryTool("[N]=[N]-,=[N]", true);
+		SMARTSQueryTool sqt4 = new SMARTSQueryTool("[N]=[N]-,=[N]");
 		assertFalse(sqt4.matches(ac));		
 		
 		/**

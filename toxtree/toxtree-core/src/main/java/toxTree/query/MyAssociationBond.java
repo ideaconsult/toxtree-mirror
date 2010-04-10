@@ -73,7 +73,7 @@ public class MyAssociationBond extends Bond {
 	 * @param order
 	 * @param stereo
 	 */
-	public MyAssociationBond(Atom atom1, Atom atom2, IBond.Order order, int stereo) {
+	public MyAssociationBond(Atom atom1, Atom atom2, IBond.Order order, Stereo stereo) {
 		super(atom1, atom2, order, stereo);
 	}
 

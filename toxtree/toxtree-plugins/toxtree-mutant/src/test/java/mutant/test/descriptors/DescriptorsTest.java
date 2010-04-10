@@ -24,7 +24,7 @@
 
 package mutant.test.descriptors;
 
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -34,14 +34,12 @@ import java.util.Hashtable;
 import junit.framework.TestCase;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.BooleanResult;
 import org.openscience.cdk.qsar.result.DoubleArrayResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 import org.openscience.cdk.qsar.result.IntegerResult;
-import org.openscience.cdk.tools.MFAnalyser;
 
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
@@ -78,10 +76,10 @@ public abstract class DescriptorsTest extends TestCase {
 	protected void calculate(IMolecularDescriptor descriptor,
 			String sourcefile, String resultsfile, String strucID)
 			throws Exception {
-		InputStream in_source = new FileInputStream(
-				"/data/" + sourcefile);
-		OutputStream out_results = new FileOutputStream(
-				"/data/" + resultsfile);
+		InputStream in_source = getClass().getClassLoader().getResourceAsStream(String.format("data/%s",sourcefile));
+
+		OutputStream out_results = new FileOutputStream(File.createTempFile("results","sdf"));
+
 
 		DelimitedFileWriter writer = new DelimitedFileWriter(out_results);
 		
@@ -170,9 +168,8 @@ public abstract class DescriptorsTest extends TestCase {
             IAtomContainer a = FunctionalGroups.createAtomContainer(smiles[i][0].toString(), false);
             //AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(a);
             //CDKHueckelAromaticityDetector.detectAromaticity(a);
-            System.out.println(new MFAnalyser((IMolecule) a).getHTMLMolecularFormula());
+
             MolAnalyser.analyse(a);
-            System.out.println(new MFAnalyser((IMolecule) a).getHTMLMolecularFormula());
             for (int ii=0; ii< a.getAtomCount();ii++)
             	a.getAtom(ii).setID(Integer.toString(ii+1));
             /*

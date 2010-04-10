@@ -2,24 +2,19 @@ package mutant.test.rules;
 
 import java.util.Iterator;
 
+import mutant.rules.SA27;
+import mutant.test.TestMutantRules;
+
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
-import org.openscience.cdk.atomtype.CDKAtomTypeMatcher;
-import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IAtomType;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.smiles.smarts.SMARTSQueryTool;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
-import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 
 import toxTree.core.IDecisionRule;
-import mutant.rules.SA27;
-import mutant.test.TestMutantRules;
 
 public class SA27Test extends TestMutantRules {
 
@@ -98,7 +93,7 @@ public class SA27Test extends TestMutantRules {
     }
     protected boolean match(IAtomContainer mol,String smarts) throws Exception  {    
     	AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
-        Iterator<IAtom> atoms = mol.atoms();
+        Iterator<IAtom> atoms = mol.atoms().iterator();
         while (atoms.hasNext()) {
         	IAtom atom = atoms.next();
         	if ("H".equals(atom.getSymbol()))
@@ -110,7 +105,7 @@ public class SA27Test extends TestMutantRules {
         h.addImplicitHydrogens(mol);
         AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
         CDKHueckelAromaticityDetector.detectAromaticity(mol);
-        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts, true);
+        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
         return sqt.matches(mol);
     }
 

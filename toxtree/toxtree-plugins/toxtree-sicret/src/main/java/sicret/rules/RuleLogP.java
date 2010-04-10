@@ -18,7 +18,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
 package sicret.rules;
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
@@ -66,12 +65,16 @@ public class RuleLogP extends RuleVerifyProperty
 		logger.info("Calculating "+ descriptor.getClass().getName());
 		try {
 			DescriptorValue value = descriptor.calculate(mol);
-			IDescriptorResult result = value.getValue();
-			mol.setProperty(getPropertyName(), ((DoubleResult)result).doubleValue());
-			return mol.getProperty(getPropertyName()).toString();
+			if (value.getException()!=null) {
+				return super.inputProperty(mol);
+			} else {
+				IDescriptorResult result = value.getValue();
+				mol.setProperty(getPropertyName(), ((DoubleResult)result).doubleValue());
+				return mol.getProperty(getPropertyName()).toString();
+			}
 			
-		} catch (CDKException x) {
-			return super.inputProperty(mol);
+		} catch (Exception x) {
+			throw new DecisionMethodException(x);
 		}
 		
 	}

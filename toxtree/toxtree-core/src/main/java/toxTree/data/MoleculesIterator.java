@@ -45,9 +45,8 @@ import org.openscience.cdk.interfaces.IChemFile;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.io.DefaultChemObjectWriter;
-import org.openscience.cdk.io.IChemObjectReader;
+import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLV2000Reader;
-import org.openscience.cdk.io.ReaderFactory;
 import org.openscience.cdk.io.SMILESReader;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -57,11 +56,13 @@ import toxTree.core.IMoleculesIterator;
 import toxTree.exceptions.ToxTreeIOException;
 import toxTree.io.PDFWriter;
 import toxTree.logging.TTLogger;
+import ambit2.core.config.AmbitCONSTANTS;
 import ambit2.core.io.DelimitedFileFormat;
 import ambit2.core.io.DelimitedFileReader;
 import ambit2.core.io.DelimitedFileWriter;
 import ambit2.core.io.MDLWriter;
 import ambit2.core.io.MyIteratingMDLReader;
+import ambit2.core.io.ReaderFactoryExtended;
 
 
 /**
@@ -94,8 +95,8 @@ public class MoleculesIterator implements IMoleculesIterator {
 		containers = new ListOfAtomContainers();
 		
         IMolecule molecule = MoleculeFactory.makeAlkane(6);
-        molecule.setProperty(CDKConstants.NAMES,"Created from SMILES");
-        molecule.setProperty("SMILES","CCCCCC");
+        molecule.setProperty(AmbitCONSTANTS.NAMES,"Created from SMILES");
+        molecule.setProperty(AmbitCONSTANTS.SMILES,"CCCCCC");
         containers.addAtomContainer(molecule);
         currentNo = 0;        
         if (logger == null) logger = new TTLogger(); 
@@ -105,7 +106,6 @@ public class MoleculesIterator implements IMoleculesIterator {
 	 * @see java.util.Iterator#remove()
 	 */
 	public void remove() {
-		// TODO Auto-generated method stub
 
 	}
 	public IAtomContainer getAtomContainer(int index) {
@@ -215,11 +215,11 @@ public class MoleculesIterator implements IMoleculesIterator {
         currentNo = 0;
     }
     public List openFile(File input) throws ToxTreeIOException {
-        ReaderFactory factory = new ReaderFactory();
+        ReaderFactoryExtended factory = new ReaderFactoryExtended();
         filename = input.getAbsolutePath();
         try {
         if (!input.isDirectory()) {
-        	IChemObjectReader reader=null;
+        	ISimpleChemObjectReader reader=null;
         	logger.info("Trying to read\t",input);
         	String fe = input.toString().toLowerCase(); 
             if (fe.endsWith(".csv")) {  
@@ -260,7 +260,7 @@ public class MoleculesIterator implements IMoleculesIterator {
 	                if (c.size() <= 0) {
 	                	throw new ToxTreeIOException(MSG_EMPTYFILE,filename);
 	                } if ((c.size() == 1) && (fe.endsWith(".mol")) && (c.get(0) != null)) {
-	                	((IAtomContainer)c.get(0)).setProperty(CDKConstants.NAMES,filename);
+	                	((IAtomContainer)c.get(0)).setProperty(AmbitCONSTANTS.NAMES,filename);
 	                }
 	                if (!(c.get(0) instanceof IAtomContainer)) {
 	                	throw new ToxTreeIOException(MSG_EMPTYFILE + " found " + c.get(0).getClass().getName(),filename);

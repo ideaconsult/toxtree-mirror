@@ -72,8 +72,11 @@ public class DescriptorIDist implements IMolecularDescriptor {
 
 	}
 	
-	public DescriptorValue calculate(IAtomContainer arg0) throws CDKException {
-		if (smarts == null) throw new CDKException("Substructure not assigned!");
+	public DescriptorValue calculate(IAtomContainer arg0)  {
+		if (smarts == null)
+	        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
+	                new IntegerResult(0), getDescriptorNames(),
+	                new CDKException("Substructure not assigned!"));
 
 		if (arg0 instanceof IMolecule) {
 			
@@ -94,17 +97,23 @@ public class DescriptorIDist implements IMolecularDescriptor {
 				}	
 				
 		        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
-		                new IntegerResult(ok), names);
+		                new IntegerResult(ok), getDescriptorNames());
 			} catch (SMARTSException x) {
-				throw new CDKException(x.getMessage());
+		        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
+		                new IntegerResult(ok), getDescriptorNames(),x);				
 			}
-		} else throw new CDKException("IMolecule expected!");
+		} else 
+	        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
+	                new IntegerResult(0), getDescriptorNames(),new CDKException("IMolecule expected!"));
 	}
 
 	public IDescriptorResult getDescriptorResultType() {
 		return new IntegerResult(0);
 	}
 
+	public String[] getDescriptorNames() {
+		return names;
+	}
 	public String[] getParameterNames() {
 		return null;
 	}

@@ -63,14 +63,12 @@ public class DescriptorStructurePresenceTest extends TestCase {
 		descriptor.setSMARTS("[CH3]");
 		
 		IAtomContainer a = FunctionalGroups.createAtomContainer("CCCCCCO");
-		try {
 			DescriptorValue v = descriptor.calculate(a);
 			IDescriptorResult result = v.getValue();
 			assertTrue(result instanceof BooleanResult);
 			assertEquals(true,((BooleanResult)result).booleanValue());
-		} catch (CDKException x) {
-			fail(x.getMessage()); 
-		}
+			assertNull(v.getException());
+
 	}
 
 	public void testGetDescriptorResultType() {

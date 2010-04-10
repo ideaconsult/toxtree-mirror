@@ -9,9 +9,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IElement;
+import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IBond.Order;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
@@ -24,7 +27,7 @@ import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.SymbolSetQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AromaticQueryBond;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
@@ -144,16 +147,19 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
             reader.close();
             reader = null;
         }
-        catch(IOException x)
-        {
+        catch(IOException x)  {
             logger.error(x);
         }
+        catch(CDKException x)  {
+            logger.error(x);
+        }
+        
     }
 
     public static IQueryAtomContainer createQueryContainer(IAtomContainer container)
     {
         IQueryAtomContainer queryContainer = new QueryAtomContainer();
-        Iterator<IAtom> atoms = container.atoms();
+        Iterator<IAtom> atoms = container.atoms().iterator();
         while (atoms.hasNext()) {
         	IAtom atom  = atoms.next();
         
@@ -170,7 +176,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
             } else
                 queryContainer.addAtom(new SymbolQueryAtom(atom));
         }
-        Iterator<IBond> bonds = container.bonds();
+        Iterator<IBond> bonds = container.bonds().iterator();
         while (bonds.hasNext())
         {
         	IBond bond = bonds.next();
@@ -205,12 +211,12 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
 
     public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException
     {
-        MFAnalyser mfa = new MFAnalyser(mol);
-        List<String> elements = mfa.getElements();
+	    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+        List<IElement> elements = MolecularFormulaManipulator.elements(formula);
         int halogensFound = 0;
         for(int i = 0; i < elements.size(); i++)
         {
-            String element = (String)elements.get(i);
+            String element = elements.get(i).getSymbol();
             for(int m = 0; m < me_essential.length; m++)
                 if(element.equals(me_essential[m]))
                 {
@@ -229,7 +235,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
                 if(element.equals(halogens[m]))
                 {
                     logger.info("Halogen \t", halogens[m], "\tfound.");
-                    halogensFound += mfa.getAtomCount(element);
+                    halogensFound += MolecularFormulaManipulator.getElementCount(formula,elements.get(i));
                 }
 
         }

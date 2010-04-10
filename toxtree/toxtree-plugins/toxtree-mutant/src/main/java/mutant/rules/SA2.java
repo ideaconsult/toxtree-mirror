@@ -24,10 +24,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import java.util.Map;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.MFAnalyser;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.StructureAlertCDK;
@@ -131,17 +130,18 @@ public class SA2 extends StructureAlertCDK {
 	 * Simple prescreening
 	 * @return true if possibly a hit
 	 */
-	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
-		MFAnalyser mfa = new MFAnalyser(mol);
-		
-		Map<String,Integer> elements = mfa.getFormulaHashtable();
+	protected boolean isAPossibleHit(IAtomContainer mol,
+			IAtomContainer processedObject) throws DecisionMethodException {
+	    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
+
+		@SuppressWarnings("unused")
 		boolean ok = false;
 		try {
-			if (elements.containsKey("O")) {
-				if (elements.containsKey("S")) 
-					return prescreenSulphonic.match(mol)>0;
-				if (elements.containsKey("P")) 
-					return prescreenPhosphonic.match(mol)>0;
+			if (MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("O"))) {
+				if (MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("S")))
+					return prescreenSulphonic.match(mol) > 0;
+				if (MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("P")))
+					return prescreenPhosphonic.match(mol) > 0;
 			}
   		} catch (SMARTSException x) {
 			throw new DecisionMethodException(x);

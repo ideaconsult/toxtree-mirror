@@ -216,18 +216,18 @@ public class Mopac7WriterTest extends TestCase {
                     IMolecule m = (IMolecule) o;
                     //writer.write((org.openscience.cdk.interfaces.ChemObject)o);
                     
-                    try {
+  
 	                    DescriptorValue v = shell.calculate(m);
+	                    assertNull(v.getException());
 	                    DoubleArrayResult r = (DoubleArrayResult) v.getValue();
 	                    String[] names = v.getNames();
 	                    assertEquals(names.length,r.length());
+	                    
 	                    for (int g=0; g<names.length;g++) {
 	                    	assertNotNull(r.get(g));
 	                    	System.out.println(names[g] + "\t= "+r.get(g));
 	                    } 	
-                    } catch (CDKException x) {
-                    	System.out.println(x.getMessage());
-                    }
+
                     /*
                     if ((m.getProperty(MopacShell.EHOMO) == null) ||
                     	m.getProperty(MopacShell.ELUMO) == null) {

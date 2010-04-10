@@ -444,14 +444,15 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 		setOptions(options.setInteractive(value));
 	}
 	
-	public DescriptorValue calculate(IAtomContainer mol) throws CDKException {
+	public DescriptorValue calculate(IAtomContainer mol) {
+		String[] descriptorNames = null;
 		IDecisionResult result = createDecisionResult();
 		try {
 			result.classify(mol);
 			result.assignResult(mol);
 			
 			String[] d = result.getResultPropertyNames();
-			String[] descriptorNames = new String[d.length+1];			
+			descriptorNames = new String[d.length+1];			
 			ArrayResult<String> value = new ArrayResult<String>(new String[descriptorNames.length]);
 			for (int i=0; i <  d.length;i++)
 				try {
@@ -472,8 +473,20 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 						);				
 
 		} catch (DecisionResultException x) {
-			throw new CDKException(x.getMessage());
+			return new DescriptorValue(
+					getSpecification(),
+					getParameterNames(),
+					getParameters(),
+					null,
+					descriptorNames,
+					x
+					);				
 		}
+	}
+	//not sure what to return here; names depend on implementation
+	public String[] getDescriptorNames() {
+		IDecisionResult result = createDecisionResult();
+		return result.getResultPropertyNames();
 	}
 	public IDescriptorResult getDescriptorResultType() {
 		return new StringDescriptorResultType("");
@@ -556,7 +569,7 @@ class UnvisitedRules implements IProcessRule {
 	}
 	
 	
-
+	
 	
 	
 }

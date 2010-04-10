@@ -34,6 +34,8 @@ import javax.swing.JOptionPane;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import ambit2.core.config.AmbitCONSTANTS;
+
 import toxTree.data.DataModule;
 import toxTree.data.DecisionMethodsDataModule;
 import toxTree.io.Tools;
@@ -80,8 +82,8 @@ public class LookupCompoundAction extends DataModuleAction {
     			box.addItem(e.next().toString());
     		}
     	} catch (Exception x) {
-    		box.addItem(CDKConstants.CASRN);	
-    		box.addItem(CDKConstants.NAMES);
+    		box.addItem(AmbitCONSTANTS.CASRN);	
+    		box.addItem(AmbitCONSTANTS.NAMES);
 
     	}
     	

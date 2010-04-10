@@ -59,17 +59,19 @@ public abstract class DescriptorStructurePresence<T> implements IMolecularDescri
         fragment.setSmarts(smarts);
 	}
 
-	public DescriptorValue calculate(IAtomContainer container)
-			throws CDKException {
+	public DescriptorValue calculate(IAtomContainer container) {
         
-		if (fragment == null) throw new CDKException("Substructure not assigned!");
+		if (fragment == null) 
+            return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
+                    new BooleanResult(false), new String[]{getResultName()},new CDKException("Substructure not assigned!"));
+		
         try {
             boolean ok = fragment.match(container) > 0;
             return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
                     new BooleanResult(ok), new String[]{getResultName()});
         } catch (Exception x) {
-            x.printStackTrace();
-            throw new CDKException(x.getMessage());
+            return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
+                    new BooleanResult(false), new String[]{getResultName()},x);
         }
 		
 	}
@@ -135,6 +137,9 @@ public abstract class DescriptorStructurePresence<T> implements IMolecularDescri
 	public String toString() {
 		return resultName;
 	}
+	public String[] getDescriptorNames() {
+    	return new String[] {getResultName()};
+    }
 }
 
 
