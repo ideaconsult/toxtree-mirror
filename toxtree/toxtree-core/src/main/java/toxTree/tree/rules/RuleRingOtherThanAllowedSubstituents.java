@@ -83,7 +83,7 @@ public abstract class RuleRingOtherThanAllowedSubstituents extends RuleRingSubst
 	        //new atomcontainer with ring atoms/bonds deleted
 	        IAtomContainer mc = FunctionalGroups.cloneDiscardRingAtomAndBonds(mol,r);	        
 			
-		    SmilesGenerator gen = new SmilesGenerator();
+		    SmilesGenerator gen = new SmilesGenerator(true);
 		    
 		    IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
 			logger.debug("Substituents\t",s.getMoleculeCount());

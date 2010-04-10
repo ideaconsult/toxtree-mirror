@@ -90,7 +90,7 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 		    }
 			if (origin != null) {
 				int r = 1;
-				SmilesGenerator gen = new SmilesGenerator();
+				SmilesGenerator gen = new SmilesGenerator(true);
 				for (int i= origin.getAtomContainerCount()-1; i>=0;i--) { 
 					if (origin.getAtomContainer(i).getAtomCount()<=3)
 						origin.removeAtomContainer(i);

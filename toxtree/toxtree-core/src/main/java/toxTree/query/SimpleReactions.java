@@ -71,7 +71,7 @@ import toxTree.logging.TTLogger;
  * @author Nina Jeliazkova <b>Modified</b> 2005-8-18
  */
 public class SimpleReactions {
-	protected static SmilesGenerator gen = new SmilesGenerator();
+	protected static SmilesGenerator gen = new SmilesGenerator(true);
 
 	protected static TTLogger logger = new TTLogger(SimpleReactions.class);
 

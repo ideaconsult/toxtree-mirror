@@ -140,7 +140,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
  
                         //updatedMolecule.setProperties(dataContainer.getMolecule().getProperties());
                         getDataContainer().setEnabled(true);
-                        SmilesGenerator g = new SmilesGenerator();
+                        SmilesGenerator g = new SmilesGenerator(true);
                         updatedMolecule.setProperty("SMILES",g.createSMILES(updatedMolecule));
                                                 
                         

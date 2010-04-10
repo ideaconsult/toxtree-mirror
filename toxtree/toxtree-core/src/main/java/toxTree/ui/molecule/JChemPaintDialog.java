@@ -206,7 +206,7 @@ public class JChemPaintDialog extends JDialog {
                     jcpep.getJChemPaintModel().getChemModel().getMoleculeSet());
         */
         
-        SmilesGenerator g = new SmilesGenerator();
+        SmilesGenerator g = new SmilesGenerator(true);
         updatedMolecule.setProperty("SMILES",g.createSMILES(updatedMolecule));
         return updatedMolecule;
 	}
