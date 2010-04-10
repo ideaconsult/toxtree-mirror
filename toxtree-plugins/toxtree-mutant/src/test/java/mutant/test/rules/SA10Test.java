@@ -101,7 +101,7 @@ public class SA10Test extends TestMutantRules {
 		results.put("[H]C([H])([H])C([H])([H])C([H])(C([H])([H])[H])C([H])([H])[H]",new Integer(5));
 		results.put("[H]C([H])=C([H])C(=O)[H]",new Integer(3));
 		if (sc != null) {
-			SmilesGenerator g = new SmilesGenerator();
+			SmilesGenerator g = new SmilesGenerator(true);
 			for (int i=0;i<sc.getAtomContainerCount();i++) {
 				String s = g.createSMILES((IMolecule)sc.getAtomContainer(i));
 //				System.out.println(s);
