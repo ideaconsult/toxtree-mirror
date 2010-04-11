@@ -101,6 +101,8 @@ public class ToxTreeApp extends CompoundMethodApplication {
 				methods.add(Introspection.loadCreateObject("toxtree.plugins.kroes.Kroes1Tree"));
 				methods.add(Introspection.loadCreateObject("sicret.SicretRules"));
 				methods.add(Introspection.loadCreateObject("mutant.BB_CarcMutRules"));
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.smartcyp.SMARTCYPPlugin"));
+				methods.add(Introspection.loadCreateObject("michaelacceptors.MichaelAcceptorRules"));
 			} catch (Exception x) { 
 				x.printStackTrace();
 				try {methods.add( new SubstructureTree()); } catch (Exception e) {}
