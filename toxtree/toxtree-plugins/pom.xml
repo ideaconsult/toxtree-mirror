@@ -22,6 +22,7 @@
         <module>toxtree-michaelacceptors</module>
         <module>toxtree-structurefeatures</module>
         <module>toxtree-kroes</module>
+	<module>toxtree-smartcyp</module>
   </modules>
   <dependencies>
   	<dependency>
