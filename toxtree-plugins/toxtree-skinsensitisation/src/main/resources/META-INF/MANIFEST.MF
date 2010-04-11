@@ -1,0 +1,13 @@
+Package: toxtree.plugins.skinsensitisation
+Name: toxtree/plugins/skinsensitisation/SkinSensitisationPlugin.class
+Manifest-version: 2.1.0
+Class-Path: toxtree-skinsensitisation-2.1.0-SNAPSHOT.jar
+Specification-Title: Implementation of "Marc Cronin ...?"
+Specification-Version: 2.1.0
+Specification-Vendor: Ideaconsult LTD
+Implementation-Title: Skin sensitisation alerts
+Implementation-Version: 2.1.0
+Implementation-Vendor: Ideaconsult LTD
+Package-Title: toxTree.plugins.skinsensitisation
+Package-Version: 2.1.0
+Package-Vendor: Ideaconsult LTD
