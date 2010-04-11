@@ -29,6 +29,8 @@ import java.util.Hashtable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.exceptions.DecisionMethodException;
@@ -92,14 +94,14 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
     protected abstract T getObjectToVerify(IAtomContainer mol);
     
     
-    public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
-    	return new IProcessor<IAtomContainer, IAtomContainer>() {
-    		public IAtomContainer process(IAtomContainer mol)
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    	return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+    		public IChemObjectSelection process(IAtomContainer mol)
     				throws AmbitException {
     			try {
     				IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
 	    			verifyRule(mol, selected);
-	    			return selected;
+	    			return new SingleSelection<IAtomContainer>(selected);
     			} catch (DecisionMethodException x) {
     				throw new AmbitException(x);
     			}

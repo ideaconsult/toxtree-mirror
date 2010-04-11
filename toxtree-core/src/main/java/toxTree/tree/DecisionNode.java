@@ -39,6 +39,7 @@ import java.util.Observer;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionRule;
@@ -399,7 +400,7 @@ public class DecisionNode extends Observable implements IDecisionRule,IDecisionT
     public synchronized void setNodes(DecisionNode[] nodes) {
         this.nodes = nodes;
     }
-    public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
     	return rule.getSelector();
     }
 }

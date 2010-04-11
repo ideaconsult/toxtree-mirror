@@ -1,6 +1,7 @@
 package toxtree.plugins.kroes.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
@@ -57,7 +58,7 @@ public class KroesRule8 extends AbstractRule {
 	public boolean isImplemented() {
 		return true;
 	}
-	public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
 		return null;
 	}
 }

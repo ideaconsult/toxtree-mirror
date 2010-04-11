@@ -45,6 +45,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -345,7 +346,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 		this.examples = examples;
 	}		
 	
-	public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
 		return null;
 	}
 	
