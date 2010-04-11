@@ -1,7 +1,6 @@
 Package: toxtree.plugins.smartcyp
-
-Name: toxtree/plugins/smartcyp/cyp450/SMARTCYPPlugin.class
 Main-Class: toxtree.plugins.smartcyp.cyp450.SMARTCyp
+Name: toxtree/plugins/smartcyp/cyp450/SMARTCYPPlugin.class
 Manifest-version: 2.1.0
 Class-Path: toxtree-smartcyp-2.1.0-SNAPSHOT.jar
 Specification-Title: Implementation of "Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen,SMARTCyp: A 2D Method for Prediction of Cytochrome P450-Mediated Drug Metabolism,ACS Medicinal Chemistry Letters, 2010"

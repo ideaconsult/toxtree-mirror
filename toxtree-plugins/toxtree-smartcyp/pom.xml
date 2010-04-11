@@ -29,4 +29,31 @@ Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen, SM
   		<url>http://www.farma.ku.dk/index.php/Patrik-Rydberg/5304/0/</url>
   	</developer>
   </developers>
+  <build>
+  	<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2-beta-2</version>
+				<executions>
+					<execution>
+						<id>create-executable-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>
+								jar-with-dependencies
+								</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+							</archive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+  	</plugins>
+  </build>  
 </project>
