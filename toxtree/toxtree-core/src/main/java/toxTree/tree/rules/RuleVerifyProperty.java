@@ -33,6 +33,7 @@ import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.smiles.SmilesParser;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionRuleEditor;
@@ -249,7 +250,7 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 		this.listener = null;
 		
 	}
-	public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
 		return null;
 	}
 	

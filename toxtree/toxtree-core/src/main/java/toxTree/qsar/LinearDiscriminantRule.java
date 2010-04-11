@@ -29,6 +29,7 @@ import java.util.Hashtable;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.model.QSARModelException;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.IDescriptorBased;
 import toxTree.core.IImplementationDetails;
@@ -124,7 +125,7 @@ public abstract class LinearDiscriminantRule extends AbstractRule implements IIm
         if (model != null)
             model.setCalculated(descriptor,name, calculated);
     }
-    public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
     	return null;
     }
 }

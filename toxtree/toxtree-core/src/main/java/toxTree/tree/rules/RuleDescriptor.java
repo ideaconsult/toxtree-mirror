@@ -30,6 +30,7 @@ import java.io.ObjectOutputStream;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IDescriptor;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.Introspection;
 import toxTree.tree.AbstractRule;
@@ -89,7 +90,7 @@ public abstract class RuleDescriptor extends AbstractRule {
 			return descriptorClass.equals(((RuleDescriptor)obj).descriptorClass);
 		else return false;
 	}
-	public IProcessor<IAtomContainer, IAtomContainer> getSelector() {
+	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
 		return null;
 	}
 }
