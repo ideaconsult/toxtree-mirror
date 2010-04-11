@@ -25,6 +25,7 @@
         <module>toxtree-kroes</module>
 	<module>toxtree-smartcyp</module>
     <module>toxtree-skinsensitisation</module>
+    <module>toxtree-biodegradation</module>
   </modules>
   <dependencies>
   	<dependency>
