@@ -11,17 +11,17 @@ import org.openscience.cdk.Atom;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.PathTools;
+import org.openscience.cdk.graph.invariant.EquivalentClassPartitioner;
 import org.openscience.cdk.graph.matrix.AdjacencyMatrix;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.smiles.smarts.SMARTSQueryTool;
 
-
 public class MoleculeKU extends AtomContainer implements IMolecule {
 
 	public enum SMARTCYP_PROPERTY {
-		MorganNumber,
+		SymmetryNumber,
 		Score {
 			@Override
 			public String getLabel() {
@@ -208,6 +208,9 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 		Atom currentAtom;
 		String currentAtomType;					// Atom symbol i.e. C, H, N, P or S
 
+		// The Symmetry Numbers are needed to compare the atoms (Atom class and the compareTo method) before adding them below
+		this.setSymmetryNumbers();
+		
 		for (int atomNr = 0; atomNr < this.getAtomCount(); atomNr++){
 
 			currentAtom = (Atom) this.getAtom(atomNr);
@@ -215,48 +218,30 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 			// Match atom symbol
 			currentAtomType = currentAtom.getSymbol();
 			if(currentAtomType.equals("C") || currentAtomType.equals("N") || currentAtomType.equals("P") || currentAtomType.equals("S")) {
-
-				// The Morgan Numbers are needed to compare the atoms (Atom class and the compareTo method) before adding them below
-				this.setMorganNumbers();
 			
 				atomsSortedByEnA.add(currentAtom);
 
 			}
 		}
 	}
-
-
-
-
-
-	// Symmetric atoms have identical Morgan numbers
-	public void setMorganNumbers() throws CDKException{
-		/*
-		IAtomContainer IatomContainerWithImplicitHydrogens = (IAtomContainer) this;
-
-
-		CDKAtomTypeMatcher matcher = CDKAtomTypeMatcher.getInstance(IatomContainerWithImplicitHydrogens.getBuilder());
-
-		for(IAtom atom : IatomContainerWithImplicitHydrogens.atoms()){
-			IAtomType type = matcher.findMatchingAtomType(IatomContainerWithImplicitHydrogens, atom);
-			AtomTypeManipulator.configure(atom, type);
-		}
-
-		CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(IatomContainerWithImplicitHydrogens.getBuilder());
-		adder.addImplicitHydrogens(IatomContainerWithImplicitHydrogens);
-
-
-		long[] morganNumbersArray = org.openscience.cdk.graph.invariant.MorganNumbersTools.getMorganNumbers(IatomContainerWithImplicitHydrogens);
-		 */
-
-		long[] morganNumbersArray = org.openscience.cdk.graph.invariant.MorganNumbersTools.getMorganNumbers((IAtomContainer) this);
+	
+	// Symmetric atoms have identical values in the array from getTopoEquivClassbyHuXu
+	public void setSymmetryNumbers() throws CDKException{
 		Atom atom;
+		//set charges so that they are not null
 		for(int atomIndex = 0; atomIndex < this.getAtomCount(); atomIndex++){
 			atom = (Atom) this.getAtom(atomIndex);
-			SMARTCYP_PROPERTY.MorganNumber.set(atom,morganNumbersArray[atomIndex]);
+			atom.setCharge((double) atom.getFormalCharge());
+		}
+		//compute symmetry
+		EquivalentClassPartitioner symmtest = new EquivalentClassPartitioner((AtomContainer) this);
+		int[] symmetryNumbersArray = symmtest.getTopoEquivClassbyHuXu((AtomContainer) this);
+		for(int atomIndex = 0; atomIndex < this.getAtomCount(); atomIndex++){
+			atom = (Atom) this.getAtom(atomIndex);
+			SMARTCYP_PROPERTY.SymmetryNumber.set(atom,symmetryNumbersArray[atomIndex+1]);
 		}
 	}
-
+	
 	// This method makes the ranking
 	public void rankAtoms(){
 
@@ -303,7 +288,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 		for(int atomNr=0; atomNr < this.getAtomCount(); atomNr++) System.out.println(this.getAtom(atomNr).toString());
 		return "MoleculeKU " + super.toString();
 	}
-
+	
 
 }
 
