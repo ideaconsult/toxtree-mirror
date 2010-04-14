@@ -1,4 +1,4 @@
-package toxtree.plugins.smartcyp.cyp450;
+package smartcyp;
 
 
 import java.util.Comparator;
@@ -53,7 +53,7 @@ public class AtomComparator implements Comparator<Atom> {
 		else if(currentAtomScore > comparisonAtomScore) return after;
 
 		// Distinguish symmetric atoms
-		else return this.compareMorganNumberAndHcount(currentAtom, comparisonAtom);
+		else return this.checksymmetry(currentAtom, comparisonAtom);
 
 	}
 
@@ -69,18 +69,15 @@ public class AtomComparator implements Comparator<Atom> {
 		else if(currentAtomAccessibility > comparisonAtomAccessibility) return before;
 
 		// Distinguish symmetric atoms
-		else return this.compareMorganNumberAndHcount(currentAtom, comparisonAtom);
+		else return this.checksymmetry(currentAtom, comparisonAtom);
 
 	}
 
-
-
-	private int compareMorganNumberAndHcount(Atom currentAtom, Atom comparisonAtom){
+	private int checksymmetry(Atom currentAtom, Atom comparisonAtom){
 
 		// Symmetric
-		if(SMARTCYP_PROPERTY.MorganNumber.get(currentAtom).doubleValue() == SMARTCYP_PROPERTY.MorganNumber.get(comparisonAtom).doubleValue() 
-				&& currentAtom.getHydrogenCount() == comparisonAtom.getHydrogenCount()) return equal;
-
+		if(SMARTCYP_PROPERTY.SymmetryNumber.get(currentAtom).intValue() == SMARTCYP_PROPERTY.SymmetryNumber.get(comparisonAtom).intValue()) return equal;
+		
 		// Non-symmetric
 		else return after;
 	}
