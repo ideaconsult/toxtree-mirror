@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.TreeSet;
-import java.util.Vector;
 
 import org.openscience.cdk.Atom;
 import org.openscience.cdk.MoleculeSet;
@@ -21,12 +19,10 @@ import toxtree.plugins.smartcyp.cyp450.MoleculeKU.SMARTCYP_PROPERTY;
 public class WriteResultsAsCSV {
 
 	PrintWriter outfile;
-	Vector<Atom> atomsSortedByAtomNr;
-	TreeSet<Atom> atomsSortedByEnA;
 	String moleculeID;
 	private String dateAndTime;
 	String[] namesOfInfiles;
-	int[] atomsSortedByAtomNrRanking;
+	
 
 	// DecimalFormat twoDecimalFormat = new DecimalFormat("#.##");
 	DecimalFormat twoDecimalFormat = new DecimalFormat();
