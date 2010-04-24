@@ -1,4 +1,4 @@
-package smartcyp;
+package toxtree.plugins.smartcyp.cyp450;
 
 
 import java.util.Comparator;

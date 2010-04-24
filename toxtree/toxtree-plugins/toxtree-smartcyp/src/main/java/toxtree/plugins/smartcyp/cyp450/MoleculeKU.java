@@ -243,7 +243,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 	}
 	
 	// This method makes the ranking
-	public void rankAtoms(){
+	public void rankAtoms() throws CDKException{
 
 		// Iterate over the Atoms in this sortedAtomsTreeSet
 		int rankNr = 1;
@@ -269,11 +269,52 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 			// Else, Atoms have the same score
 			SMARTCYP_PROPERTY.Ranking.set(currentAtom,rankNr);
 			previousAtom = currentAtom;	
-			loopNr++;			
+			loopNr++;
 		}
+		
+		this.rankSymmetricAtoms();
 	}
 
 
+	// This method makes the ranking of symmetric atoms
+	public void rankSymmetricAtoms() throws CDKException{
+
+		Atom currentAtom;
+		String currentAtomType;					// Atom symbol i.e. C, H, N, P or S
+
+		for (int atomNr = 0; atomNr < this.getAtomCount(); atomNr++){
+
+			currentAtom = (Atom) this.getAtom(atomNr);
+
+			// Match atom symbol
+			currentAtomType = currentAtom.getSymbol();
+			if(currentAtomType.equals("C") || currentAtomType.equals("N") || currentAtomType.equals("P") || currentAtomType.equals("S")) {			
+
+				//This clause finds symmetric atoms which have not been assigned a ranking
+				if(SMARTCYP_PROPERTY.Ranking.get(currentAtom) == null){
+
+					// AtomsSortedByEnA contains the ranked atoms
+					// We just need to find the symmetric atom and use its ranking for the unranked symmetric atom
+					Iterator<Atom> atomsSortedByEnAiterator = this.getAtomsSortedByEnA().iterator();
+					Atom rankedAtom;
+					Number rankNr;
+					while(atomsSortedByEnAiterator.hasNext()){
+						
+						rankedAtom = (Atom) atomsSortedByEnAiterator.next();
+						
+						if(SMARTCYP_PROPERTY.SymmetryNumber.get(currentAtom).intValue() == SMARTCYP_PROPERTY.SymmetryNumber.get(rankedAtom).intValue()){
+							
+							rankNr = SMARTCYP_PROPERTY.Ranking.get(rankedAtom);
+							SMARTCYP_PROPERTY.Ranking.set(currentAtom,rankNr);
+						}
+					}
+					
+				}
+
+			}
+		}
+	}
+	
 
 	// Get the TreeSet containing the sorted C, N, P and S atoms
 	public TreeSet<Atom> getAtomsSortedByEnA(){
