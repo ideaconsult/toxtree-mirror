@@ -33,10 +33,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package cramer2.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+
+import ambit2.base.interfaces.IProcessor;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
 import toxTree.tree.AbstractRule;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * Rule 12 of the Cramer scheme (see {@link cramer2.CramerRulesExtendedExtended})
@@ -83,4 +87,10 @@ public class RuleHeteroaromatic extends AbstractRule {
 	public boolean isImplemented() {
         return true;
     }	
+    @Override
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
+    	try { rule.addSubstructure("[a;!c]:[!#1]"); } catch (Exception x) {x.printStackTrace();};
+    	return rule.getSelector();
+    }
 }

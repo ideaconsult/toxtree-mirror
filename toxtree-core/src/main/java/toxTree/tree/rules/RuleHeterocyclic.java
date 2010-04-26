@@ -25,10 +25,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.tree.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+
+import ambit2.base.interfaces.IProcessor;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
 import toxTree.tree.AbstractRule;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * Verifies if the molecule is heterocyclic
@@ -70,5 +74,11 @@ public class RuleHeterocyclic extends AbstractRule {
 	@Override
 	public boolean isImplemented() {
 	        return true;
-	}	
+	}
+    @Override
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
+    	try { rule.addSubstructure("[R;!#6]@[!#1]"); } catch (Exception x) {x.printStackTrace();};
+    	return rule.getSelector();
+    }
 }

@@ -21,9 +21,13 @@ package verhaar.rules;
 
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+
+import ambit2.base.interfaces.IProcessor;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.RuleElements;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 

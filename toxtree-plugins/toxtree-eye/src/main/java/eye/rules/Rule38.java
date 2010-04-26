@@ -32,8 +32,11 @@ import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.interfaces.IBond.Order;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import ambit2.base.interfaces.IProcessor;
 import ambit2.smarts.query.SMARTSException;
 import ambit2.smarts.query.SmartsPatternCDK;
 
@@ -141,6 +144,13 @@ public class Rule38 extends Rule13_AliphaticMonoalcohols {
         
          
     }  
+    
+    @Override
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
+    	try { rule.addSubstructure("N(C)([#1,C])([#1,C])"); } catch (Exception x) {x.printStackTrace();};
+    	return rule.getSelector();
+    }
 }
 
 

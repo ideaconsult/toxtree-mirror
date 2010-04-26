@@ -29,6 +29,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.jchempaint.renderer.selection.LogicalSelection;
+import org.openscience.jchempaint.renderer.selection.SingleSelection;
+import org.openscience.jchempaint.renderer.selection.LogicalSelection.Type;
+
+import ambit2.base.exceptions.AmbitException;
+import ambit2.base.interfaces.IProcessor;
 
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.Introspection;
@@ -143,6 +151,8 @@ public class RuleStructuresList extends AbstractRule {
     public synchronized void setFilename(String filename) {
         this.filename = filename;
     }    
+	
+	   
 }
 /*
 class RecordCache implements Comparable {

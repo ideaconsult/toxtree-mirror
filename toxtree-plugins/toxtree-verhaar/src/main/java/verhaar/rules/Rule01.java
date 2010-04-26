@@ -20,7 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.rules;
 
 
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+
+import ambit2.base.interfaces.IProcessor;
 import toxTree.tree.rules.RuleElements;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
@@ -53,4 +58,5 @@ public class Rule01 extends RuleElements {
 		examples[1] = "CCCCCCCO";
 		editable = false;
 	}
+
 }
