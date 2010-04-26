@@ -148,8 +148,10 @@ public class CompoundPanel extends JPanel implements   Observer, PropertyChangeL
 	    if (picturePanel != null) {
 	    	IAtomContainer ac = dataContainer.getMolecule();
 	    	picturePanel.setAtomContainer(ac,true);
+	    	picturePanel.setSelector(null);
 	    	try {
 	    		propertiesPanel.setAtomContainer(ac);
+	    		
 	    	} catch (Exception x) {
 	    		x.printStackTrace();
 	    	}
@@ -165,6 +167,7 @@ public class CompoundPanel extends JPanel implements   Observer, PropertyChangeL
         	picturePanel.setSelector((IProcessor<IAtomContainer,IChemObjectSelection>)evt.getNewValue());	
         } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_molecule.toString())) {
         	picturePanel.setAtomContainer((IAtomContainer)evt.getNewValue());	
+        	picturePanel.setSelector(null);
         }           	
         
         

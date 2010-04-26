@@ -111,11 +111,13 @@ public class RuleResult implements Serializable {
 		StringBuffer b = new StringBuffer();
 		if (!silent) 
 			if (verbose) {
-				b.append(String.format("<a href=\"%s%s\"><img src='%s' border='0' alt='Hilight structure alert' title='Hilight structure alert'></a>",alertURL,rule.getTitle(),this.getClass().getResource("/toxTree/ui/tree/images/find.png").toString()));
+				b.append(String.format("<a href=\"%s%s\" title='Show rule'><img src='%s' border='0' alt='Show rule' title='Show rule'></a>",
+						ruleURL,rule.getTitle(),this.getClass().getResource("/toxTree/ui/tree/images/find.png").toString()));
 				b.append("&nbsp;");
-
-				b.append(String.format("<a href=\"%s%s\">%s</a>",ruleURL,rule.getTitle(),rule.toString()));
+				
+				b.append(String.format("<a href=\"%s%s\"  title='Hilight structure alert'>%s</a>",alertURL,rule.getTitle(),rule.toString()));
 				b.append("&nbsp;");
+		
 				b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));
 				b.append("&nbsp;");
 				if (category != null) {
