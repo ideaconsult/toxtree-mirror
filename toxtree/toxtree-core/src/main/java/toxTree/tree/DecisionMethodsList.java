@@ -24,6 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.tree;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,6 +37,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Observable;
 
+import org.jmol.util.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -223,6 +228,29 @@ public class DecisionMethodsList extends Observable implements	IDecisionMethodsL
 			} catch (Exception x) {
 				x.printStackTrace();
 			}
+		}
+		try {
+		    FileFilter fileFilter = new FileFilter() {
+		        public boolean accept(File file) {
+		            return !file.isDirectory() &&
+		            	file.getName().endsWith(".tml");	
+		        }
+		    };		
+			File dir = new File(String.format("%s/ext",Introspection.getToxTreeRoot()));
+			File[] trees = dir.listFiles(fileFilter);
+			for (File tree : trees) {
+				InputStream in = null;
+				try {
+					in =  new FileInputStream(tree);
+					Introspection.loadRulesXML(in, tree.getAbsolutePath());
+				} catch (Exception x) {
+					Logger.info(x.getMessage());
+				} finally {
+					try { in.close();} catch (Exception x) {}
+				}
+			}
+		} catch (Exception x) {
+			Logger.info(x.getMessage());
 		}
         Collections.sort(list,new PriorityComparator());
 	}

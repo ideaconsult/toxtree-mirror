@@ -38,6 +38,7 @@ import javax.vecmath.Vector2d;
 
 import org.openscience.cdk.ChemModel;
 import org.openscience.cdk.MoleculeSet;
+import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.geometry.GeometryTools;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -46,6 +47,7 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.jchempaint.JChemPaintPanel;
 import org.openscience.jchempaint.application.JChemPaint;
 
@@ -282,6 +284,12 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
 
     protected void updateMolecule(IMolecule mol) {
         molecule = mol;
+        try {
+	        AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
+	        CDKHueckelAromaticityDetector.detectAromaticity(mol);
+        } catch (Exception x) {
+        	x.printStackTrace();
+        }
     }
 
 	public boolean isModal() {

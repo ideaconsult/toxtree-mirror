@@ -25,11 +25,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.tree.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
 import toxTree.tree.AbstractRule;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * Verifies if the molecule consists of only allowed substituents
@@ -68,4 +71,11 @@ public class RuleAnySubstituents extends AbstractRule {
 
 		return FunctionalGroups.hasSubstituents(mol,mf.getRingset());
 	}
+	
+    @Override
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
+    	try { rule.addSubstructure("[R]!@[*;!#1]"); } catch (Exception x) {x.printStackTrace();};
+    	return rule.getSelector();
+    }
 }

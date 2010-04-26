@@ -34,6 +34,7 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
 
+import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.MolAnalyser;
@@ -116,5 +117,19 @@ public class CramerRulesTest extends RulesTestCase {
 	public void testPrintCramer() throws Exception {
 		System.out.println(new CramerRules().getRules());
 
+	}
+	@Test
+	public void testRulesWithSelector() throws Exception {
+	    int nr = rules.getNumberOfRules();
+	    int na = 0;
+	    for (int i = 0; i < nr; i++) {
+	        IDecisionRule rule = rules.getRule(i);
+	        if (rule.getSelector()==null){
+	        	System.err.println(rule.toString());
+	        	na++;
+	        }
+	    }
+	 
+	    Assert.assertEquals(0,na);
 	}
 }

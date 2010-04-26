@@ -29,16 +29,18 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.ReactionException;
+import toxTree.query.MolAnalyser;
 import toxTree.query.MolFlags;
 import toxTree.query.SimpleReactions;
 import toxTree.tree.AbstractRule;
+import toxTree.tree.AbstractRuleHilightHits;
 
 /**
  * Verifies if a compound is readily hydrolised
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-8-18
  */
-public class RuleReadilyHydrolised extends AbstractRule {
+public class RuleReadilyHydrolised extends AbstractRuleHilightHits {
 	
 	/**
 	 * Comment for <code>serialVersionUID</code>
@@ -68,7 +70,11 @@ public class RuleReadilyHydrolised extends AbstractRule {
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
 		logger.info(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
-	    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
+	    if (mf == null) {
+	    	try { MolAnalyser.analyse(mol); } catch (Exception x) {}
+	    	mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
+	    	if (mf == null)  	throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
+	    }
 	    IAtomContainerSet sc = mf.getHydrolysisProducts();
 	    if (sc != null) return true;
 		SimpleReactions sr = new SimpleReactions();
@@ -80,4 +86,15 @@ public class RuleReadilyHydrolised extends AbstractRule {
 		mf.setHydrolysisProducts(sc);
 		return (sc != null);
 	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
+		boolean ok = verifyRule(mol);
+		MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
+		if (mf.getHydrolysisProducts()!= null)
+			for (int i=0; i < mf.getHydrolysisProducts().getAtomContainerCount();i++)
+				selected.add(mf.getHydrolysisProducts().getAtomContainer(i));
+		return ok;
+	}
+	
 }

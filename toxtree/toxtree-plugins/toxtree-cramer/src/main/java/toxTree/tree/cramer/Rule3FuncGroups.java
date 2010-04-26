@@ -28,14 +28,14 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
-import toxTree.tree.AbstractRule;
+import toxTree.tree.AbstractRuleHilightHits;
 
 /**
  * Rule 21 of the Cramer scheme (see {@link toxTree.tree.cramer.CramerRules})
  * @author Nina Jeliazkova <br>
  * @version 0.1, 2005-5-2
  */
-public class Rule3FuncGroups extends AbstractRule {
+public class Rule3FuncGroups extends AbstractRuleHilightHits {
 
 	/**
      * Comment for <code>serialVersionUID</code>
@@ -68,9 +68,25 @@ public class Rule3FuncGroups extends AbstractRule {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	}
+	
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
 		logger.info(toString());
 		try {
-			return FunctionalGroups.hasManyDifferentFunctionalGroups(mol,3);
+			boolean ok = FunctionalGroups.hasManyDifferentFunctionalGroups(mol,3);
+			if (selected != null) {
+				for (int i=0; i < mol.getAtomCount(); i++)
+					if (mol.getAtom(i).getProperty(FunctionalGroups.ALLOCATED)!=null)
+						selected.addAtom(mol.getAtom(i));
+				for (int i=0; i < mol.getBondCount(); i++)
+					if (mol.getBond(i).getProperty(FunctionalGroups.ALLOCATED)!=null)
+						selected.addBond(mol.getBond(i));				
+			}	
+			
+			return ok;
 		} catch (Exception x) {
 			throw new DecisionMethodException(x);
 		}

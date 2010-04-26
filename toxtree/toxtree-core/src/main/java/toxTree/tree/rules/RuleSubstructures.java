@@ -31,9 +31,11 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleSubstructures;
+import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.MolAnalyser;
 import toxTree.query.QueryAtomContainers;
-import toxTree.tree.AbstractRule;
+import toxTree.tree.AbstractRuleHilightHits;
 import toxTree.ui.tree.rules.SubstructureRulePanel;
 
 /**
@@ -41,7 +43,7 @@ import toxTree.ui.tree.rules.SubstructureRulePanel;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-8-14
  */
-public abstract class RuleSubstructures extends AbstractRule implements IRuleSubstructures {
+public abstract class RuleSubstructures extends AbstractRuleHilightHits implements IRuleSubstructures {
 	public static transient String MSG_HASGROUP = "Has group\t";
 	/**
 	 * Comment for <code>serialVersionUID</code>
@@ -158,4 +160,26 @@ public abstract class RuleSubstructures extends AbstractRule implements IRuleSub
 	public void setIds(ArrayList ids) {
 		this.ids = ids;
 	}	
+	
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
+		logger.info(toString());
+		try {
+			MolAnalyser.analyse(mol);
+			boolean ok = verifyRule(mol);
+			if (selected != null) {
+				for (int i=0; i < mol.getAtomCount(); i++)
+					if (mol.getAtom(i).getProperty(FunctionalGroups.ALLOCATED)!=null)
+						selected.addAtom(mol.getAtom(i));
+				for (int i=0; i < mol.getBondCount(); i++)
+					if (mol.getBond(i).getProperty(FunctionalGroups.ALLOCATED)!=null)
+						selected.addBond(mol.getBond(i));				
+			}	
+			
+			return ok;
+		} catch (Exception x) {
+			throw new DecisionMethodException(x);
+		}
+	}
 }
