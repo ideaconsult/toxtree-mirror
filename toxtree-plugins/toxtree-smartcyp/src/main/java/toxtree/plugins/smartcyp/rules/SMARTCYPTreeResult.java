@@ -51,9 +51,10 @@ public class SMARTCYPTreeResult extends TreeResult {
 			names[i] = c.get(i).toString();
 		return names;
 	}
-	
+	/*
 	public synchronized void hilightAlert(IDecisionRule rule) throws DecisionResultException {
 		firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(), null, originalMolecule);
 		firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, rule.getSelector());
 	}	
+	*/
 }

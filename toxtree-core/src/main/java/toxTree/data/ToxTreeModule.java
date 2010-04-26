@@ -113,8 +113,11 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
     @Override
 	public void update(Observable o, Object arg) {
         if (treeResult.isEstimating()) return; //can't change compound during estimation
-        if (o instanceof DecisionMethodData)
+        if (o instanceof DecisionMethodData) {
             treeResult.clear();
+            setChanged();
+            notifyObservers();
+        }
 
     }
 

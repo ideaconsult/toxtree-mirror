@@ -40,11 +40,12 @@ import java.util.Observable;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
-import org.openscience.cdk.exception.InvalidSmilesException;
+import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -227,10 +228,12 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	    if (ruleResult) index = 1; else index =0;
 		    try {
 		        IMolecule mol = sp.parseSmiles(examples[index]);
+		        AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
+		        CDKHueckelAromaticityDetector.detectAromaticity(mol);
 		        if (ruleResult) mol.setID("'YES example'");
 		        else mol.setID("'NO example'");
 		        return mol;
-		    } catch (InvalidSmilesException x) {
+		    } catch (Exception x) {
 		        throw new DecisionMethodException(x);
 		    }
 	}

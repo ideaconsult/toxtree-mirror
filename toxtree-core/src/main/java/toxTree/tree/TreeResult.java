@@ -98,7 +98,8 @@ public class TreeResult implements IDecisionResult {
 	    }
 	    status.clear();
         firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);
-        firePropertyChangeEvent(ProgressStatus._pRuleResult, null, "");        
+        firePropertyChangeEvent(ProgressStatus._pRuleResult, null, "");      
+        firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null,null);
         /*
 		setChanged();
 		notifyObservers();
@@ -529,7 +530,7 @@ public class TreeResult implements IDecisionResult {
     
 	public synchronized void hilightAlert(IDecisionRule rule) throws DecisionResultException {
 		firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(), null, originalMolecule);
-		firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, rule.getSelector());
+		firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, rule==null?null:rule.getSelector());
 	}
 	
 }
