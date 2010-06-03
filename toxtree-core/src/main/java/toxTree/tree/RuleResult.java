@@ -44,9 +44,10 @@ public class RuleResult implements Serializable {
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = -7844039700306791740L;
-	public static String ruleURL = "http://localhost/rule/";
-	public static String categoryURL = "http://localhost/category/";
-	public static String alertURL = "http://localhost/alerts/";
+	public static String prefix = "http://localhost" ;
+	public static String ruleURL = String.format("%s/rule/",prefix);
+	public static String categoryURL = String.format("%s/category/",prefix);
+	public static String alertURL = String.format("%s/alerts/",prefix);
 	protected IDecisionRule rule = null;
 	protected boolean result = false;
 	protected IDecisionCategory category = null;
@@ -115,7 +116,10 @@ public class RuleResult implements Serializable {
 						ruleURL,rule.getTitle(),this.getClass().getResource("/toxTree/ui/tree/images/find.png").toString()));
 				b.append("&nbsp;");
 				
-				b.append(String.format("<a href=\"%s%s\"  title='Hilight structure alert'>%s</a>",alertURL,rule.getTitle(),rule.toString()));
+				if (rule.getSelector()!=null)
+					b.append(String.format("<a href=\"%s%s\"  title='Hilight structure alert'>%s</a>",alertURL,rule.getTitle(),rule.toString()));
+				else
+					b.append(rule.getTitle());
 				b.append("&nbsp;");
 		
 				b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));
