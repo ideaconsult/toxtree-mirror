@@ -32,11 +32,15 @@ public class RuleCommonComponentOfFood extends RuleStructuresList {
 	 * 
 	 */
 	public RuleCommonComponentOfFood() {
-		 this(new File(Introspection.getToxTreeRoot()+"foodmol.sdf"));
+		 super("foodmol.sdf");
+		 init();
 	}
 	public RuleCommonComponentOfFood(File file) {		
 		super(file);
-		
+		init();
+
+	}
+	protected void init() {
 		id = "22";
 		title = "Common component of food";
 		explanation.append("<html>Is the substance a <i>common component of food </i> (C) or <i>stucturally closed related</i> to a common component of food?");

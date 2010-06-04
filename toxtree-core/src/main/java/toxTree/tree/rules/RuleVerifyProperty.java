@@ -32,8 +32,10 @@ import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionRuleEditor;
@@ -44,6 +46,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import toxTree.ui.PropertyInput;
 import toxTree.ui.tree.rules.RulePropertyEditor;
+import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 
 /**
@@ -250,10 +253,30 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 		this.listener = null;
 		
 	}
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return null;
-	}
-	
+	 public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+	    	return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	    		public IChemObjectSelection process(IAtomContainer mol)
+	    				throws AmbitException {
+	    			try {
+	    				IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
+		    			if (verifyRule(mol)) {
+		    				selected.add(mol);
+		    				return new SingleSelection<IAtomContainer>(selected);
+		    			} else return null;
+	    			} catch (DecisionMethodException x) {
+	    				throw new AmbitException(x);
+	    			}
+	    		}
+	    		public boolean isEnabled() {
+	    			return true;
+	    		}
+	    		public long getID() {
+	    			return 0;
+	    		}
+	    		public void setEnabled(boolean arg0) {
+	    		}
+	    	};
+	    }	
 } 
 
 

@@ -29,11 +29,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.qsar.IDescriptor;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
 import toxTree.core.Introspection;
+import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
+import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 
 /**
@@ -90,7 +94,34 @@ public abstract class RuleDescriptor extends AbstractRule {
 			return descriptorClass.equals(((RuleDescriptor)obj).descriptorClass);
 		else return false;
 	}
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return null;
+
+	public boolean  verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol,IAtomContainer selected) throws DecisionMethodException {
+		boolean ok = verifyRule(mol);
+		if (ok && (selected!=null))
+			selected.add(mol);
+		return ok;
 	}
+	
+	 public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+	    	return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	    		public IChemObjectSelection process(IAtomContainer mol)
+	    				throws AmbitException {
+	    			try {
+	    				IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
+		    			verifyRule(mol, selected);
+		    			return new SingleSelection<IAtomContainer>(selected);
+	    			} catch (DecisionMethodException x) {
+	    				throw new AmbitException(x);
+	    			}
+	    		}
+	    		public boolean isEnabled() {
+	    			return true;
+	    		}
+	    		public long getID() {
+	    			return 0;
+	    		}
+	    		public void setEnabled(boolean arg0) {
+	    		}
+	    	};
+	    }	
 }

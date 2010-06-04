@@ -25,12 +25,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.tree.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.IDescriptor;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.DoubleResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 import org.openscience.cdk.qsar.result.IntegerResult;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.jchempaint.renderer.selection.SingleSelection;
+
+import ambit2.base.exceptions.AmbitException;
+import ambit2.base.interfaces.IProcessor;
 
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleRange;
@@ -119,4 +125,6 @@ public class RuleDescriptorRange extends RuleDescriptor implements IRuleRange {
 				(getMinValue()== ((RuleDescriptorRange)obj).getMinValue());
 		else return false;
 	}
+	
+
 }

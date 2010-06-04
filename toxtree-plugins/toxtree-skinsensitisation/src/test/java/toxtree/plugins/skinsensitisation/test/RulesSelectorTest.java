@@ -4,7 +4,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import toxTree.core.IDecisionRule;
+import toxTree.tree.AbstractTree;
 import toxtree.plugins.skinsensitisation.SkinSensitisationPlugin;
 
 public class RulesSelectorTest {
@@ -12,17 +12,8 @@ public class RulesSelectorTest {
 	@Test
 	public void testRulesWithSelector() throws Exception {
 		SkinSensitisationPlugin rules = new SkinSensitisationPlugin();
-	    int nr = rules.getNumberOfRules();
-	    int na = 0;
-	    for (int i = 0; i < nr; i++) {
-	        IDecisionRule rule = rules.getRule(i);
-
-	        if (rule.getSelector()==null){
-	        	System.err.println(rule.toString());
-	        	na++;
-	        }
-	    }
-	    System.out.println(nr);
+	    int na = ((AbstractTree)rules).testRulesWithSelector();
+		 
 	    Assert.assertEquals(0,na);
 	}
 }

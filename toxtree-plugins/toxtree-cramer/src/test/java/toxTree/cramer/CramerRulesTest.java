@@ -34,10 +34,10 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
 
-import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.MolAnalyser;
+import toxTree.tree.AbstractTree;
 import toxTree.tree.cramer.CramerRules;
 
 /**
@@ -120,15 +120,7 @@ public class CramerRulesTest extends RulesTestCase {
 	}
 	@Test
 	public void testRulesWithSelector() throws Exception {
-	    int nr = rules.getNumberOfRules();
-	    int na = 0;
-	    for (int i = 0; i < nr; i++) {
-	        IDecisionRule rule = rules.getRule(i);
-	        if (rule.getSelector()==null){
-	        	System.err.println(rule.toString());
-	        	na++;
-	        }
-	    }
+	    int na = ((AbstractTree)rules).testRulesWithSelector();
 	 
 	    Assert.assertEquals(0,na);
 	}

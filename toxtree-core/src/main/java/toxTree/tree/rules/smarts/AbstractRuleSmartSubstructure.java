@@ -29,11 +29,13 @@ import java.util.Hashtable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.query.MolAnalyser;
 import toxTree.tree.AbstractRule;
 import toxTree.ui.tree.rules.SMARTSRuleEditor;
 import ambit2.base.exceptions.AmbitException;
@@ -100,7 +102,10 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
     				throws AmbitException {
     			try {
     				IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
-	    			verifyRule(mol, selected);
+    				try { MolAnalyser.analyse(mol); } catch (Exception x) {};
+	    			boolean ok = verifyRule(mol, selected);
+					if (selected.getAtomCount()==0) return null;
+					//selected = AtomContainerManipulator.removeHydrogens(selected);
 	    			return new SingleSelection<IAtomContainer>(selected);
     			} catch (DecisionMethodException x) {
     				throw new AmbitException(x);
@@ -146,8 +151,11 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 	    		
 	    		if (pattern.isNegate()) is_true = ! is_true;
 	    		
-	    		if (is_true && (selected!=null))
-	    			selected.add(pattern.getMatchingStructure(mol));
+	    		if (is_true && (selected!=null)) {
+	    			IAtomContainer hit = pattern.getMatchingStructure(mol);
+	    			if (hit!=null)
+	    				selected.add(hit);
+	    		}
 	    		
 	    		if(containsAllSubstructures && !is_true){
 	    			

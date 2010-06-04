@@ -78,7 +78,7 @@ public class RuleHeterocyclic extends AbstractRule {
     @Override
     public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
     	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
-    	try { rule.addSubstructure("[R;!#6]@[!#1]"); } catch (Exception x) {x.printStackTrace();};
+    	try { rule.addSubstructure("[!#1]@[R;!#6]@[!#1]"); } catch (Exception x) {x.printStackTrace();};
     	return rule.getSelector();
     }
 }

@@ -4,23 +4,15 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import toxTree.core.IDecisionRule;
+import toxTree.tree.AbstractTree;
 
 public class RulesSelectorTest {
 	@Test
 	public void testRulesWithSelector() throws Exception {
 		MichaelAcceptorRules rules = new MichaelAcceptorRules();
-	    int nr = rules.getNumberOfRules();
-	    int na = 0;
-	    for (int i = 0; i < nr; i++) {
-	        IDecisionRule rule = rules.getRule(i);
-
-	        if (rule.getSelector()==null){
-	        	na++;
-	        }
-	    }
-	    System.out.println(nr);
-	    Assert.assertEquals(2,na);
+	    int na = ((AbstractTree)rules).testRulesWithSelector();
+		 
+	    Assert.assertEquals(0,na);
 	}
 }
 
