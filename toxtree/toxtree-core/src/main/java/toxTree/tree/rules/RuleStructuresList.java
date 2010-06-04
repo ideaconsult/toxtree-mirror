@@ -31,12 +31,7 @@ import java.io.ObjectInputStream;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
-import org.openscience.jchempaint.renderer.selection.LogicalSelection;
 import org.openscience.jchempaint.renderer.selection.SingleSelection;
-import org.openscience.jchempaint.renderer.selection.LogicalSelection.Type;
-
-import ambit2.base.exceptions.AmbitException;
-import ambit2.base.interfaces.IProcessor;
 
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.Introspection;
@@ -45,6 +40,8 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.Tools;
 import toxTree.tree.AbstractRule;
 import toxTree.ui.tree.rules.RuleStructuresPanel;
+import ambit2.base.exceptions.AmbitException;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * A rule, which returns true if the query is isomorphic to one of the structures 
@@ -152,6 +149,35 @@ public class RuleStructuresList extends AbstractRule {
         this.filename = filename;
     }    
 	
+    
+	public boolean  verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol,IAtomContainer selected) throws DecisionMethodException {
+		boolean ok = verifyRule(mol);
+		if (ok && (selected!=null))
+			selected.add(mol);
+		return ok;
+	}
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    	return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+    		public IChemObjectSelection process(IAtomContainer mol)
+    				throws AmbitException {
+    			//try {
+    				//IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
+	    			//verifyRule(mol, selected);
+	    			return new SingleSelection<IAtomContainer>(mol);
+    			//} catch (DecisionMethodException x) {
+    			//	throw new AmbitException(x);
+    			//}
+    		}
+    		public boolean isEnabled() {
+    			return true;
+    		}
+    		public long getID() {
+    			return 0;
+    		}
+    		public void setEnabled(boolean arg0) {
+    		}
+    	};
+    }	
 	   
 }
 /*

@@ -116,10 +116,10 @@ public class RuleResult implements Serializable {
 						ruleURL,rule.getTitle(),this.getClass().getResource("/toxTree/ui/tree/images/find.png").toString()));
 				b.append("&nbsp;");
 				
-				if (rule.getSelector()!=null)
+				if (result && (rule.isImplemented()) && (rule.getSelector()!=null))
 					b.append(String.format("<a href=\"%s%s\"  title='Hilight structure alert'>%s</a>",alertURL,rule.getTitle(),rule.toString()));
 				else
-					b.append(rule.getTitle());
+					b.append(rule.toString());
 				b.append("&nbsp;");
 		
 				b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));

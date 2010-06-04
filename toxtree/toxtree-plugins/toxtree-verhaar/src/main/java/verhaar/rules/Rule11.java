@@ -21,13 +21,9 @@ package verhaar.rules;
 
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
-
-import ambit2.base.interfaces.IProcessor;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.RuleElements;
-import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
@@ -64,4 +60,7 @@ public class Rule11 extends RuleElements {
 		return !super.verifyRule(mol);
 	}
 
+	public void select(IAtomContainer mol, IAtomContainer selected) {
+		if (selected != null) elements.select(mol, selected,false);
+	}
 }

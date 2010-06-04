@@ -92,8 +92,23 @@ public class RuleReadilyHydrolised extends AbstractRuleHilightHits {
 		boolean ok = verifyRule(mol);
 		MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 		if (mf.getHydrolysisProducts()!= null)
-			for (int i=0; i < mf.getHydrolysisProducts().getAtomContainerCount();i++)
-				selected.add(mf.getHydrolysisProducts().getAtomContainer(i));
+			for (int i=0; i < mf.getHydrolysisProducts().getAtomContainerCount();i++) {
+				IAtomContainer ac = mf.getHydrolysisProducts().getAtomContainer(i);
+				for (int b=0; b < ac.getAtomCount(); b++) 
+					selected.addAtom(ac.getAtom(b));
+				/*
+				for (int b=0; b < ac.getBondCount(); b++) {
+					
+					if ("H".equals(ac.getBond(b).getAtom(0).getSymbol())) continue;
+					if ("H".equals(ac.getBond(b).getAtom(1).getSymbol())) continue;
+					
+					//selected.addBond(ac.getBond(b));
+					selected.addAtom(ac.getBond(b).getAtom(0));
+					selected.addAtom(ac.getBond(b).getAtom(1));
+				}
+				*/
+			}
+			//	selected.add(mf.getHydrolysisProducts().getAtomContainer(i));
 		return ok;
 	}
 	

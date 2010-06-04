@@ -12,8 +12,8 @@ public class Rule8 extends StructureAlertAmbit {
 			id = "8";
 			
 			
-			examples[0] = "";
-			examples[1] = "NCCCC(=C)CN";	
+			examples[0] = "NCCCC(=C)CN";
+			examples[1] = "C=CC#N";	
 			editable = false;		
 		} catch (SMARTSException x) {
 			logger.error(x);

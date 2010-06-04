@@ -37,8 +37,10 @@ import java.util.Observer;
 
 import javax.swing.JComponent;
 
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -506,6 +508,35 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
     public synchronized void setPriority(int priority) {
         this.priority = priority;
     }
+    
+    public int testRulesWithSelector() throws Exception {
+	    int nr = getNumberOfRules();
+	    int na = 0;
+	    for (int i = 0; i < nr; i++) {
+	        IDecisionRule rule = rules.getRule(i);
+	        if (rule.getSelector()==null){
+	        	System.err.println(rule.toString());
+	        	na++;
+	        } else {
+	        	IAtomContainer a = null;
+	        	try {
+	        		a = rule.getExampleMolecule(true);
+	        		if (a==null) continue;
+	        	} catch (Exception x) {
+	        		continue;
+	        	}
+	        	IChemObjectSelection hit = rule.getSelector().process(a);
+	        	if (hit==null)
+	        		System.out.println(rule.toString());
+	        	else if (hit.getConnectedAtomContainer()==null)
+	        		System.out.println(rule.toString());
+	        	else if (hit.getConnectedAtomContainer().getAtomCount()==0)
+	        		System.out.println(rule.toString());
+
+	        }
+	    }
+	    return na;
+	}
     public void walkRules(IDecisionRule rule,IProcessRule processor)throws  DecisionMethodException {
     	ArrayList<Integer> visited = new ArrayList<Integer>();
     	processor.init(this);

@@ -28,6 +28,8 @@ package toxTree.core;
 
 import java.util.HashSet;
 
+import org.openscience.cdk.interfaces.IAtomContainer;
+
 /**
  * Same as HashSet, but understands "X" as halogen elements. 
  * <pre>
@@ -68,6 +70,14 @@ public class SmartElementsList extends HashSet<String>   {
 //			if (halogens[i].equals(element.toString()))
 				return super.contains(halogen);
 		return super.contains(element);
+	}
+	
+	public void select(IAtomContainer mol, IAtomContainer atomcontainer, boolean found) {
+		if (atomcontainer==null) return;
+		for (int i=0; i < mol.getAtomCount();i++)
+			if (!(contains(mol.getAtom(i).getSymbol()) ^ found))
+				atomcontainer.addAtom(mol.getAtom(i));
+			
 	}
 	
 	@Override

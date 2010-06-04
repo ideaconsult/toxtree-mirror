@@ -30,11 +30,16 @@ import java.util.List;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IElement;
 import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
 import toxTree.core.SmartElementsList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
+import ambit2.base.exceptions.AmbitException;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * Verifies if the molecule consists of only allowed elements
@@ -50,7 +55,7 @@ public class RuleElements extends AbstractRule {
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = 6678188211661773753L;
-	private SmartElementsList elements;
+	protected SmartElementsList elements;
 	
 	protected int mode = 0;
 	
@@ -119,6 +124,9 @@ public class RuleElements extends AbstractRule {
 		return elements.contains(element);
 	}
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	}
+	public boolean  verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol,IAtomContainer selected) throws DecisionMethodException {		
 		logger.info(toString());
 		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
 		//int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
@@ -132,11 +140,15 @@ public class RuleElements extends AbstractRule {
 		switch (mode) {
 		case (modeOnlySpecifiedElements): {
 			ok = elements.containsAll(list);
+			select(mol, selected);
+				
 			logger.debug("Has only elements: ",elements,"\t",list,"\t"+ok);
 			return ok;
 		}
 		case modeAllSpecifiedElements: {
 			ok = list.equals(elements);
+			select(mol, selected);
+			
 			logger.debug("Has all of elements: ",elements,"\t",list,"\t"+ok);
 			return ok;
 		}
@@ -144,6 +156,8 @@ public class RuleElements extends AbstractRule {
 			//intersection - e.g. has any of the specified elements
 			list.retainAll(elements);
 			ok = list.size() > 0;
+			select(mol, selected);
+			
 			logger.debug("Has any of elements: ",elements,"\t",list,"\t"+ok);
 			return ok;
 		}		
@@ -163,6 +177,9 @@ public class RuleElements extends AbstractRule {
 		*/
 
 	}	
+	public void select(IAtomContainer mol, IAtomContainer selected) {
+		if (selected != null) elements.select(mol, selected,true);
+	}
 	/* (non-Javadoc)
 	 * @see toxTree.tree.AbstractRule#equals(java.lang.Object)
 	 */
@@ -183,6 +200,28 @@ public class RuleElements extends AbstractRule {
 		this.mode = mode;
 	}
 	
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    	return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+    		public IChemObjectSelection process(IAtomContainer mol)
+    				throws AmbitException {
+    			try {
+    				IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
+	    			verifyRule(mol, selected);
+	    			return new SingleSelection<IAtomContainer>(selected);
+    			} catch (DecisionMethodException x) {
+    				throw new AmbitException(x);
+    			}
+    		}
+    		public boolean isEnabled() {
+    			return true;
+    		}
+    		public long getID() {
+    			return 0;
+    		}
+    		public void setEnabled(boolean arg0) {
+    		}
+    	};
+    }
 }
 
 

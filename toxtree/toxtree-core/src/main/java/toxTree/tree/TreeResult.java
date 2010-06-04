@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionCategory;
@@ -529,8 +530,26 @@ public class TreeResult implements IDecisionResult {
     }
     
 	public synchronized void hilightAlert(IDecisionRule rule) throws DecisionResultException {
-		firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(), null, originalMolecule);
-		firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, rule==null?null:rule.getSelector());
+		/*
+
+					*/
+		//for (int i=0; i < ruleResults.size();i++)
+		//	if (ruleResults.get(i).getRule().equals(rule)) {
+			//	boolean value = ruleResults.get(i).isResult();
+				//if (value) {
+					firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(),
+							null,
+							originalMolecule);
+							//AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(originalMolecule));
+					firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, rule==null?null:rule.getSelector());
+				//	return;
+				//}
+				
+		//	}
+		//firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(), null,originalMolecule); 
+		//AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(originalMolecule));
+		//firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, null);
+		
 	}
 	
 }

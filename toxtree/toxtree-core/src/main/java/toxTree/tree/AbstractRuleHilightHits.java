@@ -2,6 +2,7 @@ package toxTree.tree;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
@@ -24,7 +25,9 @@ public abstract class AbstractRuleHilightHits extends AbstractRule {
 	    			try {
 	    				IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
 		    			verifyRule(mol, selected);
-		    			return new SingleSelection<IAtomContainer>(selected);
+		    			//selected = AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(selected);
+		    			if (selected.getAtomCount()==0) return null;
+		    			else return new SingleSelection<IAtomContainer>(selected);
 	    			} catch (DecisionMethodException x) {
 	    				throw new AmbitException(x);
 	    			}

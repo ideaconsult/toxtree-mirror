@@ -44,8 +44,8 @@ public class SA16 extends StructureAlert {
             setTitle(sa16_title);
             setExplanation(sa16_title);
             
-            examples[0] = "[H]N([H])C(=O)Oc1=cc=cc=c1";
-            examples[1] = "[H]N([H])C(=O)Oc";   
+            examples[0] = "[H]N([H])C(=O)Oc1ccccc1";
+            examples[1] = "[H]N([H])C(=O)OCCCC";   
         } catch (SMARTSException x) {
             logger.error(x);
         }
