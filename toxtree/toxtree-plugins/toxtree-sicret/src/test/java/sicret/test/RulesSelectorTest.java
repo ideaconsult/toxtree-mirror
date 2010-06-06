@@ -5,7 +5,6 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 import sicret.SicretRules;
-import toxTree.core.IDecisionRule;
 import toxTree.tree.AbstractTree;
 
 public class RulesSelectorTest {

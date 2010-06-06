@@ -39,6 +39,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * An abstract class to allow for descriptor analysis
@@ -107,7 +108,7 @@ public abstract class RuleDescriptor extends AbstractRule {
 	    		public IChemObjectSelection process(IAtomContainer mol)
 	    				throws AmbitException {
 	    			try {
-	    				IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
+	    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
 		    			verifyRule(mol, selected);
 		    			return new SingleSelection<IAtomContainer>(selected);
 	    			} catch (DecisionMethodException x) {

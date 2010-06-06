@@ -1,5 +1,4 @@
-Chemical Name (IUPAC),Chemical Name (Not IUPAC),CAS Number,SMILES,InChI,"MOL 
-(file name)",Structural Formula,Mutagenic Activity in TA100     (3=active; 1=inactive),HOMO (eV) AM1; MOPAC 4.10    ,LUMO (eV) AM1; MOPAC 4.10     ,MR2*,MR3*,MR6*,IDist
+Chemical Name (IUPAC),Chemical Name (Not IUPAC),CAS Number,SMILES,InChI,MOL (file name),Structural Formula,Mutagenic Activity in TA100     (3=active; 1=inactive),HOMO (eV) AM1; MOPAC 4.10    ,LUMO (eV) AM1; MOPAC 4.10     ,MR2*,MR3*,MR6*,IDist
 fluoranthen-1-amine,1-aminofluoranthene,13177-25-8,C1=CC=C2C(=C1)C3=CC=CC4=C3C2=C(C=C4)N,"InChI=1/C16H11N/c17-14-9-8-10-4-3-7-12-11-5-1-2-6-13(11)16(14)15(10)12/h1-9H,17H2",,C16H11N,3,-8.159,-0.816,0.56,0.8,0.1,0
 2-methylnaphthalen-1-amine,1-amino-2-methylnaphthalene,2246-44-8,CC1=C(C2=CC=CC=C2C=C1)N,"InChI=1/C11H11N/c1-8-6-7-9-4-2-3-5-10(9)11(8)12/h2-7H,12H2,1H3",,C11H11N,3,-8.034,-0.176,0.56,0.1,0.8,0
 anthracen-1-amine,1-aminoanthracene,610-49-1,C1=CC=C2C=C3C(=CC2=C1)C=CC=C3N,"InChI=1/C14H11N/c15-14-7-3-6-12-8-10-4-1-2-5-11(10)9-13(12)14/h1-9H,15H2",,C14H11N,3,-7.82,-0.804,0.8,0.8,0.1,0

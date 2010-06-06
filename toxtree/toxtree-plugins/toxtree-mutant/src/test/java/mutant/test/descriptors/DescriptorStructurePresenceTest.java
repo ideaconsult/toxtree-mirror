@@ -27,7 +27,6 @@ package mutant.test.descriptors;
 import junit.framework.TestCase;
 import mutant.descriptors.DescriptorStructurePresence;
 
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;

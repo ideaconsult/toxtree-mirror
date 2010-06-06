@@ -11,7 +11,6 @@ package cramer2.rules;
 
 import java.io.File;
 
-import toxTree.core.Introspection;
 import toxTree.tree.rules.RuleStructuresList;
 
 /**

@@ -31,15 +31,13 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
-import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
-
-import ambit2.core.config.AmbitCONSTANTS;
 
 import toxTree.data.DataModule;
 import toxTree.data.DecisionMethodsDataModule;
 import toxTree.io.Tools;
 import toxTree.ui.actions.DataModuleAction;
+import ambit2.core.config.AmbitCONSTANTS;
 
 public class LookupCompoundAction extends DataModuleAction {
 

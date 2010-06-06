@@ -23,16 +23,16 @@ package toxTree.qsar;
 
 import java.util.List;
 
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
-import org.openscience.cdk.qsar.model.QSARModelException;
 import org.openscience.cdk.qsar.result.BooleanResult;
 import org.openscience.cdk.qsar.result.DoubleArrayResult;
 import org.openscience.cdk.qsar.result.DoubleResult;
 import org.openscience.cdk.qsar.result.IntegerResult;
+
+import ambit2.base.exceptions.QSARModelException;
 
 public class LinearQSARModel extends AbstractQSARModel  {
 	/**
@@ -218,7 +218,7 @@ public class LinearQSARModel extends AbstractQSARModel  {
 				
 				values[i] = value;
 			}
-		} catch (CDKException x) {
+		} catch (QSARModelException x) {
 			throw new QSARModelException(x.getMessage()); 
 		} catch (NumberFormatException x) {
 			throw new QSARModelException(x.getMessage()); 

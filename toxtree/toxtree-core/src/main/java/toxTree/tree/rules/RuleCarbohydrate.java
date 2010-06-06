@@ -36,6 +36,7 @@ import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * Verifies if the molecule is a carbohydrate
@@ -99,9 +100,9 @@ public class RuleCarbohydrate extends RuleSubstructures {
 	    
 	    FunctionalGroups.markCHn(mol);
 		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
-		int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
-		int h = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("H"));
-		int o = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("O"));
+		int c = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"C"));
+		int h = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"H"));
+		int o = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"O"));
 		List list =null;
 	    if ((mol.getAtomCount() == (c+h+o)) && (o>0)) {
 			IRingSet rings = mf.getRingset();

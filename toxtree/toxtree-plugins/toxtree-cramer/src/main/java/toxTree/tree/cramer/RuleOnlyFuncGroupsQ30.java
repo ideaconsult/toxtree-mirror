@@ -46,6 +46,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
 import toxTree.tree.rules.RuleRingSubstituents;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * Rule 32 of the Cramer scheme (see {@link toxTree.tree.cramer.CramerRules})
@@ -127,7 +128,7 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 			b = false;
 		} else {
 			IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(a);
-			int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
+			int c = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"C"));
 
 			if (c>5) {
 				logger.debug(LONGCHAIN_SUBSTITUENT,c);

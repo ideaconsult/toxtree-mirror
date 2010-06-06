@@ -35,6 +35,7 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.core.IRuleSubstructures;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * substructure rule
@@ -82,7 +83,7 @@ public class RuleSubstructuresEditAction extends RuleMoleculeEditAction {
 	public void actionPerformed(ActionEvent arg0) {
 			if (createNewMolecule) {
 				IMolecule m = new org.openscience.cdk.Molecule();
-				m.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON));
+				m.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
 				setMolecule(m);
 			}
 			super.actionPerformed(arg0);

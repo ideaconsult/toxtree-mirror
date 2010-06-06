@@ -32,13 +32,13 @@ import mutant.descriptors.AromaticAmineSubstituentsDescriptor;
 import mutant.descriptors.DescriptorIDist;
 
 import org.openscience.cdk.qsar.IMolecularDescriptor;
-import org.openscience.cdk.qsar.model.QSARModelException;
 
 import toxTree.exceptions.DRuleException;
 import toxTree.qsar.IDescriptorPreprocessor;
 import toxTree.qsar.LinearDiscriminantRule;
 import toxTree.qsar.LinearPreprocessor;
 import toxTree.qsar.LinearQSARModel;
+import ambit2.base.exceptions.QSARModelException;
 import ambit2.mopac.DescriptorMopacShell;
 /**
  * Returns true if structure is predicted as mutagen , based on linear discriminant analysis. AM1

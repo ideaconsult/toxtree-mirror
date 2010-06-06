@@ -32,7 +32,6 @@ import toxTree.exceptions.ReactionException;
 import toxTree.query.MolAnalyser;
 import toxTree.query.MolFlags;
 import toxTree.query.SimpleReactions;
-import toxTree.tree.AbstractRule;
 import toxTree.tree.AbstractRuleHilightHits;
 
 /**

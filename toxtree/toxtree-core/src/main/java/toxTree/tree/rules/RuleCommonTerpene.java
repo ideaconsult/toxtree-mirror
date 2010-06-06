@@ -38,7 +38,6 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.query.MolFlags;
-import toxTree.tree.AbstractRule;
 import toxTree.tree.AbstractRuleHilightHits;
 
 /**

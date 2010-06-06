@@ -27,8 +27,6 @@ package toxTree.tree.rules;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
-import ambit2.base.interfaces.IProcessor;
-
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleRange;
 import toxTree.exceptions.DecisionMethodException;
@@ -36,6 +34,7 @@ import toxTree.query.MolFlags;
 import toxTree.tree.AbstractRule;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import toxTree.ui.tree.rules.RuleRangeEditor;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * Verifies if there are many aromatic rings

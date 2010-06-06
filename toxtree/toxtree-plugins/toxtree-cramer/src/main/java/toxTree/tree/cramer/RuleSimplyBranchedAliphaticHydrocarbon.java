@@ -40,6 +40,7 @@ import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
 import toxTree.tree.rules.RuleCarbohydrate;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * Implementation of Cramer rule No.5
@@ -79,8 +80,8 @@ public class RuleSimplyBranchedAliphaticHydrocarbon extends RuleCarbohydrate {
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);	    
 		
 	    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
-		int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
-		int h = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("H"));
+		int c = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"C"));
+		int h = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"H"));
 
 	    if ((mol.getAtomCount() == (c+h))) {  //hydrocarbon
 	    	logger.info("Hydrocarbon ",MSG_YES);

@@ -24,14 +24,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import java.util.Map;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.StructureAlertCDK;
+import ambit2.core.data.MoleculeTools;
 import ambit2.smarts.query.SMARTSException;
 
 /**
@@ -192,10 +191,10 @@ The generated string is:
 	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
 		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
 		return 
-		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("Cl")) ||
-		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("F")) ||
-		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("I")) ||
-		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("Br"));
+		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"Cl")) ||
+		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"F")) ||
+		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"I")) ||
+		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"Br"));
 		
 	}    
 }

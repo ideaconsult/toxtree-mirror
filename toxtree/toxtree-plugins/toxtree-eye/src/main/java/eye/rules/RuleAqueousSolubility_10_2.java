@@ -25,6 +25,7 @@ import org.openscience.cdk.interfaces.IMolecule;
 import sicret.rules.RuleAqueousSolubility;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * AqueousSolubility < 0.1
@@ -48,7 +49,7 @@ public class RuleAqueousSolubility_10_2 extends RuleAqueousSolubility {
 
 	}
 	public IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
-		IMolecule m = DefaultChemObjectBuilder.getInstance().newMolecule();        
+		IMolecule m = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());        
         if (ruleResult){
         	
         		m = (IMolecule)FunctionalGroups.createAtomContainer("Oc(c(cc(c1)Cc(cc(c(O)c2C(C)(C)C)C(C)(C)C)c2)C(C)(C)C)c1C(C)(C)C",false);

@@ -4,7 +4,6 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import toxTree.core.IDecisionRule;
 import toxTree.tree.AbstractTree;
 
 public class RulesSelectorTest {

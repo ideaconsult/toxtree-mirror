@@ -34,13 +34,13 @@ import mutant.descriptors.DescriptorHasNO2Group;
 import mutant.descriptors.DescriptorIsAniline;
 
 import org.openscience.cdk.qsar.IMolecularDescriptor;
-import org.openscience.cdk.qsar.model.QSARModelException;
 
 import toxTree.exceptions.DRuleException;
 import toxTree.qsar.IDescriptorPreprocessor;
 import toxTree.qsar.LinearDiscriminantRule;
 import toxTree.qsar.LinearPreprocessor;
 import toxTree.qsar.LinearQSARModel;
+import ambit2.base.exceptions.QSARModelException;
 import ambit2.mopac.DescriptorMopacShell;
 
 public class RuleDACancerogenicityAromaticAmines extends LinearDiscriminantRule {

@@ -34,7 +34,7 @@ import toxTree.tree.TreeResult;
 /**
  * A descendant ot {@link TreeResult}, to be used by {@link toxTree.tree.cramer.CramerRules}.
  * 
- * @author Nina Jelizekova
+ * @author Nina Jeliazkova
  * <b>Modified</b> 2005-9-3
  */
 public class CramerTreeResult extends TreeResult {

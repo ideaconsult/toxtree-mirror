@@ -25,6 +25,7 @@ import org.openscience.cdk.interfaces.IMolecule;
 import sicret.rules.RuleMolWeight;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * Molecular Weight > 280
@@ -47,7 +48,7 @@ public class RuleMolWeight_12_2  extends RuleMolWeight {
 
 	}
 	public IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
-		IMolecule m = DefaultChemObjectBuilder.getInstance().newMolecule();     
+		IMolecule m = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());  
         if (ruleResult){
         	
         		m = (IMolecule)FunctionalGroups.createAtomContainer("OS(=O)(=O)c1cc2NC4(Nc2c(c1)S(O)(=O)=O)C=3\\C=C/C4=C\\C=3",false);

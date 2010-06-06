@@ -17,6 +17,7 @@ import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
 
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
+import ambit2.core.data.MoleculeTools;
 
 public class AromaticityHackTest extends TestCase {
 	
@@ -62,14 +63,14 @@ public class AromaticityHackTest extends TestCase {
 	protected QueryAtomContainer aromaticN() {
 		QueryAtomContainer q = new QueryAtomContainer();
 		q.setID("Hack");
-		IAtom n = DefaultChemObjectBuilder.getInstance().newAtom(Elements.NITROGEN);
+		IAtom n = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.NITROGEN);
 		n.setCharge(+1.0);
 		SymbolQueryAtom qn = new SymbolQueryAtom(n);
 		q.addAtom(qn);
 		SymbolQueryAtom prev = qn;
 		IBond.Order[] border = new IBond.Order[] {CDKConstants.BONDORDER_SINGLE,CDKConstants.BONDORDER_DOUBLE}; 
 		for (int i=0; i < 5; i++) {
-			SymbolQueryAtom c = new SymbolQueryAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON));
+			SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
 			q.addAtom(c);
 			q.addBond(
 					new OrderQueryBond(prev,c,border[i % 2])

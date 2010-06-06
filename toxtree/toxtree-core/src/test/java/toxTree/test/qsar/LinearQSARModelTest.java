@@ -30,12 +30,12 @@ import junit.framework.TestCase;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
-import org.openscience.cdk.qsar.model.QSARModelException;
 import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.logging.TTLogger;
 import toxTree.qsar.LinearQSARModel;
 import toxTree.query.MolAnalyser;
+import ambit2.base.exceptions.QSARModelException;
 
 public class LinearQSARModelTest extends TestCase {
 	@Override

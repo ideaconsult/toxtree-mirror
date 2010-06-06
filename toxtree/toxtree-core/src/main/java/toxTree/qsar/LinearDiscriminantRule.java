@@ -28,7 +28,6 @@ import java.util.Hashtable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
-import org.openscience.cdk.qsar.model.QSARModelException;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.IDescriptorBased;
@@ -36,6 +35,7 @@ import toxTree.core.IImplementationDetails;
 import toxTree.exceptions.DRuleException;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
+import ambit2.base.exceptions.QSARModelException;
 import ambit2.base.interfaces.IProcessor;
 
 /**

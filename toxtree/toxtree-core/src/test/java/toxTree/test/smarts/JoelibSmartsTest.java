@@ -46,18 +46,19 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.Convertor;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
+import ambit2.core.data.MoleculeTools;
 
 public class JoelibSmartsTest  {
 	@Test
 	   public void testCDKJoeMolMatch() {
 	        Molecule mol = new Molecule();
 	        
-	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 0
-	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 1
-	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 2
-	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 3
-	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 4
-	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.OXYGEN)); // 5
+	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
+	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 1
+	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 2
+	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 3
+	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 4
+	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN)); // 5
 
 	        mol.addBond(0, 1, IBond.Order.SINGLE); // 1
 	        mol.addBond(1, 2, IBond.Order.SINGLE); // 2
@@ -90,8 +91,8 @@ public class JoelibSmartsTest  {
 	    public void testCDKJoeMol() throws Exception {
 	        Molecule mol = new Molecule();
 	        
-	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 0
-	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.OXYGEN)); // 5
+	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
+	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN)); // 5
 
 	        mol.addBond(0, 1, IBond.Order.SINGLE); // 1
 
@@ -109,7 +110,7 @@ public class JoelibSmartsTest  {
 	    }
 	@Test
 	    public void testAtom() {
-	        IAtom a = DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON);
+	        IAtom a = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
 	        a.setPoint3d(new Point3d(1,1,1));
 
 	        JOEAtom converted = Convertor.convert(a);
@@ -126,8 +127,8 @@ public class JoelibSmartsTest  {
 	    public void testCDKJoeMolAllC() throws Exception {
 	        Molecule mol = new Molecule();
 	        
-	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 0
-	        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 5
+	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
+	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 5
 
 	        mol.addBond(0, 1, IBond.Order.SINGLE); // 1
 

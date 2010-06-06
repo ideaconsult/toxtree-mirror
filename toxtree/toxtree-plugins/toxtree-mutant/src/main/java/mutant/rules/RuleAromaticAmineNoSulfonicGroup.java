@@ -24,16 +24,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import java.util.Map;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IElement;
 import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
-import org.openscience.cdk.tools.periodictable.PeriodicTable;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import ambit2.core.data.MoleculeTools;
 
 public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSubstructureCDK {
 	/**
@@ -126,7 +123,7 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSubstructureCDK {
 	@Override
 	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
 		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
-		return MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N"));
+		return MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"N"));
 	}
 
 }

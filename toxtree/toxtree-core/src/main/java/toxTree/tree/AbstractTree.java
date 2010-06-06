@@ -37,7 +37,6 @@ import java.util.Observer;
 
 import javax.swing.JComponent;
 
-
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;

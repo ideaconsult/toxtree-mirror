@@ -17,6 +17,7 @@ import toxTree.core.IMoleculesIterator;
 import toxTree.exceptions.FilterException;
 import toxTree.exceptions.ToxTreeIOException;
 import toxTree.logging.TTLogger;
+import ambit2.core.data.MoleculeTools;
 
 public class DataContainer extends Observable {
 	protected static TTLogger logger = null;
@@ -45,8 +46,8 @@ public class DataContainer extends Observable {
 
     public void newMolecule() {
     	if (!enabled) return;
-    	IMolecule mol = DefaultChemObjectBuilder.getInstance().newMolecule();
-    	//mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON));
+    	IMolecule mol = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());
+    	//mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
     	mol.setProperty("SMILES","");
     	newMolecule(mol);
     }
@@ -59,7 +60,7 @@ public class DataContainer extends Observable {
     public void addMolecule() {
     	if (!enabled) return;
     	Molecule mol = new Molecule();
-    	mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON));
+    	mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
     	addMolecule(mol);
     }
     
