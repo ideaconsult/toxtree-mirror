@@ -51,10 +51,13 @@ public class RuleOnlyAllowedSubstructures extends RuleSubstructures {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	}
+	public boolean verifyRule(IAtomContainer  mol,IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 	    FunctionalGroups.markCHn(mol);	    
 	    //if entire structure has only allowed groups, return true 
-	    return (FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,true)) ;
+	    return (FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,true,selected)) ;
 	}
 	/* (non-Javadoc)
 	 * @see toxTree.tree.rules.RuleSubstructures#isImplemented()

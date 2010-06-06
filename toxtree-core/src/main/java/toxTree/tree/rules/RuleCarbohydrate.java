@@ -27,7 +27,9 @@ package toxTree.tree.rules;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
@@ -35,6 +37,7 @@ import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.MolAnalyser;
 import toxTree.query.MolFlags;
 import ambit2.core.data.MoleculeTools;
 
@@ -90,6 +93,32 @@ public class RuleCarbohydrate extends RuleSubstructures {
 		idsAcyclic.add(getSubstructure(index_ketone).getID());
 		
 	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
+		logger.info(toString());
+		try {
+			MolAnalyser.analyse(mol);
+			boolean ok = verifyRule(mol);
+		
+			if (ok && (selected != null)) {
+				for (IAtom atom: mol.atoms())
+					if (!"H".equals(atom.getSymbol()))
+						selected.addAtom(atom);
+				
+				for (IBond bond:mol.bonds()) 
+					if (
+						 !"H".equals(bond.getAtom(0).getSymbol()) &&
+						 !"H".equals(bond.getAtom(1).getSymbol())
+						 )
+						selected.addBond(bond);				
+			}				
+			
+			return ok;
+		} catch (Exception x) {
+			throw new DecisionMethodException(x);
+		}
+	}	
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */

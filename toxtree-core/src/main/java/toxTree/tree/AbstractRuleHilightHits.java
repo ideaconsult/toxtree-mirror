@@ -6,6 +6,8 @@ import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.exceptions.MolAnalyseException;
+import toxTree.query.MolAnalyser;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.MoleculeTools;
@@ -23,12 +25,15 @@ public abstract class AbstractRuleHilightHits extends AbstractRule {
 	    		public IChemObjectSelection process(IAtomContainer mol)
 	    				throws AmbitException {
 	    			try {
+	    				MolAnalyser.analyse(mol);
 	    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
-		    			verifyRule(mol, selected);
+		    			boolean ok = verifyRule(mol, selected);
 		    			//selected = AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(selected);
 		    			if (selected.getAtomCount()==0) return null;
 		    			else return new SingleSelection<IAtomContainer>(selected);
 	    			} catch (DecisionMethodException x) {
+	    				throw new AmbitException(x);
+	    			} catch (MolAnalyseException x) {
 	    				throw new AmbitException(x);
 	    			}
 	    		}

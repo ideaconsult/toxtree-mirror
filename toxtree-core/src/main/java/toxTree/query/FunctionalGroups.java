@@ -2117,7 +2117,11 @@ public class FunctionalGroups {
 		return true;	    
     }
     public static boolean hasOnlyTheseGroups(IAtomContainer  mol,
-    			QueryAtomContainers query,Collection ids,boolean isPreprocessed) {
+			QueryAtomContainers query,Collection ids,boolean isPreprocessed) {
+    	return hasOnlyTheseGroups(mol,query,ids,isPreprocessed,null);
+    }
+    public static boolean hasOnlyTheseGroups(IAtomContainer  mol,
+    			QueryAtomContainers query,Collection ids,boolean isPreprocessed,IAtomContainer selected) {
     	final String MSG = "Has only these groups\t";
 	    if ((query == null) || (query.size() == 0)) return false;
 	    else {
@@ -2130,7 +2134,7 @@ public class FunctionalGroups {
 	    		if ((list == null) || (list.size() == 0)) continue;
 	    		FunctionalGroups.markMaps(mol, q, list);
 	    		logger.debug(mapToString(mol));
-	    		if (hasMarkedOnlyTheseGroups(mol,ids)) {
+	    		if (hasMarkedOnlyTheseGroups(mol,ids,selected)) {
 	    			logger.info(MSG,ids,"\tYES");
 	  				return true;
 	    		}
@@ -2139,7 +2143,7 @@ public class FunctionalGroups {
 	  	    if (logger.isDebugEnabled()) {
 	  	    	logger.debug(mapToString(mol,ids));
 	  	    }
-  			if (hasMarkedOnlyTheseGroups(mol,ids)) {
+  			if (hasMarkedOnlyTheseGroups(mol,ids,selected)) {
   				logger.info(MSG,ids,"\tYES");
   				return true;
   			} else {
@@ -2155,8 +2159,10 @@ public class FunctionalGroups {
      * @param id Collection of functional group identifiers as used by the procedures listed above
      * @return true if mol contains only specified groups (i.e. there are no unmarked atoms)
      */
-    
     public static boolean hasMarkedOnlyTheseGroups(IAtomContainer mol,Collection id) {
+    	return hasMarkedOnlyTheseGroups(mol,id,null);
+    }
+    public static boolean hasMarkedOnlyTheseGroups(IAtomContainer mol,Collection id,IAtomContainer selection) {
     	IAtom a = null;
         
         for (int i =0; i < mol.getAtomCount(); i++) {
@@ -2170,6 +2176,7 @@ public class FunctionalGroups {
 	            Object o = a.getProperty(anID);
 	            if (o!=null) {
 	            	//this atom has at least one mark, no need to check for more
+	            	if (selection != null) selection.addAtom(a);
 	            	ok = true; break;
 	            }
             }

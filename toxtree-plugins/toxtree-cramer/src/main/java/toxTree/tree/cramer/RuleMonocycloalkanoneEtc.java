@@ -85,7 +85,11 @@ public class RuleMonocycloalkanoneEtc extends RuleOnlyAllowedSubstructures {
 	 */
 	@Override
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		if (! super.verifyRule(mol)) {
+		return verifyRule(mol,null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer  mol,IAtomContainer selector) throws DecisionMethodException {
+		if (! super.verifyRule(mol,selector)) {
 			logger.debug(ids.toString());
 			logger.debug("Contains forbidden groups");
 			
@@ -100,16 +104,22 @@ public class RuleMonocycloalkanoneEtc extends RuleOnlyAllowedSubstructures {
 	    }
 	    if (rings.getAtomContainerCount() == 1) {
 	    	//monocycloalkanone
+	    	if (selector!=null) selectRings(rings, selector);
 	    	if (mf.isHeterocyclic()) {
 				logger.debug("Heterocyclic ring found");
 	    		return false;
 	    	}
 	    	return ((FunctionalGroups.hasGroup(mol,FunctionalGroups.ketone_ring())));
 	    } if (rings.getAtomContainerCount() ==2) {
+	    	if (selector!=null) selectRings(rings, selector);
 	    	logger.debug("Bicyclic structure");
 	    	return true;
 	    }
 	    else return false;
 	}
 
+	protected void selectRings(IRingSet rings,IAtomContainer selected) {
+		for (int i=0; i < rings.getAtomContainerCount();i++)
+			selected.add(rings.getAtomContainer(i));
+	}
 }
