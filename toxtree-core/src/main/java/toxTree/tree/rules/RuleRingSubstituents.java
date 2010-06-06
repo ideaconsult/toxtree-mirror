@@ -73,8 +73,10 @@ public abstract class RuleRingSubstituents extends RuleRings {
 				if (o==null) return false;
 				if (((Boolean) o).booleanValue()) return true;
 			}
+			boolean[] ringFlags = r.getFlags();
 			for (int i=0; i<(flags.length-1); i++)
-				if (r.getFlag(i) && flags[i]) return true;
+				if (i>=ringFlags.length) break;
+				else if (ringFlags[i] && flags[i]) return true;
 							
 			return false;
 
