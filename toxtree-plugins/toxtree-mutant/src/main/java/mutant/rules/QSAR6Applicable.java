@@ -31,7 +31,6 @@ package mutant.rules;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Map;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecularFormula;
@@ -41,6 +40,7 @@ import toxTree.core.IDecisionInteractive;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.ApplyRuleOptions;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import ambit2.core.data.MoleculeTools;
 
 public class QSAR6Applicable extends RuleSMARTSubstructureCDK implements IDecisionInteractive{
     /**
@@ -104,7 +104,7 @@ public class QSAR6Applicable extends RuleSMARTSubstructureCDK implements IDecisi
     protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
 		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
 		return 
-		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N"));
+		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"N"));
     }
     /*
 	public JComponent optionsPanel(IAtomContainer atomContainer) {

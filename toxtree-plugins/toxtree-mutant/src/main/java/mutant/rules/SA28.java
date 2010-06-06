@@ -30,6 +30,7 @@ import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.StructureAlertAmbit;
+import ambit2.core.data.MoleculeTools;
 import ambit2.smarts.query.SMARTSException;
 
 /**
@@ -161,7 +162,7 @@ public class SA28 extends StructureAlertAmbit {
 	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
 		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
 		return 
-		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N"));
+		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"N"));
 	}   
 }
 

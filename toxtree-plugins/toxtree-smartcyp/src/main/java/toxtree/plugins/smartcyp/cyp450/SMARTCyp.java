@@ -8,9 +8,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-
 import java.util.Iterator;
+import java.util.List;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.MoleculeSet;
@@ -20,6 +19,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IChemFile;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLReader;
 import org.openscience.cdk.io.ReaderFactory;
@@ -27,6 +27,8 @@ import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
+
+import ambit2.core.data.MoleculeTools;
 
 
 
@@ -129,7 +131,7 @@ public class SMARTCyp {
 
 
 		List<IAtomContainer> moleculeList;
-		DefaultChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
+		IChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
 		ISimpleChemObjectReader reader;
 
 		File inputFile;
@@ -159,7 +161,7 @@ public class SMARTCyp {
 				else	 reader = readerFactory.createReader(new FileReader(inputFile));
 
 
-				emptyChemFile = builder.newChemFile();
+				emptyChemFile = MoleculeTools.newChemFile(builder);
 				chemFile = (IChemFile) reader.read(emptyChemFile);
 
 				if (chemFile == null) continue;	

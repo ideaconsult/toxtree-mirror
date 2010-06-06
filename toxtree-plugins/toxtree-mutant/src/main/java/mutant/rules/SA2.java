@@ -30,6 +30,7 @@ import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.StructureAlertCDK;
+import ambit2.core.data.MoleculeTools;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
 
@@ -137,10 +138,10 @@ public class SA2 extends StructureAlertCDK {
 		@SuppressWarnings("unused")
 		boolean ok = false;
 		try {
-			if (MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("O"))) {
-				if (MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("S")))
+			if (MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"O"))) {
+				if (MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"S")))
 					return prescreenSulphonic.match(mol) > 0;
-				if (MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("P")))
+				if (MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"P")))
 					return prescreenPhosphonic.match(mol) > 0;
 			}
   		} catch (SMARTSException x) {

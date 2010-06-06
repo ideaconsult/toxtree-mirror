@@ -46,12 +46,14 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.data.MoleculesFile;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
+import ambit2.core.data.MoleculeTools;
 
 public class SubstituentsTest extends TestCase {
 	@Override
@@ -101,7 +103,7 @@ public class SubstituentsTest extends TestCase {
 		n.append("M  END\n");
 		MDLV2000Reader reader = new MDLV2000Reader(new StringReader(n
 				.toString()));
-		IMolecule mol = DefaultChemObjectBuilder.getInstance().newMolecule();
+		IMolecule mol = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());  
 		reader.read(mol);
 		reader.close();
 		return mol;
@@ -154,12 +156,10 @@ public class SubstituentsTest extends TestCase {
 			assertTrue(lookup.find((IMolecule) a) > -1);
 			System.out.println(System.currentTimeMillis() - now);
 
-			a = DefaultChemObjectBuilder.getInstance().newAtomContainer();
-			IAtom a1 = DefaultChemObjectBuilder.getInstance().newAtom(
-					Elements.OXYGEN);
-			IAtom a2 = DefaultChemObjectBuilder.getInstance().newAtom("R");
-			IAtom a3 = DefaultChemObjectBuilder.getInstance().newAtom(
-					Elements.HYDROGEN);
+			a = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
+			IAtom a1 = MoleculeTools.newAtom(NoNotificationChemObjectBuilder.getInstance(),Elements.OXYGEN);
+			IAtom a2 = MoleculeTools.newAtom(NoNotificationChemObjectBuilder.getInstance(),"R");
+			IAtom a3 = MoleculeTools.newAtom(NoNotificationChemObjectBuilder.getInstance(),	Elements.HYDROGEN);
 			a.addAtom(a1);
 			a.addAtom(a2);
 			a.addAtom(a3);

@@ -35,7 +35,6 @@ import java.util.List;
 
 import javax.vecmath.Vector2d;
 
-import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.exception.CDKException;
@@ -57,6 +56,7 @@ import toxTree.exceptions.ToxTreeIOException;
 import toxTree.io.PDFWriter;
 import toxTree.logging.TTLogger;
 import ambit2.core.config.AmbitCONSTANTS;
+import ambit2.core.data.MoleculeTools;
 import ambit2.core.io.DelimitedFileFormat;
 import ambit2.core.io.DelimitedFileReader;
 import ambit2.core.io.DelimitedFileWriter;
@@ -248,7 +248,7 @@ public class MoleculesIterator implements IMoleculesIterator {
             
             if (reader != null) {
                 try {
-                	IChemFile content = (IChemFile)reader.read(DefaultChemObjectBuilder.getInstance().newChemFile());
+                	IChemFile content = (IChemFile)reader.read(MoleculeTools.newChemFile(DefaultChemObjectBuilder.getInstance()));
 	                //SetOfMolecules content = (SetOfMolecules) reader.read(new SetOfMolecules());
 	                reader.close();
 	                if (content == null) {

@@ -27,12 +27,11 @@ package toxTree.tree.rules;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
-import ambit2.base.interfaces.IProcessor;
-
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
 import toxTree.tree.AbstractRule;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * Verifies if the molecule is heterocyclic

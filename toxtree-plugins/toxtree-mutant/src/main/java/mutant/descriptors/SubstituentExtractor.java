@@ -18,9 +18,11 @@ import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.mcss.RMap;
+import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
+import ambit2.core.data.MoleculeTools;
 
 public class SubstituentExtractor {
     //protected static String _RING="RING";
@@ -177,10 +179,10 @@ public class SubstituentExtractor {
                     IAtom a = null;
                     if (a1 != null) a = a1;
                     else if (a2 != null) a = a2;                    
-                    IAtom h = DefaultChemObjectBuilder.getInstance().newAtom(Elements.HYDROGEN);
+                    IAtom h = MoleculeTools.newAtom(NoNotificationChemObjectBuilder.getInstance(),Elements.HYDROGEN);
                     result.addAtom(h);
-                    result.addBond(DefaultChemObjectBuilder.getInstance().
-                            newBond(a, h, CDKConstants.BONDORDER_SINGLE));                    
+                    result.addBond(
+                    		MoleculeTools.newBond(NoNotificationChemObjectBuilder.getInstance(),a, h, CDKConstants.BONDORDER_SINGLE));                    
                 }
             else {
             	
@@ -191,10 +193,9 @@ public class SubstituentExtractor {
 	            if (a != null) {
 	            	//System.out.println("Substituent starting with "+a.getSymbol() + " " + a.getProperties());
 	            	//IAtom r = DefaultChemObjectBuilder.getInstance().newAtom("R");
-                    IAtom r = DefaultChemObjectBuilder.getInstance().newPseudoAtom("R");
+                    IAtom r = MoleculeTools.newPseudoAtom(DefaultChemObjectBuilder.getInstance(),"R");
 	            	result.addAtom(r);
-	            	result.addBond(DefaultChemObjectBuilder.getInstance().
-	            			newBond(a, r, b.getOrder()));
+	            	result.addBond(MoleculeTools.newBond(NoNotificationChemObjectBuilder.getInstance(),a, r, b.getOrder()));
 	            }
             }
         }

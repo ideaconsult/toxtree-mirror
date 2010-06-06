@@ -1,9 +1,6 @@
 package toxtree.plugins.smartcyp.rules;
 
-import ambit2.ui.editors.Panel2D;
 import toxTree.core.IDecisionCategories;
-import toxTree.core.IDecisionRule;
-import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.TreeResult;
 
 public class SMARTCYPTreeResult extends TreeResult {

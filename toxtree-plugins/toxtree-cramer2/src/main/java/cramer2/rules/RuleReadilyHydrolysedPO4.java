@@ -41,6 +41,7 @@ import toxTree.exceptions.ReactionException;
 import toxTree.query.MolFlags;
 import toxTree.query.SimpleReactions;
 import toxTree.tree.rules.RuleReadilyHydrolised;
+import ambit2.core.data.MoleculeTools;
 /**
  * cleaves PO4's from compounds, and analyses the remaining fragments
  * <b>Modified</b> Dec, 2008
@@ -88,9 +89,9 @@ public class RuleReadilyHydrolysedPO4 extends RuleReadilyHydrolised {
     	    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(iaci);
     	    
     	    if (
-    	    		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("C")) &&
-    	    		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N")) &&
-    	    		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("S"))     	    		
+    	    		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"C")) &&
+    	    		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"N")) &&
+    	    		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"S"))     	    		
     	    		) {
                 continue;
             }

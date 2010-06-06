@@ -42,6 +42,7 @@ import toxTree.exceptions.ReactionException;
 import toxTree.query.MolFlags;
 import toxTree.query.SimpleReactions;
 import toxTree.tree.rules.RuleReadilyHydrolised;
+import ambit2.core.data.MoleculeTools;
 
 public class RuleReHydrolysedNoPO4 extends RuleReadilyHydrolised {
 
@@ -87,9 +88,9 @@ public class RuleReHydrolysedNoPO4 extends RuleReadilyHydrolised {
             
     		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(iaci);
     		if (
-    		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("C")) &&
-    		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("N")) &&
-    		MolecularFormulaManipulator.containsElement(formula,formula.getBuilder().newElement("S")) 
+    		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"C")) &&
+    		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"N")) &&
+    		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"S")) 
     		) {
                 //if (mfatemp.getElements().contains("Na")) logger.debug("Na HERE and skipped");
                 continue;

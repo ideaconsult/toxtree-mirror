@@ -29,7 +29,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 import org.openscience.jchempaint.renderer.selection.SingleSelection;
 

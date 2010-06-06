@@ -48,6 +48,7 @@ import toxTree.ui.PropertyInput;
 import toxTree.ui.tree.rules.RulePropertyEditor;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * 
@@ -258,7 +259,7 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 	    		public IChemObjectSelection process(IAtomContainer mol)
 	    				throws AmbitException {
 	    			try {
-	    				IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
+	    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
 		    			if (verifyRule(mol)) {
 		    				selected.add(mol);
 		    				return new SingleSelection<IAtomContainer>(selected);

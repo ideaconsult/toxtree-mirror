@@ -2,13 +2,13 @@ package toxTree.tree;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
-import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
 import toxTree.exceptions.DecisionMethodException;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
+import ambit2.core.data.MoleculeTools;
 
 public abstract class AbstractRuleHilightHits extends AbstractRule {
 
@@ -23,7 +23,7 @@ public abstract class AbstractRuleHilightHits extends AbstractRule {
 	    		public IChemObjectSelection process(IAtomContainer mol)
 	    				throws AmbitException {
 	    			try {
-	    				IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
+	    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
 		    			verifyRule(mol, selected);
 		    			//selected = AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(selected);
 		    			if (selected.getAtomCount()==0) return null;

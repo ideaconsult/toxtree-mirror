@@ -44,6 +44,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import ambit2.core.data.MoleculeTools;
 import ambit2.smarts.query.SMARTSException;
 
 /*
@@ -121,9 +122,9 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 	public  static QueryAtomContainer group1() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID("aN=C=O");
-        SymbolQueryAtom c = new SymbolQueryAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON));
-        SymbolQueryAtom o = new SymbolQueryAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.OXYGEN));
-        SymbolQueryAtom n = new SymbolQueryAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.NITROGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.NITROGEN));
         AromaticAtom a = new AromaticAtom();
         query.addAtom(c);query.addAtom(o);query.addAtom(n);query.addAtom(a);
         query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE));
@@ -137,8 +138,8 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 	public static QueryAtomContainer group2() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID("aN=CH2");
-        SymbolQueryAtom c = new SymbolQueryAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON));
-        SymbolQueryAtom n = new SymbolQueryAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.NITROGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.NITROGEN));
         AromaticAtom a = new AromaticAtom();
         query.addAtom(c);query.addAtom(n);query.addAtom(a);
         query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE));
@@ -146,7 +147,7 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 
         
         for (int i=0; i < 2; i++) {
-        	SymbolQueryAtom h = new SymbolQueryAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.HYDROGEN));
+        	SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.HYDROGEN));
         	query.addBond(new OrderQueryBond(c, h, CDKConstants.BONDORDER_SINGLE));
         }
         //to be split at C=N bond

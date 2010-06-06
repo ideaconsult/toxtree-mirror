@@ -45,6 +45,7 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomType;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.MDLWriter;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
@@ -103,7 +104,7 @@ public abstract class TestMutantRules extends TestCase {
     protected String getRuleID(IDecisionRule rule) {
         return rule.getID();
     }
-    protected IIteratingChemObjectReader getReader(InputStream stream, DefaultChemObjectBuilder b) {
+    protected IIteratingChemObjectReader getReader(InputStream stream, IChemObjectBuilder b) {
     	return  new IteratingMDLReader(stream,b);
     }
 	protected void applyRule(IDecisionRule rule, InputStream source, InputStream results, String compoundID, String resultsFolder) throws Exception {
@@ -111,7 +112,7 @@ public abstract class TestMutantRules extends TestCase {
 		assertNotNull(source);
 		assertNotNull(results);
 		
-		DefaultChemObjectBuilder b = DefaultChemObjectBuilder.getInstance();
+		IChemObjectBuilder b = DefaultChemObjectBuilder.getInstance();
 		
 		ArrayList<String> resultsID = new ArrayList<String>();
 		ArrayList<String> missedResults = new ArrayList<String>();

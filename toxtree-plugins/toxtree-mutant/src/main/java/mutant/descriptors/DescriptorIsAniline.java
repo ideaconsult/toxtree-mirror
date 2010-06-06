@@ -26,7 +26,6 @@ package mutant.descriptors;
 
 import mutant.rules.RuleDACancerogenicityAromaticAmines;
 
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;

@@ -31,6 +31,7 @@ import toxTree.data.MoleculesFile;
 import toxTree.io.Tools;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.TopologySymbolQueryAtom;
+import ambit2.core.data.MoleculeTools;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
 import ambit2.smarts.query.SmartsPatternCDK;
@@ -227,7 +228,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
 			getParameters(), results, d );
 	}
 	protected IMolecule getAminoGroupSubstituents(IAtomContainer ac,int natom) throws CDKException {
-        IMolecule aminogroup_subst = DefaultChemObjectBuilder.getInstance().newMolecule();
+        IMolecule aminogroup_subst = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());
         List<IAtom> neighbors = ac.getConnectedAtomsList(ac.getAtom(natom));
         
         for (int i=0; i< ac.getAtomCount();i++) {
@@ -249,17 +250,18 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                 }
                 if (a == nitroAtom) {
                     addBond = false;
-                    IAtom r = DefaultChemObjectBuilder.getInstance().newPseudoAtom(R);
+                    IAtom r = MoleculeTools.newPseudoAtom(DefaultChemObjectBuilder.getInstance(),R);
                     aminogroup_subst.addAtom(r);
                     IAtom otherAtom = b.getAtom((i+1) % b.getAtomCount());
-                    aminogroup_subst.addBond(DefaultChemObjectBuilder.getInstance().
-                            newBond(otherAtom, r, b.getOrder()));
+                    aminogroup_subst.addBond(
+                    		MoleculeTools.newBond(DefaultChemObjectBuilder.getInstance(),
+                            otherAtom, r, b.getOrder()));
               //      System.out.println("Adding bond " + a.getSymbol() + " " + otherAtom.getSymbol());
                     break;
                 }
             }
             if (addBond) {
-                IBond newBond = DefaultChemObjectBuilder.getInstance().newBond(
+                IBond newBond = MoleculeTools.newBond(DefaultChemObjectBuilder.getInstance(),
                         b.getAtom(0), b.getAtom(1), b.getOrder());
                 aminogroup_subst.addBond(newBond);
             }
@@ -562,7 +564,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         query.setID(FunctionalGroups.AROMATIC_AMINE);
         IQueryAtom[] ring = new IQueryAtom[6];
         
-        IAtom a  = DefaultChemObjectBuilder.getInstance().newAtom(Elements.NITROGEN);
+        IAtom a  = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.NITROGEN);
         a.setFormalCharge(0);
         
         TopologySymbolQueryAtom n = new TopologySymbolQueryAtom(a,false);
@@ -572,7 +574,8 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         //ring
         for (int i=0; i < 6; i++) {
         	//commented for test only
-            ring[i] = new TopologySymbolQueryAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON),true);
+            ring[i] = new TopologySymbolQueryAtom(
+            		MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON),true);
 
         	//ring[i] = new AnyAtom();ring[i].setSymbol(R);
             ring[i].setID(Integer.toString(i+1));

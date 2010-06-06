@@ -23,7 +23,6 @@ import org.openscience.cdk.Atom;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.ElectronContainer;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IBond.Stereo;
 import org.openscience.cdk.isomorphism.matchers.IQueryBond;
 
 import toxTree.query.MyAssociationBond;

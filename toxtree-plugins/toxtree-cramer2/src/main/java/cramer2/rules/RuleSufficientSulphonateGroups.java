@@ -45,6 +45,7 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
 import toxTree.query.SimpleReactions;
 import toxTree.tree.AbstractRule;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * Rule 33 of the Cramer scheme (see {@link cramer2.CramerRulesExtendedExtended})
@@ -133,7 +134,7 @@ public class RuleSufficientSulphonateGroups extends AbstractRule {
 			IAtomContainerSet results = metabolicReactions.canMetabolize(mol,true);
 			if (results == null) {
 				IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
-				int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
+				int c = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"C"));
 				return c <= 20;
 				//check for primary amines 
 			}
@@ -149,7 +150,7 @@ public class RuleSufficientSulphonateGroups extends AbstractRule {
 			for (int i=0; i < results.getAtomContainerCount(); i++) {
 				IAtomContainer residue = results.getAtomContainer(i);
 				IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(residue);
-				int s = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("S"));
+				int s = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"S"));
 				if (s == 0) {
 					logger.debug("No sulphonate or sulphamate group");
 					return false;
@@ -164,7 +165,7 @@ public class RuleSufficientSulphonateGroups extends AbstractRule {
 						return false;
 					}				
 				}
-				int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
+				int c = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"C"));
 				if (c > 20) {
 					logger.debug("More than 20 C atoms per sulphonate or sulphamate group");
 					return false;				

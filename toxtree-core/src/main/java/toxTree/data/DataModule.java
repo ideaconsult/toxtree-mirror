@@ -45,6 +45,7 @@ import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
 import toxTree.logging.TTLogger;
 import toxTree.ui.molecule.JChemPaintDialog;
+import ambit2.core.data.MoleculeTools;
 
 public abstract class DataModule extends Observable implements Serializable, Observer {
 	protected static TTLogger logger = new TTLogger(DataModule.class);
@@ -65,7 +66,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
 		super();
 		dataContainer = createDataContainer(inputFile);
 		if (dataContainer != null) dataContainer.addObserver(this);
-        jcpModel = DefaultChemObjectBuilder.getInstance().newChemModel();  
+        jcpModel = MoleculeTools.newChemModel(DefaultChemObjectBuilder.getInstance());  
         /*
         jcpModel.setMoleculeSet(jcpModel.getBuilder().newMoleculeSet());
         jcpModel.getMoleculeSet().addAtomContainer(

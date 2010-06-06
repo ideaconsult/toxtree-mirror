@@ -47,6 +47,7 @@ import toxTree.tree.rules.RuleAllSubstructures;
 import toxTree.tree.rules.smarts.IRuleSMARTSubstructures;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import ambit2.core.data.MoleculeTools;
 
 
 
@@ -69,13 +70,13 @@ public class RuleSMARTSubstructureTest {
 		RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();		
 //		Molecule mol = MoleculeFactory.makeBenzene();
 		
-        IMolecule mol = DefaultChemObjectBuilder.getInstance().newMolecule();
-        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 0
-        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 1
-        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 2
-        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 3
-        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 4
-        mol.addAtom(DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON)); // 5
+        IMolecule mol = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());  
+        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
+        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 1
+        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 2
+        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 3
+        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 4
+        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 5
 
         mol.addBond(0, 1, IBond.Order.SINGLE); // 1
         mol.addBond(1, 2, IBond.Order.DOUBLE); // 2

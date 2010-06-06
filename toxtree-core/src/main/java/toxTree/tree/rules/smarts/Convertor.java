@@ -42,6 +42,7 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.tools.LoggingTool;
 
 import toxTree.core.ConnectionMatrix;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * Abstract class that provides convertor procedures to
@@ -147,14 +148,14 @@ public class Convertor {
      **/
     public static IAtom convert(JOEAtom atom) {
         if (atom != null) {
-            IAtom convertedAtom = DefaultChemObjectBuilder.getInstance().newAtom(Elements.CARBON);
+            IAtom convertedAtom = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
             try {
                 // try to give the atom the correct symbol
                 org.openscience.cdk.config.IsotopeFactory isotopeFactory =
                     org.openscience.cdk.config.IsotopeFactory.getInstance(convertedAtom.getBuilder());
                 //isotopeFactory.configure(convertedAtom);
                 IElement element = isotopeFactory.getElement(atom.getAtomicNum());
-                convertedAtom = DefaultChemObjectBuilder.getInstance().newAtom(element.getSymbol());
+                convertedAtom = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),element.getSymbol());
             } catch (java.lang.Exception exception) {
                 logger.debug("Error in getting the isotope factory");
             }

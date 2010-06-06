@@ -40,6 +40,7 @@ import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import ambit2.core.data.MoleculeTools;
 import ambit2.smarts.query.SMARTSException;
 
 public class SA10 extends StructureAlertCDK {
@@ -108,7 +109,7 @@ public class SA10 extends StructureAlertCDK {
 						continue; 
 					else {
 						IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(sc.getAtomContainer(i));
-						int catoms = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
+						int catoms = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"C"));
 						if (catoms >=6) {
 							logger.debug("Substituent at beta carbon with >=6 C atoms\t",catoms);
 							return true;
