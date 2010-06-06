@@ -76,7 +76,7 @@ public class RuleOpenChain extends AbstractRule {
     @Override
     public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
     	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
-    	try { rule.addSubstructure("[R0]!@[R0]"); } catch (Exception x) {x.printStackTrace();};
+    	try { rule.addSubstructure("[R0;!#1]!@[R0;!#1]"); } catch (Exception x) {x.printStackTrace();};
     	return rule.getSelector();
     }
 }
