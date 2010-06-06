@@ -79,6 +79,10 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
 	 */
 	@Override
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+			return verifyRule(mol,null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer  mol,IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 		int c = 0;
 		double order;
@@ -101,10 +105,17 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
                         }    
 					
 						order = order + a.getHydrogenCount();
-						if ((order-2) < 0.1) c++;
-						else logger.info("Found S valency ",Double.toString(order));
-					} else c++;
-				}
+						if ((order-2) < 0.1)
+							c++;
+						else {
+							logger.info("Found S valency ",Double.toString(order));
+							if (selected!=null) selected.addAtom(a);
+						}
+					} else {
+						c++;
+						
+					} 
+				} else if (selected!=null) selected.addAtom(a);
 			}
 		}
 		return c != mol.getAtomCount();
