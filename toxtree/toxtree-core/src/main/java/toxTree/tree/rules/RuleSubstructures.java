@@ -27,7 +27,9 @@ package toxTree.tree.rules;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IBond;
 
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleSubstructures;
@@ -169,12 +171,16 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 			MolAnalyser.analyse(mol);
 			boolean ok = verifyRule(mol);
 			if (selected != null) {
-				for (int i=0; i < mol.getAtomCount(); i++)
-					if (mol.getAtom(i).getProperty(FunctionalGroups.ALLOCATED)!=null)
-						selected.addAtom(mol.getAtom(i));
-				for (int i=0; i < mol.getBondCount(); i++)
-					if (mol.getBond(i).getProperty(FunctionalGroups.ALLOCATED)!=null)
-						selected.addBond(mol.getBond(i));				
+				for (IAtom atom: mol.atoms())
+					if (!"H".equals(atom.getSymbol()) && atom.getProperty(FunctionalGroups.ALLOCATED)!=null)
+						selected.addAtom(atom);
+				
+				for (IBond bond:mol.bonds()) 
+					if ((bond.getProperty(FunctionalGroups.ALLOCATED)!=null) &&
+						 !"H".equals(bond.getAtom(0).getSymbol()) &&
+						 !"H".equals(bond.getAtom(1).getSymbol())
+						 )
+						selected.addBond(bond);				
 			}	
 			
 			return ok;
