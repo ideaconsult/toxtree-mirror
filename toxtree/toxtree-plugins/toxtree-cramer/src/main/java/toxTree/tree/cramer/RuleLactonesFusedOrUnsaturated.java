@@ -42,11 +42,15 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+
+import ambit2.base.interfaces.IProcessor;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
 import toxTree.tree.rules.RuleAnySubstructure;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * Rule 9 of the Cramer scheme (see {@link toxTree.tree.cramer.CramerRules})
@@ -168,5 +172,12 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 			return false;
 		}
 	}
+	
+    @Override
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
+    	try { rule.addSubstructure("O@C(=[O;R0])"); } catch (Exception x) {x.printStackTrace();};
+    	return rule.getSelector();
+    }
 
 }

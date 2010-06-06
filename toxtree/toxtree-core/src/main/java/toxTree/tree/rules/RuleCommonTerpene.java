@@ -32,7 +32,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package toxTree.tree.rules;
 
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IBond;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
@@ -92,12 +94,16 @@ public class RuleCommonTerpene extends AbstractRuleHilightHits {
 			boolean ok = FunctionalGroups.isCommonTerpene(mol,mf.getRingset());
 			
 			if (selected != null) {
-				for (int i=0; i < mol.getAtomCount(); i++)
-					if (mol.getAtom(i).getProperty(FunctionalGroups.ALLOCATED)!=null)
-						selected.addAtom(mol.getAtom(i));
-				for (int i=0; i < mol.getBondCount(); i++)
-					if (mol.getBond(i).getProperty(FunctionalGroups.ALLOCATED)!=null)
-						selected.addBond(mol.getBond(i));				
+				for (IAtom atom: mol.atoms())
+					if (!"H".equals(atom.getSymbol()) && atom.getProperty(FunctionalGroups.ALLOCATED)!=null)
+						selected.addAtom(atom);
+				
+				for (IBond bond:mol.bonds()) 
+					if ((bond.getProperty(FunctionalGroups.ALLOCATED)!=null) &&
+						 !"H".equals(bond.getAtom(0).getSymbol()) &&
+						 !"H".equals(bond.getAtom(1).getSymbol())
+						 )
+						selected.addBond(bond);					
 			}	
 			
 			return ok;
