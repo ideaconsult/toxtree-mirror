@@ -15,7 +15,11 @@ public class RuleSkinSensitisationAlerts extends RuleInitAlertCounter {
 		setID("Skin sensitisation alerts");
 		setTitle("Verify structural alerts for potential skin sensitisation");
 		setExplanation("");
+		
 	}
-
+	@Override
+	public boolean isImplemented() {
+		return true;
+	}
 
 }
