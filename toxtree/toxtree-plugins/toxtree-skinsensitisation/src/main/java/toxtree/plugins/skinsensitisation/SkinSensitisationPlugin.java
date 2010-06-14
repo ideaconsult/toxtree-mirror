@@ -17,6 +17,7 @@ import toxTree.tree.CategoriesList;
 import toxTree.tree.DecisionNodesFactory;
 import toxTree.tree.UserDefinedTree;
 import toxtree.plugins.skinsensitisation.categories.SkinSensitisationAlerts;
+import toxtree.plugins.skinsensitisation.rules.SkinSensitisationTreeResult;
 
 /**
  * Skin sensitisation
@@ -81,9 +82,9 @@ public class SkinSensitisationPlugin extends UserDefinedTree  implements IDecisi
 				changes.firePropertyChange("Transitions", transitions,null);
 			}
 			*/
-			setTitle("Skin Sensitization Alerts");
+			setTitle("Skin Sensitisation Alerts");
 			setExplanation(
-					"Identification of structural alerts related to the mechanisms of toxic actions for skin sensitization using SMARTS derived by M. T. D. Cronin, et al.");
+					"Identification of structural alerts related to the mechanisms of toxic actions for skin sensitisation using SMARTS derived by M. T. D. Cronin, et al.");
 					
 
 	        setPriority(50);
@@ -182,13 +183,13 @@ public class SkinSensitisationPlugin extends UserDefinedTree  implements IDecisi
 	                this.getClass().getName(),                
 	                "Toxtree plugin");
 		}
-		/*
+		
 		@Override
 		public IDecisionResult createDecisionResult() {
-			IDecisionResult result =  new SMARTCYPTreeResult();
+			IDecisionResult result =  new SkinSensitisationTreeResult();
 			result.setDecisionMethod(this);
 			return result;
 		}
-		*/	
+			
 	
 }

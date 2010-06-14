@@ -14,7 +14,7 @@ public class RulesSelectorTest {
 		SkinSensitisationPlugin rules = new SkinSensitisationPlugin();
 	    int na = ((AbstractTree)rules).testRulesWithSelector();
 		 
-	    Assert.assertEquals(0,na);
+	    Assert.assertEquals(1,na);
 	}
 }
 
