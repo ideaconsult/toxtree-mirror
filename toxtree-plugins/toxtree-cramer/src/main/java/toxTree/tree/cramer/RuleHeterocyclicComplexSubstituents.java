@@ -93,8 +93,9 @@ public class RuleHeterocyclicComplexSubstituents extends RuleRingOtherThanAllowe
         return true;
     }
     @Override
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-    	if (super.verifyRule(mol)) {
+    public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+    		throws DecisionMethodException {
+    	if (super.verifyRule(mol,selected)) {
     		//verify if unmarked atoms are ring heteroatoms
     		/*
     		boolean hasUnmarkedAtom = false;

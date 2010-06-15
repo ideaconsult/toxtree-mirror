@@ -26,6 +26,10 @@ public abstract class AbstractRuleHilightHits extends AbstractRule {
 	    				throws AmbitException {
 	    			try {
 	    				MolAnalyser.analyse(mol);
+	    			} catch (MolAnalyseException x) {
+	    				x.printStackTrace();
+	    			}
+	    			try {
 	    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
 		    			boolean ok = verifyRule(mol, selected);
 		    			//selected = AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(selected);
@@ -33,8 +37,7 @@ public abstract class AbstractRuleHilightHits extends AbstractRule {
 		    			else return new SingleSelection<IAtomContainer>(selected);
 	    			} catch (DecisionMethodException x) {
 	    				throw new AmbitException(x);
-	    			} catch (MolAnalyseException x) {
-	    				throw new AmbitException(x);
+
 	    			}
 	    		}
 	    		public boolean isEnabled() {

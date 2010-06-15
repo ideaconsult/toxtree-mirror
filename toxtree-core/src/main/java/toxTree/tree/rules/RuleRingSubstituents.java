@@ -117,7 +117,10 @@ public abstract class RuleRingSubstituents extends RuleRings {
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	};
+	public boolean verifyRule(IAtomContainer  mol, IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 		IRingSet rs = hasRingsToProcess(mol);
 		if (rs == null) return false;

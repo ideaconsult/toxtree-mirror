@@ -261,7 +261,7 @@ public class TreeResult implements IDecisionResult {
 		    			ac = mol;
 		    		} else b.append(delimiter);
 		    		
-		    		b.append(r.explain(verbose));
+		    		b.append(r.explain(verbose,i));
 		    		if (verbose) b.append("<br>");
 		    	}
 	    		if (!first) if (!verbose) b.append(")");		
@@ -527,7 +527,17 @@ public class TreeResult implements IDecisionResult {
     public synchronized void setOriginalMolecule(IAtomContainer originalMolecule) {
         this.originalMolecule = originalMolecule;
     }
-    
+    public synchronized void hilightAlert(RuleResult ruleResult) throws DecisionResultException {
+					
+		firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(),
+							null,
+							ruleResult==null?originalMolecule:
+								ruleResult.getMolecule()==null?originalMolecule:ruleResult.getMolecule());
+							//AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(originalMolecule));
+		firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, ruleResult==null?null:ruleResult.getSelector());
+
+		
+	}
 	public synchronized void hilightAlert(IDecisionRule rule) throws DecisionResultException {
 		/*
 
@@ -536,6 +546,7 @@ public class TreeResult implements IDecisionResult {
 		//	if (ruleResults.get(i).getRule().equals(rule)) {
 			//	boolean value = ruleResults.get(i).isResult();
 				//if (value) {
+					
 					firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(),
 							null,
 							originalMolecule);

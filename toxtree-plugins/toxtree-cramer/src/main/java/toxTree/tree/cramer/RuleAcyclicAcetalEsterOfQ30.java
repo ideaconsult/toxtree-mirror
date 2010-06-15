@@ -69,13 +69,17 @@ public class RuleAcyclicAcetalEsterOfQ30 extends RuleRingComplexSubstituents30 {
 		examples[1] = "COC(OC)C1=CC=CC=C1";
 		editable = false;
 	}
+	@Override
+	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
 	/* (non-Javadoc)
 	 * @see toxTree.tree.rules.RuleAnySubstructure#verifyRule(org.openscience.cdk.Molecule)
 	 */
 	@Override
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-
-		if (!super.verifyRule(mol)) {
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
+		if (!super.verifyRule(mol,selected)) {
 			if (FunctionalGroups.hasGroup(mol,acetal) || FunctionalGroups.hasGroup(mol,ester)) { 
 			
 				SimpleReactions sr = new SimpleReactions();

@@ -63,12 +63,12 @@ public class SA20 extends RuleRingSubstituents implements IAlertCounter {
     	alertsCounter.incrementCounter(mol);
     }
     
-    
     @Override
-    public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+    public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+    		throws DecisionMethodException {
     	halogen_count = 0;
     	ring_halogen_count = 0;
-    	if (super.verifyRule(mol)) {
+    	if (super.verifyRule(mol,selected)) {
         	if (halogen_count < ring_halogen_count)
         		halogen_count = ring_halogen_count;
 

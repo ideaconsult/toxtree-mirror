@@ -248,7 +248,16 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
 			    			//hilight alerts
 			    			getDataModule().getTreeResult().hilightAlert(rule);
 			    		} catch (Exception x) { x.printStackTrace();}
+				    }  else if (he.getURL().toString().startsWith(RuleResult.resultURL)) {
+			    		String id = he.getURL().toString().substring(RuleResult.resultURL.length());
+			    		
+			    		if (id != null) try {
+				    		RuleResult ruleResult = getDataModule().getTreeResult().getRuleResult(Integer.parseInt(id));
+
+			    			getDataModule().getTreeResult().hilightAlert(ruleResult);
+			    		} catch (Exception x) { x.printStackTrace();}
 				    }
+				    	
 			    						    	
 			    }
 				

@@ -98,7 +98,12 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
+	
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	}
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
+	
 		logger.info(toString());
 	    //should be set via MolAnalyser
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
@@ -158,7 +163,7 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 		    ids.add(FunctionalGroups.CH3);
 		    FunctionalGroups.markCHn(mol);
 		    
-		    boolean ok = FunctionalGroups.hasMarkedOnlyTheseGroups(mol,ids);
+		    boolean ok = FunctionalGroups.hasMarkedOnlyTheseGroups(mol,ids,selected,null);
 		    ids.clear();
 		    ids = null;
 		    return ok;

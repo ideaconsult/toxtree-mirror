@@ -61,8 +61,11 @@ public abstract class RuleRingOtherThanAllowedSubstituents extends RuleRingSubst
 	 * return true if other than listed substructures are found in a ring substituent
 	 * @see toxTree.core.IDecisionRule#verifyRule(IAtomContainer)
 	 */
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	};
 	@Override
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer  mol, IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 		IRingSet rs = hasRingsToProcess(mol);
 		if (rs == null) return false;
@@ -101,7 +104,8 @@ public abstract class RuleRingOtherThanAllowedSubstituents extends RuleRingSubst
 				    }
 	
 				    logger.debug(FunctionalGroups.mapToString(m));
-				    if (!FunctionalGroups.hasMarkedOnlyTheseGroups(m,ids)) {
+					if (!FunctionalGroups.hasMarkedOnlyTheseGroups(m,ids,null,selected)) {
+				    //if (FunctionalGroups.hasOtherThanMarkedGroups(m,ids,selected)) {
 				    	logger.debug(allowedSubstituents());
 				    	logger.debug(CONDITION_FAILED);
 				    	logger.debug(FunctionalGroups.mapToString(m).toString());

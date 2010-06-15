@@ -152,6 +152,10 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 	 */
 	@Override
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 		boolean canBeHydrolized = false;
 		IMoleculeSet residues = null;
@@ -198,7 +202,7 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 			logger.debug("Ring substituent:\tNo ester group found, will not try hydrolysis.");
 		}		
 
-		boolean result = super.verifyRule(newMol);
+		boolean result = super.verifyRule(newMol,selected);
 		if (result  && (residues != null)) {
 		    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 		    if (mf == null) throw new DecisionMethodException("Structure should be preprocessed!");

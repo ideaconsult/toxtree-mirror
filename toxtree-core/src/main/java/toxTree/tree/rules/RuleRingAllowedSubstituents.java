@@ -70,11 +70,16 @@ public class RuleRingAllowedSubstituents extends RuleRingSubstituents {
 			throws DecisionMethodException {
 		return true;
 	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
 	/**
 	 * returns true if only allowed substituents are found
 	 */
 	@Override
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer  mol, IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());		
 		IRingSet rs = hasRingsToProcess(mol);
 		if (rs == null) return false;
@@ -108,7 +113,7 @@ public class RuleRingAllowedSubstituents extends RuleRingSubstituents {
 				    	logger.debug(ERR_PRECONDITION_FAILED);
 				    	return false;
 				    }
-				    if (!FunctionalGroups.hasMarkedOnlyTheseGroups(m,ids)) {
+				    if (!FunctionalGroups.hasMarkedOnlyTheseGroups(m,ids,selected,null)) {
 				    	logger.debug(allowedSubstituents());
 				    	logger.debug(CONDITION_FAILED);
 				    	//logger.debug(FunctionalGroups.mapToString(m).toString());
