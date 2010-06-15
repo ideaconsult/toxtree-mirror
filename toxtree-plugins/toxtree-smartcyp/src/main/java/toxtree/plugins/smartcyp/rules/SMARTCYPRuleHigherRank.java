@@ -1,5 +1,6 @@
 package toxtree.plugins.smartcyp.rules;
 
+
 public class SMARTCYPRuleHigherRank extends SMARTCYPRuleRank1 {
 
 	/**
