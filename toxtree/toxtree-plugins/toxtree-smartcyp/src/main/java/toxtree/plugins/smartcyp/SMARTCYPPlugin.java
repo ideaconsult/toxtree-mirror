@@ -24,7 +24,6 @@ import toxtree.plugins.smartcyp.categories.SitesRank1;
 import toxtree.plugins.smartcyp.categories.SitesRank2;
 import toxtree.plugins.smartcyp.categories.SitesRank3;
 import toxtree.plugins.smartcyp.rules.SMARTCYPRuleRank1;
-import toxtree.plugins.smartcyp.rules.SMARTCYPTreeResult;
 
 
 public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInteractive{
@@ -125,15 +124,7 @@ public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInterac
 			throw new DecisionMethodException(x);
 		}
 	}
-	/* (non-Javadoc)
-	 * @see toxTree.tree.AbstractTree#createDecisionResult()
-	 */
-	/*public IDecisionResult createDecisionResult() {
-		IDecisionResult result =  new CramerTreeResult();
-		result.setDecisionMethod(this);
-		return result;
 
-	}*/
 
 
 	public boolean isResiduesIDVisible() {
@@ -172,7 +163,7 @@ public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInterac
 	
 	@Override
 	public IDecisionResult createDecisionResult() {
-		IDecisionResult result =  new SMARTCYPTreeResult();
+		IDecisionResult result =  new SMARTCypTreeResult();
 		result.setDecisionMethod(this);
 		return result;
 	}	
