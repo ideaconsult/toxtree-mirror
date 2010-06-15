@@ -2134,7 +2134,7 @@ public class FunctionalGroups {
 	    		if ((list == null) || (list.size() == 0)) continue;
 	    		FunctionalGroups.markMaps(mol, q, list);
 	    		logger.debug(mapToString(mol));
-	    		if (hasMarkedOnlyTheseGroups(mol,ids,selected)) {
+	    		if (hasMarkedOnlyTheseGroups(mol,ids,selected,null)) {
 	    			logger.info(MSG,ids,"\tYES");
 	  				return true;
 	    		}
@@ -2143,7 +2143,7 @@ public class FunctionalGroups {
 	  	    if (logger.isDebugEnabled()) {
 	  	    	logger.debug(mapToString(mol,ids));
 	  	    }
-  			if (hasMarkedOnlyTheseGroups(mol,ids,selected)) {
+  			if (hasMarkedOnlyTheseGroups(mol,ids,selected,null)) {
   				logger.info(MSG,ids,"\tYES");
   				return true;
   			} else {
@@ -2159,10 +2159,11 @@ public class FunctionalGroups {
      * @param id Collection of functional group identifiers as used by the procedures listed above
      * @return true if mol contains only specified groups (i.e. there are no unmarked atoms)
      */
+    
     public static boolean hasMarkedOnlyTheseGroups(IAtomContainer mol,Collection id) {
-    	return hasMarkedOnlyTheseGroups(mol,id,null);
+    	return hasMarkedOnlyTheseGroups(mol,id,null,null);
     }
-    public static boolean hasMarkedOnlyTheseGroups(IAtomContainer mol,Collection id,IAtomContainer selection) {
+    public static boolean hasMarkedOnlyTheseGroups(IAtomContainer mol,Collection id,IAtomContainer selection,IAtomContainer  selectionOther) {
     	IAtom a = null;
         
         for (int i =0; i < mol.getAtomCount(); i++) {
@@ -2176,24 +2177,65 @@ public class FunctionalGroups {
 	            Object o = a.getProperty(anID);
 	            if (o!=null) {
 	            	//this atom has at least one mark, no need to check for more
-	            	if (selection != null) selection.addAtom(a);
-	            	ok = true; break;
-	            }
+	            	ok = true; 
+	            	break;
+	            } 
+	            	
+	            	
             }
-            
             if (!ok)  {
+            	if (selectionOther != null) selectionOther.addAtom(a);
             	logger.debug("Atom "+ a.getSymbol() + " belongs to a forbidden group");
             	logger.debug(mapToString(mol,id));
             	return false; //at least one atom is unmarked
-            }
+            } else if (selection!=null) selection.addAtom(a);
         }
         logger.debug("No forbidden groups found");
         return true;
     }
+    /*
+    public static boolean hasOtherThanMarkedGroups(IAtomContainer mol,Collection id,IAtomContainer selection) {
+    	IAtom a = null;
+        for (int i =0; i < mol.getAtomCount(); i++) {
+        	a = mol.getAtom(i);
+        	if (a.getSymbol().equals("H")) continue;
+            Iterator iterator = id.iterator();
+            boolean otherAtom = false;
+            while(iterator.hasNext()) {
+            	Object anID = iterator.next();
+	            Object o = a.getProperty(anID);
+	            if (o==null) {
+	            	//this atom has at least one mark, no need to check for more
+	            	otherAtom = true; break;
+	            }
+            }
+            
+            
+            if (otherAtom)  {
+            	logger.debug("Atom "+ a.getSymbol() + " belongs to a forbidden group");
+            	logger.debug(mapToString(mol,id));
+            	if (selection != null) selection.addAtom(a);
+            	else return true; //at least one atom is unmarked
+            }
+        }
+        logger.debug("No forbidden groups found");
+        return selection==null?false:selection.getAtomCount()>0;
+    }    
+    */
     public static boolean hasGroupMarked(IAtomContainer mol,String id) {
         for (int i =0; i < mol.getAtomCount(); i++)
         	if (mol.getAtom(i).getProperty(id) != null) return true;
         return false;
+    }
+    public static boolean hasGroupMarked(IAtomContainer mol,String id,IAtomContainer selection) {
+    	if (selection==null) return hasGroupMarked(mol, id);
+    	boolean ok = false;
+        for (int i =0; i < mol.getAtomCount(); i++)
+        	if (mol.getAtom(i).getProperty(id) != null) {
+        		ok = true;
+        		if (selection!=null) selection.addAtom(mol.getAtom(i));
+        	}
+        return ok;
     }    
     public static boolean hasMarkedOnlyTheseGroups(IAtomContainer mol,QueryAtomContainers query) {
     	IAtom a = null;

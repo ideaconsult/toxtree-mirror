@@ -154,7 +154,11 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 	 * @see toxTree.tree.rules.RuleRingSubstituents#verifyRule(org.openscience.cdk.Molecule)
 	 */
 	@Override
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	};
+	@Override
+	public boolean verifyRule(IAtomContainer  mol, IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
@@ -163,7 +167,7 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 			logger.info("Single Fused NonAromatic CarbocyclicRing\t","YES");
 			return true;
 		}
-		return super.verifyRule(mol);
+		return super.verifyRule(mol,selected);
 	}
 	/* (non-Javadoc)
 	 * @see toxTree.tree.rules.RuleSubstructures#isImplemented()

@@ -27,6 +27,9 @@ package toxTree.tree;
 import java.io.Serializable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+
+import ambit2.base.interfaces.IProcessor;
 
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionRule;
@@ -48,6 +51,7 @@ public class RuleResult implements Serializable {
 	public static String ruleURL = String.format("%s/rule/",prefix);
 	public static String categoryURL = String.format("%s/category/",prefix);
 	public static String alertURL = String.format("%s/alerts/",prefix);
+	public static String resultURL = String.format("%s/results/",prefix);
 	protected IDecisionRule rule = null;
 	protected boolean result = false;
 	protected IDecisionCategory category = null;
@@ -109,6 +113,9 @@ public class RuleResult implements Serializable {
 		this.rule = rule;
 	}
 	public StringBuffer explain(boolean verbose) {
+		return explain(verbose,-1);
+	}
+	public StringBuffer explain(boolean verbose,int ruleIndex) {
 		StringBuffer b = new StringBuffer();
 		if (!silent) 
 			if (verbose) {
@@ -117,7 +124,10 @@ public class RuleResult implements Serializable {
 				b.append("&nbsp;");
 				
 				if (result && (rule.isImplemented()) && (rule.getSelector()!=null))
-					b.append(String.format("<a href=\"%s%s\"  title='Hilight structure alert'>%s</a>",alertURL,rule.getTitle(),rule.toString()));
+					if (ruleIndex<0)
+						b.append(String.format("<a href=\"%s%s\"  title='Hilight structure alert'>%s</a>",alertURL,rule.getTitle(),rule.toString()));
+					else
+						b.append(String.format("<a href=\"%s%d\"  title='Hilight structure alert'>%s</a>",resultURL,ruleIndex,rule.toString()));
 				else
 					b.append(rule.toString());
 				b.append("&nbsp;");
@@ -187,5 +197,8 @@ public class RuleResult implements Serializable {
 	public String toString() {
 		
 		return explain(true).toString();
+	}
+	IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+		return getRule().getSelector();
 	}
 }

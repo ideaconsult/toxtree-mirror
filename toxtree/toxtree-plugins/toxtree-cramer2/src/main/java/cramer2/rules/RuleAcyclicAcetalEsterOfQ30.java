@@ -73,9 +73,10 @@ public class RuleAcyclicAcetalEsterOfQ30 extends RuleRingComplexSubstituents30 {
 	 * @see toxTree.tree.rules.RuleAnySubstructure#verifyRule(org.openscience.cdk.Molecule)
 	 */
 	@Override
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
 
-		if (!super.verifyRule(mol)) {
+		if (!super.verifyRule(mol,selected)) {
 			if (FunctionalGroups.hasGroup(mol,acetal) || FunctionalGroups.hasGroup(mol,ester)) { 
 			
 				SimpleReactions sr = new SimpleReactions();

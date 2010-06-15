@@ -433,4 +433,9 @@ public class BatchDecisionResultsList extends DecisionResultsList implements IDe
     	throw new DecisionResultException("Not implemented");
     	
     }
+    public void hilightAlert(RuleResult ruleresult)
+    		throws DecisionResultException {
+    	throw new DecisionResultException("Not implemented");
+    	
+    }
 }

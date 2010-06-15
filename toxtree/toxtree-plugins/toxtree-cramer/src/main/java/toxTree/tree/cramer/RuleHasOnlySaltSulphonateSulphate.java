@@ -124,8 +124,11 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 	 * TODO treat hydrochloride of amine as free amine
 	 * 
 	 */
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	};
 	@Override
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer  mol, IAtomContainer selected) throws DecisionMethodException {
 		
 		FunctionalGroups.mark(mol,elements);
 		//take care of divalent S
@@ -145,10 +148,12 @@ public class RuleHasOnlySaltSulphonateSulphate extends
                     }    
 					order = order + a.getHydrogenCount();
                     if ((order-2) < 0.1) a.setProperty("S2",new Integer(i));
-					else logger.info("Found S valency ",Double.toString(order));
+					else {
+						logger.info("Found S valency ",Double.toString(order));
+					}
 			}
 		}		
-		if (super.verifyRule(mol)) {
+		if (super.verifyRule(mol,selected)) {
 			AtomContainer residue = null;
 			try {
 			    residue = (AtomContainer) mol.clone();
@@ -159,25 +164,25 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 			
 			Object detached = null;
 			
-			if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.SULPHONATE)) {
+			if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.SULPHONATE,selected)) {
 				detached = FunctionalGroups.SULPHONATE;
 				FunctionalGroups.clearMark(residue,detached);
 				if (sulphonate == null) sulphonate = FunctionalGroups.sulphonate(Me,false);
 				residues = FunctionalGroups.detachGroup(residue,sulphonate);
 				residues.setID("Unsulphonated ");
-			} else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.SULPHATE)) {
+			} else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.SULPHATE,selected)) {
 				detached = FunctionalGroups.SULPHATE;
 				FunctionalGroups.clearMark(residue,detached);				
 				if (sulphate == null) sulphate = FunctionalGroups.sulphate(null);	
 				residues = FunctionalGroups.detachGroup(residue,sulphate);
 				residues.setID("Unsulphated ");
-			}  else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.SULPHATE_OF_AMINE)) {
+			}  else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.SULPHATE_OF_AMINE,selected)) {
 				detached = FunctionalGroups.SULPHATE_OF_AMINE;
 				FunctionalGroups.clearMark(residue,detached);
 				if (aminoSulphate == null) aminoSulphate = FunctionalGroups.sulphateOfAmineBreakable();
 				residues = FunctionalGroups.detachGroup(residue,aminoSulphate);
 				residues.setID("Amine ");
-			}  else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.CARBOXYLIC_ACID_SALT)) {
+			}  else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.CARBOXYLIC_ACID_SALT,selected)) {
 		
 				detached = FunctionalGroups.CARBOXYLIC_ACID_SALT;
 				FunctionalGroups.clearMark(residue,detached);				
@@ -194,7 +199,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 					}
 				} else 	residues.setID("Acid ");
 
-			}  else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.HYDROCHLORIDE_OF_AMINE)) {
+			}  else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.HYDROCHLORIDE_OF_AMINE,selected)) {
 
 				detached = FunctionalGroups.HYDROCHLORIDE_OF_AMINE;
 				FunctionalGroups.clearMark(residue,detached);				
@@ -214,7 +219,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 				mf.setResidues(null);  //clear residues if any
 				for (int i=0; i< residues.getAtomContainerCount();i++) {
 					IMolecule a = residues.getMolecule(i);
-					if (FunctionalGroups.hasGroupMarked(a,detached.toString())) 
+					if (FunctionalGroups.hasGroupMarked(a,detached.toString(),selected)) 
 						if (detached.equals(FunctionalGroups.CARBOXYLIC_ACID_SALT) ||
 							detached.equals(FunctionalGroups.HYDROCHLORIDE_OF_AMINE)								
 								) {

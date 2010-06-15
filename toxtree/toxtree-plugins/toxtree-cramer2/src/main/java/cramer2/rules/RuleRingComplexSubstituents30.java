@@ -151,7 +151,8 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 	 * @see toxTree.tree.rules.RuleRingOtherThanAllowedSubstituents#verifyRule(org.openscience.cdk.Molecule)
 	 */
 	@Override
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
 		logger.info(toString());
 		boolean canBeHydrolized = false;
 		IMoleculeSet residues = null;
@@ -198,7 +199,7 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 			logger.debug("Ring substituent:\tNo ester group found, will not try hydrolysis.");
 		}		
 
-		boolean result = super.verifyRule(newMol);
+		boolean result = super.verifyRule(newMol,selected);
 		if (result  && (residues != null)) {
 		    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 		    if (mf == null) throw new DecisionMethodException("Structure should be preprocessed!");
