@@ -172,12 +172,12 @@ public class TreeResult implements IDecisionResult {
 	public void setCategory(IDecisionCategory category) {
 	    firePropertyChangeEvent(ProgressStatus._pClassID,this.category,category);
 	    
-	    if (!decisionMethod.getCategories().isMultilabel()) 
-	    	assignedCategories.clear();
-	    
 	    if (acceptCategory(category)) {
 	    	logger.info("Assign category\t",category);
 	    	this.category = category;
+		    if (!decisionMethod.getCategories().isMultilabel()) {
+		    	assignedCategories.clear();
+		    }	    	
 	    	addCategory(category);
 	    }
 		((RuleResult) ruleResults.get(ruleResults.size()-1)).setCategory(category);
@@ -242,11 +242,11 @@ public class TreeResult implements IDecisionResult {
 		    	boolean first = true;
 		    	String delimiter = "";
 		    	//b.append("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">");
-		    	b.append("<html><head><title>Toxtree</title></head>");
+		    	//b.append("<html><head><title>Toxtree</title></head>");
 		    	//b.append("<html><head><title>Toxtree</title>");
 		    //	b.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"></head>");
 		    	
-		    	b.append("<body>");
+		    	//b.append("<body>");
 		    	for (int i=0;i < ruleResults.size();i++) {
 		    		if ((!verbose) && (i>0)) delimiter = ",";
 		    		else delimiter = "";
@@ -265,8 +265,8 @@ public class TreeResult implements IDecisionResult {
 		    		if (verbose) b.append("<br>");
 		    	}
 	    		if (!first) if (!verbose) b.append(")");		
-	    		b.append("</body>");
-	    		b.append("</html>");
+	    		//b.append("</body>");
+	    		//b.append("</html>");
 				return b;
 		    }
 		    
