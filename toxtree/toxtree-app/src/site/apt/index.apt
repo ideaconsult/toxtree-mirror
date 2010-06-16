@@ -14,6 +14,10 @@ Toxtree - Toxic Hazard Estimation by decision tree approach
     User-defined  molecular  structures  are also  supported  -  they could  be
     entered by  SMILES, or by using the built-in  2D structure diagram  editor.
 
+*ToxTree online
+
+    Find chemical compounds and apply Toxtree (and other methods) online!  {{{http://toxpredict.org}ToxPredict}}
+	
 *Multiplatform
 
 	The  Toxtree  application  is suitable  for a  standalone PC and can run on any platform, supported by Java 1.5 or higher. 
@@ -36,14 +40,20 @@ Toxtree - Toxic Hazard Estimation by decision tree approach
 	
 	* Eye irritation prediction
 	
-	* Benigni  / Bossa  rulebase for     mutagenicity and carcinogenicity
+	* Benigni  / Bossa  rulebase for mutagenicity and carcinogenicity
 	
-	* START biodegradation  and     persistence
+	* START biodegradation  and persistence
 	
 	* Structure Alerts for the in vivo micronucleus assay in rodents
 	
 	* Cramer  rules with  extensions
 	
 	* Structure Alerts  for identification of  Michael Acceptors
+	
+	* Structure Alerts  for skin sensitisation
+	
+	* Kroes TTC Decision tree
+	
+	* SMARTCyp - Cytochrome P450-Mediated Drug Metabolism
 	
 
