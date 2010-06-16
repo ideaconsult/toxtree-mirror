@@ -197,5 +197,6 @@
   </build>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+ 	<ambit.version>2.1.1-SNAPSHOT</ambit.version>
+  </properties>    
 </project>
