@@ -117,18 +117,23 @@ public class RuleMonocarbocyclic extends RuleRingAllowedSubstituents {
 	    
 	    
 	}	
+	@Override
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
 	/* (non-Javadoc)
 	 * @see toxTree.tree.rules.RuleRingAllowedSubstituents#verifyRule(org.openscience.cdk.AtomContainer)
 	 */
 	@Override
-	public boolean verifyRule(IAtomContainer molecule) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer molecule, IAtomContainer selected) throws DecisionMethodException {
 		Object o = molecule.getProperty(MolFlags.PARENT);
 		IAtomContainer mol = molecule;
 		if ((o != null) && (molecule instanceof IAtomContainer)) {
 			logger.debug("Parent compound found, will continue analyzing the parent");
 			mol = (IAtomContainer) o;
 		}
-		return super.verifyRule(mol);
+		return super.verifyRule(mol,selected);
 	}
 
 }
