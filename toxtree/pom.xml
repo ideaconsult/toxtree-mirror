@@ -70,25 +70,72 @@
   	<system>Subversion</system>
   	<url>http://sourceforge.net/tracker/?group_id=152702</url>
   </issueManagement>
-  <developers>
+   <developers>
   	<developer>
   		<id>vedina</id>
   		<name>Nina Jeliazkova</name>
-  		<email>nina@acad.bg</email>
+  		<email>jeliazkova.nina@gmail.com</email>
   		<roles>
-  			<role>?</role>
+  			<role>Toxtree developer</role>
+  			<role>Cramer rules</role>
+  			<role>Verhaar scheme</role>
+  			<role>Benigni/Bossa rulebase forcarcinogenicity and mutagenicity</role>
   		</roles>
   	</developer>
   	<developer>
   		<id>martinmartnov</id>
   		<name>Martin Martinov</name>
+  		<roles>
+  			<role>Plugin: Skin irritation</role>
+  			<role>Plugin: Structure alerts for Michael Acceptors</role>
+  		</roles>
   	</developer>
+  	<developer>
+  		<id>olvich1972</id>
+  		<name>Olga Tcheremenskaia</name>
+  		<roles>
+  			<role>Plugin: Structure Alerts for the in vivo micronucleus assay in rodents</role>
+  		</roles>
+  	</developer>
+  	<developer>
+  		<id>-</id>
+  		<name>JK</name>
+  		<roles>
+  			<role>Plugin: Extended Cramer rules</role>
+  		</roles>
+  	</developer>
+  	
+  	<developer>
+  		<id>-</id>
+  		<name>Molecular Networks</name>
+  		<roles>
+  			<role>Plugin: START</role>
+  		</roles>
+  	</developer>
+  	<developer>
+  		<id>patrikrydberg</id>
+  		<name>Patrik Rydberg</name>
+  		<roles>
+  			<role>Plugin: SMARTCyp</role>
+  		</roles>  		
+  	</developer>  	
+  	<developer>
+  		<id>-</id>
+  		<name>Vedrin Jeliazkov</name>
+  		<roles>
+  			<role>Windows installer</role>
+  			<role>QA</role>
+  			<role>Guidance</role>
+  		</roles>
+  	</developer>  	
+
   </developers>
   
 	<scm>
-		<connection>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree</connection>
-	  <developerConnection>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree</developerConnection>
-	  <url>http://toxtree.svn.sourceforge.net/viewvc/toxtree/</url>
+		<connection>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/</connection>
+	  <developerConnection>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/</developerConnection>
+	  <tag>https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags</tag>
+	  <url>http://toxtree.svn.sourceforge.net/viewvc/toxtree/trunk/toxtree/</url>
 	</scm>  	
     <mailingLists>
     <mailingList>
