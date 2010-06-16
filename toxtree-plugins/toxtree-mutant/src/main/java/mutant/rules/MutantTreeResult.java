@@ -31,7 +31,8 @@ import java.util.List;
 
 import mutant.categories.CategoryCarcinogen;
 import mutant.categories.CategoryMutagenTA100;
-import mutant.categories.CategoryNoAlert;
+import mutant.categories.CategoryNoGenotoxicAlert;
+import mutant.categories.CategoryNoNongenotoxicAlert;
 import mutant.categories.CategoryNonMutagen;
 import mutant.categories.CategoryNotCarcinogen;
 import mutant.categories.CategoryPositiveAlertGenotoxic;
@@ -219,11 +220,11 @@ public class MutantTreeResult extends TreeResult {
 	public void addRuleResult(IDecisionRule rule, boolean value, IAtomContainer molecule)
 	throws DecisionResultException {
 			super.addRuleResult(rule, value,molecule);
-			if (rule instanceof RuleAlertsForCarcinogenicity)
+			if (rule instanceof RuleAlertsForGenotoxicCarcinogenicity)
 				setSilent(true);
 			else setSilent((rule instanceof DecisionNode) &&	
 					(
-				(((DecisionNode)rule).getRule() instanceof RuleAlertsForCarcinogenicity) ||
+				(((DecisionNode)rule).getRule() instanceof RuleAlertsForGenotoxicCarcinogenicity) ||
 				(((DecisionNode)rule).getRule() instanceof RuleAlertsNongenotoxicCarcinogenicity)
 
 				)
@@ -235,16 +236,17 @@ public class MutantTreeResult extends TreeResult {
 	@Override
 	protected boolean acceptCategory(IDecisionCategory category) {
 		if (category == null) return false;
-		
-		if ((category instanceof CategoryPositiveAlertGenotoxic) ||
-			(category instanceof CategoryPositiveAlertNongenotoxic)) {
-			removeCategory(new CategoryNoAlert());
+		if (category instanceof CategoryPositiveAlertGenotoxic) {
+				removeCategory(new CategoryNoGenotoxicAlert());
+				return true;
+		} else	if (category instanceof CategoryPositiveAlertNongenotoxic) {
+			removeCategory(new CategoryNoNongenotoxicAlert());
 			return true;
 		} else if (category instanceof CategoryCarcinogen) {
 			removeCategory(new CategoryNotCarcinogen());
 		} else if (category instanceof CategoryMutagenTA100) {
 			removeCategory(new CategoryNonMutagen());			
-		} else if (category instanceof CategoryNoAlert) {
+		} else if (category instanceof CategoryNonMutagen) {
 			int alert = assignedCategories.indexOf(new CategoryPositiveAlertGenotoxic());
 			if (alert > -1) return false;
 			alert = assignedCategories.indexOf(new CategoryPositiveAlertNongenotoxic());
