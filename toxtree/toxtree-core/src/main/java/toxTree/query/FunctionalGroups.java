@@ -375,7 +375,11 @@ public class FunctionalGroups {
         query.addBond(new OrderQueryBond(n, h2, CDKConstants.BONDORDER_SINGLE));
         return query;
     }
-    
+    /**
+     * SMARTS:  [C;R0]-;!@[N;R0;H1]-;!@[C;R0]
+     * @param aliphatic
+     * @return
+     */
     public static QueryAtomContainer secondaryAmine(boolean aliphatic) {
         QueryAtomContainer query = new QueryAtomContainer();
         if (aliphatic) query.setID(SECONDARY_AMINE_ALIPHATIC);
@@ -614,6 +618,10 @@ public class FunctionalGroups {
 		}
 		return aminoSulphate;
     }
+    /**
+     * SMARTS: C(#N)([C,#1])
+     * @return
+     */
     public static QueryAtomContainer cyano() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID(CYANO);
@@ -631,6 +639,10 @@ public class FunctionalGroups {
         query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_TRIPLE));
         return query;
     }
+    /**
+     * SMARTS: N(=O)(=O)([!#1])
+     * @return
+     */
     public static QueryAtomContainer nitro2double() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID(NITRO);
@@ -647,6 +659,10 @@ public class FunctionalGroups {
         query.addBond(new OrderQueryBond(n, o2, CDKConstants.BONDORDER_DOUBLE));        
         return query;
     }
+    /**
+     * SMARTS: [N+](=O)([O-])([!#1])
+     * @return
+     */
     public static QueryAtomContainer nitro1double() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID(NITRO);
@@ -669,6 +685,10 @@ public class FunctionalGroups {
         query.addBond(new OrderQueryBond(n, o2, CDKConstants.BONDORDER_SINGLE));        
         return query;
     }        
+    /**
+     * SMARTS: O=NN([!#1])([!#1])
+     * @return
+     */
     public static QueryAtomContainer Nnitroso() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID(NNITROSO);
@@ -689,6 +709,9 @@ public class FunctionalGroups {
         query.addBond(new OrderQueryBond(n2, o, CDKConstants.BONDORDER_DOUBLE));
         return query;
     }
+    /*
+     * SMARTS: N#N
+     */
     public static QueryAtomContainer diAzo() {
         SymbolQueryAtom n1 = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.NITROGEN));
         SymbolQueryAtom n2 = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.NITROGEN));
@@ -698,6 +721,10 @@ public class FunctionalGroups {
         query.addBond(new OrderQueryBond(n1, n2, CDKConstants.BONDORDER_TRIPLE));
         return query;
     }
+    /**
+     * SMARTS: [#6][#7]=[#7][#7;H2]
+     * @return
+     */
     public static QueryAtomContainer triAzeno() {
         
         QueryAtomContainer query = new QueryAtomContainer();
@@ -3374,10 +3401,16 @@ public class FunctionalGroups {
 		return b;
 	}
 	public static boolean hasGroup(IAtomContainer mol, IAtomContainer q) {
+		return hasGroup(mol, q, null);
+	}
+	public static boolean hasGroup(IAtomContainer mol, IAtomContainer q, IAtomContainer selected) {
 		//search for these groups relies on CHn marks set by markCHn
-		return hasGroup(mol,q,needsPreprocessing(q));
+		return hasGroup(mol,q,needsPreprocessing(q),selected);
 	}
 	public static boolean hasGroup(IAtomContainer mol, IAtomContainer q, boolean preprocess) {
+		return hasGroup(mol, q,preprocess, null);
+	}
+	public static boolean hasGroup(IAtomContainer mol, IAtomContainer q, boolean preprocess, IAtomContainer selected) {
 		if (q.getAtomCount() > mol.getAtomCount()) {
 			logger.debug("A query with more atoms than a molecule!");
 			return false;
@@ -3386,20 +3419,36 @@ public class FunctionalGroups {
 			logger.debug("Marking CHn groups");
 			preProcess(mol);
 		}
-		try {
-			if (UniversalIsomorphismTester.isSubgraph(mol,q)) {
-				//logger.debug(mapToString(mol));
-				logger.info("Molecule \t",mol.getID(),MSG_HASGROUP,q.getID(),"\tYES");
-				return true;
-			} else {
-				//logger.debug(mapToString(mol));
-				logger.debug("Molecule \t",mol.getID(),MSG_HASGROUP,q.getID(),"\tNO");
-				return false;		 
-			}
-		} catch (Exception x) {
-			logger.error(x);
-			return false;
-		} 
+		if (selected==null)
+			try {
+				
+				if (UniversalIsomorphismTester.isSubgraph(mol,q)) {
+					//logger.debug(mapToString(mol));
+					logger.info("Molecule \t",mol.getID(),MSG_HASGROUP,q.getID(),"\tYES");
+					return true;
+				} else {
+					//logger.debug(mapToString(mol));
+					logger.debug("Molecule \t",mol.getID(),MSG_HASGROUP,q.getID(),"\tNO");
+					return false;		 
+				}
+			} catch (Exception x) {
+				logger.error(x);
+				return false;
+			} 
+		else
+			try {
+				List<RMap> list = UniversalIsomorphismTester.getSubgraphAtomsMap(mol,q);
+				if (list != null)
+					for (int i=0; i < list.size();i++) {
+						RMap map = list.get(i);
+						selected.addAtom(mol.getAtom(map.getId1()));
+					}
+				return (list != null) && (list.size()>0);
+				
+			} catch (CDKException x) {
+				logger.debug(x);
+				return false;
+			}			
 	}
 	public static boolean isSubstance(IAtomContainer mol, IAtomContainer q) {
 		try {

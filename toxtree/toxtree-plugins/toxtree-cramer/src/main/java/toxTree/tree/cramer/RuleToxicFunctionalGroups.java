@@ -38,14 +38,14 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
-import toxTree.tree.AbstractRule;
+import toxTree.tree.AbstractRuleHilightHits;
 
 /**
  * Rule 2 of the Cramer scheme (see {@link toxTree.tree.cramer.CramerRules})
  * @author Nina Jeliazkova <br>
  * @version 0.1, 2005-5-2
  */
-public class RuleToxicFunctionalGroups extends AbstractRule {
+public class RuleToxicFunctionalGroups extends AbstractRuleHilightHits {
 
 	/**
      * Comment for <code>serialVersionUID</code>
@@ -69,40 +69,57 @@ public class RuleToxicFunctionalGroups extends AbstractRule {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	}
+	public boolean verifyRule(IAtomContainer  mol,IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 //		try {
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    
+	    	//[C;R0]-;!@[N;R0;H1]-;!@[C;R0]
 		    QueryAtomContainer q = FunctionalGroups.secondaryAmine(true);
 		    
-			if (mf.isAliphatic() && FunctionalGroups.hasGroup(mol, q)) return true;
-		    if (FunctionalGroups.hasGroup( mol, FunctionalGroups.nitro1double())) return true;	    
-		    if (FunctionalGroups.hasGroup( mol, FunctionalGroups.nitro2double())) return true;
-		    if (FunctionalGroups.hasGroup( mol, FunctionalGroups.cyano())) return true;
-		    if (FunctionalGroups.hasGroup( mol, FunctionalGroups.Nnitroso())) return true;
-		    if (FunctionalGroups.hasGroup(mol, FunctionalGroups.diAzo())) return true;
-		    if (FunctionalGroups.hasGroup( mol, FunctionalGroups.triAzeno())) return true;
+			if (mf.isAliphatic() && FunctionalGroups.hasGroup(mol, q,selected)) return true;
+			//[N+](=O)([O-])([!#1])
+		    if (FunctionalGroups.hasGroup( mol, FunctionalGroups.nitro1double(),selected)) return true;	
+		    //N(=O)(=O)([!#1])
+		    if (FunctionalGroups.hasGroup( mol, FunctionalGroups.nitro2double(),selected)) return true;
+		    //C(#N)([C,#1])
+		    if (FunctionalGroups.hasGroup( mol, FunctionalGroups.cyano(),selected)) return true;
+		    //O=NN([!#1])([!#1])
+		    if (FunctionalGroups.hasGroup( mol, FunctionalGroups.Nnitroso(),selected)) return true;
+		    // N#N
+		    if (FunctionalGroups.hasGroup(mol, FunctionalGroups.diAzo(),selected)) return true;
+		    //[#6][#7]=[#7][#7;H2]
+		    if (FunctionalGroups.hasGroup( mol, FunctionalGroups.triAzeno(),selected)) return true;
 
 		    boolean toxicN = true;
 		    //quaternary nitrogen with exception
+		    
+		    /*
+		     * N[*][*][*][*]
+		     * [N+][*][*][*][*]
+		     * [N+][*][*][=*]
+		     */
 		    boolean quaternaryNitrogen = 
-		    		FunctionalGroups.hasGroup( mol, FunctionalGroups.quaternaryNitrogen1(true)) ||
-		    		FunctionalGroups.hasGroup( mol, FunctionalGroups.quaternaryNitrogen1(false)) ||
-		    		FunctionalGroups.hasGroup( mol, FunctionalGroups.quaternaryNitrogen2(true)) ||
-		    		FunctionalGroups.hasGroup( mol, FunctionalGroups.quaternaryNitrogen2(false));
+		    		FunctionalGroups.hasGroup( mol, FunctionalGroups.quaternaryNitrogen1(true),selected) ||
+		    		FunctionalGroups.hasGroup( mol, FunctionalGroups.quaternaryNitrogen1(false),selected) ||
+		    		FunctionalGroups.hasGroup( mol, FunctionalGroups.quaternaryNitrogen2(true),selected) ||
+		    		FunctionalGroups.hasGroup( mol, FunctionalGroups.quaternaryNitrogen2(false),selected);
 		    		
 		    if (quaternaryNitrogen) { 
 		    	//exception 1
-		    	if (FunctionalGroups.hasGroup( mol, FunctionalGroups.quarternaryNitrogenException())) 
+		    	// N([*])([*])(=[!$(C[!#1]([!#1]))])
+		    	if (FunctionalGroups.hasGroup( mol, FunctionalGroups.quarternaryNitrogenException(),selected)) 
 		    		toxicN = false;
 		        //hydrochloride or sulphate salt of primary or tertiary amine
 		    	
 			    for (int i=1; i <=3; i+=2) {
 			    	q = FunctionalGroups.sulphateOfAmine(i);
-			    	if (FunctionalGroups.hasGroup( mol, q)) toxicN = false;		    	
+			    	if (FunctionalGroups.hasGroup( mol, q,selected)) toxicN = false;		    	
 			    	q = FunctionalGroups.hydrochlorideOfAmine(i);
-			    	if (FunctionalGroups.hasGroup( mol, q)) toxicN = false;
+			    	if (FunctionalGroups.hasGroup( mol, q,selected)) toxicN = false;
 			    }		    	
 			    return toxicN;
 		    } else toxicN = false;
