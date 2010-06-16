@@ -71,11 +71,12 @@ public class RuleAnySubstituents extends AbstractRule {
 
 		return FunctionalGroups.hasSubstituents(mol,mf.getRingset());
 	}
-	
+
     @Override
     public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
     	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
-    	try { rule.addSubstructure("[R]!@[*;!#1]"); } catch (Exception x) {x.printStackTrace();};
+    	//try { rule.addSubstructure("[R]!@[*;!#1]"); } catch (Exception x) {x.printStackTrace();};
+    	try { rule.addSubstructure("[*;!#1]!@[R]"); } catch (Exception x) {x.printStackTrace();};
     	return rule.getSelector();
     }
 }

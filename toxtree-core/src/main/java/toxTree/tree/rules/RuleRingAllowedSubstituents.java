@@ -86,7 +86,7 @@ public class RuleRingAllowedSubstituents extends RuleRingSubstituents {
 		
 	    FunctionalGroups.markCHn(mol);	    
 	    //if entire structure has only allowed groups, return true (can't have other groups as substituents)
-	    if (FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,true)) {
+	    if (FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,true,selected)) {
 	    	logger.debug("The entire structure consists only of allowed groups");
 	    	return true; 
 	    }
