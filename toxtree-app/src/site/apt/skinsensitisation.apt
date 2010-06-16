@@ -1,0 +1,25 @@
+ -----
+ Skin sensitisation alerts
+ -----
+ Nina Jeliazkova
+ -----
+ 2010/06/16
+ -----
+
+
+Skin sensitisation alerts
+
+  Skin sensitisation alerts;
+    
+  Developed by P&G ....
+  
+  Screenshots: {{{images/skinsensitisation/screen.jpg}Main screen}} , {{{images/skinsensitisation/tree.jpg}Decision tree}}
+   
+* Reference
+
+ [Cronin, ???] ....
+
+
+* Source 
+
+ {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-skinsensitisation}source code}}

@@ -7,10 +7,12 @@
   </bannerLeft>
   <body>
     <links>
+
       <item name="Toxtree" href="/index.html"/>
       <item name="Toxmatch" href="http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXMATCH"/>
-      <item name="AMBIT" href="http://ambit.acad.bg"/>
+      <item name="ToxPredict" href="http://toxpredict.org"/>
       <item name="AMBIT 2.0" href="http://ambit.sourceforge.net"/>
+      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net:8080/ambit2"/>
 
     </links>
 
@@ -33,6 +35,9 @@
 	  <item name="In vivo micronucleus assay" href="/mic.html"/>
 	  <item name="START biodegradation and persistence" href="/start.html"/>	
 	  <item name="Michael Acceptors" href="/michaelacceptors.html" />
+	  <item name="Skin sensitisation alerts" href="/skinsensitisation.html" />
+	  <item name="SMARTCyp" href="/smartcyp.html" />
+	  <item name="Kroes TTC decision tree" href="/kroes.html" />
     </menu>
     <menu ref="reports"/>
     <menu ref="modules" />
