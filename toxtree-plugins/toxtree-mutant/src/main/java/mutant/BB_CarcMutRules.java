@@ -152,7 +152,7 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
             {29,29,0,0}, //sa28ter 28
             {30,30,0,0}, //sa29 29
             {31,31,0,0}, //sa30 30
-            {46,32,9,1}, //any alert 31
+            {46,32,8,1}, //any alert 31
             //if yes go to nongenotoxic alerts #32, if no, go to nongenotoxic alerts #x
             {33,33,0,0}, //nongenotoxic alerts 32
             {34,34,0,0}, //sa17 33
@@ -160,16 +160,16 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
             {36,36,0,0}, //sa31a 35
             {37,37,0,0}, //sa31b 36 
             {38,38,0,0}, //sa31c 37
-            {39,39,10,2}, //any alert 38
+            {39,39,9,2}, //any alert 38
             {40,40,0,1}, //SA10 39 if yes assign SA for genotoxic carc. 
             //amines
             {41,41,0,0}, //Rule 40 aN=Na  - if yes will be split into ar amines, otherwise will work with the original compound 41
             {42,42,0,0}, //Rule 41 (ii)     
             {0,43,0,0}, //Rule 42 ar amine 
-            {0,44,8,0}, //Rule 43 user input 
-            {45,45,6,7}, //Rule 44 QSAR8
+            {0,44,7,0}, //Rule 43 user input 
+            {45,45,5,6}, //Rule 44 QSAR8
             //{0,46,0,0}, //Rule 45 QSAR6 applicable 
-            {0,0,5,4}, //Rule 45 QSAR6 
+            {0,0,4,3}, //Rule 45 QSAR6 
             
             //No alerts for genotoxic carc
             {47,47,0,0}, //nongenotoxic alerts 46
@@ -178,30 +178,30 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
             {50,50,0,0}, //sa31a 49
             {51,51,0,0}, //sa31b 50 
             {52,52,0,0}, //sa31c 51
-            {53,39,10,2}, //any alert 52
+            {53,39,9,2}, //any alert 52
             
             {39,54,0,0}, //Rule 53 a,b aldehyde; if no  can't be aldehyde and apply QSAR13 , go to check SA10 at the other branch
             {55,55,0,1}, //SA10 54 if yes assign SA for genotoxic carc.;if no, can still be (aromatic) aldehyde and apply QSAR13 
             //come here when SA10 is applied on NO_ALERTS branch (no genotoxic, no non genotoxic alerts). 
             //the only option is to apply sa10 and then qsar13 if a,b unsaturated aldehyde 
-            {0,56,8,0}, //Rule 55 user input 
-            {40,40,5,4}, //Rule 56 QSAR13 //that's it, the end 
+            {0,56,7,0}, //Rule 55 user input 
+            {40,40,4,3}, //Rule 56 QSAR13 //that's it, the end 
 
             
         };	
 	
 		private final static transient String c_categories[] ={
-			"mutant.categories.CategoryPositiveAlertGenotoxic", //1
-			"mutant.categories.CategoryPositiveAlertNongenotoxic", //2
-			//"mutant.categories.CategoryNoAlert",		//3
-			"mutant.categories.CategoryMutagenTA100",	//4
-			"mutant.categories.CategoryNonMutagen",	//5
-			"mutant.categories.CategoryCarcinogen",		//6
-			"mutant.categories.CategoryNotCarcinogen", //7
-			"mutant.categories.QSARApplicable",	//8
-			"mutant.categories.CategoryNoGenotoxicAlert", //9
-			"mutant.categories.CategoryNoNongenotoxicAlert",
-			"mutant.categories.CategoryError"//10
+			"mutant.categories.CategoryPositiveAlertGenotoxic", //1 -1
+			"mutant.categories.CategoryPositiveAlertNongenotoxic", //2 -2
+			//"mutant.categories.CategoryNoAlert",		//3 
+			"mutant.categories.CategoryMutagenTA100",	//4 -3
+			"mutant.categories.CategoryNonMutagen",	//5 -4
+			"mutant.categories.CategoryCarcinogen",		//6  -5
+			"mutant.categories.CategoryNotCarcinogen", //7 -6
+			"mutant.categories.QSARApplicable",	//8 -7
+			"mutant.categories.CategoryNoGenotoxicAlert", //9 -8
+			"mutant.categories.CategoryNoNongenotoxicAlert", //10 -9
+			"mutant.categories.CategoryError"//10 -10
 		};
 	/**
 	 * 
