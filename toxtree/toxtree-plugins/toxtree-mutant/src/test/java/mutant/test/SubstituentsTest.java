@@ -30,10 +30,12 @@ import java.util.BitSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 import mutant.descriptors.AromaticAmineSubstituentsDescriptor;
 import mutant.descriptors.SubstituentExtractor;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.DefaultChemObjectBuilder;
@@ -55,13 +57,13 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import ambit2.core.data.MoleculeTools;
 
-public class SubstituentsTest extends TestCase {
-	@Override
-	protected void setUp() throws Exception {
+public class SubstituentsTest  {
+	@Before
+	public void setUp() throws Exception {
 		// TODO Auto-generated method stub
 		TTLogger.configureLog4j(true);
 	}
-
+	@Test
 	public void testFingerprint() throws Exception {
 		// IMolecule a =
 		// (IMolecule)FunctionalGroups.createAtomContainer("[*][N+](=O)[O-]",
@@ -78,7 +80,7 @@ public class SubstituentsTest extends TestCase {
 		smiles = g.createSMILES(a);
 		System.out.println(smiles);
 		BitSet bs1 = fp.getFingerprint(a);
-		assertEquals(bs, bs1);
+		Assert.assertEquals(bs, bs1);
 	}
 
 	public IMolecule getfromSDF() throws Exception {
@@ -134,26 +136,26 @@ public class SubstituentsTest extends TestCase {
 							true);
 			MolAnalyser.analyse(a);
 			now = System.currentTimeMillis();
-			assertTrue(lookup.find((IMolecule) a) > -1);
+			Assert.assertTrue(lookup.find((IMolecule) a) > -1);
 			System.out.println(System.currentTimeMillis() - now);
 
 			a = FunctionalGroups.createAtomContainer("[*]C1CCC1", true);
 			MolAnalyser.analyse(a);
 			now = System.currentTimeMillis();
-			assertTrue(lookup.find((IMolecule) a) > -1);
+			Assert.assertTrue(lookup.find((IMolecule) a) > -1);
 			System.out.println(System.currentTimeMillis() - now);
 
 			a = FunctionalGroups.createAtomContainer("[*]P(=O)(F)F", true);
 			MolAnalyser.analyse(a);
 			now = System.currentTimeMillis();
-			assertTrue(lookup.find((IMolecule) a) > -1);
+			Assert.assertTrue(lookup.find((IMolecule) a) > -1);
 			System.out.println(System.currentTimeMillis() - now);
 
 			a = FunctionalGroups.createAtomContainer(
 					"[*]C=1C=CC2=CC=CC=C2(C=1)", true);
 			MolAnalyser.analyse(a);
 			now = System.currentTimeMillis();
-			assertTrue(lookup.find((IMolecule) a) > -1);
+			Assert.assertTrue(lookup.find((IMolecule) a) > -1);
 			System.out.println(System.currentTimeMillis() - now);
 
 			a = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
@@ -172,19 +174,19 @@ public class SubstituentsTest extends TestCase {
 			int index = lookup.find((IMolecule) a);
 			if (index > -1) {
 				IAtomContainer mol = lookup.getAtomContainer(index);
-				assertNotNull(mol);
+				Assert.assertNotNull(mol);
 				System.out.println(System.currentTimeMillis() - now);
-				assertEquals(0.28, Double.parseDouble(mol.getProperty("MR")
+				Assert.assertEquals(0.28, Double.parseDouble(mol.getProperty("MR")
 						.toString()));
 			} else
-				fail("not found");
+				Assert.fail("not found");
 
 		} catch (Exception x) {
 			x.printStackTrace();
-			fail(x.getMessage());
+			Assert.fail(x.getMessage());
 		}
 	}
-
+	@Test
 	public void testAll() throws Exception {
 			// LookupFile lookup = new
 			// LookupFile("plugins/mutant/src/mutant/descriptors/substituents.sdf");
@@ -243,7 +245,7 @@ public class SubstituentsTest extends TestCase {
 								System.err.print('\n');
 								System.err.println("not found");
 
-								fail();
+								Assert.fail("not found");
 
 							}
 							record++;
@@ -253,8 +255,8 @@ public class SubstituentsTest extends TestCase {
 						}
 
 				}
-				assertEquals(291, record);
-				assertEquals(record, found_records);
+				Assert.assertEquals(291, record);
+				Assert.assertEquals(record, found_records);
 	}
 
 	/*
@@ -291,6 +293,7 @@ public class SubstituentsTest extends TestCase {
 	 * fail("Aromatic amine not found"); } catch (Exception x) {
 	 * x.printStackTrace(); fail(x.getMessage()); } }
 	 */
+	@Test
 	public void testSmiles() throws Exception {
 		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
 				DefaultChemObjectBuilder.getInstance(), null);
@@ -382,24 +385,32 @@ public class SubstituentsTest extends TestCase {
 		}
 		return substituents;
 	}
-
+	@Test
 	public void testAromaticAmine() throws Exception {
 		QueryAtomContainer q = AromaticAmineSubstituentsDescriptor
 				.aromaticAmine(FunctionalGroups.RING_NUMBERING);
 		IAtomContainer mol = FunctionalGroups.createAtomContainer(
 				"c1ccc(N)cc1", true);
 		MolAnalyser.analyse(mol);
-		assertTrue(FunctionalGroups.hasGroup(mol, q));
+		Assert.assertTrue(FunctionalGroups.hasGroup(mol, q));
 	}
-
+	@Test
+	public void testSubstituentExtractor1() throws Exception {
+		substituentExtractor("c2ccc(N)cc2");
+	}	
+	@Test
+	public void testSubstituentExtractor2() throws Exception {
+		substituentExtractor("N(=Nc1ccc(cc1)N(C)C)c2ccccc2");
+	}
+	@Test
 	public void testSubstituentExtractor() throws Exception {
 		substituentExtractor("c1(CC)c(O)c(Cl)c(P(=O)(F)F)c(NC)c(S)1");
 	}
-
+	@Test
 	public void testSubstituentExtractorFusedRings() throws Exception {
 		substituentExtractor("Nc1cccc2c4cccc3cccc(c12)c34");
 	}
-
+	@Test
 	public void testSubstituentExtractorAnthracene() throws Exception {
 		substituentExtractor("Nc1ccc2cc3ccccc3(cc2(c1))");
 		// substituentExtractor("NC=2C=CC=C1N=CC=SC1=2");
@@ -414,19 +425,19 @@ public class SubstituentsTest extends TestCase {
 				AromaticAmineSubstituentsDescriptor
 						.aromaticAmine(FunctionalGroups.RING_NUMBERING));
 		IAtomContainer a = FunctionalGroups.createAtomContainer(smiles, false);
-		assertNotNull(a);
+		Assert.assertNotNull(a);
 		MolAnalyser.analyse(a);
 		Hashtable<String, IAtomContainerSet> set = extractor
 				.extractSubstituents(a);
-		assertEquals(1, set.size());
+		Assert.assertEquals(1, set.size());
 		Iterator<IAtomContainerSet> c = set.values().iterator();
 		while (c.hasNext())
-			assertEquals(6, enumerateSubstituents(c.next()));
+			Assert.assertEquals(6, enumerateSubstituents(c.next()));
 
 	}
 
 	public void testtodo() {
-		fail("this record was removed from substituents.sdf, since it does not pass isomorph test - verify why");
+		Assert.fail("this record was removed from substituents.sdf, since it does not pass isomorph test - verify why");
 		/*
 		 * CDK 2/26/08,16:56
 		 * 
