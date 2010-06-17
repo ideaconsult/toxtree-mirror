@@ -200,7 +200,8 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
 			"mutant.categories.CategoryNotCarcinogen", //7
 			"mutant.categories.QSARApplicable",	//8
 			"mutant.categories.CategoryNoGenotoxicAlert", //9
-			"mutant.categories.CategoryNoNongenotoxicAlert"	//10
+			"mutant.categories.CategoryNoNongenotoxicAlert",
+			"mutant.categories.CategoryError"//10
 		};
 	/**
 	 * 
