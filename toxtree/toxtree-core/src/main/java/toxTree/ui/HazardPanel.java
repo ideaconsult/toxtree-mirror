@@ -28,6 +28,7 @@ package toxTree.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -215,8 +216,11 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
 		explainArea.addHyperlinkListener(new HyperlinkListener() {
 			public void hyperlinkUpdate(HyperlinkEvent he) {
 				HyperlinkEvent.EventType type = he.getEventType();
-				
-			    if (type == HyperlinkEvent.EventType.ACTIVATED) {
+				if (type == HyperlinkEvent.EventType.ENTERED) {
+					explainArea.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				} else	if (type == HyperlinkEvent.EventType.EXITED) {	
+					explainArea.setCursor(Cursor.getDefaultCursor());
+				} else if (type == HyperlinkEvent.EventType.ACTIVATED) {
 			    	if (he.getURL().toString().startsWith(RuleResult.ruleURL)) {
 			    		String name = he.getURL().toString().substring(RuleResult.ruleURL.length());
 			    		

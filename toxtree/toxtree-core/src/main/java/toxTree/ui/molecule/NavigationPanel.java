@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.ui.molecule;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.FontMetrics;
@@ -170,6 +171,7 @@ class NavigatorMouseAdapter extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		super.mouseEntered(e);
+		e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		((JLabel)e.getComponent()).setBorder(BorderFactory.createLineBorder(Color.gray));
 	}
 	@Override
@@ -177,5 +179,6 @@ class NavigatorMouseAdapter extends MouseAdapter {
 		super.mouseExited(e);
 		//e.getComponent().setBackground(Color.black);
 		((JLabel)e.getComponent()).setBorder(null);
+		e.getComponent().setCursor(Cursor.getDefaultCursor());
 	}
 }
