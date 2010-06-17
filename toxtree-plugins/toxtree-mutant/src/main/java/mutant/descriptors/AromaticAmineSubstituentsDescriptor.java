@@ -129,7 +129,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                                 System.out.print(l.get(k));
                                 System.out.print(']');
                                 System.out.print('\t');
-                               */
+                              */
                             }
                         }   
                     //System.out.print('\n');
@@ -589,6 +589,64 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         query.addBond(new AromaticQueryBond(ring[0], ring[5],CDKConstants.BONDORDER_SINGLE));
         query.addBond(new OrderQueryBond(ring[0], n, CDKConstants.BONDORDER_SINGLE));
         
+        
+        AnyAtom r = new ReallyAnyAtom();
+        r.setSymbol(R);r.setID("R1");
+        
+        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE));
+        r = new ReallyAnyAtom();
+        r.setSymbol(R);r.setID("R2");
+        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE));        
+        //substituents
+        
+        for (int i=1; i < 6; i++) {
+            AnyAtom any = new ReallyAnyAtom(); any.setSymbol(R);
+            SubstituentExtractor.setSubstituentNumber(mark,any,new SubstituentPosition(i+1,false));
+            any.setID("Subst"+Integer.toString(i+1));
+            query.addAtom(any);
+            query.addBond(new AnyOrderQueryBond(ring[i],any,CDKConstants.BONDORDER_SINGLE));
+        }
+        
+          return query;
+    }
+    
+/*
+ *    public static QueryAtomContainer aromaticAmine(String mark) {
+        QueryAtomContainer query = new QueryAtomContainer() {
+        	@Override
+        	public String toString() {
+        		return getID();
+        	}
+        	
+        };
+        query.setID(FunctionalGroups.AROMATIC_AMINE);
+        IQueryAtom[] ring = new IQueryAtom[6];
+        
+        IAtom a  = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.NITROGEN);
+        a.setFormalCharge(0);
+        
+        TopologySymbolQueryAtom n = new TopologySymbolQueryAtom(a,false);
+        SubstituentExtractor.setSubstituentNumber(mark,n,new SubstituentPosition(1,false));
+        n.setID("N");
+        query.addAtom(n);
+        //ring
+        for (int i=0; i < 6; i++) {
+        	//commented for test only
+            ring[i] = new TopologySymbolQueryAtom(
+            		MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON),true);
+
+        	//ring[i] = new AnyAtom();ring[i].setSymbol(R);
+            ring[i].setID(Integer.toString(i+1));
+            SubstituentExtractor.setSubstituentNumber(mark,ring[i],new SubstituentPosition(i+1,true));
+            //ring[i].setProperty(SubstituentExtractor._RING,SubstituentExtractor.yes);
+            query.addAtom(ring[i]);
+            if (i>0) {
+                query.addBond(new AromaticQueryBond(ring[i], ring[i-1],CDKConstants.BONDORDER_SINGLE));
+            }
+        }
+        query.addBond(new AromaticQueryBond(ring[0], ring[5],CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(ring[0], n, CDKConstants.BONDORDER_SINGLE));
+        
         AnyAtom r = new AnyAtom();r.setSymbol(R);r.setID("R1");
         
         query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE));
@@ -605,9 +663,22 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         }
           return query;
     }
+ */
 
 }
 
 interface ISubstituentAction<T> {
 	T processSubstituent(IAtomContainer substituent,String mark, SubstituentPosition place, int atomIndex);
+}
+
+/**
+ * want to return true ALWAYS
+ * @author nina
+ *
+ */
+class ReallyAnyAtom extends AnyAtom {
+	@Override
+	public boolean matches(IAtom atom) {
+		return true;
+	}
 }
