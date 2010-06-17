@@ -32,7 +32,7 @@ public class CategoryNonMutagen extends MutantCategory {
 	private static final long serialVersionUID = -2260409185436019402L;
 
 	public CategoryNonMutagen() {
-		super("Unlikely to be a S. typhimurium TA100 mutagen based on QSAR",5,4);
+		super("Unlikely to be a S. typhimurium TA100 mutagen based on QSAR",4,4);
 		setExplanation("Assigned according to the output of <a href=\"#QSAR6\">QSAR6</a> or <a href=\"#QSAR13\">QSAR13</a>");
 	}
 }

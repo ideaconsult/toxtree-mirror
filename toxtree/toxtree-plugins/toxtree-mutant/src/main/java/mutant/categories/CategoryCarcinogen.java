@@ -32,7 +32,7 @@ public class CategoryCarcinogen extends MutantCategory {
 	private static final long serialVersionUID = -7529107918115308743L;
 
 	public CategoryCarcinogen() {
-		super("Potential carcinogen based on QSAR",6,6);
+		super("Potential carcinogen based on QSAR",5,6);
         setExplanation("Assigned according to the output of <a href=\"#QSAR8\">QSAR8 (aromatic amines)</a>");
 	}
 
