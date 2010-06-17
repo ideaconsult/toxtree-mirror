@@ -27,14 +27,17 @@ package toxTree.ui.molecule;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.FontMetrics;
 import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import toxTree.data.DataContainer;
 
@@ -86,7 +89,7 @@ public class NavigationPanel extends JPanel implements Observer {
         nav[0] = createLabel("<html><u><b> First</b></u></html>",
                 "Click here to go to the first molecule of the set"
                 );
-        nav[0].addMouseListener(new MouseAdapter() {
+        nav[0].addMouseListener(new NavigatorMouseAdapter() {
 	   		@Override
 			public void mouseClicked(MouseEvent e) {
 	   			dataContainer.first();
@@ -95,7 +98,7 @@ public class NavigationPanel extends JPanel implements Observer {
         nav[1] = createLabel("<html><u><b> Prev</b></u></html>",
                 "Click here to go to the previous molecule of the set"
                 );
-        nav[1].addMouseListener(new MouseAdapter() {
+        nav[1].addMouseListener(new NavigatorMouseAdapter() {
 	   		@Override
 			public void mouseClicked(MouseEvent e) {
 	   			dataContainer.prev();
@@ -104,7 +107,7 @@ public class NavigationPanel extends JPanel implements Observer {
         nav[2] = createLabel("<html><u><b> Next</b></u></html>",
                 "Click here to go to the next molecule of the set"
                 );
-        nav[2].addMouseListener(new MouseAdapter() {
+        nav[2].addMouseListener(new NavigatorMouseAdapter() {
 	   		@Override
 			public void mouseClicked(MouseEvent e) {
 	   			dataContainer.next();
@@ -113,13 +116,22 @@ public class NavigationPanel extends JPanel implements Observer {
         nav[3] = createLabel("<html><u><b> Last</b></u></html>",
                 "Click here to go to the last molecule of the set"
                 );
-        nav[3].addMouseListener(new MouseAdapter() {
+        nav[3].addMouseListener(new NavigatorMouseAdapter() {
 	   		@Override
 			public void mouseClicked(MouseEvent e) {
 	   			dataContainer.last();
 	   		}
 	    });	        
 	    navStat = createLabel("<html><font color=blue><b>1/1</b></font></html>","Number of molecules in the set loaded.");
+	    
+	    FontMetrics metric = getFontMetrics(getFont());
+	    Dimension d = new Dimension(metric.stringWidth("Next")*2,(int) (metric.getHeight()*1.66));
+	    for (int i = 0; i < nav.length; i++) {
+	    	nav[i].setHorizontalAlignment(SwingConstants.CENTER);
+	    	nav[i].setHorizontalTextPosition(SwingConstants.CENTER);
+	    	nav[i].setVerticalTextPosition(SwingConstants.CENTER);
+	    	nav[i].setPreferredSize(d);
+	    }
 	    
         for (int i = 0; i < 2; i++) add(nav[i]);
         add(navStat);
@@ -152,4 +164,18 @@ public class NavigationPanel extends JPanel implements Observer {
         label.setToolTipText(tooltip);
         return label;
 	}	
+}
+
+class NavigatorMouseAdapter extends MouseAdapter {
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		super.mouseEntered(e);
+		((JLabel)e.getComponent()).setBorder(BorderFactory.createLineBorder(Color.gray));
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		super.mouseExited(e);
+		//e.getComponent().setBackground(Color.black);
+		((JLabel)e.getComponent()).setBorder(null);
+	}
 }
