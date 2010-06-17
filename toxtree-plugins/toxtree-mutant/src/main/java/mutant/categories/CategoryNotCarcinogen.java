@@ -32,7 +32,7 @@ public class CategoryNotCarcinogen extends MutantCategory {
 	private static final long serialVersionUID = -6303680085070012246L;
 
 	public CategoryNotCarcinogen() {
-		super("Unlikely to be a carcinogen based on QSAR",7,4);
+		super("Unlikely to be a carcinogen based on QSAR",6,4);
         setExplanation("Assigned according to the output of <a href=\"#QSAR8\">QSAR8</a>");
 	}
 }

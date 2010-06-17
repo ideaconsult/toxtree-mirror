@@ -34,7 +34,7 @@ public class QSARApplicable extends MutantCategory {
 	
 
 	public QSARApplicable() {
-		super("For a better assessment a QSAR calculation could be applied.",8,7);
+		super("For a better assessment a QSAR calculation could be applied.",7,7);
         setExplanation("Assigned when one of <a href=\"#QSAR6\">QSAR6</a>, <a href=\"#QSAR8\">QSAR8</a> or <a href=\"#QSAR13\">QSAR13</a> is applicable, but the user chooses not to apply a QSAR");
 	}
     public QSARApplicable(int id) {

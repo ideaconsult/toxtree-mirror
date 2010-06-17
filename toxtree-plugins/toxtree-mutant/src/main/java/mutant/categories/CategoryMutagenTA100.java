@@ -33,7 +33,7 @@ public class CategoryMutagenTA100 extends MutantCategory {
 	private static final long serialVersionUID = -6248692451136892104L;
 
 	public CategoryMutagenTA100() {
-		super("Potential S. typhimurium TA100 mutagen based on QSAR",4,5);
+		super("Potential S. typhimurium TA100 mutagen based on QSAR",3,5);
         setExplanation("Assigned according to the output of <a href=\"#QSAR6\">QSAR6</a> or <a href=\"#QSAR13\">QSAR13</a>");
 	}
 }

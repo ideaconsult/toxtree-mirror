@@ -6,7 +6,7 @@ public class CategoryError extends MutantCategory {
 	}
 	public CategoryError(String explanation) {
 
-		super(explanation,9,9);
+		super(explanation,10,10);
         setExplanation(explanation);
 	}	
 }
