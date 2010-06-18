@@ -60,9 +60,17 @@ public class Rule171 extends Rule151 {
 		
 	}
 
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		if (super.verifyRule(mol)) 
-			if ((FunctionalGroups.hasGroup(mol,halogenAtAlphaUnsaturated)) || (FunctionalGroups.hasGroup(mol,halogenAtBetaUnsaturated))) {
+	@Override
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
+
+		if (super.verifyRule(mol,selected)) 
+			if ((FunctionalGroups.hasGroup(mol,halogenAtAlphaUnsaturated,selected)) || 
+				(FunctionalGroups.hasGroup(mol,halogenAtBetaUnsaturated,selected))) {
 				logger.debug("alpha-, beta- halogen substituted compounds");
 				return false;
 			} else return true;

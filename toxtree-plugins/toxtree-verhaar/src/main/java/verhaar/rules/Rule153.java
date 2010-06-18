@@ -57,17 +57,23 @@ public class Rule153 extends RuleOnlyAllowedSubstructures {
 		examples[1] = "c1ccccc1CCCCO"; //towa dali e wiarno
 		editable = false;
 	}
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+	@Override
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    if (mf.isAromatic())  {
 	    	logger.debug("Aromatic\tYES");
-			if (super.verifyRule(mol)) {
-				if (FunctionalGroups.hasGroup(mol,phenol)) {
+			if (super.verifyRule(mol,selected)) {
+				if (FunctionalGroups.hasGroup(mol,phenol,selected)) {
 					logger.debug("Phenol\tYES");
 					return false;
-				} else if (FunctionalGroups.hasGroup(mol,benzylAlcohol)) {
+				} else if (FunctionalGroups.hasGroup(mol,benzylAlcohol,selected)) {
 					logger.debug("Benzylic alcohol\tYES");
 					return false;
 				} else return true;

@@ -55,10 +55,16 @@ public class Rule154 extends RuleOnlyAllowedSubstructures {
 		editable = false;
 	}
 	
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+	@Override
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 		//TODO check for a b unsaturated
-		if (super.verifyRule(mol)) {
-			if (FunctionalGroups.hasGroup(mol,ketone_a_b_unsaturated)) {
+		if (super.verifyRule(mol,selected)) {
+			if (FunctionalGroups.hasGroup(mol,ketone_a_b_unsaturated,selected)) {
 				logger.debug("Ketone a,b-unsaturated\tYES");
 				return false;
 			} else return true;

@@ -84,9 +84,16 @@ public class Rule21 extends RuleRingMainStrucSubstituents {
 		return verhaar.query.FunctionalGroups.phenol();
 	}
 	//TODO check for one nitro and up to 3 Cl
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	@Override
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
+
 		logger.info(toString());
-		if ((mainStructure != null) && (!FunctionalGroups.hasGroup(mol,mainStructure))) {
+		if ((mainStructure != null) && (!FunctionalGroups.hasGroup(mol,mainStructure,selected))) {
 			logger.debug(mainStructure.getID(),"\tNO");
 			return false;
 		}

@@ -55,17 +55,23 @@ public class Rule152 extends RuleOnlyAllowedSubstructures {
 		examples[1] = "CCCCC(O)CC";
 		editable = false;
 	}
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+	@Override
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol,null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    if (mf.isAliphatic())  {
 	    	logger.debug("Aliphatic\tYES");
-			if (super.verifyRule(mol)) {
+			if (super.verifyRule(mol,selected)) {
 				if (mf.isAcetylenic()) {
 					logger.debug("Propargylic alcohol\tYES");
 					return false;
-				} else if (FunctionalGroups.hasGroup(mol,allyl)) {
+				} else if (FunctionalGroups.hasGroup(mol,allyl,selected)) {
 					logger.debug("Allylic alcohol\tYES");
 					return false;
 				} else return true;
