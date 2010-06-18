@@ -24,20 +24,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import org.openscience.cdk.interfaces.IAtomContainer;
-
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.query.FunctionalGroups;
 import toxTree.tree.rules.DefaultAlertCounter;
 import toxTree.tree.rules.IAlertCounter;
-import toxTree.tree.rules.RuleAnySubstructure;
+import toxTree.tree.rules.StructureAlertAmbit;
 
 /**
  * Aromatic ring N-oxide. TODO - aromatic ring is not recognized for unknown reason.
  * @author Nina Jeliazkova
  *
  */
-public class SA26 extends RuleAnySubstructure implements IAlertCounter {
+public class SA26 extends StructureAlertAmbit {
 	/**
 	 * 
 	 */
@@ -55,15 +51,14 @@ public class SA26 extends RuleAnySubstructure implements IAlertCounter {
         //"O=[N+]([O-])C5=CC=C2C=CC3=C1C=CC=CC1=[N+]([O-])C=4C=CC5(=C2C3=4)";   
         editable = false;
         
-        addSubstructure(FunctionalGroups.noxide_aromatic());
+        //addSubstructure(FunctionalGroups.noxide_aromatic());
+        try {
+        	addSubstructure("[n+]!@[O-]");
+        } catch (Exception x) {
+        	
+        }
     }	
-    @Override
-    public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-    	if (super.verifyRule(mol)) {
-    		incrementCounter(mol);
-    		return true;
-    	} else return false;
-    }
+    /*
 	
 	public void incrementCounter(IAtomContainer mol) {
 		alertsCounter.incrementCounter(mol);
@@ -77,7 +72,7 @@ public class SA26 extends RuleAnySubstructure implements IAlertCounter {
 		b.append(".java");
 		return b.toString();
 	}
-	
+	*/
 
 }
 
