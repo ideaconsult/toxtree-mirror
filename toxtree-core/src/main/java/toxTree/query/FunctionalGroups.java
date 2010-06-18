@@ -2089,10 +2089,13 @@ public class FunctionalGroups {
      * @throws CDKException
      */
     public static boolean hasAnySubstructure(IAtomContainer mol, ArrayList query ) throws CDKException {
+    	return hasAnySubstructure(mol, query,null);
+    }
+    public static boolean hasAnySubstructure(IAtomContainer mol, ArrayList query ,IAtomContainer selected) throws CDKException {
 	    if ((query == null) || (query.size() == 0)) return false;
 	    else
 	    	for (int i=0; i < query.size(); i++) 
-	    		if (FunctionalGroups.hasGroup(mol, (IAtomContainer) query.get(i))) return true;
+	    		if (FunctionalGroups.hasGroup(mol, (IAtomContainer) query.get(i),selected)) return true;
 		return false;	    
     }
     /**

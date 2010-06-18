@@ -59,10 +59,13 @@ public class RuleAnySubstructure extends RuleSubstructures {
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	};
+	public boolean verifyRule(IAtomContainer  mol,IAtomContainer selected) throws DecisionMethodException {
 		logger.info(getID());
 		try {
-			return FunctionalGroups.hasAnySubstructure(mol,query);
+			return FunctionalGroups.hasAnySubstructure(mol,query,selected);
 		} catch (CDKException x) {
 			throw new DecisionMethodException(x);
 		}
