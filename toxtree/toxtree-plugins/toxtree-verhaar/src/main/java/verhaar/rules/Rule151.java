@@ -59,10 +59,14 @@ public class Rule151 extends RuleOnlyAllowedSubstructures {
 		examples[1] = "C(C)CCC(COC)C";
 		editable = false;
 	}
-
+	@Override
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		return verifyRule(mol,null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol,IAtomContainer selected) throws DecisionMethodException {
 		FunctionalGroups.markCHn(mol);
-		if (super.verifyRule(mol)) {
+		if (super.verifyRule(mol,selected)) {
 		    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 		    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 		    IRingSet rings = mf.getRingset();
@@ -74,12 +78,12 @@ public class Rule151 extends RuleOnlyAllowedSubstructures {
 		    		logger.info("Monocyclic\tYES");
 		    		logger.info("Verify if mono-ether\tNOT IMPLEMENTED");
 		    		
-		    		if (FunctionalGroups.hasGroup(mol,epoxide)) {
+		    		if (FunctionalGroups.hasGroup(mol,epoxide,selected)) {
 		    			logger.info("Epoxide\tYES");
 		    			return false;
 		    		}
 		    	}
-    		if (FunctionalGroups.hasGroup(mol,peroxide)) {
+    		if (FunctionalGroups.hasGroup(mol,peroxide,selected)) {
     			logger.info("Peroxide\tYES");
     			return false;
     		} else return true;

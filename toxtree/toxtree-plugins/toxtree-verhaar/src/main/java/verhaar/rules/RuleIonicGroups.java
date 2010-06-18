@@ -51,9 +51,13 @@ public class RuleIonicGroups extends RuleSubstructures {
 		editable = false;
 		
 	}
-
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		return !FunctionalGroups.hasGroup(mol,getSubstructure(0));
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
+		return !FunctionalGroups.hasGroup(mol,getSubstructure(0),selected);
 	}
 	public boolean isImplemented() {
 		return true;

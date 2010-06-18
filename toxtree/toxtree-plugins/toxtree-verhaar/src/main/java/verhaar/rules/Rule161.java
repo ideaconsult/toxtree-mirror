@@ -52,13 +52,20 @@ public class Rule161 extends RuleOnlyAllowedSubstructures {
 		editable = false;
 	}
 	
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+	@Override
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
+
 		logger.info(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    if (mf.isAliphatic()) {
 	    	logger.info("Aliphatic\t",MSG_YES);
-			return super.verifyRule(mol);
+			return super.verifyRule(mol,selected);
 	    } else return false;
 
 	}
