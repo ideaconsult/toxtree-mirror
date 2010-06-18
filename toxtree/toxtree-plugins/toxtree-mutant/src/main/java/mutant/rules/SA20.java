@@ -27,11 +27,15 @@ package mutant.rules;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRing;
+import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+
+import ambit2.base.interfaces.IProcessor;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.DefaultAlertCounter;
 import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleRingSubstituents;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 public class SA20 extends RuleRingSubstituents implements IAlertCounter {
 	/**
@@ -123,6 +127,13 @@ public class SA20 extends RuleRingSubstituents implements IAlertCounter {
 	public boolean isImplemented() {
 		return true;
 	}
+	
+    @Override
+    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
+    	try { rule.addSubstructure("[#6;R]!@[Cl,Br,I,F]"); } catch (Exception x) {x.printStackTrace();};
+    	return rule.getSelector();
+    }
 }
 
 
