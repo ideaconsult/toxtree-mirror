@@ -84,7 +84,7 @@ public class SkinSensitisationPlugin extends UserDefinedTree  implements IDecisi
 			*/
 			setTitle("Skin Sensitisation Alerts");
 			setExplanation(
-					"Identification of structural alerts related to the mechanisms of toxic actions for skin sensitisation using SMARTS derived by M. T. D. Cronin, et al.");
+					"Enoch SJ, Madden JC, Cronin MT,Identification of mechanisms of toxic action for skin sensitisation using a SMARTS pattern based approach.,SAR QSAR Environ Res. 2008;19(5-6):555-78.");
 					
 
 	        setPriority(50);
