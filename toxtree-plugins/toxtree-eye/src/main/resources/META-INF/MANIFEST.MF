@@ -1,5 +1,5 @@
 Manifest-version: 2.1.0
-Class-Path: toxtree-sicret-2.1.0-SNAPSHOT.jar
+Class-Path: toxtree-sicret-2.1.0.jar
 Specification-Title: Eye irritation
 Specification-Version: 2.1.0
 Specification-Vendor: Vania Tsakovska
