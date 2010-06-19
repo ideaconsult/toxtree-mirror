@@ -1,4 +1,4 @@
-Manifest-version:2.1.0
+Manifest-version: 2.1.0
 Specification-Title: Benigni / Bossa rulebase (for mutagenicity and carcinogenicity)
 Specification-Version: 2.1.0
 Specification-Vendor: Ideaconsult LTD
