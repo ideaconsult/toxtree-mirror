@@ -131,6 +131,7 @@ public class CompoundPanel extends JPanel implements   Observer, PropertyChangeL
         strucPanel.add(label,BorderLayout.NORTH);
         
         picturePanel = new Panel2D();
+        picturePanel.setEditable(false);
         picturePanel.setBorder(BorderFactory.createLineBorder(fColor));
         //picturePanel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 		picturePanel.setBackground(new Color(255, 255, 255));
