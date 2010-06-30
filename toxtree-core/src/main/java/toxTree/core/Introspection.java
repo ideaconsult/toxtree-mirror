@@ -123,7 +123,7 @@ public class Introspection {
 	public static Class implementsInterface(String className,
 			String interfaceName) throws toxTree.exceptions.IntrospectionException {
 		try {
-			System.out.println(className);
+			//System.out.println(className);
 			Class clazz = Class.forName(className);
 			int modifier = clazz.getModifiers();
 			if (Modifier.isAbstract(modifier))
@@ -269,7 +269,7 @@ public class Introspection {
 				Enumeration entries = jar.entries();
 				if (loader != null)
 					loader.addURL(files[i].toURL());
-				System.out.println(files[i]);
+				//System.out.println(files[i]);
 				while (entries.hasMoreElements()) {
 					JarEntry entry = (JarEntry) entries.nextElement();
 					if (!entry.getName().endsWith("class"))
@@ -425,7 +425,7 @@ public class Introspection {
 			}
 			
 			loader = new ToxTreeClassLoader(defaultURL, classLoader);
-			System.out.println("Now loader "+loader);
+			//System.out.println("Now loader "+loader);
 		}
 		
 	}
@@ -488,7 +488,7 @@ public class Introspection {
     }
     public static IDecisionMethod loadRulesXML(InputStream stream, String newTitle)  throws IntrospectionException {
 		try {
-			System.out.println("Classloader "+loader);
+			//System.out.println("Classloader "+loader);
 			if (loader == null) {
 				setLoader(null); //this will trigger creation of the right classloader			
 			}
