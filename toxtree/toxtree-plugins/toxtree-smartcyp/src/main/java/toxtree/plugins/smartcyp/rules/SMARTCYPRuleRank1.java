@@ -38,7 +38,7 @@ public class SMARTCYPRuleRank1 extends AbstractRule {
 		super();
 		setRank(rank);
 		setID(String.format("%d",rank));
-		setTitle(String.format("Rank%d",rank));
+		setTitle("SMARTCyp primary sites of metabolism");
 		setExplanation(String.format("Rank%d",rank));
 		setEditable(false);
 		setExamples(new String[] {

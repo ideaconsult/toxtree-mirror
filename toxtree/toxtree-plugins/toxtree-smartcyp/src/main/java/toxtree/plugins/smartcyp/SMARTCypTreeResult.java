@@ -25,7 +25,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.plugins.smartcyp;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -34,7 +33,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionCategory;
-import toxTree.core.IDecisionRule;
 import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DMethodNotAssigned;
 import toxTree.exceptions.DecisionResultException;
@@ -48,43 +46,110 @@ import toxtree.plugins.smartcyp.cyp450.MoleculeKU.SMARTCYP_PROPERTY;
 
 
 public class SMARTCypTreeResult extends TreeResult {
- 
+	public final static String FORMAT = "SMARTCyp.Rank%s%d.%s";
 
 	public void assignResult(IAtomContainer mol) throws DecisionResultException {
 		if (mol == null) return;
 		IDecisionCategories c = decisionMethod.getCategories();
 		for (int i=0; i < c.size();i++) {
-			String result = Answers.toString(Answers.NO);
-			if (getAssignedCategories().indexOf(c.get(i))>-1)
-				result = Answers.toString(Answers.YES);
-			mol.setProperty(
-	        		c.get(i).toString(),
-	                result);
+			String q=c.get(i).getID()==4?">=":"";
+			Object result = Answers.toString(Answers.NO);
+			if (getAssignedCategories().indexOf(c.get(i))>-1) {
+				result = getAtomScoresOfRank(((RuleResult)ruleResults.get(0)).getMolecule(),c.get(i).getID(),null); //Answers.toString(Answers.YES);
+				mol.setProperty(c.get(i).toString(),result);
+				
+				result = getAtomScoresOfRank(((RuleResult)ruleResults.get(0)).getMolecule(),c.get(i).getID(),SMARTCYP_PROPERTY.Score);
+				mol.setProperty(String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Score),result==null?Double.NaN:result);
+				result = getAtomScoresOfRank(((RuleResult)ruleResults.get(0)).getMolecule(),c.get(i).getID(),SMARTCYP_PROPERTY.Energy);
+				mol.setProperty(String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Energy),result==null?Double.NaN:result);
+				result = getAtomScoresOfRank(((RuleResult)ruleResults.get(0)).getMolecule(),c.get(i).getID(),SMARTCYP_PROPERTY.Accessibility); 
+				mol.setProperty(String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Accessibility),result==null?Double.NaN:result);
+			} else {
+				mol.setProperty(c.get(i).toString(),"");
+				mol.setProperty(String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Score),Double.NaN);
+				mol.setProperty(String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Energy),Double.NaN);
+				mol.setProperty(String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Accessibility),Double.NaN);
+				
+			}
 		}
-
-        String paths = getClass().getName()+"#explanation";
-        if (getDecisionMethod().getRules().size() > 1) {
-	        mol.setProperty(
-	        		paths,
-	                explain(false).toString());
-	        Hashtable<String,String> b = getExplanation(mol);
-	        Enumeration<String> k = b.keys();
-	        while (k.hasMoreElements()) {
-	        	String key = k.nextElement();
-	        	mol.setProperty(key,b.get(key));
-	        }
-        } else
-        	mol.removeProperty(paths);
+     	
         firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);        
 
+        
+        
 	}
+	protected Object getAtomScoresOfRank(IAtomContainer moleculeKU,Integer rank,SMARTCYP_PROPERTY property) {
+           
+           List atoms = new ArrayList();
 
+   			// Iterate Atoms
+            	
+  			for(int atomIndex = 0; atomIndex < moleculeKU.getAtomCount()  ; atomIndex++ ){
+
+    				IAtom currentAtom = (IAtom) moleculeKU.getAtom(atomIndex);
+
+    				if (SMARTCYP_PROPERTY.Ranking.get(currentAtom) == null) continue; 
+    				int atomRank = SMARTCYP_PROPERTY.Ranking.get(currentAtom).intValue();
+    				if (rank==4) 
+    					if (atomRank<rank) continue; 
+    					else {}
+    				else if (atomRank != rank) continue; 
+    				// Match atom symbol
+    				String currentAtomType = currentAtom.getSymbol();
+    				if(currentAtomType.equals("C") || currentAtomType.equals("N") || currentAtomType.equals("P") || currentAtomType.equals("S")) {
+    					
+    					if (property ==null)
+    						atoms.add(String.format("%s%s",currentAtom.getSymbol(),currentAtom.getID()));
+    					else
+    						if (property.get(currentAtom)!=null) 
+    							if (atoms.indexOf(property.get(currentAtom)) == -1)
+    								atoms.add(property.get(currentAtom));
+
+    					/*
+    					mol.setProperty(String.format("%s_%s_%s",currentAtom.getSymbol(),currentAtom.getID(),SMARTCYP_PROPERTY.Ranking),
+    							SMARTCYP_PROPERTY.Ranking.get(currentAtom));
+    					
+    					if (SMARTCYP_PROPERTY.Score.get(currentAtom)!=null)
+    					mol.setProperty(String.format("%s_%s_%s",currentAtom.getSymbol(),currentAtom.getID(),SMARTCYP_PROPERTY.Score),
+    							SMARTCYP_PROPERTY.Score.get(currentAtom));   
+    					
+    					if (SMARTCYP_PROPERTY.Energy.get(currentAtom)!=null)
+    					mol.setProperty(String.format("%s_%s_%s",currentAtom.getSymbol(),currentAtom.getID(),SMARTCYP_PROPERTY.Energy),
+    							SMARTCYP_PROPERTY.Energy.get(currentAtom));   
+    					
+    					mol.setProperty(String.format("%s_%s_%s",currentAtom.getSymbol(),currentAtom.getID(),SMARTCYP_PROPERTY.Accessibility),
+    							SMARTCYP_PROPERTY.Accessibility.get(currentAtom));   
+    							*/             					
+   				}
+   			}
+			
+			if (atoms.size()>1) {
+				StringBuffer b = new StringBuffer();
+				String delimiter = "";
+				for (Object atom:atoms) {b.append(delimiter); b.append(atom); delimiter=",";}
+		           return b.toString();	
+			} else if (atoms.size()==1) return atoms.get(0);
+			else return null;
+			
+
+	}	
 	@Override
 	public String[] getResultPropertyNames() {
 		IDecisionCategories c = decisionMethod.getCategories();
-		String[] names = new String[c.size()];
+		
+		SMARTCYP_PROPERTY[] p = new SMARTCYP_PROPERTY[] {SMARTCYP_PROPERTY.Score,SMARTCYP_PROPERTY.Energy,SMARTCYP_PROPERTY.Accessibility}; 
+		String[] names = new String[c.size()*(p.length+1)];
 		for (int i=0; i < c.size();i++) 
-			names[i] = c.get(i).toString();
+			names[i] = c.get(i).toString(); //atoms per rank
+
+		int n = c.size();
+		for (int j=0; j < p.length;j++) //scores per rank
+			for (int i=0; i < c.size();i++) { 
+				names[n] = String.format(FORMAT,"",c.get(i).getID(),p[j]);
+				n++;
+			}	
+			//names[i] = c.get(i).toString();
+
 		return names;
 	}
 	
@@ -97,6 +162,7 @@ public class SMARTCypTreeResult extends TreeResult {
         return residues;
     }
 
+/*
 	protected void assignAtomScores(IDecisionRule rule, IAtomContainer moleculeKU,IAtomContainer mol) {
 		if (mol != null) {
             
@@ -134,6 +200,9 @@ public class SMARTCypTreeResult extends TreeResult {
 
             }
 	}
+*/
+	
+	
 	public Hashtable<String,String> getExplanation(IAtomContainer mol) throws DecisionResultException {
 		Hashtable<String,String> b = new  Hashtable<String,String>();
         ArrayList<IAtomContainer> residues = getAllAssignedMolecules();
@@ -151,15 +220,15 @@ public class SMARTCypTreeResult extends TreeResult {
 		    			)
 		    			) { //not a leaf node or an alert
 		    			if (r.isResult()) {
-		    				b.put(r.getRule().getID(),Answers.toString(Answers.YES));
-		    				assignAtomScores(r.getRule(),r.getMolecule(),mol);
+		    				Object result = getAtomScoresOfRank(((RuleResult)ruleResults.get(0)).getMolecule(),r.getCategory().getID(),null);
+		    				b.put(r.getRule().getID(),result==null?Answers.toString(Answers.YES):result.toString()); 
 		    			} else 
 		    				b.put(r.getRule().getID(),Answers.toString(Answers.NO));
 		    		}
 		    		//Use this to get descriptor values 
                     
-		    		if (r.isResult())
-		    			assignAtomScores(r.getRule(),r.getMolecule(),mol);
+		    		//if (r.isResult())
+		    			//assignAtomScores(r.getRule(),r.getMolecule(),mol);
 		    		}
 		    	
 		    } else if (status.isEstimating()) {
