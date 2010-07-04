@@ -24,6 +24,7 @@ import java.io.Serializable;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
+import ambit2.core.data.IStructureDiagramHighlights;
 
 /*
  * Created on 2005-4-30
@@ -46,7 +47,7 @@ import toxTree.exceptions.DecisionMethodException;
  * @author Nina Jeliazkova <br>
  * @version 0.1, 2005-4-30
  */
-public interface IDecisionMethod extends Serializable, Cloneable,IDecisionMethodPrority {
+public interface IDecisionMethod extends Serializable, Cloneable,IDecisionMethodPrority, IStructureDiagramHighlights {
     String getTitle();
     void setTitle(String value);
     String getExplanation();
@@ -88,4 +89,6 @@ public interface IDecisionMethod extends Serializable, Cloneable,IDecisionMethod
 	 */
 	IDecisionMethodEditor getEditor();	
     void setParameters(IAtomContainer mol) ;
+    
+    
 }

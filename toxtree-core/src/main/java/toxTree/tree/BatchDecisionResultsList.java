@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 package toxTree.tree;
 
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
@@ -43,6 +44,7 @@ import toxTree.core.IProcessRule;
 import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
+import ambit2.base.exceptions.AmbitException;
 
 /**
  * Encapsulates {@link DecisionResultsList} as {@link IDecisionMethod}.
@@ -437,5 +439,10 @@ public class BatchDecisionResultsList extends DecisionResultsList implements IDe
     		throws DecisionResultException {
     	throw new DecisionResultException("Not implemented");
     	
+    }
+    public BufferedImage getStructureDiagramWithHighlights(IAtomContainer mol,
+    		String ruleID, int width, int height, boolean atomnumbers)
+    		throws AmbitException {
+    	throw new AmbitException("not implemented");
     }
 }
