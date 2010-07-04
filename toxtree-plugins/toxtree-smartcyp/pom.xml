@@ -30,6 +30,7 @@ Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen, SM
   	</developer>
   </developers>
   <build>
+  <!-- 
   	<plugins>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -55,5 +56,6 @@ Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen, SM
 				</executions>
 			</plugin>
   	</plugins>
+  	 -->
   </build>  
 </project>
