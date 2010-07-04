@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.tree;
 
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.DataOutputStream;
@@ -59,6 +61,9 @@ import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 import toxTree.ui.tree.TreeEditorPanel;
 import toxTree.ui.tree.TreeOptions;
+import ambit2.base.exceptions.AmbitException;
+import ambit2.base.interfaces.IProcessor;
+import ambit2.core.io.CompoundImageTools;
 
 
 /**
@@ -559,4 +564,17 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
     	
 
     }    
+    public BufferedImage getStructureDiagramWithHighlights(IAtomContainer mol,String ruleID,int width,int height,boolean atomnumbers) throws AmbitException {
+    	IDecisionRuleList rules = getRules();
+    	IProcessor<IAtomContainer,IChemObjectSelection> selector = null;
+    	for (int i=0; i < rules.size();i++) {
+    		IDecisionRule rule = rules.get(i);
+    		if (rule.getID().equals(ruleID)) {
+    			selector = rule.getSelector();
+    			break;
+    		}
+    	}
+    	CompoundImageTools tools = new CompoundImageTools(new Dimension(width,height));
+    	return tools.getImage(mol, selector, true, atomnumbers);
+    }
 }

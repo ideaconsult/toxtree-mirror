@@ -443,7 +443,12 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 	public void setInteractive(boolean value) {
 		setOptions(options.setInteractive(value));
 	}
-	
+	protected ArrayResult createArrayResult(int length) {
+		return new ArrayResult<String>(new String[length]);
+	}
+	protected void setArrayValue(ArrayResult result, int index, IAtomContainer mol,String  propertyName) {
+		result.set(index,mol.getProperty(propertyName).toString());
+	}
 	public DescriptorValue calculate(IAtomContainer mol) {
 		String[] descriptorNames = null;
 		IDecisionResult result = createDecisionResult();
@@ -453,10 +458,10 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 			
 			String[] d = result.getResultPropertyNames();
 			descriptorNames = new String[d.length+1];			
-			ArrayResult<String> value = new ArrayResult<String>(new String[descriptorNames.length]);
+			ArrayResult value = createArrayResult(descriptorNames.length);
 			for (int i=0; i <  d.length;i++)
 				try {
-					value.set(i,mol.getProperty(d[i]).toString());
+					setArrayValue(value, i, mol, d[i]);
 					descriptorNames[i]=d[i];
 				} catch (Exception x) {
 					value.set(i,null);
