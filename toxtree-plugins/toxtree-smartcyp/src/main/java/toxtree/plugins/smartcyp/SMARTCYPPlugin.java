@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 
+import ambit2.core.data.ArrayResult;
+
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionResult;
@@ -192,5 +194,13 @@ public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInterac
 			p.getExplanation().equals(getExplanation());
 			
 		} else return false;
+	}
+	@Override
+	protected ArrayResult createArrayResult(int length) {
+		return new ArrayResult(new Object[length]);
+	}
+	@Override
+	protected void setArrayValue(ArrayResult result, int index, IAtomContainer mol,String  propertyName) {
+		result.set(index,mol.getProperty(propertyName));
 	}
 }
