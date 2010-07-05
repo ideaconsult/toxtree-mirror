@@ -123,7 +123,7 @@ public class RuleResult implements Serializable {
 	public StringBuffer explain(boolean verbose) {
 		return explain(verbose,-1);
 	}
-	protected static final String wwwAlertFormat = "<a href='%s/hilight?parameters=%s'>%s.%s</a>";
+	protected static final String wwwAlertFormat = "<a href='%s/hilight?parameters=%s' target='hilight'>%s.%s</a>";
 	public StringBuffer explain(boolean verbose,int ruleIndex) {
 		StringBuffer b = new StringBuffer();
 		if (!silent) 
