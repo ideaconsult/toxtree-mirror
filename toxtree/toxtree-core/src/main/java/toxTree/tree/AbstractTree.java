@@ -76,6 +76,7 @@ import ambit2.core.io.CompoundImageTools;
 public abstract class AbstractTree extends Observable implements IDecisionMethod, Observer, XMLSerializable {
 	protected static transient TTLogger logger =  new TTLogger(AbstractTree.class);
 	protected Dimension imageSize = new Dimension(150,150);
+	protected boolean web = false;
     public Dimension getImageSize() {
 		return imageSize;
 	}
@@ -586,5 +587,12 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
     	}
     	CompoundImageTools tools = new CompoundImageTools(new Dimension(width,height));
     	return tools.getImage(mol, selector, true, atomnumbers);
+    }
+    public void setWeb(Boolean web) {
+    	this.web = web;
+    	
+    }
+    public boolean isWeb() {
+    	return web;
     }
 }

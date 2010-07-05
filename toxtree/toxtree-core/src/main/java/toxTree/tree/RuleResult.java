@@ -47,19 +47,26 @@ public class RuleResult implements Serializable {
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = -7844039700306791740L;
-	public static String prefix = "http://localhost" ;
-	public static String ruleURL = String.format("%s/rule/",prefix);
-	public static String categoryURL = String.format("%s/category/",prefix);
-	public static String alertURL = String.format("%s/alerts/",prefix);
-	public static String resultURL = String.format("%s/results/",prefix);
+	public static final String prefix = "http://localhost" ;
+	public static final String ruleURL = String.format("%s/rule/",prefix);
+	public static final String categoryURL = String.format("%s/category/",prefix);
+	public static final String alertURL = String.format("%s?alerts=",prefix);
+	public static final String resultURL = String.format("%s?parameters=",prefix);
+	
 	protected IDecisionRule rule = null;
 	protected boolean result = false;
 	protected IDecisionCategory category = null;
 	protected transient IAtomContainer molecule = null;
 	protected boolean silent = false;
-	/**
-	 * 
-	 */
+	
+	protected boolean web = false;
+	 
+	public boolean isWeb() {
+		return web;
+	}
+	public void setWeb(boolean web) {
+		this.web = web;
+	}
 	public RuleResult() {
 		super();
 	}
@@ -74,6 +81,7 @@ public class RuleResult implements Serializable {
 		this.result = result;
 		this.category = category;
 	}	
+	
 	/**
 	 * @return Returns the result.
 	 */
@@ -115,33 +123,47 @@ public class RuleResult implements Serializable {
 	public StringBuffer explain(boolean verbose) {
 		return explain(verbose,-1);
 	}
+	protected static final String wwwAlertFormat = "<a href='%s/hilight?parameters=%s'>%s.%s</a>";
 	public StringBuffer explain(boolean verbose,int ruleIndex) {
 		StringBuffer b = new StringBuffer();
 		if (!silent) 
 			if (verbose) {
-				b.append(String.format("<a href=\"%s%s\" title='Show rule'><img src='%s' border='0' alt='Show rule' title='Show rule'></a>",
-						ruleURL,rule.getTitle(),this.getClass().getResource("/toxTree/ui/tree/images/find.png").toString()));
-				b.append("&nbsp;");
-				
-				if (result && (rule.isImplemented()) && (rule.getSelector()!=null))
-					if (ruleIndex<0)
-						b.append(String.format("<a href=\"%s%s\"  title='Hilight structure alert'>%s</a>",alertURL,rule.getTitle(),rule.toString()));
+				if (web)  {
+					if (result && (rule.isImplemented()) && (rule.getSelector()!=null))
+						b.append(String.format(wwwAlertFormat,"",rule.getID(),rule.getID(),rule.getTitle()));
 					else
-						b.append(String.format("<a href=\"%s%d\"  title='Hilight structure alert'>%s</a>",resultURL,ruleIndex,rule.toString()));
-				else
-					b.append(rule.toString());
-				b.append("&nbsp;");
-		
-				b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));
-				b.append("&nbsp;");
-				if (category != null) {
-					b.append(String.format("Class&nbsp;<span style='color:orange'><a href=\"%s%s\">%s</a></span>",categoryURL,category.getID(),category.toString()));
-				} else b.append("&nbsp;");
-							
-				if ((molecule != null) && (molecule.getID() != null)) {
-					b.append("\t");
-					b.append(molecule.getID());
-				} else b.append("\t");
+						b.append(rule.toString());
+					b.append("&nbsp;");
+					b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));
+					b.append("&nbsp;");		
+					if (category != null) {
+						b.append(String.format("Class&nbsp;<span style='color:black'>%s</span>",category.toString()));
+					} else b.append("&nbsp;");					
+				} else {
+					b.append(String.format("<a href=\"%s%s\" title='Show rule'><img src='%s' border='0' alt='Show rule' title='Show rule'></a>",
+							ruleURL,rule.getTitle(),this.getClass().getResource("/toxTree/ui/tree/images/find.png").toString()));
+					b.append("&nbsp;");
+					
+					if (result && (rule.isImplemented()) && (rule.getSelector()!=null))
+						if (ruleIndex<0)
+							b.append(String.format("<a href=\"%s%s\"  title='Hilight structure alert'>%s</a>",alertURL,rule.getTitle(),rule.toString()));
+						else
+							b.append(String.format("<a href=\"%s%d\"  title='Hilight structure alert'>%s</a>",resultURL,ruleIndex,rule.toString()));
+					else
+						b.append(rule.toString());
+					b.append("&nbsp;");
+			
+					b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));
+					b.append("&nbsp;");
+					if (category != null) {
+						b.append(String.format("Class&nbsp;<span style='color:orange'><a href=\"%s%s\">%s</a></span>",categoryURL,category.getID(),category.toString()));
+					} else b.append("&nbsp;");
+								
+					if ((molecule != null) && (molecule.getID() != null)) {
+						b.append("\t");
+						b.append(molecule.getID());
+					} else b.append("\t");
+				}
 			} else {
 				b.append(rule.getID());
 				if (result) b.append("Y");
