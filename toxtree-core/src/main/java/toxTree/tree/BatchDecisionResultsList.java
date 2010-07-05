@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 package toxTree.tree;
 
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -66,6 +67,14 @@ public class BatchDecisionResultsList extends DecisionResultsList implements IDe
         pssupport = new PropertyChangeSupport(this);
         status = new ProgressStatus();
     }
+    
+	protected Dimension imageSize = new Dimension(150,150);
+	public Dimension getImageSize() {
+		return imageSize;
+	}
+	public void setImageSize(Dimension imageSize) {
+		this.imageSize = imageSize;
+	}    
     public void addDecisionRule(IDecisionRule rule) throws DecisionMethodException {
         throw new DecisionMethodException("Not allowed");
         
@@ -440,9 +449,12 @@ public class BatchDecisionResultsList extends DecisionResultsList implements IDe
     	throw new DecisionResultException("Not implemented");
     	
     }
-    public BufferedImage getStructureDiagramWithHighlights(IAtomContainer mol,
+    public BufferedImage getImage(IAtomContainer mol,
     		String ruleID, int width, int height, boolean atomnumbers)
     		throws AmbitException {
     	throw new AmbitException("not implemented");
     }
+	public BufferedImage getImage(IAtomContainer mol) throws AmbitException {
+		throw new AmbitException("not implemented");
+	}
 }

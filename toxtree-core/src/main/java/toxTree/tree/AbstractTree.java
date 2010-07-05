@@ -75,7 +75,14 @@ import ambit2.core.io.CompoundImageTools;
  */
 public abstract class AbstractTree extends Observable implements IDecisionMethod, Observer, XMLSerializable {
 	protected static transient TTLogger logger =  new TTLogger(AbstractTree.class);
-    protected transient  PropertyChangeSupport changes = null;
+	protected Dimension imageSize = new Dimension(150,150);
+    public Dimension getImageSize() {
+		return imageSize;
+	}
+	public void setImageSize(Dimension imageSize) {
+		this.imageSize = imageSize;
+	}
+	protected transient  PropertyChangeSupport changes = null;
 	protected IDecisionRuleList rules;
 	
 	protected IDecisionCategories categories = null; 
@@ -564,7 +571,10 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
     	
 
     }    
-    public BufferedImage getStructureDiagramWithHighlights(IAtomContainer mol,String ruleID,int width,int height,boolean atomnumbers) throws AmbitException {
+    public BufferedImage getImage(IAtomContainer mol) throws AmbitException {
+    	return getImage(mol,null,150,150,false);
+    }
+    public BufferedImage getImage(IAtomContainer mol,String ruleID,int width,int height,boolean atomnumbers) throws AmbitException {
     	IDecisionRuleList rules = getRules();
     	IProcessor<IAtomContainer,IChemObjectSelection> selector = null;
     	for (int i=0; i < rules.size();i++) {
