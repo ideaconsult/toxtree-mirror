@@ -457,4 +457,11 @@ public class BatchDecisionResultsList extends DecisionResultsList implements IDe
 	public BufferedImage getImage(IAtomContainer mol) throws AmbitException {
 		throw new AmbitException("not implemented");
 	}
+	public void setWeb(Boolean web) {
+	
+		
+	}
+	public boolean isWeb() {
+		return false;
+	}
 }

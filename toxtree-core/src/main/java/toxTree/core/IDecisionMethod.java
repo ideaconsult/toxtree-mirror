@@ -90,5 +90,6 @@ public interface IDecisionMethod extends Serializable, Cloneable,IDecisionMethod
 	IDecisionMethodEditor getEditor();	
     void setParameters(IAtomContainer mol) ;
     
-    
+    void setWeb(Boolean web);
+    boolean isWeb();
 }

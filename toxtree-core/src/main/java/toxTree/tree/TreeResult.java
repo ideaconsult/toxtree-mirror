@@ -64,7 +64,7 @@ public class TreeResult implements IDecisionResult {
 	protected ProgressStatus status;
 	
 	protected boolean notify = true;
-
+	protected boolean web = false;
 	
 	public synchronized boolean isNotify() {
         return notify;
@@ -226,7 +226,9 @@ public class TreeResult implements IDecisionResult {
 	public void addRuleResult(IDecisionRule rule, boolean value,IAtomContainer molecule) throws DecisionResultException {
 		if (decisionMethod == null)   throw new DMethodNotAssigned(ProgressStatus._eMethodNotAssigned);
 		if (rule == null) throw new DecisionResultException("Rule # not assigned!");
-		ruleResults.add(new RuleResult(rule,value));
+		RuleResult ruleResult = new RuleResult(rule,value);
+		ruleResult.setWeb(web);
+		ruleResults.add(ruleResult);
 		setMolecule(molecule);
 	}
 	/**
@@ -312,6 +314,7 @@ public class TreeResult implements IDecisionResult {
 		    this.decisionMethod = null;
 	    
 		} else {
+			setWeb(decisionMethod.isWeb());
 		    if ((this.decisionMethod != null) &&
 		        (this.decisionMethod.equals(decisionMethod))) 
 		        return;
@@ -561,5 +564,8 @@ public class TreeResult implements IDecisionResult {
 		//firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, null);
 		
 	}
-	
+	public void setWeb(Boolean web) {
+		this.web = web;
+		
+	}
 }
