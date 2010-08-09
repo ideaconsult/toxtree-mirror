@@ -11,11 +11,25 @@
   	<name>Ideaconsult Ltd.</name>
   </organization>
   <repositories>
-  	<repository>
-        <id>website_ambit</id>
+    <repository>
+        <id>ambit-plovdiv</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/thirdparty</url>
+    </repository>
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
+  <repository>
+        <id>ambit-plovdiv-snapshots</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/snapshots</url>
+    </repository>
+
+<!--   
+     <id>website_ambit</id>
   		<url>http://ambit.sourceforge.net/jars</url>
   	</repository>
-  	<repository>
+-->  
+	<repository>
   		<id>mvnrepository</id>
   		<name>mvnrepository</name>
   		<url>http://mvnrepository.com/</url>
@@ -53,15 +67,15 @@
     <site>
       <id>website_toxtree</id>
       <url>scp://shell.sourceforge.net/home/groups/t/to/toxtree/htdocs</url>
-    </site>    
-   <snapshotRepository>
-      <id>ambit_acad</id>
-      <url>scp://iris.acad.bg/home/nina/ambit/maven</url>
-	 </snapshotRepository>
+    </site>       
+    <snapshotRepository>
+      <id>ambit-plovdiv-snapshots</id>
+      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
 
     <repository>
-      <id>website_ambit</id>
-      <url>scp://web.sourceforge.net/home/groups/a/am/ambit/htdocs/jars</url>
+      <id>ambit-plovdiv-releases</id>
+      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
     </repository>    
   </distributionManagement>
 
