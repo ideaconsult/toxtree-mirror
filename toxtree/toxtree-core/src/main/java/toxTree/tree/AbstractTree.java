@@ -63,7 +63,7 @@ import toxTree.ui.tree.TreeEditorPanel;
 import toxTree.ui.tree.TreeOptions;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
-import ambit2.core.io.CompoundImageTools;
+import ambit2.jchempaint.CompoundImageTools;
 
 
 /**
