@@ -9,16 +9,17 @@ import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
+import toxTree.ui.tree.categories.CategoriesRenderer;
 import toxtree.plugins.smartcyp.cyp450.MoleculeKU;
 import toxtree.plugins.smartcyp.cyp450.SMARTSnEnergiesTable;
 import toxtree.plugins.smartcyp.cyp450.MoleculeKU.SMARTCYP_PROPERTY;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.MoleculeTools;
+import ambit2.jchempaint.CompoundImageTools;
 
 public class SMARTCYPRuleRank1 extends AbstractRule {
-
-
+	protected static final CategoriesRenderer categoriesRenderer = new CategoriesRenderer(4);
 	/**
 	 * 
 	 */
@@ -129,8 +130,10 @@ public class SMARTCYPRuleRank1 extends AbstractRule {
 			
 			for (IAtom atom: newmol.atoms()) {
 				Number atom_rank = SMARTCYP_PROPERTY.Ranking.get(atom);
-				if((atom_rank!=null) && hasRank(atom_rank.intValue()))
+				if((atom_rank!=null) && hasRank(atom_rank.intValue())) {
+						atom.setProperty(CompoundImageTools.SELECTED_ATOM_COLOR,categoriesRenderer.getShowColor(atom_rank.intValue()-1));
 					selected.addAtom(atom);
+				}
 			}
 			return selected.getAtomCount()>0;
 		} catch (Exception x) {

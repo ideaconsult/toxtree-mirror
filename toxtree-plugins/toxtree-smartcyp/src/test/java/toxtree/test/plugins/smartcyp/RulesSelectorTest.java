@@ -28,12 +28,24 @@ public class RulesSelectorTest {
 	public void testRuleHilights() throws Exception {
 		SMARTCYPPlugin rules = new SMARTCYPPlugin();
 		IMolecule mol = MoleculeFactory.makeAlkane(6);
-	    BufferedImage image = rules.getImage(mol, "1", 200,200,false);
+	    BufferedImage image = rules.getImage(mol, "2", 200,200,false);
 	    File file = new File(String.format("%s/test.png",System.getProperty("java.io.tmpdir")));
 	    file.deleteOnExit();
 		ImageIO.write(image, "png", file) ;
 		Assert.assertTrue(file.exists());
 
 	}
+	
+	@Test
+	public void testTreeHilights() throws Exception {
+		SMARTCYPPlugin rules = new SMARTCYPPlugin();
+		IMolecule mol = MoleculeFactory.makeAlkane(6);
+	    BufferedImage image = rules.getImage(mol,null, 200,200,false);
+	    File file = new File(String.format("%s/test.png",System.getProperty("java.io.tmpdir")));
+	    file.deleteOnExit();
+		ImageIO.write(image, "png", file) ;
+		Assert.assertTrue(file.exists());
+
+	}	
 }
 
