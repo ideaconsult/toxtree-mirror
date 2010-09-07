@@ -1,8 +1,8 @@
 Package: toxtree.plugins.skinsensitisation
 Name: toxtree/plugins/skinsensitisation/SkinSensitisationPlugin.class
 Manifest-version: 2.1.0
-Class-Path: toxtree-skinsensitisation-2.1.0-SNAPSHOT.jar
-Specification-Title: Implementation of "Marc Cronin ...?"
+Class-Path: toxtree-skinsensitisation-2.1.1-SNAPSHOT.jar
+Specification-Title: Implementation of "Enoch 2009"
 Specification-Version: 2.1.0
 Specification-Vendor: Ideaconsult LTD
 Implementation-Title: Skin sensitisation alerts
