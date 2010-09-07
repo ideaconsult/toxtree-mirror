@@ -2,6 +2,7 @@ package toxTree.ui;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.Serializable;
 
 import javax.swing.JOptionPane;
 
@@ -9,7 +10,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.tree.rules.RuleVerifyProperty;
 
-public class PropertyInput implements PropertyChangeListener {
+public class PropertyInput implements PropertyChangeListener , Serializable {
 	public void propertyChange(PropertyChangeEvent evt) {
 		Object o = evt.getSource();
 		if (o instanceof RuleVerifyProperty) {
