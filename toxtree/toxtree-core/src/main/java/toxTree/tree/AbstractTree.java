@@ -34,6 +34,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -42,6 +44,7 @@ import javax.swing.JComponent;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.jchempaint.renderer.selection.MultiSelection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -578,9 +581,14 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
     public BufferedImage getImage(IAtomContainer mol,String ruleID,int width,int height,boolean atomnumbers) throws AmbitException {
     	IDecisionRuleList rules = getRules();
     	IProcessor<IAtomContainer,IChemObjectSelection> selector = null;
+    	
     	for (int i=0; i < rules.size();i++) {
     		IDecisionRule rule = rules.get(i);
-    		if (rule.getID().equals(ruleID)) {
+    		if (ruleID==null) {
+    			if (selector == null) selector = new TreeSelector();
+    			((TreeSelector)selector).addSelector(rule.getSelector());
+    			
+    		} else if (rule.getID().equals(ruleID)) {
     			selector = rule.getSelector();
     			break;
     		}
@@ -595,4 +603,41 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
     public boolean isWeb() {
     	return web;
     }
+}
+
+class TreeSelector implements IProcessor<IAtomContainer,IChemObjectSelection> {
+	protected List<IProcessor<IAtomContainer,IChemObjectSelection>> selectors = new ArrayList<IProcessor<IAtomContainer,IChemObjectSelection>>();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7753309179379127408L;
+
+	public void addSelector(IProcessor<IAtomContainer,IChemObjectSelection> selector) {
+		selectors.add(selector);
+	}
+	@Override
+	public long getID() {
+		return 0;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+	@Override
+	public IChemObjectSelection process(IAtomContainer target)
+			throws AmbitException {
+		Collection<IAtomContainer> set = new ArrayList<IAtomContainer>();
+		MultiSelection<IAtomContainer> ms = new MultiSelection<IAtomContainer>(set);
+		for (IProcessor<IAtomContainer,IChemObjectSelection> selector : selectors) {
+			set.add(selector.process(target).getConnectedAtomContainer());
+		}
+		return ms;
+	}
+
+	@Override
+	public void setEnabled(boolean value) {
+	}
+	
 }
