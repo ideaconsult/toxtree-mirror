@@ -31,7 +31,7 @@ public class RuleMeltingPoint_11_2 extends RuleMeltingPoint {
 	private static final long serialVersionUID = 0;
 	public RuleMeltingPoint_11_2()
 	{
-		super(MeltingPoint,"°C",condition_higher,200.0);
+		super(MeltingPoint,"\u0260C",condition_higher,200.0);
 		id = "11.2";
 		setTitle(getPropertyName() + getCondition() + getProperty());
 		examples[0] = "C(C(=O)O)(C(S)(C)C)N";

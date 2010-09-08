@@ -31,7 +31,7 @@ public class Rule4 extends RuleMeltingPoint
 
 	public Rule4()
 	{
-		super(MeltingPoint,"°C",condition_higher,55.0);
+		super(MeltingPoint,"\u0260C",condition_higher,55.0);
 		id = "5";
 		examples[0]= "O=C1C(=C(OC1C)C)OC(=O)C";
 		propertyExamples[0] = 50.258823;

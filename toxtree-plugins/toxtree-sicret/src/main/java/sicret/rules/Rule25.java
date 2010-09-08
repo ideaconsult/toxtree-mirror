@@ -30,7 +30,7 @@ public class Rule25 extends RuleMeltingPoint {
 	private static final long serialVersionUID = 0;
 	public Rule25()
 	{
-		super(MeltingPoint,"°C",condition_higher,50.0);
+		super(MeltingPoint,"\u0260C",condition_higher,50.0);
 		id = "29";
 
 		examples[0]="BrCCCCCl";

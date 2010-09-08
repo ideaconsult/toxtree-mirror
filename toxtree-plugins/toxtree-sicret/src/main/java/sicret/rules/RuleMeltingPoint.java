@@ -37,7 +37,7 @@ public class RuleMeltingPoint extends RuleVerifyProperty {
 	
 	public RuleMeltingPoint()
 	{
-		this(MeltingPoint,"°C",condition_higher,200.0);
+		this(MeltingPoint,"\u0260C",condition_higher,200.0);
 		id = "1";
 		examples[0] = "CC1(C(CC=C1C)C=CC(C)(C)C(O)C)C";
 		examples[1] = "CCOC(=O)N1CCN(CC1)c2ccc(cc2)OCC4COC(Cn3cncc3)(O4)c5ccc(Cl)cc5Cl";
