@@ -75,7 +75,7 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
     }
 
     /**
-     * For this compound ToxTree wasn’t able to calculate partial MR5.
+     * For this compound ToxTree was not able to calculate partial MR5.
 	 * It should be: MR3 0.1, MR5 0.54  MR6 =0.1
 	 * In fact, as in case of fluorenes, the substituents in position 4 and 5 (in the following molecule) have to be considered CH3 and NH2, respectively.
      * @throws Exception
@@ -103,7 +103,7 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
      * (ID 88) Rodo1109
 	 * should be: MR3 0.69, MR5 0.1 MR6 =0.1, with the following numbering of ring positions
 	 * In fact,  in case of fluorenes, the substituents in positions 2 and 3 (in the following example) have to be consdidered as CH3.
-	 *  In case position “a” of the molecule is substituted, the partial MR changes accordingly, ex.:
+	 *  In case position a of the molecule is substituted, the partial MR changes accordingly, ex.:
 	 *  <br>
 	 * a=CH2 (fluorene), partial MR = 0.56 (CH3)<br>
      * a=NH (carbazole), partial MR = 0.54 (NH2)<br>

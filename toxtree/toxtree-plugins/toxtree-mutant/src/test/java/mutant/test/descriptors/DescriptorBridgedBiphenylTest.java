@@ -60,7 +60,7 @@ public class DescriptorBridgedBiphenylTest extends DescriptorsTest {
     
     /**
      * In substance ammine192,the amino group in the bridge is not considered as the functional one, 
-     * as there’s another amino group (not in the bridge) that is more suitable to be the functional one.
+     * as there is another amino group (not in the bridge) that is more suitable to be the functional one.
 	 * So, in similar cases, if the amino group in the bridge is the only one in the molecule, 
 	 * then it should be the functional one and the molecule will be treated as aniline like 
 	 * (so that I(An)=1; I(Bibr)=0); 
