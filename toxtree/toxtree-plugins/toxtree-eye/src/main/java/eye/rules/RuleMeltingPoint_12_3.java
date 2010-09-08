@@ -31,7 +31,7 @@ public class RuleMeltingPoint_12_3  extends RuleMeltingPoint {
 	private static final long serialVersionUID = 0;
 	public RuleMeltingPoint_12_3()
 	{
-		super(MeltingPoint,"°C",condition_higher,65.0);
+		super(MeltingPoint,"\u0260C",condition_higher,65.0);
 		id = "12.3";
 		setTitle(getPropertyName() + getCondition() + getProperty());
 		/*
