@@ -49,7 +49,7 @@ public class SA13 extends StructureAlertCDK {
              
             setID("SA13");
             setTitle(HYDRAZINE);
-            setExplanation("This applies to molecules that contain a N—N group not in a ring, and not N—N=O.<br>Chemicals fired by alert <a href=\"#SA22\">SA22</a> should be excluded from this alert.<br>Chemicals with a quaternary protonated nitrogen, should be excluded.");
+            setExplanation("This applies to molecules that contain a N-N group not in a ring, and not N—N=O.<br>Chemicals fired by alert <a href=\"#SA22\">SA22</a> should be excluded from this alert.<br>Chemicals with a quaternary protonated nitrogen, should be excluded.");
             
             examples[0] = "CN(C)N=NC=1NC=NC=1(C(N)=O)"; //"C1CCNNC1"
             examples[1] = "NNCNN=O";   

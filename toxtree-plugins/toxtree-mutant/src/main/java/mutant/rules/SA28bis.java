@@ -11,7 +11,7 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Aromatic mono- and dialkylamine (with exceptions).
- * TODO A –SO3H sub-rule should be implemented
+ * TODO –SO3H sub-rule should be implemented
  * @author Nina Jeliazkova
  *
  */

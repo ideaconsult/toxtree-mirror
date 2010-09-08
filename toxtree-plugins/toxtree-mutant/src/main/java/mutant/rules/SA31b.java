@@ -44,7 +44,7 @@ public class SA31b extends StructureAlert {
             e.append("Naphthalenes: should fire with any halogenation pattern");
             
             e.append("<li>");
-            e.append("Diphenyls and biphenyls: should fire only if both 4 and 4’ positions are occupied by halogens");
+            e.append("Diphenyls and biphenyls: should fire only if both 4 and 4\u0027 positions are occupied by halogens");
             
             e.append("</ul>");
             e.append("</html>");
