@@ -88,7 +88,7 @@ public class MichaelAcceptorRules extends UserDefinedTree implements IDecisionIn
 		setTitle("Michael Acceptors");
 		setExplanation(
 				"Predicts whether a chemical will act as a Michael acceptor.<p>"+
-				"Verification of the Structural Alerts for Michael Acceptors. <p>T. Wayne Schultz, Jason W. Yarbrough, Robert S. Hunter, Aynur O. Aptula (2007) Verification of the Structural Alerts for Michael Acceptors.Chem. Res. Toxicol. 20, 1359–1363<br>\n");
+				"Verification of the Structural Alerts for Michael Acceptors. <p>T. Wayne Schultz, Jason W. Yarbrough, Robert S. Hunter, Aynur O. Aptula (2007) Verification of the Structural Alerts for Michael Acceptors.Chem. Res. Toxicol. 20, 1359 1363<br>\n");
         setPriority(20);
         setFalseIfRuleNotImplemented(false);
         
