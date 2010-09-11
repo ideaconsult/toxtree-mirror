@@ -24,7 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.tree;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -49,6 +52,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import toxTree.core.IDecisionCategories;
+import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionMethodEditor;
 import toxTree.core.IDecisionResult;
@@ -64,6 +68,7 @@ import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 import toxTree.ui.tree.TreeEditorPanel;
 import toxTree.ui.tree.TreeOptions;
+import toxTree.ui.tree.categories.CategoriesRenderer;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.jchempaint.CompoundImageTools;
@@ -603,6 +608,33 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
     public boolean isWeb() {
     	return web;
     }
+    
+	@Override
+	public BufferedImage getLegend(int width, int height) throws AmbitException {
+		BufferedImage buffer = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+		Graphics2D g = buffer.createGraphics();
+		g.setColor(Color.white);
+		g.fillRect(0, 0, width,height);
+		
+		IDecisionCategories c = getCategories();
+		if ((c==null) || (c.size()==0)) return buffer;
+		int h = height/ c.size();
+		g.setFont(new Font("TrebuchetMS",Font.BOLD,h/4==0?12:h/4));
+		CategoriesRenderer r = new CategoriesRenderer(c);
+		
+		for (int i =0; i < c.size();i++) {
+			IDecisionCategory cat = c.get(i);
+			g.setBackground(r.getShowColor(i));
+			g.setColor(r.getShowColor(i));
+			g.fillRect(3, 3+h*i, h-6, h-6);
+			g.setColor(Color.black);
+			
+			g.drawString(cat.getName(), 
+					h+10,
+					3+h/2+h*i);
+		}
+		return buffer;
+	}    
 }
 
 class TreeSelector implements IProcessor<IAtomContainer,IChemObjectSelection> {
@@ -639,5 +671,7 @@ class TreeSelector implements IProcessor<IAtomContainer,IChemObjectSelection> {
 	@Override
 	public void setEnabled(boolean value) {
 	}
+	
+	
 	
 }
