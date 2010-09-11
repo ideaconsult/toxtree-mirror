@@ -1,5 +1,9 @@
 package toxtree.plugins.smartcyp;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Iterator;
@@ -10,8 +14,10 @@ import javax.swing.JOptionPane;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 
+import ambit2.base.exceptions.AmbitException;
 import ambit2.core.data.ArrayResult;
 
+import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionResult;
@@ -21,6 +27,7 @@ import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.CategoriesList;
 import toxTree.tree.DecisionNodesFactory;
 import toxTree.tree.UserDefinedTree;
+import toxTree.ui.tree.categories.CategoriesRenderer;
 import toxtree.plugins.smartcyp.categories.SitesHigherRank;
 import toxtree.plugins.smartcyp.categories.SitesRank1;
 import toxtree.plugins.smartcyp.categories.SitesRank2;
@@ -203,4 +210,31 @@ public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInterac
 	protected void setArrayValue(ArrayResult result, int index, IAtomContainer mol,String  propertyName) {
 		result.set(index,mol.getProperty(propertyName));
 	}
+	
+	@Override
+	public BufferedImage getLegend(int width, int height) throws AmbitException {
+		BufferedImage buffer = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+		Graphics2D g = buffer.createGraphics();
+		g.setColor(Color.white);
+		g.fillRect(0, 0, width,height);
+		
+		IDecisionCategories c = getCategories();
+		if ((c==null) || (c.size()==0)) return buffer;
+		int h = height/ c.size();
+		g.setFont(new Font("TrebuchetMS",Font.BOLD,h/4==0?12:h/4));
+		CategoriesRenderer r = new CategoriesRenderer(c);
+		
+		for (int i =0; i < c.size();i++) {
+			IDecisionCategory cat = c.get(i);
+			g.setBackground(r.getShowColor(i));
+			g.setColor(r.getShowColor(i));
+			g.fillOval(3, 3+h*i, h-6, h-6);
+			g.setColor(Color.black);
+			
+			g.drawString(cat.getName(), 
+					h+10,
+					3+h/2+h*i);
+		}
+		return buffer;
+	}    
 }

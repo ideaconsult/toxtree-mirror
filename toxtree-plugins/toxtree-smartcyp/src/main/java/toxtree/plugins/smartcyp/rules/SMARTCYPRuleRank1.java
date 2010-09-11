@@ -19,7 +19,7 @@ import ambit2.core.data.MoleculeTools;
 import ambit2.jchempaint.CompoundImageTools;
 
 public class SMARTCYPRuleRank1 extends AbstractRule {
-	protected static final CategoriesRenderer categoriesRenderer = new CategoriesRenderer(4);
+	protected static final CategoriesRenderer categoriesRenderer = new CategoriesRenderer(4,240);
 	/**
 	 * 
 	 */
@@ -127,12 +127,16 @@ public class SMARTCYPRuleRank1 extends AbstractRule {
 					newmol = calculate(mol);
 					break;
 				}
-			
-			for (IAtom atom: newmol.atoms()) {
+			final double[] size = new double[] {1.66,1.33,1.0,0.5};
+			for (int i=0; i < newmol.getAtomCount(); i++) {
+				IAtom atom = newmol.getAtom(i);
 				Number atom_rank = SMARTCYP_PROPERTY.Ranking.get(atom);
 				if((atom_rank!=null) && hasRank(atom_rank.intValue())) {
-						atom.setProperty(CompoundImageTools.SELECTED_ATOM_COLOR,categoriesRenderer.getShowColor(atom_rank.intValue()-1));
-					selected.addAtom(atom);
+					if (atom_rank.intValue()<4) {
+						atom.setProperty(CompoundImageTools.SELECTED_ATOM_SIZE, size[getRank()-1]);
+						atom.setProperty(CompoundImageTools.SELECTED_ATOM_COLOR,categoriesRenderer.getShowColor(getRank()-1));
+						selected.addAtom(atom);
+					}
 				}
 			}
 			return selected.getAtomCount()>0;

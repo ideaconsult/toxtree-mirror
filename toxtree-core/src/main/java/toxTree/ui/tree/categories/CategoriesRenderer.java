@@ -40,20 +40,27 @@ public class CategoriesRenderer {
 	public CategoriesRenderer() {
 		super();
 	}
-	
+	public CategoriesRenderer(int numberofcategories,int transparency) {
+		super();
+		setCategories(numberofcategories,transparency);
+	}
 	public CategoriesRenderer(IDecisionCategories categories) {
 		this(categories.size());
 	}	
 	public CategoriesRenderer(int numberofcategories) {
-		this();
-		setCategories(numberofcategories);
+		this(numberofcategories,200);
+		
 	}
 	public void setCategories(IDecisionCategories categories) {
 		setCategories(categories.size());
+
 	}
 	public void setCategories(int numberofcategories) {
+		setCategories(numberofcategories,200);
+	}
+	public void setCategories(int numberofcategories, int transparency) {
         hideColors = getColors(numberofcategories,60,50);
-        showColors = getColors(numberofcategories,180,200);		
+        showColors = getColors(numberofcategories,180,transparency);		
 	}
 	private Color[] getColors(int size, int intensity, int alpha) {
 	    Color[] colors = null;
