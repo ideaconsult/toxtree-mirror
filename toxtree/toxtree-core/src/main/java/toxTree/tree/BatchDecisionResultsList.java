@@ -464,4 +464,8 @@ public class BatchDecisionResultsList extends DecisionResultsList implements IDe
 	public boolean isWeb() {
 		return false;
 	}
+	@Override
+	public BufferedImage getLegend(int width, int height) throws AmbitException {
+		return null;
+	}
 }
