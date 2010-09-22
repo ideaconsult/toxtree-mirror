@@ -235,6 +235,7 @@ public class MutantTreeResult extends TreeResult {
 	
 	@Override
 	protected boolean acceptCategory(IDecisionCategory category) {
+		
 		if (category == null) return false;
 		if (category instanceof CategoryPositiveAlertGenotoxic) {
 				removeCategory(new CategoryNoGenotoxicAlert());
@@ -246,11 +247,6 @@ public class MutantTreeResult extends TreeResult {
 			removeCategory(new CategoryNotCarcinogen());
 		} else if (category instanceof CategoryMutagenTA100) {
 			removeCategory(new CategoryNonMutagen());			
-		} else if (category instanceof CategoryNonMutagen) {
-			int alert = assignedCategories.indexOf(new CategoryPositiveAlertGenotoxic());
-			if (alert > -1) return false;
-			alert = assignedCategories.indexOf(new CategoryPositiveAlertNongenotoxic());
-			if (alert > -1) return false;
 		} else if (category instanceof CategoryNotCarcinogen) {
 			int alert = assignedCategories.indexOf(new CategoryCarcinogen());
 			if (alert > -1) return false;
@@ -268,6 +264,8 @@ public class MutantTreeResult extends TreeResult {
 
 	}
     public List<CategoryFilter> getFilters() {
+    	return null;
+    	/*
     	ArrayList<CategoryFilter> l = new ArrayList<CategoryFilter>();
     	IDecisionCategories c = getDecisionMethod().getCategories();
 		for (int i=0; i < c.size();i++) 
@@ -278,6 +276,7 @@ public class MutantTreeResult extends TreeResult {
     		logger.error(x);
     	}
     	return l;
+    	*/
     }
 }
 
