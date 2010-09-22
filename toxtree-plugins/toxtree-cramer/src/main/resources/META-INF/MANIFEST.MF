@@ -1,10 +1,10 @@
-Manifest-version: 1.60
+Manifest-version: 2.1.1
 Specification-Title: Cramer scheme as in "Cramer G. M., R. A. Ford, R. L. Hall, Estimation of Toxic Hazard - A Decision Tree Approach,J. Cosmet. Toxicol.,Vol.16, pp. 255-276, Pergamon Press, 1978"
-Specification-Version: 2.00
+Specification-Version: 2.1.1
 Specification-Vendor: Ideaconsult LTD
 Implementation-Title: Classes implementing Cramer Rules for toxTree application
-Implementation-Version: 1.60
+Implementation-Version: 2.1.1
 Implementation-Vendor: Ideaconsult
 Package-Title: cramer2
-Package-Version: 1.60
+Package-Version: 2.1.1
 Package-Vendor: Ideaconsult

@@ -1,10 +1,10 @@
-Manifest-version: 1.60
+Manifest-version: 2.1.1
 Specification-Title: Michael acceptors
-Specification-Version: 1.60
+Specification-Version: 2.1.1
 Specification-Vendor:  Structural Alerts for Michael Acceptors
 Implementation-Title: Classes implementing structural Alerts for Michael Acceptors
-Implementation-Version: 1.60
+Implementation-Version: 2.1.1
 Implementation-Vendor: Ideaconsult LTD
 Package-Title: michaelacceptors
-Package-Version: 1.60
-Package-Vendor: Vania Tsakovska
+Package-Version: 2.1.1
+Package-Vendor: Ideaconsult Ltd
