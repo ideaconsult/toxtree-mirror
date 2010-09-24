@@ -1,0 +1,11 @@
+Manifest-version: ${project.version}
+Main-Class: dk.smartcyp.app.SMARTCyp
+Specification-Title: SMARTCyp
+Specification-Version: ${project.version}
+Specification-Vendor: Patrik Rydberg
+Package-Title: dk.smartcyp
+Package-Version: ${project.version}
+Package-Vendor: Ideaconsult LTD
+Implementation-Title: SMARTCyp
+Implementation-Version: ${project.version}
+Implementation-Vendor: Patrik Rydberg
