@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.TreeSet;
 
 import org.openscience.cdk.Atom;
+import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.MoleculeSet;
 
 import dk.smartcyp.core.MoleculeKU;
@@ -29,11 +30,13 @@ public class WriteResultsAsHTML {
 	private String dateAndTime;
 	String[] namesOfInfiles;
 	DecimalFormat twoDecimalFormat = new DecimalFormat();
-
+	String OutputDir;
 	
-	public WriteResultsAsHTML(String dateTime, String[] infileNames){
+	
+	public WriteResultsAsHTML(String dateTime, String[] infileNames, String outputdir){
 		dateAndTime = dateTime;
 		namesOfInfiles = infileNames;
+		OutputDir = outputdir;
 		
 		// DecimalFormat for A
 		twoDecimalFormat.setDecimalSeparatorAlwaysShown(false);
@@ -49,7 +52,7 @@ public class WriteResultsAsHTML {
 
 
 		try {
-			outfile = new PrintWriter(new BufferedWriter(new FileWriter("SMARTCyp_Results_" + this.dateAndTime + ".html")));
+			outfile = new PrintWriter(new BufferedWriter(new FileWriter(this.OutputDir +"SMARTCyp_Results_" + this.dateAndTime + ".html")));
 		} catch (IOException e) {
 			System.out.println("Could not create HTML outfile");
 			e.printStackTrace();
@@ -86,9 +89,18 @@ public class WriteResultsAsHTML {
 		outfile.println(".molecule { margin-left: 20px }");
 		outfile.println("table { }");
 		outfile.println("th { text-align:center; font-weight : bold; }");
-		outfile.println(".highlight {  background: #FFFF00; font-weight : bold; } ");
+		outfile.println(".highlight1 {  background: rgb(255,204,102); font-weight : bold; } ");
+		outfile.println(".highlight2 {  background: rgb(223,189,174); font-weight : bold; } ");
+		outfile.println(".highlight3 {  background: rgb(214,227,181); font-weight : bold; } ");
+		outfile.println(".hiddenPic {display:none;} ");
 		outfile.println("-->");
 		outfile.println("</style>");
+		outfile.println("<script type=\"text/javascript\">");
+		outfile.println("function roll_over(img_name, img_src)");
+		outfile.println("   {");
+		outfile.println("   document[img_name].src = img_src;");
+		outfile.println("   }");
+		outfile.println("</script>");
 		outfile.println("</head>");
 		outfile.println("");
 
@@ -97,9 +109,16 @@ public class WriteResultsAsHTML {
 	public void writeBody(MoleculeSet moleculeSet){
 
 		outfile.println("<body>");
-		outfile.println("<h1>Results from SMARTCyp version 1.0</h1>");
+		//error message if problems
+		if (moleculeSet.getMoleculeCount()==0){
+			outfile.println("<h1>There were no molecules in the input</h1>");
+		}
+		else {
+		//no error message, print normal output
+		outfile.println("<h1>Results from SMARTCyp version 1.5.2</h1>");
 		outfile.println("\n These results were produced: " + this.dateAndTime + ".");
 		outfile.println("\n The infiles were: " + Arrays.toString(namesOfInfiles) + ".");	
+		outfile.println("\n <br /><br /><i>To alternate between heteroatoms and atom numbers, move the mouse cursor over the figure.</i>");
 		outfile.println("<table>");
 
 		// Iterate MoleculKUs
@@ -110,6 +129,14 @@ public class WriteResultsAsHTML {
 		}
 
 		outfile.println("</table>");
+		// Iterate again to preload images with atom numbers
+		for (int moleculeIndex=0; moleculeIndex < moleculeSet.getMoleculeCount(); moleculeIndex++) {
+
+			MoleculeKU moleculeKU = (MoleculeKU) moleculeSet.getMolecule(moleculeIndex);
+			this.writePreLoadImage(moleculeKU);
+		}
+		}
+
 		outfile.println("</body>");
 		outfile.println("</html>");
 
@@ -124,16 +151,21 @@ public class WriteResultsAsHTML {
 		outfile.println("<tr>");
 		outfile.println("<td>");
 
-		// Table row, contains 2 molecule images					
-		outfile.println("<img src=\"smartcyp_images_"+ this.dateAndTime +"/" +"molecule_" + moleculeID + "_heteroAtoms.png\" /><br />");
-		outfile.println("<img src=\"smartcyp_images_"+ this.dateAndTime + "/" + "molecule_" + moleculeID + "_atomNumbers.png\" />");
+		// Table row, contains 1 molecule images and mouseover to a second image with atom numbers
+		String image1 = "smartcyp_images_"+ this.dateAndTime +"/" +"molecule_" + moleculeID + "_heteroAtoms.png";
+		String image2 = "smartcyp_images_"+ this.dateAndTime + "/" + "molecule_" + moleculeID + "_atomNumbers.png";
+		outfile.println("<img src=\"" + image1 + "\" name=\"img" + moleculeID + "\" onmouseover=\"roll_over('img" + moleculeID + "', '" + image2 + "')\" onmouseout=\"roll_over('img" + moleculeID + "', '" + image1 + "')\" /><br />");
 
 
 		outfile.println("</td>");
 		outfile.println("<td>");
 
 		// Visible header for Molecule
-		outfile.println("<span class=\"boldlarge\">Molecule " + moleculeID + "</span><br />");
+		String title = (String) moleculeKU.getProperty(CDKConstants.TITLE);
+		if (title==null || title==""){
+			title = "Molecule " + moleculeID;
+		}
+		outfile.println("<span class=\"boldlarge\">" + title + "</span><br />");
 
 		// Table of Atom data
 		outfile.println("<table class=\"molecule\">");
@@ -153,12 +185,24 @@ public class WriteResultsAsHTML {
 		outfile.println("</tr>");
 		outfile.println("<tr><td colspan=\"2\"><hr /></td></tr>");
 	}
+	
+	public void writePreLoadImage(MoleculeKU moleculeKU) {
+
+		moleculeID = moleculeKU.getID();
+
+		outfile.println("");
+		String image2 = "smartcyp_images_"+ this.dateAndTime + "/" + "molecule_" + moleculeID + "_atomNumbers.png";
+		outfile.println("<img src=\"" + image2 + "\" class=\"hiddenPic\"  />");
+	}
+
 
 
 	public void writeAtomRowinMoleculeKUTable(Atom atom){
 
 //		System.out.println(atom.toString());
-		if(SMARTCYP_PROPERTY.Ranking.get(atom).intValue() <= 3) outfile.println("<tr class=\"highlight\">");
+		if(SMARTCYP_PROPERTY.Ranking.get(atom).intValue() == 1) outfile.println("<tr class=\"highlight1\">");
+		else if(SMARTCYP_PROPERTY.Ranking.get(atom).intValue() == 2) outfile.println("<tr class=\"highlight2\">");
+		else if(SMARTCYP_PROPERTY.Ranking.get(atom).intValue() == 3) outfile.println("<tr class=\"highlight3\">");
 		else outfile.println("<tr>");
 
 		outfile.println("<td>" + SMARTCYP_PROPERTY.Ranking.get(atom).intValue() + "</td>");
