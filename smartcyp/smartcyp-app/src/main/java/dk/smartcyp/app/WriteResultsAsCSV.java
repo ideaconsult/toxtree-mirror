@@ -23,15 +23,16 @@ public class WriteResultsAsCSV {
 	String moleculeID;
 	private String dateAndTime;
 	String[] namesOfInfiles;
-	
+	String OutputDir;	
 
 	// DecimalFormat twoDecimalFormat = new DecimalFormat("#.##");
 	DecimalFormat twoDecimalFormat = new DecimalFormat();
 
 
-	public WriteResultsAsCSV(String dateTime, String[] infileNames){
+	public WriteResultsAsCSV(String dateTime, String[] infileNames, String outputdir){
 		dateAndTime = dateTime;
 		namesOfInfiles = infileNames;
+		OutputDir = outputdir;
 
 		// DecimalFormat for A
 		twoDecimalFormat.setDecimalSeparatorAlwaysShown(false);
@@ -48,7 +49,7 @@ public class WriteResultsAsCSV {
 
 
 		try {
-			outfile = new PrintWriter(new BufferedWriter(new FileWriter("SMARTCyp_Results_" + this.dateAndTime + ".csv")));
+			outfile = new PrintWriter(new BufferedWriter(new FileWriter(this.OutputDir + "SMARTCyp_Results_" + this.dateAndTime + ".csv")));
 		} catch (IOException e) {
 			System.out.println("Could not create CSV outfile");
 			e.printStackTrace();

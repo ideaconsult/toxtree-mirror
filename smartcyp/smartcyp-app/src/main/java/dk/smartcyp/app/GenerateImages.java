@@ -1,33 +1,35 @@
 package dk.smartcyp.app;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.util.List;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.imageio.ImageIO;
 
-import org.openscience.cdk.AtomContainer;
-import org.openscience.cdk.Molecule;
-import org.openscience.cdk.MoleculeSet;
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.geometry.GeometryTools;
 import org.openscience.cdk.geometry.Projector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
+import org.openscience.cdk.AtomContainer;
+import org.openscience.cdk.Molecule;
+import org.openscience.cdk.MoleculeSet;
+
+
 import org.openscience.jchempaint.renderer.Renderer;
+import org.openscience.jchempaint.renderer.RendererModel;
 import org.openscience.jchempaint.renderer.RenderingParameters;
 import org.openscience.jchempaint.renderer.font.AWTFontManager;
 import org.openscience.jchempaint.renderer.generators.AtomNumberGenerator;
 import org.openscience.jchempaint.renderer.generators.BasicAtomGenerator;
-import org.openscience.jchempaint.renderer.generators.BasicBondGenerator;
 import org.openscience.jchempaint.renderer.generators.IGenerator;
+import org.openscience.jchempaint.renderer.generators.RingGenerator;
 import org.openscience.jchempaint.renderer.visitor.AWTDrawVisitor;
 
 
@@ -43,16 +45,20 @@ public class GenerateImages {
 	private Rectangle drawArea = new Rectangle(WIDTH, HEIGHT);
 	private Image image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private String dateAndTime;
+	private String OutputDir;
 
 
-	public GenerateImages(String dateTime){
+
+
+	public GenerateImages(String dateTime, String outputdir){
 		dateAndTime = dateTime;
+		OutputDir = outputdir;
 	}
 
 
 
 	// This is the "main" method that calls all other methods below
-	public void generateAndWriteImages(MoleculeSet moleculeSet) throws CloneNotSupportedException{
+	public void generateAndWriteImages(MoleculeSet moleculeSet) throws CloneNotSupportedException, CDKException{
 
 
 
@@ -60,15 +66,18 @@ public class GenerateImages {
 			System.out.println("moleculeSet is null");
 		}
 
-
 		List<IGenerator> generators;
+
 		Renderer renderer;
 
+		// Create smartcyp_images directory
+		this.createDirectory(OutputDir + "smartcyp_images_" + dateAndTime);
+		
 		// Iterate MoleculKUs
 		IAtomContainer iAtomContainer;
 		for (int moleculeIndex=0; moleculeIndex < moleculeSet.getMoleculeCount(); moleculeIndex++) {
 
-			iAtomContainer = moleculeSet.getMolecule(moleculeIndex);
+			iAtomContainer = moleculeSet.getMolecule(moleculeIndex); 
 
 
 			//			iAtomContainer = AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(iAtomContainer);
@@ -76,7 +85,7 @@ public class GenerateImages {
 			// Generate 2D coordinates for moleculeKU
 			iAtomContainer = this.generate2Dcoordinates(iAtomContainer);
 
-			String id = moleculeSet.getMolecule(moleculeIndex).getID();
+			//String id = moleculeSet.getMolecule(moleculeIndex).getID();
 			// System.out.println(id);
 
 			iAtomContainer.setID(moleculeSet.getMolecule(moleculeIndex).getID());
@@ -86,29 +95,22 @@ public class GenerateImages {
 
 			// The renderer renders the picture
 			renderer = new Renderer(generators, new AWTFontManager());
-
-			// Set layout of molecule
-			this.setMoleculeLayout(renderer);
-
-
-			// Setup sets up the renderer
-			// System.out.println("currentMoleculeKU.toString() " + currentMoleculeKU.toString());
-			// System.out.println("drawArea " + drawArea.toString());
-
-
-			// renderer.setup(currentMoleculeKU, drawArea);
 			renderer.setup(iAtomContainer, drawArea);
 
-			// Create smartcyp_images directory
-			this.createDirectory("smartcyp_images_" + dateAndTime);
+			// Set layout of molecule
+			// This method is not used because default layout looks ok
+			// this.setMoleculeLayout(r2dm);
+
 
 			// Write 2 types of images with: 1) heteroatoms and 2) atom Numbers
-			this.paintAndWriteMolecule(renderer, iAtomContainer, "heteroAtoms");		
-			renderer.getRenderer2DModel().setDrawNumbers(true);						
-			this.paintAndWriteMolecule(renderer, iAtomContainer, "atomNumbers");
+			this.paintAndWriteMolecule(renderer, iAtomContainer, "heteroAtoms", OutputDir);		
+			renderer.getRenderer2DModel().setDrawNumbers(true);	
+			this.paintAndWriteMolecule(renderer, iAtomContainer, "atomNumbers", OutputDir);
 
 		}
 	}
+
+
 
 
 
@@ -189,56 +191,50 @@ public class GenerateImages {
 	public List<IGenerator> getGenerators() {
 
 		List<IGenerator> generators = new ArrayList<IGenerator>();
-		// generators.add(new AtomContainerBoundsGenerator());
-		generators.add(new BasicBondGenerator());
+		generators.add(new rankedlabelgenerator());
+		generators.add(new RingGenerator());
 		generators.add(new BasicAtomGenerator());
 		generators.add(new AtomNumberGenerator());
-		// generators.add(new HighlightBondGenerator());
-		// generators.add(new RingGenerator());
-		// generators.add(new SelectBondGenerator());	       
-
+		
 		// System.out.println("generators.toString() " + generators.toString());
 
 		return generators;
 	}
 
 
-
-	public void setMoleculeLayout(Renderer renderer) {
+	// This is not used, but kept to list parameters that can be set
+	public void setMoleculeLayout(RendererModel r2dm) {
 
 		// Changes representation
 		// renderer.getRenderer2DModel().setIsCompact(true);
 
-		renderer.getRenderer2DModel().setBondWidth(3);
-		//		renderer.getRenderer2DModel().setBondDistance(22);
-		// renderer.getRenderer2DModel().setFitToScreen(true);
-		renderer.getRenderer2DModel().setShowExplicitHydrogens(false);
-		//		renderer.getRenderer2DModel().setShowImplicitHydrogens(false);
-		//		renderer.getRenderer2DModel().setDrawNumbers(true);
-		renderer.getRenderer2DModel().setColorAtomsByType(true);
-		renderer.getRenderer2DModel().setCompactShape(RenderingParameters.AtomShape.OVAL);
-		renderer.getRenderer2DModel().setAtomRadius(5);
+		r2dm.setBondWidth(3);
+		//		r2dm.setBondDistance(22);
+		// r2dm.setFitToScreen(true);
+		r2dm.setShowExplicitHydrogens(false);
+		//		r2dm.setShowImplicitHydrogens(false);
+		//		r2dm.setDrawNumbers(true);
+		r2dm.setColorAtomsByType(true);
+		r2dm.setCompactShape(RenderingParameters.AtomShape.OVAL);
+		r2dm.setAtomRadius(5);
 
-		// renderer.getRenderer2DModel().setBackgroundDimension(imgSize);
-		//  renderer.getRenderer2DModel().setBackColor(Color.WHITE);
-		//renderer.getRenderer2DModel().setDrawNumbers(false);
-		renderer.getRenderer2DModel().setUseAntiAliasing(true);
-		//        renderer.getRenderer2DModel().setShowImplicitHydrogens(true);
-		renderer.getRenderer2DModel().setShowReactionBoxes(false);
-		renderer.getRenderer2DModel().setKekuleStructure(false);
-		renderer.getRenderer2DModel().setShowAromaticityCDKStyle(true);
+		// r2dm.setBackgroundDimension(imgSize);
+		//r2dm.setBackColor(Color.WHITE);
+		//r2dm.setDrawNumbers(false);
+		r2dm.setUseAntiAliasing(true);
+		//        r2dm.setShowImplicitHydrogens(true);
+		r2dm.setShowReactionBoxes(false);
+		r2dm.setKekuleStructure(false);
+		r2dm.setShowAromaticityCDKStyle(true);
 
-		renderer.getRenderer2DModel().setFontName("SansSerif");
+		r2dm.setFontName("SansSerif");
 		//       IFontManager iFontManager = new AWTFontManager();
 		//IFontManager.FontStyle fontStyle = IFontManager.FontStyle();
 		//  iFontManager.setFontStyle( NORMAL);
-		//  renderer.getRenderer2DModel().setFontManager(IFontManager.FontStyle.valueOf(NORMAL));
+		//  r2dm.setFontManager(IFontManager.FontStyle.valueOf(NORMAL));
 
-		//       renderer.getRenderer2DModel().fireChange();
+		//       r2dm.fireChange();
 
-
-
-		//System.out.println("renderer.toString()" + renderer.toString());
 
 	}
 
@@ -263,12 +259,12 @@ public class GenerateImages {
 
 
 
-	public void paintAndWriteMolecule(Renderer renderer, IAtomContainer iAtomContainer, String nameBase){
+	public void paintAndWriteMolecule(Renderer renderer, IAtomContainer iAtomContainer, String nameBase, String outputdir){
 
 
 		// Paint background
 		Graphics2D g2 = (Graphics2D)image.getGraphics();
-		g2.setColor(Color.WHITE);
+		//	g2.setColor(Color.WHITE);
 		g2.fillRect(0, 0, WIDTH, HEIGHT);
 
 		// the paint method also needs a toolkit-specific renderer
@@ -278,7 +274,7 @@ public class GenerateImages {
 		String moleculeID = iAtomContainer.getID();
 		//System.out.println(moleculeID);
 		String moleculeIDstartingFromOne = Integer.toString(Integer.parseInt(moleculeID));
-		String fileName = "smartcyp_images_" + this.dateAndTime + "/" + "molecule_" + moleculeIDstartingFromOne + "_" + nameBase + ".png";
+		String fileName = outputdir + "smartcyp_images_" + this.dateAndTime + File.separator + "molecule_" + moleculeIDstartingFromOne + "_" + nameBase + ".png";
 
 		try {ImageIO.write((RenderedImage)image, "PNG", new File(fileName));} 
 		catch (IOException e) {

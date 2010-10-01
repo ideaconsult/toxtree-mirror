@@ -6,23 +6,23 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
+import java.lang.System;
 
-import org.openscience.cdk.ChemFile;
+import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.MoleculeSet;
-import org.openscience.cdk.atomtype.CDKAtomTypeMatcher;
+import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
-import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IChemFile;
-import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLReader;
+import org.openscience.cdk.io.SMILESReader;
 import org.openscience.cdk.io.ReaderFactory;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
@@ -30,23 +30,6 @@ import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
 import dk.smartcyp.core.MoleculeKU;
-
-
-
-
-
-// Ligand files
-// pubchem.sdf
-// #adrenaline.sdf formoterol.sdf indacaterol.sdf test_ligands.sdf
-// exampleStructure.mdl test_ligands.sdf test_ligands.sdf
-
-
-
-
-// ToDo
-// Uncomment this line in GenerateImages.java
-//generators.add(new BasicBondGenerator());
-
 
 public class SMARTCyp {
 
@@ -60,6 +43,47 @@ public class SMARTCyp {
 			System.out.println("Wrong number of arguments!" + '\n' + "Usage: SMARTCyp <One or more moleculeFiles>");
 			System.exit(0);			
 		}
+		
+		//check for input flags and copy input files to filenames array
+		int nohtml = 0;
+		int dirwanted = 0;
+		int nocsv = 0;
+		String outputdir = "";
+	    for(int i=0; i < arguments.length; i++){
+	    	if (arguments[i].equals("-nohtml")){
+	        	nohtml = 1;
+	        }
+	    	if (arguments[i].equals("-nocsv")){
+	        	nocsv = 1;
+	        }
+	    	if (arguments[i].equals("-outputdir")){
+	        	outputdir = arguments[i+1];
+	        	dirwanted = 1;
+	        }
+	    }
+	    String[] filenames;
+	    if (nohtml == 1 || dirwanted == 1 || nocsv == 1){
+	        ArrayList<String> tmplist = new ArrayList<String>();
+	        Collections.addAll(tmplist, arguments);
+	        if (dirwanted == 1){
+	        	//a specific output directory has been requested
+	        	tmplist.remove(outputdir);
+	        	tmplist.remove("-outputdir");
+	        	File dir = new File(outputdir);
+	        	//check if the directory exists, otherwise create it
+	        	if (!dir.exists()){
+	        		dir.mkdir();
+	        	}
+	        	outputdir = outputdir + File.separator;
+	        }
+	        if (nohtml == 1) tmplist.remove("-nohtml");
+	        if (nocsv == 1) tmplist.remove("-nocsv");
+	        filenames = (String[])tmplist.toArray(new String[0]);
+	    }
+	    else {
+	    	filenames = arguments;
+	    }
+	    //end of input flags
 
 		// Date and Time is used as part of the names of outfiles
 		String dateAndTime = SMARTCypMain.getDateAndTime();
@@ -72,7 +96,7 @@ public class SMARTCyp {
 		
 		// Read in structures/molecules
 		System.out.println("\n ************** Reading molecule structures **************");
-		MoleculeSet moleculeSet = SMARTCypMain.readInStructures(arguments, SMARTSnEnergiesTable);
+		MoleculeSet moleculeSet = SMARTCypMain.readInStructures(filenames, SMARTSnEnergiesTable);
 
 
 
@@ -91,26 +115,27 @@ public class SMARTCyp {
 			moleculeKU.rankAtoms();
 		}
 
+		//don't print csv if there are no molecules in the input
+		if (moleculeSet.getMoleculeCount()>0){
+			if (nocsv==0){
+				// Write results as CSV
+				System.out.println("\n ************** Writing Results as CSV **************");
+				WriteResultsAsCSV writeResultsAsCSV = new WriteResultsAsCSV(dateAndTime, arguments, outputdir);
+				writeResultsAsCSV.writeCSV(moleculeSet);
+			}
+		}
 
-		// Write results as CSV
-		System.out.println("\n ************** Writing Results as CSV **************");
-		WriteResultsAsCSV writeResultsAsCSV = new WriteResultsAsCSV(dateAndTime, arguments);
-		writeResultsAsCSV.writeCSV(moleculeSet);
+		if (nohtml==0){
+			// Write Images	
+			System.out.println("\n ************** Writing Images **************");
+			GenerateImages generateImages = new GenerateImages(dateAndTime, outputdir);
+			generateImages.generateAndWriteImages(moleculeSet);
 
-
-
-		// Write Images	
-		System.out.println("\n ************** Writing Images **************");
-		GenerateImages generateImages = new GenerateImages(dateAndTime);
-		generateImages.generateAndWriteImages(moleculeSet);
-
-
-		// Write results as HTML
-		System.out.println("\n ************** Writing Results as HTML **************");
-		WriteResultsAsHTML writeResultsAsHTML = new WriteResultsAsHTML(dateAndTime, arguments);
-		writeResultsAsHTML.writeHTML(moleculeSet);
-
-
+			// Write results as HTML
+			System.out.println("\n ************** Writing Results as HTML **************");
+			WriteResultsAsHTML writeResultsAsHTML = new WriteResultsAsHTML(dateAndTime, arguments, outputdir);
+			writeResultsAsHTML.writeHTML(moleculeSet);
+		}
 
 	}
 
@@ -132,7 +157,7 @@ public class SMARTCyp {
 
 
 		List<IAtomContainer> moleculeList;
-		IChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
+		DefaultChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
 		ISimpleChemObjectReader reader;
 
 		File inputFile;
@@ -156,13 +181,14 @@ public class SMARTCyp {
 
 				if (infileName.endsWith(".sdf")) {  
 					reader = new MDLReader(new FileReader(infileName));
-					//MoleculesIterator.useIterativeReader(new FileInputStream(infileName));
-					//return null;
+					}
+				else if (infileName.endsWith(".smi")){
+					reader = new SMILESReader(new FileReader(infileName));
 				}
 				else	 reader = readerFactory.createReader(new FileReader(inputFile));
 
 
-				emptyChemFile = new ChemFile();
+				emptyChemFile = builder.newChemFile();
 				chemFile = (IChemFile) reader.read(emptyChemFile);
 
 				if (chemFile == null) continue;	
@@ -175,34 +201,38 @@ public class SMARTCyp {
 				// Iterate Molecules
 				MoleculeKU moleculeKU;
 				IAtomContainer iAtomContainerTmp;		
-				IAtomContainer iAtomContainer;	
-				CDKAtomTypeMatcher matcher = CDKAtomTypeMatcher.getInstance(DefaultChemObjectBuilder.getInstance());
+				IAtomContainer iAtomContainer;
 				CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(DefaultChemObjectBuilder.getInstance());
 				for(int atomContainerNr = 0; atomContainerNr < moleculeList.size() ; atomContainerNr++){				
 					iAtomContainerTmp = moleculeList.get(atomContainerNr);	
 
 					iAtomContainer = AtomContainerManipulator.removeHydrogens(iAtomContainerTmp);	
 
-					Iterable<IAtom> atoms  = iAtomContainer.atoms();
-					Iterator<IAtom> a = atoms.iterator();
-					while (a.hasNext()) {
-						IAtom atom = (IAtom)a.next();
-						IAtomType type = matcher.findMatchingAtomType(iAtomContainer, atom);
-						AtomTypeManipulator.configure(atom, type); 
-					}
+					//check number of atoms, if less than 2 don't add molecule
+					if (iAtomContainer.getAtomCount()>1){
+			
+						AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(iAtomContainer);
 
-					adder.addImplicitHydrogens(iAtomContainer);
-					moleculeKU = new MoleculeKU(iAtomContainer, SMARTSnEnergiesTable);	
-					moleculeSet.addMolecule(moleculeKU);
-					moleculeKU.setID(Integer.toString(highestMoleculeID));
-					highestMoleculeID++;
+						adder.addImplicitHydrogens(iAtomContainer);
+						CDKHueckelAromaticityDetector.detectAromaticity(iAtomContainer); 	
+							
+						moleculeKU = new MoleculeKU(iAtomContainer, SMARTSnEnergiesTable);	
+						moleculeSet.addMolecule(moleculeKU);
+						moleculeKU.setID(Integer.toString(highestMoleculeID));
+						//set the molecule title in the moleculeKU object
+						if (iAtomContainer.getProperty("SMIdbNAME")!="" && iAtomContainer.getProperty("SMIdbNAME")!=null) {
+							iAtomContainer.setProperty(CDKConstants.TITLE, iAtomContainer.getProperty("SMIdbNAME"));
+						}
+						moleculeKU.setProperty(CDKConstants.TITLE, iAtomContainer.getProperty(CDKConstants.TITLE));
+						highestMoleculeID++;
+					}
 
 				}
 				System.out.println(moleculeList.size() + " molecules were read from the file "+ inFileNames[moleculeFileNr]);
 
 			} 
 			catch (FileNotFoundException e) {
-				System.out.println("File " + inFileNames[moleculeFileNr] + "not found");
+				System.out.println("File " + inFileNames[moleculeFileNr] + " not found");
 				e.printStackTrace();
 			} 
 			catch (IOException e) {e.printStackTrace();}
