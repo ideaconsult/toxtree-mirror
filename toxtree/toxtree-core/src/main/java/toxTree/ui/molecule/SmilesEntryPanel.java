@@ -46,13 +46,18 @@ import javax.swing.SwingConstants;
 import javax.vecmath.Vector2d;
 
 import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.graph.ConnectivityChecker;
+import org.openscience.cdk.inchi.InChIGeneratorFactory;
+import org.openscience.cdk.inchi.InChIToStructure;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 
 import toxTree.query.FunctionalGroups;
 import ambit2.core.config.AmbitCONSTANTS;
+import ambit2.namestructure.Name2StructureProcessor;
 
 /**
  * A {@link javax.swing.JPanel} to enter a SMILES. Now it supports a history of entered SMILES that can be 
@@ -127,11 +132,11 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
         backButton.setToolTipText("Back to the previous SMILES");
         top.add(backButton);top.add(forwardButton);
 
-        JLabel labelSmi = new JLabel("<html>  Enter <b>SMILES</b>:</html>");
+        JLabel labelSmi = new JLabel("SMILES,InChI or name:");
         labelSmi.setOpaque(true);
         //labelSmi.setBackground(Color.black);
         //labelSmi.setForeground(Color.white);
-        labelSmi.setPreferredSize(new Dimension(80,24));
+        labelSmi.setPreferredSize(new Dimension(110,24));
         labelSmi.setAlignmentX(CENTER_ALIGNMENT);
 
         top.add(labelSmi);
@@ -141,7 +146,7 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
         smilesBox.setEditable(true);
         smilesBox.setFocusable(true);
         //smilesBox.setHorizontalAlignment(JTextField.LEFT);
-        smilesBox.setToolTipText("Enter SMILES of a molecule here");
+        smilesBox.setToolTipText("Enter SMILES, InChI or IUPAC name here");
         smilesBox.setPreferredSize(new Dimension(Integer.MAX_VALUE,24));
         
         //smilesEdit.addActionListener(this);
@@ -187,44 +192,78 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 
 	}
 	protected boolean createMoleculeFromSMILES(String smiles) {
+		String errormsg = null;
 		smiles = smiles.replace('\n',' ').trim();
-    	IMolecule a = (IMolecule) FunctionalGroups.createAtomContainer(smiles,false);
+    	IAtomContainer a = FunctionalGroups.createAtomContainer(smiles,false);
     	if (a != null) { 
 	    	a.setProperty(CDKConstants.COMMENT,"Created from SMILES");
 	    	a.setProperty(AmbitCONSTANTS.SMILES,smiles);
 	    	//a.setProperty(AmbitCONSTANTS.FORMULA,mf.analyseAtomContainer(a));
-
-            //Preferences.getProperties().getProperty(arg0)
-            try {
-            	if (sdg == null) sdg = new StructureDiagramGenerator();
-            	if (ConnectivityChecker.isConnected(a)) {
-                    sdg.setMolecule(a);
-                    sdg.generateCoordinates(new Vector2d(0,1));
-                    a = sdg.getMolecule();            		
-            	} else {
-	            	IMoleculeSet molecules = ConnectivityChecker.partitionIntoMolecules(a);            	
-	                a.removeAllElements();
-	        		for (int i=0; i< molecules.getMoleculeCount();i++) {
-	       				sdg.setMolecule(molecules.getMolecule(i));
-	       				sdg.generateCoordinates(new Vector2d(0,1));
-	       				a.add(sdg.getMolecule());
-	        		}
-            	}
-
-            } catch (Exception x) {
-                System.err.println(x);
-            }
+    	} else try {
+    		errormsg = "invalid SMILES "+smiles;
+    		a = isInChI(smiles);
+    		if (a != null) {
+	    		a.setProperty(CDKConstants.COMMENT,"Created from InChI");
+		    	a.setProperty(AmbitCONSTANTS.INCHI,smiles);
+    		} else {
+    			errormsg = "invalid InChI "+smiles;
+    			Name2StructureProcessor p = new Name2StructureProcessor();
+    			a = p.process(smiles);
+    			if (a != null) {
+    	    		a.setProperty(CDKConstants.COMMENT,"Created from name");
+    		    	a.setProperty(AmbitCONSTANTS.NAMES,smiles);
+    			} else errormsg = "Can't parse name "+smiles;
+    		}
+    	} catch (Exception x) {
+    		a = null;
+    		errormsg = x.getMessage();
+    	}
+    	
+    	
+    	if (a != null) {
+    		if (a instanceof IMolecule) 
+	            try {
+	            	if (sdg == null) sdg = new StructureDiagramGenerator();
+	            	if (ConnectivityChecker.isConnected(a)) {
+	                    sdg.setMolecule((IMolecule)a);
+	                    sdg.generateCoordinates(new Vector2d(0,1));
+	                    a = sdg.getMolecule();            		
+	            	} else {
+		            	IMoleculeSet molecules = ConnectivityChecker.partitionIntoMolecules(a);            	
+		                a.removeAllElements();
+		        		for (int i=0; i< molecules.getMoleculeCount();i++) {
+		       				sdg.setMolecule(molecules.getMolecule(i));
+		       				sdg.generateCoordinates(new Vector2d(0,1));
+		       				a.add(sdg.getMolecule());
+		        		}
+	            	}
+	
+	            } catch (Exception x) {
+	                System.err.println(x);
+	            }
             
 	        setMolecule(a);
 	        
 	        smilesBox.addItem(smiles);
 	        return true;
-    	} else 
+    	} else {
 			JOptionPane.showMessageDialog(getParent(),
-				    "You have entered an invalid SMILES, please try again.",						
-				    "Error while parsing SMILES",
+				    //"You have entered an invalid SMILES or InChI, please try again.",						
+				    errormsg,
+				    "Please try again",
 				    JOptionPane.ERROR_MESSAGE);
-    	return false;
+			return false;
+    	} 
+	}
+	
+	public IAtomContainer isInChI(String inchi) throws Exception {
+		if (inchi.startsWith(AmbitCONSTANTS.INCHI)) {
+			InChIGeneratorFactory f = InChIGeneratorFactory.getInstance();
+			InChIToStructure c =f.getInChIToStructure(inchi, DefaultChemObjectBuilder.getInstance());
+			if ((c==null) || (c.getAtomContainer()==null) || (c.getAtomContainer().getAtomCount()==0)) 
+				throw new Exception("Invalid InChI");
+			return c.getAtomContainer();
+		} else return null;
 	}
 	/* (non-Javadoc)
 	 * @see java.awt.event.ItemListener#itemStateChanged(java.awt.event.ItemEvent)
