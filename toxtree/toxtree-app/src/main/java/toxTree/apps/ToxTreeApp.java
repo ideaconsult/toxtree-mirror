@@ -98,6 +98,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 		if (methods.size() == 0) {
 			try {
 				methods.add(Introspection.loadCreateObject("toxTree.tree.cramer.CramerRules"));
+				methods.add(Introspection.loadCreateObject("cramer2.CramerRulesWithExtensions"));
 				methods.add(Introspection.loadCreateObject("toxtree.plugins.kroes.Kroes1Tree"));
 				methods.add(Introspection.loadCreateObject("sicret.SicretRules"));
 				methods.add(Introspection.loadCreateObject("mutant.BB_CarcMutRules"));
