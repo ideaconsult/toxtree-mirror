@@ -211,8 +211,14 @@ public class LinearQSARModel extends AbstractQSARModel  {
 						if (!calculated)
 							processUnavailableDescriptors(descriptorNames.get(i));
 					}
-				} else 	
-					value = Double.parseDouble(descriptor.toString());
+				} else 
+					if ("true".equals(descriptor.toString().toLowerCase())) value = 1.0;
+					else if ("false".equals(descriptor.toString().toLowerCase())) value = 0.0;
+					else try {
+						value = Double.parseDouble(descriptor.toString());
+					} catch (NumberFormatException x) {
+						throw new QSARModelException(String.format("%s=%s %s",descriptorNames.get(i),descriptor,x.getMessage())); 
+					}
 				
 				logger.debug("Using "+descriptorNames.get(i) + "=" + value);
 				
@@ -222,7 +228,7 @@ public class LinearQSARModel extends AbstractQSARModel  {
 				values[i] = value;
 			}
 		} catch (QSARModelException x) {
-			throw new QSARModelException(x.getMessage()); 
+			throw x;
 		} catch (NumberFormatException x) {
 			throw new QSARModelException(x.getMessage()); 
 		}		
