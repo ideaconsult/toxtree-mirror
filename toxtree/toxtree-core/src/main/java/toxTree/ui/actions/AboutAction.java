@@ -114,7 +114,7 @@ public class AboutAction extends DataModuleAction {
         }
     	
 
-    	b.append("\n\n<html><a href='mailto:nina@acad.bg'>mailto:nina@acad.bg</a>\n");
+    	b.append("\n\n<html><a href='mailto:jeliazkova.nina@gmail.com'>mailto:jeliazkova.nina@gmail.com</a>\n");
     	/*
     	JPanel p = new JPanel(new BorderLayout());
     	
