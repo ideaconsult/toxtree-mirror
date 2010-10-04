@@ -57,7 +57,7 @@ public abstract class StructureEntryPanel extends JPanel {
 	 * @param atomContainer The atomContainer to set.
 	 */
 	
-	public synchronized void setMolecule(IMolecule atomContainer) {
+	public synchronized void setMolecule(IAtomContainer atomContainer) {
     	if (!dataContainer.loadedFromFile()) 
     		dataContainer.setMolecule(atomContainer);
     }		
