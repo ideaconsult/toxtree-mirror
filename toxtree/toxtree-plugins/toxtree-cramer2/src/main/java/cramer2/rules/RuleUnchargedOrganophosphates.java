@@ -36,7 +36,7 @@ public class RuleUnchargedOrganophosphates extends  RuleSMARTSSubstructureAmbit{
 		explanation = new StringBuffer();
 		explanation.append("<html>Is any element not listed in Q3 an uncharged organophosphate?</html>");
 
-		examples[0] = "OP(=O)(O)CC(O)C(=O)O";//  no hit (X,0,X,0)
+		examples[0] = "CNS(=O)(O)O";//  no hit (X,0,X,0)
 		examples[1] = "COP(=O)(OC)OC(C)=CC(=O)NC";//hit (0,X,0,X)
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"1","[$(P)!$([P;R0]([O-,OH])(=O)([$([O-,OH]),$(O(P)[C,P])])[$([O-,OH]),$(O(P)[C,P])])]");
