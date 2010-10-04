@@ -137,6 +137,7 @@ public class FunctionalGroups {
     public static final String SULPHONATE = "sulphonate";
     public static final String SULPHAMATE = "sulphamate";
     public static final String SULPHATE = "sulphate";
+    public static final String PHOSPHATE = "phosphate";
     public static final String POLYOXYETHYLENE = "polyoxyethylene";
     public static final String HYDROCHLORIDE_OF_AMINE = "hydrochloride of amine";
     public static final String SULPHATE_OF_AMINE = "sulphate of amine";
@@ -1558,7 +1559,39 @@ public class FunctionalGroups {
         query.addBond(new OrderQueryBond(o4, r, CDKConstants.BONDORDER_SINGLE));
         return query;
     }
-    
+
+    public static QueryAtomContainer phosphate(String[] setOfAtoms) {
+        QueryAtomContainer query = new QueryAtomContainer();
+        query.setID(PHOSPHATE);
+        SymbolSetQueryAtom m = null;
+        if (setOfAtoms != null) {
+         	m = new SymbolSetQueryAtom();
+	        for (int i=0; i < setOfAtoms.length; i++)
+	            m.addSymbol(setOfAtoms[i]);
+		}
+        AnyAtom r = new AnyAtom();
+        r.setProperty(DONTMARK,query.getID());
+        
+        SymbolQueryAtom p = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.PHOSPHORUS));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        //o1.setCharge(-1.0);
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom o3 = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN));
+         
+         
+        query.addAtom(p);query.addAtom(r);
+        query.addAtom(o1); query.addAtom(o2); query.addAtom(o3);
+        
+        query.addBond(new OrderQueryBond(p, o1, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(p, o2, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(p, o3, CDKConstants.BONDORDER_DOUBLE));
+        
+        if (m != null)         
+        	query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(o2, r, CDKConstants.BONDORDER_SINGLE));
+        return query;
+    }
+
     //polyoxyethylene
     public static QueryAtomContainer polyoxyethylene(int n) {
         QueryAtomContainer query = new QueryAtomContainer();
