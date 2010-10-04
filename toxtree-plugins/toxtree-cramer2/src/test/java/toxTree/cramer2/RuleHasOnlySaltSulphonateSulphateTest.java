@@ -99,7 +99,40 @@ public class RuleHasOnlySaltSulphonateSulphateTest extends AbstractRuleTest {
 			assertNotNull(residues);
 			assertEquals(1,residues.getAtomContainerCount());
 	}			
-	
+
+	public void testPhosphate() throws Exception {
+		IAtomContainer a = FunctionalGroups.createAtomContainer("[O-]P(CC1=CC(C(C)(C)C)=C(O)C(C(C)(C)C)=C1)(OCC)=O.[O-]P(CC2=CC(C(C)(C)C)=C(O)C(C(C)(C)C)=C2)(OCC)=O.[Ca+2]");
+			MolAnalyser.analyse(a);
+			assertTrue(rule2test.verifyRule(a));
+			Object mf = a.getProperty(MolFlags.MOLFLAGS);
+			assertNotNull(mf);
+			IAtomContainerSet residues = ((MolFlags)mf).getResidues();
+			assertNull(residues);
+			//assertEquals(2,residues.getAtomContainerCount());
+	}			
+
+	public void testPhosphate1() throws Exception {
+		IAtomContainer a = FunctionalGroups.createAtomContainer("[O-]P(CC1=CC(C(C)(C)C)=C(O)C(C(C)(C)C)=C1)(OCC)=O.[O-]P(CC2=CC(C(C)(C)C)=C(O)C(C(C)(C)C)=C2)(OCC)=O");
+			MolAnalyser.analyse(a);
+			assertTrue(rule2test.verifyRule(a));
+			Object mf = a.getProperty(MolFlags.MOLFLAGS);
+			assertNotNull(mf);
+			IAtomContainerSet residues = ((MolFlags)mf).getResidues();
+			assertNull(residues);
+			//assertEquals(2,residues.getAtomContainerCount());
+	}			
+
+	public void testPhosphorus() throws Exception {
+		IAtomContainer a = FunctionalGroups.createAtomContainer("P(CC1=CC(C(C)(C)C)=C(O)C(C(C)(C)C)=C1)(OCC)=O");
+			MolAnalyser.analyse(a);
+			assertFalse(rule2test.verifyRule(a));
+			Object mf = a.getProperty(MolFlags.MOLFLAGS);
+			assertNotNull(mf);
+			IAtomContainerSet residues = ((MolFlags)mf).getResidues();
+			assertNull(residues);
+			//assertEquals(2,residues.getAtomContainerCount());
+	}			
+		
 	public void testHydroChloridOfAmine() throws Exception  {
 		IAtomContainer a = FunctionalGroups.createAtomContainer("[Cl-].[NH3+]C1CCCCC1");
 			MolAnalyser.analyse(a);

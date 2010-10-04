@@ -29,6 +29,7 @@ import java.util.List;
 
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
@@ -36,6 +37,8 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.smiles.SmilesGenerator;
+
+import com.lowagie.text.Element;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
@@ -53,9 +56,10 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 	protected static final transient String[] Me = new String[]{"Na","K","Ca"};	
 	protected static final transient String[] Me1 = new String[]{"Na","K","Ca","Mg","N"};
 	
-	protected static transient ArrayList elements = null;
+	protected static transient ArrayList<String> elements = null;
 	private static final long serialVersionUID = 7313277537215733933L;
 	
+	protected static transient QueryAtomContainer phosphate = null;
 	protected static transient QueryAtomContainer sulphonate = null;
 	protected static transient QueryAtomContainer sulphate = null;
 	protected static transient QueryAtomContainer aminoSulphate = null;
@@ -73,7 +77,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 		sulphonate = FunctionalGroups.sulphonate(Me,false);
 		sulphate = FunctionalGroups.sulphate(null);
 		if (elements == null) {
-			elements = new ArrayList();
+			elements = new ArrayList<String>();
 			elements.add("C");
 			elements.add("H");
 			elements.add("O");
@@ -97,11 +101,13 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 	    //(c)	
 		addSubstructure(FunctionalGroups.sulphonate(Me));
 		addSubstructure(sulphonate);
+		phosphate = FunctionalGroups.phosphate(Me);
+		addSubstructure(phosphate);
 		addSubstructure(FunctionalGroups.sulphate(Me));
 		addSubstructure(FunctionalGroups.sulphamate(Me));
 		addSubstructure(FunctionalGroups.sulphamate(null));		
 		id="4";
-		title = "Elements not listed in Q3 occurs only as a Na,K,Ca,Mg,N salt, sulphamate, sulphonate, sulphate, hydrochloride ...";
+		title = "Elements not listed in Q3 occurs only as a Na,K,Ca,Mg,N salt, phosphate, sulphamate, sulphonate, sulphate, hydrochloride ...";
 		explanation.append("<html>Do all elements not listed in Q3 occur only as <UL>");
 		explanation.append("<LI>(a) a Na,K,Ca,Mg or N salt of a carboxylic acid, or");
 		explanation.append("<LI>(b) a sulphate or hydrochloride of an amine, or");
@@ -166,6 +172,21 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 				if (sulphonate == null) sulphonate = FunctionalGroups.sulphonate(Me,false);
 				residues = FunctionalGroups.detachGroup(residue,sulphonate);
 				residues.setID("Unsulphonated ");
+			} else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.PHOSPHATE)) {
+				
+				for (IAtom atom:mol.atoms()) {
+					if (atom.getSymbol().equals(Elements.PHOSPHORUS.getSymbol()) && 
+						(atom.getProperty(FunctionalGroups.PHOSPHATE)==null))
+						return false;
+				}
+				/*
+				detached = FunctionalGroups.PHOSPHATE;
+				FunctionalGroups.clearMark(residue,detached);				
+				if (phosphate == null) phosphate = FunctionalGroups.phosphate(Me);	
+				residues = FunctionalGroups.detachGroup(residue,phosphate);
+				if (residues!=null)
+					residues.setID("Without phosphate ");
+					*/
 			} else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.SULPHATE)) {
 				detached = FunctionalGroups.SULPHATE;
 				FunctionalGroups.clearMark(residue,detached);				
