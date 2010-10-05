@@ -9,7 +9,6 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-core</artifactId>
   <name>Toxtree core classes</name>
-  <version>2.1.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <dependencies>
   	<dependency>

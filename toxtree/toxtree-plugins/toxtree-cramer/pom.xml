@@ -8,5 +8,4 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-cramer</artifactId>
   <name>Cramer rules</name>
-  <version>2.1.1-SNAPSHOT</version>
 </project>

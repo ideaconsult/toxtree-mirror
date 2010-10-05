@@ -9,7 +9,6 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-sicret</artifactId>
   <name>Skin irritation prediction rules</name>
-  <version>2.1.1-SNAPSHOT</version>
   <dependencies>
   	<dependency>
   		<groupId>toxtree</groupId>

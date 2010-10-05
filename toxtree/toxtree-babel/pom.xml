@@ -8,7 +8,6 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-babel</artifactId>
   <name>OpenBabel wrapper</name>
-  <version>2.1.1-SNAPSHOT</version>
   <dependencies>
   	<dependency>
   		<groupId>junit</groupId>
@@ -22,4 +21,7 @@
   		<version>${ambit.version}</version>
   	</dependency>
   </dependencies>
+  <properties>
+  	<ob.version>2.2.3</ob.version>
+	</properties>
 </project>
