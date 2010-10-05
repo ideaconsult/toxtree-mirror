@@ -1,10 +1,10 @@
-Manifest-version: 2.1.1
+Manifest-version: ${project.version}
 Package-Title: ToxMic (Structure Alerts for the in vivo micronucleus assay in rodents) 
 Specification-Title: in vivo micronucleus assay
-Specification-Version: 2.1.1
+Specification-Version: ${project.version}
 Specification-Vendor: Istituto Superiore di Sanita
 Implementation-Title: Structure Alerts for the in vivo micronucleus assay in rodents
-Implementation-Version: 2.1.1
+Implementation-Version: ${project.version}
 Implementation-Vendor: Istituto Superiore di Sanita
-Package-Version: 2.1.1
+Package-Version: ${project.version}
 Package-Vendor: Istituto Superiore di Sanita

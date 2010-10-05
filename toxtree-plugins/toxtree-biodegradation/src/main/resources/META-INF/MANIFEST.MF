@@ -1,0 +1,13 @@
+Package: com.molecularnetworks.start
+Name: com/molecularnetworks/start/BiodegradationRules.class
+Manifest-version: ${project.version}
+Class-Path: toxtree-biodegradation-${project.version}.jar
+Specification-Title: "Estimates the biodegradability potential of a chemical compound based on structural alerts compiled from the Canadian EPA."
+Specification-Version: ${project.version}
+Specification-Vendor: Molecular Networks
+Implementation-Title: START
+Implementation-Version: ${project.version}
+Implementation-Vendor: Molecular Networks
+Package-Title: com.molecularnetworks.start
+Package-Version: ${project.version}
+Package-Vendor: Molecular Networks
