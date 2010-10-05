@@ -8,7 +8,6 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-bundle</artifactId>
   <name>Toxtree-bundle</name>
-  <version>2.1.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <dependencies>
   	<dependency>

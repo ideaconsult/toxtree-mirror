@@ -9,7 +9,6 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-biodegradation</artifactId>
   <name>toxtree-biodegradation</name>
-  <version>2.1.1-SNAPSHOT</version>
   <organization>
   	<name>Molecular Networks</name>
   	<url>www.molnetworks.de</url>

@@ -1,11 +1,11 @@
-Manifest-version: 2.1.1
+Manifest-version: ${project.version}
 Main-Class: toxTree.apps.ToxTreeApp
 Specification-Title: Toxtree Application - "Estimation of Toxic Hazard - A Decision Tree Approach"
-Specification-Version: 2.1.1
-Specification-Vendor: Ideaconsult LTD
+Specification-Version: ${project.version}
+Specification-Vendor: Ideaconsult Ltd
 Package-Title: toxTree.apps
-Package-Version: 2.1.1
-Package-Vendor: Ideaconsult LTD
+Package-Version: ${project.version}
+Package-Vendor: Ideaconsult Ltd
 Implementation-Title: Toxtree (Estimation of Toxic Hazard - A Decision Tree Approach)
-Implementation-Version: 2.1.1
-Implementation-Vendor: Ideaconsult LTD
+Implementation-Version: ${project.version}
+Implementation-Vendor: Ideaconsult Ltd

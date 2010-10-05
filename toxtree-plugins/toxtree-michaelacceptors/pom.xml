@@ -9,7 +9,6 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-michaelacceptors</artifactId>
   <name>Michael acceptors</name>
-  <version>2.1.1-SNAPSHOT</version>
    <build>
   	<pluginManagement>
   		<plugins>

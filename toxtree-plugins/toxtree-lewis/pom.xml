@@ -8,7 +8,6 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-lewis</artifactId>
   <name>Lewis decision tree for P450 isoform selection</name>
-  <version>2.1.1-SNAPSHOT</version>
   <description>Lewis decision tree for P450  isoform selection</description>
   <dependencies>
   	<dependency>

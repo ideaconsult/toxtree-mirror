@@ -10,7 +10,6 @@
   <artifactId>toxtree-plugins</artifactId>
   <packaging>pom</packaging>
   <name>Toxtree plugin</name>
-  <version>2.1.1-SNAPSHOT</version>
   <description>Parent project for toxtree plugins</description>
   <modules>
     <module>toxtree-sicret</module>

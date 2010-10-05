@@ -8,7 +8,6 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-skinsensitisation</artifactId>
   <name>toxtree-skinsensitisation</name>
-  <version>2.1.1-SNAPSHOT</version>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

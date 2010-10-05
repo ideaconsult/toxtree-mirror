@@ -1,0 +1,10 @@
+Manifest-version: ${project.version}
+Specification-Title: Wrapper for OpenBabel ${ob.version}
+Specification-Version: ${project.version}
+Specification-Vendor: Ideaconsult Ltd
+Package-Title: toxTree.bin.openbabel
+Package-Version: ${project.version}
+Package-Vendor: Ideaconsult Ltd
+Implementation-Title: Wrapper for OpenBabel ${ob.version}
+Implementation-Version: ${project.version}
+Implementation-Vendor: Ideaconsult Ltd

@@ -8,6 +8,5 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-structurefeatures</artifactId>
   <name>ToxFragments</name>
-  <version>2.1.1-SNAPSHOT</version>
   <description>Structure features</description>
 </project>

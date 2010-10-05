@@ -10,7 +10,6 @@ Schilter, B., Schlatter, J., van Schothorst, F., Vos, J.G., Würtzen, G. (2004).
   <groupId>toxtree</groupId>
   <artifactId>toxtree-kroes</artifactId>
   <name>Kroes decision tree</name>
-  <version>2.1.1-SNAPSHOT</version>
   <dependencies>
   	<dependency>
   		<groupId>toxtree</groupId>

@@ -8,6 +8,5 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-mic</artifactId>
   <name>ToxMic</name>
-  <version>2.1.1-SNAPSHOT</version>
   <description>Structure Alerts for the in vivo micronucleus assay in rodents</description>
 </project>
