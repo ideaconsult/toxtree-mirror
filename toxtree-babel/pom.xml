@@ -24,4 +24,19 @@
   <properties>
   	<ob.version>2.2.3</ob.version>
 	</properties>
+	  <build>
+    <resources>
+	<resource>
+		<directory>src/main/resources</directory>
+		<filtering>true</filtering>
+		<excludes>
+		<exclude>**/bin/*</exclude>
+		</excludes>
+	</resource>
+	<resource>
+		<directory>src/main/resources/bin</directory>
+		<filtering>false</filtering>
+	</resource>
+  </resources>
+  </build>
 </project>
