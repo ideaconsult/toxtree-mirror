@@ -17,7 +17,7 @@ public class Tools {
 	 * @return
 	 */
 	public static File getFileFromResource(String resource) throws Exception {
-			File file = new File(System.getProperty("java.io.tmpdir")+"/.toxtree.2.1.0");
+			File file = new File(System.getProperty("java.io.tmpdir")+"/.toxtree.2.1.3");
 			file.mkdir();
 			file = new File(file.getAbsolutePath()+"/"+resource);
 			if (!file.exists())
