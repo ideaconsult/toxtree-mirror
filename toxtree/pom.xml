@@ -282,6 +282,6 @@
   </build>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
- 	<ambit.version>2.1.3</ambit.version>
+ 	<ambit.version>2.1.3-SNAPSHOT</ambit.version>
   </properties>    
 </project>
