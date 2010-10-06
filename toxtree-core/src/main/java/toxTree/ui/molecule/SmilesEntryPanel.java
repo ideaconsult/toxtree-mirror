@@ -54,6 +54,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
+import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.query.FunctionalGroups;
 import ambit2.core.config.AmbitCONSTANTS;
@@ -205,6 +206,8 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
     		if (a != null) {
 	    		a.setProperty(CDKConstants.COMMENT,"Created from InChI");
 		    	a.setProperty(AmbitCONSTANTS.INCHI,smiles);
+		    	a.setID(smiles);
+
     		} else {
     			errormsg = "invalid InChI "+smiles;
     			Name2StructureProcessor p = new Name2StructureProcessor();
@@ -212,7 +215,13 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
     			if (a != null) {
     	    		a.setProperty(CDKConstants.COMMENT,"Created from name");
     		    	a.setProperty(AmbitCONSTANTS.NAMES,smiles);
-    			} else errormsg = "Can't parse name "+smiles;
+    		    	a.setID(smiles);
+    		    	if (a instanceof IMolecule) 
+    		    	try { 
+    		    		SmilesGenerator g = new SmilesGenerator(); 
+    		    		a.setProperty(AmbitCONSTANTS.SMILES, g.createSMILES((IMolecule)a));
+    		    	} catch (Exception x) {};
+    			} else errormsg = "Can't parse "+smiles;
     		}
     	} catch (Exception x) {
     		a = null;
