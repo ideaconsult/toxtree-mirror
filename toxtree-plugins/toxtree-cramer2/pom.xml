@@ -8,4 +8,12 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-cramer2</artifactId>
   <name>Extended Cramer Rules</name>
+  <dependencies>
+  	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-cramer</artifactId>
+  		<version>${project.version}</version>
+  		<scope>compile</scope>
+  	</dependency>
+  </dependencies>
 </project>
