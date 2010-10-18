@@ -63,38 +63,38 @@ public class CramerRulesWithExtensions extends UserDefinedTree  {
     
 	public final static transient String[] c_rules = { 
 			"cramer2.rules.RuleNormalBodyConstituent", //1 
-			"cramer2.rules.RuleToxicFunctionalGroups",  //2
-			"cramer2.rules.RuleHasOtherThanC_H_O_N_S2", //3
+			"toxTree.tree.cramer.RuleToxicFunctionalGroups",  //2
+			"toxTree.tree.cramer.RuleHasOtherThanC_H_O_N_S2", //3
 			"cramer2.rules.RuleHasOnlySaltSulphonateSulphate", //4 
-			"cramer2.rules.RuleSimplyBranchedAliphaticHydrocarbon", //5
-            "cramer2.rules.RuleSomeBenzeneDerivatives", //6
-            "cramer2.rules.RuleIsHeterocyclic",  //7
-			"cramer2.rules.RuleLactoneOrCyclicDiester", //8 
-            "cramer2.rules.RuleLactonesFusedOrUnsaturated", //9 
-			"cramer2.rules.Rule3MemberedHeterocycle", //10
-			"cramer2.rules.RuleHeterocyclicComplexSubstituents", //11
-			"cramer2.rules.RuleHeteroaromatic",//12
-			"cramer2.rules.RuleRingWithSubstituents",//13
-			"cramer2.rules.RuleManyAromaticRings14",//14
-			"cramer2.rules.RuleReadilyHydrolysedMononuclear",//15
-			"cramer2.rules.RuleIsCommonTerpene", //16
-			"cramer2.rules.RuleReadilyHydrolysedToCommonterpene", //17
-			"cramer2.rules.RuleKetoneAlcoholEtc", //18
-			"cramer2.rules.RuleIsOpenChain", //19
-			"cramer2.rules.RuleAliphaticWithSomeFuncGroups",//20
-			"cramer2.rules.Rule3FuncGroups",//21
-			"cramer2.rules.RuleCommonComponentOfFood",//22
-			"cramer2.rules.RuleIsAromatic",//23
-			"cramer2.rules.RuleMonocarbocyclic",//24
-			"cramer2.rules.RuleCyclopropaneEtc",//25
-			"cramer2.rules.RuleMonocycloalkanoneEtc",//26
-			"cramer2.rules.RuleRingsWithSubstituents",//27
-			"cramer2.rules.RuleManyAromaticRings28",  //this is the same as Q14
-			"cramer2.rules.RuleReadilyHydrolysed29", //this is the same as Q15
-			"cramer2.rules.RuleRingComplexSubstituents30",  //30
-			"cramer2.rules.RuleAcyclicAcetalEsterOfQ30",  //31
-			"cramer2.rules.Rule32",			//"cramer2.rules.RuleOnlyFuncGroupsQ30",		//32
-			"cramer2.rules.RuleSufficientSulphonateGroups",   //33
+			"toxTree.tree.cramer.RuleSimplyBranchedAliphaticHydrocarbon", //5
+            "toxTree.tree.cramer.RuleSomeBenzeneDerivatives", //6
+            "toxTree.tree.cramer.RuleIsHeterocyclic",  //7
+			"toxTree.tree.cramer.RuleLactoneOrCyclicDiester", //8 
+            "toxTree.tree.cramer.RuleLactonesFusedOrUnsaturated", //9 
+			"toxTree.tree.cramer.Rule3MemberedHeterocycle", //10
+			"toxTree.tree.cramer.RuleHeterocyclicComplexSubstituents", //11
+			"toxTree.tree.cramer.RuleHeteroaromatic",//12
+			"toxTree.tree.cramer.RuleRingWithSubstituents",//13
+			"toxTree.tree.cramer.RuleManyAromaticRings14",//14
+			"toxTree.tree.cramer.RuleReadilyHydrolysedMononuclear",//15
+			"toxTree.tree.cramer.RuleIsCommonTerpene", //16
+			"toxTree.tree.cramer.RuleReadilyHydrolysedToCommonterpene", //17
+			"toxTree.tree.cramer.RuleKetoneAlcoholEtc", //18
+			"toxTree.tree.cramer.RuleIsOpenChain", //19
+			"toxTree.tree.cramer.RuleAliphaticWithSomeFuncGroups",//20
+			"toxTree.tree.cramer.Rule3FuncGroups",//21
+			"toxTree.tree.cramer.RuleCommonComponentOfFood",//22
+			"toxTree.tree.cramer.RuleIsAromatic",//23
+			"toxTree.tree.cramer.RuleMonocarbocyclic",//24
+			"toxTree.tree.cramer.RuleCyclopropaneEtc",//25
+			"toxTree.tree.cramer.RuleMonocycloalkanoneEtc",//26
+			"toxTree.tree.cramer.RuleRingsWithSubstituents",//27
+			"toxTree.tree.cramer.RuleManyAromaticRings28",  //this is the same as Q14
+			"toxTree.tree.cramer.RuleReadilyHydrolysed29", //this is the same as Q15
+			"toxTree.tree.cramer.RuleRingComplexSubstituents30",  //30
+			"toxTree.tree.cramer.RuleAcyclicAcetalEsterOfQ30",  //31
+			"toxTree.tree.cramer.Rule32",			//"cramer2.rules.RuleOnlyFuncGroupsQ30",		//32
+			"toxTree.tree.cramer.RuleSufficientSulphonateGroups",   //33
 			"toxTree.tree.rules.RuleOpenChain", //34 (Q9)
 			"toxTree.tree.rules.RuleHeterocyclic", //35
 			"toxTree.tree.rules.RuleAromatic", //36  (Q29)
