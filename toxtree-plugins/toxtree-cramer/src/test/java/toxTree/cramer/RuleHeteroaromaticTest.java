@@ -24,7 +24,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxTree.cramer;
 
+import org.openscience.cdk.interfaces.IAtomContainer;
+
 import toxTree.core.IDecisionRule;
+import toxTree.query.FunctionalGroups;
+import toxTree.query.MolAnalyser;
+import toxTree.query.MolFlags;
 import toxTree.tree.cramer.RuleHeteroaromatic;
 
 public class RuleHeteroaromaticTest extends AbstractRuleTest {
@@ -36,7 +41,22 @@ public class RuleHeteroaromaticTest extends AbstractRuleTest {
 
 	@Override
 	public void test() throws Exception {
-		// TODO Auto-generated method stub
+		
+		Object[][] answer = {
+			{"c12-c3c(cccc3)Nc1nc(N)cc2",true},
+	};
+	
+	for (int i=0; i < answer.length;i++) {
+		IAtomContainer a = FunctionalGroups.createAtomContainer(answer[i][0].toString());
+		
+			MolAnalyser.analyse(a);
+			Boolean result = rule2test.verifyRule(a);
+			Object mf = a.getProperty(MolFlags.MOLFLAGS);
+			assertNotNull(mf);
+			
+			assertEquals(((Boolean)answer[i][1]),result);
+	}
+	
 		
 	}
 
