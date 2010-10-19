@@ -38,6 +38,7 @@ import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.RuleElements;
@@ -82,7 +83,26 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
 			return verifyRule(mol,null);
 	}
 	@Override
-	public boolean verifyRule(IAtomContainer  mol,IAtomContainer selected) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
+		try {
+			int c = 0;
+			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
+			for (IAtom atom : mol.atoms()) {
+				if (atom.getSymbol().equals("H")) c++;
+				if (contains(atom.getSymbol())) {
+					if ("S".equals(atom.getSymbol())) {
+						if (atom.getValency()==2) c++;
+					} else c++;
+				} else 
+					if (selected!=null) selected.addAtom(atom);
+			}	
+			return c != mol.getAtomCount();
+		} catch (Exception x) { //if atom typing fails
+				return oldVerifyRule(mol, selected);
+		}
+	}
+	public boolean oldVerifyRule(IAtomContainer  mol,IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 		int c = 0;
 		double order;
