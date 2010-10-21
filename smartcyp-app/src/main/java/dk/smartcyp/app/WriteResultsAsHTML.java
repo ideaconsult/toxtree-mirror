@@ -115,7 +115,7 @@ public class WriteResultsAsHTML {
 		}
 		else {
 		//no error message, print normal output
-		outfile.println("<h1>Results from SMARTCyp version 1.5.2</h1>");
+		outfile.println("<h1>Results from SMARTCyp version 1.5.3</h1>");
 		outfile.println("\n These results were produced: " + this.dateAndTime + ".");
 		outfile.println("\n The infiles were: " + Arrays.toString(namesOfInfiles) + ".");	
 		outfile.println("\n <br /><br /><i>To alternate between heteroatoms and atom numbers, move the mouse cursor over the figure.</i>");

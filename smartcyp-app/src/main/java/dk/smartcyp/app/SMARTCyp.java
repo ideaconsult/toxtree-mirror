@@ -48,6 +48,7 @@ public class SMARTCyp {
 		int nohtml = 0;
 		int dirwanted = 0;
 		int nocsv = 0;
+		int printall = 0;
 		String outputdir = "";
 	    for(int i=0; i < arguments.length; i++){
 	    	if (arguments[i].equals("-nohtml")){
@@ -56,13 +57,16 @@ public class SMARTCyp {
 	    	if (arguments[i].equals("-nocsv")){
 	        	nocsv = 1;
 	        }
+			if (arguments[i].equals("-printall")){
+	        	printall = 1;
+	        }
 	    	if (arguments[i].equals("-outputdir")){
 	        	outputdir = arguments[i+1];
 	        	dirwanted = 1;
 	        }
 	    }
 	    String[] filenames;
-	    if (nohtml == 1 || dirwanted == 1 || nocsv == 1){
+	    if (nohtml == 1 || dirwanted == 1 || nocsv == 1 || printall == 1){
 	        ArrayList<String> tmplist = new ArrayList<String>();
 	        Collections.addAll(tmplist, arguments);
 	        if (dirwanted == 1){
@@ -78,6 +82,7 @@ public class SMARTCyp {
 	        }
 	        if (nohtml == 1) tmplist.remove("-nohtml");
 	        if (nocsv == 1) tmplist.remove("-nocsv");
+			if (printall == 1) tmplist.remove("-printall");
 	        filenames = (String[])tmplist.toArray(new String[0]);
 	    }
 	    else {
@@ -120,7 +125,7 @@ public class SMARTCyp {
 			if (nocsv==0){
 				// Write results as CSV
 				System.out.println("\n ************** Writing Results as CSV **************");
-				WriteResultsAsCSV writeResultsAsCSV = new WriteResultsAsCSV(dateAndTime, arguments, outputdir);
+				WriteResultsAsCSV writeResultsAsCSV = new WriteResultsAsCSV(dateAndTime, arguments, outputdir, printall);
 				writeResultsAsCSV.writeCSV(moleculeSet);
 			}
 		}
