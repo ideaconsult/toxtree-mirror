@@ -24,15 +24,17 @@ public class WriteResultsAsCSV {
 	private String dateAndTime;
 	String[] namesOfInfiles;
 	String OutputDir;	
+	int printall;
 
 	// DecimalFormat twoDecimalFormat = new DecimalFormat("#.##");
 	DecimalFormat twoDecimalFormat = new DecimalFormat();
 
 
-	public WriteResultsAsCSV(String dateTime, String[] infileNames, String outputdir){
+	public WriteResultsAsCSV(String dateTime, String[] infileNames, String outputdir, int PrintAll){
 		dateAndTime = dateTime;
 		namesOfInfiles = infileNames;
 		OutputDir = outputdir;
+		printall = PrintAll;
 
 		// DecimalFormat for A
 		twoDecimalFormat.setDecimalSeparatorAlwaysShown(false);
@@ -75,7 +77,7 @@ public class WriteResultsAsCSV {
 
 				// Match atom symbol
 				currentAtomType = currentAtom.getSymbol();
-				if(currentAtomType.equals("C") || currentAtomType.equals("N") || currentAtomType.equals("P") || currentAtomType.equals("S")) {
+				if(printall == 1 || currentAtomType.equals("C") || currentAtomType.equals("N") || currentAtomType.equals("P") || currentAtomType.equals("S")) {
 
 
 					outfile.print((moleculeIndex + 1) + "," + currentAtom.getSymbol() + "."+ currentAtom.getID() + "," + SMARTCYP_PROPERTY.Ranking.get(currentAtom) + ",");				
