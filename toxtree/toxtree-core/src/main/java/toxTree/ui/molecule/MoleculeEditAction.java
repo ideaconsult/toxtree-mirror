@@ -51,6 +51,8 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.jchempaint.JChemPaintPanel;
 import org.openscience.jchempaint.application.JChemPaint;
 
+import ambit2.ui.editors.JChemPaintDialog;
+
 /**
  * 
  * Launches JChemPaint structure diagram editor for a preset molecule

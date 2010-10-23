@@ -44,8 +44,8 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
 import toxTree.logging.TTLogger;
-import toxTree.ui.molecule.JChemPaintDialog;
 import ambit2.core.data.MoleculeTools;
+import ambit2.ui.editors.JChemPaintDialog;
 
 public abstract class DataModule extends Observable implements Serializable, Observer {
 	protected static TTLogger logger = new TTLogger(DataModule.class);
