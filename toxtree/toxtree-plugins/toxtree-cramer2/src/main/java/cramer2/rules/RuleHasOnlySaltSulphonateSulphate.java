@@ -150,7 +150,12 @@ public class RuleHasOnlySaltSulphonateSulphate extends
                         else if (o.equals(IBond.Order.TRIPLE)) order += 3.0;
                         else if (o.equals(IBond.Order.QUADRUPLE)) order += 4.0;
                     }    
-					order = order + a.getHydrogenCount();
+					/*
+                	https://sourceforge.net/tracker/?func=detail&aid=3020065&group_id=20024&atid=120024
+                    order = order + a.getHydrogenCount();
+                	*/
+					order = order + a.getImplicitHydrogenCount();
+
                     if ((order-2) < 0.1) a.setProperty("S2",new Integer(i));
 					else logger.info("Found S valency ",Double.toString(order));
 			}

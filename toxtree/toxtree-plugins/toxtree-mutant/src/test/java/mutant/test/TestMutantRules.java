@@ -47,7 +47,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.io.MDLWriter;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.smiles.SmilesParser;
@@ -63,6 +62,7 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
 import toxTree.ui.tree.actions.NewRuleAction;
+import ambit2.core.io.MDLWriter;
 import ambit2.smarts.query.ISmartsPattern;
 
 public abstract class TestMutantRules extends TestCase {
@@ -281,7 +281,11 @@ public abstract class TestMutantRules extends TestCase {
 			*/
 			MolAnalyser.analyse(m);
 			for (int i=0; i < m.getAtomCount();i++)
-				System.out.println(m.getAtom(i).getSymbol() + '\t'+ m.getAtom(i).getHydrogenCount());
+				/*
+            	https://sourceforge.net/tracker/?func=detail&aid=3020065&group_id=20024&atid=120024
+                System.out.println(m.getAtom(i).getSymbol() + '\t'+ m.getAtom(i).getHydrogenCount());
+            	*/
+				System.out.println(m.getAtom(i).getSymbol() + '\t'+ m.getAtom(i).getImplicitHydrogenCount());
 		} catch (Exception x) {
 			throw new DecisionMethodException(x);
 		}

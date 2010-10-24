@@ -85,7 +85,7 @@ public class GenerateImages {
 			generators = this.getGenerators();
 
 			// The renderer renders the picture
-			renderer = new Renderer(generators, new AWTFontManager());
+			renderer = new Renderer(generators, new AWTFontManager(),false);
 
 			// Set layout of molecule
 			this.setMoleculeLayout(renderer);
