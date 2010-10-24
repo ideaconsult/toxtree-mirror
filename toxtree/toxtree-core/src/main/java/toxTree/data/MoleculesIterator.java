@@ -39,6 +39,7 @@ import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IChemFile;
 import org.openscience.cdk.interfaces.IMolecule;
@@ -386,6 +387,9 @@ public class MoleculesIterator implements IMoleculesIterator {
 				
 				sdg.setMolecule((IMolecule)a);
 				sdg.generateCoordinates(new Vector2d(0,1));
+				//clean valencies, otherwise JCP shows valencies (e.g. C(v4) ) on every atom
+				for (IAtom atom : sdg.getMolecule().atoms())
+					atom.setValency(null);
 				m.replaceAtomContainer(i, sdg.getMolecule());
 			//}
 			//m.addMolecule(molecules[i]);
