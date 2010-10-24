@@ -101,7 +101,8 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
     	    	if (molecules != null) {
     				jcpModel.setMoleculeSet(molecules);
     				
-    				JChemPaintPanel jcpep = new JChemPaintPanel(jcpModel, JChemPaint.GUI_APPLICATION, false,null);
+    				//JChemPaintPanel jcpep = new JChemPaintPanel(jcpModel, JChemPaint.GUI_APPLICATION, false,null);
+    				JChemPaintPanel jcpep = new JChemPaintPanel(jcpModel);
     				Dimension d = new Dimension(500,500);
     	    		jcpep.setPreferredSize(d);
     	    		//jcpep.registerModel(jcpModel);

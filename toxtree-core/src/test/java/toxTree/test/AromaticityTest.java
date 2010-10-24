@@ -43,6 +43,8 @@ import org.openscience.cdk.templates.MoleculeFactory;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 
+import ambit2.core.smiles.DeduceBondSystemTool;
+
 /**
  * Test for some peculiarities of aromaticity detection in CDK
  * @author Nina Jeliazkova
@@ -76,7 +78,7 @@ public class AromaticityTest extends TestCase {
 			}
 
 			assertTrue(b);
-	        toxTree.query.DeduceBondSystemTool dbst = new toxTree.query.DeduceBondSystemTool();
+	        DeduceBondSystemTool dbst = new DeduceBondSystemTool();
 	        m = dbst.fixAromaticBondOrders(m);				
 			String s = sg.createSMILES(m);
 			System.out.println(s);
@@ -112,7 +114,7 @@ public class AromaticityTest extends TestCase {
     	
         boolean b = CDKHueckelAromaticityDetector.detectAromaticity(m);
         assertTrue(b);
-        toxTree.query.DeduceBondSystemTool dbst = new toxTree.query.DeduceBondSystemTool();
+        DeduceBondSystemTool dbst = new DeduceBondSystemTool();
         IMolecule m1 = dbst.fixAromaticBondOrders(m);
         int single_bonds = 0;
         int double_bonds = 0;

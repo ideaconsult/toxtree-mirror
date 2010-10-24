@@ -123,8 +123,11 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
                             else if (o.equals(IBond.Order.TRIPLE)) order += 3.0;
                             else if (o.equals(IBond.Order.QUADRUPLE)) order += 4.0;
                         }    
-					
-						order = order + a.getHydrogenCount();
+    					/*
+                    	https://sourceforge.net/tracker/?func=detail&aid=3020065&group_id=20024&atid=120024
+                        order = order + a.getHydrogenCount();
+                    	*/
+    					order = order + a.getImplicitHydrogenCount();
 						if ((order-2) < 0.1)
 							c++;
 						else {
