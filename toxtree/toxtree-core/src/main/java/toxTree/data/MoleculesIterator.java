@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.vecmath.Point2d;
 import javax.vecmath.Vector2d;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
@@ -42,6 +43,7 @@ import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IChemFile;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.io.DefaultChemObjectWriter;
@@ -49,6 +51,7 @@ import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.SMILESReader;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
+import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.templates.MoleculeFactory;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
@@ -379,20 +382,32 @@ public class MoleculesIterator implements IMoleculesIterator {
 	public IMoleculeSet getMoleculeForEdit() throws Exception {
 		sdg = null;
 		sdg = new StructureDiagramGenerator();
-		IMoleculeSet m = ConnectivityChecker.partitionIntoMolecules(getMolecule());
-		//IMoleculeSet m =  new MoleculeSet();
-		for (int i=0; i< m.getMoleculeCount();i++) {
-			IMolecule a = m.getMolecule(i);
-			//if (!GeometryTools.has2DCoordinates(a)) {
-				
-				sdg.setMolecule((IMolecule)a);
-				sdg.generateCoordinates(new Vector2d(0,1));
-				//clean valencies, otherwise JCP shows valencies (e.g. C(v4) ) on every atom
-				for (IAtom atom : sdg.getMolecule().atoms())
-					atom.setValency(null);
-				m.replaceAtomContainer(i, sdg.getMolecule());
-			//}
-			//m.addMolecule(molecules[i]);
+		IMoleculeSet m = null;
+		//JCP crashes if empty molecule is submitted, so let's give it single C atom
+		if ((getMolecule()==null) || (getMolecule().getAtomCount()==0)) {
+			IChemObjectBuilder builder = NoNotificationChemObjectBuilder.getInstance();
+			IMolecule mol = MoleculeTools.newMolecule(builder);
+			IAtom a = MoleculeTools.newAtom(builder,"C");
+			a.setPoint2d(new Point2d(0,0));
+			mol.addAtom(a);
+			m = MoleculeTools.newMoleculeSet(builder);
+			m.addMolecule(mol);
+		} else {
+			m = ConnectivityChecker.partitionIntoMolecules(getMolecule());
+			//IMoleculeSet m =  new MoleculeSet();
+			for (int i=0; i< m.getMoleculeCount();i++) {
+				IMolecule a = m.getMolecule(i);
+				//if (!GeometryTools.has2DCoordinates(a)) {
+					
+					sdg.setMolecule((IMolecule)a);
+					sdg.generateCoordinates(new Vector2d(0,1));
+					//clean valencies, otherwise JCP shows valencies (e.g. C(v4) ) on every atom
+					for (IAtom atom : sdg.getMolecule().atoms())
+						atom.setValency(null);
+					m.replaceAtomContainer(i, sdg.getMolecule());
+				//}
+				//m.addMolecule(molecules[i]);
+			}
 		}
 		return m;		
 	}
