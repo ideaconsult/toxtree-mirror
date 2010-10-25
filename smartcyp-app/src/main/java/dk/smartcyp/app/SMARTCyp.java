@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.lang.System;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.DefaultChemObjectBuilder;
@@ -20,13 +19,13 @@ import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IChemFile;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLReader;
-import org.openscience.cdk.io.SMILESReader;
 import org.openscience.cdk.io.ReaderFactory;
+import org.openscience.cdk.io.SMILESReader;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
-import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
 import dk.smartcyp.core.MoleculeKU;
@@ -162,7 +161,7 @@ public class SMARTCyp {
 
 
 		List<IAtomContainer> moleculeList;
-		DefaultChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
+		IChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
 		ISimpleChemObjectReader reader;
 
 		File inputFile;
@@ -192,8 +191,8 @@ public class SMARTCyp {
 				}
 				else	 reader = readerFactory.createReader(new FileReader(inputFile));
 
+				emptyChemFile = builder.newInstance(IChemFile.class);
 
-				emptyChemFile = builder.newChemFile();
 				chemFile = (IChemFile) reader.read(emptyChemFile);
 
 				if (chemFile == null) continue;	
