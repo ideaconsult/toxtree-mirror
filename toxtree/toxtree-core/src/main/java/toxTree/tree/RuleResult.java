@@ -29,10 +29,9 @@ import java.io.Serializable;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 
-import ambit2.base.interfaces.IProcessor;
-
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionRule;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * Stores the result of {@link IDecisionRule} application,
@@ -126,6 +125,7 @@ public class RuleResult implements Serializable {
 	protected static final String wwwAlertFormat = "<a href='#' onClick=\"changeImage('compound_uri','%s/hilight?parameters=%s')\">%s.%s</a>";
 	public StringBuffer explain(boolean verbose,int ruleIndex) {
 		StringBuffer b = new StringBuffer();
+		String space = web?" ":"&nbsp;";
 		if (!silent) 
 			if (verbose) {
 				if (web)  {
@@ -133,16 +133,22 @@ public class RuleResult implements Serializable {
 						b.append(String.format(wwwAlertFormat,"",rule.getID(),rule.getID(),rule.getTitle()));
 					else
 						b.append(rule.toString());
-					b.append("&nbsp;");
-					b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));
-					b.append("&nbsp;");		
+					b.append(space);
+					if (web)
+						b.append(result?"Yes":"No");
+					else	
+						b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));
+					b.append(space);		
 					if (category != null) {
-						b.append(String.format("Class&nbsp;<span style='color:black'>%s</span>",category.toString()));
-					} else b.append("&nbsp;");					
+						if (web)
+							b.append(String.format("Class %s",category.toString()));
+						else
+							b.append(String.format("Class&nbsp;<span style='color:black'>%s</span>",category.toString()));
+					} else b.append(space);					
 				} else {
 					b.append(String.format("<a href=\"%s%s\" title='Show rule'><img src='%s' border='0' alt='Show rule' title='Show rule'></a>",
 							ruleURL,rule.getTitle(),this.getClass().getResource("/toxTree/ui/tree/images/find.png").toString()));
-					b.append("&nbsp;");
+					b.append(space);
 					
 					if (result && (rule.isImplemented()) && (rule.getSelector()!=null))
 						if (ruleIndex<0)
@@ -151,13 +157,20 @@ public class RuleResult implements Serializable {
 							b.append(String.format("<a href=\"%s%d\"  title='Hilight structure alert'>%s</a>",resultURL,ruleIndex,rule.toString()));
 					else
 						b.append(rule.toString());
-					b.append("&nbsp;");
+					b.append(space);
 			
-					b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));
-					b.append("&nbsp;");
+					if (web)
+						b.append(String.format(result?"Yes":"No"));
+					else {	
+						b.append(String.format("<span style='color:%s;position:relative;font-weight: bold;'>%s</span>", result?"green":"red",result?"Yes":"No"));
+						b.append(space);
+					}
 					if (category != null) {
-						b.append(String.format("Class&nbsp;<span style='color:orange'><a href=\"%s%s\">%s</a></span>",categoryURL,category.getID(),category.toString()));
-					} else b.append("&nbsp;");
+						if (web)
+							b.append(String.format(category.toString()));
+						else
+							b.append(String.format("Class&nbsp;<span style='color:orange'><a href=\"%s%s\">%s</a></span>",categoryURL,category.getID(),category.toString()));
+					} else b.append(space);
 								
 					if ((molecule != null) && (molecule.getID() != null)) {
 						b.append("\t");
