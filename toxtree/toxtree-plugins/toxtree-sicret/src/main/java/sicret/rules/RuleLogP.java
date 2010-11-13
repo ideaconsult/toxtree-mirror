@@ -38,7 +38,7 @@ import toxTree.tree.rules.RuleVerifyProperty;
  
 public class RuleLogP extends RuleVerifyProperty 
 {
-	protected static XLogPDescriptor descriptor= new XLogPDescriptor();;
+	
 	public static String LogKow="LogP";
 	/**
 	 * 
@@ -61,7 +61,7 @@ public class RuleLogP extends RuleVerifyProperty
 	@Override
 	public String inputProperty(IAtomContainer mol) throws DecisionMethodException  {
 		
-		if (descriptor ==null) descriptor = new XLogPDescriptor();
+		XLogPDescriptor descriptor = new XLogPDescriptor();
 		logger.info("Calculating "+ descriptor.getClass().getName());
 		try {
 			DescriptorValue value = descriptor.calculate(mol);
@@ -86,6 +86,7 @@ public class RuleLogP extends RuleVerifyProperty
     */
     @Override
     public String getImplementationDetails() {
+    	XLogPDescriptor descriptor = new XLogPDescriptor();
     	StringBuffer b = new StringBuffer();
     	b.append("This rule automatically creates descriptor by using "+descriptor.getClass().getName());
     	b.append("\n");
