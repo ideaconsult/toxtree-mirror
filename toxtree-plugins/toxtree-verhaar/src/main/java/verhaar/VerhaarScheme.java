@@ -129,7 +129,7 @@ public class VerhaarScheme extends UserDefinedTree {
 		{0,0,5,4},  // Q4 34
 		
 	};	
-	protected static String[] c_categories = {
+	protected final static String[] c_categories = {
 			"verhaar.categories.Class1BaselineToxicity",
 			"verhaar.categories.Class2LessInertCompounds",
 			"verhaar.categories.Class3UnspecificReactivity",
