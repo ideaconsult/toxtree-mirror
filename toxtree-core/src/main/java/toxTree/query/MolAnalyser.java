@@ -66,7 +66,7 @@ public class MolAnalyser {
 	protected static TTLogger logger  = new TTLogger(MolAnalyser.class);
     //protected Molecule mol = null;
     //protected RingSet ringSet = null;
-    protected static AllRingsFinder arf = new AllRingsFinder();
+   
 
 	public final static String HETEROCYCLIC = "Heterocyclic";
 	public final static String HETEROCYCLIC3 = "3-membered heterocyclic";
@@ -149,6 +149,7 @@ public class MolAnalyser {
 	
 	        IRingSet ringSet = null;
 	        try {
+	        	AllRingsFinder arf = new AllRingsFinder();
 	        	ringSet = arf.findAllRings(mol);
 	        } catch (CDKException x) {
 	        	//timeout on AllRingsFinder, will try SSSR
