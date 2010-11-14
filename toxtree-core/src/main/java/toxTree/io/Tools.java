@@ -48,7 +48,6 @@ public class Tools {
 	                  return new ImageIcon(iconURL);
 	           else return null;
 	        } catch (Exception x) {
-	            x.printStackTrace();
 	            return null;
 	        }
 	    }		

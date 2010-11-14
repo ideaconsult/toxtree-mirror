@@ -535,7 +535,7 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 	    for (int i = 0; i < nr; i++) {
 	        IDecisionRule rule = rules.getRule(i);
 	        if (rule.getSelector()==null){
-	        	System.err.println(rule.toString());
+
 	        	na++;
 	        } else {
 	        	IAtomContainer a = null;
@@ -546,12 +546,7 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 	        		continue;
 	        	}
 	        	IChemObjectSelection hit = rule.getSelector().process(a);
-	        	if (hit==null)
-	        		System.out.println(rule.toString());
-	        	else if (hit.getConnectedAtomContainer()==null)
-	        		System.out.println(rule.toString());
-	        	else if (hit.getConnectedAtomContainer().getAtomCount()==0)
-	        		System.out.println(rule.toString());
+
 
 	        }
 	    }

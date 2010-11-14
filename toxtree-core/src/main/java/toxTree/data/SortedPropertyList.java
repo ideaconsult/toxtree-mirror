@@ -63,8 +63,7 @@ public class SortedPropertyList extends ArrayList<SortedProperty> {
         clear();
         for (int i=0; i < atomcontainers.getAtomContainerCount();i++) {
            Object o = atomcontainers.getAtomContainer(i).getProperty(propertyName);
-           if (o == null)
-               System.out.println((i+1) + "\t" + o);
+
            addProperty(o,i);
         }   
         sort(true);

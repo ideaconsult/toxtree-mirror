@@ -1857,14 +1857,7 @@ public class FunctionalGroups {
     		}
     		for (int j = (list.size()-1); j >=0 ; j--) 
     			if (!keep[j]) list.remove(j);
-    		
-    		/*
-    	} catch (CDKException x) {
-    	    x.printStackTrace();
-    	    list = null;
-    	}
-    	*/
-    	//markMaps(mol,q,list);
+
 		return list;
 
     }

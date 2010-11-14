@@ -331,7 +331,7 @@ public class MoleculesIterator implements IMoleculesIterator {
 	    		throw new ToxTreeIOException(MSG_UNSUPPORTEDFORMAT,filename);
 	    	}
     	} catch (CDKException x) {
-    		//x.printStackTrace();
+
     		throw new ToxTreeIOException(MSG_ERRORONSAVE,x,filename);    		
     	} catch (IOException x) {
     		throw new ToxTreeIOException(MSG_ERRORONSAVE,x,filename);    		    		
