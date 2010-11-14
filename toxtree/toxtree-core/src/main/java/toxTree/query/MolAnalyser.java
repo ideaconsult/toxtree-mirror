@@ -96,7 +96,7 @@ public class MolAnalyser {
 	        	   AtomTypeManipulator.configure(atom, type);
                    logger.debug("Found " + atom.getSymbol() + " of type " + type.getAtomTypeName());                   
 	           } catch (Exception x) {
-	        	   logger.error(x.getMessage() + " " + atom.getSymbol(),x);
+	        	   logger.debug(x.getMessage() + " " + atom.getSymbol(),x);
                    
                    if ("true".equals(Preferences.getProperty(Preferences.STOP_AT_UNKNOWNATOMTYPES))) {
                        throw new MolAnalyseException(atom.getSymbol(),x);
@@ -267,8 +267,6 @@ public class MolAnalyser {
 	        clearVisitedFlags(mol);
     	} catch (Exception x) {
     		//just in case ....
-            System.out.println(mol);
-            x.printStackTrace();
     		throw new MolAnalyseException(x);
     		
     	}
