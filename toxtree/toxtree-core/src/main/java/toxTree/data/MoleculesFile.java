@@ -241,7 +241,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
 		if (updatedProperties[index] != null)
 			o = updatedProperties[index].get(key);
 		if (o == null) {
-            //System.out.println("Reading record to get Property "+key + " " + index);
+
 			IAtomContainer c = getAtomContainer(index);
 			if (c ==null) return null;
 			else {
@@ -271,7 +271,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
         
 	}
 	public void stateChanged(IChemObjectChangeEvent event) {
-		//System.out.println(((IChemObject) event.getSource()).getProperties());
+
 		
 	}
     @Override
@@ -344,15 +344,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
                     CDKHueckelAromaticityDetector.detectAromaticity(clone);
                 	BitSet bs = fp.getFingerprint(clone);
                     setProperty(i, propertyFingerprint,bs);
-                    /*
-                    System.out.print(i);
-                    System.out.print('\t');
-                    System.out.print(clone.getAtomCount());
-                    System.out.print('\t');
-                    System.out.print(smigen.createSMILES((IMolecule)clone));
-                    System.out.print('\t');
-                    System.out.println(bs);
-                    */
+                  
                  } catch (Exception x) {
                 	 setProperty(i, propertyFingerprint,null);
                      x.printStackTrace();
@@ -372,7 +364,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
             sortedProperties.addList(this);
         }    
         sortedProperties.sort(ascending);
-        //System.out.println(sortedProperties);
+
     }
     public Collection<Comparable> getValuesPerField(Object field,int limit) {
         ArrayList<Comparable> values = new ArrayList<Comparable>();
@@ -436,21 +428,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
 	public boolean setMultipliers(Double[] arg0) {
 		return false;
 	}
-	/*
-    public int find(IMolecule mol ) throws Exception {
-        if (mol == null) throw new Exception("Null molecule");
-        SmilesGenerator g = new SmilesGenerator();
-        String smiles = g.createSMILES(mol);
-        System.out.print("<lookup smiles=\"");
-        System.out.print(smiles);
-        System.out.println("\">");
-        int index = indexOf("SMILES",smiles);
-        System.out.println(index);
-        System.out.println("</lookup>");
-        return index;
-        
-    }
-    */
+	
 	/**
 	 * TODO introduce isomorphism check to handle nonunique fingerprints
 	 */
@@ -460,19 +438,14 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
         BitSet bs = getFingerprint(mol);
         
         logger.debug("<lookup fingerprint=\"",bs,"\">");
-        //System.err.println(smigen.createSMILES((IMolecule)mol));
         prepareProperty(propertyFingerprint);
         int first_index = sortedProperties.indexOf(bs);
         int index = -1;
         if (first_index >=0) {
         	int last_index = sortedProperties.lastIndexOf(bs);
-        	//System.out.print("Verifying "+first_index + "-" + last_index);
         	for (int i=first_index; i <= last_index; i++) {
         		int original_index = sortedProperties.getOriginalIndexOf(i);
-        		
-        		//System.out.print('\n');
-        		//System.out.print(sortedProperties.get(i));
-        		//System.out.print('\n');
+
         		logger.debug(original_index);
         		
         		IAtomContainer c = getAtomContainer(original_index);
@@ -482,19 +455,10 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
                 	index = original_index;
                 	foundIndex = index;
                     logger.debug(getProperty(index,"Group"));                	
-                    //System.out.println(index);
+
                 	break;
                 } else {
-                    /*
-                	for (int j=0; j < mol.getAtomCount(); j++)
-                		System.out.println(mol.getAtom(j).getSymbol() + " "+ mol.getAtom(j).getFlag(CDKConstants.ISAROMATIC));
-                	System.out.println(" ");
-                	for (int j=0; j < c.getAtomCount(); j++)
-                		System.out.println(c.getAtom(j).getSymbol() + " "+ c.getAtom(j).getFlag(CDKConstants.ISAROMATIC));                	
-                	System.err.println(smigen.createSMILES((IMolecule)c));
-                    */
                 }
-                //System.out.println(smigen.createSMILES((IMolecule)mol));        
         	}
         	if (index == -1) {
         		logger.debug("Not found " + smigen.createSMILES((IMolecule)mol));

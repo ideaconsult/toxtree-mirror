@@ -157,10 +157,7 @@ public class LookupFile implements Serializable {
 			if (!FOUND) logger.info("Not found");
 			reader.close();
 			useCache = fileCache.size() > 0;
-			/*
-			for (int i=0;i<fileCache.size();i++) 
-				System.out.println(fileCache.get(i));
-				*/			
+		
 			if (FOUND) return mol_found;
 			else return null;
 
