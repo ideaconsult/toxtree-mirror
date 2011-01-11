@@ -46,9 +46,10 @@ public class SplitByAlerts {
 					//launch decision tree as a CDK descriptor 
 					//DescriptorValue value = rules.calculate((IMolecule)mol);
 					//System.out.println(value.getValue());
-					int found = 0;
+					
 					for (int i=0; i < list.size();i++) {
 						IDecisionRule rule = list.get(i);
+						int found = 0;
 						if (rule instanceof MultiLabelDecisionNode) {
 							rule = ((MultiLabelDecisionNode)rule).getRule();
 							
