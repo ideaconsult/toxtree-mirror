@@ -15,11 +15,13 @@ public class SkinSensitisationRule extends StructureAlert {
 	 * 
 	 */
 	private static final long serialVersionUID = -1658487497286276204L;
+	protected String shortName;
 	public SkinSensitisationRule(SkinSensitisationAlerts alert) {
 		super();
 		try {
 			
-			setID(Integer.toString(alert.ordinal()+1));
+			//setID(Integer.toString(alert.ordinal()+1));
+			setID(alert.getShortName());
 			setTitle(alert.getTitle());
 			setExplanation(alert.getExplanation());
 			setContainsAllSubstructures(false);
@@ -34,4 +36,5 @@ public class SkinSensitisationRule extends StructureAlert {
 			logger.error(x);
 		}
 	}	
+
 }
