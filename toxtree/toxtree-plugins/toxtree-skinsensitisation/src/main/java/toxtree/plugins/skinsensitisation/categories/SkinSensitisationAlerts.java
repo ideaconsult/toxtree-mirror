@@ -35,7 +35,11 @@ public enum SkinSensitisationAlerts {
 		@Override
 		public String getExample(boolean value) {
 			return value?"c1(Cl)ncncc1":"C";
-		}			
+		}		
+		@Override
+		public String getShortName() {
+			return "SNAR";
+		}
 	},	
 	SHIFF_BASE {
 		@Override
@@ -74,7 +78,11 @@ public enum SkinSensitisationAlerts {
 		@Override
 		public String getExample(boolean value) {
 			return value?"[CH2]=O":"C";
-		}		
+		}
+		@Override
+		public String getShortName() {
+			return "SB";
+		}
 	},
 
 	MICHAEL_ACCEPTORS {
@@ -130,6 +138,10 @@ public enum SkinSensitisationAlerts {
 		public String getExample(boolean value) {
 			return value?"[OH]c1cccc2ccccc12":"C";
 		}
+		@Override
+		public String getShortName() {
+			return "MA";
+		}
 	},
 	ACYL_TRANSFER {
 		@Override
@@ -165,6 +177,10 @@ public enum SkinSensitisationAlerts {
 		@Override
 		public String getExample(boolean value) {
 			return value?"Cc1oc2ccccc2n1":"C";
+		}
+		@Override
+		public String getShortName() {
+			return "acyl";
 		}
 	},
 	SN2 {
@@ -202,6 +218,10 @@ public enum SkinSensitisationAlerts {
 		public String getExample(boolean value) {
 			return value?"c1ccc2cc3ccccc3cc2c1":"C";
 		}
+		@Override
+		public String getShortName() {
+			return "SN2";
+		}
 	},
 	NO_ALERTS {
 		@Override
@@ -228,6 +248,10 @@ public enum SkinSensitisationAlerts {
 		public String getExample(boolean arg0) {
 			return null;
 		}
+		@Override
+		public String getShortName() {
+			return "Non";
+		}
 	};
 	public String getID() {
 		return toString();
@@ -238,5 +262,6 @@ public enum SkinSensitisationAlerts {
 	public abstract String getCategoryExplanation();
 	public abstract String[] getSMARTS();
 	public abstract String getExample(boolean value);
+	public abstract String getShortName();
 	
 }
