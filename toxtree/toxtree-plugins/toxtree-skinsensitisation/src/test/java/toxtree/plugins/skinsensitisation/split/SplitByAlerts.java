@@ -155,10 +155,12 @@ public class SplitByAlerts {
 											writeMol(record, smartsPattern.getSmarts(), true);
 										} else {
 											writeMol(record, smartsPattern.getSmarts(), false);
+											/*
 											System.out.println("\nMOLECULE "+ mol.getProperty("SMILES"));
 											System.out.println("ReactionDomain "+ mol.getProperty("ReactionDomain"));
 											System.out.println("PREDICTED "+ rule.getID());
 											System.out.println(String.format("SMARTS [%d] %s",result,smartsPattern));
+											*/
 										}
 
 									}
@@ -204,9 +206,14 @@ public class SplitByAlerts {
 	*/
 	protected void writeMol(IStructureRecord record, String smarts, boolean match) throws Exception {
 		String fileName = sa_folders.get(smarts);
-
+		boolean append = true;
 		if (fileName == null) {
 			fileName = String.format("file_%d",sa_folders.size()+1);
+			append = false;
+			File file = new File(String.format("%s_%s.sdf",fileName,"FP"));
+			if (file.exists()) file.delete();
+			file = new File(String.format("%s_%s.sdf",fileName,"TP"));
+			if (file.exists()) file.delete();
 		}
 		sa_folders.put(smarts,fileName);
 		
@@ -214,11 +221,12 @@ public class SplitByAlerts {
 		if (m==null) fp.put(smarts,!match);
 		else if (!((Boolean)m).booleanValue()) fp.put(smarts,!match);
 			
+		
 		File file = new File(String.format("%s_%s.sdf",fileName,match?"TP":"FP"));
 		
-		FileWriter writer = new FileWriter(file,file.exists());
+		FileWriter writer = new FileWriter(file,append);
 		writer.write(record.getContent());
 		writer.close();
-		
+
 	}
 }
