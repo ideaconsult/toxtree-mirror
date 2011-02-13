@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package verhaar.test;
 
+import org.openscience.cdk.templates.MoleculeFactory;
+
 import toxTree.exceptions.DecisionMethodException;
 import verhaar.VerhaarScheme;
 
@@ -44,6 +46,10 @@ public class VerhaarSchemeTest extends RulesTestCase {
 		super.tearDown();
 	}
 
+	public void testReflection() throws Exception  {
+		VerhaarScheme vs = (VerhaarScheme) Class.forName("verhaar.VerhaarScheme").newInstance();
+		vs.calculate(MoleculeFactory.makeBenzene());
+	}
 	public void testVerhaar() {
 		VerhaarScheme rulesNew = (VerhaarScheme)objectRoundTrip(rules,"VerhaarScheme");
 		rules = rulesNew;
