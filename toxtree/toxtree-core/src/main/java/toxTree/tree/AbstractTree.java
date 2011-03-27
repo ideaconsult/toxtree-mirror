@@ -28,6 +28,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -610,11 +611,13 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 		Graphics2D g = buffer.createGraphics();
 		g.setColor(Color.white);
 		g.fillRect(0, 0, width,height);
-		
+		RenderingHints rh = g.getRenderingHints ();
+		rh.put (RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+		g.addRenderingHints(rh);
 		IDecisionCategories c = getCategories();
 		if ((c==null) || (c.size()==0)) return buffer;
 		int h = height/ c.size();
-		g.setFont(new Font("TrebuchetMS",Font.BOLD,h/4==0?12:h/4));
+		g.setFont(new Font("Arial",Font.BOLD,h/4==0?12:h/4));
 		CategoriesRenderer r = new CategoriesRenderer(c);
 		
 		for (int i =0; i < c.size();i++) {
