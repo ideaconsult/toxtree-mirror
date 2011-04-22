@@ -150,7 +150,8 @@ public class RuleHasOnlySaltSulphonateSulphate extends
                 	https://sourceforge.net/tracker/?func=detail&aid=3020065&group_id=20024&atid=120024
                     order = order + a.getHydrogenCount();
                 	*/
-					order = order + a.getImplicitHydrogenCount();
+					Integer hc = a.getImplicitHydrogenCount(); //in case it is not initialized
+					order = order + (hc==null?0:hc.intValue());
                     if ((order-2) < 0.1) a.setProperty("S2",new Integer(i));
 					else {
 						logger.info("Found S valency ",Double.toString(order));
