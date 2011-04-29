@@ -38,8 +38,8 @@ import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.core.IDecisionInteractive;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.rules.ApplyRuleOptions;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import toxTree.ui.EditorFactory;
 import ambit2.core.data.MoleculeTools;
 
 public class QSAR6Applicable extends RuleSMARTSubstructureCDK implements IDecisionInteractive{
@@ -97,7 +97,7 @@ public class QSAR6Applicable extends RuleSMARTSubstructureCDK implements IDecisi
             setExplanation(e.toString());
             examples[0] = "c1ccc(N)cc1[N+](=O)[O-]";
             examples[1] = "c1ccccc1N"; 
-            setListener(new ApplyRuleOptions());
+            setListener(EditorFactory.getInstance().createApplyRuleOptions());
             setInteractive(true);
     }
     @Override

@@ -33,12 +33,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import toxTree.core.Introspection;
-import toxTree.data.DataModule;
-import toxTree.data.ToxTreeModule;
 import toxTree.tree.DecisionMethodsList;
 import toxTree.tree.demo.SubstructureTree;
-import toxTree.ui.DataModulePanel;
-import toxTree.ui.HazardPanel;
+import toxTree.ui.EditorFactory;
+import toxtree.data.DataModule;
+import toxtree.data.ToxTreeModule;
+import toxtree.ui.DataModulePanel;
+import toxtree.ui.HazardPanel;
+import toxtree.ui.editors.SwingEditorFactory;
 
 /**
  * ToxTreeApp is a full-featured and flexible user-friendly open source
@@ -64,7 +66,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 	 */
 	public ToxTreeApp() {
 		super("Estimation of Toxic Hazard - a Decision Tree Approach  v1.00", Color.black,Color.WHITE);
-
+		EditorFactory.setInstance(new SwingEditorFactory());
 	}
 	@Override
 	protected String getTitle() {

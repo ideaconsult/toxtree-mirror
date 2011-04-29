@@ -25,9 +25,9 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionMethodsList;
 import toxTree.core.IDecisionResult;
-import toxTree.data.DecisionMethodData;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.query.FunctionalGroups;
+import toxtree.data.DecisionMethodData;
 
 /**
  * Main data container of  {@link ToxForestApp}.

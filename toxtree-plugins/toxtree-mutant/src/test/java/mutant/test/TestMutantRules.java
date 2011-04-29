@@ -61,7 +61,7 @@ import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
-import toxTree.ui.tree.actions.NewRuleAction;
+import toxtree.ui.tree.actions.NewRuleAction;
 import ambit2.core.io.MDLWriter;
 import ambit2.smarts.query.ISmartsPattern;
 

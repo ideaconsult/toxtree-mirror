@@ -10,7 +10,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IProcessRule;
 import toxTree.exceptions.DecisionMethodIOException;
-import ambit2.jchempaint.CompoundImageTools;
+import ambit2.rendering.CompoundImageTools;
 
 public abstract class AbstractTreePrinter implements IProcessRule {
 	protected OutputStream outputStream = null;

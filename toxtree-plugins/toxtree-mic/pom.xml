@@ -9,4 +9,13 @@
   <artifactId>toxtree-mic</artifactId>
   <name>ToxMic</name>
   <description>Structure Alerts for the in vivo micronucleus assay in rodents</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-swing</artifactId>
+  		<version>${project.version}</version>
+  		<type>jar</type>
+  		<scope>test</scope>
+  	</dependency>
+  </dependencies>
 </project>

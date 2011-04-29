@@ -33,7 +33,7 @@ import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionCategoryEditor;
 import toxTree.core.XMLSerializable;
 import toxTree.exceptions.XMLDecisionMethodException;
-import toxTree.ui.tree.categories.CategoryPanel;
+import toxTree.ui.EditorFactory;
 
 /**
  * The default class implementing {@link toxTree.core.IDecisionCategory} interface
@@ -148,7 +148,7 @@ public class DefaultCategory extends Observable implements IDecisionCategory , X
 		notifyObservers();
 	}
 	public IDecisionCategoryEditor getEditor() {
-		return new CategoryPanel(this);
+		return EditorFactory.getInstance().createCategoryEditor(this);
 	}
 	public void fromXML(Element xml)  throws XMLDecisionMethodException{
 		setName(xml.getAttribute(xmltag_NAME));

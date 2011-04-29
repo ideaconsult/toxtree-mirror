@@ -29,14 +29,13 @@ import java.util.Hashtable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
-import org.openscience.jchempaint.renderer.selection.SingleSelection;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.SingleSelection;
 
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.AbstractRule;
-import toxTree.ui.tree.rules.SMARTSRuleEditor;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.MoleculeTools;
@@ -266,11 +265,12 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
     public boolean isImplemented() {
     	return (smartsPatterns!=null) && (smartsPatterns.size()>0);
     }
-	
+	/*
 	@Override
 	public IDecisionRuleEditor getEditor() {
 		return new SMARTSRuleEditor(this);
 	}
+	*/
 	public boolean containsAllSubstructures() {
 		return containsAllSubstructures;
 	}

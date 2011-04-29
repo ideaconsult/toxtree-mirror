@@ -21,7 +21,7 @@ package toxTree.apps.toxForest;
 
 import javax.swing.JFrame;
 
-import toxTree.data.ActionList;
+import toxtree.data.ActionList;
 
 /**
  * Toxforest actions.

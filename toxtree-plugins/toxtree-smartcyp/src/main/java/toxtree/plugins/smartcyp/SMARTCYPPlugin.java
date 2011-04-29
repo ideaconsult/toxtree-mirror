@@ -14,9 +14,6 @@ import javax.swing.JOptionPane;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 
-import ambit2.base.exceptions.AmbitException;
-import ambit2.core.data.ArrayResult;
-
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionInteractive;
@@ -33,6 +30,8 @@ import toxtree.plugins.smartcyp.categories.SitesRank1;
 import toxtree.plugins.smartcyp.categories.SitesRank2;
 import toxtree.plugins.smartcyp.categories.SitesRank3;
 import toxtree.plugins.smartcyp.rules.SMARTCYPRuleRank1;
+import ambit2.base.exceptions.AmbitException;
+import ambit2.core.data.ArrayResult;
 
 
 public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInteractive{

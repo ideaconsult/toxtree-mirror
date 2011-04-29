@@ -1,10 +1,10 @@
 package toxtree.plugins.skinsensitisation.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
-import ambit2.base.interfaces.IProcessor;
 import toxTree.tree.rules.RuleVerifyAlertsCounter;
+import ambit2.base.interfaces.IProcessor;
 
 public class VerifyAlertsSkinSensitisation extends RuleVerifyAlertsCounter {
 

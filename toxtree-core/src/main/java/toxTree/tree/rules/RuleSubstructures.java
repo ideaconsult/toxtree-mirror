@@ -31,14 +31,12 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 
-import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleSubstructures;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.query.QueryAtomContainers;
 import toxTree.tree.AbstractRuleHilightHits;
-import toxTree.ui.tree.rules.SubstructureRulePanel;
 
 /**
  * An abstract class to implement substructure rules
@@ -142,10 +140,12 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 	public List getSubstructures() {
 		return query;
 	}
+	/*
 	@Override
 	public IDecisionRuleEditor getEditor() {
 		return new SubstructureRulePanel(this);
 	}
+	*/
 
 	public QueryAtomContainers getQuery() {
 		return query;

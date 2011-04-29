@@ -29,12 +29,14 @@ import javax.swing.JSplitPane;
 
 import toxTree.apps.CompoundMethodApplication;
 import toxTree.core.Introspection;
-import toxTree.data.DataContainer;
-import toxTree.data.DataModule;
 import toxTree.tree.BatchDecisionResultsList;
 import toxTree.tree.DecisionResultsList;
-import toxTree.ui.DataModulePanel;
-import toxTree.ui.molecule.CompoundPanel;
+import toxTree.ui.EditorFactory;
+import toxtree.data.DataContainer;
+import toxtree.data.DataModule;
+import toxtree.ui.DataModulePanel;
+import toxtree.ui.editors.SwingEditorFactory;
+import toxtree.ui.tree.molecule.CompoundPanel;
 
 /**
  * Toxforest application - multiple decision trees.
@@ -45,6 +47,7 @@ public class ToxForestApp extends CompoundMethodApplication {
 
 	public ToxForestApp() {
 		super("ToxForest",new Color(239,243,255),new Color(32,89,201));
+		EditorFactory.setInstance(new SwingEditorFactory());
 	}
 
 	/**

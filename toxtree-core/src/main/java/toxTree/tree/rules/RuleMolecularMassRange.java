@@ -27,7 +27,6 @@ package toxTree.tree.rules;
 import org.openscience.cdk.qsar.descriptors.molecular.WeightDescriptor;
 
 import toxTree.core.IDecisionRuleEditor;
-import toxTree.ui.tree.rules.RuleRangeEditor;
 
 /**
  * Molecular mass in [{@link #getMinValue()},{@link #getMaxValue()}]
@@ -54,12 +53,14 @@ public class RuleMolecularMassRange extends RuleDescriptorRange {
 	public boolean isImplemented() {
 		return true;
 	}
+	/*
 	@Override
 	public IDecisionRuleEditor getEditor() {
 		RuleRangeEditor e = new RuleRangeEditor(this);
 		e.setSetPropertyEditable(false);
 		return e;
 	}
+	*/
 	public Object getProperty() {
 		return "Molecular weight";
 	}

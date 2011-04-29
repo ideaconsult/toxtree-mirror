@@ -72,7 +72,7 @@ import ambit2.core.io.ReaderFactoryExtended;
 /**
  * Contains molecules <ul>
  * <li>loaded from a file, 
- * <li>entered by SMILES {@link toxTree.ui.molecule.SmilesEntryPanel}  
+ * <li>entered by SMILES {@link toxtree.ui.molecule.SmilesEntryPanel}  
  * <li>entered by structure diagram editor {@link toxTree.ui.molecule.JChemPaintDialog}
  * </ul>
  * @author Nina Jeliazkova

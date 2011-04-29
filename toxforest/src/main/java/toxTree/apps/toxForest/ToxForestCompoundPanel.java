@@ -26,9 +26,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-import toxTree.data.DataContainer;
-import toxTree.ui.molecule.CompoundPanel;
-import toxTree.ui.molecule.NavigationPanel;
+import toxtree.data.DataContainer;
+import toxtree.ui.molecule.NavigationPanel;
+import toxtree.ui.tree.molecule.CompoundPanel;
 
 /**
  * Top panel of {@link ToxForestApp} (structures browser).

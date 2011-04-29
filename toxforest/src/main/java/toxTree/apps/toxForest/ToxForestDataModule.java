@@ -27,36 +27,36 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import toxTree.core.IDecisionMethod;
-import toxTree.data.ActionList;
-import toxTree.data.DataContainer;
-import toxTree.data.DecisionMethodData;
-import toxTree.data.DecisionMethodsDataModule;
-import toxTree.data.ToxTreeActions;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.exceptions.FilterException;
 import toxTree.tree.BatchDecisionResultsList;
 import toxTree.tree.DecisionMethodsList;
 import toxTree.tree.DecisionResultsList;
-import toxTree.ui.actions.AboutAction;
-import toxTree.ui.actions.BatchAction;
-import toxTree.ui.actions.ClearResultAction;
-import toxTree.ui.actions.EditCompoundAction;
-import toxTree.ui.actions.EstimateAction;
-import toxTree.ui.actions.EstimateAllAction;
-import toxTree.ui.actions.NewMoleculeAction;
-import toxTree.ui.actions.OpenFileAction;
-import toxTree.ui.actions.QuitAction;
-import toxTree.ui.actions.SaveFileAction;
-import toxTree.ui.molecule.ClearFilteredSubsetsAction;
-import toxTree.ui.molecule.GoToRecordAction;
-import toxTree.ui.molecule.LookupCompoundAction;
-import toxTree.ui.molecule.ShowFilteredFileAction;
-import toxTree.ui.tree.actions.ClearMethodsList;
-import toxTree.ui.tree.actions.LiadMethodsListAction;
-import toxTree.ui.tree.actions.LoadTreeAction;
-import toxTree.ui.tree.actions.NewTreeAction;
-import toxTree.ui.tree.actions.SaveMethodsListAction;
-import toxTree.ui.tree.actions.SelectNewTreeAction;
+import toxtree.data.ActionList;
+import toxtree.data.DataContainer;
+import toxtree.data.DecisionMethodData;
+import toxtree.data.DecisionMethodsDataModule;
+import toxtree.data.ToxTreeActions;
+import toxtree.ui.actions.AboutAction;
+import toxtree.ui.actions.BatchAction;
+import toxtree.ui.actions.ClearResultAction;
+import toxtree.ui.actions.EditCompoundAction;
+import toxtree.ui.actions.EstimateAction;
+import toxtree.ui.actions.EstimateAllAction;
+import toxtree.ui.actions.NewMoleculeAction;
+import toxtree.ui.actions.OpenFileAction;
+import toxtree.ui.actions.QuitAction;
+import toxtree.ui.actions.SaveFileAction;
+import toxtree.ui.molecule.ClearFilteredSubsetsAction;
+import toxtree.ui.molecule.GoToRecordAction;
+import toxtree.ui.molecule.LookupCompoundAction;
+import toxtree.ui.molecule.ShowFilteredFileAction;
+import toxtree.ui.tree.actions.ClearMethodsList;
+import toxtree.ui.tree.actions.LiadMethodsListAction;
+import toxtree.ui.tree.actions.LoadTreeAction;
+import toxtree.ui.tree.actions.NewTreeAction;
+import toxtree.ui.tree.actions.SaveMethodsListAction;
+import toxtree.ui.tree.actions.SelectNewTreeAction;
 
 /**
  * Main data class of {@link ToxForestApp}.
@@ -99,7 +99,7 @@ public class ToxForestDataModule extends DecisionMethodsDataModule {
         actions.addAction(new LiadMethodsListAction(this),"Decision Forest","H");
         actions.addAction(new ClearMethodsList(this),"Decision Forest","C");
         
-        AboutAction about = new toxTree.ui.actions.AboutAction(this);
+        AboutAction about = new toxtree.ui.actions.AboutAction(this);
         about.setPackageName("toxTree.apps.toxForest");
         actions.addAction(about,"Help","H");
 		

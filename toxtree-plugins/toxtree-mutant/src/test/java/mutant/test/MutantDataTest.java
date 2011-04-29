@@ -35,7 +35,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
-import toxTree.ui.tree.actions.SaveTreeAction;
+import toxtree.ui.tree.actions.SaveTreeAction;
 import ambit2.core.io.IteratingDelimitedFileReader;
 
 

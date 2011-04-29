@@ -39,7 +39,7 @@ import java.util.Observer;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionRule;

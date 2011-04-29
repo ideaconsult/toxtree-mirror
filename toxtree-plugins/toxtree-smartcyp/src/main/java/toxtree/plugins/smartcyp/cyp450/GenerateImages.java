@@ -22,14 +22,14 @@ import org.openscience.cdk.geometry.Projector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
-import org.openscience.jchempaint.renderer.Renderer;
-import org.openscience.jchempaint.renderer.RenderingParameters;
-import org.openscience.jchempaint.renderer.font.AWTFontManager;
-import org.openscience.jchempaint.renderer.generators.AtomNumberGenerator;
-import org.openscience.jchempaint.renderer.generators.BasicAtomGenerator;
-import org.openscience.jchempaint.renderer.generators.BasicBondGenerator;
-import org.openscience.jchempaint.renderer.generators.IGenerator;
-import org.openscience.jchempaint.renderer.visitor.AWTDrawVisitor;
+import org.openscience.cdk.renderer.AtomContainerRenderer;
+import org.openscience.cdk.renderer.IRenderer;
+import org.openscience.cdk.renderer.font.AWTFontManager;
+import org.openscience.cdk.renderer.generators.AtomNumberGenerator;
+import org.openscience.cdk.renderer.generators.BasicAtomGenerator;
+import org.openscience.cdk.renderer.generators.BasicBondGenerator;
+import org.openscience.cdk.renderer.generators.IGenerator;
+import org.openscience.cdk.renderer.visitor.AWTDrawVisitor;
 
 
 // This class writes the results to a HTML file
@@ -62,7 +62,7 @@ public class GenerateImages {
 
 
 		List<IGenerator> generators;
-		Renderer renderer;
+		IRenderer renderer;
 
 		// Iterate MoleculKUs
 		IAtomContainer iAtomContainer;
@@ -83,9 +83,11 @@ public class GenerateImages {
 
 			// Generators make the image elements
 			generators = this.getGenerators();
-
+			
+			/*
+			//TODO !!!!!!!!!
 			// The renderer renders the picture
-			renderer = new Renderer(generators, new AWTFontManager(),false);
+			renderer = new AtomContainerRenderer( generators, new AWTFontManager(),false);
 
 			// Set layout of molecule
 			this.setMoleculeLayout(renderer);
@@ -107,6 +109,7 @@ public class GenerateImages {
 			renderer.getRenderer2DModel().setDrawNumbers(true);						
 			this.paintAndWriteMolecule(renderer, iAtomContainer, "atomNumbers");
 
+			*/
 		}
 	}
 
@@ -204,10 +207,11 @@ public class GenerateImages {
 
 
 
-	public void setMoleculeLayout(Renderer renderer) {
-
+	public void setMoleculeLayout(IRenderer renderer) {
+/*
 		// Changes representation
 		// renderer.getRenderer2DModel().setIsCompact(true);
+		
 
 		renderer.getRenderer2DModel().setBondWidth(3);
 		//		renderer.getRenderer2DModel().setBondDistance(22);
@@ -239,7 +243,7 @@ public class GenerateImages {
 
 
 		//System.out.println("renderer.toString()" + renderer.toString());
-
+*/
 	}
 
 
@@ -263,7 +267,7 @@ public class GenerateImages {
 
 
 
-	public void paintAndWriteMolecule(Renderer renderer, IAtomContainer iAtomContainer, String nameBase){
+	public void paintAndWriteMolecule(IRenderer renderer, IAtomContainer iAtomContainer, String nameBase){
 
 
 		// Paint background
@@ -272,7 +276,7 @@ public class GenerateImages {
 		g2.fillRect(0, 0, WIDTH, HEIGHT);
 
 		// the paint method also needs a toolkit-specific renderer
-		renderer.paintMolecule(iAtomContainer, new AWTDrawVisitor(g2), drawArea, true);
+		renderer.paint(iAtomContainer, new AWTDrawVisitor(g2), drawArea, true);
 
 
 		String moleculeID = iAtomContainer.getID();

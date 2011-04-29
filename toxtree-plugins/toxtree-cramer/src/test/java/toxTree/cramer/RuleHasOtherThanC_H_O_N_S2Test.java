@@ -1,8 +1,6 @@
 package toxTree.cramer;
 
-import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;

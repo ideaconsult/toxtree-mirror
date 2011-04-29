@@ -14,7 +14,7 @@ import org.openscience.cdk.qsar.result.DoubleArrayResult;
 
 import toxTree.qsar.LinearDiscriminantRule;
 import toxTree.query.FunctionalGroups;
-import toxTree.ui.tree.qsar.DescriptorOptions;
+import toxtree.ui.tree.qsar.DescriptorOptions;
 import ambit2.mopac.DescriptorMopacShell;
 import ambit2.mopac.Mopac7Reader;
 
