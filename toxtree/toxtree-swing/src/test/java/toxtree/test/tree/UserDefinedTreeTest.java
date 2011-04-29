@@ -27,7 +27,10 @@ package toxtree.test.tree;
 import java.util.Observable;
 import java.util.Observer;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
+
+import org.junit.Test;
+
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionMethod;
@@ -45,35 +48,10 @@ import toxtree.ui.tree.TreeLayout;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-10-7
  */
-public class UserDefinedTreeTest extends TestCase {
+public class UserDefinedTreeTest {
 	public int count = 0;
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(UserDefinedTreeTest.class);
-	}
-
-	/*
-	 * @see TestCase#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	/*
-	 * @see TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
-	/**
-	 * Constructor for UserDefinedTreeTest.
-	 * @param arg0
-	 */
-	public UserDefinedTreeTest(String arg0) {
-		super(arg0);
-	}
+	
+	@Test
 	public void test() {
 		count = 0;
 		UserDefinedTree tree = new UserDefinedTree();
@@ -91,8 +69,9 @@ public class UserDefinedTreeTest extends TestCase {
 		IDecisionRule rule2 = new DecisionNode(new RuleElements());
 		rules.add(rule2);
 		rule1.setBranch(true,rule2);
-		assertEquals(3,count);
+		Assert.assertEquals(3,count);
 	}
+	@Test
 	public void testTreeLayout() {
 		count = 0;
 		UserDefinedTree tree = new UserDefinedTree();
@@ -120,7 +99,7 @@ public class UserDefinedTreeTest extends TestCase {
 		DecisionNode node2 = new DecisionNode(new RuleElements(),null,null,c1,c2); 
 		rules.add(node2);
 		node1.setBranch(false,node2);
-		assertEquals(3,count);		
+		Assert.assertEquals(3,count);		
 	}
 	
 }
