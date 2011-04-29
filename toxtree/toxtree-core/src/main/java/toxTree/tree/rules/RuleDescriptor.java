@@ -31,8 +31,8 @@ import java.io.ObjectOutputStream;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.qsar.IDescriptor;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
-import org.openscience.jchempaint.renderer.selection.SingleSelection;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.SingleSelection;
 
 import toxTree.core.Introspection;
 import toxTree.exceptions.DecisionMethodException;

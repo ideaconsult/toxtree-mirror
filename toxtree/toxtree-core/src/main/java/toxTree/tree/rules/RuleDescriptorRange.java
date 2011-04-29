@@ -35,7 +35,6 @@ import org.openscience.cdk.qsar.result.IntegerResult;
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleRange;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.ui.tree.rules.RuleRangeEditor;
 
 /**
  * 
@@ -108,10 +107,12 @@ public class RuleDescriptorRange extends RuleDescriptor implements IRuleRange {
 		if (value instanceof IDescriptor)
 			setDescriptor((IDescriptor)value);
 	}
+	/*
 	@Override
 	public IDecisionRuleEditor getEditor() {
 		return new RuleRangeEditor(this);
 	}
+	*/
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof RuleDescriptorRange)

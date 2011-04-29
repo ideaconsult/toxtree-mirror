@@ -30,13 +30,13 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.EtchedBorder;
 
-import toxTree.data.DataContainer;
-import toxTree.data.DataModule;
-import toxTree.data.DecisionMethodsDataModule;
-import toxTree.ui.DataModulePanel;
-import toxTree.ui.StatusBar;
-import toxTree.ui.molecule.CompoundPanel;
-import toxTree.ui.molecule.TopPanel;
+import toxtree.data.DataContainer;
+import toxtree.data.DataModule;
+import toxtree.data.DecisionMethodsDataModule;
+import toxtree.ui.DataModulePanel;
+import toxtree.ui.StatusBar;
+import toxtree.ui.molecule.TopPanel;
+import toxtree.ui.tree.molecule.CompoundPanel;
 
 public abstract class CompoundMethodApplication extends AbstractApplication {
 	//GUI

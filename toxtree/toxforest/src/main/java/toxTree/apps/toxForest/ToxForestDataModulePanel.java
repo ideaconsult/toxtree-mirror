@@ -47,13 +47,13 @@ import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionCategoryEditor;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionResult;
-import toxTree.data.ActionList;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.DecisionResultsList;
-import toxTree.ui.DataModulePanel;
-import toxTree.ui.tree.DecisionMethodsTableModel;
-import toxTree.ui.tree.actions.EditDecisionMethodAction;
 import toxTree.ui.tree.categories.CategoriesRenderer;
+import toxtree.data.ActionList;
+import toxtree.ui.DataModulePanel;
+import toxtree.ui.tree.DecisionMethodsTableModel;
+import toxtree.ui.tree.actions.EditDecisionMethodAction;
 
 /**
  * Bottom panel of {@link ToxForestApp} (decision trees table).

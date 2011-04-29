@@ -42,15 +42,14 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
-
-import ambit2.base.interfaces.IProcessor;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
 import toxTree.tree.rules.RuleAnySubstructure;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import ambit2.base.interfaces.IProcessor;
 
 /**
  * Rule 9 of the Cramer scheme (see {@link toxTree.tree.cramer.CramerRules})

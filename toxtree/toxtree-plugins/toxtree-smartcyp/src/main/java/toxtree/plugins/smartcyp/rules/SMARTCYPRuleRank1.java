@@ -3,20 +3,20 @@ package toxtree.plugins.smartcyp.rules;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.SingleSelection;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
-import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import toxTree.ui.tree.categories.CategoriesRenderer;
 import toxtree.plugins.smartcyp.cyp450.MoleculeKU;
-import toxtree.plugins.smartcyp.cyp450.SMARTSnEnergiesTable;
 import toxtree.plugins.smartcyp.cyp450.MoleculeKU.SMARTCYP_PROPERTY;
+import toxtree.plugins.smartcyp.cyp450.SMARTSnEnergiesTable;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.MoleculeTools;
-import ambit2.jchempaint.CompoundImageTools;
+import ambit2.rendering.CompoundImageTools;
 
 public class SMARTCYPRuleRank1 extends AbstractRule {
 	protected static final CategoriesRenderer categoriesRenderer = new CategoriesRenderer(4,240);

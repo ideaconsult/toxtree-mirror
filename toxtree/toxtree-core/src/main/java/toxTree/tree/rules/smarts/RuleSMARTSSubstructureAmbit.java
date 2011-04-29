@@ -26,9 +26,10 @@ package toxTree.tree.rules.smarts;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import toxTree.tree.rules.smarts.SmartsPatternFactory.SmartsParser;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
+import ambit2.smarts.query.SmartsPatternFactory;
+import ambit2.smarts.query.SmartsPatternFactory.SmartsParser;
 
 /**
  * An IDecisionRule, making use of Ambit SMARTS parser.

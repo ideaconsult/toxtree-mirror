@@ -37,7 +37,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Observable;
 
-import org.jmol.util.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -47,6 +46,7 @@ import toxTree.core.IDecisionMethodsList;
 import toxTree.core.Introspection;
 import toxTree.core.XMLSerializable;
 import toxTree.exceptions.XMLDecisionMethodException;
+import toxTree.logging.TTLogger;
 
 /**
  * 
@@ -55,6 +55,7 @@ import toxTree.exceptions.XMLDecisionMethodException;
  * <b>Modified</b> 2005-10-18
  */
 public class DecisionMethodsList extends Observable implements	IDecisionMethodsList, XMLSerializable {
+	static TTLogger logger = new TTLogger(DecisionMethodsList.class); 
 	protected ArrayList list;
 	/**
 	 * 
@@ -244,13 +245,13 @@ public class DecisionMethodsList extends Observable implements	IDecisionMethodsL
 					in =  new FileInputStream(tree);
 					Introspection.loadRulesXML(in, tree.getAbsolutePath());
 				} catch (Exception x) {
-					Logger.info(x.getMessage());
+					logger.info(x.getMessage());
 				} finally {
 					try { in.close();} catch (Exception x) {}
 				}
 			}
 		} catch (Exception x) {
-			Logger.info(x.getMessage());
+			logger.info(x.getMessage());
 		}
         Collections.sort(list,new PriorityComparator());
 	}

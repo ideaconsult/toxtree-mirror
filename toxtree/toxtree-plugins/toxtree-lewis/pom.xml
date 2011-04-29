@@ -16,5 +16,12 @@
   		<version>${ambit.version}</version>
   		<scope>compile</scope>
   	</dependency>
+  	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-swing</artifactId>
+  		<version>${project.version}</version>
+  		<type>jar</type>
+  		<scope>test</scope>
+  	</dependency>
   </dependencies>
 </project>

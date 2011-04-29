@@ -7,7 +7,6 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleList;
@@ -18,8 +17,6 @@ import toxTree.tree.MultiLabelDecisionNode;
 import toxTree.tree.rules.StructureAlert;
 import toxtree.plugins.skinsensitisation.SkinSensitisationPlugin;
 import ambit2.base.interfaces.IStructureRecord;
-import ambit2.core.io.DelimitedFileWriter;
-import ambit2.core.io.IteratingDelimitedFileReader;
 import ambit2.core.io.RawIteratingSDFReader;
 import ambit2.core.processors.structure.MoleculeReader;
 import ambit2.smarts.query.ISmartsPattern;

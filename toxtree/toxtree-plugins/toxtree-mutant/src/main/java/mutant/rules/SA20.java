@@ -27,15 +27,14 @@ package mutant.rules;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRing;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
-
-import ambit2.base.interfaces.IProcessor;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.DefaultAlertCounter;
 import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleRingSubstituents;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import ambit2.base.interfaces.IProcessor;
 
 public class SA20 extends RuleRingSubstituents implements IAlertCounter {
 	/**

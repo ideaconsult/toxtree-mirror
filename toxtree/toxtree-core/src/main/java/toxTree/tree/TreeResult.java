@@ -42,7 +42,6 @@ import toxTree.exceptions.DMethodNotAssigned;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
-import ambit2.ui.editors.Panel2D;
 /**
  * A default class implementing {@link toxTree.core.IDecisionResult}
  * @author Nina Jeliazkova nina@acad.bg<br>
@@ -99,7 +98,8 @@ public class TreeResult implements IDecisionResult {
 	    status.clear();
         firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);
         firePropertyChangeEvent(ProgressStatus._pRuleResult, null, "");      
-        firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null,null);
+        //firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null,null);
+        firePropertyChangeEvent("panel2d_selected", null,null);
         /*
 		setChanged();
 		notifyObservers();
@@ -532,12 +532,15 @@ public class TreeResult implements IDecisionResult {
     }
     public synchronized void hilightAlert(RuleResult ruleResult) throws DecisionResultException {
 					
-		firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(),
+		//firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(),
+    	firePropertyChangeEvent("panel2d_molecule",
 							null,
 							ruleResult==null?originalMolecule:
 								ruleResult.getMolecule()==null?originalMolecule:ruleResult.getMolecule());
 							//AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(originalMolecule));
-		firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, ruleResult==null?null:ruleResult.getSelector());
+		//firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), 
+		firePropertyChangeEvent("panel2d_selected",				
+				null, ruleResult==null?null:ruleResult.getSelector());
 
 		
 	}
@@ -550,11 +553,13 @@ public class TreeResult implements IDecisionResult {
 			//	boolean value = ruleResults.get(i).isResult();
 				//if (value) {
 					
-					firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(),
+					//firePropertyChangeEvent(Panel2D.property_name.panel2d_molecule.toString(),
+					firePropertyChangeEvent("panel2d_molecule",
 							null,
 							originalMolecule);
-							//AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(originalMolecule));
-					firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, rule==null?null:rule.getSelector());
+					firePropertyChangeEvent("panel2d_selected", null, rule==null?null:rule.getSelector());
+
+					//firePropertyChangeEvent(Panel2D.property_name.panel2d_selected.toString(), null, rule==null?null:rule.getSelector());
 				//	return;
 				//}
 				

@@ -33,19 +33,17 @@ import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.SingleSelection;
 import org.openscience.cdk.smiles.SmilesParser;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
-import org.openscience.jchempaint.renderer.selection.SingleSelection;
 
 import toxTree.core.IDecisionInteractive;
-import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IImplementationDetails;
 import toxTree.exceptions.DRuleNotImplemented;
 import toxTree.exceptions.DRulePropertyNotAvailable;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
-import toxTree.ui.PropertyInput;
-import toxTree.ui.tree.rules.RulePropertyEditor;
+import toxTree.ui.EditorFactory;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.MoleculeTools;
@@ -96,7 +94,7 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 	public RuleVerifyProperty() {
     	super();
     	nf.setMaximumFractionDigits(4);
-    	setListener(new PropertyInput());
+    	setListener(EditorFactory.getInstance().createPropertyInput());
     }
     public RuleVerifyProperty(String propertyName, String units, String condition, double value) {
     	this();
@@ -194,12 +192,12 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 			throw new DecisionMethodException(x);
 		}
 	}
-	
+	/*
 	@Override
 	public IDecisionRuleEditor getEditor() {
 		return new RulePropertyEditor(this);
 	}
-
+	*/
 	/**
 
     public String inputProperty(IAtomContainer mol) {

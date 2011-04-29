@@ -22,7 +22,7 @@ package mic;
 
 import toxTree.core.Introspection;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.ui.tree.TreeFrame;
+import toxtree.ui.tree.TreeFrame;
 
 public class TestView {
 

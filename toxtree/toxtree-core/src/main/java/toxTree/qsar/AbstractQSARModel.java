@@ -35,7 +35,7 @@ import toxTree.core.IDescriptorBased;
 import toxTree.core.IToxTreeEditor;
 import toxTree.core.Introspection;
 import toxTree.logging.TTLogger;
-import toxTree.ui.tree.qsar.QSARModelEditor;
+import toxTree.ui.EditorFactory;
 import ambit2.base.data.IModel;
 import ambit2.base.exceptions.QSARModelException;
 
@@ -135,7 +135,7 @@ public abstract class AbstractQSARModel implements IModel,  Serializable, IDescr
 		else return descriptors.get(index);
 	}
 	public IToxTreeEditor getEditor() {
-		return new QSARModelEditor(this);
+		return EditorFactory.getInstance().createModelEditor(this);
 	}
 
     public boolean isCalculated(String name) {

@@ -30,8 +30,8 @@ import javax.swing.JMenuBar;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import toxTree.data.DataModule;
 import toxTree.logging.TTLogger;
+import toxtree.data.DataModule;
 import ambit2.base.config.Preferences;
 
 public abstract class AbstractApplication {

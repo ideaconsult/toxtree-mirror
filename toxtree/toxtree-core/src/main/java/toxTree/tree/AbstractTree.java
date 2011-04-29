@@ -47,8 +47,8 @@ import javax.swing.JComponent;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
-import org.openscience.jchempaint.renderer.selection.MultiSelection;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.MultiSelection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -67,12 +67,12 @@ import toxTree.exceptions.MolAnalyseException;
 import toxTree.exceptions.XMLDecisionMethodException;
 import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
-import toxTree.ui.tree.TreeEditorPanel;
-import toxTree.ui.tree.TreeOptions;
+import toxTree.ui.EditorFactory;
+import toxTree.ui.IEditorFactory;
 import toxTree.ui.tree.categories.CategoriesRenderer;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
-import ambit2.jchempaint.CompoundImageTools;
+import ambit2.rendering.CompoundImageTools;
 
 
 /**
@@ -261,7 +261,7 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
      */
 	public abstract void setParameters(IAtomContainer mol)   ;
     public JComponent optionsPanel(IAtomContainer atomContainer) {
-    	return new TreeOptions(this,atomContainer);
+    	return EditorFactory.getInstance().optionsPanel(this, atomContainer);
     	/*
         ArrayList<JComponent> components = new ArrayList<JComponent>();
         for (int i=0;i< rules.size(); i++) {
@@ -462,7 +462,8 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 		modified = false;
 	}
 	public IDecisionMethodEditor getEditor() {
-        return new TreeEditorPanel(this);
+		return EditorFactory.getInstance().createTreeEditor(this);
+       // return new TreeEditorPanel(this);
 		//return new EditTreeFrame(this);
 	}
 	public void fromXML(Element xml)  throws XMLDecisionMethodException{

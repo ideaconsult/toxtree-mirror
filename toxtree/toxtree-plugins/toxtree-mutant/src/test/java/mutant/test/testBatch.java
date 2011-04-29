@@ -34,7 +34,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
 import toxTree.io.batch.ToxTreeBatchProcessing;
-import toxTree.ui.batch.BatchProcessingDialog;
+import toxtree.ui.batch.BatchProcessingDialog;
 
 public class testBatch  {
 	public void run() {

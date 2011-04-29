@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.tree.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleRange;
@@ -33,7 +33,6 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
 import toxTree.tree.AbstractRule;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
-import toxTree.ui.tree.rules.RuleRangeEditor;
 import ambit2.base.interfaces.IProcessor;
 
 /**
@@ -90,6 +89,7 @@ public class RuleManyAromaticRings extends AbstractRule implements IRuleRange {
 	public double getMaxValue() {
 		return maxValue;
 	}
+	/*
 	@Override
 	public IDecisionRuleEditor getEditor() {
 		RuleRangeEditor e = new RuleRangeEditor(this);
@@ -97,6 +97,7 @@ public class RuleManyAromaticRings extends AbstractRule implements IRuleRange {
 		e.setSetPropertyEditable(false);
 		return e;
 	}
+	*/
 	public Object getProperty() {
 		return "Number of aromatic rings";
 	}

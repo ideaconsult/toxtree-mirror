@@ -24,8 +24,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.skinsensitisation.rules;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Hashtable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;

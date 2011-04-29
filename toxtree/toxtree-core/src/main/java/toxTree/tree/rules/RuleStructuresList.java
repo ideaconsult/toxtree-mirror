@@ -29,16 +29,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
-import org.openscience.jchempaint.renderer.selection.SingleSelection;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.SingleSelection;
 
-import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.Introspection;
 import toxTree.exceptions.DRuleNotImplemented;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.Tools;
 import toxTree.tree.AbstractRule;
-import toxTree.ui.tree.rules.RuleStructuresPanel;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 
@@ -128,10 +126,12 @@ public class RuleStructuresList extends AbstractRule {
 	public synchronized void setUsingCache(boolean useCache) {
 		lookupFile.setUseCache(useCache);
 	}
+	/*
 	@Override
 	public IDecisionRuleEditor getEditor() {
 		return new RuleStructuresPanel(this);
 	}
+	*/
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
             try {

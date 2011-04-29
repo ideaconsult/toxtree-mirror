@@ -28,8 +28,8 @@ import java.awt.Color;
 import toxTree.core.IDecisionCategories;
 
 /**
- * Used mainly to provide an unique color per a category. Used by {@link toxTree.ui.tree.categories.CategoriesPanel}
- * and {@link toxTree.ui.tree.TreeLayout}  
+ * Used mainly to provide an unique color per a category. Used by {@link toxtree.ui.tree.categories.CategoriesPanel}
+ * and {@link toxtree.ui.tree.TreeLayout}  
  * @author Nina Jeliazkova
  *
  */

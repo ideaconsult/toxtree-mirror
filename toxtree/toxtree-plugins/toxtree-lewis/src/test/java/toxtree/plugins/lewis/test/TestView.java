@@ -21,8 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.lewis.test;
 
 import toxTree.core.Introspection;
-import toxTree.ui.tree.TreeFrame;
 import toxtree.plugins.lewis.LewisTree;
+import toxtree.ui.tree.TreeFrame;
 
 public class TestView {
 

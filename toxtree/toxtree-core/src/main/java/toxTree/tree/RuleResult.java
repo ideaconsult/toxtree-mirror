@@ -27,7 +27,7 @@ package toxTree.tree;
 import java.io.Serializable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionRule;

@@ -34,7 +34,7 @@ import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
 import toxTree.core.Introspection;
 import toxTree.tree.DecisionNode;
-import toxTree.ui.tree.actions.NewRuleAction;
+import toxtree.ui.tree.actions.NewRuleAction;
 
 public class SA2Test extends TestMutantRules {
 

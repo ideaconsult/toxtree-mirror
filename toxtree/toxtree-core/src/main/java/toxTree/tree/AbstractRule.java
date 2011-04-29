@@ -43,10 +43,10 @@ import org.openscience.cdk.Molecule;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -57,7 +57,8 @@ import toxTree.core.XMLSerializable;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.XMLDecisionMethodException;
 import toxTree.logging.TTLogger;
-import toxTree.ui.tree.rules.RulePanel;
+import toxTree.ui.EditorFactory;
+import toxTree.ui.IEditorFactory;
 import ambit2.base.interfaces.IProcessor;
 
 /**
@@ -300,9 +301,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	 * See {@link IDecisionRule#getEditor()}
 	 */
 	public IDecisionRuleEditor getEditor() {
-		RulePanel p = new RulePanel(this);
-		p.setRule(this);
-		return p;
+		return EditorFactory.getInstance().createEditor(this);
 	}
 	
 	@Override

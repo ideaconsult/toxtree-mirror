@@ -28,7 +28,7 @@ import java.util.Hashtable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
-import org.openscience.jchempaint.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.IDescriptorBased;
 import toxTree.core.IImplementationDetails;

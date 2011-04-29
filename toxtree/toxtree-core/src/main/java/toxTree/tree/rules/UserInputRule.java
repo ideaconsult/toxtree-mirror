@@ -8,6 +8,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.core.IDecisionInteractive;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
+import toxTree.ui.EditorFactory;
 
 public abstract class UserInputRule extends AbstractRule implements IDecisionInteractive {
 
@@ -29,7 +30,7 @@ public abstract class UserInputRule extends AbstractRule implements IDecisionInt
 		setID("User");
 		setTitle("User input");
 		setExplanation("Proceed?");
-		setListener(new ApplyRuleOptions());
+		setListener(EditorFactory.getInstance().createApplyRuleOptions());
 		setInteractive(true);
 	}	
 	public UserInputRule(String message) {
