@@ -296,7 +296,7 @@
   </build>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
- 	<ambit.version>2.4.0-SNAPSHOT</ambit.version>
+ 	<ambit.version>2.4.1-SNAPSHOT</ambit.version>
     <junit.version>4.8.1</junit.version>
   </properties>    
 </project>
