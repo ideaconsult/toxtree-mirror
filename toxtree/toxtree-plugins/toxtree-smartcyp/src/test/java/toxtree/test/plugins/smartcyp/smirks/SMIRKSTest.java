@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.net.URLEncoder;
 import java.util.Hashtable;
 
 import junit.framework.Assert;
@@ -19,6 +20,7 @@ import org.openscience.cdk.smiles.SmilesGenerator;
 
 import ambit2.core.io.MDLWriter;
 import ambit2.core.processors.structure.AtomConfigurator;
+import ambit2.core.processors.structure.HydrogenAdderProcessor;
 import ambit2.smarts.SMIRKSManager;
 import ambit2.smarts.SMIRKSReaction;
 
@@ -108,6 +110,7 @@ public class SMIRKSTest {
 		AtomConfigurator  cfg = new AtomConfigurator();
 		SMIRKSManager smrkMan = new SMIRKSManager();
 		SmilesGenerator g = new SmilesGenerator();
+		HydrogenAdderProcessor hadder = new HydrogenAdderProcessor();
 		
 		File file = new File(getClass().getClassLoader().getResource("toxtree/test/plugins/smartcyp/3A4_substrates.sdf").getFile());
 
@@ -131,8 +134,9 @@ public class SMIRKSTest {
 		try {
 			while (reader.hasNext()) {
 				IChemObject mol = reader.next();
+
 				Assert.assertTrue(mol instanceof IAtomContainer);
-				
+				hadder.process((IAtomContainer)mol);
 				cfg.process((IAtomContainer)mol);
 				CDKHueckelAromaticityDetector.detectAromaticity((IAtomContainer)mol);
 				
@@ -143,11 +147,14 @@ public class SMIRKSTest {
 				
 				htmlFileWriter.write(String.format("<h3><a name='%s'>%s</a></h3>", molid,molid));
 				
-				htmlFileWriter.write("<table>");
+				htmlFileWriter.write("<table border='1'>");
 				htmlFileWriter.write("<tr>");
 				
 				String smiles = g.createSMILES((IMolecule)mol);
-				htmlFileWriter.write(String.format("<td><img src='http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s'></td>",smiles));
+				String uri = String.format("http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s",URLEncoder.encode(smiles));
+				
+				htmlFileWriter.write(String.format("<td bgcolor='#DDDDDD'><a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a></td>",
+								uri,uri,smiles,smiles));
 				
 				System.out.println(molid);
 				for (int i=0; i < reactions.length; i++) {
@@ -181,8 +188,10 @@ public class SMIRKSTest {
 						compounds.put(reactions[i][0],String.format("%s&nbsp;<a href='#%s'>%s</a> ",ptr==null?"":ptr,molid,molid));
 						
 						smiles = g.createSMILES(c);
-						htmlFileWriter.write(String.format("<td><a href='#%s' title='%s'>%s<a><br>",reactions[i][0],reactions[i][1], reactions[i][0])); 
-						htmlFileWriter.write(String.format("<img src='http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s'><br>",smiles)); 
+						htmlFileWriter.write(String.format("<td><a href='#%s' title='%s'>%s<a><br>",reactions[i][0],reactions[i][1], reactions[i][0]));
+						uri = String.format("http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s",URLEncoder.encode(smiles));
+						htmlFileWriter.write(String.format("<a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a><br>",
+								uri,uri,smiles,smiles)); 
 						htmlFileWriter.write("</td>");
 						
 						writers[i].setSdFields(mol.getProperties());
@@ -201,10 +210,10 @@ public class SMIRKSTest {
 			htmlFileWriter.write("<table width='100%'>");
 			for (int i=0; i < reactions.length; i++) {
 				
-				htmlFileWriter.write(String.format("<tr><th width='20%%'><a name='%s'>%s</a></th><td width='20%%'>%s</td><td width='60%%'><div width='60%%' style='position: absolute;  word-wrap:break-word;''>", 
+				htmlFileWriter.write(String.format("<tr><th width='20%%'><a name='%s'>%s</a></th><td width='20%%'>%s</td><td width='60%%'>", 
 						reactions[i][0], reactions[i][0], reactions[i][1]));
 				if (compounds.get(reactions[i][0])!=null) htmlFileWriter.write(compounds.get(reactions[i][0]));
-				htmlFileWriter.write(String.format("</div></td></tr>"));
+				htmlFileWriter.write(String.format("</td></tr>"));
 			}
 			htmlFileWriter.write("</table>");
 			htmlFileWriter.write("</body></html>");
