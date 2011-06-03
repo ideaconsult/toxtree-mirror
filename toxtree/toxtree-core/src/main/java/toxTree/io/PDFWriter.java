@@ -35,6 +35,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IChemFile;
@@ -187,15 +190,31 @@ public class PDFWriter extends FilesWithHeaderWriter {
             }
         }
     }    
+    
+    public void setHeader(Map properties) {
+    	if (header == null)
+    		header = new ArrayList();
+        Iterator e = properties.keySet().iterator();
+        smilesIndex = -1; int i = 0;
+        while (e.hasNext()) {
+        	Object key = e.next();
+        	if (header.contains(key)) continue;
+            header.add(key);
+            if (header.get(i).equals(defaultSMILESHeader)) smilesIndex = i;
+            i++;
+        }
+        if (smilesIndex == -1) { header.add(0,defaultSMILESHeader); smilesIndex = 0; }
+        logger.info("Header created from hashtable\t",header);
+    }     
     public void writeMolecule(IMolecule molecule) {
         Object value;       
         
         try {
 
-    
+        	  setHeader(molecule.getProperties());
             //give it a chance to create a header just before the first write
             if (!writingStarted) {
-                if (header == null) setHeader(molecule.getProperties());
+             
                 writeHeader();
                 writingStarted = true;
             }
