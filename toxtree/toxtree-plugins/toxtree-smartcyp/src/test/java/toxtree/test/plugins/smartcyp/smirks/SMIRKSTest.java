@@ -51,7 +51,7 @@ public class SMIRKSTest {
 	
 	{
 	"O-dealkylation",
-	"[O:1][C:2]([H])>>[O:1][H].[C:2]=[O]"
+	"[O;H0:1][C:2]([H])>>[O:1][H].[C:2]=[O]"
 	},
 	
 	{
