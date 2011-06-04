@@ -12,9 +12,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-import org.openscience.cdk.Atom;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.MoleculeSet;
+import org.openscience.cdk.interfaces.IAtom;
 
 import dk.smartcyp.core.MoleculeKU;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
@@ -25,7 +25,7 @@ public class WriteResultsAsHTML {
 
 
 	PrintWriter outfile;
-	TreeSet<Atom> sortedAtomsTreeSet;
+	TreeSet<IAtom> sortedAtomsTreeSet;
 	String moleculeID;
 	private String dateAndTime;
 	String[] namesOfInfiles;
@@ -172,9 +172,9 @@ public class WriteResultsAsHTML {
 		outfile.println("<tr><th>Rank</th><th>Atom</th><th>Score</th><th>Energy</th><th>Accessability</th></tr>");
 
 		// Iterate over the Atoms in this sortedAtomsTreeSet
-		sortedAtomsTreeSet = (TreeSet<Atom>) moleculeKU.getAtomsSortedByEnA();
-		Iterator<Atom> sortedAtomsTreeSetIterator = sortedAtomsTreeSet.iterator();
-		Atom currentAtom;
+		sortedAtomsTreeSet = (TreeSet<IAtom>) moleculeKU.getAtomsSortedByEnA();
+		Iterator<IAtom> sortedAtomsTreeSetIterator = sortedAtomsTreeSet.iterator();
+		IAtom currentAtom;
 		
 		while(sortedAtomsTreeSetIterator.hasNext()){
 			currentAtom = sortedAtomsTreeSetIterator.next();
@@ -197,7 +197,7 @@ public class WriteResultsAsHTML {
 
 
 
-	public void writeAtomRowinMoleculeKUTable(Atom atom){
+	public void writeAtomRowinMoleculeKUTable(IAtom atom){
 
 //		System.out.println(atom.toString());
 		if(SMARTCYP_PROPERTY.Ranking.get(atom).intValue() == 1) outfile.println("<tr class=\"highlight1\">");

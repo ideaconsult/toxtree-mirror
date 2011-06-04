@@ -7,24 +7,27 @@ import javax.vecmath.Point2d;
 
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.jchempaint.renderer.RendererModel;
-import org.openscience.jchempaint.renderer.elements.ElementGroup;
-import org.openscience.jchempaint.renderer.elements.IRenderingElement;
-import org.openscience.jchempaint.renderer.elements.OvalElement;
-import org.openscience.jchempaint.renderer.generators.IGenerator;
-import org.openscience.jchempaint.renderer.generators.IGeneratorParameter;
+import org.openscience.cdk.renderer.RendererModel;
+import org.openscience.cdk.renderer.elements.ElementGroup;
+import org.openscience.cdk.renderer.elements.IRenderingElement;
+import org.openscience.cdk.renderer.elements.OvalElement;
+import org.openscience.cdk.renderer.generators.BasicAtomGenerator;
+import org.openscience.cdk.renderer.generators.BasicSceneGenerator;
+import org.openscience.cdk.renderer.generators.IGenerator;
+import org.openscience.cdk.renderer.generators.IGeneratorParameter;
 
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
 
-public class rankedlabelgenerator implements IGenerator {
+public class rankedlabelgenerator implements IGenerator<IAtomContainer> {
 	       
+	
 	       public IRenderingElement generate(IAtomContainer ac, RendererModel model) {
 	    	   IAtom atom;
 	           // this contains the rendering elements
 	           ElementGroup rankedCircles = new ElementGroup();
 	           
 	           // most parameters are in screen space, and have to be scaled
-	           double r = model.getAtomRadius() / model.getScale();
+	           double r = model.get(BasicAtomGenerator.AtomRadius.class) / model.get(BasicSceneGenerator.Scale.class);
 	           
 	           // make a circle at each ranked atom
 	           for (int atomIndex=0; atomIndex < ac.getAtomCount(); atomIndex++) {
@@ -58,10 +61,10 @@ public class rankedlabelgenerator implements IGenerator {
 	           return rankedCircles;
 	       }
 
-		@Override
-		public List<IGeneratorParameter> getParameters() {
-			// TODO Auto-generated method stub
-			return null;
-		}        
-	   }
+
+	       @Override
+	    public List<IGeneratorParameter<?>> getParameters() {
+	    return null;
+	    }
+}
 
