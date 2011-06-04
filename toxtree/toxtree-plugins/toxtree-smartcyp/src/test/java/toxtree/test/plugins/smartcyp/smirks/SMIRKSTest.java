@@ -107,10 +107,12 @@ public class SMIRKSTest {
 	}	
 	@Test
 	public void test() throws Exception {
+		boolean explicitH = false;
 		AtomConfigurator  cfg = new AtomConfigurator();
 		SMIRKSManager smrkMan = new SMIRKSManager();
 		SmilesGenerator g = new SmilesGenerator();
 		HydrogenAdderProcessor hadder = new HydrogenAdderProcessor();
+		hadder.setAddEexplicitHydrogens(explicitH);
 		
 		File file = new File(getClass().getClassLoader().getResource("toxtree/test/plugins/smartcyp/3A4_substrates.sdf").getFile());
 
@@ -123,7 +125,9 @@ public class SMIRKSTest {
 		File htmlFile = new File(String.format("%s/targets_and_reaction_products.html", file.getParentFile()));
 		if (htmlFile.exists()) htmlFile.delete();
 		FileWriter htmlFileWriter = new FileWriter(htmlFile);
-		htmlFileWriter.write("<html><head></head><body>");
+		htmlFileWriter.write(String.format("<html><head><title>%s</title></head><body>",explicitH?"Explicit H":"Implicit H"));
+		
+					
 		htmlFileWriter.write("<a href='#Compounds'>Compounds<a>&nbsp;<a href='#Reactions'>Reactions<a><hr>");
 		htmlFileWriter.write("<a name='#Compounds'/a>");
 		IMolecule placeholder = NoNotificationChemObjectBuilder.getInstance().newInstance(IMolecule.class);
@@ -140,18 +144,20 @@ public class SMIRKSTest {
 				cfg.process((IAtomContainer)mol);
 				CDKHueckelAromaticityDetector.detectAromaticity((IAtomContainer)mol);
 				
+				Object molid = mol.getProperty("ID");
+				
 				masterWriter.setSdFields(mol.getProperties());
 				masterWriter.writeMolecule((IMolecule)mol) ;
 				
-				Object molid = mol.getProperty("ID");
+
+				htmlFileWriter.write(String.format("<h3><a name='%s'>%s</a>",molid,molid));
 				
-				htmlFileWriter.write(String.format("<h3><a name='%s'>%s</a></h3>", molid,molid));
-				
+				htmlFileWriter.write(String.format("&nbsp;<a href='http://apps.ideaconsult.net:8080/ambit2/compound?feature_uris[]=http://apps.ideaconsult.net:8080/ambit2/feature/28402&property=ID&search=%s&feature_uris[]=http://apps.ideaconsult.net:8080/ambit2/dataset/1736/feature' target=_blank>Search</a></h3>",URLEncoder.encode(molid.toString())));
 				htmlFileWriter.write("<table border='1'>");
 				htmlFileWriter.write("<tr>");
 				
 				String smiles = g.createSMILES((IMolecule)mol);
-				String uri = String.format("http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s",URLEncoder.encode(smiles));
+				String uri = getImageURI(smiles);
 				
 				htmlFileWriter.write(String.format("<td bgcolor='#DDDDDD'><a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a></td>",
 								uri,uri,smiles,smiles));
@@ -189,7 +195,7 @@ public class SMIRKSTest {
 						
 						smiles = g.createSMILES(c);
 						htmlFileWriter.write(String.format("<td><a href='#%s' title='%s'>%s<a><br>",reactions[i][0],reactions[i][1], reactions[i][0]));
-						uri = String.format("http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s",URLEncoder.encode(smiles));
+						uri = getImageURI(smiles);
 						htmlFileWriter.write(String.format("<a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a><br>",
 								uri,uri,smiles,smiles)); 
 						htmlFileWriter.write("</td>");
@@ -207,7 +213,7 @@ public class SMIRKSTest {
 				htmlFileWriter.write("</table>");
 			}
 			htmlFileWriter.write("<h3><a name='#Reactions'>Reactions<a></h3>");
-			htmlFileWriter.write("<table width='100%'>");
+			htmlFileWriter.write("<table width='100%' border='1'>");
 			for (int i=0; i < reactions.length; i++) {
 				
 				htmlFileWriter.write(String.format("<tr><th width='20%%'><a name='%s'>%s</a></th><td width='20%%'>%s</td><td width='60%%'>", 
@@ -223,6 +229,18 @@ public class SMIRKSTest {
 			masterWriter.close();
 			htmlFileWriter.close();
 		}
+	}
+	
+	protected String getImageURI(String smiles) {
+		return String.format("http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s",URLEncoder.encode(smiles));
+	}	
+	
+	protected String getImageURI(IAtomContainer ac) {
+		/*
+		String smiles = g.createSMILES(ac);
+		return String.format("http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s",URLEncoder.encode(smiles));
+		*/
+		return null;
 	}
 
 }
