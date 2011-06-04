@@ -2,35 +2,37 @@ package dk.smartcyp.app;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.util.List;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.imageio.ImageIO;
 
+import org.openscience.cdk.AtomContainer;
+import org.openscience.cdk.Molecule;
+import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.geometry.GeometryTools;
 import org.openscience.cdk.geometry.Projector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
-import org.openscience.cdk.AtomContainer;
-import org.openscience.cdk.Molecule;
-import org.openscience.cdk.MoleculeSet;
-
-
-import org.openscience.jchempaint.renderer.Renderer;
-import org.openscience.jchempaint.renderer.RendererModel;
-import org.openscience.jchempaint.renderer.RenderingParameters;
-import org.openscience.jchempaint.renderer.font.AWTFontManager;
-import org.openscience.jchempaint.renderer.generators.AtomNumberGenerator;
-import org.openscience.jchempaint.renderer.generators.BasicAtomGenerator;
-import org.openscience.jchempaint.renderer.generators.IGenerator;
-import org.openscience.jchempaint.renderer.generators.RingGenerator;
-import org.openscience.jchempaint.renderer.visitor.AWTDrawVisitor;
+import org.openscience.cdk.renderer.AtomContainerRenderer;
+import org.openscience.cdk.renderer.IRenderer;
+import org.openscience.cdk.renderer.RendererModel;
+import org.openscience.cdk.renderer.font.AWTFontManager;
+import org.openscience.cdk.renderer.generators.AtomNumberGenerator;
+import org.openscience.cdk.renderer.generators.BasicAtomGenerator;
+import org.openscience.cdk.renderer.generators.BasicAtomGenerator.Shape;
+import org.openscience.cdk.renderer.generators.BasicBondGenerator;
+import org.openscience.cdk.renderer.generators.BasicSceneGenerator;
+import org.openscience.cdk.renderer.generators.IGenerator;
+import org.openscience.cdk.renderer.generators.RingGenerator;
+import org.openscience.cdk.renderer.visitor.AWTDrawVisitor;
 
 
 
@@ -66,9 +68,9 @@ public class GenerateImages {
 			System.out.println("moleculeSet is null");
 		}
 
-		List<IGenerator> generators;
+		List<IGenerator<IAtomContainer>> generators;
 
-		Renderer renderer;
+		IRenderer<IAtomContainer> renderer;
 
 		// Create smartcyp_images directory
 		this.createDirectory(OutputDir + "smartcyp_images_" + dateAndTime);
@@ -91,10 +93,12 @@ public class GenerateImages {
 			iAtomContainer.setID(moleculeSet.getMolecule(moleculeIndex).getID());
 
 			// Generators make the image elements
-			generators = this.getGenerators();
+			generators = getGenerators();
 
 			// The renderer renders the picture
-			renderer = new Renderer(generators, new AWTFontManager());
+			renderer = new AtomContainerRenderer(generators, new AWTFontManager()) ;
+
+			setMoleculeLayout(renderer.getRenderer2DModel());
 			renderer.setup(iAtomContainer, drawArea);
 
 			// Set layout of molecule
@@ -104,7 +108,7 @@ public class GenerateImages {
 
 			// Write 2 types of images with: 1) heteroatoms and 2) atom Numbers
 			this.paintAndWriteMolecule(renderer, iAtomContainer, "heteroAtoms", OutputDir);		
-			renderer.getRenderer2DModel().setDrawNumbers(true);	
+			renderer.getRenderer2DModel().set(AtomNumberGenerator.WillDrawAtomNumbers.class, true);
 			this.paintAndWriteMolecule(renderer, iAtomContainer, "atomNumbers", OutputDir);
 
 		}
@@ -188,11 +192,13 @@ public class GenerateImages {
 
 
 	// Generators make the image elements
-	public List<IGenerator> getGenerators() {
+	public List<IGenerator<IAtomContainer>> getGenerators() {
 
-		List<IGenerator> generators = new ArrayList<IGenerator>();
-		generators.add(new rankedlabelgenerator());
+		List<IGenerator<IAtomContainer>> generators = new ArrayList<IGenerator<IAtomContainer>>();
+		//generators.add(new rankedlabelgenerator());
+		generators.add(new BasicSceneGenerator());
 		generators.add(new RingGenerator());
+		generators.add(new BasicBondGenerator());
 		generators.add(new BasicAtomGenerator());
 		generators.add(new AtomNumberGenerator());
 		
@@ -208,26 +214,28 @@ public class GenerateImages {
 		// Changes representation
 		// renderer.getRenderer2DModel().setIsCompact(true);
 
-		r2dm.setBondWidth(3);
+		r2dm.set(BasicBondGenerator.BondWidth.class,3.0);
 		//		r2dm.setBondDistance(22);
 		// r2dm.setFitToScreen(true);
-		r2dm.setShowExplicitHydrogens(false);
+		r2dm.set(BasicAtomGenerator.ShowExplicitHydrogens.class, false);
 		//		r2dm.setShowImplicitHydrogens(false);
 		//		r2dm.setDrawNumbers(true);
-		r2dm.setColorAtomsByType(true);
-		r2dm.setCompactShape(RenderingParameters.AtomShape.OVAL);
-		r2dm.setAtomRadius(5);
-
+		r2dm.set(BasicAtomGenerator.ColorByType.class, true);
+		r2dm.set(BasicAtomGenerator.CompactShape.class,Shape.OVAL);
+		r2dm.set(BasicAtomGenerator.AtomRadius.class,5.0);
 		// r2dm.setBackgroundDimension(imgSize);
 		//r2dm.setBackColor(Color.WHITE);
 		//r2dm.setDrawNumbers(false);
-		r2dm.setUseAntiAliasing(true);
+		r2dm.set(BasicSceneGenerator.UseAntiAliasing.class, true);
 		//        r2dm.setShowImplicitHydrogens(true);
-		r2dm.setShowReactionBoxes(false);
-		r2dm.setKekuleStructure(false);
-		r2dm.setShowAromaticityCDKStyle(true);
-
-		r2dm.setFontName("SansSerif");
+		//r2dm.setShowReactionBoxes(false); not sure how to set in the new cdk-rendering
+		
+		r2dm.set(BasicAtomGenerator.KekuleStructure.class, false);
+//		r2dm.setShowAromaticityCDKStyle(true); not sure how to set in the new cdk-rendering
+		
+		
+		//r2dm.setFontName("SansSerif");
+		r2dm.set(BasicSceneGenerator.FontName.class,"SansSerif");
 		//       IFontManager iFontManager = new AWTFontManager();
 		//IFontManager.FontStyle fontStyle = IFontManager.FontStyle();
 		//  iFontManager.setFontStyle( NORMAL);
@@ -259,7 +267,7 @@ public class GenerateImages {
 
 
 
-	public void paintAndWriteMolecule(Renderer renderer, IAtomContainer iAtomContainer, String nameBase, String outputdir){
+	public void paintAndWriteMolecule(IRenderer renderer, IAtomContainer iAtomContainer, String nameBase, String outputdir){
 
 
 		// Paint background
@@ -268,7 +276,7 @@ public class GenerateImages {
 		g2.fillRect(0, 0, WIDTH, HEIGHT);
 
 		// the paint method also needs a toolkit-specific renderer
-		renderer.paintMolecule(iAtomContainer, new AWTDrawVisitor(g2), drawArea, true);
+		renderer.paint(iAtomContainer, new AWTDrawVisitor(g2), drawArea, true);
 
 
 		String moleculeID = iAtomContainer.getID();

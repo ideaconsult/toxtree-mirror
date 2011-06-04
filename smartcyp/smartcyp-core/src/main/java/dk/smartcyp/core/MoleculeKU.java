@@ -66,7 +66,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 	// Local variables
 	private static final long serialVersionUID = 1L;	
 	AtomComparator atomComparator = new AtomComparator();
-	private TreeSet<Atom> atomsSortedByEnA = new TreeSet<Atom>(atomComparator);
+	private TreeSet<IAtom> atomsSortedByEnA = new TreeSet<IAtom>(atomComparator);
 
 
 	// Constructor
@@ -227,10 +227,10 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 	
 	// Symmetric atoms have identical values in the array from getTopoEquivClassbyHuXu
 	public void setSymmetryNumbers() throws CDKException{
-		Atom atom;
+		IAtom atom;
 		//set charges so that they are not null
 		for(int atomIndex = 0; atomIndex < this.getAtomCount(); atomIndex++){
-			atom = (Atom) this.getAtom(atomIndex);
+			atom = this.getAtom(atomIndex);
 			atom.setCharge((double) atom.getFormalCharge());
 		}
 		//compute symmetry
@@ -250,7 +250,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 		int loopNr = 1;
 		Atom previousAtom = null;
 		Atom currentAtom;
-		Iterator<Atom> atomsSortedByEnAiterator = this.getAtomsSortedByEnA().iterator();
+		Iterator<IAtom> atomsSortedByEnAiterator = this.getAtomsSortedByEnA().iterator();
 		while(atomsSortedByEnAiterator.hasNext()){
 
 			currentAtom = (Atom) atomsSortedByEnAiterator.next();
@@ -279,12 +279,12 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 	// This method makes the ranking of symmetric atoms
 	public void rankSymmetricAtoms() throws CDKException{
 
-		Atom currentAtom;
+		IAtom currentAtom;
 		String currentAtomType;					// Atom symbol i.e. C, H, N, P or S
 
 		for (int atomNr = 0; atomNr < this.getAtomCount(); atomNr++){
 
-			currentAtom = (Atom) this.getAtom(atomNr);
+			currentAtom = this.getAtom(atomNr);
 
 			// Match atom symbol
 			currentAtomType = currentAtom.getSymbol();
@@ -295,8 +295,8 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 
 					// AtomsSortedByEnA contains the ranked atoms
 					// We just need to find the symmetric atom and use its ranking for the unranked symmetric atom
-					Iterator<Atom> atomsSortedByEnAiterator = this.getAtomsSortedByEnA().iterator();
-					Atom rankedAtom;
+					Iterator<IAtom> atomsSortedByEnAiterator = this.getAtomsSortedByEnA().iterator();
+					IAtom rankedAtom;
 					Number rankNr;
 					while(atomsSortedByEnAiterator.hasNext()){
 						
@@ -317,7 +317,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 	
 
 	// Get the TreeSet containing the sorted C, N, P and S atoms
-	public TreeSet<Atom> getAtomsSortedByEnA(){
+	public TreeSet<IAtom> getAtomsSortedByEnA(){
 		return this.atomsSortedByEnA;
 	}
 

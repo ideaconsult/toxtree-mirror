@@ -18,4 +18,13 @@ public class SMARTCypAppTest {
 	public void test() throws Exception {
 		
 	}
+	public static void main(String[] args) {
+		try {
+			URL url = SMARTCypAppTest.class.getClassLoader().getResource("dk/smartcyp/app/test/3A4_substrates.sdf");
+			System.out.println(url);
+			SMARTCyp.main(new String[] {url.getFile()});
+		} catch (Exception x) {
+			x.printStackTrace();
+		}
+	}
 }
