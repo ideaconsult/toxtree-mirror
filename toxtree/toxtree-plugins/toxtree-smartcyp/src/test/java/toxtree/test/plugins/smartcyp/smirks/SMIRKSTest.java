@@ -1,11 +1,14 @@
 package toxtree.test.plugins.smartcyp.smirks;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.net.URLEncoder;
 import java.util.Hashtable;
+
+import javax.imageio.ImageIO;
 
 import junit.framework.Assert;
 
@@ -17,14 +20,17 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import ambit2.core.io.MDLWriter;
 import ambit2.core.processors.structure.AtomConfigurator;
 import ambit2.core.processors.structure.HydrogenAdderProcessor;
+import ambit2.rendering.CompoundImageTools;
 import ambit2.smarts.SMIRKSManager;
 import ambit2.smarts.SMIRKSReaction;
 
 public class SMIRKSTest {
+	protected CompoundImageTools tool = new CompoundImageTools();
 	protected String[][] reactions  = {
 	{		
 	"N-dealkylation",
@@ -33,7 +39,8 @@ public class SMIRKSTest {
 
 	{
 	"N-oxidation",
-	"[N:1][C:2]([H])>>[N:1](-[O])[C:2]"
+	//"[N:1][C:2]([H])>>[N:1](-[O])[C:2]"
+	"[N:1][C:2]([H])>>[N:1](=[O])[C:2]"
 	},
 	{
 	"S-oxidation",
@@ -77,7 +84,8 @@ public class SMIRKSTest {
 	},
 	{
 	"Epoxidation",
-	"[C:1]=[C:2]>>[C:1]1=[C:2][O]1"
+	//"[C:1]=[C:2]>>[C:1]1=[C:2][O]1"
+	"[C:1]=[C:2]>>[C:1]1[C:2][O]1"
 	}
 	
 	};
@@ -107,7 +115,7 @@ public class SMIRKSTest {
 	}	
 	@Test
 	public void test() throws Exception {
-		boolean explicitH = false;
+		boolean explicitH = true;
 		AtomConfigurator  cfg = new AtomConfigurator();
 		SMIRKSManager smrkMan = new SMIRKSManager();
 		SmilesGenerator g = new SmilesGenerator();
@@ -153,14 +161,15 @@ public class SMIRKSTest {
 				htmlFileWriter.write(String.format("<h3><a name='%s'>%s</a>",molid,molid));
 				
 				htmlFileWriter.write(String.format("&nbsp;<a href='http://apps.ideaconsult.net:8080/ambit2/compound?feature_uris[]=http://apps.ideaconsult.net:8080/ambit2/feature/28402&property=ID&search=%s&feature_uris[]=http://apps.ideaconsult.net:8080/ambit2/dataset/1736/feature' target=_blank>Search</a></h3>",URLEncoder.encode(molid.toString())));
-				htmlFileWriter.write("<table border='1'>");
-				htmlFileWriter.write("<tr>");
+				htmlFileWriter.write("\n<table border='1'>");
+				htmlFileWriter.write("\n<tr>");
 				
 				String smiles = g.createSMILES((IMolecule)mol);
 				String uri = getImageURI(smiles);
+				String imguri = getImageURI(smiles,file.getParentFile(),molid.toString());
 				
 				htmlFileWriter.write(String.format("<td bgcolor='#DDDDDD'><a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a></td>",
-								uri,uri,smiles,smiles));
+								uri,imguri,smiles,smiles));
 				
 				System.out.println(molid);
 				for (int i=0; i < reactions.length; i++) {
@@ -196,8 +205,11 @@ public class SMIRKSTest {
 						smiles = g.createSMILES(c);
 						htmlFileWriter.write(String.format("<td><a href='#%s' title='%s'>%s<a><br>",reactions[i][0],reactions[i][1], reactions[i][0]));
 						uri = getImageURI(smiles);
+						
+						imguri = getImageURI(smiles,file.getParentFile(),String.format("%s_%s",molid.toString(),reactions[i][0]));
+						
 						htmlFileWriter.write(String.format("<a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a><br>",
-								uri,uri,smiles,smiles)); 
+								uri,imguri,smiles,smiles)); 
 						htmlFileWriter.write("</td>");
 						
 						writers[i].setSdFields(mol.getProperties());
@@ -216,7 +228,7 @@ public class SMIRKSTest {
 			htmlFileWriter.write("<table width='100%' border='1'>");
 			for (int i=0; i < reactions.length; i++) {
 				
-				htmlFileWriter.write(String.format("<tr><th width='20%%'><a name='%s'>%s</a></th><td width='20%%'>%s</td><td width='60%%'>", 
+				htmlFileWriter.write(String.format("\n<tr><th width='20%%'><a name='%s'>%s</a></th><td width='20%%'>%s</td><td width='60%%'>", 
 						reactions[i][0], reactions[i][0], reactions[i][1]));
 				if (compounds.get(reactions[i][0])!=null) htmlFileWriter.write(compounds.get(reactions[i][0]));
 				htmlFileWriter.write(String.format("</td></tr>"));
@@ -235,12 +247,54 @@ public class SMIRKSTest {
 		return String.format("http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s",URLEncoder.encode(smiles));
 	}	
 	
-	protected String getImageURI(IAtomContainer ac) {
-		/*
-		String smiles = g.createSMILES(ac);
-		return String.format("http://apps.ideaconsult.net:8080/ambit2/depict/cdk?search=%s",URLEncoder.encode(smiles));
-		*/
-		return null;
+	protected String getImageURI(String smiles, File folder, String name) {
+		
+		
+		File imgFolder = new File(String.format("%s/images/",folder));
+		if (!imgFolder.exists()) imgFolder.mkdir();
+		String file = String.format("%s/%s.png", imgFolder.getAbsolutePath(),name);
+		try {
+			System.out.println(name);
+			BufferedImage img = tool.getImage(smiles);
+			ImageIO.write(img, "png",new FileOutputStream(file));
+		} catch (Exception x) {
+			System.out.println(file);
+			x.printStackTrace();
+		}
+		return String.format("images/%s.png", name);
+		
+	}	
+	protected String getImageURI(IAtomContainer ac, File folder, String name) {
+		
+		
+		File imgFolder = new File(String.format("%s/images/",folder));
+		if (!imgFolder.exists()) imgFolder.mkdir();
+		String file = String.format("%s/%s.png", imgFolder.getAbsolutePath(),name);
+	/**
+	 * on S-oxidation
+java.lang.NullPointerException
+	at org.openscience.cdk.renderer.generators.BasicAtomGenerator.showCarbon(BasicAtomGenerator.java:346)
+	at org.openscience.cdk.renderer.generators.BasicAtomGenerator.invisibleCarbon(BasicAtomGenerator.java:218)
+	at org.openscience.cdk.renderer.generators.BasicAtomGenerator.canDraw(BasicAtomGenerator.java:244)
+	at org.openscience.cdk.renderer.generators.BasicAtomGenerator.generate(BasicAtomGenerator.java:262)
+	at org.openscience.cdk.renderer.generators.BasicAtomGenerator.generate(BasicAtomGenerator.java:169)
+	at org.openscience.cdk.renderer.generators.BasicAtomGenerator.generate(BasicAtomGenerator.java:53)
+	at org.openscience.cdk.renderer.AbstractRenderer.generateDiagram(AbstractRenderer.java:116)
+	at org.openscience.cdk.renderer.AtomContainerRenderer.paint(AtomContainerRenderer.java:197)
+	at org.openscience.cdk.renderer.AtomContainerRenderer.paint(AtomContainerRenderer.java:101)
+	at ambit2.rendering.CompoundImageTools.paint(CompoundImageTools.java:452)
+	 */
+		try {
+			IAtomContainer c = (IAtomContainer) ac.clone();
+			AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(c);
+			BufferedImage img = tool.getImage(c,null,true,false);
+			ImageIO.write(img, "png",new FileOutputStream(file));
+		} catch (Exception x) {
+			System.out.println(file);
+			x.printStackTrace();
+		}
+		return String.format("images/%s.png", name);
+		
 	}
 
 }
