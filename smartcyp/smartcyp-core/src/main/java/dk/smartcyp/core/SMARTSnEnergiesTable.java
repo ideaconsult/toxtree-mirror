@@ -2,22 +2,25 @@ package dk.smartcyp.core;
 
 import java.util.HashMap;
 
+/**
 
+Matches atoms against SMARTS patterns and assigns predefined energies
+Input is 3 columns 1) SMARTS pattern and 2) Energy 3) SMIRKS 
+<pre>
+[CX4;!CH0]	29.7 
+[CX3;!CH0]	13.3
+[cX3;!CH0]	0.7
+[N]			999.9
+[S]			44.5
+</pre>
+ */
 public class SMARTSnEnergiesTable {
 
 	// Local Variables
 	private static HashMap<String, SMARTSData> SMARTSnEnergiesTable;		// Lookup table in which the SMARTS are key values to retrieve Energies
 
 
-	/* Matches atoms against SMARTS patterns and assigns predefined energies
-	Input is two columnes 1) SMARTS pattern and 2) Energy
-	[CX4;!CH0]	29.7
-	[CX3;!CH0]	13.3
-	[cX3;!CH0]	0.7
-	[N]			999.9
-	[S]			44.5
-	...
-	 */
+
 	protected SMARTSnEnergiesTable() {
 
 		// Local Variable
@@ -132,7 +135,7 @@ public class SMARTSnEnergiesTable {
 
 
 
-	public static HashMap<String, SMARTSData> getSMARTSnEnergiesTable(){
+	public static synchronized HashMap<String, SMARTSData> getSMARTSnEnergiesTable(){
 		if (SMARTSnEnergiesTable==null) new SMARTSnEnergiesTable();
 		return SMARTSnEnergiesTable;
 	}
