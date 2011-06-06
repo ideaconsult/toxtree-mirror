@@ -72,7 +72,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 	// Constructor
 	// This constructor also calls the methods that calculate MaxTopDist, Energies and sorts C, N, P and S atoms
 	// This constructor is the only way to create MoleculeKU and Atom objects, -there is no add() method
-	public MoleculeKU(IAtomContainer iAtomContainer, HashMap<String, Double> SMARTSnEnergiesTable) throws CloneNotSupportedException
+	public MoleculeKU(IAtomContainer iAtomContainer, HashMap<String, SMARTSData> SMARTSnEnergiesTable) throws CloneNotSupportedException
 	{
 		// Calls the constructor in org.openscience.cdk.AtomContainer
 		// Atoms are stored in the array atoms[] and accessed by getAtom() and setAtom()
@@ -86,7 +86,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 
 
 
-	public void assignAtomEnergies(HashMap<String, Double> SMARTSnEnergiesTable) throws CDKException {
+	public void assignAtomEnergies(HashMap<String, SMARTSData> SMARTSnEnergiesTable) throws CDKException {
 
 		// Variables
 		int numberOfSMARTSmatches = 0;															// Number of SMARTS matches = number of metabolic sites
@@ -113,7 +113,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 					numberOfSMARTSmatches = querytool.countMatches();		// Count the number of matches				
 					List<List<Integer>> matchingAtomsIndicesList_1;				// List of List objects each containing the indices of the atoms in the target molecule
 					List<Integer> matchingAtomsIndicesList_2 = null;						// List of atom indices
-					double energy = (Double) SMARTSnEnergiesTable.get(currentSMARTS);		// Energy of currentSMARTS
+					double energy = SMARTSnEnergiesTable.get(currentSMARTS).getEnergy();		// Energy of currentSMARTS
 
 					//					System.out.println("\n The SMARTS " + currentSMARTS + " has " + numberOfSMARTSmatches + " matches in the molecule " + this.getID());
 
