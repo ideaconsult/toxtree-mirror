@@ -57,14 +57,9 @@
   	<module>toxtree-babel</module>
   	<module>toxtree-bundle</module>
   	<module>toxtree-swing</module>
+  	<module>toxtree-reactions</module>
   </modules>
   <distributionManagement>
-  	<!--
-    <site>
-      <id>website_acad</id>
-      <url>scp://ambit.acad.bg/var/www/html/ambit/toxtree</url>
-    </site>
-    -->
     <site>
       <id>website_toxtree</id>
       <url>scp://shell.sourceforge.net/home/groups/t/to/toxtree/htdocs</url>

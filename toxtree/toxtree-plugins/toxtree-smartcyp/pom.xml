@@ -56,5 +56,23 @@ Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen, SM
 			</plugin>
   	</plugins>
   	 -->
-  </build>  
+  </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>dk.smartcyp</groupId>
+  		<artifactId>smartcyp-core</artifactId>
+  		<version>${smartcyp.version}</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>ambit</groupId>
+  		<artifactId>ambit2-rendering</artifactId>
+  		<version>2.4.1</version>
+  		<scope>test</scope>
+  	</dependency>
+  </dependencies>
+  <properties>
+  	<smartcyp.version>1.5.4-SNAPSHOT</smartcyp.version>
+  </properties>  
 </project>
