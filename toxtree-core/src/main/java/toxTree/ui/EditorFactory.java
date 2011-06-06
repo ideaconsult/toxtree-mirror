@@ -38,7 +38,8 @@ public class EditorFactory implements IEditorFactory {
 	}
 	@Override
 	public IDecisionMethodEditor createTreeEditor(IDecisionMethod method) {
-		// TODO Auto-generated method stub
+	    // return new TreeEditorPanel(method);
+			//return new EditTreeFrame(this);
 		return null;
 	}
 	@Override

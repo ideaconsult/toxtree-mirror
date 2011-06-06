@@ -8,30 +8,22 @@ import org.openscience.cdk.renderer.selection.SingleSelection;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.AbstractRule;
 import toxTree.ui.tree.categories.CategoriesRenderer;
-import toxtree.plugins.smartcyp.cyp450.MoleculeKU;
-import toxtree.plugins.smartcyp.cyp450.MoleculeKU.SMARTCYP_PROPERTY;
-import toxtree.plugins.smartcyp.cyp450.SMARTSnEnergiesTable;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.MoleculeTools;
 import ambit2.rendering.CompoundImageTools;
+import dk.smartcyp.core.MoleculeKU;
+import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
+import dk.smartcyp.core.SMARTSnEnergiesTable;
 
-public class SMARTCYPRuleRank1 extends AbstractRule {
+public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 	protected static final CategoriesRenderer categoriesRenderer = new CategoriesRenderer(4,240);
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8348454708993409448L;
-	protected int rank;
-	
-	public int getRank() {
-		return rank;
-	}
-	public void setRank(int rank) {
-		this.rank = rank;
-	}
+
 	public SMARTCYPRuleRank1() {
 		this(1);
 	}
@@ -148,5 +140,6 @@ public class SMARTCYPRuleRank1 extends AbstractRule {
 	public boolean isImplemented() {
 		return true;
 	}
+
 	
 }

@@ -1,5 +1,5 @@
 mkdir dist
-copy toxtree-app\target\toxtree-app-2.2.0-SNAPSHOT-jar-with-dependencies.jar dist
+copy toxtree-app\target\toxtree-app-2.4.1-jar-with-dependencies.jar dist
 
 copy toxtree-plugins\toxtree-cramer\target\*.jar dist\ext
 copy toxtree-plugins\toxtree-cramer2\target\*.jar dist\ext

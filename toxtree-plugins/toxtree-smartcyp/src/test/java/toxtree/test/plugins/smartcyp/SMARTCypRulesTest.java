@@ -34,7 +34,7 @@ import toxTree.query.MolAnalyser;
 import toxtree.plugins.smartcyp.SMARTCYPPlugin;
 
 /**
- * TODO Add SicretRulesTest description
+ * TODO Add SMARTCypRulesTest description
  * @author Nina Jeliazkova <br>
  * @version 0.1, 2005-4-30
  */

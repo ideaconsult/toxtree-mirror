@@ -12,6 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 
 import toxTree.core.IDecisionCategories;
@@ -19,6 +20,7 @@ import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRule;
+import toxTree.core.IMetaboliteGenerator;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.CategoriesList;
@@ -34,7 +36,7 @@ import ambit2.base.exceptions.AmbitException;
 import ambit2.core.data.ArrayResult;
 
 
-public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInteractive{
+public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInteractive, IMetaboliteGenerator {
 	private static final long serialVersionUID = 0;
     protected boolean residuesIDVisible;
     public final static transient String[] c_rules = { 
@@ -236,4 +238,13 @@ public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInterac
 		}
 		return buffer;
 	}    
+	
+	@Override
+	public IAtomContainerSet getProducts(IAtomContainer reactant)
+			throws Exception {
+        for (int i=0; i < rules.size(); i++) 
+        	if ((rules.getRule(i) != null) && (rules.getRule(i) instanceof SMARTCYPRuleRank1))
+        		return ((SMARTCYPRuleRank1)rules.getRule(i)).getProducts(reactant);
+        return null;
+	}
 }

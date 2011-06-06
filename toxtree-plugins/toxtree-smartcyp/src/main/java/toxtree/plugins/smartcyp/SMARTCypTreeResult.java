@@ -41,7 +41,7 @@ import toxTree.tree.ProgressStatus;
 import toxTree.tree.RuleResult;
 import toxTree.tree.TreeResult;
 import toxTree.tree.rules.IAlertCounter;
-import toxtree.plugins.smartcyp.cyp450.MoleculeKU.SMARTCYP_PROPERTY;
+import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
 
 
 
