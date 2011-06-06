@@ -200,18 +200,18 @@ public class WriteResultsAsHTML {
 	public void writeAtomRowinMoleculeKUTable(IAtom atom){
 
 //		System.out.println(atom.toString());
-		if(SMARTCYP_PROPERTY.Ranking.get(atom).intValue() == 1) outfile.println("<tr class=\"highlight1\">");
-		else if(SMARTCYP_PROPERTY.Ranking.get(atom).intValue() == 2) outfile.println("<tr class=\"highlight2\">");
-		else if(SMARTCYP_PROPERTY.Ranking.get(atom).intValue() == 3) outfile.println("<tr class=\"highlight3\">");
+		if(SMARTCYP_PROPERTY.Ranking.getNumber(atom).intValue() == 1) outfile.println("<tr class=\"highlight1\">");
+		else if(SMARTCYP_PROPERTY.Ranking.getNumber(atom).intValue() == 2) outfile.println("<tr class=\"highlight2\">");
+		else if(SMARTCYP_PROPERTY.Ranking.getNumber(atom).intValue() == 3) outfile.println("<tr class=\"highlight3\">");
 		else outfile.println("<tr>");
 
-		outfile.println("<td>" + SMARTCYP_PROPERTY.Ranking.get(atom).intValue() + "</td>");
+		outfile.println("<td>" + SMARTCYP_PROPERTY.Ranking.getNumber(atom).intValue() + "</td>");
 		outfile.println("<td>" + atom.getSymbol() + "."+ atom.getID() + "</td>");			// For example C.22 or N.9
-		if(SMARTCYP_PROPERTY.Score.get(atom) == null) outfile.println("<td>-</td>");
-		else outfile.println("<td>" + twoDecimalFormat.format(SMARTCYP_PROPERTY.Score.get(atom)) + "</td>");
-		if(SMARTCYP_PROPERTY.Energy.get(atom) == null) outfile.println("<td>-</td>");
-		else outfile.println("<td>" + SMARTCYP_PROPERTY.Energy.get(atom) + "</td>");
-		outfile.println("<td>" +  twoDecimalFormat.format(SMARTCYP_PROPERTY.Accessibility.get(atom)) + "</td>");
+		if(SMARTCYP_PROPERTY.Score.getNumber(atom) == null) outfile.println("<td>-</td>");
+		else outfile.println("<td>" + twoDecimalFormat.format(SMARTCYP_PROPERTY.Score.getNumber(atom)) + "</td>");
+		if(SMARTCYP_PROPERTY.Energy.getData(atom) == null) outfile.println("<td>-</td>");
+		else outfile.println("<td>" + SMARTCYP_PROPERTY.Energy.getData(atom).getEnergy() + "</td>");
+		outfile.println("<td>" +  twoDecimalFormat.format(SMARTCYP_PROPERTY.Accessibility.getNumber(atom)) + "</td>");
 		outfile.println("</tr>");
 	}
 

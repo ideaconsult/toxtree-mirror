@@ -80,11 +80,11 @@ public class WriteResultsAsCSV {
 				if(printall == 1 || currentAtomType.equals("C") || currentAtomType.equals("N") || currentAtomType.equals("P") || currentAtomType.equals("S")) {
 
 
-					outfile.print((moleculeIndex + 1) + "," + currentAtom.getSymbol() + "."+ currentAtom.getID() + "," + SMARTCYP_PROPERTY.Ranking.get(currentAtom) + ",");				
-					if(SMARTCYP_PROPERTY.Score.get(currentAtom) != null) 
-						outfile.print(twoDecimalFormat.format(SMARTCYP_PROPERTY.Score.get(currentAtom)) + "," + SMARTCYP_PROPERTY.Energy.get(currentAtom));
+					outfile.print((moleculeIndex + 1) + "," + currentAtom.getSymbol() + "."+ currentAtom.getID() + "," + SMARTCYP_PROPERTY.Ranking.getNumber(currentAtom) + ",");				
+					if(SMARTCYP_PROPERTY.Score.getNumber(currentAtom) != null) 
+						outfile.print(twoDecimalFormat.format(SMARTCYP_PROPERTY.Score.getNumber(currentAtom)) + "," + SMARTCYP_PROPERTY.Energy.getData(currentAtom).getEnergy());
 					else outfile.print("-,-");
-					outfile.print("," + twoDecimalFormat.format(SMARTCYP_PROPERTY.Accessibility.get(currentAtom)));
+					outfile.print("," + twoDecimalFormat.format(SMARTCYP_PROPERTY.Accessibility.getNumber(currentAtom)));
 					outfile.print("\n");
 				}
 			}

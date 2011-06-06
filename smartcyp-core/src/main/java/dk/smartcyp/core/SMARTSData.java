@@ -1,13 +1,23 @@
 package dk.smartcyp.core;
 
+import java.text.NumberFormat;
+
+import dk.smartcyp.smirks.SMARTCYPReaction;
+
 public class SMARTSData {
 
 	protected double energy;
-	protected String smirks;
+	protected SMARTCYPReaction reaction;
 	
-	public SMARTSData(double energy, String smirks) {
+	public SMARTCYPReaction getReaction() {
+		return reaction;
+	}
+	public void setReaction(SMARTCYPReaction reaction) {
+		this.reaction = reaction;
+	}
+	public SMARTSData(double energy, SMARTCYPReaction reaction) {
 		setEnergy(energy);
-		setSmirks(smirks);
+		setReaction(reaction);
 	}
 	public double getEnergy() {
 		return energy;
@@ -15,11 +25,10 @@ public class SMARTSData {
 	public void setEnergy(double energy) {
 		this.energy = energy;
 	}
+	@Override
+	public String toString() {
+		return NumberFormat.getInstance().format(energy);
+	}
 	
-	public String getSmirks() {
-		return smirks;
-	}
-	public void setSmirks(String smirks) {
-		this.smirks = smirks;
-	}
+
 }
