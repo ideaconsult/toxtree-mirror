@@ -29,6 +29,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
 import dk.smartcyp.core.MoleculeKU;
+import dk.smartcyp.core.SMARTSData;
 
 public class SMARTCyp {
 
@@ -95,7 +96,7 @@ public class SMARTCyp {
 
 		// Produce SMARTSnEnergiesTable object
 		System.out.println("\n ************** Processing SMARTS and Energies **************");
-		HashMap<String,Double> SMARTSnEnergiesTable = dk.smartcyp.core.SMARTSnEnergiesTable.getSMARTSnEnergiesTable();
+		HashMap<String,SMARTSData> SMARTSnEnergiesTable = dk.smartcyp.core.SMARTSnEnergiesTable.getSMARTSnEnergiesTable();
 
 		
 		// Read in structures/molecules
@@ -155,7 +156,7 @@ public class SMARTCyp {
 
 	// Reads the molecule infiles
 	// Stores MoleculeKUs and AtomKUs
-	public static MoleculeSet readInStructures(String[] inFileNames, HashMap<String, Double> SMARTSnEnergiesTable) throws CloneNotSupportedException, CDKException{
+	public static MoleculeSet readInStructures(String[] inFileNames, HashMap<String, SMARTSData> SMARTSnEnergiesTable) throws CloneNotSupportedException, CDKException{
 
 		MoleculeSet moleculeSet = new MoleculeSet();
 
