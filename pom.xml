@@ -57,7 +57,6 @@
   	<module>toxtree-babel</module>
   	<module>toxtree-bundle</module>
   	<module>toxtree-swing</module>
-  	<module>toxtree-reactions</module>
   </modules>
   <distributionManagement>
     <site>
