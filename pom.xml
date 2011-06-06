@@ -18,6 +18,17 @@
   	<module>smartcyp-core</module>
   	<module>smartcyp-app</module>
   </modules>
+ <distributionManagement>
+    <snapshotRepository>
+      <id>ambit-plovdiv-snapshots</id>
+      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+
+    <repository>
+      <id>ambit-plovdiv-releases</id>
+      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>    
+  </distributionManagement>
     <dependencies>
   	<dependency>
   		<groupId>org.openscience.cdk</groupId>
