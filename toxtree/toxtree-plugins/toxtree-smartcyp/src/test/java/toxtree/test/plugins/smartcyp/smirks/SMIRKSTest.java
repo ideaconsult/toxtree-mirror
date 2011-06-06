@@ -146,6 +146,7 @@ public class SMIRKSTest {
 				
 				IChemObject mol = reader.next();
 				Object molid = mol.getProperty("ID");
+				mol.setID(molid.toString());
 				hadder.process((IAtomContainer)mol);
 				cfg.process((IAtomContainer)mol);
 				CDKHueckelAromaticityDetector.detectAromaticity((IAtomContainer)mol);	
@@ -163,17 +164,19 @@ public class SMIRKSTest {
 				htmlFileWriter.write(String.format("<td bgcolor='#DDDDDD'><a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a></td>",
 								uri,imguri,smiles,smiles));
 				
-				System.out.println(molid);
+				//System.out.println(molid);
 				if (result.classify((IAtomContainer)mol)) {
 					IAtomContainerSet set = smartcyp.getProducts((IAtomContainer)mol);
 					//Assert.assertNotNull(set);
 					//Assert.assertTrue(set.getAtomContainerCount()>0);
 					if (set != null) {
-						System.out.println(set.getAtomContainerCount());
+						//System.out.println(set.getAtomContainerCount());
 						for (int i=0; i < set.getAtomContainerCount(); i++) {
 							htmlFileWriter.write("<td>");
+							htmlFileWriter.write(set.getAtomContainer(i).getID());
+							htmlFileWriter.write("<br>");
 							uri = getImageURI(set.getAtomContainer(i), null, file.getParentFile(), String.format("%s_%d",molid,i+1));
-							System.out.println(uri);
+							//System.out.println(uri);
 							htmlFileWriter.write(String.format("<img src='%s'><br>",
 									uri,uri)); 
 							htmlFileWriter.write("</td>");

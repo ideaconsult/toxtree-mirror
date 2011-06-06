@@ -1,5 +1,7 @@
 package toxtree.plugins.smartcyp.rules;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import org.openscience.cdk.interfaces.IAtom;
@@ -9,11 +11,12 @@ import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 
 import toxTree.core.IMetaboliteGenerator;
 import toxTree.tree.AbstractRule;
-import toxtree.plugins.smartcyp.SMARTCYPReactions;
 import ambit2.smarts.IAcceptable;
 import ambit2.smarts.SMIRKSManager;
 import ambit2.smarts.SMIRKSReaction;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
+import dk.smartcyp.core.SMARTSData;
+import dk.smartcyp.smirks.SMARTCYPReaction;
 
 public abstract class MetaboliteGenerator extends AbstractRule implements IMetaboliteGenerator, IAcceptable {
 	/**
@@ -35,6 +38,28 @@ public abstract class MetaboliteGenerator extends AbstractRule implements IMetab
 		IAtomContainerSet products = null;
 
 		if (smrkMan==null) smrkMan = new SMIRKSManager();
+		List<SMARTCYPReaction> reactions = new ArrayList<SMARTCYPReaction>();
+		for (IAtom atom: reactant.atoms()) {
+			SMARTSData data = SMARTCYP_PROPERTY.Energy.getData(atom);
+			if (data == null) continue;
+			Number atom_rank = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
+			if (atom_rank==null) continue;
+			if (atom_rank.intValue()!=getRank()) continue;
+			if (reactions.indexOf(data.getReaction())<0)
+				reactions.add(data.getReaction());
+		}	
+		
+		for (SMARTCYPReaction reaction : reactions) {
+			SMIRKSReaction smr = smrkMan.parse(reaction.getSMIRKS());
+			IAtomContainer product = (IAtomContainer) reactant.clone();
+			if (smrkMan.applyTransformation(product, this,smr)) {
+				if (products ==null) products = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainerSet.class);
+				product.setID(reaction.name());
+				products.addAtomContainer(product);
+			} else 
+				System.err.println(String.format("%s %s",reactant.getID(),reaction.name()));
+		}
+		/*
 		for (SMARTCYPReactions reaction : SMARTCYPReactions.values()) {
 			SMIRKSReaction smr = smrkMan.parse(reaction.getSMIRKS());
 			IAtomContainer product = (IAtomContainer) reactant.clone();
@@ -43,6 +68,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements IMetab
 				products.addAtomContainer(product);
 			} //else not transformed
 		}
+		*/
 		return products;
 	}
 	
@@ -50,9 +76,9 @@ public abstract class MetaboliteGenerator extends AbstractRule implements IMetab
 	public boolean accept(Vector<IAtom> atoms) {
 		boolean ok = false;
 		for (IAtom atom: atoms) {
-			Number atom_rank = SMARTCYP_PROPERTY.Ranking.get(atom);
+			Number atom_rank = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
 			if (atom_rank==null) continue;
-			System.out.println(String.format("%s %s %d",atom.getID(),atom.getSymbol(),atom_rank));
+			//System.out.println(String.format("%s %s %d",atom.getID(),atom.getSymbol(),atom_rank));
 			if (atom_rank.intValue()==getRank()) ok = true; //any atom with rank 1
 		}
 		return ok;

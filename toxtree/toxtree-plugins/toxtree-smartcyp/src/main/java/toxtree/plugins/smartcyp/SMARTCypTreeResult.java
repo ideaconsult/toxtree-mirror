@@ -88,8 +88,8 @@ public class SMARTCypTreeResult extends TreeResult {
 
     				IAtom currentAtom = (IAtom) moleculeKU.getAtom(atomIndex);
 
-    				if (SMARTCYP_PROPERTY.Ranking.get(currentAtom) == null) continue; 
-    				int atomRank = SMARTCYP_PROPERTY.Ranking.get(currentAtom).intValue();
+    				if (SMARTCYP_PROPERTY.Ranking.getNumber(currentAtom) == null) continue; 
+    				int atomRank = SMARTCYP_PROPERTY.Ranking.getNumber(currentAtom).intValue();
     				if (rank==4) 
     					if (atomRank<rank) continue; 
     					else {}
@@ -101,9 +101,20 @@ public class SMARTCypTreeResult extends TreeResult {
     					if (property ==null)
     						atoms.add(String.format("%s%s",currentAtom.getSymbol(),currentAtom.getID()));
     					else
-    						if (property.get(currentAtom)!=null) 
-    							if (atoms.indexOf(property.get(currentAtom)) == -1)
-    								atoms.add(property.get(currentAtom));
+    						switch (property) {
+    						case Energy : {
+        						if (property.getData(currentAtom)!=null) 
+        							if (atoms.indexOf(property.getData(currentAtom).getEnergy()) == -1)
+        								atoms.add(property.getData(currentAtom).getEnergy());    							
+    							break;
+    						}
+    						default: {
+        						if (property.getNumber(currentAtom)!=null) 
+        							if (atoms.indexOf(property.getNumber(currentAtom)) == -1)
+        								atoms.add(property.getNumber(currentAtom));
+    						}
+    						}
+
 
     					/*
     					mol.setProperty(String.format("%s_%s_%s",currentAtom.getSymbol(),currentAtom.getID(),SMARTCYP_PROPERTY.Ranking),
