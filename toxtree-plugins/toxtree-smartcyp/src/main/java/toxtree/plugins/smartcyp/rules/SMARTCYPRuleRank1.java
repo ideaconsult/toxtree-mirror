@@ -48,14 +48,14 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 		try {
 			IAtomContainer newmol = mol;
 			for (IAtom atom: mol.atoms())
-				if (SMARTCYP_PROPERTY.Accessibility.get(atom)==null) {
+				if (SMARTCYP_PROPERTY.Accessibility.getNumber(atom)==null) {
 					AtomContainerManipulator.removeHydrogens(mol);
 					newmol = calculate(mol);
 					break;
 				}
 			
 			for (IAtom atom: newmol.atoms()) {
-				Number atom_rank = SMARTCYP_PROPERTY.Ranking.get(atom);
+				Number atom_rank = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
 				if((atom_rank!=null) && hasRank(atom_rank.intValue()))
 					return true;
 			}
@@ -114,7 +114,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 		try {
 			IAtomContainer newmol = mol;
 			for (IAtom atom: mol.atoms())
-				if (SMARTCYP_PROPERTY.Accessibility.get(atom)==null) {
+				if (SMARTCYP_PROPERTY.Accessibility.getNumber(atom)==null) {
 					AtomContainerManipulator.removeHydrogens(mol);
 					newmol = calculate(mol);
 					break;
@@ -122,7 +122,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 			final double[] size = new double[] {1.66,1.33,1.0,0.5};
 			for (int i=0; i < newmol.getAtomCount(); i++) {
 				IAtom atom = newmol.getAtom(i);
-				Number atom_rank = SMARTCYP_PROPERTY.Ranking.get(atom);
+				Number atom_rank = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
 				if((atom_rank!=null) && hasRank(atom_rank.intValue())) {
 					if (atom_rank.intValue()<4) {
 						atom.setProperty(CompoundImageTools.SELECTED_ATOM_SIZE, size[getRank()-1]);
