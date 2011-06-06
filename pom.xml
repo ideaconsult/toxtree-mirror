@@ -4,7 +4,7 @@
   <artifactId>smartcyp</artifactId>
   <packaging>pom</packaging>
   <name>SMARTCyp </name>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.5.4-SNAPSHOT</version>
   <repositories>
     	 <repository>
         <id>ambit-plovdiv</id>
@@ -17,7 +17,22 @@
   <modules>
   	<module>smartcyp-core</module>
   	<module>smartcyp-app</module>
+<!--
+  	<module>smartcyp-metabolites</module>
+-->
   </modules>
+  <!-- Where to deploy maven artifacts -->
+   <distributionManagement>
+    <snapshotRepository>
+      <id>ambit-plovdiv-snapshots</id>
+      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+
+    <repository>
+      <id>ambit-plovdiv-releases</id>
+      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>    
+  </distributionManagement>
     <dependencies>
   	
   	<dependency>
