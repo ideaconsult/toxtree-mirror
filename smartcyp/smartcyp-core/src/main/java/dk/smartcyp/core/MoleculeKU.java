@@ -39,27 +39,40 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 			public String getLabel() {
 				return "E";
 			}
+			public String atomProperty2String(IAtom atom) {
+				return String.format("%s:%s",getLabel(),getData(atom).getEnergy());
+			}			
 		},
 		Accessibility {
 			@Override
 			public String getLabel() {
 				return "A";
 			}
+		},
+		Reaction {
+			@Override
+			public String getLabel() {
+				return "K";
+			}
 		};
 
 		public String  getLabel()  { return "";};
 
-		public void set(IAtom atom, Number value) {
+		public void set(IAtom atom, Object value) {
 			atom.setProperty(toString(), value);
 		}
 
-		public Number get(IAtom atom) {
+		public SMARTSData getData(IAtom atom) {
 			Object o = atom.getProperty(toString());
-			return (o==null)?null:(Number)o;
+			return o instanceof SMARTSData? (SMARTSData)o:null;
+		}		
+		public Number getNumber(IAtom atom) {
+			Object o = atom.getProperty(toString());
+			return (o==null)?null:o instanceof Number?(Number)o:null;
 		}
 
 		public String atomProperty2String(IAtom atom) {
-			return String.format("%s:%s",getLabel(),get(atom));
+			return String.format("%s:%s",getLabel(),getNumber(atom));
 		}
 
 	}
@@ -102,6 +115,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 		while(keySetIteratorSMARTSnEnergies.hasNext()){
 
 			try {
+
 				currentSMARTS = keySetIteratorSMARTSnEnergies.next();
 				querytool.setSmarts(currentSMARTS);
 
@@ -113,7 +127,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 					numberOfSMARTSmatches = querytool.countMatches();		// Count the number of matches				
 					List<List<Integer>> matchingAtomsIndicesList_1;				// List of List objects each containing the indices of the atoms in the target molecule
 					List<Integer> matchingAtomsIndicesList_2 = null;						// List of atom indices
-					double energy = SMARTSnEnergiesTable.get(currentSMARTS).getEnergy();		// Energy of currentSMARTS
+					SMARTSData data = SMARTSnEnergiesTable.get(currentSMARTS);		// Energy & SMIRKS of currentSMARTS
 
 					//					System.out.println("\n The SMARTS " + currentSMARTS + " has " + numberOfSMARTSmatches + " matches in the molecule " + this.getID());
 
@@ -129,17 +143,18 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 
 						// Set the Energies of the atoms
 						int indexOfMatchingAtom;
-						Atom matchingAtom;
+						IAtom matchingAtom;
 						for (int atomNr = 0; atomNr < matchingAtomsIndicesList_2.size(); atomNr++){								// Contains 1 atom
 							indexOfMatchingAtom = matchingAtomsIndicesList_2.get(atomNr);
 
 							// An atom can be matched by several SMARTS and thus assigned several energies
 							// The if clause assures that atoms will get the lowest possible energy
-							matchingAtom = (Atom) this.getAtom(indexOfMatchingAtom);
+							matchingAtom = this.getAtom(indexOfMatchingAtom);
 
-							if(SMARTCYP_PROPERTY.Energy.get(matchingAtom) == null 
-									|| energy < SMARTCYP_PROPERTY.Energy.get(matchingAtom).doubleValue())
-								SMARTCYP_PROPERTY.Energy.set(matchingAtom,energy);
+							if(SMARTCYP_PROPERTY.Energy.getData(matchingAtom) == null 
+									|| data.getEnergy() < SMARTCYP_PROPERTY.Energy.getData(matchingAtom).getEnergy())
+								
+								SMARTCYP_PROPERTY.Energy.set(matchingAtom,data);
 						}
 					}
 				}
@@ -189,9 +204,10 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 			SMARTCYP_PROPERTY.Accessibility.set(refAtom,(highestMaxTopDistInMatrixRow / longestMaxTopDistInMolecule));
 
 			// Calculate the Atom scores
-			if(SMARTCYP_PROPERTY.Accessibility.get(refAtom)!=null) {
-				if(SMARTCYP_PROPERTY.Energy.get(refAtom) != null){
-					double score = SMARTCYP_PROPERTY.Energy.get(refAtom).doubleValue() - 8 * SMARTCYP_PROPERTY.Accessibility.get(refAtom).doubleValue();
+			if(SMARTCYP_PROPERTY.Accessibility.getNumber(refAtom)!=null) {
+				if(SMARTCYP_PROPERTY.Energy.getData(refAtom) != null) {
+					double score = SMARTCYP_PROPERTY.Energy.getData(refAtom).getEnergy() - 
+										8 * SMARTCYP_PROPERTY.Accessibility.getNumber(refAtom).doubleValue();
 					SMARTCYP_PROPERTY.Score.set(refAtom,score);
 				}
 			}
@@ -259,12 +275,12 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 			if(previousAtom == null){}				// Do nothing												
 
 			// Atoms have no score, compare Accessibility instead
-			else if(SMARTCYP_PROPERTY.Score.get(currentAtom) == null){
-				if(SMARTCYP_PROPERTY.Accessibility.get(currentAtom) != SMARTCYP_PROPERTY.Accessibility.get(previousAtom)) rankNr = loopNr;
+			else if(SMARTCYP_PROPERTY.Score.getNumber(currentAtom) == null){
+				if(SMARTCYP_PROPERTY.Accessibility.getNumber(currentAtom) != SMARTCYP_PROPERTY.Accessibility.getNumber(previousAtom)) rankNr = loopNr;
 			} 
 
 			// Compare scores
-			else if(SMARTCYP_PROPERTY.Score.get(currentAtom).doubleValue() > SMARTCYP_PROPERTY.Score.get(previousAtom).doubleValue()) rankNr = loopNr;
+			else if(SMARTCYP_PROPERTY.Score.getNumber(currentAtom).doubleValue() > SMARTCYP_PROPERTY.Score.getNumber(previousAtom).doubleValue()) rankNr = loopNr;
 
 			// Else, Atoms have the same score
 			SMARTCYP_PROPERTY.Ranking.set(currentAtom,rankNr);
@@ -291,7 +307,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 			if(currentAtomType.equals("C") || currentAtomType.equals("N") || currentAtomType.equals("P") || currentAtomType.equals("S")) {			
 
 				//This clause finds symmetric atoms which have not been assigned a ranking
-				if(SMARTCYP_PROPERTY.Ranking.get(currentAtom) == null){
+				if(SMARTCYP_PROPERTY.Ranking.getNumber(currentAtom) == null){
 
 					// AtomsSortedByEnA contains the ranked atoms
 					// We just need to find the symmetric atom and use its ranking for the unranked symmetric atom
@@ -302,9 +318,9 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 						
 						rankedAtom = (Atom) atomsSortedByEnAiterator.next();
 						
-						if(SMARTCYP_PROPERTY.SymmetryNumber.get(currentAtom).intValue() == SMARTCYP_PROPERTY.SymmetryNumber.get(rankedAtom).intValue()){
+						if(SMARTCYP_PROPERTY.SymmetryNumber.getNumber(currentAtom).intValue() == SMARTCYP_PROPERTY.SymmetryNumber.getNumber(rankedAtom).intValue()){
 							
-							rankNr = SMARTCYP_PROPERTY.Ranking.get(rankedAtom);
+							rankNr = SMARTCYP_PROPERTY.Ranking.getNumber(rankedAtom);
 							SMARTCYP_PROPERTY.Ranking.set(currentAtom,rankNr);
 						}
 					}

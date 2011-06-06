@@ -35,18 +35,18 @@ public class AtomComparator implements Comparator<IAtom> {
 	private int compareScore(IAtom currentAtom, IAtom comparisonAtom){
 		
 		// Set Score values
-		if(SMARTCYP_PROPERTY.Score.get(currentAtom) != null)  currentAtomScore = SMARTCYP_PROPERTY.Score.get(currentAtom).doubleValue();
-		if(SMARTCYP_PROPERTY.Score.get(comparisonAtom) != null)  comparisonAtomScore = SMARTCYP_PROPERTY.Score.get(comparisonAtom).doubleValue();
+		if(SMARTCYP_PROPERTY.Score.getNumber(currentAtom) != null)  currentAtomScore = SMARTCYP_PROPERTY.Score.getNumber(currentAtom).doubleValue();
+		if(SMARTCYP_PROPERTY.Score.getNumber(comparisonAtom) != null)  comparisonAtomScore = SMARTCYP_PROPERTY.Score.getNumber(comparisonAtom).doubleValue();
 		
 		// Dual null Scores
-		if (SMARTCYP_PROPERTY.Score.get(currentAtom) == null && SMARTCYP_PROPERTY.Score.get(comparisonAtom) == null){					
+		if (SMARTCYP_PROPERTY.Score.getNumber(currentAtom) == null && SMARTCYP_PROPERTY.Score.getNumber(comparisonAtom) == null){					
 			//If scores are null the Energies are too, then compare the Accessibility
 			return this.compareAccessibility(currentAtom, comparisonAtom);
 		}
 
 		// Single null scores
-		else if(SMARTCYP_PROPERTY.Score.get(currentAtom) == null) return after;
-		else if(SMARTCYP_PROPERTY.Score.get(comparisonAtom) == null) return before;
+		else if(SMARTCYP_PROPERTY.Score.getNumber(currentAtom) == null) return after;
+		else if(SMARTCYP_PROPERTY.Score.getNumber(comparisonAtom) == null) return before;
 
 		// Compare 2 numeric scores
 		else if(currentAtomScore < comparisonAtomScore) return before;
@@ -62,8 +62,8 @@ public class AtomComparator implements Comparator<IAtom> {
 	private int compareAccessibility(IAtom currentAtom, IAtom comparisonAtom){
 
 		// Compare 2 numeric Accessibility values
-		currentAtomAccessibility = SMARTCYP_PROPERTY.Accessibility.get(currentAtom).doubleValue();
-		comparisonAtomAccessibility = SMARTCYP_PROPERTY.Accessibility.get(comparisonAtom).doubleValue();
+		currentAtomAccessibility = SMARTCYP_PROPERTY.Accessibility.getNumber(currentAtom).doubleValue();
+		comparisonAtomAccessibility = SMARTCYP_PROPERTY.Accessibility.getNumber(comparisonAtom).doubleValue();
 		
 		if(currentAtomAccessibility < comparisonAtomAccessibility) return after;
 		else if(currentAtomAccessibility > comparisonAtomAccessibility) return before;
@@ -76,7 +76,7 @@ public class AtomComparator implements Comparator<IAtom> {
 	private int checksymmetry(IAtom currentAtom, IAtom comparisonAtom){
 
 		// Symmetric
-		if(SMARTCYP_PROPERTY.SymmetryNumber.get(currentAtom).intValue() == SMARTCYP_PROPERTY.SymmetryNumber.get(comparisonAtom).intValue()) return equal;
+		if(SMARTCYP_PROPERTY.SymmetryNumber.getNumber(currentAtom).intValue() == SMARTCYP_PROPERTY.SymmetryNumber.getNumber(comparisonAtom).intValue()) return equal;
 		
 		// Non-symmetric
 		else return after;

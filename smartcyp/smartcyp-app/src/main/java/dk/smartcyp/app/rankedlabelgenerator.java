@@ -32,7 +32,7 @@ public class rankedlabelgenerator implements IGenerator<IAtomContainer> {
 	           // make a circle at each ranked atom
 	           for (int atomIndex=0; atomIndex < ac.getAtomCount(); atomIndex++) {
 	        	   atom = ac.getAtom(atomIndex);
-	        	   if (SMARTCYP_PROPERTY.Ranking.get(atom) != null && SMARTCYP_PROPERTY.Ranking.get(atom).intValue() == 1){
+	        	   if (SMARTCYP_PROPERTY.Ranking.getNumber(atom) != null && SMARTCYP_PROPERTY.Ranking.getNumber(atom).intValue() == 1){
 	        		   Point2d p = atom.getPoint2d();
 		               
 		               IRenderingElement oval = 
@@ -40,7 +40,7 @@ public class rankedlabelgenerator implements IGenerator<IAtomContainer> {
 		               
 		               rankedCircles.add(oval);
 	        	   }
-	        	   if (SMARTCYP_PROPERTY.Ranking.get(atom) != null && SMARTCYP_PROPERTY.Ranking.get(atom).intValue() == 2){
+	        	   if (SMARTCYP_PROPERTY.Ranking.getNumber(atom) != null && SMARTCYP_PROPERTY.Ranking.getNumber(atom).intValue() == 2){
 	        		   Point2d p = atom.getPoint2d();
 		               
 		               IRenderingElement oval = 
@@ -48,7 +48,7 @@ public class rankedlabelgenerator implements IGenerator<IAtomContainer> {
 		               
 		               rankedCircles.add(oval);
 	        	   }
-	        	   if (SMARTCYP_PROPERTY.Ranking.get(atom) != null && SMARTCYP_PROPERTY.Ranking.get(atom).intValue() == 3){
+	        	   if (SMARTCYP_PROPERTY.Ranking.getNumber(atom) != null && SMARTCYP_PROPERTY.Ranking.getNumber(atom).intValue() == 3){
 	        		   Point2d p = atom.getPoint2d();
 		               
 		               IRenderingElement oval = 
