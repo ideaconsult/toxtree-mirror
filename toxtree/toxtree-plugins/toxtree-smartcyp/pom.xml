@@ -69,7 +69,6 @@ Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen, SM
   		<groupId>ambit</groupId>
   		<artifactId>ambit2-rendering</artifactId>
   		<version>2.4.1</version>
-  		<scope>test</scope>
   	</dependency>
   </dependencies>
   <properties>
