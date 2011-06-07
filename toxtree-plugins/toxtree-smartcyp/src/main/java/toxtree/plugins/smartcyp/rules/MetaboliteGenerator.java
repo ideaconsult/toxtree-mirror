@@ -11,6 +11,7 @@ import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 
 import toxTree.core.IMetaboliteGenerator;
 import toxTree.tree.AbstractRule;
+import ambit2.core.processors.structure.AtomConfigurator;
 import ambit2.smarts.IAcceptable;
 import ambit2.smarts.SMIRKSManager;
 import ambit2.smarts.SMIRKSReaction;
@@ -36,7 +37,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements IMetab
 	@Override
 	public IAtomContainerSet getProducts(IAtomContainer reactant) throws Exception {
 		IAtomContainerSet products = null;
-
+		AtomConfigurator cfg = new AtomConfigurator();
 		if (smrkMan==null) smrkMan = new SMIRKSManager();
 		List<SMARTCYPReaction> reactions = new ArrayList<SMARTCYPReaction>();
 		for (IAtom atom: reactant.atoms()) {
@@ -45,6 +46,8 @@ public abstract class MetaboliteGenerator extends AbstractRule implements IMetab
 			Number atom_rank = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
 			if (atom_rank==null) continue;
 			if (atom_rank.intValue()!=getRank()) continue;
+
+			//System.out.println(String.format("%s %s %d %f %s",atom.getID(),atom.getSymbol(),atom_rank,data.getEnergy(),data.getReaction().getSMIRKS()));
 			if (reactions.indexOf(data.getReaction())<0)
 				reactions.add(data.getReaction());
 		}	
@@ -52,9 +55,13 @@ public abstract class MetaboliteGenerator extends AbstractRule implements IMetab
 		for (SMARTCYPReaction reaction : reactions) {
 			SMIRKSReaction smr = smrkMan.parse(reaction.getSMIRKS());
 			IAtomContainer product = (IAtomContainer) reactant.clone();
+			//System.out.println(reaction.getSMIRKS());
 			if (smrkMan.applyTransformation(product, this,smr)) {
 				if (products ==null) products = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainerSet.class);
-				product.setID(reaction.name());
+				product.setID(reaction.toString());
+				try {
+					cfg.process(product);
+				} catch (Exception x) {}
 				products.addAtomContainer(product);
 			} else 
 				System.err.println(String.format("%s %s",reactant.getID(),reaction.name()));
@@ -74,12 +81,13 @@ public abstract class MetaboliteGenerator extends AbstractRule implements IMetab
 	
 	@Override
 	public boolean accept(Vector<IAtom> atoms) {
+		
 		boolean ok = false;
 		for (IAtom atom: atoms) {
 			Number atom_rank = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
 			if (atom_rank==null) continue;
 			//System.out.println(String.format("%s %s %d",atom.getID(),atom.getSymbol(),atom_rank));
-			if (atom_rank.intValue()==getRank()) ok = true; //any atom with rank 1
+			if (atom_rank.intValue()==getRank()) ok = true; //any atom with rank 1 within this mapping
 		}
 		return ok;
 	}

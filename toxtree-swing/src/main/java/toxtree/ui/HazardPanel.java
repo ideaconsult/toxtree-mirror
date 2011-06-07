@@ -32,6 +32,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -57,6 +58,7 @@ import javax.swing.text.html.HTMLEditorKit;
 
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionRule;
+import toxTree.core.IMetaboliteGenerator;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.RuleResult;
 import toxtree.data.ActionList;
@@ -87,6 +89,7 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
 	JEditorPane explainArea;
 	TitledBorder tBorder;
 	CategoriesPanel cPanel;
+	JLabel metabolites;
 	/**
 	 * 
 	 */
@@ -122,6 +125,8 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
             b.append(x.getMessage());
         }
         explainArea.setText(b.toString());
+        
+        metabolites.setVisible(getDataModule().getRules() instanceof IMetaboliteGenerator);
         repaint();
     }
     
@@ -193,11 +198,32 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
 		
      	explainOption = new JCheckBox("Verbose explanation");
      	explainOption.setSelected(true);
-     	propertiesPanel.add(explainOption,BorderLayout.SOUTH);
-     	/*
-		gridBag.setConstraints(explainOption,c);
-		add(explainOption);
-		*/
+     	
+     	JPanel bottom = new JPanel();
+     	bottom.setLayout(new GridLayout(1,2));
+     	bottom.add(explainOption);
+     	
+     	//explainOption.addMouseListener(new MetabolitesMouseAdapter());
+     	
+		metabolites = new JLabel("<html><u><b>Metabolites</b></u></html>");
+		metabolites.setAlignmentX(RIGHT_ALIGNMENT);
+        metabolites.setToolTipText("Click to show predicted metabolites.");
+        metabolites.addMouseListener(new MetabolitesMouseAdapter() {
+	   		@Override
+			public void mouseClicked(MouseEvent e) {
+	   			try {
+	   				dataModule.showMetabolites();
+	   			} catch (Exception x) {
+	   				JOptionPane.showMessageDialog(metabolites,String.format("%s",x.getMessage()),"Error",JOptionPane.ERROR_MESSAGE);
+	   			}
+	   		}
+	    });	      	
+     	bottom.add(metabolites);
+     	metabolites.setVisible(false);
+     	
+     	propertiesPanel.add(bottom,BorderLayout.SOUTH);
+     
+     	
 		
         c.fill = GridBagConstraints.BOTH;
         c.weighty = Integer.MAX_VALUE;
@@ -304,3 +330,27 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
 	}
 
 }
+
+class MetabolitesMouseAdapter extends MouseAdapter {
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		super.mouseEntered(e);
+		e.getComponent().setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+		if (e.getComponent() instanceof JLabel)
+			((JLabel)e.getComponent()).setBorder(BorderFactory.createLineBorder(Color.white));
+		else if (e.getComponent() instanceof JCheckBox)
+			((JCheckBox)e.getComponent()).setBorder(BorderFactory.createLineBorder(Color.white));
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		super.mouseExited(e);
+		//e.getComponent().setBackground(Color.black);
+		if (e.getComponent() instanceof JLabel)
+			((JLabel)e.getComponent()).setBorder(null);
+		else if (e.getComponent() instanceof JCheckBox)
+			((JCheckBox)e.getComponent()).setBorder(null);
+		e.getComponent().setCursor(Cursor.getDefaultCursor());
+	}
+}
+
