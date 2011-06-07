@@ -35,11 +35,15 @@ import java.util.Observable;
 
 import javax.swing.JFrame;
 
+import org.openscience.cdk.interfaces.IAtomContainerSet;
+
 import toxTree.core.IDecisionMethod;
+import toxTree.core.IMetaboliteGenerator;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
 import toxTree.io.batch.ToxTreeBatchProcessing;
 import toxTree.tree.DecisionMethodsList;
+import toxtree.ui.metabolites.MetabolitesFrame;
 import toxtree.ui.tree.TreeFrame;
 
 /**
@@ -71,6 +75,7 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
     
 
 	private TreeFrame treeFrame = null;
+	private MetabolitesFrame metabolitesFrame = null;
 
 //	protected IDecisionRule currentRule = null;
 	//protected EditTreeFrame editMethodFrame = null;
@@ -177,6 +182,11 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
             treeFrame.dispose();
             treeFrame = null;
         }    
+        
+        if (metabolitesFrame !=null) {
+        	metabolitesFrame.dispose();
+        	metabolitesFrame = null;
+        }
     }
 
     /*
@@ -203,6 +213,22 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
 
     }
       */  
+    public void showMetabolites() throws Exception {
+		if (getRules() instanceof IMetaboliteGenerator) {
+			
+			//if (!treeResult.isEstimated()) 
+			treeResult.classify(getDataContainer().getMolecule());
+
+			IAtomContainerSet products = ((IMetaboliteGenerator)getRules()).getProducts(getDataContainer().getMolecule());
+			
+	        if (metabolitesFrame == null) 
+	        	metabolitesFrame = new MetabolitesFrame();
+ 
+	        metabolitesFrame.setProducts(products);
+	        metabolitesFrame.setVisible(true);
+			
+		}
+    }    
 
 }
 

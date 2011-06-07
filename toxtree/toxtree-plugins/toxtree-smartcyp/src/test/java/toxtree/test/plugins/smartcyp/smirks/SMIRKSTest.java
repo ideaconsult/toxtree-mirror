@@ -120,6 +120,50 @@ public class SMIRKSTest {
 			return target; //all products inside the atomcontainer, could be disconnected
 		else return null;
 	}	
+	/*
+SMARTS matches , but SMIRKS does not
+9_anthraldehyde Aldehyde_oxidation
+E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/FELODIPINE_1.png
+FLU-1 new4
+alfentanil N_dealkylation
+artelinic_acid new3
+E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/barnidipine_1.png
+bupivacaine N_dealkylation
+cisapride N_dealkylation
+cocaine N_dealkylation
+compound_1 N_dealkylation
+diclofenac new4
+fentanyl N_dealkylation
+haloperidol N_dealkylation
+iloperidone N_dealkylation
+isoquinoline N_oxidation
+miocamycin Aldehyde_oxidation
+E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/nicardipine_1.png
+E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/nifedipine_1.png
+E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/nitrendipine_1.png
+pradefovir new4
+py74 new4
+quinoline N_oxidation
+reduced_haloperidol N_dealkylation
+riddelliine N_dealkylation
+salmeterol N_dealkylation
+saquinavir N_dealkylation
+terbinafine N_dealkylation
+terfenadine N_dealkylation
+voriconazole N_dealkylation
+zaleplon N_oxidation
+6-aminochrysene new4
+9_cis_retinal Aldehyde_oxidation
+E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/MOP-13031_1.png
+caffeine N_dealkylation
+dapsone new4
+meperidine N_dealkylation
+olanzapine N_dealkylation
+E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/pranidipine_1.png
+reduced_diclofenac new4
+retinal Aldehyde_oxidation
+sertindole N_dealkylation
+	 */
 	@Test
 	public void testMGenerator() throws Exception {
 		SmilesGenerator g = new SmilesGenerator();
@@ -146,6 +190,9 @@ public class SMIRKSTest {
 				
 				IChemObject mol = reader.next();
 				Object molid = mol.getProperty("ID");
+				
+				//if (!molid.equals("fentanyl")) continue; //http://www.daylight.com/daycgi_tutorials/react.cgi
+				
 				mol.setID(molid.toString());
 				hadder.process((IAtomContainer)mol);
 				cfg.process((IAtomContainer)mol);
@@ -390,7 +437,7 @@ java.lang.NullPointerException
 			ImageIO.write(img, "png",new FileOutputStream(file));
 		} catch (Exception x) {
 			System.out.println(file);
-			x.printStackTrace();
+			//x.printStackTrace();
 		}
 		return String.format("images/%s.png", name);
 		
