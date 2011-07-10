@@ -58,224 +58,224 @@ public class FuncRules extends UserDefinedTree implements IDecisionInteractive{
  
 
     public final static transient String[] c_rules = { 
-        "func.rules.RuleAlertsForFunc", // Rule  1   
+        "toxtree.plugins.func.rules.RuleAlertsForFunc", // Rule  1   
         
-        "func.rules.FG1", //2"
-        "func.rules.FG2", //3        
-        "func.rules.FG3_LS", //4
-        "func.rules.FG3_1", //5
-        "func.rules.FG3_2", //6        
-        "func.rules.FG4_LS", //7
-        "func.rules.FG4_1", //8
-        "func.rules.FG4_2", //9        
-        "func.rules.FG5", //10
-        "func.rules.FG6", //11
+        "toxtree.plugins.func.rules.FG1", //2"
+        "toxtree.plugins.func.rules.FG2", //3        
+        "toxtree.plugins.func.rules.FG3_LS", //4
+        "toxtree.plugins.func.rules.FG3_1", //5
+        "toxtree.plugins.func.rules.FG3_2", //6        
+        "toxtree.plugins.func.rules.FG4_LS", //7
+        "toxtree.plugins.func.rules.FG4_1", //8
+        "toxtree.plugins.func.rules.FG4_2", //9        
+        "toxtree.plugins.func.rules.FG5", //10
+        "toxtree.plugins.func.rules.FG6", //11
         
-        "func.rules.FG7", //12
-        "func.rules.FG8", //13
-        "func.rules.FG9", //14
-        "func.rules.FG10", //15
-        "func.rules.FG11", //16
-        "func.rules.FG12", //17
-        "func.rules.FG13", //18
-        "func.rules.FG14", //19
-        "func.rules.FG15", //20
-        "func.rules.FG16", //21
+        "toxtree.plugins.func.rules.FG7", //12
+        "toxtree.plugins.func.rules.FG8", //13
+        "toxtree.plugins.func.rules.FG9", //14
+        "toxtree.plugins.func.rules.FG10", //15
+        "toxtree.plugins.func.rules.FG11", //16
+        "toxtree.plugins.func.rules.FG12", //17
+        "toxtree.plugins.func.rules.FG13", //18
+        "toxtree.plugins.func.rules.FG14", //19
+        "toxtree.plugins.func.rules.FG15", //20
+        "toxtree.plugins.func.rules.FG16", //21
         
-        "func.rules.FG17", //22
-        "func.rules.FG18", //23
-        "func.rules.FG19", //24
-        "func.rules.FG20", //25
-        "func.rules.FG21", //26
-        "func.rules.FG22", //27
-        "func.rules.FG23_LS", //28
-        "func.rules.FG23_1", //29
-        "func.rules.FG23_2", //30
-        "func.rules.FG23_3", //31
+        "toxtree.plugins.func.rules.FG17", //22
+        "toxtree.plugins.func.rules.FG18", //23
+        "toxtree.plugins.func.rules.FG19", //24
+        "toxtree.plugins.func.rules.FG20", //25
+        "toxtree.plugins.func.rules.FG21", //26
+        "toxtree.plugins.func.rules.FG22", //27
+        "toxtree.plugins.func.rules.FG23_LS", //28
+        "toxtree.plugins.func.rules.FG23_1", //29
+        "toxtree.plugins.func.rules.FG23_2", //30
+        "toxtree.plugins.func.rules.FG23_3", //31
         
-        "func.rules.FG23_4", //32
-        "func.rules.FG23_5", //33
-        "func.rules.FG23_6", //34
-        "func.rules.FG23_7", //35
-        "func.rules.FG23_8", //36
-        "func.rules.FG24_LS", //37
-        "func.rules.FG24_1", //38
-        "func.rules.FG24_2", //39
-        "func.rules.FG24_3", //40     
-        "func.rules.FG25", //41
+        "toxtree.plugins.func.rules.FG23_4", //32
+        "toxtree.plugins.func.rules.FG23_5", //33
+        "toxtree.plugins.func.rules.FG23_6", //34
+        "toxtree.plugins.func.rules.FG23_7", //35
+        "toxtree.plugins.func.rules.FG23_8", //36
+        "toxtree.plugins.func.rules.FG24_LS", //37
+        "toxtree.plugins.func.rules.FG24_1", //38
+        "toxtree.plugins.func.rules.FG24_2", //39
+        "toxtree.plugins.func.rules.FG24_3", //40     
+        "toxtree.plugins.func.rules.FG25", //41
         
-        "func.rules.FG26", //42
-        "func.rules.FG27", //43
-        "func.rules.FG28", //44
-        "func.rules.FG29", //45
-        "func.rules.FG30", //46        
-       "func.rules.FG31_LS", //47
-       "func.rules.FG31_1", //48
-       "func.rules.FG31_2", //49
-       "func.rules.FG31_3", //50
-       "func.rules.FG31_4", //51
+        "toxtree.plugins.func.rules.FG26", //42
+        "toxtree.plugins.func.rules.FG27", //43
+        "toxtree.plugins.func.rules.FG28", //44
+        "toxtree.plugins.func.rules.FG29", //45
+        "toxtree.plugins.func.rules.FG30", //46        
+       "toxtree.plugins.func.rules.FG31_LS", //47
+       "toxtree.plugins.func.rules.FG31_1", //48
+       "toxtree.plugins.func.rules.FG31_2", //49
+       "toxtree.plugins.func.rules.FG31_3", //50
+       "toxtree.plugins.func.rules.FG31_4", //51
        
-       "func.rules.FG31_5", //52
-       "func.rules.FG31_6", //53
-       "func.rules.FG31_7", //54
-       "func.rules.FG31_8", //55
-       "func.rules.FG31_9", //56        
-       "func.rules.FG32", //57        
-       "func.rules.FG33_LS", //58
-       "func.rules.FG33_1", //59
-       "func.rules.FG33_2", //60
-       "func.rules.FG33_3", //61
+       "toxtree.plugins.func.rules.FG31_5", //52
+       "toxtree.plugins.func.rules.FG31_6", //53
+       "toxtree.plugins.func.rules.FG31_7", //54
+       "toxtree.plugins.func.rules.FG31_8", //55
+       "toxtree.plugins.func.rules.FG31_9", //56        
+       "toxtree.plugins.func.rules.FG32", //57        
+       "toxtree.plugins.func.rules.FG33_LS", //58
+       "toxtree.plugins.func.rules.FG33_1", //59
+       "toxtree.plugins.func.rules.FG33_2", //60
+       "toxtree.plugins.func.rules.FG33_3", //61
        
-       "func.rules.FG33_4", //62
-       "func.rules.FG33_5", //63
-       "func.rules.FG33_6", //64
-       "func.rules.FG33_7", //65
-       "func.rules.FG33_8", //66     
-       "func.rules.FG34_LS", //67
-       "func.rules.FG34_1", //68
-       "func.rules.FG34_2", //69      
-        "func.rules.FG35_LS", //70
-        "func.rules.FG35_1", //71
+       "toxtree.plugins.func.rules.FG33_4", //62
+       "toxtree.plugins.func.rules.FG33_5", //63
+       "toxtree.plugins.func.rules.FG33_6", //64
+       "toxtree.plugins.func.rules.FG33_7", //65
+       "toxtree.plugins.func.rules.FG33_8", //66     
+       "toxtree.plugins.func.rules.FG34_LS", //67
+       "toxtree.plugins.func.rules.FG34_1", //68
+       "toxtree.plugins.func.rules.FG34_2", //69      
+        "toxtree.plugins.func.rules.FG35_LS", //70
+        "toxtree.plugins.func.rules.FG35_1", //71
         
-        "func.rules.FG35_2", //72
-        "func.rules.FG35_3", //73
-        "func.rules.FG35_4", //74
-        "func.rules.FG35_5", //75
-        "func.rules.FG35_6", //76
-        "func.rules.FG35_7", //77
-        "func.rules.FG35_8", //78
-        "func.rules.FG35_9", //79
-        "func.rules.FG35_10", //80
-        "func.rules.FG35_11", //81
+        "toxtree.plugins.func.rules.FG35_2", //72
+        "toxtree.plugins.func.rules.FG35_3", //73
+        "toxtree.plugins.func.rules.FG35_4", //74
+        "toxtree.plugins.func.rules.FG35_5", //75
+        "toxtree.plugins.func.rules.FG35_6", //76
+        "toxtree.plugins.func.rules.FG35_7", //77
+        "toxtree.plugins.func.rules.FG35_8", //78
+        "toxtree.plugins.func.rules.FG35_9", //79
+        "toxtree.plugins.func.rules.FG35_10", //80
+        "toxtree.plugins.func.rules.FG35_11", //81
         
-        "func.rules.FG35_12", //82
-        "func.rules.FG35_13", //83   
-        "func.rules.FG36", //84   
-        "func.rules.FG37_LS", //85
-        "func.rules.FG37_1", //86
-        "func.rules.FG37_2", //87
-        "func.rules.FG37_3", //88
-        "func.rules.FG37_4", //89    
-        "func.rules.FG38", //90
-        "func.rules.FG39", //91
+        "toxtree.plugins.func.rules.FG35_12", //82
+        "toxtree.plugins.func.rules.FG35_13", //83   
+        "toxtree.plugins.func.rules.FG36", //84   
+        "toxtree.plugins.func.rules.FG37_LS", //85
+        "toxtree.plugins.func.rules.FG37_1", //86
+        "toxtree.plugins.func.rules.FG37_2", //87
+        "toxtree.plugins.func.rules.FG37_3", //88
+        "toxtree.plugins.func.rules.FG37_4", //89    
+        "toxtree.plugins.func.rules.FG38", //90
+        "toxtree.plugins.func.rules.FG39", //91
         
-        "func.rules.FG40", //92    
-        "func.rules.FG41_LS", //93
-        "func.rules.FG41_1", //94
-        "func.rules.FG41_2", //95
-        "func.rules.FG41_3", //96
-        "func.rules.FG41_4", //97
-        "func.rules.FG41_5", //98        
-        "func.rules.FG42", //99
-        "func.rules.FG43", //100
-        "func.rules.FG44", //101
+        "toxtree.plugins.func.rules.FG40", //92    
+        "toxtree.plugins.func.rules.FG41_LS", //93
+        "toxtree.plugins.func.rules.FG41_1", //94
+        "toxtree.plugins.func.rules.FG41_2", //95
+        "toxtree.plugins.func.rules.FG41_3", //96
+        "toxtree.plugins.func.rules.FG41_4", //97
+        "toxtree.plugins.func.rules.FG41_5", //98        
+        "toxtree.plugins.func.rules.FG42", //99
+        "toxtree.plugins.func.rules.FG43", //100
+        "toxtree.plugins.func.rules.FG44", //101
         
-        "func.rules.FG45", //102    
-        "func.rules.FG46_LS", //103
-        "func.rules.FG46_1", //104
-        "func.rules.FG46_2", //105       
-        "func.rules.FG47", //106        
-        "func.rules.FG48_LS", //107
-        "func.rules.FG48_1", //108
-        "func.rules.FG48_2", //109        
-        "func.rules.FG49", //110        
-        "func.rules.FG50_LS", //111
+        "toxtree.plugins.func.rules.FG45", //102    
+        "toxtree.plugins.func.rules.FG46_LS", //103
+        "toxtree.plugins.func.rules.FG46_1", //104
+        "toxtree.plugins.func.rules.FG46_2", //105       
+        "toxtree.plugins.func.rules.FG47", //106        
+        "toxtree.plugins.func.rules.FG48_LS", //107
+        "toxtree.plugins.func.rules.FG48_1", //108
+        "toxtree.plugins.func.rules.FG48_2", //109        
+        "toxtree.plugins.func.rules.FG49", //110        
+        "toxtree.plugins.func.rules.FG50_LS", //111
         
-        "func.rules.FG50_1", //112
-        "func.rules.FG50_2", //113
-        "func.rules.FG50_3", //114   
-        "func.rules.FG51_LS", //115
-        "func.rules.FG51_1", //116
-        "func.rules.FG51_2", //117
-        "func.rules.FG51_3", //118        
-        "func.rules.FG52_LS", //119
-        "func.rules.FG52_1", //120
-        "func.rules.FG52_2", //121
+        "toxtree.plugins.func.rules.FG50_1", //112
+        "toxtree.plugins.func.rules.FG50_2", //113
+        "toxtree.plugins.func.rules.FG50_3", //114   
+        "toxtree.plugins.func.rules.FG51_LS", //115
+        "toxtree.plugins.func.rules.FG51_1", //116
+        "toxtree.plugins.func.rules.FG51_2", //117
+        "toxtree.plugins.func.rules.FG51_3", //118        
+        "toxtree.plugins.func.rules.FG52_LS", //119
+        "toxtree.plugins.func.rules.FG52_1", //120
+        "toxtree.plugins.func.rules.FG52_2", //121
         
-        "func.rules.FG52_3", //122        
-        "func.rules.FG53_LS", //123
-        "func.rules.FG53_1", //124
-        "func.rules.FG53_2", //125
-        "func.rules.FG53_3", //126    
-        "func.rules.FG54", //127
-        "func.rules.FG55", //128
-        "func.rules.FG56", //129
-        "func.rules.FG57", //130
-        "func.rules.FG58", //131
+        "toxtree.plugins.func.rules.FG52_3", //122        
+        "toxtree.plugins.func.rules.FG53_LS", //123
+        "toxtree.plugins.func.rules.FG53_1", //124
+        "toxtree.plugins.func.rules.FG53_2", //125
+        "toxtree.plugins.func.rules.FG53_3", //126    
+        "toxtree.plugins.func.rules.FG54", //127
+        "toxtree.plugins.func.rules.FG55", //128
+        "toxtree.plugins.func.rules.FG56", //129
+        "toxtree.plugins.func.rules.FG57", //130
+        "toxtree.plugins.func.rules.FG58", //131
         
-        "func.rules.FG59", //132
-        "func.rules.FG60", //133
-        "func.rules.FG61", //134
-        "func.rules.FG62", //135
-        "func.rules.FG63", //136
-        "func.rules.FG64", //137
-        "func.rules.FG65", //138
-        "func.rules.FG66", //139
-        "func.rules.FG67", //140
-        "func.rules.FG68", //141
+        "toxtree.plugins.func.rules.FG59", //132
+        "toxtree.plugins.func.rules.FG60", //133
+        "toxtree.plugins.func.rules.FG61", //134
+        "toxtree.plugins.func.rules.FG62", //135
+        "toxtree.plugins.func.rules.FG63", //136
+        "toxtree.plugins.func.rules.FG64", //137
+        "toxtree.plugins.func.rules.FG65", //138
+        "toxtree.plugins.func.rules.FG66", //139
+        "toxtree.plugins.func.rules.FG67", //140
+        "toxtree.plugins.func.rules.FG68", //141
         
-        "func.rules.FG69", //142
-        "func.rules.FG70", //143
-        "func.rules.FG71", //144
-        "func.rules.FG72", //145
-        "func.rules.FG73", //146       
-        "func.rules.FG74_LS", //147
-        "func.rules.FG74_1", //148
-        "func.rules.FG74_2", //149
-        "func.rules.FG74_3", //150
-        "func.rules.FG74_4", //151
+        "toxtree.plugins.func.rules.FG69", //142
+        "toxtree.plugins.func.rules.FG70", //143
+        "toxtree.plugins.func.rules.FG71", //144
+        "toxtree.plugins.func.rules.FG72", //145
+        "toxtree.plugins.func.rules.FG73", //146       
+        "toxtree.plugins.func.rules.FG74_LS", //147
+        "toxtree.plugins.func.rules.FG74_1", //148
+        "toxtree.plugins.func.rules.FG74_2", //149
+        "toxtree.plugins.func.rules.FG74_3", //150
+        "toxtree.plugins.func.rules.FG74_4", //151
         
-        "func.rules.FG74_5", //152
-        "func.rules.FG74_6", //153
-        "func.rules.FG74_7", //154      
-        "func.rules.FG75_LS", //155
-        "func.rules.FG75_1", //156
-        "func.rules.FG75_2", //157
-        "func.rules.FG75_3", //158
-        "func.rules.FG75_4", //159     
-        "func.rules.FG76", //160
-        "func.rules.FG77", //161
+        "toxtree.plugins.func.rules.FG74_5", //152
+        "toxtree.plugins.func.rules.FG74_6", //153
+        "toxtree.plugins.func.rules.FG74_7", //154      
+        "toxtree.plugins.func.rules.FG75_LS", //155
+        "toxtree.plugins.func.rules.FG75_1", //156
+        "toxtree.plugins.func.rules.FG75_2", //157
+        "toxtree.plugins.func.rules.FG75_3", //158
+        "toxtree.plugins.func.rules.FG75_4", //159     
+        "toxtree.plugins.func.rules.FG76", //160
+        "toxtree.plugins.func.rules.FG77", //161
         
-        "func.rules.FG78_LS", //162
-        "func.rules.FG78_1", //163
-        "func.rules.FG78_2", //164
-        "func.rules.FG78_3", //165
-        "func.rules.FG78_4", //166        
-        "func.rules.FG79_LS", //167
-        "func.rules.FG79_1", //168
-        "func.rules.FG79_2", //169
-        "func.rules.FG79_3", //170
-        "func.rules.FG79_4", //171
+        "toxtree.plugins.func.rules.FG78_LS", //162
+        "toxtree.plugins.func.rules.FG78_1", //163
+        "toxtree.plugins.func.rules.FG78_2", //164
+        "toxtree.plugins.func.rules.FG78_3", //165
+        "toxtree.plugins.func.rules.FG78_4", //166        
+        "toxtree.plugins.func.rules.FG79_LS", //167
+        "toxtree.plugins.func.rules.FG79_1", //168
+        "toxtree.plugins.func.rules.FG79_2", //169
+        "toxtree.plugins.func.rules.FG79_3", //170
+        "toxtree.plugins.func.rules.FG79_4", //171
         
-        "func.rules.FG80_LS", //172
-        "func.rules.FG80_1", //173
-        "func.rules.FG80_2", //174   
-        "func.rules.FG81_LS", //175
-        "func.rules.FG81_1", //176
-        "func.rules.FG81_2", //177
-        "func.rules.FG81_3", //178
-        "func.rules.FG81_4", //179       
-        "func.rules.FG82_LS", //180
-        "func.rules.FG82_1", //181
+        "toxtree.plugins.func.rules.FG80_LS", //172
+        "toxtree.plugins.func.rules.FG80_1", //173
+        "toxtree.plugins.func.rules.FG80_2", //174   
+        "toxtree.plugins.func.rules.FG81_LS", //175
+        "toxtree.plugins.func.rules.FG81_1", //176
+        "toxtree.plugins.func.rules.FG81_2", //177
+        "toxtree.plugins.func.rules.FG81_3", //178
+        "toxtree.plugins.func.rules.FG81_4", //179       
+        "toxtree.plugins.func.rules.FG82_LS", //180
+        "toxtree.plugins.func.rules.FG82_1", //181
         
-        "func.rules.FG82_2", //182
-        "func.rules.FG82_3", //183
-        "func.rules.FG82_4", //184        
-        "func.rules.FG83_LS", //185
-        "func.rules.FG83_1", //186
-        "func.rules.FG83_2", //187
-        "func.rules.FG83_3", //188
-        "func.rules.FG83_4", //189        
-        "func.rules.FG84_LS", //190
-        "func.rules.FG84_1", //191
+        "toxtree.plugins.func.rules.FG82_2", //182
+        "toxtree.plugins.func.rules.FG82_3", //183
+        "toxtree.plugins.func.rules.FG82_4", //184        
+        "toxtree.plugins.func.rules.FG83_LS", //185
+        "toxtree.plugins.func.rules.FG83_1", //186
+        "toxtree.plugins.func.rules.FG83_2", //187
+        "toxtree.plugins.func.rules.FG83_3", //188
+        "toxtree.plugins.func.rules.FG83_4", //189        
+        "toxtree.plugins.func.rules.FG84_LS", //190
+        "toxtree.plugins.func.rules.FG84_1", //191
         
-        "func.rules.FG84_2", //192      
-        "func.rules.FG85", //193
-        "func.rules.FG86", //194
-        "func.rules.FG87", //195
-        "func.rules.FG88", //196
-        "func.rules.FG89", //197
-        "func.rules.FG90", //198
+        "toxtree.plugins.func.rules.FG84_2", //192      
+        "toxtree.plugins.func.rules.FG85", //193
+        "toxtree.plugins.func.rules.FG86", //194
+        "toxtree.plugins.func.rules.FG87", //195
+        "toxtree.plugins.func.rules.FG88", //196
+        "toxtree.plugins.func.rules.FG89", //197
+        "toxtree.plugins.func.rules.FG90", //198
   
         
         
@@ -534,8 +534,8 @@ public class FuncRules extends UserDefinedTree implements IDecisionInteractive{
         
     };	
     private final static transient String c_categories[] ={
-		"func.categories.FuncCat1",
-		"func.categories.FuncCat2",
+		"toxtree.plugins.func.categories.FuncCat1",
+		"toxtree.plugins.func.categories.FuncCat2",
 		
 	};
 	/**
@@ -555,7 +555,7 @@ public class FuncRules extends UserDefinedTree implements IDecisionInteractive{
         
     	public DescriptorSpecification getSpecification() {
             return new DescriptorSpecification(
-                    "http://toxtree.sourceforge.net/mic.html",
+                    "http://toxtree.sourceforge.net/func.html",
                     getTitle(),
                     this.getClass().getName(),                
                     "Toxtree plugin");
