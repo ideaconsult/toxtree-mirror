@@ -104,6 +104,7 @@
   		<name>Olga Tcheremenskaia</name>
   		<roles>
   			<role>Plugin: Structure Alerts for the in vivo micronucleus assay in rodents</role>
+  			<role>Plugin: Structure Alerts for the Functional Groups detection</role>
   		</roles>
   	</developer>
   	<developer>
@@ -249,7 +250,7 @@
 	      <plugin>
 	        <groupId>org.apache.maven.plugins</groupId>
 	        <artifactId>maven-source-plugin</artifactId>
-	            
+ 			<version>2.1.2</version>	            
 	        <executions>
 	          <execution>
 	            <id>attach-sources</id>

@@ -1,6 +1,6 @@
 mkdir dist
-copy toxtree-app\target\toxtree-app-2.4.1-jar-with-dependencies.jar dist
-
+copy toxtree-app\target\Toxtree-2.4.1.jar dist
+mkdir dist\ext
 copy toxtree-plugins\toxtree-cramer\target\*.jar dist\ext
 copy toxtree-plugins\toxtree-cramer2\target\*.jar dist\ext
 copy toxtree-plugins\toxtree-eye\target\*.jar dist\ext
@@ -13,3 +13,5 @@ copy toxtree-plugins\toxtree-sicret\target\*.jar dist\ext
 copy toxtree-plugins\toxtree-smartcyp\target\*.jar dist\ext
 copy toxtree-plugins\toxtree-skinsensitisation\target\*.jar dist\ext
 copy toxtree-plugins\toxtree-biodegradation\target\*.jar dist\ext
+copy toxtree-plugins\toxtree-verhaar2\target\*.jar dist\ext
+copy toxtree-plugins\toxtree-functional_groups\target\*.jar dist\ext
