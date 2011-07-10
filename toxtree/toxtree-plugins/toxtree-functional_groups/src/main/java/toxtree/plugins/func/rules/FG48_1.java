@@ -24,10 +24,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.func.rules;
 
-import toxTree.tree.rules.StructureAlert;
 import ambit2.smarts.query.SMARTSException;
 
-public class FG48_1 extends StructureAlert {
+public class FG48_1 extends FG {
     /**
 	 * 
 	 */
@@ -40,7 +39,7 @@ public class FG48_1 extends StructureAlert {
         	
         	
         	  setID("FG48_1");
-              setTitle("carboxylic acid unsubst. imide");
+              setTitle("carboxylic acid unsubstituted imide");
              
             addSubstructure("FG48_1", "[C;H1,$(C[#6])](=[OX1])[NX3H1][C;H1,$(C[#6])](=[OX1])");
            

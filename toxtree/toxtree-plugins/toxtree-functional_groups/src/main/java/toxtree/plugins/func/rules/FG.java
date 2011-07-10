@@ -36,23 +36,21 @@ public class FG extends StructureAlert {
 	
 	public FG() {
         super();
-        try {
-        	
-        	
-        	  setID("FG");
-              setTitle("");
-             
-            addSubstructure("FG", "");
-           
-           
-            
-          
-           
-        } catch (SMARTSException x) {
-            logger.error(x);
-        }
     }
 
+	@Override
+	public void setTitle(String name) {
+		super.setTitle(name);
+		setExplanation(title);
+	}
+	
+	@Override
+	public void addSubstructure(String title, String smarts)
+			throws SMARTSException {
+		super.addSubstructure(title, smarts);
+		setExplanation(String.format("%s<p>SMARTS: %s",getExplanation(),smarts));
+		setExamples(new String[] {null,smarts});		
+	}
 }
 
 

@@ -24,10 +24,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.func.rules;
 
-import toxTree.tree.rules.StructureAlert;
 import ambit2.smarts.query.SMARTSException;
 
-public class FG78_LS extends StructureAlert {
+public class FG78_LS extends FG {
     /**
 	 * 
 	 */
@@ -40,7 +39,7 @@ public class FG78_LS extends StructureAlert {
         	
         	
         	  setID("FG78_LS");
-              setTitle("sulfinic acid deriv.");
+              setTitle("sulfinic acid derivative");
              
             addSubstructure("FG78_LS", "[SX3](=[OX1])([#6])([!#6])");
            
