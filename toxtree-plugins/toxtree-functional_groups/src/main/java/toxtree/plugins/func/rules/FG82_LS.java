@@ -40,7 +40,7 @@ public class FG82_LS extends StructureAlert {
         	
         	
         	  setID("FG82_LS");
-              setTitle(" thiophosphoric acid deriv. ");
+              setTitle("thiophosphoric acid derivative");
              
             addSubstructure("FG82_LS", "P(=[SX1])([O,N,Cl,Br,I,F])([O,N,Cl,Br,I,F])([O,N,Cl,Br,I,F])");
            

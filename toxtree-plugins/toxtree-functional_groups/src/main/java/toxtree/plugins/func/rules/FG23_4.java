@@ -40,7 +40,7 @@ public class FG23_4 extends StructureAlert {
         	
         	
         	  setID("FG23_4");
-              setTitle(" 1,2-diol");
+              setTitle("1,2-diol");
              
             addSubstructure("FG23_4", "[$([CX4]([#6])([OX2H])[#6]),$([CX4H]([OX2H])[#6]),$([CX4H2]([OX2H]))]-[$([CX4]([#6])([OX2H])[#6]),$([CX4H]([OX2H])[#6]),$([CX4H2]([OX2H]))]");
          

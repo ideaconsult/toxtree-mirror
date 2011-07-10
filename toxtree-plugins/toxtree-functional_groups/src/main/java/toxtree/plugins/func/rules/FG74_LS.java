@@ -40,7 +40,7 @@ public class FG74_LS extends StructureAlert {
         	
         	
         	  setID("FG74_LS");
-              setTitle("sulfuric acid deriv.");
+              setTitle("sulfuric acid derivative");
              
             addSubstructure("FG74_LS", "[SX4;H0&!$(S~[#6])](=[OX1])(=[OX1])");
            

@@ -40,7 +40,7 @@ public class FG79_1 extends StructureAlert {
         	
         	
         	  setID("FG79_1");
-              setTitle(" sulfenic acid");
+              setTitle("sulfenic acid");
              
             addSubstructure("FG79_1", "[SX2]([#6])([OH])");
            

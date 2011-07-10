@@ -40,7 +40,7 @@ public class FG53_LS extends StructureAlert {
         	
         	
         	  setID("FG53_LS");
-              setTitle("thiocarbamic acid deriv.");
+              setTitle("thiocarbamic acid derivative");
              
             addSubstructure("FG53_LS", "[CX3;H0&!$(C~[#6])](=[SX1])([$([NX3]([#6])[#6]),$([NX3H][#6]),$([NX3H2])])");
            

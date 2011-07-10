@@ -40,7 +40,7 @@ public class FG81_LS extends StructureAlert {
         	
         	
         	  setID("FG81_LS");
-              setTitle("phosphoric acid deriv.");
+              setTitle("phosphoric acid derivative");
              
             addSubstructure("FG81_LS", "P(=[OX1])([O,N,Cl,Br,I,F])([O,N,Cl,Br,I,F])([O,N,Cl,Br,I,F])");
            

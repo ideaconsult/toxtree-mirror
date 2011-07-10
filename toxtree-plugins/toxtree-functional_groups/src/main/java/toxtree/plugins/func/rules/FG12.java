@@ -40,7 +40,7 @@ public class FG12 extends StructureAlert {
         	
         	
         	  setID("FG12");
-              setTitle(" ketene acetal derivative");
+              setTitle("ketene acetal derivative");
          
             addSubstructure("FG12", "[C;H0&!$(C([#6])([#6]))]=[$([CX3]([#6])[#6]),$([CX3H][#6]),$([CX3H2])]");
            

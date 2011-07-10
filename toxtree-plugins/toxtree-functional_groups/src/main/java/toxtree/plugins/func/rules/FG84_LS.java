@@ -40,7 +40,7 @@ public class FG84_LS extends StructureAlert {
         	
         	
         	  setID("FG84_LS");
-              setTitle("boronic acid deriv.");
+              setTitle("boronic acid derivative");
              
             addSubstructure("FG84_LS", "[BX3]([#6])([O,N,Cl,Br,I,F])([O,N,Cl,Br,I,F])");
            

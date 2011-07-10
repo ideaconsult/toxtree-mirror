@@ -40,7 +40,7 @@ public class FG33_7 extends StructureAlert {
         	
         	
         	  setID("FG33_7");
-              setTitle(" aryl bromide");
+              setTitle("aryl bromide");
              
             addSubstructure("FG33_7", "[cX3][Br]");
            

@@ -40,7 +40,7 @@ public class FG74_4 extends StructureAlert {
         	
         	
         	  setID("FG74_4");
-              setTitle(" sulfuric acid amide ester ");
+              setTitle("sulfuric acid amide ester ");
              
             addSubstructure("FG74_4", "[SX4](=[OX1])(=[OX1])([O][#6])([$([NX3]([#6])[#6]),$([NX3H][#6]),$([NX3H2])])");
            
