@@ -40,7 +40,7 @@ public class FG51_LS extends StructureAlert {
         	
         	
         	  setID("FG51_LS");
-              setTitle("thiocarbonic acid deriv.");
+              setTitle("thiocarbonic acid derivative");
              
             addSubstructure("FG51_LS", "[CX3;H0&!$(C~[#6])](=[SX1])");
            

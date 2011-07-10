@@ -40,7 +40,7 @@ public class FG33_LS extends StructureAlert {
         	
         	
         	  setID("FG33_LS");
-              setTitle("halogen deriv.  (alkyl or aryl)");
+              setTitle("halogen derivative  (alkyl or aryl)");
              
             addSubstructure("FG33_LS", "[CX4,cX3][I,Br,Cl,F]");
            

@@ -40,7 +40,7 @@ public class FG31_8 extends StructureAlert {
         	
         	
         	  setID("FG31_8");
-              setTitle("tert. arom_amine");
+              setTitle("tertiary arom_amine");
              
             addSubstructure("FG31_8", "c[$([NX3H0])](c)c");
            

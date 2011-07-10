@@ -40,7 +40,7 @@ public class FG31_3 extends StructureAlert {
         	
         	
         	  setID("FG31_3");
-              setTitle("sec. aliphat. amine");
+              setTitle("secondary aliphatic amine");
              
             addSubstructure("FG31_3", "[$([NX3H1])](C)C");
            

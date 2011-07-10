@@ -40,7 +40,7 @@ public class FG23_3 extends StructureAlert {
         	
         	
         	  setID("FG23_3");
-              setTitle("tert. alcohol");
+              setTitle("tertiary alcohol");
              
             addSubstructure("FG23_3", "[#6][C;$([CX4H0]([#6])[#6])][OX2H]");
            

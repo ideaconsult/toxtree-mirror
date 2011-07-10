@@ -40,7 +40,7 @@ public class FG51_1 extends StructureAlert {
         	
         	
         	  setID("FG51_1");
-              setTitle(" thiocarbonic acid monoester");
+              setTitle("thiocarbonic acid monoester");
              
             addSubstructure("FG51_1", "[C;$(C[O][#6])](=[SX1])[OH]");
            

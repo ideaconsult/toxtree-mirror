@@ -40,7 +40,7 @@ public class FG31_5 extends StructureAlert {
         	
         	
         	  setID("FG31_5");
-              setTitle("sec. aromat. amine");
+              setTitle("secondary aromatic amine");
              
             addSubstructure("FG31_5", "c[$([NX3H1])]c");
          

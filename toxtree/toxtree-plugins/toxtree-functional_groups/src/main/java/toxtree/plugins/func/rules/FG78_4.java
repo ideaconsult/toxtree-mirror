@@ -40,7 +40,7 @@ public class FG78_4 extends StructureAlert {
         	
         	
         	  setID("FG78_4");
-              setTitle(" sulfinic acid amide");
+              setTitle("sulfinic acid amide");
              
             addSubstructure("FG78_4", "[SX3](=[OX1])([#6])([$([NX3]([#6])[#6]),$([NX3H][#6]),$([NX3H2])])");
            

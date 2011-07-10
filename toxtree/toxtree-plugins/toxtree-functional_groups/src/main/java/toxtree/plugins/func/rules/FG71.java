@@ -40,7 +40,7 @@ public class FG71 extends StructureAlert {
         	
         	
         	  setID("FG71");
-              setTitle(" nitro compound");
+              setTitle("nitro compound");
              
             addSubstructure("FG71", "[#6][NX3](=O)=O");
            

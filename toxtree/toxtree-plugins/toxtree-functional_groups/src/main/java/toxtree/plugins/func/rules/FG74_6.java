@@ -40,7 +40,7 @@ public class FG74_6 extends StructureAlert {
         	
         	
         	  setID("FG74_6");
-              setTitle(" sulfuric acid diamide");
+              setTitle("sulfuric acid diamide");
              
             addSubstructure("FG74_6", "[SX4](=[OX1])(=[OX1])([$([NX3]([#6])[#6]),$([NX3H][#6]),$([NX3H2])])([$([NX3]([#6])[#6]),$([NX3H][#6]),$([NX3H2])])");
            

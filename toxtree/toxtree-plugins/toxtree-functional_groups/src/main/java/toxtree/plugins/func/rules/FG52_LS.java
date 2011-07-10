@@ -40,7 +40,7 @@ public class FG52_LS extends StructureAlert {
         	
         	
         	  setID("FG52_LS");
-              setTitle("carbamic acid deriv ");
+              setTitle("carbamic acid derivative");
              
             addSubstructure("FG52_LS", "[CX3;H0&!$(C~[#6])](=[OX1])([$([NX3]([#6])[#6]),$([NX3H][#6]),$([NX3H2])])");
            
