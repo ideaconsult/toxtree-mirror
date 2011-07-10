@@ -9,6 +9,20 @@
   <artifactId>toxtree-functional_groups</artifactId>
   <name>Toxtree-Functional_groups</name>
   <description>Structure Alerts for the Functional Groups detection</description>
+  <developers>
+    	<developer>
+  		<id>olvich1972</id>
+  		<name>Olga Tcheremenskaia</name>
+  		<roles>
+  			<role>Plugin: Structure Alerts for the Functional Groups detection</role>
+  		</roles>
+  	</developer>
+  </developers>
+  <scm>
+  	<connection>https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups</connection>
+  	<developerConnection>https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups</developerConnection>
+  	<url>https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups</url>
+  </scm>
   <dependencies>
   	<dependency>
   		<groupId>toxtree</groupId>

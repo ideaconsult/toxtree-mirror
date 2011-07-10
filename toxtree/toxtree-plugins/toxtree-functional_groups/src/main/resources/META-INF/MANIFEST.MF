@@ -1,4 +1,5 @@
 Manifest-version: ${project.version}
+Class-Path: toxtree-functional_groups-${project.version}.jar
 Package-Title: Toxtree-Functional_groups
 Specification-Title: Functional Croups Detection
 Specification-Version: ${project.version}
