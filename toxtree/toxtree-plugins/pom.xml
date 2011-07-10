@@ -12,12 +12,13 @@
   <name>Toxtree plugin</name>
   <description>Parent project for toxtree plugins</description>
   <modules>
+    <module>toxtree-cramer</module>
+    <module>toxtree-cramer2</module>
+    <module>toxtree-eye</module>
     <module>toxtree-sicret</module>
     <module>toxtree-verhaar</module>
+
     <module>toxtree-mutant</module>
-    <module>toxtree-cramer</module>
-    <module>toxtree-eye</module>
-    <module>toxtree-cramer2</module>
     <module>toxtree-mic</module>
     <module>toxtree-michaelacceptors</module>
     <module>toxtree-structurefeatures</module>
@@ -26,6 +27,7 @@
     <module>toxtree-skinsensitisation</module>
     <module>toxtree-biodegradation</module>
     <module>toxtree-lewis</module>
+    <module>toxtree-functional_groups</module>
   </modules>
   <dependencies>
   	<dependency>

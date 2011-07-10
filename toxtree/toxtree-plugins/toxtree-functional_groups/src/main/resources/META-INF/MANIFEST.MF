@@ -1,0 +1,10 @@
+Manifest-version: ${project.version}
+Package-Title: Toxtree-Functional_groups
+Specification-Title: Functional Croups Detection
+Specification-Version: ${project.version}
+Specification-Vendor: Istituto Superiore di Sanita
+Implementation-Title: Structure Alerts for Functional Groups
+Implementation-Version: ${project.version}
+Implementation-Vendor: Istituto Superiore di Sanita
+Package-Version: ${project.version}
+Package-Vendor: Istituto Superiore di Sanita
