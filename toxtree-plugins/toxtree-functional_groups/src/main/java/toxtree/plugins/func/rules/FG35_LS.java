@@ -24,10 +24,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.func.rules;
 
-import toxTree.tree.rules.StructureAlert;
 import ambit2.smarts.query.SMARTSException;
 
-public class FG35_LS extends StructureAlert {
+public class FG35_LS extends FG {
     /**
 	 * 
 	 */
@@ -40,7 +39,7 @@ public class FG35_LS extends StructureAlert {
         	
         	
         	  setID("FG35_LS");
-              setTitle("carboxylic acid deriv.");
+              setTitle("carboxylic acid derivative");
              
             addSubstructure("FG35_LS", "[C;$(C([#6,H]))&!$([CH2])&!$(C([#6])([#6]))&!$([CH]([#6]))](=[OX1])");
            

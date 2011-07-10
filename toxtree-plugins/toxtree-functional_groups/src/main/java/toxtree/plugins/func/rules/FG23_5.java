@@ -24,10 +24,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.func.rules;
 
-import toxTree.tree.rules.StructureAlert;
 import ambit2.smarts.query.SMARTSException;
 
-public class FG23_5 extends StructureAlert {
+public class FG23_5 extends FG {
     /**
 	 * 
 	 */
@@ -40,7 +39,7 @@ public class FG23_5 extends StructureAlert {
         	
         	
         	  setID("FG23_5");
-              setTitle("1,2-aminoalcohol ");
+              setTitle("1,2-aminoalcohol");
              
             addSubstructure("FG23_5", "[$([CX4]([#6])([OX2H])[#6]),$([CX4H]([OX2H])[#6]),$([CX4H2]([OX2H]))]-[$([CX4]([#6])([NX3H2])[#6]),$([CX4H]([NX3H2])[#6]),$([CX4H2]([NX3H2]))]");
          

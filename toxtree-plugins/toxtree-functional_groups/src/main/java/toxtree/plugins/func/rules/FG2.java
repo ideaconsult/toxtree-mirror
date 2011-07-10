@@ -24,10 +24,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.func.rules;
 
-import toxTree.tree.rules.StructureAlertCDK;
 import ambit2.smarts.query.SMARTSException;
 
-public class FG2 extends StructureAlertCDK {
+public class FG2 extends FG {
 
 	/**
 	 * 
