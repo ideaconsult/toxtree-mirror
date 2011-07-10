@@ -111,6 +111,8 @@
 								jar-with-dependencies
 								</descriptorRef>
 							</descriptorRefs>
+							<finalName>Toxtree-${project.version}</finalName>
+        					<appendAssemblyId>false</appendAssemblyId>
 							<archive>
 								<manifestFile>target/classes/META-INF/MANIFEST.MF</manifestFile>
 							</archive>
