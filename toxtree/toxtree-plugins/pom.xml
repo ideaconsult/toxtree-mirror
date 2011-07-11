@@ -28,6 +28,8 @@
     <module>toxtree-biodegradation</module>
     <module>toxtree-lewis</module>
     <module>toxtree-functional_groups</module>
+    <module>toxtree-verhaar2</module>    
+    
   </modules>
   <dependencies>
   	<dependency>
