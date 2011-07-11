@@ -153,55 +153,7 @@ public class VerhaarScheme2 extends UserDefinedTree {
 		{0,0,5,1},  //Rule171 34
 		
 	};			
-	/*
-	private final static transient int c_transitions[][] ={
-		// {if no go to, if yes go to, assign if no, assign if yes}
-		{2,0,0,4}, 	//Rule 4  1
-		//Rulebase Class 3  
-		{3,3,0,0},  //RuleAlertsClass3  2
-		{4,4,0,0},  //q31  3
-		{5,5,0,0},  //q32  4
-		{6,6,0,0},  //q33  5
-		{7,7,0,0},  //q34  6
-		{8,8,0,0},  //q35  7
-		{9,9,0,0},  //q36  8
-		{10,10,0,0}, //q37  9
-		{11,11,0,0}, //q38 10
-		{12,12,0,3}, //RuleVerifyClass3Alerts 11
-		//Rules Class 2  
-		{13,13,0,0},  //RuleAlertsClass2 12
-		{14,14,0,0},  //q21  13
-		{15,15,0,0},  //q22 14
-		{16,16,0,0},  //q23 15
-		{17,17,0,0},  //q24 16
-		{18,18,0,0},  //q25 17
-		{19,19,0,2}, //RuleVerifyClass2Alerts 18
-		//Rules Class 1
-		{20,20,0,0},  //RuleAlertsClass1   19
-		{21,21,0,0},  //Rule01 20
-		{22,22,0,0},  //RuleLogPRange 21
-		{23,23,0,0},  //Rule03 22
-		{24,24,0,0},  //Rule11 23
-		{25,25,0,0},  //RuleIonicGroup  24
-		{26,26,0,0},  //Rule13 25
-		{27,27,0,0},  //Rule14 26
-		{28,28,0,0},  //Rule141 27
-		{29,29,0,0},  //Rule142 28
-		{30,30,0,0},  //Rule143 29
-		{31,31,0,0},  //Rule144 30
-		{32,32,0,0},  //Rule15 31
-		{33,33,0,0},  //Rule151 32
-		{34,34,0,0},  //Rule152 33
-		{35,35,0,0},  //Rule153 34
-		{36,36,0,0},  //Rule154 35
-		{37,37,0,0},  //Rule16 36
-		{38,38,0,0},  //Rule161 37
-		{39,39,0,0},  //Rule17 38
-		{40,40,0,0},  //Rule171 39
-		{0,0,5,1}, //RuleVerifyClass1Alerts 40
-		
-	};		
-	*/
+	
 	protected final static String[] c_categories = {
 			"toxtree.plugins.verhaar2.categories.Class1BaselineToxicity",
 			"toxtree.plugins.verhaar2.categories.Class2LessInertCompounds",

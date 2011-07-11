@@ -40,6 +40,7 @@ public class Class3UnspecificReactivity extends DefaultCategory {
 	 */
 	public Class3UnspecificReactivity() {
 		super("Class 3 (unspecific reactivity)",3);
+		setExplanation("<html><h3>Reactive chemicals:</h3>chemicals that react unselectively with biomolecules, <br>or substances that are bioactivated via metabolism");
 	}
 
 	/**
