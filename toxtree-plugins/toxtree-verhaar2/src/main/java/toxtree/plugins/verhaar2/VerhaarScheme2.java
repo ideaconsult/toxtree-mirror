@@ -60,80 +60,148 @@ public class VerhaarScheme2 extends UserDefinedTree {
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = 8432896817503373854L;
+	
+
 	public final static transient String[] c_rules = { 
-		"toxtree.plugins.verhaar2.rules.Rule01", // 1
-		"toxtree.plugins.verhaar2.rules.RuleLogPRange",  // 2
-		"toxtree.plugins.verhaar2.rules.Rule03", // 3
-		"toxtree.plugins.verhaar2.rules.Rule11", // 4
-		"toxtree.plugins.verhaar2.rules.RuleIonicGroups", // 5
-		"toxtree.plugins.verhaar2.rules.Rule13", // 6
-		"toxtree.plugins.verhaar2.rules.Rule14", // 7
-		"toxtree.plugins.verhaar2.rules.Rule141", // 8
-		"toxtree.plugins.verhaar2.rules.Rule142", // 9
-		"toxtree.plugins.verhaar2.rules.Rule143", // 10
-		"toxtree.plugins.verhaar2.rules.Rule144", // 11
-		"toxtree.plugins.verhaar2.rules.Rule15", // 12
-		"toxtree.plugins.verhaar2.rules.Rule151", // 13
-		"toxtree.plugins.verhaar2.rules.Rule152", // 14
-		"toxtree.plugins.verhaar2.rules.Rule153", // 15
-		"toxtree.plugins.verhaar2.rules.Rule154", // 16
-		"toxtree.plugins.verhaar2.rules.Rule16", // 17
-		"toxtree.plugins.verhaar2.rules.Rule161", // 18
-		"toxtree.plugins.verhaar2.rules.Rule17", // 19
-		"toxtree.plugins.verhaar2.rules.Rule171", // 20
-		"toxtree.plugins.verhaar2.rules.Rule21", // 21
-		"toxtree.plugins.verhaar2.rules.Rule22", // 22
-		"toxtree.plugins.verhaar2.rules.Rule23", // 23
-		"toxtree.plugins.verhaar2.rules.Rule24", // 24
-		"toxtree.plugins.verhaar2.rules.Rule25", // 25
-		"toxtree.plugins.verhaar2.rules.Rule31", // 26
-		"toxtree.plugins.verhaar2.rules.Rule32", // 27
-		"toxtree.plugins.verhaar2.rules.Rule33", // 28
-		"toxtree.plugins.verhaar2.rules.Rule34", // 29
-		"toxtree.plugins.verhaar2.rules.Rule35", // 30
-		"toxtree.plugins.verhaar2.rules.Rule36", // 31
-		"toxtree.plugins.verhaar2.rules.Rule37", // 32
-		"toxtree.plugins.verhaar2.rules.Rule38", // 33
-		"toxtree.plugins.verhaar2.rules.Rule4", // 34
-	};	
+		"toxtree.plugins.verhaar2.rules.Rule4", // 1
+
+		"toxtree.plugins.verhaar2.rules.Rule01", // 2
+		"toxtree.plugins.verhaar2.rules.RuleLogPRange",  // 3
+		"toxtree.plugins.verhaar2.rules.Rule03", // 4
+
+		"toxtree.plugins.verhaar2.rules.Rule31", // 5
+		"toxtree.plugins.verhaar2.rules.Rule32", // 6
+		"toxtree.plugins.verhaar2.rules.Rule33", // 7
+		"toxtree.plugins.verhaar2.rules.Rule34", // 8
+		"toxtree.plugins.verhaar2.rules.Rule35", // 9
+		"toxtree.plugins.verhaar2.rules.Rule36", // 10
+		"toxtree.plugins.verhaar2.rules.Rule37", // 11
+		"toxtree.plugins.verhaar2.rules.Rule38", // 12
+
+		"toxtree.plugins.verhaar2.rules.Rule21", // 13
+		"toxtree.plugins.verhaar2.rules.Rule22", // 14
+		"toxtree.plugins.verhaar2.rules.Rule23", // 15
+		"toxtree.plugins.verhaar2.rules.Rule24", // 16
+		"toxtree.plugins.verhaar2.rules.Rule25", // 17
+		
+		"toxtree.plugins.verhaar2.rules.Rule11", // 18
+		"toxtree.plugins.verhaar2.rules.RuleIonicGroups", // 19
+		"toxtree.plugins.verhaar2.rules.Rule13", // 20
+		"toxtree.plugins.verhaar2.rules.Rule14", // 21
+		"toxtree.plugins.verhaar2.rules.Rule141", // 22
+		"toxtree.plugins.verhaar2.rules.Rule142", // 23
+		"toxtree.plugins.verhaar2.rules.Rule143", // 24
+		"toxtree.plugins.verhaar2.rules.Rule144", // 25
+		"toxtree.plugins.verhaar2.rules.Rule15", // 26
+		"toxtree.plugins.verhaar2.rules.Rule151", // 27
+		"toxtree.plugins.verhaar2.rules.Rule152", // 28
+		"toxtree.plugins.verhaar2.rules.Rule153", // 29
+		"toxtree.plugins.verhaar2.rules.Rule154", // 30
+		"toxtree.plugins.verhaar2.rules.Rule16", // 31
+		"toxtree.plugins.verhaar2.rules.Rule161", // 32
+		"toxtree.plugins.verhaar2.rules.Rule17", // 33
+		"toxtree.plugins.verhaar2.rules.Rule171", // 34
+	
+	};		
+	//reversed - first class 4, then class 3, then class 2 , then class 1, then class 5
+	
 	private final static transient int c_transitions[][] ={
 		// {if no go to, if yes go to, assign if no, assign if yes}
-		{34,2,0,0}, // Q0.1 1
-		{34,3,0,0}, // Q0.2 2
-		{34,4,0,0},  // Q0.3 3
-		{34,5,0,0},  // Q1.1 4
-		{34,6,0,0},  // Q1.2 5
-		{7,0,0,1},  // Q1.3 6
-		{12,8,0,0},  // Q1.4 7
-		{9,0,0,1},  // Q1.4.1 8
-		{10,0,0,1},  // Q1.4.2 9
-		{11,0,0,1},  // Q1.4.3 10
-		{12,0,0,1},  // Q1.4.4 11
-		{17,13,0,0},  // Q1.5 12
-		{14,0,0,1},  // Q1.5.1 13
-		{15,0,0,1},  // Q1.5.2 14
-		{16,0,0,1},  // Q1.5.3 15
-		{17,0,0,1},  // Q1.5.4 16
-		{19,18,0,0},  // Q1.6 17
-		{19,0,0,1},  // Q1.6.1 18
-		{21,20,0,0},  // Q1.7 19
-		{21,0,0,1},  // Q1.7.1 20
-		{22,0,0,2},  // Q2.1 21
-		{23,0,0,2},  // Q2.2 22
-		{24,0,0,2},  // Q2.3 23
-		{25,0,0,2},  // Q2.4 24
-		{26,0,0,2},  // Q2.5 25
-		{27,0,0,3},  // Q3.1 26
-		{28,0,0,3},  // Q3.2 27
-		{29,0,0,3},  // Q3.3 28
-		{30,0,0,3},  // Q3.4 29
-		{31,0,0,3},  // Q3.5 30
-		{32,0,0,3},  // Q3.6 31
-		{33,0,0,3},  // Q3.7 32
-		{34,0,0,3},  // Q3.8 33
-		{0,0,5,4},  // Q4 34
+		{2,0,0,4}, 	//Rule 4  1
 		
-	};	
+		//Class 1,2,3 precondition
+		{0,3,5,0},  //Rule01 2
+		{0,4,5,0},  //RuleLogPRange 3
+		{0,5,5,0},  //Rule03 4
+		
+		//Rulebase Class 3  
+		{6,0,0,3},  //q31  5
+		{7,0,0,3},  //q32  6
+		{8,0,0,3},  //q33  7
+		{9,0,0,3},  //q34  8
+		{10,0,0,3},  //q35  9
+		{11,0,0,3},  //q36  10
+		{12,0,0,3}, //q37  11
+		{13,0,0,3}, //q38 12
+
+		//Rules Class 2  
+		{14,0,0,2},  //q21  13
+		{15,0,0,2},  //q22 14
+		{16,0,0,2},  //q23 15
+		{17,0,0,2},  //q24 16
+		{18,0,0,2},  //q25 17
+		
+		//Rules Class 1
+
+
+		{0,19,5,0},  //Rule11 18
+		{0,20,5,0},  //RuleIonicGroup  19
+		{21,0,0,1},  //Rule13 20
+		{26,22,0,0},  //Rule14 21
+		{23,0,0,1},  //Rule141 22
+		{24,0,0,1},  //Rule142 23
+		{25,0,0,1},  //Rule143 24
+		{0,0,5,1},  //Rule144 25
+		{31,27,0,0},  //Rule15 26
+		{28,0,0,1},  //Rule151 27
+		{29,0,0,1},  //Rule152 28
+		{30,0,0,1},  //Rule153 29
+		{0,0,5,1},  //Rule154 30
+		{33,32,0,0},  //Rule16 31
+		{0,0,5,1},  //Rule161 32
+		{0,34,5,0},  //Rule17 33
+		{0,0,5,1},  //Rule171 34
+		
+	};			
+	/*
+	private final static transient int c_transitions[][] ={
+		// {if no go to, if yes go to, assign if no, assign if yes}
+		{2,0,0,4}, 	//Rule 4  1
+		//Rulebase Class 3  
+		{3,3,0,0},  //RuleAlertsClass3  2
+		{4,4,0,0},  //q31  3
+		{5,5,0,0},  //q32  4
+		{6,6,0,0},  //q33  5
+		{7,7,0,0},  //q34  6
+		{8,8,0,0},  //q35  7
+		{9,9,0,0},  //q36  8
+		{10,10,0,0}, //q37  9
+		{11,11,0,0}, //q38 10
+		{12,12,0,3}, //RuleVerifyClass3Alerts 11
+		//Rules Class 2  
+		{13,13,0,0},  //RuleAlertsClass2 12
+		{14,14,0,0},  //q21  13
+		{15,15,0,0},  //q22 14
+		{16,16,0,0},  //q23 15
+		{17,17,0,0},  //q24 16
+		{18,18,0,0},  //q25 17
+		{19,19,0,2}, //RuleVerifyClass2Alerts 18
+		//Rules Class 1
+		{20,20,0,0},  //RuleAlertsClass1   19
+		{21,21,0,0},  //Rule01 20
+		{22,22,0,0},  //RuleLogPRange 21
+		{23,23,0,0},  //Rule03 22
+		{24,24,0,0},  //Rule11 23
+		{25,25,0,0},  //RuleIonicGroup  24
+		{26,26,0,0},  //Rule13 25
+		{27,27,0,0},  //Rule14 26
+		{28,28,0,0},  //Rule141 27
+		{29,29,0,0},  //Rule142 28
+		{30,30,0,0},  //Rule143 29
+		{31,31,0,0},  //Rule144 30
+		{32,32,0,0},  //Rule15 31
+		{33,33,0,0},  //Rule151 32
+		{34,34,0,0},  //Rule152 33
+		{35,35,0,0},  //Rule153 34
+		{36,36,0,0},  //Rule154 35
+		{37,37,0,0},  //Rule16 36
+		{38,38,0,0},  //Rule161 37
+		{39,39,0,0},  //Rule17 38
+		{40,40,0,0},  //Rule171 39
+		{0,0,5,1}, //RuleVerifyClass1Alerts 40
+		
+	};		
+	*/
 	protected final static String[] c_categories = {
 			"toxtree.plugins.verhaar2.categories.Class1BaselineToxicity",
 			"toxtree.plugins.verhaar2.categories.Class2LessInertCompounds",

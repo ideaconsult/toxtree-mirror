@@ -23,9 +23,9 @@ package toxtree.plugins.verhaar2.rules;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
 import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
+import verhaar.query.FunctionalGroups;
 
 /**
  * 
@@ -47,7 +47,7 @@ public class Rule24 extends RuleOnlyAllowedSubstructures {
 		addSubstructure(FunctionalGroups.primaryAmine(true));
 		setExplanation("Be primary alkyl amines (containing only C,H,N)");
 		examples[0]= "OC(C)CCNC(C)CC";
-		examples[1] = "CC(C)CCN";
+		examples[1] = "CCCCC";
 		editable = false;
 	}
 	

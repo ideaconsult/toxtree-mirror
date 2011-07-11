@@ -20,6 +20,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
+import org.openscience.cdk.interfaces.IAtomContainer;
+
+import toxTree.exceptions.DecisionMethodException;
+import toxTree.tree.rules.DefaultAlertCounter;
+import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleMolecularMassRange;
 
 /**
@@ -27,13 +32,13 @@ import toxTree.tree.rules.RuleMolecularMassRange;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule03 extends RuleMolecularMassRange {
+public class Rule03 extends RuleMolecularMassRange  implements IAlertCounter  {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2799745152926450353L;
-
+	protected IAlertCounter alertsCounter;
 	public Rule03() {
 		super();
 		id = "0.3";
@@ -48,7 +53,28 @@ public class Rule03 extends RuleMolecularMassRange {
 		setMinValue(0);
 		setMaxValue(600);
 		editable = false;
+		alertsCounter = new DefaultAlertCounter();
+	}
+	@Override
+	public String getImplementationDetails() {
+		StringBuffer b = new StringBuffer();
+		b.append(alertsCounter.getImplementationDetails());
+		
+		return b.toString();
+	}
+
+	@Override
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		if (super.verifyRule(mol)) {
+			incrementCounter(mol);
+			return true;	
+		} else return false;
 	}
 	
+	@Override
+	public void incrementCounter(IAtomContainer mol) {
+		alertsCounter.incrementCounter(mol);
+		
+	}
 
 }

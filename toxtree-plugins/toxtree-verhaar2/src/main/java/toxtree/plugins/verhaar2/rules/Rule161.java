@@ -25,7 +25,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
-import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
+import toxtree.plugins.verhaar2.rules.helper.RuleOnlyAllowedSubstructuresCounter;
 
 /**
  * 
@@ -33,7 +33,7 @@ import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule161 extends RuleOnlyAllowedSubstructures {
+public class Rule161 extends RuleOnlyAllowedSubstructuresCounter {
 
 	/**
 	 * 

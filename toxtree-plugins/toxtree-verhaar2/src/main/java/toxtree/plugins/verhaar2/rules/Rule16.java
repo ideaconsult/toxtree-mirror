@@ -20,15 +20,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
-import toxTree.tree.rules.RuleElements;
+import toxtree.plugins.verhaar2.rules.helper.RuleElementsCounter;
 
 /**
  * 
  * Contain only C,H,N.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 10, 2011
  */
-public class Rule16 extends RuleElements {
+public class Rule16 extends RuleElementsCounter {
 
 	/**
 	 * 

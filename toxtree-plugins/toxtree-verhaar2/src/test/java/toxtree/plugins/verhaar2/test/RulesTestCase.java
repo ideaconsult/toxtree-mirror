@@ -33,6 +33,7 @@ import java.io.ObjectOutputStream;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
@@ -45,6 +46,8 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
+import toxTree.tree.DecisionNode;
+import toxTree.tree.rules.IAlertCounter;
 
 public abstract class RulesTestCase extends TestCase {
 	public static TTLogger logger = new TTLogger(RulesTestCase.class);
@@ -170,6 +173,7 @@ public abstract class RulesTestCase extends TestCase {
 	    System.err.println("Number of missing examples\t"+ ne);	    
 	    assertEquals(0,ne);
 	}	
+	
     public void testHasUnreachableRules() {
     	IDecisionRuleList unvisited = rules.hasUnreachableRules();
     	if (unvisited != null) {

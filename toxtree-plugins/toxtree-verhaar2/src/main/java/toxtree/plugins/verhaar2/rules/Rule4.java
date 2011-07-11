@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
-import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
+import toxTree.tree.rules.StructureAlert;
 
 /**
  * 
@@ -28,7 +28,7 @@ import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule4 extends RuleSMARTSubstructure {
+public class Rule4 extends StructureAlert {
 
 	/**
 	 * 

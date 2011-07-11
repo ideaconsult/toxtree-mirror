@@ -26,6 +26,8 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
+import toxTree.tree.rules.DefaultAlertCounter;
+import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleRingAllowedSubstituents;
 import verhaar.query.FunctionalGroups;
 
@@ -35,7 +37,8 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule143 extends RuleRingAllowedSubstituents {
+public class Rule143 extends RuleRingAllowedSubstituents  implements IAlertCounter {
+	protected IAlertCounter alertsCounter;
 	protected QueryAtomContainer x ;
 	protected String[] halogens = {"Cl","F","Br","I"}; 
 	/**
@@ -45,6 +48,7 @@ public class Rule143 extends RuleRingAllowedSubstituents {
 
 	public Rule143() {
 		super();
+		alertsCounter = new DefaultAlertCounter();
 		id = "1.4.3";
 		setTitle("Be monocyclic compounds that are unsubstituted or substituted with acyclic structures containing only C&H or complying with rule 1.4.1");
 		explanation.append(
@@ -95,12 +99,25 @@ public class Rule143 extends RuleRingAllowedSubstituents {
 			return false;
 		} else {
 			FunctionalGroups.markCHn(mol);
-			return super.verifyRule(mol);
+			if (super.verifyRule(mol)) {
+				incrementCounter(mol);
+				return true;
+			} else return false;
 		}
 		
 	}
 	public boolean isImplemented() {
 		return true;
 	}
-
+	@Override
+	public void incrementCounter(IAtomContainer mol) {
+		alertsCounter.incrementCounter(mol);
+		
+	}
+	@Override
+	public String getImplementationDetails() {
+		StringBuffer b = new StringBuffer();
+		b.append(alertsCounter.getImplementationDetails());
+		return b.toString();
+	}
 }

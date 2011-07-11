@@ -31,6 +31,8 @@ import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.tree.rules.DefaultAlertCounter;
+import toxTree.tree.rules.IAlertCounter;
 import verhaar.query.FunctionalGroups;
 import verhaar.rules.RuleRingMainStrucSubstituents;
 
@@ -40,8 +42,8 @@ import verhaar.rules.RuleRingMainStrucSubstituents;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule21 extends RuleRingMainStrucSubstituents {
-	
+public class Rule21 extends RuleRingMainStrucSubstituents implements IAlertCounter {
+	protected IAlertCounter alertsCounter;
 	protected transient int nitroGroupsCount = 0;
 	protected transient int halogensCount = 0;
 	protected transient String[] halogens = {"Cl","Br","F"};
@@ -57,6 +59,7 @@ public class Rule21 extends RuleRingMainStrucSubstituents {
 
 	public Rule21() {
 		super();
+		alertsCounter = new DefaultAlertCounter();
 		id = "2.1";
 		setTitle("Be non- or weakly acidic phenols");
 		explanation.append("Be non- or weakly acidic phenols; <p>i.e. phenols with one nitro substituent, and / or one to three chlorine substituents, and/or alkyl substituents");
@@ -85,10 +88,13 @@ public class Rule21 extends RuleRingMainStrucSubstituents {
 		return  FunctionalGroups.phenol();
 	}
 	//TODO check for one nitro and up to 3 Cl
+	
 	@Override
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
-		return verifyRule(mol, null);
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		if (verifyRule(mol,null)) {
+			incrementCounter(mol);
+			return true;	
+		} else return false;
 	}
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
@@ -187,4 +193,17 @@ public class Rule21 extends RuleRingMainStrucSubstituents {
 	public void setMaxNitroGroups(int maxNitroGroups) {
 		this.maxNitroGroups = maxNitroGroups;
 	}	
+	@Override
+	public String getImplementationDetails() {
+		StringBuffer b = new StringBuffer();
+		b.append(alertsCounter.getImplementationDetails());
+
+		return b.toString();
+	}
+	@Override
+	public void incrementCounter(IAtomContainer mol) {
+		alertsCounter.incrementCounter(mol);
+		
+	}
+
 }

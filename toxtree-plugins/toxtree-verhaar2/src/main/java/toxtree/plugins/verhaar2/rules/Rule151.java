@@ -26,7 +26,7 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
-import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
+import toxtree.plugins.verhaar2.rules.helper.RuleOnlyAllowedSubstructuresCounter;
 import verhaar.query.FunctionalGroups;
 
 /**
@@ -35,7 +35,7 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule151 extends RuleOnlyAllowedSubstructures {
+public class Rule151 extends RuleOnlyAllowedSubstructuresCounter {
 	QueryAtomContainer epoxide = null;
 	QueryAtomContainer peroxide = null;
 	/**
