@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
-import toxTree.tree.rules.RuleAnySubstructure;
+import toxtree.plugins.verhaar2.rules.helper.RuleAnySubstructureCounter;
 import verhaar.query.FunctionalGroups;
 
 /**
@@ -29,7 +29,7 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule36 extends RuleAnySubstructure {
+public class Rule36 extends RuleAnySubstructureCounter {
 
 	/**
 	 * 

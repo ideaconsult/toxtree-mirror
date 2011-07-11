@@ -19,9 +19,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.plugins.verhaar2.test;
 
+import org.junit.Test;
 import org.openscience.cdk.templates.MoleculeFactory;
 
+import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.tree.DecisionNode;
+import toxTree.tree.rules.IAlertCounter;
+import toxTree.tree.rules.RuleInitAlertCounter;
 import toxtree.plugins.verhaar2.VerhaarScheme2;
 
 public class VerhaarSchemeTest extends RulesTestCase {
@@ -47,7 +52,7 @@ public class VerhaarSchemeTest extends RulesTestCase {
 	}
 
 	public void testReflection() throws Exception  {
-		VerhaarScheme2 vs = (VerhaarScheme2) Class.forName("verhaar.VerhaarScheme").newInstance();
+		VerhaarScheme2 vs = (VerhaarScheme2) Class.forName("toxtree.plugins.verhaar2.VerhaarScheme2").newInstance();
 		vs.calculate(MoleculeFactory.makeBenzene());
 	}
 	public void testVerhaar() {
@@ -64,4 +69,30 @@ public class VerhaarSchemeTest extends RulesTestCase {
 		}
 	}
 	*/
+	@Test
+	public void testIsCounter() {
+	    System.err.println();
+	    int nr = rules.getNumberOfRules();
+	    int ne = 0;
+	    for (int i = 0; i < nr; i++) {
+	        IDecisionRule rule = rules.getRule(i);
+            try {
+            	IDecisionRule irule = ((DecisionNode) rule).getRule();
+       		    if (irule  instanceof IAlertCounter) {
+       		    	//ok
+       		    } else {
+       		    	if (irule instanceof RuleInitAlertCounter) continue;
+       		    	ne++;
+       		    	System.out.println(rule);
+       		    }
+            } catch (Exception x) {
+                System.err.println(rule.toString() + x.getMessage());
+                ne++;
+            }
+     
+	    }
+	    System.err.println("Number of rules available\t"+ nr);
+	    System.err.println("Number of rules not implementing IAlertCounter\t"+ ne);	    
+	    assertEquals(0,ne);
+	}		
 }

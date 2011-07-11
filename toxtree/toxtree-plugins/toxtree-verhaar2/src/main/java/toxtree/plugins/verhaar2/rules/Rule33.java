@@ -22,7 +22,7 @@ package toxtree.plugins.verhaar2.rules;
 
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
-import toxTree.tree.rules.RuleAnySubstructure;
+import toxtree.plugins.verhaar2.rules.helper.RuleAnySubstructureCounter;
 import verhaar.query.FunctionalGroups;
 
 /**
@@ -31,7 +31,7 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule33 extends RuleAnySubstructure {
+public class Rule33 extends RuleAnySubstructureCounter {
 	protected String[][] entities = {
 			{"C=CC(C)X & X=Cl","C=CC(C)Cl"},      
 			{"C=CC(C)X & X=Br","C=CC(C)Br"},

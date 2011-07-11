@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2011  
-Contact: jeliazkova.nina@gmail.com
+Copyright Nina Jeliazkova (C) 2005-2006  
+Contact: nina@acad.bg
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,42 +19,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.plugins.verhaar2.rules;
 
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.cramer.Rule3MemberedHeterocycle;
 import toxTree.tree.rules.DefaultAlertCounter;
 import toxTree.tree.rules.IAlertCounter;
-
-
+import toxTree.tree.rules.RuleSubstructures;
+import verhaar.query.FunctionalGroups;
 
 /**
  * 
- * Possess a three-membered heterocyclic ring. Compounds containing an epoxide or azaridine function.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * Uses {@link verhaar.query.QueryAssociationBond} ro verify if the query compound
+ * has an ionic bond. It relies on the preprocessing by {@link toxTree.query.FunctionalGroups#associateIonic}
+ * which is called from {@link toxTree.query.MolAnalyser}.
+ * @author Nina Jeliazkova
+ * <b>Modified</b> 2005-10-30
  */
-public class Rule34 extends Rule3MemberedHeterocycle implements IAlertCounter  {
-
+public class RuleIonicGroups extends RuleSubstructures  implements IAlertCounter  {
+	protected IAlertCounter alertsCounter;
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 9151362364966315658L;
-	protected IAlertCounter alertsCounter;
-	
-	public Rule34() {
+	private static final long serialVersionUID = -9123772835964334753L;
+
+	public RuleIonicGroups() {
 		super();
-		id = "3.4";
-		setTitle("Possess a three-membered heterocyclic ring. Compounds containing an epoxide or azaridine function");
-		explanation = new StringBuffer();
-		explanation.append("<UL>");
-		explanation.append("<LI>");
-		explanation.append("O1C([*])C1[*]");
-		explanation.append("<LI>");
-		explanation.append("N1C([*])C1[*]");
-		explanation.append("</UL>");
+		setTitle("Not contain ionic groups");
+		id = "1.2";
+		examples[0] = "O=S(=O)([O-])NC1CCCCC1.[Na+]";
+		examples[1] = "CCCCCCCCCC";
+		addSubstructure(FunctionalGroups.ionicGroup());
 		editable = false;
 		alertsCounter = new DefaultAlertCounter();
+		
 	}
 	@Override
 	public String getImplementationDetails() {
@@ -63,18 +61,24 @@ public class Rule34 extends Rule3MemberedHeterocycle implements IAlertCounter  {
 		
 		return b.toString();
 	}
-	@Override
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		if (super.verifyRule(mol)) {
-			incrementCounter(mol);
-			return true;	
-		} else return false;
-	}
 	
 	@Override
 	public void incrementCounter(IAtomContainer mol) {
 		alertsCounter.incrementCounter(mol);
 		
+	}
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol, null);
+	}
+	@Override
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
+		boolean ok = !FunctionalGroups.hasGroup(mol,getSubstructure(0),selected);
+		if (ok) 	incrementCounter(mol);
+		return ok;
+	}
+	public boolean isImplemented() {
+		return true;
 	}
 
 }

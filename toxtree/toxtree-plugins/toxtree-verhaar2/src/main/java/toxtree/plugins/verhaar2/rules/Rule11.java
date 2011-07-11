@@ -23,7 +23,7 @@ package toxtree.plugins.verhaar2.rules;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.rules.RuleElements;
+import toxtree.plugins.verhaar2.rules.helper.RuleElementsCounter;
 
 /**
  * 
@@ -31,7 +31,7 @@ import toxTree.tree.rules.RuleElements;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule11 extends RuleElements {
+public class Rule11 extends RuleElementsCounter {
 
 	/**
 	 * 
