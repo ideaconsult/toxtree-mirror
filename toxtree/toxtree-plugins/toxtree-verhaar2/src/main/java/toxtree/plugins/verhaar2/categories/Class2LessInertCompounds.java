@@ -36,7 +36,7 @@ public class Class2LessInertCompounds extends DefaultCategory {
 	private static final long serialVersionUID = -6642389618393648862L;
 	public Class2LessInertCompounds() {
 		super("Class 2 (less inert compounds)",2);
-		setExplanation("Less inert compounds");
+		setExplanation("<h3>Less inert chemicals:</h3> chemicals that are not reactive, but are slightly more toxic than baseline toxicity due to hydrogen bond donor acidity");
 		setThreshold("");
 	}
 }
