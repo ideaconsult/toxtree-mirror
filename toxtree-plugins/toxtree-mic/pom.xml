@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-mic</artifactId>
-  <name>ToxMic</name>
+  <name>Toxtree module: ToxMic</name>
   <description>Structure Alerts for the in vivo micronucleus assay in rodents</description>
   <developers>
     	<developer>

@@ -11,7 +11,7 @@ Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen, SM
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-smartcyp</artifactId>
-  <name>SMARTCyp</name>
+  <name>Toxtree module: SMARTCyp</name>
   <developers>
     	<developer>
   		<id>vedina</id>

@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-lewis</artifactId>
-  <name>Lewis decision tree for P450 isoform selection</name>
+  <name>Toxtree modeule: Lewis decision tree for P450 isoform selection</name>
   <description>Lewis decision tree for P450  isoform selection</description>
   <dependencies>
   	<dependency>

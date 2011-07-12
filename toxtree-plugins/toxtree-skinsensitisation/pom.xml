@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-skinsensitisation</artifactId>
-  <name>toxtree-skinsensitisation</name>
+  <name>Toxtree module: Skin sensitisation alerts</name>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

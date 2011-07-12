@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-functional_groups</artifactId>
-  <name>Toxtree-Functional_groups</name>
+  <name>Toxtree module: Functional_groups</name>
   <description>Structure Alerts for the Functional Groups detection</description>
   <developers>
     	<developer>
