@@ -1,5 +1,5 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
+Copyright Nina Jeliazkova (C) 2005-2011  
 Contact: nina@acad.bg
 
 This program is free software; you can redistribute it and/or
@@ -19,11 +19,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.plugins.verhaar2.test;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.core.IDecisionRule;
-import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.DecisionNode;
 import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleInitAlertCounter;
@@ -31,31 +32,19 @@ import toxtree.plugins.verhaar2.VerhaarScheme2;
 
 public class VerhaarSchemeTest extends RulesTestCase {
 
-	public static void main(String[] args) {
-	}
 
-	public VerhaarSchemeTest() {
+	public VerhaarSchemeTest() throws Exception {
 		super();
-		try {
-			rules = new VerhaarScheme2();
-		} catch (DecisionMethodException x) {
-			fail();
-		}
-	}
+		rules = new VerhaarScheme2();
 
-	protected void setUp() throws Exception {
-		super.setUp();
 	}
-
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
+	@Test
 	public void testReflection() throws Exception  {
 		VerhaarScheme2 vs = (VerhaarScheme2) Class.forName("toxtree.plugins.verhaar2.VerhaarScheme2").newInstance();
 		vs.calculate(MoleculeFactory.makeBenzene());
 	}
-	public void testVerhaar() {
+	@Test
+	public void testVerhaar() throws Exception {
 		VerhaarScheme2 rulesNew = (VerhaarScheme2)objectRoundTrip(rules,"VerhaarScheme");
 		rules = rulesNew;
 		tryImplementedRules();
@@ -70,7 +59,7 @@ public class VerhaarSchemeTest extends RulesTestCase {
 	}
 	*/
 	@Test
-	public void testIsCounter() {
+	public void testIsCounter() throws Exception  {
 	    System.err.println();
 	    int nr = rules.getNumberOfRules();
 	    int ne = 0;
@@ -93,6 +82,6 @@ public class VerhaarSchemeTest extends RulesTestCase {
 	    }
 	    System.err.println("Number of rules available\t"+ nr);
 	    System.err.println("Number of rules not implementing IAlertCounter\t"+ ne);	    
-	    assertEquals(0,ne);
+	    Assert.assertEquals(0,ne);
 	}		
 }

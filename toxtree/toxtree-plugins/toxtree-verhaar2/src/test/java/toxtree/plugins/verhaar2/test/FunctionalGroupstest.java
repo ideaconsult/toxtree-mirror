@@ -21,12 +21,14 @@ package toxtree.plugins.verhaar2.test;
 
 import java.util.ArrayList;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
-import toxTree.exceptions.MolAnalyseException;
 import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 import toxTree.query.QueryAtomContainers;
@@ -37,77 +39,54 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-10-31
  */
-public class FunctionalGroupstest extends TestCase {
-	protected static TTLogger logger ;
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(FunctionalGroupstest.class);
-	}
+public class FunctionalGroupstest  {
+	protected static TTLogger logger = new TTLogger(FunctionalGroupstest.class);
 
-	/*
-	 * @see TestCase#setUp()
-	 */
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
 
-	/*
-	 * @see TestCase#tearDown()
-	 */
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
-	/**
-	 * Constructor for FunctionalGroupstest.
-	 * @param arg0
-	 */
-	public FunctionalGroupstest(String arg0) {
-		super(arg0);
-		logger = new TTLogger(this.getClass());
+	@Before
+	public void setUp() throws Exception {
 		TTLogger.configureLog4j(false);
 	}
 
-	public void groupTest(QueryAtomContainer query, String[] smiles, boolean[] answers) {
+	@After
+	public void tearDown() throws Exception {
+		
+	}
+
+	public void groupTest(QueryAtomContainer query, String[] smiles, boolean[] answers) throws Exception {
 		for (int i=0;i< smiles.length;i++) {
 			IAtomContainer mol = FunctionalGroups.createAtomContainer(smiles[i]);
-			try {
 				MolAnalyser.analyse(mol);
 				//System.err.println(FunctionalGroups.mapToString(mol));
 				boolean b = FunctionalGroups.hasGroup(mol,query);
 				
-				assertEquals(answers[i],b);
-			} catch (MolAnalyseException x) {
-				logger.error(x);
-				fail();
-			}
+				Assert.assertEquals(answers[i],b);
+
 		}
 	}
 	public void allowedGroupTest(QueryAtomContainers query, ArrayList ids, 
-					String[] smiles, boolean[] answers) {
+					String[] smiles, boolean[] answers) throws Exception  {
 		for (int i=0;i< smiles.length;i++) {
 			IAtomContainer mol = FunctionalGroups.createAtomContainer(smiles[i]);
-			try {
 				MolAnalyser.analyse(mol);
 				FunctionalGroups.markCHn(mol);
 				boolean b = FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,false);
 				
-				assertEquals(answers[i],b);
+				Assert.assertEquals(answers[i],b);
 				logger.debug(smiles[i],"\tOK");
-			} catch (MolAnalyseException x) {
-				logger.error(x);
-				fail();
-			}
+
 		}
 	}	
-	
-	public void testHalogenAtBetaFromUnsaturation() {
+	@Test
+	public void testHalogenAtBetaFromUnsaturation() throws Exception  {
 		String[] halogens = {"Cl","F","Br","I"};
 		QueryAtomContainer query = FunctionalGroups.halogenAtBetaFromUnsaturation(halogens);
 		String[] smiles = {"C1=CC=CC=C1CCl","c1ccccc1Cl","c1ccccc1CCl","CC=CCF","CC=CF","CC#CCI"};
 		boolean[] answers = {true,false,true,true,false,true};		
 		groupTest(query,smiles,answers);
 	}
-	public void testHalogen() {
+	@Test
+	public void testHalogen() throws Exception  {
 		String[] halogens = {"Cl","F","Br","I"};
 		QueryAtomContainer query = FunctionalGroups.halogen(halogens);
 		QueryAtomContainers q = new QueryAtomContainers();
@@ -122,32 +101,29 @@ public class FunctionalGroupstest extends TestCase {
 		boolean[] answers = {true};		
 		allowedGroupTest(q,ids,smiles,answers);
 	}
-	
-	public void testketone_a_b_unsaturated() {
+	@Test
+	public void testketone_a_b_unsaturated() throws Exception  {
 
 		QueryAtomContainer query = FunctionalGroups.ketone_a_b_unsaturated();
 		String[] smiles = {"CC(=O)C1=CC=CC=C1","c1ccccc1CCCC=CCCl"};
 		boolean[] answers = {true,true};		
 		groupTest(query,smiles,answers);
 	}
-
-	public void testPhenol() {
+	@Test
+	public void testPhenol() throws Exception  {
 
 		QueryAtomContainer query = FunctionalGroups.phenol();
 		String[] smiles = {"c1ccccc1","C1=CC=CC=C1O","O=N(=O)c1cccc(O)c1"};
 		boolean[] answers = {false,true,true};		
 		groupTest(query,smiles,answers);
 	}
-	public void testNitroPhenol() {
+	@Test
+	public void testNitroPhenol() throws Exception  {
 		QueryAtomContainer query = FunctionalGroups.phenol();
 		IAtomContainer mol = FunctionalGroups.makeNitroPhenol();
-		try {
 			MolAnalyser.analyse(mol);
-			assertTrue(FunctionalGroups.hasGroup(mol,query));
-		} catch (Exception x) {
-			x.printStackTrace();
-			fail();
-		}
+			Assert.assertTrue(FunctionalGroups.hasGroup(mol,query));
+
 	}	
 }
 
