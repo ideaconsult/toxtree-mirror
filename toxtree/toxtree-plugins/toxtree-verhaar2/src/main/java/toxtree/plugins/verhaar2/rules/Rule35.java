@@ -20,34 +20,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-
-import toxtree.plugins.verhaar2.rules.helper.RuleAnySubstructureCounter;
-import verhaar.query.FunctionalGroups;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
  * Possess activated C-C double/triple bonds. Compounds containing a polarizable substituent R1 (carbonyl, nitrile, amide, nitro, sulphone, etc) at an alpha position of a double or triple bond .
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule35 extends RuleAnySubstructureCounter {
-	protected String[][] entities = {
-			{"carbonyl","[*]C=CC(=O)O[*]"},
-			{"carbonyl","[*]C#CC(=O)O[*]"},			
-			{"ketone","[*]C=CC(=O)[*]"},
-			{"ketone","[*]C#CC(=O)[*]"},			
-			{"amide	","[*]C=CC(=O)N(C)C"},
-			{"amide	","[*]C#CC(=O)N(C)C"},			
-			{"nitrile","[*]C=CC#N"},
-			{"nitrile","[*]C#CC#N"},			
-			{"nitro","[*]C=C(N(=O)=O)[*]"},
-			{"nitro","[*]C#C(N(=O)=O)[*]"},
-			{"nitro","[*]C=C([N+](=O)[O-])[*]"},
-			{"nitro","[*]C#C([N+](=O)[O-])[*]"},
-			{"sulphone","[*]C=CS(=O)(=O)(*)"},
-			{"sulphone","[*]C#CS(=O)(=O)(*)"},
-			{"X","O=C1C=CC(=O)C=C1"}
+public class Rule35 extends RuleSMARTSSubstructureAmbit {
+	protected String[][] smarts = {
+			{"carbonyl","C=,#CC(=O)O"},
+			{"ketone","C=,#CC(=O)"},
+			{"amide	","C=,#CC(=O)N(C)C"},
+			{"nitrile","C=,#CC#N"},
+			{"nitro","C=,#C(N(=O)=O)"},
+			{"nitro(charged)","C=,#C([N+](=O)[O-])"},
+			{"sulphone","C=,#CS(=O)(=O)"},
+			{"X","O=C1C=CC(=O)C=C1"},
 	};		
 	/**
 	 * 
@@ -58,16 +48,15 @@ public class Rule35 extends RuleAnySubstructureCounter {
 		super();
 		id = "3.5";
 		setTitle("Possess activated C-C double/triple bonds. Compounds containing a polarizable substituent R1 (carbonyl, nitrile, amide, nitro, sulphone, etc) at an alpha position of a double or triple bond ");
-		explanation.append("[*]C=C[*]");
-		for (int i = 0; i < entities.length; i++) {
-			if (!entities[i][1].equals("")) {
-				logger.debug(entities[i][1]);
-				QueryAtomContainer q = FunctionalGroups.createAutoQueryContainer(entities[i][1]);
-				
-				q.setID(entities[i][0]);
-				addSubstructure(q);
-			}
+		explanation.append("<html><ul>");
+		for (String[] smart: smarts) try {
+			addSubstructure(smart[0],smart[1]);
+			explanation.append(String.format("<li>%s SMARTS: %s",smart[0],smart[1]));
+
+		} catch (Exception x) {
+			x.printStackTrace();
 		}
+		explanation.append("</ul></html>");
 		//TODO verify if entities are suffiecient for the conition
 		//add triple bond
 		examples[0] = "CCCC(=O)OC";

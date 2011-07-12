@@ -20,34 +20,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-
-import toxtree.plugins.verhaar2.rules.helper.RuleAnySubstructureCounter;
-import verhaar.query.FunctionalGroups;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
  * Be other compound with a (good) leaving group at an alpha position of a double or triple bond fragment.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule33 extends RuleAnySubstructureCounter {
-	protected String[][] entities = {
-			{"C=CC(C)X & X=Cl","C=CC(C)Cl"},      
-			{"C=CC(C)X & X=Br","C=CC(C)Br"},
-			{"C=CC(C)X & X=I","C=CC(C)I"},
-			{"C=CC(C)X & X=cyano","C=CC(C)C#N"},			
-			{"C=CC(C)X & X=hydroxyl","C=CC(C)O[H]"},
-			{"C=CC(C)X & X=ketone","C=CC(C)CC(O)=O"},			
-			{"C=CC(C)X & X=aldehyde","C=CC(C)CC([H])=O"},
-			{"C#CC(C)X & X=Cl","C#CC(C)Cl"},      
-			{"C#CC(C)X & X=Br","C#CC(C)Br"},
-			{"C#CC(C)X & X=I","C#CC(C)I"},
-			{"C#CC(C)X & X=cyano","C#CC(C)C#N"},			
-			{"C#CC(C)X & X=hydroxyl","C#CC(C)O[H]"},
-			{"C#CC(C)X & X=ketone","C#CC(C)CC(O)=O"},			
-			{"C#CC(C)X & X=aldehyde","C#CC(C)CC([H])=O"}		
-			
+public class Rule33 extends RuleSMARTSSubstructureAmbit {
+	protected String[][] smarts = {
+			{"C=,#CC(C)X & X=halogen","C=,#CC(C)[Cl,Br,I]"},      
+			{"C=,#CC(C)X & X=cyano","C=,#CC(C)C#N"},			
+			{"C=,#CC(C)X & X=hydroxyl","C=,#CC(C)[OH1]"},
+			{"C=,#CC(C)X & X=ketone","C=,#CC(C)CC(O)=O"},			
+			{"C=,#CC(C)X & X=aldehyde","C=,#CC(C)C[CH1]=O"},
 	};	
 
 	/**
@@ -66,14 +53,11 @@ public class Rule33 extends RuleAnySubstructureCounter {
 		examples[1] = "ClC(C)C=C";
 		examples[0] = "ClC(C)CC"; 
 		editable = false;
-		for (int i = 0; i < entities.length; i++) {
-			if (!entities[i][1].equals("")) {
-				logger.debug(entities[i][1]);
-				QueryAtomContainer q = FunctionalGroups.createAutoQueryContainer(entities[i][1]);
-				
-				q.setID(entities[i][0]);
-				addSubstructure(q);
-			}
+		
+		for (String[] smart: smarts) try {
+			addSubstructure(smart[0],smart[1]);
+		} catch (Exception x) {
+			x.printStackTrace();
 		}		
 	}
 
