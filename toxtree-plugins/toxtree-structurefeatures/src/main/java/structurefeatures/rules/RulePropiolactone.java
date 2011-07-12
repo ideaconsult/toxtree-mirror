@@ -1,8 +1,8 @@
 package structurefeatures.rules;
 
-import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import ambit2.smarts.query.SMARTSException;
-public class RulePropiolactone extends RuleSMARTSubstructureCDK {
+public class RulePropiolactone extends RuleSMARTSSubstructureAmbit {
 	private static final long serialVersionUID = 0;
 	public RulePropiolactone() {
 		super();		

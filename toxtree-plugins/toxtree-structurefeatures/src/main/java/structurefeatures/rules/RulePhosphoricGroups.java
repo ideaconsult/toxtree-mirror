@@ -1,8 +1,8 @@
 package structurefeatures.rules;
 
-import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import ambit2.smarts.query.SMARTSException;
-public class RulePhosphoricGroups extends RuleSMARTSubstructureCDK {
+public class RulePhosphoricGroups extends RuleSMARTSSubstructureAmbit {
 	private static final long serialVersionUID = 0;
 	public RulePhosphoricGroups() {
 		super();		

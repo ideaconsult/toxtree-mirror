@@ -7,6 +7,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-structurefeatures</artifactId>
-  <name>ToxFragments</name>
+  <name>Toxtree module: ToxFragments</name>
   <description>Structure features</description>
 </project>
