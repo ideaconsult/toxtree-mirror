@@ -63,6 +63,7 @@ public class Rule4 extends StructureAlert {
 
             super.initSingleSMARTS(super.smartsPatterns,"dithiocarbamates", "[NX3]C(=S)S");
             super.initSingleSMARTS(super.smartsPatterns,"triphenyl phosphate", "O=P(Oc1ccccc1)(Oc2ccccc2)Oc3ccccc3");
+            super.initSingleSMARTS(super.smartsPatterns,"organophosphorothionate esters", "[PX5]=S(O)(O)(O)");
             
 
             
