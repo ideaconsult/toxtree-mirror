@@ -14,8 +14,12 @@ public class Rule24Test extends AbstractRuleTest {
 	@Override
 	public void test() throws Exception {
 		   Object[][] answer = {
-	            	{"C1OC1",new Boolean(true)},
-	            	{"C1NC1",new Boolean(true)},
+	            	{"CCCN",Boolean.TRUE},
+	            	{"Cc1ccccc1CCN",Boolean.FALSE},
+	            	{"CCCN(C)",Boolean.FALSE},
+	            	{"COCCN",Boolean.FALSE},
+	            	{"COCCN(C)(C)",Boolean.FALSE},
+	            	{"CC(C)=CC=C(C)C",Boolean.FALSE}
 		    };
 		    
 		    ruleTest(answer); 		

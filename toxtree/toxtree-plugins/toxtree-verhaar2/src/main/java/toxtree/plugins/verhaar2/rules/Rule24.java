@@ -20,12 +20,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
+import java.util.List;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IElement;
+import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
-import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
-import verhaar.query.FunctionalGroups;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
@@ -33,18 +37,27 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova jeliazkova.nina@gmail.com
  * <b>Modified</b> July 12, 2011
  */
-public class Rule24 extends RuleOnlyAllowedSubstructures {
+public class Rule24 extends RuleSMARTSSubstructureAmbit {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5243019325725208478L;
-
+	protected String[][] smarts = {
+			{"Primary amine","A[NX3;H2]"} 
+	};		
+	
 	public Rule24() {
 		super();
 		setTitle("Be primary alkyl amines (containing only C,H,N)");
 		id = "2.4";
-		addSubstructure(FunctionalGroups.primaryAmine(true));
+
+		for (String[] smart: smarts) try {
+			addSubstructure(smart[0],smart[1]);
+		} catch (Exception x) {
+			x.printStackTrace();
+		}
+		
 		setExplanation("Be primary alkyl amines (containing only C,H,N)");
 		examples[0]= "OC(C)CCNC(C)CC";
 		examples[1] = "CCCCC";
@@ -62,6 +75,12 @@ public class Rule24 extends RuleOnlyAllowedSubstructures {
 		logger.info(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
+
+	    IMolecularFormula mfa = MolecularFormulaManipulator.getMolecularFormula(mol);
+	    List<IElement> elements = MolecularFormulaManipulator.getHeavyElements(mfa);
+	    for (IElement element:elements) 
+	    	if ("C".equals(element.getSymbol()) || "N".equals(element.getSymbol())) { //ok 
+	    	} else return false; //not only C & N 
 	    if (mf.isAliphatic()) 
 	    	return super.verifyRule(mol,selected);
 	    else return false;
