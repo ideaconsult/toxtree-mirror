@@ -75,23 +75,33 @@ public class ToxForestApp extends CompoundMethodApplication {
 	@Override
 	protected DataModule createDataModule() {
 		DecisionResultsList methods = new BatchDecisionResultsList();
+		
 		try {
-			//methods.addDecisionMethod(new DbSearchTree());
-			//methods.loadFromPlugins("verhaar.VerhaarScheme");
-			//methods.loadAllFromPlugins();
-			//methods.addDecisionMethod(new SMARTSTree());
-			//methods.loadFromPlugins("toxTree.tree.demo.SMARTSTree");
-			
-			//methods.loadAllFromPlugins();
 			Introspection.configureURLLoader(getClass().getClassLoader());
-			methods.loadFromPlugins("toxTree.tree.demo.SMARTSTree");
-			//methods.addDecisionMethod(new SicretRules());
 
-			//methods.addDecisionMethod(new CramerRules());
-				//methods.loadAllFromPlugins();
+
 		} catch (Exception x) {
 			x.printStackTrace();
 			logger.error(x);
+		}		
+		if (methods.size() == 0) {
+			try {
+				methods.add(Introspection.loadCreateObject("toxTree.tree.cramer.CramerRules"));
+				methods.add(Introspection.loadCreateObject("cramer2.CramerRulesWithExtensions"));
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.kroes.Kroes1Tree"));
+				methods.add(Introspection.loadCreateObject("sicret.SicretRules"));
+				methods.add(Introspection.loadCreateObject("mutant.BB_CarcMutRules"));
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.smartcyp.SMARTCYPPlugin"));
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.skinsensitisation.SkinSensitisationPlugin"));
+				methods.add(Introspection.loadCreateObject("com.molecularnetworks.start.BiodgeradationRules"));
+				methods.add(Introspection.loadCreateObject("verhaar.VerhaarScheme"));
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.verhaar2.VerhaarScheme2"));
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.func.FuncRules"));
+			} catch (Exception x) { 
+				
+				try {methods.add(methods.add(Introspection.loadCreateObject("toxTree.tree.demo.SMARTSTree"))); } catch (Exception e) {}
+			}
+			logger.warn("No decision trees found! Have you installed the application correctly?");
 		}		
 		return new ToxForestDataModule(mainFrame,null,methods);
 	}
