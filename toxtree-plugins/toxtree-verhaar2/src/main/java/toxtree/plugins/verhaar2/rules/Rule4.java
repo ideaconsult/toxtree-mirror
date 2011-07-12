@@ -35,6 +35,12 @@ public class Rule4 extends StructureAlert {
 	 */
 	private static final long serialVersionUID = 5579727497271403749L;
 
+	/**
+Finally both databases contain several groups of
+chemicals which should fall into Verhaar class 4 (chemicals acting
+via a specific (non-covalent) mechanism); typically these include
+the weak acid respiratory uncouplers.
+	 */
 	public Rule4() {
 		super();
 		id = "4";
@@ -58,12 +64,15 @@ public class Rule4 extends StructureAlert {
         try {
             super.initSingleSMARTS(super.smartsPatterns,"organotin", "C[Sn]");
             super.initSingleSMARTS(super.smartsPatterns,"DDT and analogues", "c1ccc(cc1)C(c2ccccc2)=,-C(Cl)Cl");
-            super.initSingleSMARTS(super.smartsPatterns,"pyrethroids", "O=C(O)C1C(C=C(C)C)C1(C)(C)");
+            super.initSingleSMARTS(super.smartsPatterns,"pyrethroids", "O=C(O)C1C(C=C)C1(C)(C)");
+            
+            super.initSingleSMARTS(super.smartsPatterns,"carbamates", "OC(=O)[NX3]");
             
 
             super.initSingleSMARTS(super.smartsPatterns,"dithiocarbamates", "[NX3]C(=S)S");
             super.initSingleSMARTS(super.smartsPatterns,"triphenyl phosphate", "O=P(Oc1ccccc1)(Oc2ccccc2)Oc3ccccc3");
-            super.initSingleSMARTS(super.smartsPatterns,"organophosphorothionate esters", "[PX5]=S(O)(O)(O)");
+            super.initSingleSMARTS(super.smartsPatterns,"organophosphorothionate esters", "P(O)(O)(O)(=S)");
+            super.initSingleSMARTS(super.smartsPatterns,"organophosphorothionate", "P(O)(O)(S)(=S)");
             
 
             
