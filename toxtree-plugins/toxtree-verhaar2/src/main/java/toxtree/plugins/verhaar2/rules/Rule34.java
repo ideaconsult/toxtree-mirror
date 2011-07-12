@@ -19,62 +19,51 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.plugins.verhaar2.rules;
 
-import org.openscience.cdk.interfaces.IAtomContainer;
-
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.cramer.Rule3MemberedHeterocycle;
 import toxTree.tree.rules.DefaultAlertCounter;
 import toxTree.tree.rules.IAlertCounter;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 
 
 /**
  * 
  * Possess a three-membered heterocyclic ring. Compounds containing an epoxide or azaridine function.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule34 extends Rule3MemberedHeterocycle implements IAlertCounter  {
+public class Rule34 extends RuleSMARTSSubstructureAmbit   {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 9151362364966315658L;
 	protected IAlertCounter alertsCounter;
+	protected String[][] smarts = {
+			{"epoxide","C1OC1"},
+			{"aziridine","C1NC1"},
+			{"3-membered heterocyclic ring","[r3;!$([#6])]"},
+	};
 	
 	public Rule34() {
 		super();
 		id = "3.4";
 		setTitle("Possess a three-membered heterocyclic ring. Compounds containing an epoxide or azaridine function");
 		explanation = new StringBuffer();
-		explanation.append("<UL>");
-		explanation.append("<LI>");
-		explanation.append("O1C([*])C1[*]");
-		explanation.append("<LI>");
-		explanation.append("N1C([*])C1[*]");
-		explanation.append("</UL>");
+
 		editable = false;
 		alertsCounter = new DefaultAlertCounter();
-	}
-	@Override
-	public String getImplementationDetails() {
-		StringBuffer b = new StringBuffer();
-		b.append(alertsCounter.getImplementationDetails());
 		
-		return b.toString();
+		explanation.append("<html><ul>");
+		for (String[] smart: smarts) try {
+			addSubstructure(smart[0],smart[1]);
+			explanation.append(String.format("<li>%s SMARTS: %s",smart[0],smart[1]));
+
+		} catch (Exception x) {
+			x.printStackTrace();
+		}
+		explanation.append("</ul></html>");		
+		setExamples(new String[] {"C1CC1","C1CN1CCC"});
 	}
-	@Override
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		if (super.verifyRule(mol)) {
-			incrementCounter(mol);
-			return true;	
-		} else return false;
-	}
-	
-	@Override
-	public void incrementCounter(IAtomContainer mol) {
-		alertsCounter.incrementCounter(mol);
-		
-	}
+
 
 }

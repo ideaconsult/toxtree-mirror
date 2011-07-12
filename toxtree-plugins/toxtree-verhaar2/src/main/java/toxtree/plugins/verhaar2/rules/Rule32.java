@@ -20,26 +20,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-
-import toxtree.plugins.verhaar2.rules.helper.RuleAnySubstructureCounter;
-import verhaar.query.FunctionalGroups;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
  * Possess benzylic activation. Compounds with a (good) leaving group at an alpha position of an aromatic bond.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule32 extends RuleAnySubstructureCounter {
-	protected String[][] entities = {
-			{"c1ccc(cc1)C([*])X & X=Cl","c1ccc(cc1)C([*])Cl"},      
-			{"c1ccc(cc1)C([*])X & X=Br","c1ccc(cc1)C([*])Br"},
-			{"c1ccc(cc1)C([*])X & X=I","c1ccc(cc1)C([*])I"},
-			{"c1ccc(cc1)C([*])X & X=cyano","c1ccc(cc1)C([*])C#N"},
-			{"c1ccc(cc1)C([*])X & X=hydroxyl","c1ccc(cc1)C([*])O[H]"},
-			{"c1ccc(cc1)C([*])X & X=ketone","c1ccc(cc1)C([*])C(C)=O"},
-			{"c1ccc(cc1)C([*])X & X=aldehyde","c1ccc(cc1)C([*])C([H])=O"},
+public class Rule32 extends RuleSMARTSSubstructureAmbit {
+	protected String[][] smarts = {
+			{"c1ccc(cc1)C([*])X & X=Cl","a:a[CX4][Cl,Br,I]"},      
+			{"c1ccc(cc1)C([*])X & X=cyano","a:a[CX4]C#N"},
+			{"c1ccc(cc1)C([*])X & X=hydroxyl","a:a[CX4][OH1]"},
+			{"c1ccc(cc1)C([*])X & X=ketone","a:a[CX4]C(C)=O"},
+			{"c1ccc(cc1)C([*])X & X=aldehyde","a:a[CX4][CH1]=O"},
 	};		
 	/**
 	 * 
@@ -56,14 +51,11 @@ public class Rule32 extends RuleAnySubstructureCounter {
 		examples[0] = "c1ccc(cc1)C(C)C";
 		editable = false;
 		
-		for (int i = 0; i < entities.length; i++) {
-			if (!entities[i][1].equals("")) {
-				logger.debug(entities[i][1]);
-				QueryAtomContainer q = FunctionalGroups.createAutoQueryContainer(entities[i][1]);
-				
-				q.setID(entities[i][0]);
-				addSubstructure(q);
-			}
+		
+		for (String[] smart: smarts) try {
+			addSubstructure(smart[0],smart[1]);
+		} catch (Exception x) {
+			x.printStackTrace();
 		}		
 	}
 
