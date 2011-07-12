@@ -8,7 +8,7 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-verhaar2</artifactId>
   <version>2.4.1</version>
-  <name>Modified Verhaar scheme</name>
+  <name>Toxtree module: Modified Verhaar scheme</name>
  <dependencies>
   	<dependency>
   		<groupId>toxtree</groupId>

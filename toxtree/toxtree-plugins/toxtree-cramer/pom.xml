@@ -7,5 +7,5 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-cramer</artifactId>
-  <name>Cramer rules</name>
+  <name>Toxtree module: Cramer rules</name>
 </project>

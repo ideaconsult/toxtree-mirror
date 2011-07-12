@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-sicret</artifactId>
-  <name>Skin irritation prediction rules</name>
+  <name>Toxtree module: Skin irritation prediction rules</name>
   <dependencies>
   	<dependency>
   		<groupId>toxtree</groupId>
