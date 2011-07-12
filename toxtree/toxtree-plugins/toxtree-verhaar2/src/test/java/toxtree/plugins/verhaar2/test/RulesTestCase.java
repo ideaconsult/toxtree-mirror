@@ -31,8 +31,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -46,36 +49,31 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
-import toxTree.tree.DecisionNode;
-import toxTree.tree.rules.IAlertCounter;
 
-public abstract class RulesTestCase extends TestCase {
+public abstract class RulesTestCase  {
 	public static TTLogger logger = new TTLogger(RulesTestCase.class);
 	protected IDecisionMethod rules = null;
-
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(RulesTestCase.class);
-	}
-
-	public RulesTestCase() {
-		super();
+	
+	
+	@BeforeClass
+	public static void setUpClass() throws Exception {
 		TTLogger.configureLog4j(false);
 	}
+	
+	@Before
+	public void setUp() throws Exception {
 
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
 	}
 
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
+	@After
+	public void tearDown() throws Exception {
+		
 	}
 	protected boolean verifyRule(Molecule mol,int id) throws DecisionMethodException {
 		return rules.getRule(id).verifyRule(mol);
 	}
 	protected void classify(IAtomContainer mol,IDecisionMethod rules, int categories){
-		assertEquals(rules.getCategories().size(),categories);
+		Assert.assertEquals(rules.getCategories().size(),categories);
 		IDecisionResult result = rules.createDecisionResult();
 		result.setDecisionMethod(rules);
 		try {
@@ -83,7 +81,7 @@ public abstract class RulesTestCase extends TestCase {
 			System.out.println(result.toString());
 		} catch (DecisionResultException x) {
 			//if (rules != null) x.printStackTrace();
-			assertTrue(rules == null);
+			Assert.assertTrue(rules == null);
 		}
 		try {
 		    System.out.println(result.explain(true));
@@ -110,10 +108,11 @@ public abstract class RulesTestCase extends TestCase {
 		    if (!r1 || r2) throw new DecisionMethodException(message);
 		    else return true;
 	}
-	public void testImplementedRules() {
+	@Test
+	public void testImplementedRules() throws Exception {
 		tryImplementedRules();
 	}
-	public void tryImplementedRules() {
+	public void tryImplementedRules()  throws Exception {
 	    int nr = rules.getNumberOfRules();
 	    int ne = 0;
 	    int ni = 0;
@@ -121,6 +120,7 @@ public abstract class RulesTestCase extends TestCase {
 	    int na = 0;
 	    for (int i = 0; i < nr; i++) {
 	        IDecisionRule rule = rules.getRule(i);
+	        System.out.println(rule);
 	        if (rule.isImplemented()) {
 	            try {
 	                if (goTestRule(rule)) {
@@ -145,12 +145,13 @@ public abstract class RulesTestCase extends TestCase {
 	    assertEquals(nr-2,ni);
 	    assertEquals(nr-2,ok);
 	    */
-	    assertEquals(nr,ni);
-	    assertEquals(nr,ok);	    
-	    assertEquals(0,ne);
+	    Assert.assertEquals(nr,ni);
+	    Assert.assertEquals(nr,ok);	    
+	    Assert.assertEquals(0,ne);
 	}	
 
-	public void testHasExamples() {
+	@Test
+	public void testHasExamples() throws Exception {
 	    System.err.println();
 	    int nr = rules.getNumberOfRules();
 	    int ne = 0;
@@ -171,18 +172,19 @@ public abstract class RulesTestCase extends TestCase {
 	    }
 	    System.err.println("Number of rules available\t"+ nr);
 	    System.err.println("Number of missing examples\t"+ ne);	    
-	    assertEquals(0,ne);
+	    Assert.assertEquals(0,ne);
 	}	
 	
+	@Test
     public void testHasUnreachableRules() {
     	IDecisionRuleList unvisited = rules.hasUnreachableRules();
     	if (unvisited != null) {
     		System.err.println("Unvisited rules:");
     		System.err.println(unvisited);
     	}
-    	assertNull(unvisited);
+    	Assert.assertNull(unvisited);
     }
-	protected Object objectRoundTrip(Object rule,String filename) {		
+	protected Object objectRoundTrip(Object rule,String filename) throws Exception {		
 		try {
 			//writing
 			File f = File.createTempFile(filename,"test");
@@ -196,17 +198,14 @@ public abstract class RulesTestCase extends TestCase {
 			is.close();
 			f.delete();
 			System.out.println(rule.toString());
-			assertEquals(rule,rule2);
+			Assert.assertEquals(rule,rule2);
 			return rule2;
 			
 		} catch (IOException x) {
-			x.printStackTrace();
-			fail();
+			throw x;
 		} catch (ClassNotFoundException x) {
-			x.printStackTrace();
-			fail();			
+			throw x;			
 		}
-		return null;
 	}	
 	
 }

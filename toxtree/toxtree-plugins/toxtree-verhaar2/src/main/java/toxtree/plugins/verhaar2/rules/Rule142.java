@@ -30,8 +30,8 @@ import verhaar.query.FunctionalGroups;
 
 /**
  * Monocyclic compounds substituted with halogens.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
 public class Rule142 extends RuleOnlyAllowedSubstructuresCounter {
 	protected static transient String[] halogens = {"Cl","Br","F","I"};

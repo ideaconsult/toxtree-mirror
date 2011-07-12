@@ -32,8 +32,8 @@ import verhaar.query.FunctionalGroups;
 /**
  * 
  * Acyclic compound NOT containing halogen at beta-positions from unsaturations (e.g. allylic / propargilyc halogens).
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
 public class Rule141 extends RuleIsOpenChain implements IAlertCounter {
 	protected IAlertCounter alertsCounter;

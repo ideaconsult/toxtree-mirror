@@ -25,8 +25,8 @@ import toxtree.plugins.verhaar2.rules.helper.RuleElementsCounter;
 /**
  * 
  * Consists only of C,H,N,O,S,halogens (exluding I).
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
 public class Rule01 extends RuleElementsCounter {
 

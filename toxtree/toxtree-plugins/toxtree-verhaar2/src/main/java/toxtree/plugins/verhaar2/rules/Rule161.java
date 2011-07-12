@@ -30,8 +30,8 @@ import toxtree.plugins.verhaar2.rules.helper.RuleOnlyAllowedSubstructuresCounter
 /**
  * 
  * Aliphatic secondary or tertiary amines.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
 public class Rule161 extends RuleOnlyAllowedSubstructuresCounter {
 
