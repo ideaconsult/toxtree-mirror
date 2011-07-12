@@ -45,7 +45,7 @@ public class LookupCompoundAction extends DataModuleAction {
 	 * 
 	 */
 	private static final long serialVersionUID = -5916869751317470014L;
-
+	protected String selectedItem = null;
 	public LookupCompoundAction(DataModule module) {
 		this(module,"Find");
 	}
@@ -77,8 +77,11 @@ public class LookupCompoundAction extends DataModuleAction {
     		IAtomContainer a = module.getDataContainer().getMolecule();
     		Iterator e = a.getProperties().keySet().iterator();
     		while (e.hasNext()) {
-    			box.addItem(e.next().toString());
+    			String key = e.next().toString();
+    			box.addItem(key);
+    			if ((selectedItem != null) && key.equals(selectedItem)) box.setSelectedIndex(box.getItemCount()-1);
     		}
+    		
     	} catch (Exception x) {
     		box.addItem(AmbitCONSTANTS.CASRN);	
     		box.addItem(AmbitCONSTANTS.NAMES);
