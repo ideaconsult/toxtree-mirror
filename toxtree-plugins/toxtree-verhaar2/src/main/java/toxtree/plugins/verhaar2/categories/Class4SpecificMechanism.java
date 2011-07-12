@@ -40,7 +40,7 @@ public class Class4SpecificMechanism extends DefaultCategory {
 	 */
 	public Class4SpecificMechanism() {
 		super("Class 4 (compounds and groups of compounds acting by a specific mechanism)",4);
-		setExplanation("<html><hr>Specifically acting chemicals:</h3> chemicals that interact with receptor biomolecules. <br>Examples : <ul><li>DDT and analogues<li>(dithio) carbamates<li>organotin compounds<li>pyrethroids<li>organophosphorothionate esters</ul></html>");
+		setExplanation("<html><h3>Specifically acting chemicals:</h3> chemicals that interact with receptor biomolecules. <br>Examples : <ul><li>DDT and analogues<li>(dithio) carbamates<li>organotin compounds<li>pyrethroids<li>organophosphorothionate esters</ul></html>");
 		setThreshold("");
 	}
 

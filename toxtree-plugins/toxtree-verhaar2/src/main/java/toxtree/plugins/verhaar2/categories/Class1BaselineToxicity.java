@@ -36,7 +36,7 @@ public class Class1BaselineToxicity extends DefaultCategory {
 	private static final long serialVersionUID = -2345773088272297347L;
 	public Class1BaselineToxicity() {
 		super("Class 1 (narcosis or baseline toxicity)",1);
-		setExplanation("<h3>Inert chemicals:</h3> chemicals that are not reactive, and that do not interact with specific receptors within an organism.");
+		setExplanation("<html><h3>Inert chemicals:</h3> chemicals that are not reactive, and that do not interact with specific receptors within an organism.</html>");
 		setThreshold("");
 	}
 }
