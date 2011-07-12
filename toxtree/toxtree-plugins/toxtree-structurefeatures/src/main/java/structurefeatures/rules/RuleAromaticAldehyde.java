@@ -1,9 +1,9 @@
 package structurefeatures.rules;
 
 
-import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import ambit2.smarts.query.SMARTSException;
-public class RuleAromaticAldehyde extends RuleSMARTSubstructureCDK {
+public class RuleAromaticAldehyde extends RuleSMARTSSubstructureAmbit {
 	private static final long serialVersionUID = 0;
 	public RuleAromaticAldehyde() {
 		super();		
