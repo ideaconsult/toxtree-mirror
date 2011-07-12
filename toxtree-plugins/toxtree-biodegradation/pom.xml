@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-biodegradation</artifactId>
-  <name>Toxtree module : START Structural Alerts for Reactivity in Toxtree (biodegradation)</name>
+  <name>Toxtree module: START Structural Alerts for Reactivity in Toxtree (biodegradation)</name>
   <organization>
   	<name>Molecular Networks</name>
   	<url>www.molnetworks.de</url>
