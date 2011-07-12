@@ -25,8 +25,8 @@ import toxTree.tree.rules.StructureAlert;
 /**
  * 
  * Compounds acting by a specific mechanism. 
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
 public class Rule4 extends StructureAlert {
 
@@ -57,8 +57,11 @@ public class Rule4 extends StructureAlert {
         setContainsAllSubstructures(false);
         try {
             super.initSingleSMARTS(super.smartsPatterns,"organotin", "C[Sn]");
-            super.initSingleSMARTS(super.smartsPatterns,"DDT", "c1cc(ccc1C(c2ccc(cc2)Cl)C(Cl)(Cl)Cl)Cl");
-            super.initSingleSMARTS(super.smartsPatterns,"dithiocarbamates", "*-N[H]C(=S)S-*");
+            super.initSingleSMARTS(super.smartsPatterns,"DDT and analogues", "c1ccc(cc1)C(c2ccccc2)=,-C(Cl)Cl");
+            super.initSingleSMARTS(super.smartsPatterns,"pyrethroids", "O=C(O)C1C(C=C(C)C)C1(C)(C)");
+            
+
+            super.initSingleSMARTS(super.smartsPatterns,"dithiocarbamates", "[NX3]C(=S)S");
             super.initSingleSMARTS(super.smartsPatterns,"triphenyl phosphate", "O=P(Oc1ccccc1)(Oc2ccccc2)Oc3ccccc3");
             
 
@@ -66,6 +69,7 @@ public class Rule4 extends StructureAlert {
         } catch (Exception x) {
             logger.error(x);
         }
+        setExamples(new String[] {"NCS","Clc1ccc(cc1)C(c2ccc(Cl)cc2)C(Cl)(Cl)Cl"});
 	}
 
 	/* (non-Javadoc)
