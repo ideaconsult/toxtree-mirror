@@ -21,21 +21,24 @@ package toxtree.plugins.verhaar2.rules;
 
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
 import toxtree.plugins.verhaar2.rules.helper.RuleOnlyAllowedSubstructuresCounter;
+import ambit2.smarts.SmartsManager;
+import ambit2.smarts.query.SMARTSException;
+import ambit2.smarts.query.SmartsPatternAmbit;
 
 /**
  * 
  * Aliphatic alcohols but not allylic/propargylic alcohols.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
 public class Rule152 extends RuleOnlyAllowedSubstructuresCounter {
-	QueryAtomContainer allyl = null;
+	protected transient SmartsPatternAmbit allyl = null;
+
 	/**
 	 * 
 	 */
@@ -50,9 +53,9 @@ public class Rule152 extends RuleOnlyAllowedSubstructuresCounter {
 		ids.add(FunctionalGroups.CH);
 		ids.add(FunctionalGroups.CH2);
 		ids.add(FunctionalGroups.CH3);		
-		allyl = FunctionalGroups.createQuery("[H]C([H])=C([H])C([H])([H])","allyl");
 		examples[0] = "C#CCO"; //propargyl alcohol ;  H2C=CH-CH2OH  - allyl alcohol   
 		examples[1] = "CCCCC(O)CC";
+	
 		editable = false;
 	}
 	@Override
@@ -60,28 +63,38 @@ public class Rule152 extends RuleOnlyAllowedSubstructuresCounter {
 			throws DecisionMethodException {
 		return verifyRule(mol,null);
 	}
+	protected boolean isAllyl(IAtomContainer mol) throws SMARTSException {
+		if (allyl==null) allyl = new SmartsPatternAmbit("C=C");
+		return allyl.match(mol)>0;
+	}
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 		logger.info(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
-	    if (mf.isAliphatic())  {
-	    	logger.debug("Aliphatic\tYES");
-			if (super.verifyRule(mol,selected)) {
-				if (mf.isAcetylenic()) {
-					logger.debug("Propargylic alcohol\tYES");
+	    try {
+		    if (mf.isAliphatic())  {
+		    	logger.debug("Aliphatic\tYES");
+				if (super.verifyRule(mol,selected)) {
+					if (mf.isAcetylenic()) {
+						logger.debug("Propargylic alcohol\tYES");
+						return false;
+					} else if (isAllyl(mol)) {
+						logger.debug("Allylic alcohol\tYES");
+						return false;
+					} else return true;
+				} else {
+					logger.debug("Alcohol\tNO");
 					return false;
-				} else if (FunctionalGroups.hasGroup(mol,allyl,selected)) {
-					logger.debug("Allylic alcohol\tYES");
-					return false;
-				} else return true;
-			} else {
-				logger.debug("Alcohol\tNO");
-				return false;
-			}
-	    } else {
-			logger.debug("Aliphatic\tNO");
-	    	return false; 
+				}
+		    } else {
+				logger.debug("Aliphatic\tNO");
+		    	return false; 
+		    }
+	    } catch (DecisionMethodException x) {
+	    	throw x;
+	    } catch (Exception x) {
+	    	throw new DecisionMethodException(x);
 	    }
 	}
 	/* (non-Javadoc)

@@ -29,8 +29,8 @@ import toxTree.tree.rules.RuleMolecularMassRange;
 
 /**
  * Have a molecular mass (MW) not more than 600 Daltons.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
 public class Rule03 extends RuleMolecularMassRange  implements IAlertCounter  {
 
