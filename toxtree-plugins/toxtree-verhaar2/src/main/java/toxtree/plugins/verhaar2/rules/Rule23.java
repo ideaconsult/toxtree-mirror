@@ -53,6 +53,10 @@ public class Rule23 extends Rule21 {
 		setAnalyzeOnlyRingsWithFlagSet(true);
 	}
 	
+	@Override
+	protected String[] getHalogens() {
+		return new String[] {"Cl"};
+	}
 	protected QueryAtomContainer createMainStructure() {
 		//QueryAtomContainer q = FunctionalGroups.createAutoQueryContainer(MoleculeFactory.makeBenzene());
 		//q.setID("benzene");

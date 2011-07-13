@@ -30,13 +30,13 @@ import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
  */
 public class Rule35 extends RuleSMARTSSubstructureAmbit {
 	protected String[][] smarts = {
-			{"carbonyl","C=,#CC(=O)O"},
-			{"ketone","C=,#CC(=O)"},
-			{"amide	","C=,#CC(=O)N(C)C"},
-			{"nitrile","C=,#CC#N"},
-			{"nitro","C=,#C(N(=O)=O)"},
-			{"nitro(charged)","C=,#C([N+](=O)[O-])"},
-			{"sulphone","C=,#CS(=O)(=O)"},
+			{"carbonyl","[C!R]=,#[C!R]C(=O)O"},
+			{"ketone","[C!R]=,#[C!R]C(=O)"},
+			{"amide	","[C!R]=,#[C!R]C(=O)[N!R]([C!R])[C!R]"},
+			{"nitrile","[C!R]=,#[C!R]C#N"},
+			{"nitro","[C!R]=,#[C!R](N(=O)=O)"},
+			{"nitro(charged)","[C!R]=,#[C!R]([N+](=O)[O-])"},
+			{"sulphone","[C!R]=,#[C!R]S(=O)(=O)"},
 			{"X","O=C1C=CC(=O)C=C1"},
 	};		
 	/**

@@ -30,6 +30,7 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova jeliazkova.nina@gmail.com
  * <b>Modified</b> July 12, 2011
  */
+//TODO exclude aryl substituents
 public class Rule25 extends Rule21 {
 
 	/**
@@ -48,6 +49,10 @@ public class Rule25 extends Rule21 {
 		
 		setMaxHalogens(2);
 		setMaxNitroGroups(0);
+	}
+	@Override
+	protected String[] getHalogens() {
+		return new String[] {"Cl"};
 	}
 	protected QueryAtomContainer createMainStructure() {
 		return FunctionalGroups.pyridine();

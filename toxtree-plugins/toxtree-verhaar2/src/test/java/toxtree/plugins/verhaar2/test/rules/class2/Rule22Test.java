@@ -36,14 +36,20 @@ public class Rule22Test extends AbstractRuleTest {
 	public void test() throws Exception {
 	    Object[][] answer = {
 	    		//aniline with subst.
-            	{"Nc1ccccc1[N+](=O)[O-]",new Boolean(true)},
-            	{"Nc1cccc(Cl)c1",new Boolean(true)},
-            	{"Nc1ccc(Cl)c(Cl)c1",new Boolean(true)},
-            	{"Nc1cc(Cl)c(Cl)c(Cl)c1",new Boolean(true)},
-            	{"Nc1cc(Cl)c(Cl)c(Cl)c1[N+](=O)[O-]",new Boolean(true)},
-            	{"Nc1cccc(CCC)c1",new Boolean(true)},
+            	{"Nc1ccccc1[N+](=O)[O-]",Boolean.TRUE},
+            	{"Nc1cccc(Cl)c1",Boolean.TRUE},
+            	{"Nc1ccc(Cl)c(Cl)c1",Boolean.TRUE},
+            	{"Nc1cc(Cl)c(Cl)c(Cl)c1",Boolean.TRUE},
+            	{"Nc1cc(Cl)c(Cl)c(Cl)c1[N+](=O)[O-]",Boolean.TRUE},
+            	{"Nc1cccc(CCC)c1",Boolean.TRUE},
             	//
-            	{"Nc1ccccc1",new Boolean(false)},
+            	
+            	//chlorine subst
+            	{"Nc1c(C(F)(F)F)cc(F)cc1",Boolean.FALSE},
+
+            	//CCN(CC)c1ccccc1  true
+
+            	
 	    };
 	    
 	    ruleTest(answer); 

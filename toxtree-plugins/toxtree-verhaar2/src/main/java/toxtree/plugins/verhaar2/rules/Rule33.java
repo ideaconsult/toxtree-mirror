@@ -30,11 +30,11 @@ import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
  */
 public class Rule33 extends RuleSMARTSSubstructureAmbit {
 	protected String[][] smarts = {
-			{"C=,#CC(C)X & X=halogen","C=,#CC(C)[Cl,Br,I]"},      
-			{"C=,#CC(C)X & X=cyano","C=,#CC(C)C#N"},			
-			{"C=,#CC(C)X & X=hydroxyl","C=,#CC(C)[OH1]"},
-			{"C=,#CC(C)X & X=ketone","C=,#CC(C)CC(O)=O"},			
-			{"C=,#CC(C)X & X=aldehyde","C=,#CC(C)C[CH1]=O"},
+			{"C=,#CC(C)X & X=halogen","C=,#CC([C;!R])[Cl,Br,I]"},      
+			{"C=,#CC(C)X & X=cyano","C=,#CC([C;!R])[C;!R]#N"},			
+			{"C=,#CC(C)X & X=hydroxyl","C=,#CC([C;!R])[OH1;!R]"},
+			{"C=,#CC(C)X & X=ketone","C=,#CC([C;!R])[C;!R]C(O)=O"},			
+			{"C=,#CC(C)X & X=aldehyde","C=,#CC([C;!R])[C;!R][CH1]=O"},
 	};	
 
 	/**

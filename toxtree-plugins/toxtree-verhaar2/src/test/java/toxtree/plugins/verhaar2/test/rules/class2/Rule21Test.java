@@ -39,12 +39,13 @@ public class Rule21Test extends AbstractRuleTest {
 	
 	    Object[][] answer = {
 
-	            	{"c1ccccc1(O)",new Boolean(true)},
-	            	{"c1ccc(Cl)cc1(O)",new Boolean(true)},
-	            	{"Clc1cc(O)c(Cl)c(Cl)c1(Cl)",new Boolean(false)},
-	            	{"O=[N+]([O-])c1cc(O)cc(c1)[N+](=O)[O-]",new Boolean(false)},
+	            	{"c1ccccc1(O)",Boolean.TRUE},
+	            	{"c1ccc(Cl)cc1(O)",Boolean.TRUE},
+	       
+	            	{"Clc1cc(O)c(Cl)c(Cl)c1(Cl)",Boolean.FALSE},
+	            	{"O=[N+]([O-])c1cc(O)cc(c1)[N+](=O)[O-]",Boolean.FALSE},
 
-	            	{"Oc1ccc([N+](=O)[O-])c([N+](=O)[O-])c1[N+](=O)[O-]",new Boolean(false)},
+	            	{"Oc1ccc([N+](=O)[O-])c([N+](=O)[O-])c1[N+](=O)[O-]",Boolean.FALSE},
 	            	
 	           
 	    };

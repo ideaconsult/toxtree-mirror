@@ -15,21 +15,24 @@ public class Rule33Test extends AbstractRuleTest {
 	public void test() throws Exception {
 
 	    Object[][] answer = {
-            	{"C=CC(C)Cl",new Boolean(true)},
-            	{"C=CC(C)Br",new Boolean(true)},
-            	{"C=CC(C)I",new Boolean(true)},
-            	{"C=CC(C)C#N",new Boolean(true)},
-            	{"C=CC(C)O",new Boolean(true)},
-            	{"C=CC(C)CC(O)=O",new Boolean(true)},
-            	{"C=CC(C)CC=O",new Boolean(true)},
+            	{"C=CC(C)Cl",Boolean.TRUE},
+            	{"C=CC(C)Br",Boolean.TRUE},
+            	{"C=CC(C)I",Boolean.TRUE},
+            	{"C=CC(C)C#N",Boolean.TRUE},
+            	{"C=CC(C)O",Boolean.TRUE},
+            	{"C=CC(C)CC(O)=O",Boolean.TRUE},
+            	{"C=CC(C)CC=O",Boolean.TRUE},
             	
-            	{"C#CC(C)Cl",new Boolean(true)},
-            	{"C#CC(C)Br",new Boolean(true)},
-            	{"C#CC(C)I",new Boolean(true)},
-            	{"C#CC(C)C#N",new Boolean(true)},
-            	{"C#CC(C)O",new Boolean(true)},
-            	{"C#CC(C)CC(O)=O",new Boolean(true)},
-            	{"C#CC(C)CC=O",new Boolean(true)},            	
+            	{"C#CC(C)Cl",Boolean.TRUE},
+            	{"C#CC(C)Br",Boolean.TRUE},
+            	{"C#CC(C)I",Boolean.TRUE},
+            	{"C#CC(C)C#N",Boolean.TRUE},
+            	{"C#CC(C)O",Boolean.TRUE},
+            	{"C#CC(C)CC(O)=O",Boolean.TRUE},
+            	{"C#CC(C)CC=O",Boolean.TRUE},     
+            	
+            	{"C1CCCC(C#C)(O)C1",Boolean.FALSE},
+            	 
 	    };
 	    
 	    ruleTest(answer); 		

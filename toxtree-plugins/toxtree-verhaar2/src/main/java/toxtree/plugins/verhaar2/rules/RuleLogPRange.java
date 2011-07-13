@@ -50,7 +50,7 @@ public class RuleLogPRange extends RuleDescriptorRange implements IAlertCounter 
 		id = "0.2";
 		setDescriptor(new XLogPDescriptor());
 		setMaxValue(6.0);
-		setMinValue(0.0);
+		setMinValue(-0.5);
 		try {
 			getDescriptor().setParameters(params);
 		} catch (CDKException x) {

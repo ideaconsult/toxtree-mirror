@@ -67,7 +67,7 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements IAlertCount
 		examples[1] = "O=[N+]([O-])c1cccc(O)c1"; //1 nitro
 		addSubstructure(FunctionalGroups.nitro1double());
 		addSubstructure(FunctionalGroups.nitro2double());
-		addSubstructure( FunctionalGroups.halogen(halogens));
+		addSubstructure( FunctionalGroups.halogen(getHalogens()));
 		if (mainStructure != null)
 			addSubstructure(mainStructure);
 		
@@ -83,6 +83,9 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements IAlertCount
 		
 		editable = false;
 		
+	}
+	protected String[] getHalogens() {
+		 return new String[]{"Cl","Br","F"};
 	}
 	protected QueryAtomContainer createMainStructure() {
 		return  FunctionalGroups.phenol();
