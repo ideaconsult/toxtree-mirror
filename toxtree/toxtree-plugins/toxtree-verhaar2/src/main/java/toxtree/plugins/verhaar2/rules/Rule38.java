@@ -78,10 +78,10 @@ public class Rule38 extends RuleSMARTSSubstructureAmbit {
 			{"sulphiric esters","[O;H1]S(=O)(=O)[OX2H]"},
 			{"cyclic sulphonic esters","[C;R][S;R]([O;R])(=O)(=O)"},
 			{"cyclic sulphuric esters","[O;R][S;R]([O;R])(=O)(=O)"},
-			{"alpha haloethers","OC([Cl,Br,F,I])"},
-			{"beta haloethers","OCC([Cl,Br,F,I])"},
-			{"nitrogen mustards","NCC([Cl,F,Br,I])"},
-			{"sulphur mustards","SCC([Cl,F,Br,I])"},
+			{"alpha haloethers","[O;!R]C([Cl,Br,F,I])[!$([Cl,Br,F,I])]"},
+			{"beta haloethers","[O;!R]CC([Cl,Br,F,I])[!$([Cl,Br,F,I])]"},
+			{"nitrogen mustards","[N;!R][C;!R][C;!R]([Cl,F,Br,I])"},
+			{"sulphur mustards","[S;!R][C;!R][C;!R]([Cl,F,Br,I])"},
 
 	};
 	

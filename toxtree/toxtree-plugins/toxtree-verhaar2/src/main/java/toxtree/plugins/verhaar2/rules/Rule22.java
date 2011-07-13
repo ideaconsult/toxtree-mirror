@@ -49,4 +49,8 @@ public class Rule22 extends Rule21 {
 	protected QueryAtomContainer createMainStructure() {
 		return FunctionalGroups.aniline();
 	}
+	@Override
+	protected String[] getHalogens() {
+		return new String[] {"Cl"};
+	}
 }

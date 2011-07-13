@@ -15,26 +15,34 @@ public class Rule38Test extends AbstractRuleTest {
 	public void test() throws Exception {
 
 		   Object[][] answer = {
-	            	{"C(=O)OC(=O)",new Boolean(true)},
-	            	{"C1COC(=O)OC1",new Boolean(true)},
+	            	{"C(=O)OC(=O)",Boolean.TRUE},
+	            	{"C1COC(=O)OC1",Boolean.TRUE},
 	            	
-	            	{"C(=O)Cl",new Boolean(true)},
-	            	{"NC(=O)Cl",new Boolean(true)},
-	            	{"C=C=O",new Boolean(true)},
-	            	{"CC(=O)",new Boolean(true)},
-	            	{"C=O",new Boolean(true)},
-	            	{"N=C=O",new Boolean(true)},
-	            	{"SC#N",new Boolean(true)},
-	            	{"CSSC",new Boolean(true)},
-	            	{"CS(=O)(=O)OC",new Boolean(true)},
+	            	{"C(=O)Cl",Boolean.TRUE},
+	            	{"NC(=O)Cl",Boolean.TRUE},
+	            	{"C=C=O",Boolean.TRUE},
+	            	{"CC(=O)",Boolean.TRUE},
+	            	{"C=O",Boolean.TRUE},
+	            	{"N=C=O",Boolean.TRUE},
+	            	{"SC#N",Boolean.TRUE},
+	            	{"CSSC",Boolean.TRUE},
+	            	{"CS(=O)(=O)OC",Boolean.TRUE},
 	            	
-	            	{"OS(=O)(=O)OC",new Boolean(true)},
-	            	{"C1CS(=O)(=O)O1",new Boolean(true)},
-	            	{"C1OS(=O)(=O)O1",new Boolean(true)},
-	            	{"OCCl",new Boolean(true)},
-	            	{"OCCCl",new Boolean(true)},
-	            	{"NCCI",new Boolean(true)},
-	            	{"SCCBr",new Boolean(true)},
+	            	{"OS(=O)(=O)OC",Boolean.TRUE},
+	            	{"C1CS(=O)(=O)O1",Boolean.TRUE},
+	            	{"C1OS(=O)(=O)O1",Boolean.TRUE},
+	            	{"OCCl",Boolean.TRUE},
+	            	{"OCCCl",Boolean.TRUE},
+	            	{"NCCI",Boolean.TRUE},
+	            	{"SCCBr",Boolean.TRUE},
+	            	{"BrCC1OCCCC1",Boolean.FALSE},
+
+	            	{"C(Cl)(Cl)(Cl)CO",Boolean.FALSE},
+
+	            	
+
+	            	
+
 		    };
 		    
 		    ruleTest(answer); 
