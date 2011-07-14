@@ -20,11 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
-import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
-import toxTree.exceptions.DecisionMethodException;
-import verhaar.query.FunctionalGroups;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
@@ -32,17 +30,29 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule171 extends Rule151 {
+public class Rule171 extends RuleSMARTSSubstructureAmbit {
 	QueryAtomContainer halogenAtAlphaUnsaturated = null;
 	QueryAtomContainer halogenAtBetaUnsaturated = null;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5540666661281282664L;
+	protected Object[][] smarts = {
 
-	public Rule171() {
+			{"linear ethers or monocyclic mono ethers, but not epoxides or peroxides",
+				"[#6]-[$([O;!R]),$([O;R;!r3])]-[#6]"
+				,Boolean.TRUE},
+				
+			{"Halogen","[Cl,Br,I,F][!$(C=*);!$(CC=*)]",Boolean.TRUE}
+	};		
+	
+	public Rule171()  {
 		super();
-		addSubstructure( FunctionalGroups.halogen());
+		try {
+		//addSubstructure("Halogen","[Cl,Br,I,F]");
+		//addSubstructure("not beta- halogen substituted","[Cl,Br,I,F]CC=,~C",true); //negate
+		//addSubstructure("not alpha- halogen substituted","[Cl,Br,I,F]C=,~C",true); //negate
+		} catch (Exception x) {}
 		id = "1.7.1";
 		setTitle("Are halogenated compounds that comply with rule Q.1.5 but not alpha-, beta- halogen substituted compounds");
 		explanation = new StringBuffer();
@@ -54,12 +64,17 @@ public class Rule171 extends Rule151 {
 		examples[0] = "N(C)CC(C)Cl";
 		editable = false;
 		
+		setContainsAllSubstructures(true);
+		for (Object[] smart: smarts) try { 
+			addSubstructure(smart[0].toString(),smart[1].toString(),!(Boolean) smart[2]);
+		} catch (Exception x) {}		
+		/*
 		String[] h = new String[]{"Cl","F","Br","I"};
 		halogenAtAlphaUnsaturated = FunctionalGroups.halogenAtAlphaFromUnsaturation(h);
 		halogenAtBetaUnsaturated = FunctionalGroups.halogenAtBetaFromUnsaturation(h);
-		
+		*/
 	}
-
+/*
 	@Override
 	public boolean verifyRule(IAtomContainer mol)
 			throws DecisionMethodException {
@@ -76,4 +91,5 @@ public class Rule171 extends Rule151 {
 			} else return true;
 		else return false;
 	}
+	*/
 }
