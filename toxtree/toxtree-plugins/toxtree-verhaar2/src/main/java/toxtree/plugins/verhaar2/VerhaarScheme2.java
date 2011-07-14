@@ -66,9 +66,10 @@ public class VerhaarScheme2 extends VerhaarScheme {
 	public VerhaarScheme2(boolean reversed) throws DecisionMethodException {
 		super(reversed);	
 		setTitle("Verhaar scheme (Modified)");
-		setExplanation("S.J. Enoch, M. Hewitt, M.T.D. Cronin, S. Azam, J.C. Madden, Classification of 
-chemicals according to mechanism of aquatic toxicity: An evaluation of the implementation of the Verhaar scheme 
-in Toxtree, Chemosphere 73 (2008) 243-248"	);
+		setExplanation(
+				"S.J. Enoch, M. Hewitt, M.T.D. Cronin, S. Azam, J.C. Madden, " +
+				"Classification of chemicals according to mechanism of aquatic toxicity: " +
+				"An evaluation of the implementation of the Verhaar scheme in Toxtree, Chemosphere 73 (2008) 243-248");
 		setChanged();
 		notifyObservers();
         setPriority(11);
