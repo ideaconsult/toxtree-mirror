@@ -92,6 +92,28 @@
   		<version>1.5.4-SNAPSHOT</version>
   		<scope>compile</scope>
   	</dependency>
+  	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-functional_groups</artifactId>
+  		<version>2.4.1</version>
+  		<type>jar</type>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-verhaar2</artifactId>
+  		<version>${project.version}</version>
+  		<scope>provided</scope>
+  	</dependency>
+<!--
+  	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-search</artifactId>
+  		<version>${project.version}</version>
+  		<type>jar</type>
+  		<scope>provided</scope>
+  	</dependency>
+-->
   </dependencies>
     <build>
   	<plugins>
