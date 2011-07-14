@@ -19,8 +19,10 @@
   	</developer>
   </developers>
   <scm>
-  	<connection>https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups</connection>
-  	<developerConnection>https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups</developerConnection>
+  	
+<connection>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups</connection>
+  	
+<developerConnection>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups</developerConnection>
   	<url>https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups</url>
   </scm>
   <dependencies>
