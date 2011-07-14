@@ -55,7 +55,7 @@ public class Rule23 extends Rule21 {
 	
 	@Override
 	protected String[] getHalogens() {
-		return new String[] {"Cl"};
+		return new String[] {"Cl","Br"}; //B.A.
 	}
 	protected QueryAtomContainer createMainStructure() {
 		//QueryAtomContainer q = FunctionalGroups.createAutoQueryContainer(MoleculeFactory.makeBenzene());
