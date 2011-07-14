@@ -109,6 +109,9 @@ public class ToxTreeApp extends CompoundMethodApplication {
 				methods.add(Introspection.loadCreateObject("toxtree.plugins.skinsensitisation.SkinSensitisationPlugin"));
 				methods.add(Introspection.loadCreateObject("com.molecularnetworks.start.BiodgeradationRules"));
 				methods.add(Introspection.loadCreateObject("verhaar.VerhaarScheme"));
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.verhaar2.VerhaarScheme2"));
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.func.FuncRules"));
+				//methods.add(Introspection.loadCreateObject("toxtree.plugins.search.CompoundLookup"));
 			} catch (Exception x) { 
 				x.printStackTrace();
 				try {methods.add( new SubstructureTree()); } catch (Exception e) {}
@@ -143,6 +146,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+
 		cmdArgs = args;
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
