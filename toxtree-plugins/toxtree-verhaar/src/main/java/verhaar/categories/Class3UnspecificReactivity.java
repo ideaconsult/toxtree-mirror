@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd (C) 2005-2011 
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -40,6 +40,7 @@ public class Class3UnspecificReactivity extends DefaultCategory {
 	 */
 	public Class3UnspecificReactivity() {
 		super("Class 3 (unspecific reactivity)",3);
+		setExplanation("<html><h3>Reactive chemicals:</h3>chemicals that react unselectively with biomolecules, <br>or substances that are bioactivated via metabolism");
 	}
 
 	/**

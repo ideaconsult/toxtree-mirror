@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd (C) 2005-2011 
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -40,7 +40,7 @@ public class Class4SpecificMechanism extends DefaultCategory {
 	 */
 	public Class4SpecificMechanism() {
 		super("Class 4 (compounds and groups of compounds acting by a specific mechanism)",4);
-		setExplanation("<html>Compounds and groups of compounds acting by a specific mechanism. Examples : <ul><li>DDT and analogues<li>(dithio) carbamates<li>organotin compounds<li>pyrethroids<li>organophosphorothionate esters</ul></html>");
+		setExplanation("<html><h3>Specifically acting chemicals:</h3> chemicals that interact with receptor biomolecules. <br>Examples : <ul><li>DDT and analogues<li>(dithio) carbamates<li>organotin compounds<li>pyrethroids<li>organophosphorothionate esters</ul></html>");
 		setThreshold("");
 	}
 

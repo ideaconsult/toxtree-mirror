@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -31,16 +31,18 @@ import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.query.FunctionalGroups;
+import toxTree.tree.rules.DefaultAlertCounter;
+import toxTree.tree.rules.IAlertCounter;
+import verhaar.query.FunctionalGroups;
 
 /**
  * 
  * Non- or weakly acidic phenols.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule21 extends RuleRingMainStrucSubstituents {
-	
+public class Rule21 extends RuleRingMainStrucSubstituents implements IAlertCounter {
+	protected IAlertCounter alertsCounter;
 	protected transient int nitroGroupsCount = 0;
 	protected transient int halogensCount = 0;
 	protected transient String[] halogens = {"Cl","Br","F"};
@@ -56,6 +58,7 @@ public class Rule21 extends RuleRingMainStrucSubstituents {
 
 	public Rule21() {
 		super();
+		alertsCounter = new DefaultAlertCounter();
 		id = "2.1";
 		setTitle("Be non- or weakly acidic phenols");
 		explanation.append("Be non- or weakly acidic phenols; <p>i.e. phenols with one nitro substituent, and / or one to three chlorine substituents, and/or alkyl substituents");
@@ -63,7 +66,7 @@ public class Rule21 extends RuleRingMainStrucSubstituents {
 		examples[1] = "O=[N+]([O-])c1cccc(O)c1"; //1 nitro
 		addSubstructure(FunctionalGroups.nitro1double());
 		addSubstructure(FunctionalGroups.nitro2double());
-		addSubstructure(verhaar.query.FunctionalGroups.halogen(halogens));
+		addSubstructure( FunctionalGroups.halogen(getHalogens()));
 		if (mainStructure != null)
 			addSubstructure(mainStructure);
 		
@@ -80,14 +83,20 @@ public class Rule21 extends RuleRingMainStrucSubstituents {
 		editable = false;
 		
 	}
+	protected String[] getHalogens() {
+		 return new String[]{"Cl","Br","F"};
+	}
 	protected QueryAtomContainer createMainStructure() {
-		return verhaar.query.FunctionalGroups.phenol();
+		return  FunctionalGroups.phenol();
 	}
 	//TODO check for one nitro and up to 3 Cl
+	
 	@Override
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
-		return verifyRule(mol, null);
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		if (verifyRule(mol,null)) {
+			incrementCounter(mol);
+			return true;	
+		} else return false;
 	}
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
@@ -186,4 +195,17 @@ public class Rule21 extends RuleRingMainStrucSubstituents {
 	public void setMaxNitroGroups(int maxNitroGroups) {
 		this.maxNitroGroups = maxNitroGroups;
 	}	
+	@Override
+	public String getImplementationDetails() {
+		StringBuffer b = new StringBuffer();
+		b.append(alertsCounter.getImplementationDetails());
+
+		return b.toString();
+	}
+	@Override
+	public void incrementCounter(IAtomContainer mol) {
+		alertsCounter.incrementCounter(mol);
+		
+	}
+
 }

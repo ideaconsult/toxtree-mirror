@@ -23,6 +23,8 @@ package verhaar.rules;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.tree.rules.DefaultAlertCounter;
+import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleSubstructures;
 import verhaar.query.FunctionalGroups;
 
@@ -34,8 +36,8 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-10-30
  */
-public class RuleIonicGroups extends RuleSubstructures {
-
+public class RuleIonicGroups extends RuleSubstructures  implements IAlertCounter  {
+	protected IAlertCounter alertsCounter;
 	/**
 	 * 
 	 */
@@ -49,6 +51,20 @@ public class RuleIonicGroups extends RuleSubstructures {
 		examples[1] = "CCCCCCCCCC";
 		addSubstructure(FunctionalGroups.ionicGroup());
 		editable = false;
+		alertsCounter = new DefaultAlertCounter();
+		
+	}
+	@Override
+	public String getImplementationDetails() {
+		StringBuffer b = new StringBuffer();
+		b.append(alertsCounter.getImplementationDetails());
+		
+		return b.toString();
+	}
+	
+	@Override
+	public void incrementCounter(IAtomContainer mol) {
+		alertsCounter.incrementCounter(mol);
 		
 	}
 	public boolean verifyRule(IAtomContainer mol)
@@ -57,7 +73,9 @@ public class RuleIonicGroups extends RuleSubstructures {
 	}
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
-		return !FunctionalGroups.hasGroup(mol,getSubstructure(0),selected);
+		boolean ok = !FunctionalGroups.hasGroup(mol,getSubstructure(0),selected);
+		if (ok) 	incrementCounter(mol);
+		return ok;
 	}
 	public boolean isImplemented() {
 		return true;

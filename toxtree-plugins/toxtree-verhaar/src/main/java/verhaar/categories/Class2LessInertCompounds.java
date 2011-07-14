@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd (C) 2005-2011 
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -36,7 +36,7 @@ public class Class2LessInertCompounds extends DefaultCategory {
 	private static final long serialVersionUID = -6642389618393648862L;
 	public Class2LessInertCompounds() {
 		super("Class 2 (less inert compounds)",2);
-		setExplanation("Less inert compounds");
+		setExplanation("<html><h3>Less inert chemicals:</h3> chemicals that are not reactive, but are slightly more toxic than baseline toxicity due to hydrogen bond donor acidity</html>");
 		setThreshold("");
 	}
 }

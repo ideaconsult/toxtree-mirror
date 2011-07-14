@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,21 +20,27 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.rules;
 
 
-import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
+import toxTree.tree.rules.StructureAlert;
 
 /**
  * 
  * Compounds acting by a specific mechanism. 
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule4 extends RuleSMARTSubstructure {
+public class Rule4 extends StructureAlert {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5579727497271403749L;
 
+	/**
+Finally both databases contain several groups of
+chemicals which should fall into Verhaar class 4 (chemicals acting
+via a specific (non-covalent) mechanism); typically these include
+the weak acid respiratory uncouplers.
+	 */
 	public Rule4() {
 		super();
 		id = "4";
@@ -57,15 +63,26 @@ public class Rule4 extends RuleSMARTSubstructure {
         setContainsAllSubstructures(false);
         try {
             super.initSingleSMARTS(super.smartsPatterns,"organotin", "C[Sn]");
-            super.initSingleSMARTS(super.smartsPatterns,"DDT", "c1cc(ccc1C(c2ccc(cc2)Cl)C(Cl)(Cl)Cl)Cl");
-            super.initSingleSMARTS(super.smartsPatterns,"dithiocarbamates", "*-N[H]C(=S)S-*");
+            super.initSingleSMARTS(super.smartsPatterns,"DDT and analogues", "c1ccc(cc1)C(c2ccccc2)=,-C(Cl)Cl");
+            super.initSingleSMARTS(super.smartsPatterns,"DDT and analogues1", "[R](Cl)[R][R](Cl)[R][R](Cl)");
+            super.initSingleSMARTS(super.smartsPatterns,"DDT and analogues2", "Claa-aaCl");
+            super.initSingleSMARTS(super.smartsPatterns,"pyrethroids", "O=C(O)C1C(C=C)C1(C)(C)");
+            
+            super.initSingleSMARTS(super.smartsPatterns,"carbamates", "OC(=O)[NX3]");
+            
+            super.initSingleSMARTS(super.smartsPatterns,"monothiocarbamates", "[NX3]C(=O)S");
+            super.initSingleSMARTS(super.smartsPatterns,"dithiocarbamates", "[NX3]C(=S)S");
             super.initSingleSMARTS(super.smartsPatterns,"triphenyl phosphate", "O=P(Oc1ccccc1)(Oc2ccccc2)Oc3ccccc3");
+            super.initSingleSMARTS(super.smartsPatterns,"organophosphorothionate esters", "P(O)(O)(O)(=S)");
+            super.initSingleSMARTS(super.smartsPatterns,"organophosphorothionate", "P(O)(O)(S)(=S)");
+            super.initSingleSMARTS(super.smartsPatterns,"organophosphate1", "P(O)(C)(S)(=S)");
             
 
             
         } catch (Exception x) {
             logger.error(x);
         }
+        setExamples(new String[] {"NCS","Clc1ccc(cc1)C(c2ccc(Cl)cc2)C(Cl)(Cl)Cl"});
 	}
 
 	/* (non-Javadoc)

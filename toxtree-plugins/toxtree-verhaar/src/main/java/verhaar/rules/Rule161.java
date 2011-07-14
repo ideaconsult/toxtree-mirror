@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,15 +25,15 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
-import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
+import verhaar.rules.helper.RuleOnlyAllowedSubstructuresCounter;
 
 /**
  * 
  * Aliphatic secondary or tertiary amines.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule161 extends RuleOnlyAllowedSubstructures {
+public class Rule161 extends RuleOnlyAllowedSubstructuresCounter {
 
 	/**
 	 * 

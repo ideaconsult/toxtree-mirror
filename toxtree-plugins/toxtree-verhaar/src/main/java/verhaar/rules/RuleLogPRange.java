@@ -22,8 +22,12 @@ package verhaar.rules;
 
 
 import org.openscience.cdk.exception.CDKException;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
 
+import toxTree.exceptions.DecisionMethodException;
+import toxTree.tree.rules.DefaultAlertCounter;
+import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleDescriptorRange;
 
 /**
@@ -32,7 +36,8 @@ import toxTree.tree.rules.RuleDescriptorRange;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class RuleLogPRange extends RuleDescriptorRange {
+public class RuleLogPRange extends RuleDescriptorRange implements IAlertCounter {
+	protected IAlertCounter alertsCounter;
 	protected Object[] params = {new Boolean(true)};
 	/**
 	 * 
@@ -41,10 +46,12 @@ public class RuleLogPRange extends RuleDescriptorRange {
 
 	public RuleLogPRange() {
 		super();
+		alertsCounter = new DefaultAlertCounter();
 		id = "0.2";
 		setDescriptor(new XLogPDescriptor());
-		setMaxValue(6.0);
-		setMinValue(0.0);
+		//a bit loose range, to allow for calculation errors ...
+		setMaxValue(6.75);
+		setMinValue(-.75);
 		try {
 			getDescriptor().setParameters(params);
 		} catch (CDKException x) {
@@ -67,6 +74,28 @@ public class RuleLogPRange extends RuleDescriptorRange {
 		examples[0] = "c(c(c(c(c1)ccc2)c2)cc(c3c(c(c4)ccc5)c5)c4)(c1)c3";  //Kowwin logKow 6.67
 		examples[1] = "O=C(N(N(C1(=O))c(cccc2)c2)c(cccc3)c3)C1CCCC";  //Kowwin logKow 3.523
 		editable = false;
+	}
+	
+	@Override
+	public String getImplementationDetails() {
+		StringBuffer b = new StringBuffer();
+		b.append(alertsCounter.getImplementationDetails());
+		
+		return b.toString();
+	}
+
+	@Override
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		if (super.verifyRule(mol)) {
+			incrementCounter(mol);
+			return true;	
+		} else return false;
+	}
+	
+	@Override
+	public void incrementCounter(IAtomContainer mol) {
+		alertsCounter.incrementCounter(mol);
+		
 	}
 	
 }

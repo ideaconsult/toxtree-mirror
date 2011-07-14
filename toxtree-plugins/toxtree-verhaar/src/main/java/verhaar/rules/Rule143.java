@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -25,17 +25,20 @@ import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
+import toxTree.tree.rules.DefaultAlertCounter;
+import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleRingAllowedSubstituents;
+import verhaar.query.FunctionalGroups;
 
 /**
  * 
  * Monocyclic compounds that are unsubstituted or substituted with acyclic structures containing only C&H or complying with rule {@link Rule141}.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule143 extends RuleRingAllowedSubstituents {
+public class Rule143 extends RuleRingAllowedSubstituents  implements IAlertCounter {
+	protected IAlertCounter alertsCounter;
 	protected QueryAtomContainer x ;
 	protected String[] halogens = {"Cl","F","Br","I"}; 
 	/**
@@ -45,6 +48,7 @@ public class Rule143 extends RuleRingAllowedSubstituents {
 
 	public Rule143() {
 		super();
+		alertsCounter = new DefaultAlertCounter();
 		id = "1.4.3";
 		setTitle("Be monocyclic compounds that are unsubstituted or substituted with acyclic structures containing only C&H or complying with rule 1.4.1");
 		explanation.append(
@@ -53,12 +57,12 @@ public class Rule143 extends RuleRingAllowedSubstituents {
 		examples[0] = "c1ccccc1CCCC=CCCl";
 		examples[1] = "c1ccccc1CCCCCCl"; 
 		editable = false;
-		x = verhaar.query.FunctionalGroups.halogenAtBetaFromUnsaturation(halogens);
+		x =  FunctionalGroups.halogenAtBetaFromUnsaturation(halogens);
 		ids.add(FunctionalGroups.C);
 		ids.add(FunctionalGroups.CH);
 		ids.add(FunctionalGroups.CH2);
 		ids.add(FunctionalGroups.CH3);
-		addSubstructure(verhaar.query.FunctionalGroups.halogen(halogens));
+		addSubstructure( FunctionalGroups.halogen(halogens));
 	}
 	
 	protected IRingSet hasRingsToProcess(IAtomContainer  mol) throws DecisionMethodException {
@@ -95,12 +99,25 @@ public class Rule143 extends RuleRingAllowedSubstituents {
 			return false;
 		} else {
 			FunctionalGroups.markCHn(mol);
-			return super.verifyRule(mol);
+			if (super.verifyRule(mol)) {
+				incrementCounter(mol);
+				return true;
+			} else return false;
 		}
 		
 	}
 	public boolean isImplemented() {
 		return true;
 	}
-
+	@Override
+	public void incrementCounter(IAtomContainer mol) {
+		alertsCounter.incrementCounter(mol);
+		
+	}
+	@Override
+	public String getImplementationDetails() {
+		StringBuffer b = new StringBuffer();
+		b.append(alertsCounter.getImplementationDetails());
+		return b.toString();
+	}
 }
