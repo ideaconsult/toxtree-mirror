@@ -62,7 +62,7 @@ public class VerhaarScheme2 extends UserDefinedTree {
 	private static final long serialVersionUID = 8432896817503373854L;
 	
 
-	public final static transient String[] c_rules = { 
+	public final static transient String[] c_rules_reversed = { 
 		"toxtree.plugins.verhaar2.rules.Rule4", // 1
 
 		"toxtree.plugins.verhaar2.rules.Rule01", // 2
@@ -105,7 +105,7 @@ public class VerhaarScheme2 extends UserDefinedTree {
 	};		
 	//reversed - first class 4, then class 3, then class 2 , then class 1, then class 5
 	
-	private final static transient int c_transitions[][] ={
+	private final static transient int c_transitions_reversed[][] ={
 		// {if no go to, if yes go to, assign if no, assign if yes}
 		{2,0,0,4}, 	//Rule 4  1
 		
@@ -152,7 +152,83 @@ public class VerhaarScheme2 extends UserDefinedTree {
 		{0,34,5,0},  //Rule17 33
 		{0,0,5,1},  //Rule171 34
 		
-	};			
+	};		
+	
+	public final static transient String[] c_rules_normal = { 
+		"toxtree.plugins.verhaar2.rules.Rule01", // 1
+		"toxtree.plugins.verhaar2.rules.RuleLogPRange",  // 2
+		"toxtree.plugins.verhaar2.rules.Rule03", // 3
+		"toxtree.plugins.verhaar2.rules.Rule11", // 4
+		"toxtree.plugins.verhaar2.rules.RuleIonicGroups", // 5
+		"toxtree.plugins.verhaar2.rules.Rule13", // 6
+		"toxtree.plugins.verhaar2.rules.Rule14", // 7
+		"toxtree.plugins.verhaar2.rules.Rule141", // 8
+		"toxtree.plugins.verhaar2.rules.Rule142", // 9
+		"toxtree.plugins.verhaar2.rules.Rule143", // 10
+		"toxtree.plugins.verhaar2.rules.Rule144", // 11
+		"toxtree.plugins.verhaar2.rules.Rule15", // 12
+		"toxtree.plugins.verhaar2.rules.Rule151", // 13
+		"toxtree.plugins.verhaar2.rules.Rule152", // 14
+		"toxtree.plugins.verhaar2.rules.Rule153", // 15
+		"toxtree.plugins.verhaar2.rules.Rule154", // 16
+		"toxtree.plugins.verhaar2.rules.Rule16", // 17
+		"toxtree.plugins.verhaar2.rules.Rule161", // 18
+		"toxtree.plugins.verhaar2.rules.Rule17", // 19
+		"toxtree.plugins.verhaar2.rules.Rule171", // 20
+		"toxtree.plugins.verhaar2.rules.Rule21", // 21
+		"toxtree.plugins.verhaar2.rules.Rule22", // 22
+		"toxtree.plugins.verhaar2.rules.Rule23", // 23
+		"toxtree.plugins.verhaar2.rules.Rule24", // 24
+		"toxtree.plugins.verhaar2.rules.Rule25", // 25
+		"toxtree.plugins.verhaar2.rules.Rule31", // 26
+		"toxtree.plugins.verhaar2.rules.Rule32", // 27
+		"toxtree.plugins.verhaar2.rules.Rule33", // 28
+		"toxtree.plugins.verhaar2.rules.Rule34", // 29
+		"toxtree.plugins.verhaar2.rules.Rule35", // 30
+		"toxtree.plugins.verhaar2.rules.Rule36", // 31
+		"toxtree.plugins.verhaar2.rules.Rule37", // 32
+		"toxtree.plugins.verhaar2.rules.Rule38", // 33
+		"toxtree.plugins.verhaar2.rules.Rule4", // 34
+	};	
+	private final static transient int c_transitions_normal[][] ={
+		// {if no go to, if yes go to, assign if no, assign if yes}
+		{34,2,0,0}, // Q0.1 1
+		{34,3,0,0}, // Q0.2 2
+		{34,4,0,0},  // Q0.3 3
+		{34,5,0,0},  // Q1.1 4
+		{34,6,0,0},  // Q1.2 5
+		{7,0,0,1},  // Q1.3 6
+		{12,8,0,0},  // Q1.4 7
+		{9,0,0,1},  // Q1.4.1 8
+		{10,0,0,1},  // Q1.4.2 9
+		{11,0,0,1},  // Q1.4.3 10
+		{21,0,0,1},  // Q1.4.4 11
+		{17,13,0,0},  // Q1.5 12
+		{14,0,0,1},  // Q1.5.1 13
+		{15,0,0,1},  // Q1.5.2 14
+		{16,0,0,1},  // Q1.5.3 15
+		{21,0,0,1},  // Q1.5.4 16
+		{19,18,0,0},  // Q1.6 17
+		{21,0,0,1},  // Q1.6.1 18
+		{21,20,0,0},  // Q1.7 19
+		{21,0,0,1},  // Q1.7.1 20
+		{22,0,0,2},  // Q2.1 21
+		{23,0,0,2},  // Q2.2 22
+		{24,0,0,2},  // Q2.3 23
+		{25,0,0,2},  // Q2.4 24
+		{26,0,0,2},  // Q2.5 25
+		{27,0,0,3},  // Q3.1 26
+		{28,0,0,3},  // Q3.2 27
+		{29,0,0,3},  // Q3.3 28
+		{30,0,0,3},  // Q3.4 29
+		{31,0,0,3},  // Q3.5 30
+		{32,0,0,3},  // Q3.6 31
+		{33,0,0,3},  // Q3.7 32
+		{34,0,0,3},  // Q3.8 33
+		{0,0,5,4},  // Q4 34
+		
+	};	
+	
 	
 	protected final static String[] c_categories = {
 			"toxtree.plugins.verhaar2.categories.Class1BaselineToxicity",
@@ -165,8 +241,13 @@ public class VerhaarScheme2 extends UserDefinedTree {
 	 * 
 	 */
 	public VerhaarScheme2() throws DecisionMethodException {
+		this(true);
+	}
+	public VerhaarScheme2(boolean reversed) throws DecisionMethodException {
 		super(new CategoriesList(c_categories),null);
-		rules = new DecisionNodesList(categories,c_rules,c_transitions);
+		rules = reversed?
+				new DecisionNodesList(categories,c_rules_reversed,c_transitions_reversed):
+				new DecisionNodesList(categories,c_rules_normal,c_transitions_normal);
 		if (rules instanceof Observable) ((Observable)rules).addObserver(this);		
 		setTitle("Verhaar scheme (Modified)");
 		setExplanation("S.J. Enoch, M. Hewitt, M.T.D. Cronin, S. Azam, J.C. Madden, Classification of chemicals according to mechanism of aquatic toxicity: An evaluation of the implementation of the Verhaar scheme in Toxtree, Chemosphere 73 (2008) 243–248"	);

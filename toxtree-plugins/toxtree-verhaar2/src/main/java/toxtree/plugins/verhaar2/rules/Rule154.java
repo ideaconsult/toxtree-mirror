@@ -24,7 +24,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxtree.plugins.verhaar2.rules.helper.RuleOnlyAllowedSubstructuresCounter;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import verhaar.query.FunctionalGroups;
 
 /**
@@ -33,25 +33,27 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova jeliazkova.nina@gmail.com
  * <b>Modified</b> July 12, 2011
  */
-public class Rule154 extends RuleOnlyAllowedSubstructuresCounter {
+public class Rule154 extends RuleSMARTSSubstructureAmbit {
 	QueryAtomContainer ketone_a_b_unsaturated = null;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -453162542432372824L;
-
+	static final String TITLE="Be ketones, but not alpha-, beta unsaturated ketones (e.g. 1-butenone or acetophenone)";
+	protected Object[][] smarts = {
+			{TITLE,"O=C([C;!$(C=C)])([C;!$(C=C)])",
+			Boolean.TRUE},
+	};	
+	
 	public Rule154() {
 		super();
 		id = "1.5.4";
-		setTitle("Be ketones, but not alpha-, beta unsaturated ketones (e.g. 1-butenone or acetophenone)");
+		setTitle(TITLE);
 		examples[0] = "CC(=O)C1=CC=CC=C1"; //acetophenone
 		examples[1] = "O=C(C)CC";
-		addSubstructure(FunctionalGroups.ketone());
-		ids.add(FunctionalGroups.C);
-		ids.add(FunctionalGroups.CH);
-		ids.add(FunctionalGroups.CH2);
-		ids.add(FunctionalGroups.CH3);		
-		ketone_a_b_unsaturated =  FunctionalGroups.ketone_a_b_unsaturated();
+		for (Object[] smart: smarts) try { 
+			addSubstructure(smart[0].toString(),smart[1].toString(),!(Boolean) smart[2]);
+		} catch (Exception x) {}
 		editable = false;
 	}
 	
@@ -60,18 +62,6 @@ public class Rule154 extends RuleOnlyAllowedSubstructuresCounter {
 			throws DecisionMethodException {
 		return verifyRule(mol, null);
 	}
-	@Override
-	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
-		//TODO check for a b unsaturated
-		if (super.verifyRule(mol,selected)) {
-			if (FunctionalGroups.hasGroup(mol,ketone_a_b_unsaturated,selected)) {
-				logger.debug("Ketone a,b-unsaturated\tYES");
-				return false;
-			} else return true;
-		} else {
-			logger.debug("Ketone\tNO");
-			return false;
-		}
-	}	
+
 
 }

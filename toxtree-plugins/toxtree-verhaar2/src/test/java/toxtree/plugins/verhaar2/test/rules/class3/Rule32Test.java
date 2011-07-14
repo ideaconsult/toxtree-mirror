@@ -35,13 +35,15 @@ public class Rule32Test extends AbstractRuleTest {
 	}
 	public void test() throws Exception {
 	    Object[][] answer = {
-	            	{"c1ccc(cc1)CCl",new Boolean(true)},
-	            	{"c1ccc(cc1)CBr",new Boolean(true)},
-	            	{"c1ccc(cc1)CI",new Boolean(true)},
-	            	{"c1ccc(cc1)CC#N",new Boolean(true)},
-	            	{"c1ccc(cc1)CO",new Boolean(true)},
-	            	{"c1ccc(cc1)CC(C)=O",new Boolean(true)},
-	            	{"c1ccc(cc1)CC=O",new Boolean(true)},
+	           	{"c1ccc(cc1)CCl",Boolean.TRUE},
+	            	{"c1ccc(cc1)C(C)Cl",Boolean.TRUE},
+	            	{"c1ccc(cc1)CBr",Boolean.TRUE},
+	            	{"c1ccc(cc1)CI",Boolean.TRUE},
+	            	{"c1ccc(cc1)CC#N",Boolean.TRUE},
+	            	{"c1ccc(cc1)CO",Boolean.TRUE},
+	       //    {"O=[N+]([O-])c1cc(c(O)c(c1)C)[N+](=O)[O-]",Boolean.TRUE}, not sure what should be
+	            	{"c1ccc(cc1)CC(C)=O",Boolean.TRUE},
+	          	{"c1ccc(cc1)CC=O",Boolean.TRUE},
 	    };
 	    
 	    ruleTest(answer); 

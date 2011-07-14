@@ -37,30 +37,34 @@ public class Rule31Test extends AbstractRuleTest {
 	public void test() throws Exception {
 	    Object[][] answer = {
 	    		//halogen
-	            	{"CC=CC(Cl)",new Boolean(true)},
-	            	{"CC=CC(Br)",new Boolean(true)},
-	            	{"CC=CC(I)",new Boolean(true)},
+	            	{"CC=CC(Cl)", Boolean.TRUE},
+	            	{"CC=CC(Br)", Boolean.TRUE},
+	            	{"CC=CC(I)", Boolean.TRUE},
 	            	//cyano
-	            	{"CC=CC(C#N)",new Boolean(true)},
+	            	{"CC=CC(C#N)", Boolean.TRUE},
 	            	//hydroxyl
-	            	{"CC=CCO",new Boolean(true)},
+	            	{"CC=CCO", Boolean.TRUE},
 	            	//ketone
-	            	{"CC=CC(C(C)=O)",new Boolean(true)},
+	            	{"CC=CC(C(C)=O)", Boolean.TRUE},
 	            	//aldehyde
-	            	{"CC=CC(C=O)",new Boolean(true)},
+	            	{"CC=CC(C=O)", Boolean.TRUE},
 	            	
 	            	//halogen
-	            	{"CC#CC(C)Cl",new Boolean(true)},
-	            	{"CC#CC(C)Br",new Boolean(true)},
-	            	{"CC#CC(C)I",new Boolean(true)},
+	            	{"CC#CC(C)Cl", Boolean.TRUE},
+	            	{"CC#CC(C)Br", Boolean.TRUE},
+	            	{"CC#CC(C)I", Boolean.TRUE},
 	            	//cyano
-	            	{"CC#CC(C)C#N",new Boolean(true)},
+	            	{"CC#CC(C)C#N", Boolean.TRUE},
 	            	//hydroxyl
-	            	{"CC#CC(C)O",new Boolean(true)},	            	
+	            	{"CC#CC(C)O", Boolean.TRUE},	            	
 	            	//ketone
-	            	{"CC#CC(C)(C(C)=O)",new Boolean(true)},
+	            	{"CC#CC(C)(C(C)=O)", Boolean.TRUE},
 	            	//aldehyde
-	            	{"CC#CC(C)C=O",new Boolean(true)},	
+	            	{"CC#CC(C)C=O", Boolean.TRUE},	
+	            	//aromatic bond should not be considered as activating
+	            	{"n1cc(cc(c1Cl)Cl)Cl",Boolean.FALSE}	
+	            	
+
 	    };
 	    ruleTest(answer); //      	{"OCCOC1=CC=CC=C1",new Boolean(false)} ,
 	}	

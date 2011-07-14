@@ -20,8 +20,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainer;
 
+import toxTree.exceptions.DecisionMethodException;
+import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
@@ -31,28 +33,20 @@ import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
  * <b>Modified</b> Dec 17, 2006
  */
 public class Rule171 extends RuleSMARTSSubstructureAmbit {
-	QueryAtomContainer halogenAtAlphaUnsaturated = null;
-	QueryAtomContainer halogenAtBetaUnsaturated = null;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5540666661281282664L;
+	protected AbstractRuleSmartSubstructure[] rules15 = new AbstractRuleSmartSubstructure[] {
+		new Rule151(),new Rule152(),new Rule153(),new Rule154()
+	};
 	protected Object[][] smarts = {
-
-			{"linear ethers or monocyclic mono ethers, but not epoxides or peroxides",
-				"[#6]-[$([O;!R]),$([O;R;!r3])]-[#6]"
-				,Boolean.TRUE},
-				
+	
 			{"Halogen","[Cl,Br,I,F][!$(C=*);!$(CC=*)]",Boolean.TRUE}
 	};		
 	
 	public Rule171()  {
 		super();
-		try {
-		//addSubstructure("Halogen","[Cl,Br,I,F]");
-		//addSubstructure("not beta- halogen substituted","[Cl,Br,I,F]CC=,~C",true); //negate
-		//addSubstructure("not alpha- halogen substituted","[Cl,Br,I,F]C=,~C",true); //negate
-		} catch (Exception x) {}
 		id = "1.7.1";
 		setTitle("Are halogenated compounds that comply with rule Q.1.5 but not alpha-, beta- halogen substituted compounds");
 		explanation = new StringBuffer();
@@ -68,28 +62,16 @@ public class Rule171 extends RuleSMARTSSubstructureAmbit {
 		for (Object[] smart: smarts) try { 
 			addSubstructure(smart[0].toString(),smart[1].toString(),!(Boolean) smart[2]);
 		} catch (Exception x) {}		
-		/*
-		String[] h = new String[]{"Cl","F","Br","I"};
-		halogenAtAlphaUnsaturated = FunctionalGroups.halogenAtAlphaFromUnsaturation(h);
-		halogenAtBetaUnsaturated = FunctionalGroups.halogenAtBetaFromUnsaturation(h);
-		*/
+
 	}
-/*
-	@Override
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
-		return verifyRule(mol, null);
-	}
+
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 
 		if (super.verifyRule(mol,selected)) 
-			if ((FunctionalGroups.hasGroup(mol,halogenAtAlphaUnsaturated,selected)) || 
-				(FunctionalGroups.hasGroup(mol,halogenAtBetaUnsaturated,selected))) {
-				logger.debug("alpha-, beta- halogen substituted compounds");
-				return false;
-			} else return true;
-		else return false;
+			for (AbstractRuleSmartSubstructure rule: rules15) 
+				if (rule.verifyRule(mol,selected)) return true;
+		return false;
 	}
-	*/
+	
 }
