@@ -17,7 +17,19 @@ public class Tools {
 	 * @return
 	 */
 	public static File getFileFromResource(String resource) throws Exception {
-			File file = new File(System.getProperty("java.io.tmpdir")+"/.toxtree.2.2.0");
+			final String defaultVersion = "unknown";
+			String version;
+			try {
+				Package self = Package.getPackage("toxTree.core");
+				version = self==null?defaultVersion:self.getImplementationVersion();
+				if ((version==null) || "".equals(version.trim())) 
+					version = defaultVersion;
+			
+			} catch (Exception x) {
+				//just in case
+				version = defaultVersion;
+			}
+			File file = new File(String.format("%s/.toxtree.%s",System.getProperty("java.io.tmpdir"),version.trim()));
 			file.mkdir();
 			file = new File(file.getAbsolutePath()+"/"+resource);
 			if (!file.exists())
