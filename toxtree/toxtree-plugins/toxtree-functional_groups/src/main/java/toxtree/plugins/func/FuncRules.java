@@ -548,7 +548,8 @@ public class FuncRules extends UserDefinedTree implements IDecisionInteractive{
 		notifyObservers();
 		setTitle("Structure Alerts for the functional groups identification");
 		setExplanation(
-				"Func_Groups-ISS plug-in allows the identification of functional groups." 
+				"<html>Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups.<br>" +
+				"Reference: <a href='http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_24871_EN.pdf'>JRC report</a></html>" 
 				);
         setPriority(20);
         setFalseIfRuleNotImplemented(false);};
