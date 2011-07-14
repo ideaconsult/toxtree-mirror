@@ -40,6 +40,8 @@ import org.openscience.cdk.isomorphism.matchers.smarts.AnyAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AnyOrderQueryBond;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
+
+
 import toxTree.query.TopologyAnyBond;
 import toxTree.query.TopologyOrderQueryBond;
 
@@ -64,6 +66,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	public static final String BENZYLALCOHOL = "BENZYLALCOHOL";
 	public static final String KETONE_A_B_UNSATURATED = "KETONE_A_B_UNSATURATED";
 	public static final String CYCLICESTER = "CYCLICESTER";
+    public static final String n = "n";
 	
 
 	/**
@@ -259,6 +262,28 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		q.addBond(new verhaar.query.AromaticQueryBond((IQueryAtom)a[0],(IQueryAtom)a[5]));
 		return q;		
 	}	
+
+	public static QueryAtomContainer pyridine_character() {
+		QueryAtomContainer q = new QueryAtomContainer();
+		q.setID(PYRIDINE);
+		IAtom[] a = new Atom[6];
+		for (int i=0;i<a.length;i++) {
+			if (i==0) a[i] = new SymbolQueryAtom(new org.openscience.cdk.Atom("N"));
+			else {
+				
+				SymbolSetQueryAtom set = new SymbolSetQueryAtom();
+				set.addSymbol("C");
+				set.addSymbol("N");
+				a[i] = set;
+			}
+			q.addAtom(a[i]);
+			if (i > 0) {
+				q.addBond(new  verhaar.query.AromaticQueryBond((IQueryAtom)a[i],(IQueryAtom)a[i-1]));
+			}
+		}
+		q.addBond(new verhaar.query.AromaticQueryBond((IQueryAtom)a[0],(IQueryAtom)a[5]));
+		return q;		
+	}		
 	public static QueryAtomContainer benzylAlcohol() {
 		QueryAtomContainer q = createQuery("c1ccccc1CO[H]",BENZYLALCOHOL);
 		try {
