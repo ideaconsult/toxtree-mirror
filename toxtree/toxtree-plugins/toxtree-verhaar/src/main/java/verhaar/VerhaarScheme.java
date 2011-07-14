@@ -36,11 +36,6 @@ import toxTree.tree.UserDefinedTree;
  * <li>Verhaar HJM, Mulder W and Hermens JLM (1995) QSARs for ecotoxicity. In: Overview of structure-activity relationships for environmental endpoints, Part 1: General outline and procedure. Hermens JLM (Ed), Report prepared within the framework of the project "QSAR for Prediction of Fate and Effects of Chemicals in the Environment", an international project of the Environment; Technologies RTD Programme (DGXII/D-1) of the Europenan Commission under contract number EV5V-CT92-0211. 
  * <li>Verhaar HJM, Solbe J, Speksnijder J, van Leeuwen CJ and Hermens JLM (2000) Classifying environmental pollutants: Part 3. External validation of the classification system. Chemosphere 40, 875-883. 
  * </ul>
- * Updated according to recommendation in
- * <ul> 
- * <li>S.J. Enoch, M. Hewitt, M.T.D. Cronin, S. Azam, J.C. Madden, Classification of chemicals according to mechanism of aquatic toxicity:
- * An evaluation of the implementation of the Verhaar scheme in Toxtree, Chemosphere 73 (2008) 243–248
- * </ul> 
  * <p> Rules: 
  * <ul>
  * <li>LogP limits
