@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd (C) 2005-2011 
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -36,7 +36,7 @@ public class Class1BaselineToxicity extends DefaultCategory {
 	private static final long serialVersionUID = -2345773088272297347L;
 	public Class1BaselineToxicity() {
 		super("Class 1 (narcosis or baseline toxicity)",1);
-		setExplanation("Narcosis or baseline toxicity");
+		setExplanation("<html><h3>Inert chemicals:</h3> chemicals that are not reactive, and that do not interact with specific receptors within an organism.</html>");
 		setThreshold("");
 	}
 }

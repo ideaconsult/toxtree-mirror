@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd (C) 2005-2011 
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -40,7 +40,7 @@ public class Class5Unknown extends DefaultCategory {
 	 */
 	public Class5Unknown() {
 		super("Class 5 (Not possible to classify according to these rules)",5);
-		setExplanation("Compounds that cannot be classified as belonging to class 1, 2 or 3 and that are not known to be compounds acting by a specific mechanism can only be classified as \"not possible to classify according to these rules\".");
+		setExplanation("<html><h3>Unknown</h3>Compounds that cannot be classified as belonging to class 1, 2 or 3 <br>and that are not known to be compounds acting by a specific mechanism can only be classified as \"not possible to classify according to these rules\".<html>");
 		setThreshold("");		
 	}
 

@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,37 +20,42 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.rules;
 
 
-import toxTree.tree.rules.RuleAnySubstructure;
-import verhaar.query.FunctionalGroups;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
  * Activated nitriles like alpha hydroxynitriles (cyanohidrins) or allylic /propargylic nitriles.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule37 extends RuleAnySubstructure {
+public class Rule37 extends RuleSMARTSSubstructureAmbit {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 832778835073402054L;
+	protected String[][] smarts = {
+			{"cyanohydrins","[OH1][CX4]C#N"},
+			{"allylic/propargylic nitriles","[CX2]#CC#N"}
+
+	};		
 
 	public Rule37() {
 		super();
 		id = "3.7";
 		setTitle("Be activated nitriles like alpha hydroxynitriles (cyanohidrins) or allylic /propargylic nitriles");
 		explanation = new StringBuffer();
-		explanation.append("<UL>");
-		explanation.append("<LI>");
-		explanation.append("[H]OC([*])O=N");
-		explanation.append("<LI>");
-		explanation.append("[*]C#CC#N");
-		explanation.append("</UL>");
 		
-		addSubstructure(FunctionalGroups.createAutoQueryContainer("[H]OC([*])O=N"));
-		addSubstructure(FunctionalGroups.createAutoQueryContainer("[*]C#CC#N"));
 		
+		explanation.append("<html><ul>");
+		for (String[] smart: smarts) try {
+			addSubstructure(smart[0],smart[1]);
+			explanation.append(String.format("<li>%s SMARTS: %s",smart[0],smart[1]));
+
+		} catch (Exception x) {
+			x.printStackTrace();
+		}
+		explanation.append("</ul></html>");		
 		examples[1] = "CC#CC#N";
 		examples[0] = "C(C)CC#N";
 		editable = false;

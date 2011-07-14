@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -28,8 +28,8 @@ import toxTree.exceptions.DecisionMethodException;
 /**
  * 
  * Be mononitroaromatics with one or two chlorine substituents and/or alkyl substituents.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
 
 public class Rule23 extends Rule21 {
@@ -53,6 +53,10 @@ public class Rule23 extends Rule21 {
 		setAnalyzeOnlyRingsWithFlagSet(true);
 	}
 	
+	@Override
+	protected String[] getHalogens() {
+		return new String[] {"Cl","Br"}; //B.A.
+	}
 	protected QueryAtomContainer createMainStructure() {
 		//QueryAtomContainer q = FunctionalGroups.createAutoQueryContainer(MoleculeFactory.makeBenzene());
 		//q.setID("benzene");

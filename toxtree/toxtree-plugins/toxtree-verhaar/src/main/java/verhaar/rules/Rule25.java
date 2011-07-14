@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -27,9 +27,10 @@ import verhaar.query.FunctionalGroups;
 /**
  * 
  * Pyridines with one or two chlorine substituents and/or alkyl substituents.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
+//TODO exclude aryl substituents
 public class Rule25 extends Rule21 {
 
 	/**
@@ -46,10 +47,17 @@ public class Rule25 extends Rule21 {
 		examples[0] = "Clc1ccc(cc1(Cl))CC";
 		editable = false;
 		
+
 		setMaxHalogens(2);
 		setMaxNitroGroups(0);
 	}
-	protected QueryAtomContainer createMainStructure() {
-		return FunctionalGroups.pyridine();
+	@Override
+	protected String[] getHalogens() {
+		return new String[] {"Cl"};
 	}
+	protected QueryAtomContainer createMainStructure() {
+		return FunctionalGroups.pyridine_character();
+	}
+	
+	
 }

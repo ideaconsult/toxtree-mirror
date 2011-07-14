@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,10 +21,10 @@ package verhaar.rules;
 
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
-import verhaar.query.FunctionalGroups;
+import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
@@ -32,17 +32,21 @@ import verhaar.query.FunctionalGroups;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Rule171 extends Rule151 {
-	QueryAtomContainer halogenAtAlphaUnsaturated = null;
-	QueryAtomContainer halogenAtBetaUnsaturated = null;
+public class Rule171 extends RuleSMARTSSubstructureAmbit {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5540666661281282664L;
-
-	public Rule171() {
+	protected AbstractRuleSmartSubstructure[] rules15 = new AbstractRuleSmartSubstructure[] {
+		new Rule151(),new Rule152(),new Rule153(),new Rule154()
+	};
+	protected Object[][] smarts = {
+	
+			{"Halogen","[Cl,Br,I,F][!$(C=*);!$(CC=*)]",Boolean.TRUE}
+	};		
+	
+	public Rule171()  {
 		super();
-		addSubstructure(verhaar.query.FunctionalGroups.halogen());
 		id = "1.7.1";
 		setTitle("Are halogenated compounds that comply with rule Q.1.5 but not alpha-, beta- halogen substituted compounds");
 		explanation = new StringBuffer();
@@ -54,26 +58,20 @@ public class Rule171 extends Rule151 {
 		examples[0] = "N(C)CC(C)Cl";
 		editable = false;
 		
-		String[] h = new String[]{"Cl","F","Br","I"};
-		halogenAtAlphaUnsaturated = FunctionalGroups.halogenAtAlphaFromUnsaturation(h);
-		halogenAtBetaUnsaturated = FunctionalGroups.halogenAtBetaFromUnsaturation(h);
-		
+		setContainsAllSubstructures(true);
+		for (Object[] smart: smarts) try { 
+			addSubstructure(smart[0].toString(),smart[1].toString(),!(Boolean) smart[2]);
+		} catch (Exception x) {}		
+
 	}
 
-	@Override
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
-		return verifyRule(mol, null);
-	}
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 
 		if (super.verifyRule(mol,selected)) 
-			if ((FunctionalGroups.hasGroup(mol,halogenAtAlphaUnsaturated,selected)) || 
-				(FunctionalGroups.hasGroup(mol,halogenAtBetaUnsaturated,selected))) {
-				logger.debug("alpha-, beta- halogen substituted compounds");
-				return false;
-			} else return true;
-		else return false;
+			for (AbstractRuleSmartSubstructure rule: rules15) 
+				if (rule.verifyRule(mol,selected)) return true;
+		return false;
 	}
+	
 }

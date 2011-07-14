@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -24,37 +24,39 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.query.FunctionalGroups;
-import toxTree.query.MolFlags;
-import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
  * Alcohols with aromatic moieties, but NOT phenols or benzylic alcohols.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule153 extends RuleOnlyAllowedSubstructures {
+public class Rule153 extends RuleSMARTSSubstructureAmbit {
 	QueryAtomContainer phenol = null;
 	QueryAtomContainer benzylAlcohol = null;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7020871482125337347L;
+	private final static String TITLE= "Be alcohols with aromatic moieties, but NOT phenols or benzylic alcohols";
+	protected Object[][] smarts = {
+			{TITLE,"c[OH1]",Boolean.FALSE},
+			{"2","cC[OH1]",Boolean.FALSE},
+			{"3","(C[OH1].a)",Boolean.TRUE},
+	};	
 
+	
 	public Rule153() {
 		super();
 		id = "1.5.3";
-		setTitle("Be alcohols with aromatic moieties, but NOT phenols or benzylic alcohols");
-		addSubstructure(FunctionalGroups.alcohol(false));
-		ids.add(FunctionalGroups.C);
-		ids.add(FunctionalGroups.CH);
-		ids.add(FunctionalGroups.CH2);
-		ids.add(FunctionalGroups.CH3);
-		phenol = verhaar.query.FunctionalGroups.phenol();
-		benzylAlcohol = verhaar.query.FunctionalGroups.benzylAlcohol();
+		setTitle(TITLE);
+		setContainsAllSubstructures(true);
+		for (Object[] smart: smarts) try { 
+			addSubstructure(smart[0].toString(),smart[1].toString(),!(Boolean) smart[2]);
+		} catch (Exception x) {}
 		examples[0] = "c1ccccc1O";  //benzyl alcohol: c1ccccc1CO
-		examples[1] = "c1ccccc1CCCCO"; //towa dali e wiarno
+		examples[1] = "c1ccccc1CCCCO"; //
 		editable = false;
 	}
 	@Override
@@ -62,30 +64,7 @@ public class Rule153 extends RuleOnlyAllowedSubstructures {
 			throws DecisionMethodException {
 		return verifyRule(mol, null);
 	}
-	@Override
-	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
-		logger.info(toString());
-	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
-	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
-	    if (mf.isAromatic())  {
-	    	logger.debug("Aromatic\tYES");
-			if (super.verifyRule(mol,selected)) {
-				if (FunctionalGroups.hasGroup(mol,phenol,selected)) {
-					logger.debug("Phenol\tYES");
-					return false;
-				} else if (FunctionalGroups.hasGroup(mol,benzylAlcohol,selected)) {
-					logger.debug("Benzylic alcohol\tYES");
-					return false;
-				} else return true;
-			} else {
-				logger.debug("Alcohol\tNO");
-				return false;
-			}
-	    } else {
-			logger.debug("Aliphatic\tNO");
-	    	return false; 
-	    }
-	}
+
 	/* (non-Javadoc)
 	 * @see toxTree.tree.rules.RuleOnlyAllowedSubstructures#isImplemented()
 	 */

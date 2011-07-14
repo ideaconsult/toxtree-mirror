@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,27 +20,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.rules;
 
 
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-
-import toxTree.tree.rules.RuleAnySubstructure;
-import verhaar.query.FunctionalGroups;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 
 /**
  * 
  * Possess benzylic activation. Compounds with a (good) leaving group at an alpha position of an aromatic bond.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule32 extends RuleAnySubstructure {
-	protected String[][] entities = {
-			{"c1ccc(cc1)C([*])X & X=Cl","c1ccc(cc1)C([*])Cl"},      
-			{"c1ccc(cc1)C([*])X & X=Br","c1ccc(cc1)C([*])Br"},
-			{"c1ccc(cc1)C([*])X & X=I","c1ccc(cc1)C([*])I"},
-			{"c1ccc(cc1)C([*])X & X=cyano","c1ccc(cc1)C([*])C#N"},
-			{"c1ccc(cc1)C([*])X & X=hydroxyl","c1ccc(cc1)C([*])O[H]"},
-			{"c1ccc(cc1)C([*])X & X=ketone","c1ccc(cc1)C([*])C(C)=O"},
-			{"c1ccc(cc1)C([*])X & X=aldehyde","c1ccc(cc1)C([*])C([H])=O"},
+public class Rule32 extends RuleSMARTSSubstructureAmbit {
+	protected String[][] smarts = {
+			{"c1ccc(cc1)C([*])X & X=Cl","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br,I])][Cl,Br,I]"},      
+			{"c1ccc(cc1)C([*])X & X=cyano","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])]C#N"},
+			{"c1ccc(cc1)C([*])X & X=hydroxyl","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])][OH1]"},
+			{"c1ccc(cc1)C([*])X & X=ketone","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])]C(C)=O"},
+			{"c1ccc(cc1)C([*])X & X=aldehyde","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])][CH1]=O"},
 	};		
+	/*
+			{"c1ccc(cc1)C([*])X & X=cyano","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])]C#N"},
+			{"c1ccc(cc1)C([*])X & X=hydroxyl","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])][OH1]"},
+			{"c1ccc(cc1)C([*])X & X=ketone","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])]C(C)=O"},
+			{"c1ccc(cc1)C([*])X & X=aldehyde","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])][CH1]=O"},
+	 */
 	/**
 	 * 
 	 */
@@ -56,14 +57,11 @@ public class Rule32 extends RuleAnySubstructure {
 		examples[0] = "c1ccc(cc1)C(C)C";
 		editable = false;
 		
-		for (int i = 0; i < entities.length; i++) {
-			if (!entities[i][1].equals("")) {
-				logger.debug(entities[i][1]);
-				QueryAtomContainer q = FunctionalGroups.createAutoQueryContainer(entities[i][1]);
-				
-				q.setID(entities[i][0]);
-				addSubstructure(q);
-			}
+		
+		for (String[] smart: smarts) try {
+			addSubstructure(smart[0],smart[1]);
+		} catch (Exception x) {
+			x.printStackTrace();
 		}		
 	}
 

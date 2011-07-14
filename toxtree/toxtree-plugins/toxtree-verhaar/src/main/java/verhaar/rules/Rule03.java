@@ -1,6 +1,6 @@
 /*
-Copyright Nina Jeliazkova (C) 2005-2006  
-Contact: nina@acad.bg
+Copyright Nina Jeliazkova (C) 2005-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,20 +20,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.rules;
 
 
+import org.openscience.cdk.interfaces.IAtomContainer;
+
+import toxTree.exceptions.DecisionMethodException;
+import toxTree.tree.rules.DefaultAlertCounter;
+import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleMolecularMassRange;
 
 /**
  * Have a molecular mass (MW) not more than 600 Daltons.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> July 12, 2011
  */
-public class Rule03 extends RuleMolecularMassRange {
+public class Rule03 extends RuleMolecularMassRange  implements IAlertCounter  {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2799745152926450353L;
-
+	protected IAlertCounter alertsCounter;
 	public Rule03() {
 		super();
 		id = "0.3";
@@ -48,7 +53,28 @@ public class Rule03 extends RuleMolecularMassRange {
 		setMinValue(0);
 		setMaxValue(600);
 		editable = false;
+		alertsCounter = new DefaultAlertCounter();
+	}
+	@Override
+	public String getImplementationDetails() {
+		StringBuffer b = new StringBuffer();
+		b.append(alertsCounter.getImplementationDetails());
+		
+		return b.toString();
+	}
+
+	@Override
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+		if (super.verifyRule(mol)) {
+			incrementCounter(mol);
+			return true;	
+		} else return false;
 	}
 	
+	@Override
+	public void incrementCounter(IAtomContainer mol) {
+		alertsCounter.incrementCounter(mol);
+		
+	}
 
 }
