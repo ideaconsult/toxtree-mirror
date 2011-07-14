@@ -24,11 +24,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.ui.actions;
 
+import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
+import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 
 import toxTree.io.Tools;
 
@@ -75,24 +81,42 @@ public class HelpAction extends AbstractAction {
 	}
 	public void showHelp(String id) 
 	{
-		JOptionPane.showMessageDialog(null,"User guide is available in the [installation directory]/doc","toxTree Help",JOptionPane.INFORMATION_MESSAGE);
-		/*
-		String h = "toxTree/config/help/" + id + ".hs"; 
-		try {
+		StringBuilder b = new StringBuilder();
+	
+    	
+    	b.append("<html>");
+        b.append("<table>");
+        b.append("<table width='100%'>");
+        b.append(String.format("<tr><th>WWW</th><td>%s</td></tr>","<a href='http://toxtree.sf.net'>http://toxtree.sourceforge.net</a>"));
+        b.append(String.format("<tr><th>User guide (local)</th><td>%s</td></tr>","[installation directory]/doc"));
+        b.append(String.format("<tr><th>User guide (online)</th><td>%s</td></tr>","<a href='http://www.ideaconsult.net/resources'>http://www.ideaconsult.net/resources</a>"));
+        b.append("</table>");
+    	
+    	b.append("</html>");
 		
-        URL helpurl=HelpSet.findHelpSet(this.getClass().getClassLoader(),
-        		h);
-		    HelpSet hs = new HelpSet(null, helpurl);
-		    HelpBroker hb = hs.createHelpBroker();
-        hb.setDisplayed(true);
-        hb.setSize(new Dimension(600,400));
-        if(id!=null)
-          hb.setCurrentID("top");
-		} catch(Exception ee) {
-	        System.out.println("HelpSet: "+ee.getMessage());
-	        System.out.println("HelpSet: "+ h + " not found");
-	      }
-	      */
+		JEditorPane label = new JEditorPane("text/html",b.toString());
+		label.setBorder(BorderFactory.createEtchedBorder());
+		label.setPreferredSize(new Dimension(400,300));
+		label.setOpaque(false);
+		label.setEditable(false);
+		
+		label.addHyperlinkListener(new HyperlinkListener() {
+		    public void hyperlinkUpdate(HyperlinkEvent e) {
+		        if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+		        	try { 
+		        		if(Desktop.isDesktopSupported()) {
+		        		    Desktop.getDesktop().browse(e.getURL().toURI());
+		        		} else 
+		        			Tools.openURL(e.getURL().toString());
+		        	} catch (Exception x) {
+		        		JOptionPane.showMessageDialog(null, x.getMessage());
+		        	}
+		        }
+		    }
+		});
+		
+    	JOptionPane.showMessageDialog(null,label,"Toxtree Help",JOptionPane.INFORMATION_MESSAGE);
+        
 	}	
 
 }
