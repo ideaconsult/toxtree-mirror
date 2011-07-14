@@ -1,8 +1,8 @@
 package toxtree.plugins.verhaar2.test.rules.class3;
 
 import toxTree.core.IDecisionRule;
-import toxtree.plugins.verhaar2.rules.Rule33;
 import toxtree.plugins.verhaar2.test.rules.AbstractRuleTest;
+import verhaar.rules.Rule33;
 
 public class Rule33Test extends AbstractRuleTest {
 

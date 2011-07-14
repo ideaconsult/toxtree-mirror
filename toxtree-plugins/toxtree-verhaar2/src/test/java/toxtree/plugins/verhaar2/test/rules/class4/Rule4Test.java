@@ -25,8 +25,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.plugins.verhaar2.test.rules.class4;
 
 import toxTree.core.IDecisionRule;
-import toxtree.plugins.verhaar2.rules.Rule4;
 import toxtree.plugins.verhaar2.test.rules.AbstractRuleTest;
+import verhaar.rules.Rule4;
 
 
 public class Rule4Test extends AbstractRuleTest {

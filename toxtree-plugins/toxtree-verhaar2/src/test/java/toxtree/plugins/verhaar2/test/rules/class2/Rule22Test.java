@@ -25,8 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.test.rules.class2;
 
 import toxTree.core.IDecisionRule;
-import toxtree.plugins.verhaar2.rules.Rule22;
 import toxtree.plugins.verhaar2.test.rules.AbstractRuleTest;
+import verhaar.rules.Rule22;
 
 public class Rule22Test extends AbstractRuleTest {
 	@Override
