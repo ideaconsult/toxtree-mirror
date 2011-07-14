@@ -30,12 +30,18 @@ import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
  */
 public class Rule32 extends RuleSMARTSSubstructureAmbit {
 	protected String[][] smarts = {
-			{"c1ccc(cc1)C([*])X & X=Cl","a:a[CX4][Cl,Br,I]"},      
-			{"c1ccc(cc1)C([*])X & X=cyano","a:a[CX4]C#N"},
-			{"c1ccc(cc1)C([*])X & X=hydroxyl","a:a[CX4][OH1]"},
-			{"c1ccc(cc1)C([*])X & X=ketone","a:a[CX4]C(C)=O"},
-			{"c1ccc(cc1)C([*])X & X=aldehyde","a:a[CX4][CH1]=O"},
+			{"c1ccc(cc1)C([*])X & X=Cl","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br,I])][Cl,Br,I]"},      
+			{"c1ccc(cc1)C([*])X & X=cyano","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])]C#N"},
+			{"c1ccc(cc1)C([*])X & X=hydroxyl","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])][OH1]"},
+			{"c1ccc(cc1)C([*])X & X=ketone","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])]C(C)=O"},
+			{"c1ccc(cc1)C([*])X & X=aldehyde","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])][CH1]=O"},
 	};		
+	/*
+			{"c1ccc(cc1)C([*])X & X=cyano","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])]C#N"},
+			{"c1ccc(cc1)C([*])X & X=hydroxyl","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])][OH1]"},
+			{"c1ccc(cc1)C([*])X & X=ketone","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])]C(C)=O"},
+			{"c1ccc(cc1)C([*])X & X=aldehyde","a[$([CX4H1]),$([CX4][C,N,O,S,Cl,Br])][CH1]=O"},
+	 */
 	/**
 	 * 
 	 */

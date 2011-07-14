@@ -38,7 +38,7 @@ public class Rule151 extends RuleSMARTSSubstructureAmbit {
 	private static final long serialVersionUID = 5360285168848609301L;
 	protected Object[][] smarts = {
 			{"linear ethers or monocyclic mono ethers, but not epoxides or peroxides",
-				"[#6]-[$([O;!R]),$([O;R;!r3])]-[#6]"
+				"[$([#6]);!$(C=O)]-[$([O;!R]),$([O;R;!r3])]-[$([#6]);!$(C=O)]"
 				,Boolean.TRUE},
 	};		
 	

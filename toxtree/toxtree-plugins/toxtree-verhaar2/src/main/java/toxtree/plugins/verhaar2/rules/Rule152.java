@@ -25,6 +25,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import toxtree.plugins.verhaar2.rules.helper.RuleOnlyAllowedSubstructuresCounter;
 import ambit2.smarts.SmartsManager;
 import ambit2.smarts.query.SMARTSException;
@@ -36,23 +37,27 @@ import ambit2.smarts.query.SmartsPatternAmbit;
  * @author Nina Jeliazkova jeliazkova.nina@gmail.com
  * <b>Modified</b> July 12, 2011
  */
-public class Rule152 extends RuleOnlyAllowedSubstructuresCounter {
+public class Rule152 extends RuleSMARTSSubstructureAmbit {
 	protected transient SmartsPatternAmbit allyl = null;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8890813695847536800L;
-
+	static final String TITLE="Be aliphatic alcohols but not allylic/propargylic alcohols";
+	protected Object[][] smarts = {
+			{TITLE,
+				"[OH1]C[!$(C=C);!$(C#C)]"
+				,Boolean.TRUE},
+	};		
+	
 	public Rule152() {
 		super();
 		id = "1.5.2";
-		setTitle("Be aliphatic alcohols but not allylic/propargylic alcohols");
-		addSubstructure(FunctionalGroups.alcohol(true));
-		ids.add(FunctionalGroups.C);
-		ids.add(FunctionalGroups.CH);
-		ids.add(FunctionalGroups.CH2);
-		ids.add(FunctionalGroups.CH3);		
+		setTitle(TITLE);
+		for (Object[] smart: smarts) try { 
+			addSubstructure(smart[0].toString(),smart[1].toString(),!(Boolean) smart[2]);
+		} catch (Exception x) {}
 		examples[0] = "C#CCO"; //propargyl alcohol ;  H2C=CH-CH2OH  - allyl alcohol   
 		examples[1] = "CCCCC(O)CC";
 	

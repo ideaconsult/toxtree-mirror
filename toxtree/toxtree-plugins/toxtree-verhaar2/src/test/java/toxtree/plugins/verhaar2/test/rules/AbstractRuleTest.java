@@ -70,7 +70,7 @@ public abstract class AbstractRuleTest extends TestCase {
 	                    logger.info(smiles_and_answer[i][0],"\tOK");
 	                } else {
 	                	logger.error(smiles_and_answer[i][0],"\tFAILED");
-	                	System.out.println(smiles_and_answer[i][0]);
+	                	System.out.println(smiles_and_answer[i][0] + " expected "+b);
 	                }
 	        } else throw new Exception("Null molecule "+smiles_and_answer[i][0]);        
 	            

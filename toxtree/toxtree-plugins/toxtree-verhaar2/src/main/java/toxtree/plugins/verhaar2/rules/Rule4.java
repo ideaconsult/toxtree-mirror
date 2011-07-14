@@ -64,15 +64,18 @@ the weak acid respiratory uncouplers.
         try {
             super.initSingleSMARTS(super.smartsPatterns,"organotin", "C[Sn]");
             super.initSingleSMARTS(super.smartsPatterns,"DDT and analogues", "c1ccc(cc1)C(c2ccccc2)=,-C(Cl)Cl");
+            super.initSingleSMARTS(super.smartsPatterns,"DDT and analogues1", "[R](Cl)[R][R](Cl)[R][R](Cl)");
+            super.initSingleSMARTS(super.smartsPatterns,"DDT and analogues2", "Claa-aaCl");
             super.initSingleSMARTS(super.smartsPatterns,"pyrethroids", "O=C(O)C1C(C=C)C1(C)(C)");
             
             super.initSingleSMARTS(super.smartsPatterns,"carbamates", "OC(=O)[NX3]");
             
-
+            super.initSingleSMARTS(super.smartsPatterns,"monothiocarbamates", "[NX3]C(=O)S");
             super.initSingleSMARTS(super.smartsPatterns,"dithiocarbamates", "[NX3]C(=S)S");
             super.initSingleSMARTS(super.smartsPatterns,"triphenyl phosphate", "O=P(Oc1ccccc1)(Oc2ccccc2)Oc3ccccc3");
             super.initSingleSMARTS(super.smartsPatterns,"organophosphorothionate esters", "P(O)(O)(O)(=S)");
             super.initSingleSMARTS(super.smartsPatterns,"organophosphorothionate", "P(O)(O)(S)(=S)");
+            super.initSingleSMARTS(super.smartsPatterns,"organophosphate1", "P(O)(C)(S)(=S)");
             
 
             
