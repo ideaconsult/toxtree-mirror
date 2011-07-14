@@ -546,7 +546,7 @@ public class FuncRules extends UserDefinedTree implements IDecisionInteractive{
      ;
 		setChanged();
 		notifyObservers();
-		setTitle("Structure Alerts for the functional groups identification");
+		setTitle("Structural Alerts for Functional Group Identification (ISSFUNC)");
 		setExplanation(
 				"<html>Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups.<br>" +
 				"Reference: <a href='http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_24871_EN.pdf'>JRC report</a></html>" 
