@@ -22,51 +22,26 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-package toxtree.plugins.verhaar2.test.rules.class3;
+package toxtree.plugins.verhaar2.test.rules.class1;
 
 import toxTree.core.IDecisionRule;
 import toxtree.plugins.verhaar2.test.rules.AbstractRuleTest;
-import verhaar.rules.Rule31;
+import verhaar.rules.Rule143;
 
 
-public class Rule31Test extends AbstractRuleTest {
+public class Rule143Test extends AbstractRuleTest {
 	@Override
 	protected IDecisionRule createRule() {
-		return new Rule31();
+		return new Rule143();
 	}
 	public void test() throws Exception {
 	    Object[][] answer = {
-	    		//halogen
-	            	{"CC=CC(Cl)", Boolean.TRUE},
-	            	{"CC=CC(Br)", Boolean.TRUE},
-	            	{"CC=CC(I)", Boolean.TRUE},
-	            	//cyano
-	            	{"CC=CC(C#N)", Boolean.TRUE},
-	            	//hydroxyl
-	            	{"CC=CCO", Boolean.TRUE},
-	            	//ketone
-	            	{"CC=CC(C(C)=O)", Boolean.TRUE},
-	            	//aldehyde
-	            	{"CC=CC(C=O)", Boolean.TRUE},
-	            	
-	            	//halogen
-	            	{"CC#CC(C)Cl", Boolean.TRUE},
-	            	{"CC#CC(C)Br", Boolean.TRUE},
-	            	{"CC#CC(C)I", Boolean.TRUE},
-	            	//cyano
-	            	{"CC#CC(C)C#N", Boolean.TRUE},
-	            	//hydroxyl
-	            	{"CC#CC(C)O", Boolean.TRUE},	            	
-	            	//ketone
-	            	{"CC#CC(C)(C(C)=O)", Boolean.TRUE},
-	            	//aldehyde
-	            	{"CC#CC(C)C=O", Boolean.TRUE},	
-	            	//aromatic bond should not be considered as activating
-	            	{"n1cc(cc(c1Cl)Cl)Cl",Boolean.FALSE}	
-	            	
 
+	            	{"c1cc(CCCCCCCC)ccc1CCl",new Boolean(false)},
+	            	{"c1(CCCCCCCC)ccccc1CCCl",new Boolean(true)}
 	    };
-	    ruleTest(answer); //      	{"OCCOC1=CC=CC=C1",new Boolean(false)} ,
+
+	    ruleTest(answer); 
 	}	
 	
 	

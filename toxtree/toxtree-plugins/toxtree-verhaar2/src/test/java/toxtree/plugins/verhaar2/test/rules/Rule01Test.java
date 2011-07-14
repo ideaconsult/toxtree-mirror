@@ -22,38 +22,30 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-package toxtree.plugins.verhaar2.test.rules.class2;
+package toxtree.plugins.verhaar2.test.rules;
 
 import toxTree.core.IDecisionRule;
-import toxtree.plugins.verhaar2.test.rules.AbstractRuleTest;
-import verhaar.rules.Rule21;
+import verhaar.rules.Rule01;
 
 
-public class Rule21Test extends AbstractRuleTest {
+public class Rule01Test extends AbstractRuleTest {
 	@Override
 	protected IDecisionRule createRule() {
-		return new Rule21();
+		return new Rule01();
 	}
-	public void test() throws Exception {
-		
 	
+	public void test() throws Exception {
 	    Object[][] answer = {
-
-	            	{"c1ccccc1(O)",Boolean.TRUE},
-	            	{"c1ccc(Cl)cc1(O)",Boolean.TRUE},
-	       
-	            	{"Clc1cc(O)c(Cl)c(Cl)c1(Cl)",Boolean.FALSE},
-	            	{"O=[N+]([O-])c1cc(O)cc(c1)[N+](=O)[O-]",Boolean.FALSE},
-
-	            	{"Oc1ccc([N+](=O)[O-])c([N+](=O)[O-])c1[N+](=O)[O-]",Boolean.FALSE},
-	            	
-	           
+	    		//
+	            	{"c1ccccc1Cl",new Boolean(true)},
+	            	{"c1ccccc1O",new Boolean(true)},
+	            	{"c1ccccc1I",new Boolean(false)},
+	            	{"OP(O)(O)=O.CCOC(=O)C=1CC(N)C(NC(C)=O)C(OC(CC)CC)C=1",new Boolean(false)},
+	 
 	    };
-	    
-
 	    ruleTest(answer); 
 	}	
-	
+
 	
 }
 
