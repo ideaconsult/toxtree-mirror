@@ -51,7 +51,7 @@ public class Verhaar2TreeResult extends TreeResult {
     }   
     
     public String[] getResultPropertyName() {
-    	if (getDecisionMethod() == null) return new String[] {"Verhaar scheme"};
+    	if (getDecisionMethod() == null) return new String[] {"Verhaar scheme (Modified)"};
     	else return new String[] {getDecisionMethod().getClass().getName()};
     }
 }
