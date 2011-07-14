@@ -20,6 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.rules;
 
 
+import java.util.ArrayList;
+
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import verhaar.query.FunctionalGroups;
@@ -47,6 +50,7 @@ public class Rule25 extends Rule21 {
 		examples[0] = "Clc1ccc(cc1(Cl))CC";
 		editable = false;
 		
+
 		setMaxHalogens(2);
 		setMaxNitroGroups(0);
 	}
@@ -55,6 +59,8 @@ public class Rule25 extends Rule21 {
 		return new String[] {"Cl"};
 	}
 	protected QueryAtomContainer createMainStructure() {
-		return FunctionalGroups.pyridine();
+		return FunctionalGroups.pyridine_character();
 	}
+	
+	
 }
