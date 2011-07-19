@@ -2,9 +2,6 @@ package toxtree.plugins.verhaar2.test.validate;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import junit.framework.Assert;
 
@@ -16,6 +13,7 @@ import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.logging.TTLogger;
+import toxTree.tree.stats.ConfusionMatrix;
 import toxtree.plugins.verhaar2.VerhaarScheme2;
 import verhaar.VerhaarScheme;
 import ambit2.core.io.MyIteratingMDLReader;
@@ -112,6 +110,8 @@ Expected	4.0	Predicted	Class 5 (Not possible to classify according to these rule
 			
 			ConfusionMatrix<String,String> cmatrix = new ConfusionMatrix<String, String>();
 			Object[] expectedValues = new Object[expectedColumns.length];
+			cmatrix.setExpectedTitle(expectedColumns[0]);
+			cmatrix.setPredictedTitle(rules.getTitle());
 			
 			while (reader.hasNext()) {
 				result.clear();				
@@ -138,6 +138,7 @@ Expected	4.0	Predicted	Class 5 (Not possible to classify according to these rule
 				records++;
 			}
 			System.out.println(cmatrix.toString());
+			System.out.println(cmatrix.printMatrix());
 			//logger.error(category);
 			logger.error("Processed\t",records);
 			logger.error("Successfull\t",ok);
@@ -150,91 +151,4 @@ Expected	4.0	Predicted	Class 5 (Not possible to classify according to these rule
 			Assert.assertEquals(0,applyError);
 
 	}	
-}
-
-class ConfusionMatrix<A,B> {
-	protected boolean dirty= false;
-	List<CMEntry<A,B>> cmatrix = new ArrayList<CMEntry<A,B>>();
-	public ConfusionMatrix() {
-		super();
-	}
-	public void addEntry(A expected, B predicted) {
-		CMEntry<A,B> cme = new CMEntry<A,B>(expected,predicted);
-		int index = cmatrix.indexOf(cme);
-		if (index<0) { cmatrix.add(cme); cme.increment();}
-		else cmatrix.get(index).increment();
-		dirty = true;
-	}
-	public void sort() {
-		
-	}
-	
-	@Override
-	public String toString() {
-		if (dirty ) Collections.sort(cmatrix);	
-		StringBuilder b = new StringBuilder();
-		Object x = null;
-		for (CMEntry cm : cmatrix) {
-			if ((x!=null) && !x.equals(cm.getExpected())) b.append("\n");
-			b.append(cm.toString());
-			b.append("\n");
-			x = cm.getExpected();
-		}
-		return b.toString();
-	}
-}
-class CMEntry<A,B> implements Comparable<CMEntry<A,B>>{
-	A expected;
-	B predicted;
-	int count;
-	
-	public CMEntry(A expectedValue, B predictedValue) {
-		setExpected(expectedValue);
-		setPredicted(predictedValue);
-		count = 0;
-	}
-	public A getExpected() {
-		return expected;
-	}
-	protected void setExpected(A expected) {
-		this.expected = expected;
-	}
-	public B getPredicted() {
-		return predicted;
-	}
-	protected void setPredicted(B predicted) {
-		this.predicted = predicted;
-	}
-	public int getFrequency() {
-		return count;
-	}
-	public void increment() {
-		this.count++;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof CMEntry) {
-			CMEntry o = (CMEntry)obj;
-			return  getExpected().toString().equals(o.getExpected().toString()) &&
-		 		getPredicted().toString().equals(o.getPredicted().toString());
-		}
-		return false;
-	}
-	@Override
-	public int compareTo(CMEntry<A, B> o) {
-		int ok = getExpected().toString().compareTo(o.getExpected().toString());
-		if (ok==0) return getPredicted().toString().compareTo(o.getPredicted().toString());
-		else return ok;
-	}
-	
-	public int hashCode() {
-		int hash = 7;
-		hash = 31 * hash + (null == expected ? 0 : expected.hashCode());
-		hash = 31 * hash + (null == predicted ? 0 : predicted.hashCode());
-		return hash;
-	}
-	@Override
-	public String toString() {
-		return String.format("Expected\t%s\tPredicted\t%s\t[%d]",getExpected(),getPredicted(),getFrequency() );
-	}
 }
