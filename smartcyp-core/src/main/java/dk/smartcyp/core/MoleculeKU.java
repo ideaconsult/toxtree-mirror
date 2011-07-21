@@ -41,7 +41,13 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 			}
 			public String atomProperty2String(IAtom atom) {
 				return String.format("%s:%s",getLabel(),getData(atom).getEnergy());
-			}			
+			}
+
+			@Override
+			public Number getNumber(IAtom atom) {
+				SMARTSData data = getData(atom);
+				return data==null?null:data.getEnergy();
+			}
 		},
 		Accessibility {
 			@Override
@@ -59,15 +65,15 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 		public String  getLabel()  { return "";};
 
 		public void set(IAtom atom, Object value) {
-			atom.setProperty(toString(), value);
+			atom.setProperty(name(), value);
 		}
 
 		public SMARTSData getData(IAtom atom) {
-			Object o = atom.getProperty(toString());
+			Object o = atom.getProperty(name());
 			return o instanceof SMARTSData? (SMARTSData)o:null;
 		}		
 		public Number getNumber(IAtom atom) {
-			Object o = atom.getProperty(toString());
+			Object o = atom.getProperty(name());
 			return (o==null)?null:o instanceof Number?(Number)o:null;
 		}
 
@@ -123,13 +129,14 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 				boolean status = querytool.matches(this);
 				if (status) {
 
+					
 
 					numberOfSMARTSmatches = querytool.countMatches();		// Count the number of matches				
 					List<List<Integer>> matchingAtomsIndicesList_1;				// List of List objects each containing the indices of the atoms in the target molecule
 					List<Integer> matchingAtomsIndicesList_2 = null;						// List of atom indices
 					SMARTSData data = SMARTSnEnergiesTable.get(currentSMARTS);		// Energy & SMIRKS of currentSMARTS
 
-					//					System.out.println("\n The SMARTS " + currentSMARTS + " has " + numberOfSMARTSmatches + " matches in the molecule " + this.getID());
+				//System.out.println("\n The SMARTS " + currentSMARTS + " has " + numberOfSMARTSmatches + " matches in the molecule " + this.getID());
 
 					matchingAtomsIndicesList_1 = querytool.getMatchingAtoms();													// This list contains the C, N, P and S atom indices
 
@@ -155,12 +162,17 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 									|| data.getEnergy() < SMARTCYP_PROPERTY.Energy.getData(matchingAtom).getEnergy())
 								
 								SMARTCYP_PROPERTY.Energy.set(matchingAtom,data);
+
 						}
 					}
 				}
 			}	
-			catch (CDKException e) {System.out.println("There is something fishy with the SMARTS: " + currentSMARTS); e.printStackTrace();}
+			catch (CDKException e) {
+				System.out.println("There is something fishy with the SMARTS: " + currentSMARTS); 
+				e.printStackTrace();
+			}
 		}
+
 	}
 
 
@@ -221,7 +233,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 	//  This method makes atomsSortedByEnA
 	public void sortAtoms() throws CDKException{
 
-		Atom currentAtom;
+		IAtom currentAtom;
 		String currentAtomType;					// Atom symbol i.e. C, H, N, P or S
 
 		// The Symmetry Numbers are needed to compare the atoms (Atom class and the compareTo method) before adding them below
@@ -229,7 +241,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 		
 		for (int atomNr = 0; atomNr < this.getAtomCount(); atomNr++){
 
-			currentAtom = (Atom) this.getAtom(atomNr);
+			currentAtom = (IAtom) this.getAtom(atomNr);
 
 			// Match atom symbol
 			currentAtomType = currentAtom.getSymbol();
@@ -264,12 +276,12 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 		// Iterate over the Atoms in this sortedAtomsTreeSet
 		int rankNr = 1;
 		int loopNr = 1;
-		Atom previousAtom = null;
-		Atom currentAtom;
+		IAtom previousAtom = null;
+		IAtom currentAtom;
 		Iterator<IAtom> atomsSortedByEnAiterator = this.getAtomsSortedByEnA().iterator();
 		while(atomsSortedByEnAiterator.hasNext()){
 
-			currentAtom = (Atom) atomsSortedByEnAiterator.next();
+			currentAtom = (IAtom) atomsSortedByEnAiterator.next();
 
 			// First Atom
 			if(previousAtom == null){}				// Do nothing												
@@ -316,12 +328,13 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 					Number rankNr;
 					while(atomsSortedByEnAiterator.hasNext()){
 						
-						rankedAtom = (Atom) atomsSortedByEnAiterator.next();
+						rankedAtom = (IAtom) atomsSortedByEnAiterator.next();
 						
 						if(SMARTCYP_PROPERTY.SymmetryNumber.getNumber(currentAtom).intValue() == SMARTCYP_PROPERTY.SymmetryNumber.getNumber(rankedAtom).intValue()){
 							
 							rankNr = SMARTCYP_PROPERTY.Ranking.getNumber(rankedAtom);
 							SMARTCYP_PROPERTY.Ranking.set(currentAtom,rankNr);
+
 						}
 					}
 					
@@ -342,7 +355,8 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 	}
 
 	public String toString(){
-		for(int atomNr=0; atomNr < this.getAtomCount(); atomNr++) System.out.println(this.getAtom(atomNr).toString());
+		for(int atomNr=0; atomNr < this.getAtomCount(); atomNr++) 
+			System.out.println(this.getAtom(atomNr).toString());
 		return "MoleculeKU " + super.toString();
 	}
 	
