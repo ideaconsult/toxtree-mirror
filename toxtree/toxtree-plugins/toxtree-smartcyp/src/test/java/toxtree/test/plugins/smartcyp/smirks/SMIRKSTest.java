@@ -15,6 +15,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemObject;
@@ -26,6 +27,8 @@ import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionResult;
+import toxTree.query.MolAnalyser;
+import toxTree.tree.stats.ConfusionMatrix;
 import toxtree.plugins.smartcyp.SMARTCYPPlugin;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.IStructureDiagramHighlights;
@@ -35,67 +38,12 @@ import ambit2.core.processors.structure.HydrogenAdderProcessor;
 import ambit2.rendering.CompoundImageTools;
 import ambit2.smarts.SMIRKSManager;
 import ambit2.smarts.SMIRKSReaction;
+import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
+import dk.smartcyp.core.SMARTSData;
+import dk.smartcyp.smirks.SMARTCYPReaction;
 
 public class SMIRKSTest {
 	protected CompoundImageTools tool = new CompoundImageTools();
-	protected String[][] reactions  = {
-	{		
-	"N-dealkylation",
-	"[N:1][C:2]([H])>>[N:1][H].[C:2]=[O]" 
-	},
-
-	{
-	"N-oxidation",
-	//"[N:1][C:2]([H])>>[N:1](-[O])[C:2]"
-	"[N:1][C:2]([H])>>[N:1](=[O])[C:2]"
-	},
-	{
-	"S-oxidation",
-	"[#16:1][#6:2]>>[#16:1](=[O])[#6:2]"
-	},
-	{
-	"Aromatic hydroxylation",
-	"[c:1][H:2]>>[c:1][O][H:2]"
-	},
-	
-	{
-	"Aliphatic hydroxylation",
-	"[C;X4:1][H:2]>>[C:1][O][H:2]",
-	},
-	
-	{
-	"O-dealkylation",
-	"[O;H0:1][C:2]([H])>>[O:1][H].[C:2]=[O]"
-	},
-	
-	{
-	"Aromatization of dihydropyridines",
-	"[N;X3:1]1([H])[#6:2]=[#6:3][#6;X4:4][#6:5]=[#6:6]1>>[n;H0:1]1=[#6:2][#6:3]=[#6:4][#6:5]=[#6:6]1",
-	},
-	
-	{
-	"Thioesther bond breaking",
-	"[S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]"
-	},
-	{
-	"Aldehyde oxidation",
-	"[C;H1:1]=[O:2]>>[C:1](O)=[O:2]"
-	},
-	{
-	"Alcohol oxidation",
-	"[C:1]([H])[O:2][H]>>[C:1]=[O:2]"
-	},
-	{
-	"Desulphurization of phosphor",
-	"[*:1][P:2](=S)([*:3])[*:4]>>[*:1][P:2](=O)([*:3])[*:4]"
-	},
-	{
-	"Epoxidation",
-	//"[C:1]=[C:2]>>[C:1]1=[C:2][O]1"
-	"[C:1]=[C:2]>>[C:1]1[C:2][O]1"
-	}
-	
-	};
 	
 	
 	IAtomContainer applySMIRKSReaction(SMIRKSManager smrkMan, String smirks,IAtomContainer target) throws Exception
@@ -122,50 +70,31 @@ public class SMIRKSTest {
 	}	
 	/*
 SMARTS matches , but SMIRKS does not
-9_anthraldehyde Aldehyde_oxidation
-E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/FELODIPINE_1.png
-FLU-1 new4
-alfentanil N_dealkylation
-artelinic_acid new3
-E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/barnidipine_1.png
-bupivacaine N_dealkylation
-cisapride N_dealkylation
-cocaine N_dealkylation
-compound_1 N_dealkylation
-diclofenac new4
-fentanyl N_dealkylation
-haloperidol N_dealkylation
-iloperidone N_dealkylation
-isoquinoline N_oxidation
-miocamycin Aldehyde_oxidation
-E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/nicardipine_1.png
-E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/nifedipine_1.png
-E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/nitrendipine_1.png
-pradefovir new4
-py74 new4
-quinoline N_oxidation
-reduced_haloperidol N_dealkylation
-riddelliine N_dealkylation
-salmeterol N_dealkylation
-saquinavir N_dealkylation
-terbinafine N_dealkylation
-terfenadine N_dealkylation
-voriconazole N_dealkylation
-zaleplon N_oxidation
-6-aminochrysene new4
-9_cis_retinal Aldehyde_oxidation
-E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/MOP-13031_1.png
-caffeine N_dealkylation
-dapsone new4
-meperidine N_dealkylation
-olanzapine N_dealkylation
-E:\src-clean\toxtree\toxtree-plugins\toxtree-smartcyp\target\test-classes\toxtree\test\plugins\smartcyp\images/pranidipine_1.png
-reduced_diclofenac new4
-retinal Aldehyde_oxidation
-sertindole N_dealkylation
+Expected	Predicted	All	Alcohol oxidation	[10] +
+Expected	Predicted	All	Aldehyde oxidation	[4] +
+Expected	Predicted	All	Aliphatic hydroxylation	[107] +
+Expected	Predicted	All	Aromatization of dihydropyridines	[7]  +
+Expected	Predicted	All	Desulphurization of phosphor	[4] +
+Expected	Predicted	All	Epoxidation	[12] +
+Expected	Predicted	All	N-dealkylation	[174] +
+Expected	Predicted	All	N-oxidation	[8] +
+Expected	Predicted	All	new1	[35] +
+Expected	Predicted	All	new3	[11] +
+Expected	Predicted	All	new4	[1] +
+
+Not found
+new 2  [O:1][C:2]([H])>>[O:1][H].[C:2]=[O]
+S-Oxidation [#16:1][#6:2]>>[#16:1](=[O])[#6:2]
+Aromatic_hydroxylation  [c:1][H:2]>>[c:1][O][H:2]
+O_dealkylation  [O;H0:1][C:2]([H])>>[O:1][H].[C:2]=[O]
+Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
+
 	 */
 	@Test
-	public void testMGenerator() throws Exception {
+	public void testSMARTCypMetabolitesGenerator() throws Exception {
+		boolean explicitH=true;
+		AtomConfigurator  cfg = new AtomConfigurator();
+		HydrogenAdderProcessor hadder = new HydrogenAdderProcessor();
 		SmilesGenerator g = new SmilesGenerator();
 		SMARTCYPPlugin smartcyp = new SMARTCYPPlugin();
 		File file = new File(getClass().getClassLoader().getResource("toxtree/test/plugins/smartcyp/3A4_substrates.sdf").getFile());
@@ -174,19 +103,22 @@ sertindole N_dealkylation
 		File htmlFile = new File(String.format("%s/metabolites.html", file.getParentFile()));
 		if (htmlFile.exists()) htmlFile.delete();
 		FileWriter htmlFileWriter = new FileWriter(htmlFile);
-		htmlFileWriter.write(String.format("<html><head><title>%s</title></head><body>",true?"Explicit H":"Implicit H"));
+		htmlFileWriter.write(String.format("<html><head><title>%s</title></head><body>",explicitH?"Explicit H":"Implicit H"));
 		
 		
-		AtomConfigurator  cfg = new AtomConfigurator();
-		HydrogenAdderProcessor hadder = new HydrogenAdderProcessor();
-		hadder.setAddEexplicitHydrogens(true);
+		//AtomConfigurator  cfg = new AtomConfigurator();
+		//HydrogenAdderProcessor hadder = new HydrogenAdderProcessor();
+		//hadder.setAddEexplicitHydrogens(explicitH);
 		
 		IDecisionResult result = smartcyp.createDecisionResult();
 		int record = 0;
+		ConfusionMatrix matrix = new ConfusionMatrix<String, Comparable>();
+		matrix.setExpectedTitle("SOM expected");
+		matrix.setPredictedTitle("SOM predicted");
 		try {
 			while (reader.hasNext()) {
 				record++;
-				//if (record>4) break;
+				//if (record>1) break;
 				
 				IChemObject mol = reader.next();
 				Object molid = mol.getProperty("ID");
@@ -194,6 +126,9 @@ sertindole N_dealkylation
 				//if (!molid.equals("fentanyl")) continue; //http://www.daylight.com/daycgi_tutorials/react.cgi
 				
 				mol.setID(molid.toString());
+				MolAnalyser.analyse((IMolecule)mol);
+	    	//	IAtomContainer mol = AtomContainerManipulator.removeHydrogens((IAtomContainer)origin);
+				
 				hadder.process((IAtomContainer)mol);
 				cfg.process((IAtomContainer)mol);
 				CDKHueckelAromaticityDetector.detectAromaticity((IAtomContainer)mol);	
@@ -205,7 +140,9 @@ sertindole N_dealkylation
 				htmlFileWriter.write("\n<tr>");
 				
 				String smiles = g.createSMILES((IMolecule)mol);
+				
 				String uri = getImageURI(smiles);
+				
 				String imguri = getImageURI((IMolecule)mol,smartcyp,file.getParentFile(),molid.toString());
 				
 				htmlFileWriter.write(String.format("<td bgcolor='#DDDDDD'><a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a></td>",
@@ -213,7 +150,32 @@ sertindole N_dealkylation
 				
 				//System.out.println(molid);
 				if (result.classify((IAtomContainer)mol)) {
-					IAtomContainerSet set = smartcyp.getProducts((IAtomContainer)mol);
+					result.assignResult((IAtomContainer)mol);
+					Object som_expected = mol.getProperty("PRIMARY_SOM");
+					Object som_predicted = mol.getProperty("SMARTCYP_PRIMARY_SOM");
+					/*
+					matrix.addEntry(som_expected==null?"NA":String.format("'%s'",som_expected.toString()),
+						som_predicted==null?"NA":
+						String.format("'%s'",som_predicted.toString()));
+					*/
+					//htmlFileWriter.write(String.format("<td>Result: %s</td>",mol.getProperties()));
+					htmlFileWriter.write(String.format("<td>%s</td>",result.getAssignedCategories()));
+				
+					htmlFileWriter.write(String.format("<td>"));
+					for (IAtom atom: ((IAtomContainer)mol).atoms())
+						if (SMARTCYP_PROPERTY.Energy.getData(atom)!=null){
+						htmlFileWriter.write("[");
+						if (SMARTCYP_PROPERTY.Ranking.getData(atom)!=null) 
+						htmlFileWriter.write(SMARTCYP_PROPERTY.Ranking.getData(atom).toString());
+						htmlFileWriter.write("]");
+						htmlFileWriter.write(atom.getID());
+						htmlFileWriter.write(".");
+						htmlFileWriter.write(SMARTCYP_PROPERTY.Energy.getData(atom).toString());
+						htmlFileWriter.write("<br>");
+					}
+					htmlFileWriter.write(String.format("</td>"));
+					
+					IAtomContainerSet set = smartcyp.getProducts(result.getRuleResult(0).getMolecule());
 					//Assert.assertNotNull(set);
 					//Assert.assertTrue(set.getAtomContainerCount()>0);
 					if (set != null) {
@@ -221,6 +183,8 @@ sertindole N_dealkylation
 						for (int i=0; i < set.getAtomContainerCount(); i++) {
 							htmlFileWriter.write("<td>");
 							htmlFileWriter.write(set.getAtomContainer(i).getID());
+							matrix.addEntry("All",set.getAtomContainer(i).getID());
+								
 							htmlFileWriter.write("<br>");
 							uri = getImageURI(set.getAtomContainer(i), null, file.getParentFile(), String.format("%s_%d",molid,i+1));
 							//System.out.println(uri);
@@ -228,11 +192,13 @@ sertindole N_dealkylation
 									uri,uri)); 
 							htmlFileWriter.write("</td>");
 						}
+					} else {
+						
 					}
 				}
 				htmlFileWriter.write("</tr></table>");
 			}
-			
+			htmlFileWriter.write(matrix.toString().replace("\n","<br>"));
 			htmlFileWriter.write("</body></html>");
 		} finally {
 			reader.close();
@@ -240,8 +206,25 @@ sertindole N_dealkylation
 		}
 		
 	}
+	
 	@Test
-	public void test() throws Exception {
+	/**
+	 * No smartcyp, just try all reactions
+	 */
+	public void testApplyOneReaction() throws Exception {
+		applyAllReactions(SMARTCYPReaction.values(),true);
+	}
+	
+	@Test
+	/**
+	 * No smartcyp, just try all reactions
+	 */
+	public void testApplyAllReactions() throws Exception {
+		applyAllReactions(SMARTCYPReaction.values(),false);
+	}
+	
+	public void applyAllReactions(SMARTCYPReaction[] reactions_to_apply, boolean products) throws Exception {		
+		ConfusionMatrix matrix = new ConfusionMatrix();
 		SMARTCYPPlugin smartcyp = new SMARTCYPPlugin();
 		smartcyp.setImageSize(new Dimension(200,200));
 		boolean explicitH = true;
@@ -253,7 +236,7 @@ sertindole N_dealkylation
 		
 		File file = new File(getClass().getClassLoader().getResource("toxtree/test/plugins/smartcyp/3A4_substrates.sdf").getFile());
 
-		MDLWriter[] writers = new MDLWriter[reactions.length];
+		MDLWriter[] writers = new MDLWriter[SMARTCYPReaction.values().length];
 		
 		File masterFile = new File(String.format("%s/targets_and_reaction_products.sdf", file.getParentFile()));
 		if (masterFile.exists()) masterFile.delete();
@@ -276,7 +259,7 @@ sertindole N_dealkylation
 		try {
 			while (reader.hasNext()) {
 				record++;
-				if (record > 1) break;
+				//if (record > 1) break;
 				IChemObject mol = reader.next();
 
 				Assert.assertTrue(mol instanceof IAtomContainer);
@@ -303,27 +286,56 @@ sertindole N_dealkylation
 				htmlFileWriter.write(String.format("<td bgcolor='#DDDDDD'><a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a></td>",
 								uri,imguri,smiles,smiles));
 				
-				System.out.println(molid);
-				for (int i=0; i < reactions.length; i++) {
+				String smartcypReaction = "None";
+				if (products)  {
+					IAtomContainerSet set = smartcyp.getProducts((IAtomContainer) ((IAtomContainer)mol).clone());
+					//Assert.assertNotNull(set);
+					//Assert.assertTrue(set.getAtomContainerCount()>0);
+					if (set != null) {
+						//System.out.println(set.getAtomContainerCount());
+						for (int i=0; i < set.getAtomContainerCount(); i++) {
+							htmlFileWriter.write("<td border='2'><font color='red'>SMARTCyp:&nbsp;");
+							htmlFileWriter.write(set.getAtomContainer(i).getID());
+							smartcypReaction = set.getAtomContainer(i).getID();
+								
+							htmlFileWriter.write("</font><br>");
+							uri = getImageURI(set.getAtomContainer(i), null, file.getParentFile(), String.format("%s_%d",molid,i+1));
+							//System.out.println(uri);
+							htmlFileWriter.write(String.format("<img src='%s'><br>",
+									uri,uri)); 
+							htmlFileWriter.write("</td>");
+						}
+					} else {
+						htmlFileWriter.write("<td border='2'>No products</td>");
+					}					
+				}
+				
+				for (SMARTCYPReaction reaction:reactions_to_apply) {
 					
-					if (writers[i] == null) {
-						File output = new File(String.format("%s/%s.sdf", file.getParentFile(),reactions[i][0]));
+					String reaction_name = reaction.name();
+					String reaction_smirks = reaction.getSMIRKS();
+					
+					if (writers[reaction.ordinal()] == null) {
+						File output = new File(String.format("%s/%s.sdf", file.getParentFile(),reaction_name));
 						System.out.println(output);
 						if (output.exists()) output.delete();
-						writers[i] = new MDLWriter(new FileOutputStream(output));
+						writers[reaction.ordinal()] = new MDLWriter(new FileOutputStream(output));
 					}
 					IAtomContainer c = (IAtomContainer) ((IAtomContainer)mol).clone();
 					try {
 						c.getProperties().clear();
 						placeholder.getProperties().clear();
-						c = applySMIRKSReaction(smrkMan, reactions[i][1], c);
+						c = applySMIRKSReaction(smrkMan, reaction_smirks, c);
+						
+						matrix.addEntry(smartcypReaction,c==null?"None":reaction_name); 
 						if (c==null) c = placeholder;
-						c.setProperty(reactions[i][0],  reactions[i][1]);
+
+						c.setProperty(reaction_name,reaction_smirks);
 						c.setProperty("ID",molid);
 						
 						
 					} catch (Exception x) {
-						System.out.println(reactions[i][0]);
+						System.out.println(reaction);
 						//x.printStackTrace();
 						throw x;
 					}
@@ -331,23 +343,24 @@ sertindole N_dealkylation
 					
 					if (c!= placeholder) {
 						
-						String ptr = compounds.get(reactions[i][0]);
-						compounds.put(reactions[i][0],String.format("%s&nbsp;<a href='#%s'>%s</a> ",ptr==null?"":ptr,molid,molid));
+						String ptr = compounds.get(reaction_name);
+						compounds.put(reaction_name,String.format("%s&nbsp;<a href='#%s'>%s</a> ",ptr==null?"":ptr,molid,molid));
 						
 						smiles = g.createSMILES(c);
-						htmlFileWriter.write(String.format("<td><a href='#%s' title='%s'>%s<a><br>",reactions[i][0],reactions[i][1], reactions[i][0]));
+						htmlFileWriter.write(String.format("<td><a href='#%s' title='%s'>%s<a><br>",reaction_name,reaction_smirks, reaction_name));
 						uri = getImageURI(smiles);
 						
-						imguri = getImageURI(smiles,file.getParentFile(),String.format("%s_%s",molid.toString(),reactions[i][0]));
+						imguri = getImageURI(smiles,file.getParentFile(),String.format("%s_%s",molid.toString(),reaction_name));
 						
 						htmlFileWriter.write(String.format("<a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a><br>",
 								uri,imguri,smiles,smiles)); 
 						htmlFileWriter.write("</td>");
 						
-						writers[i].setSdFields(mol.getProperties());
-						writers[i].writeMolecule((IMolecule)mol) ;		
-						writers[i].setSdFields(c.getProperties());
-						writers[i].writeMolecule(c);
+						MDLWriter writer = writers[reaction.ordinal()];
+						writer.setSdFields(mol.getProperties());
+						writer.writeMolecule((IMolecule)mol) ;		
+						writer.setSdFields(c.getProperties());
+						writer.writeMolecule(c);
 						
 						masterWriter.setSdFields(c.getProperties());
 						masterWriter.writeMolecule(c) ;
@@ -360,14 +373,15 @@ sertindole N_dealkylation
 			
 			htmlFileWriter.write("<h3><a name='#Reactions'>Reactions<a></h3>");
 			htmlFileWriter.write("<table width='100%' border='1'>");
-			for (int i=0; i < reactions.length; i++) {
+			for (SMARTCYPReaction reaction: reactions_to_apply) {
 				
 				htmlFileWriter.write(String.format("\n<tr><th width='20%%'><a name='%s'>%s</a></th><td width='20%%'>%s</td><td width='60%%'>", 
-						reactions[i][0], reactions[i][0], reactions[i][1]));
-				if (compounds.get(reactions[i][0])!=null) htmlFileWriter.write(compounds.get(reactions[i][0]));
+						reaction.name(), reaction.name(), reaction.getSMIRKS()));
+				if (compounds.get(reaction.name())!=null) htmlFileWriter.write(compounds.get(reaction.name()));
 				htmlFileWriter.write(String.format("</td></tr>"));
 			}
 			htmlFileWriter.write("</table>");
+			htmlFileWriter.write(matrix.toString().replace("\n", "<br>"));
 			htmlFileWriter.write("</body></html>");
 		} finally {
 			reader.close();
@@ -443,4 +457,73 @@ java.lang.NullPointerException
 		
 	}
 
+	
+	@Test
+	public void testRules() throws Exception {
+		SmilesGenerator g = new SmilesGenerator();
+		SMARTCYPPlugin smartcyp = new SMARTCYPPlugin();
+		File file = new File(getClass().getClassLoader().getResource("toxtree/test/plugins/smartcyp/3A4_substrates.sdf").getFile());
+		IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream(file), NoNotificationChemObjectBuilder.getInstance());
+		
+		AtomConfigurator  cfg = new AtomConfigurator();
+		HydrogenAdderProcessor hadder = new HydrogenAdderProcessor();
+		hadder.setAddEexplicitHydrogens(true);
+		
+		IDecisionResult result = smartcyp.createDecisionResult();
+		int record = 0;
+		try {
+			while (reader.hasNext()) {
+				record++;
+				//if (record>10) break;
+				
+				IChemObject mol = reader.next();
+				Object molid = mol.getProperty("ID");
+				
+				//if (!molid.equals("fentanyl")) continue; //http://www.daylight.com/daycgi_tutorials/react.cgi
+				
+				mol.setID(molid.toString());
+				hadder.process((IAtomContainer)mol);
+				cfg.process((IAtomContainer)mol);
+				CDKHueckelAromaticityDetector.detectAromaticity((IAtomContainer)mol);	
+				
+			
+				if (result.classify((IAtomContainer)mol)) {
+					IAtomContainer ac = (IAtomContainer)mol;
+
+					for (IAtom atom: ac.atoms()) {
+						Number num = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
+						
+						if (num==null) continue;
+						//System.out.println(num);
+					//	for (SMARTCYP_PROPERTY sp : SMARTCYP_PROPERTY.values()) {
+					//		System.out.println(sp.name() + " " + sp.atomProperty2String(atom));
+					//	}
+						
+						if (num.intValue()==1) {
+							SMARTSData data = SMARTCYP_PROPERTY.Energy.getData(atom);
+							Number energy = SMARTCYP_PROPERTY.Energy.getNumber(atom);
+							Assert.assertNotNull(data);
+						}
+					
+					}
+					//System.out.println(mol.getProperties());
+					//IAtomContainerSet set = smartcyp.getProducts((IAtomContainer)mol);
+					//Assert.assertNotNull(set);
+					//Assert.assertTrue(set.getAtomContainerCount()>0);
+					//if (set != null) {
+						//System.out.println(set.getAtomContainerCount());
+						//for (int i=0; i < set.getAtomContainerCount(); i++) {
+
+						//}
+					//}
+				}
+			
+			}
+		
+		} finally {
+			reader.close();
+
+		}
+		
+	}
 }

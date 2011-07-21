@@ -41,6 +41,7 @@ import toxTree.tree.ProgressStatus;
 import toxTree.tree.RuleResult;
 import toxTree.tree.TreeResult;
 import toxTree.tree.rules.IAlertCounter;
+import dk.smartcyp.core.SMARTSData;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
 
 
@@ -103,9 +104,13 @@ public class SMARTCypTreeResult extends TreeResult {
     					else
     						switch (property) {
     						case Energy : {
-        						if (property.getData(currentAtom)!=null) 
-        							if (atoms.indexOf(property.getData(currentAtom).getEnergy()) == -1)
-        								atoms.add(property.getData(currentAtom).getEnergy());    							
+    							SMARTSData data = property.getData(currentAtom);
+        						if (data!=null) { 
+        							if (atoms.indexOf(data.getEnergy()) == -1)
+        								atoms.add(property.getData(currentAtom).getEnergy());
+        							if (atoms.indexOf(data.getReaction()) == -1)
+        								atoms.add(data.getReaction().toString());         							
+        						}
     							break;
     						}
     						default: {
