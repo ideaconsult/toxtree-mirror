@@ -22,7 +22,9 @@ public enum SMARTCYPReaction {
 	new4 {
 		@Override
 		public String getSMIRKS() {
-			return "[N:1]([H:3])[C:2]>>[N:1]([O][H:3])[C:2]";
+			//return "[N:1]([H:3])[C:2]>>[N:1]([O][H:3])[C:2]";
+			return "[N:1]([H:3])[#6:2]>>[N:1]([O][H:3])[#6:2]";
+			
 		}
 	},
 	N_dealkylation {
@@ -40,7 +42,9 @@ public enum SMARTCYPReaction {
 		@Override
 		public String getSMIRKS() {
 			//"[N:1][C:2]([H])>>[N:1](-[O])[C:2]"
-			return "[N:1][C:2]>>[N+:1]([O-])[C:2]";
+			//return "[N:1][C:2]>>[N+:1]([O-])[C:2]";
+			return "[N:1][#6:2]>>[N+:1]([O-])[#6:2]";
+			
 		}
 		@Override
 		public String toString() {
