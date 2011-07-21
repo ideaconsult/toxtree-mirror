@@ -34,10 +34,13 @@ import java.io.File;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import toxTree.core.IDecisionCategories;
+import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionMethodsList;
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.DecisionResultsList;
+import toxTree.tree.stats.ConfusionMatrix;
 
 /**
  * Contains {@link toxTree.data.MoleculesIterator} and {@link toxTree.logging.TTLogger}
@@ -104,11 +107,15 @@ public class DecisionMethodData extends DataContainer {
 	}
 
 
-	public void classifyAll(IDecisionResult treeResult) throws DecisionResultException {
-		if (!enabled) return;
+	public ConfusionMatrix classifyAll(IDecisionResult treeResult) throws DecisionResultException {
+		
+		if (!enabled) return null;
 		IAtomContainer  ac = null;
 		double n = containers.getMoleculesCount();
         treeResult.setNotify(false);
+        ConfusionMatrix<Comparable,IDecisionCategory> cmatrix = new ConfusionMatrix<Comparable, IDecisionCategory>();
+        cmatrix.setExpectedTitle("All");
+        cmatrix.setPredictedTitle(treeResult.getDecisionMethod().getTitle());
 		for (int record =0; record < n; record++) {
 
 			try {
@@ -119,6 +126,11 @@ public class DecisionMethodData extends DataContainer {
 				treeResult.classify(ac);
 				ac = null;
 				setResult(treeResult,containers.getAtomContainer(record));
+				
+				IDecisionCategories categories = treeResult.getAssignedCategories();
+				for (IDecisionCategory category : categories) {
+					cmatrix.addEntry("All", category);
+				}
 			} catch (Exception x) {
 				logger.error("Error when processing record\t",Integer.toString(record),x);
 				x.printStackTrace();
@@ -129,9 +141,11 @@ public class DecisionMethodData extends DataContainer {
         treeResult.setNotify(true);
 		first();
 		modified = true;
+		return cmatrix;
 	}
 	
-	public void classifyAll(IDecisionMethodsList methods) throws DecisionResultException {
+	public ConfusionMatrix classifyAll(IDecisionMethodsList methods) throws DecisionResultException {
+		ConfusionMatrix matrix = null;
 		IAtomContainer  ac = null;
 		setEnabled(false);
     	containers.setReading();
@@ -186,6 +200,7 @@ public class DecisionMethodData extends DataContainer {
     	containers.setDone(true);
     	setChanged();
     	notifyObservers();
+    	return matrix;
 		
 	}
 	

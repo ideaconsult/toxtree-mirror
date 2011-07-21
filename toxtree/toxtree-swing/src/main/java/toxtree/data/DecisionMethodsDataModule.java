@@ -43,6 +43,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.exceptions.FilterException;
 import toxTree.tree.DecisionMethodsList;
+import toxTree.tree.stats.ConfusionMatrix;
 
 public class DecisionMethodsDataModule extends DataModule {
     protected IDecisionMethodsList methods;
@@ -168,16 +169,17 @@ public class DecisionMethodsDataModule extends DataModule {
    		return ((DecisionMethodData) dataContainer).gotoRecord(Integer.parseInt(record));
     }
     
-    public void classifyAll() {
+    public ConfusionMatrix classifyAll() {
+    	ConfusionMatrix matrix = null;
             	try {
-            		((DecisionMethodData) dataContainer).classifyAll(treeResult);
+            		matrix = ((DecisionMethodData) dataContainer).classifyAll(treeResult);
                 } catch (DecisionResultException x) {
                 	logger.error(x);
                     treeResult.clear();
                 }
                 setChanged();
                 notifyObservers();
- 
+        return matrix;
     }
     
     public void classify() {

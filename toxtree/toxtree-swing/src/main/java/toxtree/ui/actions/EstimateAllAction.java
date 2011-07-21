@@ -26,8 +26,10 @@ package toxtree.ui.actions;
 
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 import toxTree.io.Tools;
+import toxTree.tree.stats.ConfusionMatrix;
 import toxtree.data.DataModule;
 import toxtree.data.DecisionMethodsDataModule;
 
@@ -70,7 +72,10 @@ public class EstimateAllAction extends DataModuleAction {
 
 	@Override
 	public void run() {
-		   ((DecisionMethodsDataModule) module).classifyAll();
+		  ConfusionMatrix matrix = ((DecisionMethodsDataModule) module).classifyAll();
+		 // if (matrix != null) 
+			 // JOptionPane.showMessageDialog(module.getActions().getFrame(), matrix.toString() );
+		  
 	}
 	/*
 	public void actionPerformed(ActionEvent e) {
