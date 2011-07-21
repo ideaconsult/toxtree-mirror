@@ -27,7 +27,7 @@ public class SMARTSData {
 	}
 	@Override
 	public String toString() {
-		return NumberFormat.getInstance().format(energy);
+		return String.format("Energy %f %s %s",energy,reaction.toString(),reaction.getSMIRKS());
 	}
 	
 
