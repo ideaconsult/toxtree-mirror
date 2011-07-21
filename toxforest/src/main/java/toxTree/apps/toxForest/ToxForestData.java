@@ -27,6 +27,7 @@ import toxTree.core.IDecisionMethodsList;
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.query.FunctionalGroups;
+import toxTree.tree.stats.ConfusionMatrix;
 import toxtree.data.DecisionMethodData;
 
 /**
@@ -86,10 +87,11 @@ public class ToxForestData extends DecisionMethodData {
         notifyObservers();
 	}
 	@Override
-	public void classifyAll(IDecisionMethodsList methods) throws DecisionResultException {
-		super.classifyAll(methods);
+	public ConfusionMatrix classifyAll(IDecisionMethodsList methods) throws DecisionResultException {
+		ConfusionMatrix matrix =super.classifyAll(methods);
         setChanged();
         notifyObservers();		
+        return matrix;
 	}
 	
 	

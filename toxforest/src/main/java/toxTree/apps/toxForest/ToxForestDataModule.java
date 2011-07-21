@@ -32,6 +32,7 @@ import toxTree.exceptions.FilterException;
 import toxTree.tree.BatchDecisionResultsList;
 import toxTree.tree.DecisionMethodsList;
 import toxTree.tree.DecisionResultsList;
+import toxTree.tree.stats.ConfusionMatrix;
 import toxtree.data.ActionList;
 import toxtree.data.DataContainer;
 import toxtree.data.DecisionMethodData;
@@ -158,13 +159,14 @@ public class ToxForestDataModule extends DecisionMethodsDataModule {
 	}
 	
     @Override
-	public void classifyAll() {
+	public ConfusionMatrix classifyAll() {
+    	ConfusionMatrix matrix = null;
     	if (methods instanceof BatchDecisionResultsList)
     		((BatchDecisionResultsList)methods).setEstimating(); 
     		
     		((DecisionMethodData) dataContainer).setEnabled(false);
             	try {
-	        		((DecisionMethodData) dataContainer).classifyAll(methods);
+	        		matrix = ((DecisionMethodData) dataContainer).classifyAll(methods);
 	                //JOptionPane.showMessageDialog(null, "Done");
 
             	} catch (DecisionResultException x) {
@@ -176,6 +178,7 @@ public class ToxForestDataModule extends DecisionMethodsDataModule {
             		((BatchDecisionResultsList)methods).setEstimated();            
                 setChanged();
                 notifyObservers();
+        return matrix;      
     }
     
     @Override

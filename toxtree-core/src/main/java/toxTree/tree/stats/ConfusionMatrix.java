@@ -150,6 +150,6 @@ class CMEntry<A,B> implements Comparable<CMEntry<A,B>>{
 	}
 	@Override
 	public String toString() {
-		return String.format("%s\t%s\t%s\t%s\t[%d]",getExpectedTitle(),getPredictedTitle(),getExpected(),getPredicted(),getFrequency() );
+		return String.format("%s\t%s\t%s\t%s\t[%d]","Expected","Predicted",getExpected(),getPredicted(),getFrequency() );
 	}
 }
