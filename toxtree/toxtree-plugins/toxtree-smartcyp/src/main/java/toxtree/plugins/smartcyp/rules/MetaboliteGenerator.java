@@ -44,7 +44,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 		AtomConfigurator cfg = new AtomConfigurator();
 		if (smrkMan == null) {
 			smrkMan = new SMIRKSManager();
-			//smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL);
+			smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL);
 		}
 		List<SMARTCYPReaction> reactions = new ArrayList<SMARTCYPReaction>();
 		for (IAtom atom : reactant.atoms()) {
@@ -57,7 +57,15 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 				continue;
 			
 			SMARTSData data = SMARTCYP_PROPERTY.Energy.getData(atom);
-			if (data == null) continue;
+			if (data == null) {
+				if (products == null)
+					products = NoNotificationChemObjectBuilder.getInstance()
+							.newInstance(IAtomContainerSet.class);
+				IAtomContainer product = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainer.class);
+				product.setID(String.format("No energy for rank 1 atom!"));
+				products.addAtomContainer(product);
+				continue;
+			}
 				//throw new Exception("Energy property missing for atom of rank "		+ atom_rank);
 			if (reactions.indexOf(data.getReaction()) < 0)
 				reactions.add(data.getReaction());
@@ -70,6 +78,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 			IAtomContainer product = (IAtomContainer) reactant.clone();
 
 			if (smrkMan.applyTransformation(product, this, smr)) {
+				
 				if (products == null)
 					products = NoNotificationChemObjectBuilder.getInstance()
 							.newInstance(IAtomContainerSet.class);
@@ -77,11 +86,25 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 				try {
 					cfg.process(product);
 				} catch (Exception x) {
+					product.setID(String.format("%s .... %s",reaction,smrkMan.getErrors()));
+					x.printStackTrace();
 				}
 				products.addAtomContainer(product);
-			} else
+			} else {
+				if (products == null)
+					products = NoNotificationChemObjectBuilder.getInstance()
+							.newInstance(IAtomContainerSet.class);
+				product = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainer.class);
+				product.setID(String.format("Can't generate products! (SMIRKS doesn't match?)<br>%s<br>%s<br>%s",
+						reaction.name(),
+						reaction.getSMIRKS(),
+						smrkMan.getErrors()));
+				products.addAtomContainer(product);
+				
 				System.err.println(String.format("%s %s", reactant.getID(),
 						reaction.name()));
+
+			}
 		}
 
 		return products;

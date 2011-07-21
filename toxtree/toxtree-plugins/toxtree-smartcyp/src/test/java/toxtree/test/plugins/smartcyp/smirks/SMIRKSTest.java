@@ -262,12 +262,14 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 				//if (record > 1) break;
 				IChemObject mol = reader.next();
 
+				Object molid = mol.getProperty("ID");
+				//if (!"isoquinoline".equals(molid)) continue; 
+					
 				Assert.assertTrue(mol instanceof IAtomContainer);
 				hadder.process((IAtomContainer)mol);
 				cfg.process((IAtomContainer)mol);
 				CDKHueckelAromaticityDetector.detectAromaticity((IAtomContainer)mol);
 				
-				Object molid = mol.getProperty("ID");
 				
 				masterWriter.setSdFields(mol.getProperties());
 				masterWriter.writeMolecule((IMolecule)mol) ;
@@ -292,8 +294,9 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 					//Assert.assertNotNull(set);
 					//Assert.assertTrue(set.getAtomContainerCount()>0);
 					if (set != null) {
-						//System.out.println(set.getAtomContainerCount());
+						
 						for (int i=0; i < set.getAtomContainerCount(); i++) {
+							if (set.getAtomContainer(i).getAtomCount()==0) matrix.addEntry("No products", molid.toString());
 							htmlFileWriter.write("<td border='2'><font color='red'>SMARTCyp:&nbsp;");
 							htmlFileWriter.write(set.getAtomContainer(i).getID());
 							smartcypReaction = set.getAtomContainer(i).getID();
@@ -307,6 +310,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 						}
 					} else {
 						htmlFileWriter.write("<td border='2'>No products</td>");
+						matrix.addEntry("No products", molid.toString());
 					}					
 				}
 				
@@ -327,8 +331,11 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 						placeholder.getProperties().clear();
 						c = applySMIRKSReaction(smrkMan, reaction_smirks, c);
 						
-						matrix.addEntry(smartcypReaction,c==null?"None":reaction_name); 
-						if (c==null) c = placeholder;
+						
+						if (c==null) {
+							c = placeholder;
+					
+						}
 
 						c.setProperty(reaction_name,reaction_smirks);
 						c.setProperty("ID",molid);
@@ -364,7 +371,9 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 						
 						masterWriter.setSdFields(c.getProperties());
 						masterWriter.writeMolecule(c) ;
+						
 					}
+					
 				}
 				htmlFileWriter.write("</tr>");
 				htmlFileWriter.write("</table>");

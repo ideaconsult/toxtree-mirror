@@ -95,9 +95,8 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 			IAtomContainer iAtomContainer = AtomContainerManipulator.removeHydrogens(iAtomContainerTmp);	
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(iAtomContainer);
 			CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(DefaultChemObjectBuilder.getInstance());
-			adder.addImplicitHydrogens(iAtomContainer);
 			CDKHueckelAromaticityDetector.detectAromaticity(iAtomContainer); 
-			
+			adder.addImplicitHydrogens(iAtomContainer);			
 			
 			MoleculeKU moleculeKU = new MoleculeKU(iAtomContainer, SMARTSnEnergiesTable.getSMARTSnEnergiesTable());
 			//MoleculeKU moleculeKU = new MoleculeKU(iAtomContainerTmp, SMARTSnEnergiesTable.getSMARTSnEnergiesTable());
@@ -109,7 +108,14 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 
 			logger.info("************** Identifying, sorting and ranking C, N, P and S atoms **************");
 			moleculeKU.sortAtoms();
-			moleculeKU.rankAtoms();		
+			moleculeKU.rankAtoms();
+			
+			for (IAtom matchingAtom: moleculeKU.atoms())
+				if (SMARTCYP_PROPERTY.Energy.getData(matchingAtom)!=null)
+			System.out.println(String.format("[%s] Rank %d >>%s [%s]",matchingAtom.getID(),
+					SMARTCYP_PROPERTY.Ranking.getNumber(matchingAtom),	
+					SMARTCYP_PROPERTY.Energy.getData(matchingAtom).getEnergy(),
+						SMARTCYP_PROPERTY.Energy.getData(matchingAtom).getReaction()));
 			
 			return moleculeKU;
 		} catch (Exception x) {
