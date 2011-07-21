@@ -1,11 +1,6 @@
 package toxtree.plugins.smartcyp.rules;
 
-import java.util.HashMap;
-
-import junit.framework.Assert;
-
 import org.openscience.cdk.DefaultChemObjectBuilder;
-import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -17,13 +12,13 @@ import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.query.MolFlags;
 import toxTree.ui.tree.categories.CategoriesRenderer;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.MoleculeTools;
 import ambit2.rendering.CompoundImageTools;
 import dk.smartcyp.core.MoleculeKU;
-import dk.smartcyp.core.SMARTSData;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
 import dk.smartcyp.core.SMARTSnEnergiesTable;
 
@@ -58,13 +53,25 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 	public boolean verifyRule(IAtomContainer mol)
 			throws DecisionMethodException {
 		try {
+
 			IAtomContainer newmol = mol;
+			
+			boolean calculated = false;
 			for (IAtom atom: mol.atoms())
-				if (SMARTCYP_PROPERTY.Accessibility.getNumber(atom)==null) {
+				if (SMARTCYP_PROPERTY.Accessibility.getNumber(atom)!=null) {
+					calculated=true;
+					break;
+				} else {
+					//System.out.print(atom.getProperties());
+				}
+			if (!calculated) {
 					AtomContainerManipulator.removeHydrogens(mol);
 					newmol = calculate(mol);
-					break;
-				}
+			}
+			MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
+			IAtomContainerSet set = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainerSet.class);
+			set.addAtomContainer(newmol);
+			mf.setResidues(set);
 			
 			for (IAtom atom: newmol.atoms()) {
 				Number atom_rank = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
@@ -81,47 +88,19 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 	protected boolean hasRank(int atom_rank) {
 		return atom_rank==getRank();
 	}
-	public MoleculeKU calculate1(IAtomContainer iAtomContainerTmp) throws DecisionMethodException {
-		try {
-		HashMap<String,SMARTSData> SMARTSnEnergiesTable = dk.smartcyp.core.SMARTSnEnergiesTable.getSMARTSnEnergiesTable();
-		
-		IAtomContainer iAtomContainer = AtomContainerManipulator.removeHydrogens(iAtomContainerTmp);	
-		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(iAtomContainer);
-		adder.addImplicitHydrogens(iAtomContainer);
-		CDKHueckelAromaticityDetector.detectAromaticity(iAtomContainer); 	
-		
-		MoleculeKU moleculeKU = new MoleculeKU(iAtomContainer, SMARTSnEnergiesTable);
-
-		//System.out.println("\n ************** Matching SMARTS to assign Energies **************");
-		moleculeKU.assignAtomEnergies(SMARTSnEnergiesTable);	
-		
-		//System.out.println("\n ************** Calculating Accessabilities and Atom Scores**************");
-		moleculeKU.calculateAtomAccessabilities();
-		
-		for (IAtom atom: moleculeKU.atoms()) 
-			if (atom.getProperty(SMARTCYP_PROPERTY.Energy.name())!=null)
-			System.out.println(String.format("%s %s %s",atom.getID(),SMARTCYP_PROPERTY.Energy.name(),atom.getProperty(SMARTCYP_PROPERTY.Energy.name())));
-		
-		//System.out.println("\n ************** Identifying, sorting and ranking C, N, P and S atoms **************");
-		moleculeKU.sortAtoms();
-		moleculeKU.rankAtoms();
-		
-			return moleculeKU;
-		} catch (Exception x) {
-			//x.printStackTrace();
-			throw new DecisionMethodException(x);
-		}
-
-	}
+	
 	public MoleculeKU calculate(IAtomContainer iAtomContainerTmp) throws DecisionMethodException {
 		try {
+
 			IAtomContainer iAtomContainer = AtomContainerManipulator.removeHydrogens(iAtomContainerTmp);	
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(iAtomContainer);
 			CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(DefaultChemObjectBuilder.getInstance());
 			adder.addImplicitHydrogens(iAtomContainer);
 			CDKHueckelAromaticityDetector.detectAromaticity(iAtomContainer); 
 			
+			
 			MoleculeKU moleculeKU = new MoleculeKU(iAtomContainer, SMARTSnEnergiesTable.getSMARTSnEnergiesTable());
+			//MoleculeKU moleculeKU = new MoleculeKU(iAtomContainerTmp, SMARTSnEnergiesTable.getSMARTSnEnergiesTable());
 			logger.info("************** Matching SMARTS to assign Energies **************");
 			moleculeKU.assignAtomEnergies(SMARTSnEnergiesTable.getSMARTSnEnergiesTable());	
 			
@@ -195,8 +174,10 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 	@Override
 	public IAtomContainerSet getProducts(IAtomContainer reactant)
 			throws Exception {
-		MoleculeKU ku = calculate(reactant);
-		return super.getProducts(ku);
+		MoleculeKU mol = (reactant instanceof MoleculeKU)?(MoleculeKU)reactant:calculate(reactant);
+		//This is a workaround. CDK smarts matching needs implicit hydrogens, while ambit smarts/smirks matching needs explicit hydrogens...
+		AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
+		return super.getProducts(mol);
 	}
 	
 }
