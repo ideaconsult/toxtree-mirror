@@ -14,7 +14,7 @@ import java.util.List;
 public class ConfusionMatrix<A,B extends Comparable > {
 	protected boolean dirty= false;
 	protected List<CMEntry<A,B>> cmatrix = new ArrayList<CMEntry<A,B>>();
-	protected String expectedTitle = "Expected";
+	protected String expectedTitle;
 	public String getExpectedTitle() {
 		return expectedTitle;
 	}
@@ -28,10 +28,12 @@ public class ConfusionMatrix<A,B extends Comparable > {
 		this.predictedTitle = predictedTitle;
 	}
 
-	protected String predictedTitle = "Predicted";
+	protected String predictedTitle;
 	
 	public ConfusionMatrix() {
 		super();
+		predictedTitle = "Predicted";
+		expectedTitle = "Expected";
 	}
 	public void addEntry(A expected, B predicted) {
 		CMEntry<A,B> cme = new CMEntry<A,B>(expected,predicted);
@@ -40,16 +42,16 @@ public class ConfusionMatrix<A,B extends Comparable > {
 		else cmatrix.get(index).increment();
 		dirty = true;
 	}
-	public void sort() {
-		
+	public synchronized void sort() {
+		if (dirty ) Collections.sort(cmatrix);	
+		dirty = false;			
 	}
-	
+	public synchronized void clear() {
+		cmatrix.clear();
+	}	
 	@Override
 	public String toString() {
-		synchronized (cmatrix) {
-			if (dirty ) Collections.sort(cmatrix);	
-			dirty = false;			
-		}
+		sort();
 		StringBuilder b = new StringBuilder();
 		Object x = null;
 		for (CMEntry<A,B> cm : cmatrix) {
@@ -62,10 +64,7 @@ public class ConfusionMatrix<A,B extends Comparable > {
 	}
 	
 	public String printMatrix() {
-		synchronized (cmatrix) {
-			if (dirty ) Collections.sort(cmatrix);	
-			dirty = false;			
-		}
+		sort();
 		StringBuilder b = new StringBuilder();
 		Object x = null;
 		List<B> columns = new ArrayList<B>();
@@ -151,6 +150,6 @@ class CMEntry<A,B> implements Comparable<CMEntry<A,B>>{
 	}
 	@Override
 	public String toString() {
-		return String.format("Expected\t%s\tPredicted\t%s\t[%d]",getExpected(),getPredicted(),getFrequency() );
+		return String.format("%s\t%s\t%s\t%s\t[%d]",getExpectedTitle(),getPredictedTitle(),getExpected(),getPredicted(),getFrequency() );
 	}
 }
