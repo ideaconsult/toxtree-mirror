@@ -9,7 +9,7 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-plugins</artifactId>
   <packaging>pom</packaging>
-  <name>Toxtree plugin</name>
+  <name>Toxtree plugins</name>
   <description>Parent project for toxtree plugins</description>
   <modules>
     <module>toxtree-cramer</module>
