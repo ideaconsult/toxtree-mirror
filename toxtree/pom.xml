@@ -85,13 +85,16 @@
   		<name>Nina Jeliazkova</name>
   		<email>jeliazkova.nina@gmail.com</email>
   		<roles>
-  			<role>Toxtree developer</role>
-  			<role>Cramer rules</role>
-  			<role>Verhaar scheme</role>
-  			<role>Verhaar2 scheme</role>
-  			<role>Benigni/Bossa rulebase forcarcinogenicity and mutagenicity</role>
+  			<role>Toxtree core developer</role>
+  			<role>Plugin: Cramer rules</role>
+  			<role>Plugin: Verhaar scheme</role>
+  			<role>Plugin: Verhaar2 scheme</role>
+  			<role>Plugin: Benigni/Bossa rulebase forcarcinogenicity and mutagenicity</role>
   			<role>Plugin: Structure alerts for Michael Acceptors</role>
-  			<role>Compound lookup</role>
+  			<role>Plugin: Kroes TTC decision tree</role>
+  			
+  			<role>Plugin: Compound lookup</role>
+  			<role>QA and integration of puugins</role>
   		</roles>
   	</developer>
   	<developer>
@@ -111,7 +114,7 @@
   		</roles>
   	</developer>
   	<developer>
-  		<id>-</id>
+  		<id>jk</id>
   		<name>JK</name>
   		<roles>
   			<role>Plugin: Extended Cramer rules</role>
@@ -119,7 +122,7 @@
   	</developer>
   	
   	<developer>
-  		<id>-</id>
+  		<id>mn</id>
   		<name>Molecular Networks</name>
   		<roles>
   			<role>Plugin: START</role>
@@ -133,7 +136,7 @@
   		</roles>  		
   	</developer>  	
   	<developer>
-  		<id>-</id>
+  		<id>vedrin</id>
   		<name>Vedrin Jeliazkov</name>
   		<roles>
   			<role>Windows installer</role>
@@ -142,7 +145,15 @@
   		</roles>
   	</developer>  	
 
-  </developers>
+  	<developer>
+  		<id>pg</id>
+  		<organization>Procter &amp; Gamble</organization>
+  		<organizationUrl>http://www.pg.com</organizationUrl>
+  		<roles>
+  			<role>Plugin: Skin sensitisation alerts</role>
+  		</roles>
+  	</developer>
+   </developers>
   
 	<scm>
 		<connection>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/</connection>
@@ -160,7 +171,10 @@
     </mailingList>
          
   </mailingLists>
-  <licenses>
+    <contributors>
+
+    </contributors>
+    <licenses>
   <license>
     <name>GPL</name>
     <url>http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt</url>
@@ -279,19 +293,43 @@
 <!--               		<preparationGoals>clean install</preparationGoals> -->  
                </configuration>
             </plugin>	      	
-			<!-- 
+
 			<plugin>
         		<groupId>org.apache.maven.plugins</groupId>
         		<artifactId>maven-site-plugin</artifactId>
-        		<version>2.0-beta-6</version>
+        		<version>2.3</version>
         		<configuration>
           			<locales>en</locales>
         		</configuration>
       		</plugin>
-      		 -->
+
   		</plugins>
   	</pluginManagement>
   </build>
+  <reporting>
+  <plugins>
+  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.4</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>license</report>
+              <report>issue-tracking</report>
+              <report>mailing-list</report>
+              <report>project-team</report>
+              <report>scm</report>
+            <!-- 
+              <report>dependencies</report>
+               -->
+              
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+  </plugins>
+  </reporting>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
  	<ambit.version>2.4.1</ambit.version>
