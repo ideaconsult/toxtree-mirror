@@ -19,28 +19,9 @@
       <!--<item name="Xdoc Example" href="xdoc.html"/>-->
     <menu name="Toxtree">
       <item name="Introduction" href="/index.html"/>
-      <item name="Download" href="/download.html"/>
-      <item name="Wiki" href="http://toxtree.wiki.sourceforge.net" />
-			<item name="Forum" href="http://sourceforge.net/forum/?group_id=152702" />
-		  <item name="Mailing lists" href="http://sourceforge.net/mail/?group_id=152702" />
-	  	<item name="FAQs" href="/faq.html"/>
     </menu>
-    <menu name="Toxtree plugins">
-      <item name="Cramer rules" href="/cramer.html"/>
-      <item name="Extended Cramer rules" href="/cramer2.html"/>
-      <item name="Verhaar scheme" href="/verhaar.html"/>
-      <item name="Skin irritation" href="skin.html" />
-	  <item name="Eye irritation" href="/eye.html"/>
-	  <item name="Benigni/Bossa rulebase" href="/carc.html"/>
-	  <item name="In vivo micronucleus assay" href="/mic.html"/>
-	  <item name="START biodegradation and persistence" href="/start.html"/>	
-	  <item name="Michael Acceptors" href="/michaelacceptors.html" />
-	  <item name="Skin sensitisation alerts" href="/skinsensitisation.html" />
-	  <item name="SMARTCyp" href="/smartcyp.html" />
-	  <item name="Kroes TTC decision tree" href="/kroes.html" />
-    </menu>
+ 
     <menu ref="reports"/>
-    <menu ref="modules" />
     <menu ref="parent"/>
   </body>
 
