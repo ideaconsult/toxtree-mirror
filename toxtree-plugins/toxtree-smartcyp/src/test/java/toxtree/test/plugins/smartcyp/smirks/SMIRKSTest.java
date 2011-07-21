@@ -209,9 +209,9 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 	
 	@Test
 	/**
-	 * No smartcyp, just try all reactions
+	 * smartcyp + all reactions
 	 */
-	public void testApplyOneReaction() throws Exception {
+	public void testSmartCypAndApplyAllReactions() throws Exception {
 		applyAllReactions(SMARTCYPReaction.values(),true);
 	}
 	
