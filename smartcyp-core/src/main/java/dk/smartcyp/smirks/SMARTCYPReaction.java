@@ -43,7 +43,8 @@ public enum SMARTCYPReaction {
 		public String getSMIRKS() {
 			//"[N:1][C:2]([H])>>[N:1](-[O])[C:2]"
 			//return "[N:1][C:2]>>[N+:1]([O-])[C:2]";
-			return "[N:1][#6:2]>>[N+:1]([O-])[#6:2]";
+			//changed to #7 to cover isoquinoline
+			return "[#7:1][#6:2]>>[#7+:1]([O-])[#6:2]";
 			
 		}
 		@Override
