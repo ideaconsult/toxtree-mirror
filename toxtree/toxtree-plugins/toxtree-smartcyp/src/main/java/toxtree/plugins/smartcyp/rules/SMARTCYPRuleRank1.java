@@ -1,5 +1,6 @@
 package toxtree.plugins.smartcyp.rules;
 
+import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
@@ -96,8 +97,8 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(iAtomContainer);
 			CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(DefaultChemObjectBuilder.getInstance());
 			CDKHueckelAromaticityDetector.detectAromaticity(iAtomContainer); 
-			adder.addImplicitHydrogens(iAtomContainer);			
-			
+			adder.addImplicitHydrogens(iAtomContainer);
+
 			MoleculeKU moleculeKU = new MoleculeKU(iAtomContainer, SMARTSnEnergiesTable.getSMARTSnEnergiesTable());
 			//MoleculeKU moleculeKU = new MoleculeKU(iAtomContainerTmp, SMARTSnEnergiesTable.getSMARTSnEnergiesTable());
 			logger.info("************** Matching SMARTS to assign Energies **************");
@@ -110,13 +111,15 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 			moleculeKU.sortAtoms();
 			moleculeKU.rankAtoms();
 			
+			/*
 			for (IAtom matchingAtom: moleculeKU.atoms())
 				if (SMARTCYP_PROPERTY.Energy.getData(matchingAtom)!=null)
+					if (SMARTCYP_PROPERTY.Ranking.getNumber(matchingAtom).intValue()==1)
 			System.out.println(String.format("[%s] Rank %d >>%s [%s]",matchingAtom.getID(),
 					SMARTCYP_PROPERTY.Ranking.getNumber(matchingAtom),	
 					SMARTCYP_PROPERTY.Energy.getData(matchingAtom).getEnergy(),
 						SMARTCYP_PROPERTY.Energy.getData(matchingAtom).getReaction()));
-			
+			*/
 			return moleculeKU;
 		} catch (Exception x) {
 			throw new DecisionMethodException(x);
