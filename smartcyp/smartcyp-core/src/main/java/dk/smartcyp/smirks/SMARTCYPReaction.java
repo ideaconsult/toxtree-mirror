@@ -7,12 +7,16 @@ public enum SMARTCYPReaction {
 			return "[#16:1] >> [#16:1](=[O])";
 		}
 	},
-	new2 {
+	O_dealkylation {
 		@Override
 		public String getSMIRKS() {
 			return "[O:1][C:2]([H])>>[O:1][H].[C:2]=[O]";
 		}
-	},
+		@Override
+		public String toString() {
+			return "O-dealkylation";
+		}
+	},	
 	new3 {
 		@Override
 		public String getSMIRKS() {
@@ -68,22 +72,15 @@ public enum SMARTCYPReaction {
 			return "[c:1][H:2]>>[c:1][O][H:2]";
 		}
 	},
+	
 	Aliphatic_hydroxylation {
 		@Override
 		public String getSMIRKS() {
 			return "[C;X4:1][H:2]>>[C:1][O][H:2]";
 		}
 	},
-	O_dealkylation {
-		@Override
-		public String getSMIRKS() {
-			return "[O;H0:1][C:2]([H])>>[O:1][H].[C:2]=[O]";
-		}
-		@Override
-		public String toString() {
-			return "O-dealkylation";
-		}
-	},
+	
+
 	Aromatization_of_dihydropyridines {
 		@Override
 		public String getSMIRKS() {
