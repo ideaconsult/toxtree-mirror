@@ -123,7 +123,7 @@ public class Introspection {
 	public static Class implementsInterface(String className,
 			String interfaceName) throws toxTree.exceptions.IntrospectionException {
 		try {
-			System.out.println(className);
+			System.out.print(".");
 			Class clazz = Class.forName(className);
 			int modifier = clazz.getModifiers();
 			if (Modifier.isAbstract(modifier))
@@ -269,6 +269,7 @@ public class Introspection {
 				Enumeration entries = jar.entries();
 				if (loader != null)
 					loader.addURL(files[i].toURL());
+				System.out.println("\n");
 				System.out.println(files[i]);
 				while (entries.hasMoreElements()) {
 					JarEntry entry = (JarEntry) entries.nextElement();
