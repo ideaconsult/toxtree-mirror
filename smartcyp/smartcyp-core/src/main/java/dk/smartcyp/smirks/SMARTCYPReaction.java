@@ -1,12 +1,16 @@
 package dk.smartcyp.smirks;
 
 public enum SMARTCYPReaction {
-	new1 {
+	S_oxidation {
 		@Override
 		public String getSMIRKS() {
 			return "[#16:1] >> [#16:1](=[O])";
 		}
-	},
+		@Override
+		public String toString() {
+			return "S-oxidation";
+		}
+	},	
 	O_dealkylation {
 		@Override
 		public String getSMIRKS() {
@@ -23,14 +27,7 @@ public enum SMARTCYPReaction {
 			return "[C:3]([#8:1])[#8:2]>>[#8:1].[#8:2].[C:3]=[O]";
 		}
 	},
-	new4 {
-		@Override
-		public String getSMIRKS() {
-			//return "[N:1]([H:3])[C:2]>>[N:1]([O][H:3])[C:2]";
-			return "[N:1]([H:3])[#6:2]>>[N:1]([O][H:3])[#6:2]";
-			
-		}
-	},
+
 	N_dealkylation {
 		@Override
 		public String getSMIRKS() {
@@ -56,14 +53,12 @@ public enum SMARTCYPReaction {
 			return "N-oxidation";
 		}
 	},
-	S_oxidation {
+	new4 {
 		@Override
 		public String getSMIRKS() {
-			return "[#16:1][#6:2]>>[#16:1](=[O])[#6:2]";
-		}
-		@Override
-		public String toString() {
-			return "S-oxidation";
+			//return "[N:1]([H:3])[C:2]>>[N:1]([O][H:3])[C:2]";
+			return "[N:1]([H:3])[#6:2]>>[N:1]([O][H:3])[#6:2]";
+			
 		}
 	},
 	Aromatic_hydroxylation {
