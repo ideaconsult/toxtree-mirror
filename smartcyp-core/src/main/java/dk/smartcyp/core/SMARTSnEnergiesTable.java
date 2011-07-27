@@ -28,21 +28,21 @@ public class SMARTSnEnergiesTable {
 		// Local Variable
 		SMARTSnEnergiesTable = new HashMap<String, SMARTSData>();
 		
-		SMARTSnEnergiesTable.put("[SX2H1]", new SMARTSData(41.5, SMARTCYPReaction.new1));
+		SMARTSnEnergiesTable.put("[SX2H1]", new SMARTSData(41.5, SMARTCYPReaction.S_oxidation));
 		SMARTSnEnergiesTable.put("[$([SX2H0]);!$([S][*^2]);!$([S][CX4H0])]", 
-								new SMARTSData(26.3, SMARTCYPReaction.new1) );
+								new SMARTSData(26.3, SMARTCYPReaction.S_oxidation) );
 		SMARTSnEnergiesTable.put("[$([SX2H0][*^2]);!$([S](~[^2])[^2]);!$([S][CX4H0])]", 
-								new SMARTSData(34.4, SMARTCYPReaction.new1) );
+								new SMARTSData(34.4, SMARTCYPReaction.S_oxidation) );
 		SMARTSnEnergiesTable.put("[$([S][*D4H0]);$([SX2H0])]", 
-								new SMARTSData(44.4, SMARTCYPReaction.new1) );
+								new SMARTSData(44.4, SMARTCYPReaction.S_oxidation) );
 		SMARTSnEnergiesTable.put("[$([SX2H0]([*^2])[*^2]);!$([S][CX4H0])]", 
-								new SMARTSData(46.9, SMARTCYPReaction.new1) );
+								new SMARTSData(46.9, SMARTCYPReaction.S_oxidation) );
 		SMARTSnEnergiesTable.put("[sX2r5]", 
-								new SMARTSData(70.0, SMARTCYPReaction.new1) );
+								new SMARTSData(70.0, SMARTCYPReaction.S_oxidation) );
 		SMARTSnEnergiesTable.put("[$([#16X3](=[OX1]));$([#16]);!$([#16X3](=[OX1])[#6^2](~[#7^2]))]", 
-								new SMARTSData(30.4, SMARTCYPReaction.new1) );
+								new SMARTSData(30.4, SMARTCYPReaction.S_oxidation) );
 		SMARTSnEnergiesTable.put("[$([#16X3](=[OX1]));$([#16]);$([#16X3](=[OX1])[#6^2](~[#7^2]))]", 
-								new SMARTSData(46.9, SMARTCYPReaction.new1));
+								new SMARTSData(46.9, SMARTCYPReaction.S_oxidation));
 		SMARTSnEnergiesTable.put("[$([CX3H1](=O)[#6])]", 
 								new SMARTSData(40.2, SMARTCYPReaction.Aldehyde_oxidation) );
 		SMARTSnEnergiesTable.put("[$([PX4]);$([P]=[S])]", 
@@ -58,9 +58,12 @@ public class SMARTSnEnergiesTable {
 		SMARTSnEnergiesTable.put("[$([CX4][S]);!$([CH0]);!$([C][S]=[O])]", 
 								new SMARTSData(57.7, SMARTCYPReaction.Aliphatic_hydroxylation) );
 		SMARTSnEnergiesTable.put("[$([CX4][#6^2]~[#8]),$([CX4][cr5]),$([CX4]([c])[c]),$([CX4][#6^1]),$([CX4][C^2]=[C^2]-[#6^2]),$([CX4][NX3][N]=[O]);!$([CH0]);!$([CX4][C](=[O])[NX3]);!$([CX4][#6^2](=[#8])-[#8]);!$([CX4][C^2]([C^2])=[C^2]-[#6^2]);!$([CX4][#6^2](=[#8])[#6^2])]", 
-								new SMARTSData(59.7, SMARTCYPReaction.Aliphatic_hydroxylation) );
+								new SMARTSData(59.7, SMARTCYPReaction.Aliphatic_hydroxylation) ); 
+								//new SMARTSData(59.7, SMARTCYPReaction.N_dealkylation) ); //can add ;!$([CX4][#7]) to avoid matching CN
+		
 		SMARTSnEnergiesTable.put("[$([CX4][OH0]);!$([CH0]);!$([C][O][C]=[O]);!$([CX4]1[O][C]1)]", 
-								new SMARTSData(62.2, SMARTCYPReaction.Aliphatic_hydroxylation));
+								//new SMARTSData(62.2, SMARTCYPReaction.Aliphatic_hydroxylation));
+								new SMARTSData(62.2, SMARTCYPReaction.O_dealkylation));
 		SMARTSnEnergiesTable.put("[$([CX4][OH1]);!$([CH0])]", 
 								new SMARTSData(62.2, SMARTCYPReaction.Alcohol_oxidation) );
 		SMARTSnEnergiesTable.put("[$([CX4][NX3H1][C]=[O]),$([CX4][#7](~[*^2])~[*^2]);!$([CH0]);!$([CX4][NX3H0][C]=[O])]", 
