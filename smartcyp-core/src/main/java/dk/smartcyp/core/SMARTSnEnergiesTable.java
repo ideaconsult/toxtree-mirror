@@ -73,7 +73,7 @@ public class SMARTSnEnergiesTable {
 								new SMARTSData(72.3, SMARTCYPReaction.N_dealkylation));
 		SMARTSnEnergiesTable.put("[CX4;CH1,CH2;!$([CH3][NX3,C^2]);!$([CH3][OX2][C^2]=[O])]", //[CX4;CH1,CH2;!$([CH3][NX3,C^2]);!$([CH3][OX2][C^2][=O])]"
 								new SMARTSData(76.1, SMARTCYPReaction.Aliphatic_hydroxylation));
-		SMARTSnEnergiesTable.put("[CX4;$([CX4][OX2][C^2]);!$([CH0])]", //[CX4;$([CX4][OX2][C^2][=O]);!$([CH0])]
+		SMARTSnEnergiesTable.put("[CX4;$([CX4][OX2][#6^2]);!$([CH0])]", //[CX4;$([CX4][OX2][C^2][=O]);!$([CH0])]
 								new SMARTSData(76.1, SMARTCYPReaction.O_dealkylation) );
 		SMARTSnEnergiesTable.put("[CX4;$([CH3][NX3])]", 
 								new SMARTSData(76.1, SMARTCYPReaction.N_dealkylation) );
