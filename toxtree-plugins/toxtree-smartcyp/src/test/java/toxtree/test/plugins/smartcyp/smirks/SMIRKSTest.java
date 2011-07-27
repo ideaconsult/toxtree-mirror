@@ -263,7 +263,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 				IChemObject mol = reader.next();
 
 				Object molid = mol.getProperty("ID");
-				//if (!"isoquinoline".equals(molid)) continue; 
+				//if (!"NNK".equals(molid)) continue; 
 					
 				Assert.assertTrue(mol instanceof IAtomContainer);
 				hadder.process((IAtomContainer)mol);
@@ -285,8 +285,8 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 				String uri = getImageURI(smiles);
 				String imguri = getImageURI((IMolecule)mol,smartcyp,file.getParentFile(),molid.toString());
 				
-				htmlFileWriter.write(String.format("<td bgcolor='#DDDDDD'><a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a></td>",
-								uri,imguri,smiles,smiles));
+				htmlFileWriter.write(String.format("<td bgcolor='#DDDDDD'><a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a><br><textarea rows='5' cols='20'>%s</textarea></td>",
+								uri,imguri,smiles,smiles,smiles));
 				
 				String smartcypReaction = "None";
 				if (products)  {
