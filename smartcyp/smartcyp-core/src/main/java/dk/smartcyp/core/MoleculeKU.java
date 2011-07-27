@@ -136,7 +136,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 					List<Integer> matchingAtomsIndicesList_2 = null;						// List of atom indices
 					SMARTSData data = SMARTSnEnergiesTable.get(currentSMARTS);		// Energy & SMIRKS of currentSMARTS
 
-				//System.out.println("\n The SMARTS " + currentSMARTS + " has " + numberOfSMARTSmatches + " matches in the molecule " + this.getID());
+				//System.out.println(String.format("%s SMARTS %s has %d matches in the molecule %s", data,currentSMARTS,numberOfSMARTSmatches, this.getID()));
 
 					matchingAtomsIndicesList_1 = querytool.getMatchingAtoms();													// This list contains the C, N, P and S atom indices
 
@@ -159,9 +159,15 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 							matchingAtom = this.getAtom(indexOfMatchingAtom);
 
 							if(SMARTCYP_PROPERTY.Energy.getData(matchingAtom) == null 
-									|| data.getEnergy() < SMARTCYP_PROPERTY.Energy.getData(matchingAtom).getEnergy())
+									|| data.getEnergy() < SMARTCYP_PROPERTY.Energy.getData(matchingAtom).getEnergy()) {
 								
 								SMARTCYP_PROPERTY.Energy.set(matchingAtom,data);
+							} else {
+							//	System.out.println("Higher energy "+data);
+							}
+							
+							//if (SMARTCYP_PROPERTY.Ranking.getNumber(matchingAtom)!=null && SMARTCYP_PROPERTY.Ranking.getNumber(matchingAtom).intValue()==1)
+								//System.out.println(data );
 
 						}
 					}
@@ -169,7 +175,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 			}	
 			catch (CDKException e) {
 				System.out.println("There is something fishy with the SMARTS: " + currentSMARTS); 
-				e.printStackTrace();
+				throw e;
 			}
 		}
 
