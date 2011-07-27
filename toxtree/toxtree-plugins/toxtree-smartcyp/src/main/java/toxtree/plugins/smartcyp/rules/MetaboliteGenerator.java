@@ -44,7 +44,8 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 		AtomConfigurator cfg = new AtomConfigurator();
 		if (smrkMan == null) {
 			smrkMan = new SMIRKSManager();
-			smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL);
+			smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL_FIRST);
+			//smrkMan.setSSMode(SmartsConst.SSM_NON_OVERLAPPING);
 		}
 		List<SMARTCYPReaction> reactions = new ArrayList<SMARTCYPReaction>();
 		for (IAtom atom : reactant.atoms()) {
