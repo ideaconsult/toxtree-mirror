@@ -71,7 +71,7 @@ public abstract class RulesTestCase  {
 	protected boolean verifyRule(Molecule mol,int id) throws DecisionMethodException {
 		return rules.getRule(id).verifyRule(mol);
 	}
-	protected void classify(IAtomContainer mol,IDecisionMethod rules, int categories){
+	protected void classify(IAtomContainer mol,IDecisionMethod rules, int categories) throws DecisionResultException {
 		Assert.assertEquals(rules.getCategories().size(),categories);
 		IDecisionResult result = rules.createDecisionResult();
 		result.setDecisionMethod(rules);
@@ -87,7 +87,18 @@ public abstract class RulesTestCase  {
 		} catch (DecisionResultException x) {
 			//if (rules != null) x.printStackTrace();
 		}    
-		System.out.println(result.getCategory());		
+		System.out.println(result.getCategory());
+		result.assignResult(mol);
+		
+		String[] names = result.getResultPropertyNames();
+		for (String name:names) {
+			System.out.println(String.format("%s = %s", name,mol.getProperty(name)));	
+		}
+		for (String name:names) {
+			Object value = mol.getProperty(name);
+			if (value != null)
+				Assert.assertFalse("NaN".equals(value.toString()));
+		}		
 	}
 
 	

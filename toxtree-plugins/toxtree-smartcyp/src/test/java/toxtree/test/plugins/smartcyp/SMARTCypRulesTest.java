@@ -57,7 +57,7 @@ public class SMARTCypRulesTest extends RulesTestCase {
 	 * Class under test for int classify(IMolecule)
 	 */
 	@Test
-	public void testClassifyMolecule() {
+	public void testClassifyMolecule() throws Exception  {
 		IAtomContainer mol = FunctionalGroups.createAtomContainer("Nc1ccc3c(c1)Cc2cc(ccc23)Br",true);
         /*
 		mol.setProperty(RuleMeltingPoint.MeltingPoint,"100");
