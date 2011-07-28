@@ -30,6 +30,7 @@ import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionCategory;
@@ -41,12 +42,20 @@ import toxTree.tree.ProgressStatus;
 import toxTree.tree.RuleResult;
 import toxTree.tree.TreeResult;
 import toxTree.tree.rules.IAlertCounter;
-import dk.smartcyp.core.SMARTSData;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
+import dk.smartcyp.core.SMARTSData;
 
 
 
 public class SMARTCypTreeResult extends TreeResult {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2708973197593705185L;
+	/**
+	 * 
+	 */
+
 	public final static String FORMAT = "SMARTCyp.Rank%s%d.%s";
 
 	public void assignResult(IAtomContainer mol) throws DecisionResultException {
@@ -55,15 +64,18 @@ public class SMARTCypTreeResult extends TreeResult {
 		for (int i=0; i < c.size();i++) {
 			String q=c.get(i).getID()==4?">=":"";
 			Object result = Answers.toString(Answers.NO);
+			IAtomContainer molProcessed = ((RuleResult)ruleResults.get(1)).getMolecule();
 			if (getAssignedCategories().indexOf(c.get(i))>-1) {
-				result = getAtomScoresOfRank(((RuleResult)ruleResults.get(0)).getMolecule(),c.get(i).getID(),null); //Answers.toString(Answers.YES);
+				result = getAtomScoresOfRank(molProcessed,c.get(i).getID(),null); //Answers.toString(Answers.YES);
 				mol.setProperty(c.get(i).toString(),result);
 				
-				result = getAtomScoresOfRank(((RuleResult)ruleResults.get(0)).getMolecule(),c.get(i).getID(),SMARTCYP_PROPERTY.Score);
+				result = getAtomScoresOfRank(molProcessed,c.get(i).getID(),SMARTCYP_PROPERTY.Score);
 				mol.setProperty(String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Score),result==null?Double.NaN:result);
-				result = getAtomScoresOfRank(((RuleResult)ruleResults.get(0)).getMolecule(),c.get(i).getID(),SMARTCYP_PROPERTY.Energy);
+				result = getAtomScoresOfRank(molProcessed,c.get(i).getID(),SMARTCYP_PROPERTY.Energy);
 				mol.setProperty(String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Energy),result==null?Double.NaN:result);
-				result = getAtomScoresOfRank(((RuleResult)ruleResults.get(0)).getMolecule(),c.get(i).getID(),SMARTCYP_PROPERTY.Accessibility); 
+				result = getAtomScoresOfRank(molProcessed,c.get(i).getID(),SMARTCYP_PROPERTY.Reaction);
+				mol.setProperty(String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Reaction),result==null?"N/A":result);
+				result = getAtomScoresOfRank(molProcessed,c.get(i).getID(),SMARTCYP_PROPERTY.Accessibility); 
 				mol.setProperty(String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Accessibility),result==null?Double.NaN:result);
 			} else {
 				mol.setProperty(c.get(i).toString(),"");
@@ -103,13 +115,19 @@ public class SMARTCypTreeResult extends TreeResult {
     						atoms.add(String.format("%s%s",currentAtom.getSymbol(),currentAtom.getID()));
     					else
     						switch (property) {
+    						case Reaction: {
+    							SMARTSData data = property.getData(currentAtom);
+        						if (data!=null) { 
+        							if (atoms.indexOf(data.getReaction()) == -1)
+        								atoms.add(data.getReaction().toString());         							
+        						}
+    							break;    							
+    						}
     						case Energy : {
     							SMARTSData data = property.getData(currentAtom);
         						if (data!=null) { 
         							if (atoms.indexOf(data.getEnergy()) == -1)
         								atoms.add(property.getData(currentAtom).getEnergy());
-        							if (atoms.indexOf(data.getReaction()) == -1)
-        								atoms.add(data.getReaction().toString());         							
         						}
     							break;
     						}
@@ -153,7 +171,7 @@ public class SMARTCypTreeResult extends TreeResult {
 	public String[] getResultPropertyNames() {
 		IDecisionCategories c = decisionMethod.getCategories();
 		
-		SMARTCYP_PROPERTY[] p = new SMARTCYP_PROPERTY[] {SMARTCYP_PROPERTY.Score,SMARTCYP_PROPERTY.Energy,SMARTCYP_PROPERTY.Accessibility}; 
+		SMARTCYP_PROPERTY[] p = new SMARTCYP_PROPERTY[] {SMARTCYP_PROPERTY.Score,SMARTCYP_PROPERTY.Energy,SMARTCYP_PROPERTY.Reaction,SMARTCYP_PROPERTY.Accessibility}; 
 		String[] names = new String[c.size()*(p.length+1)];
 		for (int i=0; i < c.size();i++) 
 			names[i] = c.get(i).toString(); //atoms per rank
