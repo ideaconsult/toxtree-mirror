@@ -54,7 +54,6 @@
   	<module>toxtree-app</module>
   	<module>toxforest</module>
   	<module>toxtree-plugins</module>
-  	<module>toxtree-babel</module>
   	<module>toxtree-bundle</module>
   	<module>toxtree-swing</module>
   </modules>
