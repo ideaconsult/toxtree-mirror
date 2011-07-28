@@ -29,7 +29,8 @@ public enum SMARTCYPReaction {
 		@Override
 		public String getSMIRKS() {
 			//return "[N:1]([H:3])[C:2]>>[N:1]([O][H:3])[C:2]";
-			return "[N:1]([H:3])[#6:2]>>[N:1]([O][H:3])[#6:2]";
+			return "[C:3]([#8:1])[#8:2]>>[#8:1].[#8:2].[C:3]=[O]";
+
 			
 		}
 		@Override
@@ -37,6 +38,8 @@ public enum SMARTCYPReaction {
 			return "O-dealkylation (1)";
 		}
 	},
+
+	
 
 	N_dealkylation {
 		@Override
@@ -77,14 +80,13 @@ public enum SMARTCYPReaction {
 	N_oxidation_1 {
 		@Override
 		public String getSMIRKS() {
-			return "[C:3]([#8:1])[#8:2]>>[#8:1].[#8:2].[C:3]=[O]";
+			return "[N:1]([H:3])[#6:2]>>[N:1]([O][H:3])[#6:2]";
 		}
 		@Override
 		public String toString() {
 			return "N-oxidation (1)";
 		}
 	},
-
 	Aldehyde_oxidation {
 		@Override
 		public String getSMIRKS() {
