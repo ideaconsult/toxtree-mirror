@@ -1,16 +1,19 @@
 package dk.smartcyp.smirks;
 
 public enum SMARTCYPReaction {
-	S_oxidation {
+	Aliphatic_hydroxylation {
 		@Override
 		public String getSMIRKS() {
-			return "[#16:1] >> [#16:1](=[O])";
+			return "[C;X4:1][H:2]>>[C:1][O][H:2]";
 		}
+	},
+	Aromatic_hydroxylation {
 		@Override
-		public String toString() {
-			return "S-oxidation";
+		public String getSMIRKS() {
+			return "[c:1][H:2]>>[c:1][O][H:2]";
 		}
-	},	
+	},
+
 	O_dealkylation {
 		@Override
 		public String getSMIRKS() {
@@ -21,14 +24,17 @@ public enum SMARTCYPReaction {
 			return "O-dealkylation";
 		}
 	},	
-	N_oxidation_1 {
+
+	O_dealkylation_1 {
 		@Override
 		public String getSMIRKS() {
-			return "[C:3]([#8:1])[#8:2]>>[#8:1].[#8:2].[C:3]=[O]";
+			//return "[N:1]([H:3])[C:2]>>[N:1]([O][H:3])[C:2]";
+			return "[N:1]([H:3])[#6:2]>>[N:1]([O][H:3])[#6:2]";
+			
 		}
 		@Override
 		public String toString() {
-			return "N-oxidation (1)";
+			return "O-dealkylation (1)";
 		}
 	},
 
@@ -43,6 +49,17 @@ public enum SMARTCYPReaction {
 			return "N-dealkylation";
 		}
 	},
+	S_oxidation {
+		@Override
+		public String getSMIRKS() {
+			return "[#16:1] >> [#16:1](=[O])";
+		}
+		@Override
+		public String toString() {
+			return "S-oxidation";
+		}
+	},
+
 	N_oxidation {
 		@Override
 		public String getSMIRKS() {
@@ -57,32 +74,29 @@ public enum SMARTCYPReaction {
 			return "N-oxidation";
 		}
 	},
-	O_dealkylation_1 {
+	N_oxidation_1 {
 		@Override
 		public String getSMIRKS() {
-			//return "[N:1]([H:3])[C:2]>>[N:1]([O][H:3])[C:2]";
-			return "[N:1]([H:3])[#6:2]>>[N:1]([O][H:3])[#6:2]";
-			
+			return "[C:3]([#8:1])[#8:2]>>[#8:1].[#8:2].[C:3]=[O]";
 		}
 		@Override
 		public String toString() {
-			return "O-dealkylation (1)";
+			return "N-oxidation (1)";
 		}
 	},
-	Aromatic_hydroxylation {
+
+	Aldehyde_oxidation {
 		@Override
 		public String getSMIRKS() {
-			return "[c:1][H:2]>>[c:1][O][H:2]";
+			return "[C;H1:1]=[O:2]>>[C:1](O)=[O:2]";
 		}
 	},
-	
-	Aliphatic_hydroxylation {
+	Alcohol_oxidation {
 		@Override
 		public String getSMIRKS() {
-			return "[C;X4:1][H:2]>>[C:1][O][H:2]";
+			return "[C:1]([H])[O:2][H]>>[C:1]=[O:2]";
 		}
 	},
-	
 
 	Aromatization_of_dihydropyridines {
 		@Override
@@ -96,18 +110,7 @@ public enum SMARTCYPReaction {
 			return "[S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]";
 		}
 	},
-	Aldehyde_oxidation {
-		@Override
-		public String getSMIRKS() {
-			return "[C;H1:1]=[O:2]>>[C:1](O)=[O:2]";
-		}
-	},
-	Alcohol_oxidation {
-		@Override
-		public String getSMIRKS() {
-			return "[C:1]([H])[O:2][H]>>[C:1]=[O:2]";
-		}
-	},
+
 	Desulphurization_of_phosphor {
 		@Override
 		public String getSMIRKS() {
