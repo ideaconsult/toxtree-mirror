@@ -15,11 +15,7 @@
   		<artifactId>toxtree-core</artifactId>
   		<version>${project.version}</version>
   	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-babel</artifactId>
-  		<version>${project.version}</version>
-  	</dependency>
+
   	<dependency>
   		<groupId>toxtree</groupId>
   		<artifactId>toxtree-swing</artifactId>
