@@ -115,16 +115,16 @@ public class SMARTCypTreeResult extends TreeResult {
     				// Match atom symbol
     				String currentAtomType = currentAtom.getSymbol();
     				if(currentAtomType.equals("C") || currentAtomType.equals("N") || currentAtomType.equals("P") || currentAtomType.equals("S")) {
-    					
+    					Object value = null;
     					if (property ==null)
-    						atoms.add(String.format("%s%s",currentAtom.getSymbol(),currentAtom.getID()));
+    						value = String.format("%s%s",currentAtom.getSymbol(),currentAtom.getID());
     					else
     						switch (property) {
     						case Reaction: {
     							SMARTSData data = property.getData(currentAtom);
         						if (data!=null) { 
         							if (atoms.indexOf(data.getReaction()) == -1)
-        								atoms.add(data.getReaction().toString());         							
+        								value = data.getReaction().toString();         							
         						}
     							break;    							
     						}
@@ -132,7 +132,7 @@ public class SMARTCypTreeResult extends TreeResult {
     							SMARTSData data = property.getData(currentAtom);
         						if (data!=null) { 
         							if (atoms.indexOf(data.getReaction()) == -1)
-        								atoms.add(data.getReaction().getSMIRKS());         							
+        								value = data.getReaction().getSMIRKS();         							
         						}
     							break;    							
     						}    						
@@ -140,17 +140,18 @@ public class SMARTCypTreeResult extends TreeResult {
     							SMARTSData data = property.getData(currentAtom);
         						if (data!=null) { 
         							if (atoms.indexOf(data.getEnergy()) == -1)
-        								atoms.add(property.getData(currentAtom).getEnergy());
+        								value = property.getData(currentAtom).getEnergy();
         						}
     							break;
     						}
     						default: {
         						if (property.getNumber(currentAtom)!=null) 
         							if (atoms.indexOf(property.getNumber(currentAtom)) == -1)
-        								atoms.add(property.getNumber(currentAtom));
+        								value = property.getNumber(currentAtom);
     						}
     						}
-
+    						if ((value != null) && atoms.indexOf(value)<0)
+    							atoms.add(value);
 
     					/*
     					mol.setProperty(String.format("%s_%s_%s",currentAtom.getSymbol(),currentAtom.getID(),SMARTCYP_PROPERTY.Ranking),
