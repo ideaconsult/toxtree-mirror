@@ -60,7 +60,35 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 			public String getLabel() {
 				return "K";
 			}
-		};
+			public String atomProperty2String(IAtom atom) {
+				return String.format("%s:%s",getLabel(),Energy.getData(atom).getReaction().toString());
+			}
+			public SMARTSData getData(IAtom atom) {
+				Object o = atom.getProperty(Energy.name());
+				return o instanceof SMARTSData? (SMARTSData)o:null;
+			}	
+			@Override
+			public Number getNumber(IAtom atom) {
+				return null;
+			}			
+		},
+		SMIRKS {
+			@Override
+			public String getLabel() {
+				return "M";
+			}
+			public String atomProperty2String(IAtom atom) {
+				return String.format("%s:%s",getLabel(),Energy.getData(atom).getReaction().getSMIRKS());
+			}
+			public SMARTSData getData(IAtom atom) {
+				Object o = atom.getProperty(Energy.name());
+				return o instanceof SMARTSData? (SMARTSData)o:null;
+			}	
+			@Override
+			public Number getNumber(IAtom atom) {
+				return null;
+			}			
+		};		
 
 		public String  getLabel()  { return "";};
 
