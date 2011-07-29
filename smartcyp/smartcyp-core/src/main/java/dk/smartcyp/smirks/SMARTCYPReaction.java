@@ -103,7 +103,7 @@ public enum SMARTCYPReaction {
 	Aromatization_of_dihydropyridines {
 		@Override
 		public String getSMIRKS() {
-			return "[N;X3:1]1([H])[#6:2]=[#6:3][#6;X4:4][#6:5]=[#6:6]1>>[n;H0:1]1=[#6:2][#6:3]=[#6:4][#6:5]=[#6:6]1";
+			return "[N;X3:1]1([H])[#6:2]=[#6:3][#6;X4:4]([H])[#6:5]=[#6:6]1>>[n;H0:1]1=[#6:2][#6:3]=[#6:4][#6:5]=[#6:6]1";
 		}
 	},
 	Thioesther_bond_breaking {
