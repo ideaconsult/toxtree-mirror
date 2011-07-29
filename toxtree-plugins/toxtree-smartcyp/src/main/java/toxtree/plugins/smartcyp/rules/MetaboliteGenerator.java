@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.isomorphism.matchers.smarts.AromaticAtom;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IMetaboliteGenerator;
 import toxTree.tree.AbstractRule;
@@ -41,11 +46,12 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 	public IAtomContainerSet getProducts(IAtomContainer reactant)
 			throws Exception {
 		IAtomContainerSet products = null;
-		AtomConfigurator cfg = new AtomConfigurator();
+	//	AtomConfigurator cfg = new AtomConfigurator();
 		if (smrkMan == null) {
 			smrkMan = new SMIRKSManager();
-			smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL_FIRST);
-			//smrkMan.setSSMode(SmartsConst.SSM_NON_OVERLAPPING);
+			//smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL_FIRST);
+			smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL);
+			smrkMan.FlagFilterEquivalentMappings = true;
 		}
 		List<SMARTCYPReaction> reactions = new ArrayList<SMARTCYPReaction>();
 		for (IAtom atom : reactant.atoms()) {
@@ -62,9 +68,9 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 				if (products == null)
 					products = NoNotificationChemObjectBuilder.getInstance()
 							.newInstance(IAtomContainerSet.class);
-				IAtomContainer product = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainer.class);
-				product.setID(String.format("No energy for rank 1 atom!"));
-				products.addAtomContainer(product);
+				//IAtomContainer product = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainer.class);
+				//product.setID(String.format("No energy for rank 1 atom!"));
+				//products.addAtomContainer(product);
 				continue;
 			}
 				//throw new Exception("Energy property missing for atom of rank "		+ atom_rank);
@@ -76,21 +82,33 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 
 			SMIRKSReaction smr = smrkMan.parse(reaction.getSMIRKS());
 
-			IAtomContainer product = (IAtomContainer) reactant.clone();
-
-			if (smrkMan.applyTransformation(product, this, smr)) {
+			IAtomContainer product = reactant; //(IAtomContainer) reactant.clone();
+			IAtomContainerSet rproducts = smrkMan.applyTransformationWithSingleCopyForEachPos(product, this, smr);
+			
+			if (rproducts!=null) {
+			//if (smrkMan.applyTransformation(product, this, smr)) {
 				
 				if (products == null)
 					products = NoNotificationChemObjectBuilder.getInstance()
 							.newInstance(IAtomContainerSet.class);
-				product.setID(reaction.toString());
-				try {
-					cfg.process(product);
-				} catch (Exception x) {
-					product.setID(String.format("%s .... %s",reaction,smrkMan.getErrors()));
-					x.printStackTrace();
+				for (IAtomContainer ac : rproducts.atomContainers()) {
+					ac.setID(reaction.toString());
+					
+					for (IAtom a: ac.atoms()) { 
+					   a.setFormalNeighbourCount(null);
+					   a.setAtomTypeName(null);
+					   a.setHybridization(null);
+					}
+					//AtomContainerManipulator.clearAtomConfigurations(ac); //not all!
+					AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
+					//AtomContainerManipulator.percieveAtomTypesAndConfigureUnsetProperties(ac);
+					CDKHueckelAromaticityDetector.detectAromaticity(ac);
+					
 				}
-				products.addAtomContainer(product);
+				products.add(rproducts);
+				//product.setID(reaction.toString());
+	
+				//products.addAtomContainer(product);
 			} else {
 				if (products == null)
 					products = NoNotificationChemObjectBuilder.getInstance()

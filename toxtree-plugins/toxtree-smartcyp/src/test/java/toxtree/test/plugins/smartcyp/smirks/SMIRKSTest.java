@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -24,6 +25,7 @@ import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.cdk.templates.MoleculeFactory;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionResult;
@@ -263,7 +265,10 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 				IChemObject mol = reader.next();
 
 				Object molid = mol.getProperty("ID");
-				//if (!"NNK".equals(molid)) continue; 
+				//if (!"isoquinoline".equals(molid)) continue;
+				//if (!"barnidipine".equals(molid)) continue;
+				//if (!"dihydropyridine".equals(molid)) continue;
+				
 					
 				Assert.assertTrue(mol instanceof IAtomContainer);
 				hadder.process((IAtomContainer)mol);
@@ -307,6 +312,10 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 							htmlFileWriter.write(String.format("<img src='%s'><br>",
 									uri,uri)); 
 							htmlFileWriter.write("</td>");
+							
+							
+							masterWriter.setSdFields(set.getAtomContainer(i).getProperties());
+							masterWriter.writeMolecule(set.getAtomContainer(i)) ;
 						}
 					} else {
 						htmlFileWriter.write("<td border='2'>No products</td>");
@@ -369,8 +378,8 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 						writer.setSdFields(c.getProperties());
 						writer.writeMolecule(c);
 						
-						masterWriter.setSdFields(c.getProperties());
-						masterWriter.writeMolecule(c) ;
+						//masterWriter.setSdFields(c.getProperties());
+						//masterWriter.writeMolecule(c) ;
 						
 					}
 					
@@ -455,7 +464,7 @@ java.lang.NullPointerException
 		try {
 			IAtomContainer c = (IAtomContainer) ac.clone();
 			AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(c);
-
+			
 			BufferedImage img = hilights==null?tool.getImage(c,null,true,false):hilights.getImage(c);
 			ImageIO.write(img, "png",new FileOutputStream(file));
 		} catch (Exception x) {
@@ -534,5 +543,31 @@ java.lang.NullPointerException
 
 		}
 		
+	}
+	@Test
+	public void testPyridine() throws Exception {
+		IAtomContainer ac = MoleculeFactory.makePyridine();
+		ac = AtomContainerManipulator.removeHydrogens(ac);	
+		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
+		//AtomContainerManipulator.percieveAtomTypesAndConfigureUnsetProperties(ac);
+		CDKHueckelAromaticityDetector.detectAromaticity(ac);
+		int aaromatic = 0;
+		for (IAtom a: ac.atoms()) {
+			//if (a.getFlag(CDKConstants.ISAROMATIC)) {
+				aaromatic++;
+
+			//} else
+			//if (a.getFlag(CDKConstants.ISINRING)) {
+				System.out.print(a.getSymbol());
+				System.out.print(" ");
+				System.out.print(a.getImplicitHydrogenCount());
+				System.out.print(" ");
+				System.out.print(a.getFormalNeighbourCount());
+				System.out.print(" ");
+				System.out.print(a.getAtomTypeName());
+				System.out.print(" ");
+				System.out.println(a.getBondOrderSum());
+			//}
+		}
 	}
 }
