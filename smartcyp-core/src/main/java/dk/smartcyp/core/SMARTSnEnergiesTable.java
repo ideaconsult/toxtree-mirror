@@ -87,7 +87,8 @@ public class SMARTSnEnergiesTable {
 		SMARTSnEnergiesTable.put("[$([CX3H1]);$([C]=[*^2]-[*^2]);!$([C](-[*^2,a])=[*^2]-[*^2])]", 
 								new SMARTSData(52.4, SMARTCYPReaction.Epoxidation) );
 		SMARTSnEnergiesTable.put("[$([ch1r5]:[#8]),$([ch1r5](:[c]):[nH1])]", 
-								new SMARTSData(52.9, SMARTCYPReaction.Epoxidation) );
+								//new SMARTSData(52.9, SMARTCYPReaction.Epoxidation) );
+								new SMARTSData(52.9, SMARTCYPReaction.Aromatic_hydroxylation) );
 		SMARTSnEnergiesTable.put("[$([ch1r5](:[nX3]):[nX2])]", 
 								new SMARTSData(57.9, SMARTCYPReaction.Aromatic_hydroxylation) );
 		SMARTSnEnergiesTable.put("[$([ch1]1:[c](-[N^3]([C^3])[C^3]):[c]:[c]:[c]:[c]1),$([ch1]1:[c]:[c]:[c](-[N^3]([C^3])[C^3]):[c]:[c]1),$([ch1]1:[c](-[N^3H1][C^3]):[c]:[c]:[c]:[c]1),$([ch1]1:[c]:[c]:[c](-[N^3H1][C^3]):[c]:[c]1),$([ch1]1:[c](-[N^3H2]):[c]:[c]:[c]:[c]1),$([ch1]1:[c]:[c]:[c](-[N^3H2]):[c]:[c]1)]", 
