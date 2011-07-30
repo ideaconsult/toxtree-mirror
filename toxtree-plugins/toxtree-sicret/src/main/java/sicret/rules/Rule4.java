@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd.(C) 2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd.(C) 2006-2011
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -31,7 +31,7 @@ public class Rule4 extends RuleMeltingPoint
 
 	public Rule4()
 	{
-		super(MeltingPoint,"\u0260C",condition_higher,55.0);
+		super(MeltingPoint,"\u2103",condition_higher,55.0);
 		id = "5";
 		examples[0]= "O=C1C(=C(OC1C)C)OC(=O)C";
 		propertyExamples[0] = 50.258823;

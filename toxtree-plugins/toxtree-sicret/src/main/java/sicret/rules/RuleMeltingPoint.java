@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd.(C) 2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd.(C) 2006-2011  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -24,7 +24,7 @@ import toxTree.tree.rules.RuleVerifyProperty;
  * MeltingPoint < 200. Expects property to be read from IMolecule.getProperty({@link #MeltingPoint}).
  * @author Nina Jeliazkova nina@acad.bg
  * @author Martin Martinov
- * <b>Modified</b> Dec 17, 2006
+ * <b>Modified</b> July 30, 2011
  */
 
 public class RuleMeltingPoint extends RuleVerifyProperty {
@@ -37,7 +37,7 @@ public class RuleMeltingPoint extends RuleVerifyProperty {
 	
 	public RuleMeltingPoint()
 	{
-		this(MeltingPoint,"\u0260C",condition_higher,200.0);
+		this(MeltingPoint,"\u2103",condition_higher,200.0);
 		id = "1";
 		examples[0] = "CC1(C(CC=C1C)C=CC(C)(C)C(O)C)C";
 		examples[1] = "CCOC(=O)N1CCN(CC1)c2ccc(cc2)OCC4COC(Cn3cncc3)(O4)c5ccc(Cl)cc5Cl";

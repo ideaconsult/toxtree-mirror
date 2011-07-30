@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd.(C) 2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd.(C) 2006-2011
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -31,15 +31,10 @@ public class RuleMeltingPoint_12_3  extends RuleMeltingPoint {
 	private static final long serialVersionUID = 0;
 	public RuleMeltingPoint_12_3()
 	{
-		super(MeltingPoint,"\u0260C",condition_higher,65.0);
+		super(MeltingPoint,"\u2103",condition_higher,65.0);
 		id = "12.3";
 		setTitle(getPropertyName() + getCondition() + getProperty());
-		/*
-		title = "MeltingPoint > 120.0";
-		propertyStaticValue = 120.0;
-		condition = condition_higher;
-		propertyName = MeltingPoint;
-		*/
+
 		examples[0] = "C(=O)(c1ccccc1)CCl";
 		examples[1] = "C41(C(C3C(C(C1)O)(C\\2(\\C(=C/C(/C=C/2)=O)CC3)C)F)CC(C4(C(=O)CO)O)C)C";		
 		

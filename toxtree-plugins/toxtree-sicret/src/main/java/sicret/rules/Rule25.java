@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd.(C) 2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd.(C) 2006-2011
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,7 +30,7 @@ public class Rule25 extends RuleMeltingPoint {
 	private static final long serialVersionUID = 0;
 	public Rule25()
 	{
-		super(MeltingPoint,"\u0260C",condition_higher,50.0);
+		super(MeltingPoint,"\u2103",condition_higher,50.0);
 		id = "29";
 
 		examples[0]="BrCCCCCl";
