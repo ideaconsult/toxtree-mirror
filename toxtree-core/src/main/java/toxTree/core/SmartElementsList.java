@@ -76,7 +76,8 @@ public class SmartElementsList extends HashSet<String>   {
 		if (atomcontainer==null) return;
 		for (int i=0; i < mol.getAtomCount();i++)
 			if (!(contains(mol.getAtom(i).getSymbol()) ^ found))
-				atomcontainer.addAtom(mol.getAtom(i));
+				if (!hydrogen.equals(mol.getAtom(i).getSymbol()))
+					atomcontainer.addAtom(mol.getAtom(i));
 			
 	}
 	
