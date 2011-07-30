@@ -44,14 +44,15 @@ public class RuleAromaticDiazoTest extends TestMutantRules {
 	protected IDecisionRule createRuleToTest() throws Exception {
 		return new RuleAromaticDiazo();
 	}
+
 	@Override
 	public String getHitsFile() {
-		return null;
+		return "AromaticDiazo/hits.sdf";
 	}
 	@Override
 	public String getResultsFolder() {
-		return null;
-	}
+		return "AromaticDiazo";
+	}	
 
     public void testProducts() throws Exception {
         List<String> expected = new ArrayList<String>();
