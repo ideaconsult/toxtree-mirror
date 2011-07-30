@@ -41,7 +41,8 @@ public class SA30 extends StructureAlert {
         	setContainsAllSubstructures(false);
         	
         	addSubstructure("1","O=c1ccc2ccccc2(o1)");
-
+        	addSubstructure("2","O=C1C=Cc2ccccc2O1");
+        	
      	
             setID("SA30");
             setTitle(SA30_title);
