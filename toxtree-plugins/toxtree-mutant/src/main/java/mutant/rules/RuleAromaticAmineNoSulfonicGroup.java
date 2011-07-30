@@ -51,7 +51,7 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
             b.append("c");
             
             for (int i=0; i < 6; i++) {
-                a.append(":[c;R1]");
+                a.append(":c");
 
      
                 b.append(";");
@@ -82,7 +82,7 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
                     {"Aromatic aryl N-nitroso groups","N([#1,C])N=O"},
                     {"Aromatic azide and triazene groups","NN=N"},
                     {"Aromatic Hydroxylamines","N[OX2H1]"},
-                  
+
             };
 
             for (int i=0; i < exclusion_rules.length;i++) {
@@ -96,7 +96,9 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
             
             b.append("]");            
             //System.out.println(b.toString());
+            setContainsAllSubstructures(true);
             addSubstructure(aromatic_amine,b.toString());
+            addSubstructure("noheterocyclic", "[a;!c]", true);
             /*
 [c;!$(cc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(cc[n,o,s,p]);!$(ccc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(ccc[n,o,s,p]);!$(cccc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(cccc[n,o,s,p]);!$(ccccc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(ccccc[n,o,s,p]);!$(cccccc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(cccccc[n,o,s,p]);!$(ccccccc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(ccccccc[n,o,s,p])][NX3v3;!$(N[CX4H2][OX2H1]);!$(N(CC[Cl,Br,F,I])(CC[Cl,Br,F,I]));!$(NN);!$(N([#1,C])N=O);!$(NN=N);!$(N[OX2H1])]
             */
@@ -129,7 +131,7 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
 	@Override
 	public boolean verifyRule(IAtomContainer mol)
 			throws DecisionMethodException {
-
+		
 		return super.verifyRule(mol);
 	}
 	@Override
