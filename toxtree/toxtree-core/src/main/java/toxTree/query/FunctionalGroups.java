@@ -628,6 +628,7 @@ public class FunctionalGroups {
         query.setID(CYANO);
         
         SymbolSetQueryAtom a = new SymbolSetQueryAtom();
+        a.addSymbol("N");
         a.addSymbol("C");
         a.addSymbol("H");
         SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
