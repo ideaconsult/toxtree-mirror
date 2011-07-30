@@ -3,6 +3,8 @@ package mutant.test.rules;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import junit.framework.Assert;
+
 import mutant.rules.RuleDerivedAromaticAmines;
 import mutant.test.TestMutantRules;
 
@@ -58,7 +60,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 			*/
 			for (int i=0;i<sc.getAtomContainerCount();i++) {
 				String s = g.createSMILES((IMolecule)sc.getAtomContainer(i));
-				//System.out.println("result "+s);
+				System.out.println("result "+s);
 				assertTrue(results.indexOf(s)>-1);
 			}	
 
@@ -67,7 +69,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 			fail(x.getMessage());
 		}
 	}
-	public void testDerivedAmine() {
+	public void testDerivedAmine() throws Exception {
 
 		IAtomContainer c = FunctionalGroups.createAtomContainer("COC=1C(N=C=C)=C(C=CC=1(N=C=O))C=2C=CC(N=C=O)=C(C=2)OC");
 		//IAtomContainer c = FunctionalGroups.createAtomContainer("[H]C([H])C=1C=CC(=CC=1(N=C=O))N=C=O.[H]C([H])C=1C(=CC=CC=1(N=C=O))N=C=O");
@@ -77,12 +79,8 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 		//[H]C([H])C=1C=CC(=CC=1(N=C=O))N=C=O.[H]C([H])C=1C(=CC=CC=1(N=C=O))N=C=O
 
 
-		try {
-			MolAnalyser.analyse(c);
-		} catch (MolAnalyseException x) {
-			fail();
-		}
-		
+		MolAnalyser.analyse(c);
+
 		
 		
 		IMoleculeSet sc = ((RuleDerivedAromaticAmines)ruleToTest).detachSubstituent(RuleDerivedAromaticAmines.group1(),c);
@@ -102,7 +100,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 //				System.out.println(FunctionalGroups.hasGroupMarked(sc.getAtomContainer(i),q.getID()));
 			}	
 
-		}
+		} else Assert.fail();
 	}
 	
 }

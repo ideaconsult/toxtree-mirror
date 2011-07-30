@@ -35,6 +35,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.openscience.cdk.CDKConstants;
@@ -93,7 +94,9 @@ public abstract class TestMutantRules extends TestCase {
 	}
 	protected void applyRule(IDecisionRule rule,  String sourcefile, String resultsfile, String resultsFolder) throws Exception {
 		InputStream in_source = this.getClass().getClassLoader().getResourceAsStream("data/"+sourcefile);
+		Assert.assertNotNull(in_source);
 		InputStream in_results = this.getClass().getClassLoader().getResourceAsStream("data/" + resultsfile);
+		Assert.assertNotNull(in_results);
 		applyRule(rule, in_source,in_results,getSubstanceID() ,"data/"+resultsFolder);
 		in_source.close();
 		in_results.close();
@@ -280,8 +283,8 @@ public abstract class TestMutantRules extends TestCase {
 	protected void verifyExample(IMolecule m, boolean answer) throws DecisionMethodException {
 		try {
 			MolAnalyser.analyse(m);
-			for (int i=0; i < m.getAtomCount();i++)
-				System.out.println(m.getAtom(i).getSymbol() + '\t'+ m.getAtom(i).getImplicitHydrogenCount());
+			//for (int i=0; i < m.getAtomCount();i++)
+				//System.out.println(m.getAtom(i).getSymbol() + '\t'+ m.getAtom(i).getImplicitHydrogenCount());
 		} catch (Exception x) {
 			throw new DecisionMethodException(x);
 		}
