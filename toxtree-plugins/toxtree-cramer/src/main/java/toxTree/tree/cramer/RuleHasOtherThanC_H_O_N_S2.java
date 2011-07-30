@@ -95,7 +95,7 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
 						if (atom.getValency()==2) c++;
 					} else c++;
 				} else 
-					if (selected!=null) selected.addAtom(atom);
+					if ((selected!=null) && !atom.getSymbol().equals("H")) selected.addAtom(atom);
 			}	
 			return c != mol.getAtomCount();
 		} catch (Exception x) { //if atom typing fails
@@ -132,13 +132,14 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
 							c++;
 						else {
 							logger.info("Found S valency ",Double.toString(order));
-							if (selected!=null) selected.addAtom(a);
+							if ((selected!=null) && !a.getSymbol().equals("H")) selected.addAtom(a);
 						}
 					} else {
 						c++;
 						
 					} 
-				} else if (selected!=null) selected.addAtom(a);
+				} else 
+					if ((selected!=null) && !a.getSymbol().equals("H")) selected.addAtom(a);
 			}
 		}
 		return c != mol.getAtomCount();
