@@ -72,8 +72,12 @@ public class RuleAromaticAmineNoSulfonicGroupTest extends TestMutantRules {
     /**
      * https://sourceforge.net/tracker/index.php?func=detail&aid=3089694&group_id=152702&atid=785126
      */
-    public void test_bug3089694() throws Exception {
-        assertFalse(verify("c12-c3c(cccc3)Nc1nc(N)cc2 "));
+    public void test_heteroaromatic_bug3089694() throws Exception {
+        assertFalse(verify("c12-c3c(cccc3)Nc1nc(N)cc2"));
+    }
+    public void test_fused_bug3089694() throws Exception {
+        assertTrue(verify("[H]c1c([H])c([H])c2c(c1([H]))c([H])c([H])c(c2C([H])([H])C([H])([H])[H])N([H])[H]"));
+
     }       
     /**
      * https://sourceforge.net/tracker/?func=detail&aid=3138561&group_id=152702&atid=785126
