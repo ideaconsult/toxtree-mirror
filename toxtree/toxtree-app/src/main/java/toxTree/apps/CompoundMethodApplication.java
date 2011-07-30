@@ -30,11 +30,13 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.EtchedBorder;
 
+import toxTree.ui.EditorFactory;
 import toxtree.data.DataContainer;
 import toxtree.data.DataModule;
 import toxtree.data.DecisionMethodsDataModule;
 import toxtree.ui.DataModulePanel;
 import toxtree.ui.StatusBar;
+import toxtree.ui.editors.SwingEditorFactory;
 import toxtree.ui.molecule.TopPanel;
 import toxtree.ui.tree.molecule.CompoundPanel;
 
@@ -50,6 +52,7 @@ public abstract class CompoundMethodApplication extends AbstractApplication {
 	protected File fileToOpen = null;
 	public CompoundMethodApplication(String title,  Color bgColor, Color fColor) {
 		super(title);
+
 		mainFrame.getContentPane().add(createMenuBar(), BorderLayout.NORTH);
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -79,6 +82,7 @@ public abstract class CompoundMethodApplication extends AbstractApplication {
 		mainFrame.setVisible(true);
 		centerScreen();		
 	}
+
 	protected JSplitPane createSplitPanel(int splitDirection) {
 		JSplitPane sp = new JSplitPane(splitDirection, compoundPanel,dataModulePanel);
 		sp.setOneTouchExpandable(false);

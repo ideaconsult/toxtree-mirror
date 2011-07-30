@@ -65,8 +65,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 	 *
 	 */
 	public ToxTreeApp() {
-		super("Estimation of Toxic Hazard - a Decision Tree Approach  v1.00", Color.black,Color.WHITE);
-		EditorFactory.setInstance(new SwingEditorFactory());
+		super("Estimation of Toxic Hazard - a Decision Tree Approach ", Color.black,Color.WHITE);
 	}
 	@Override
 	protected String getTitle() {

@@ -31,7 +31,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import toxTree.logging.TTLogger;
+import toxTree.ui.EditorFactory;
 import toxtree.data.DataModule;
+import toxtree.ui.editors.SwingEditorFactory;
 import ambit2.base.config.Preferences;
 
 public abstract class AbstractApplication {
@@ -66,7 +68,11 @@ public abstract class AbstractApplication {
 		ImageIcon icon = getIcon();
 		if (icon != null)
 			mainFrame.setIconImage(icon.getImage());
+		setEditorFactory();
 		dataModule = createDataModule();
+	}
+	public void setEditorFactory() {
+		EditorFactory.setInstance(new SwingEditorFactory());
 	}
 	
 	protected void exit() {
