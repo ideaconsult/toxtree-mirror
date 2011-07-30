@@ -1,0 +1,20 @@
+Change log
+
+2.5.0-SNAPSHOT
+
+SMARTCyp
+
+- New plugins
+  Functional groups, modified Verhaar scheme
+  
+- Improved plugins: 
+  Cramer rules, Verhaar scheme, SMARTCyp, Benigni/Bossa rules for carcinogenicity and mutagenicity
+  For plugin change log, consider relevant CHANGELOG.txt files
+
+Common features for all plugins. 
+    
+- Metabolite generation user interface. 
+ If a plugin allows metabolite generation, the metabolite can be viewed by clicking the "Metabolite" link in the middle of the right panel.
+  
+- Help menus improved (About / Files info / Help)
+
