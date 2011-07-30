@@ -29,10 +29,10 @@ import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
+import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import ambit2.core.data.MoleculeTools;
 
-public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSubstructureCDK {
+public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbit {
 	/**
 	 * 
 	 */
@@ -119,6 +119,13 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSubstructureCDK {
 			examples[0] = "NC1CCCCC1";
 			examples[1] = "CNc1ccc(cc1(C))N=Nc2ccccc2";	
 
+	}
+	
+	@Override
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+
+		return super.verifyRule(mol);
 	}
 	@Override
 	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {
