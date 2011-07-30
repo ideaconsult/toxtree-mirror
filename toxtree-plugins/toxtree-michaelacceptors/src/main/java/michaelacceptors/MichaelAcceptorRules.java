@@ -144,12 +144,13 @@ public class MichaelAcceptorRules extends UserDefinedTree implements IDecisionIn
 	/* (non-Javadoc)
 	 * @see toxTree.tree.AbstractTree#createDecisionResult()
 	 */
-	/*public IDecisionResult createDecisionResult() {
-		IDecisionResult result =  new CramerTreeResult();
+	@Override
+	public IDecisionResult createDecisionResult() {
+		IDecisionResult result =  new MATreeResult();
 		result.setDecisionMethod(this);
 		return result;
 
-	}*/
+	}
 
 
 	public boolean isResiduesIDVisible() {
