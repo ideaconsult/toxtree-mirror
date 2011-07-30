@@ -72,7 +72,7 @@ public class VerhaarScheme2 extends VerhaarScheme {
 				"An evaluation of the implementation of the Verhaar scheme in Toxtree, Chemosphere 73 (2008) 243-248");
 		setChanged();
 		notifyObservers();
-        setPriority(11);
+        setPriority(5);
 	}	
 	public DescriptorSpecification getSpecification() {
         return new DescriptorSpecification(

@@ -215,7 +215,7 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
 		setExplanation(
 				"Predicts the possibility of carcinogenicity and mutagenicity by discriminant analysis and structural rules. See The Reference guide." 
 				);
-        setPriority(20);
+        setPriority(6);
         setFalseIfRuleNotImplemented(false);
         
         //setFalseIfRuleNotImplemented(false); //this will cause exception if an error occurs in a rule

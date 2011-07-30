@@ -87,7 +87,7 @@ public class SkinSensitisationPlugin extends UserDefinedTree  implements IDecisi
 					"Enoch SJ, Madden JC, Cronin MT,Identification of mechanisms of toxic action for skin sensitisation using a SMARTS pattern based approach.,SAR QSAR Environ Res. 2008;19(5-6):555-78.");
 					
 
-	        setPriority(50);
+	        setPriority(9);
 	        setFalseIfRuleNotImplemented(false);
 	        
 		}

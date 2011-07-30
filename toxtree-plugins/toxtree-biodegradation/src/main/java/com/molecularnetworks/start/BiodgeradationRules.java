@@ -35,6 +35,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.qsar.DescriptorSpecification;
 
 import toxTree.core.IDecisionInteractive;
 import toxTree.core.IDecisionResult;
@@ -145,7 +146,7 @@ public class BiodgeradationRules extends UserDefinedTree implements IDecisionInt
             "based on structural alerts compiled from the Canadian EPA."
         );
         setInteractive( false );
-        setPriority( 20 );
+        setPriority( 12);
     }
 
     @Override
@@ -227,5 +228,13 @@ public class BiodgeradationRules extends UserDefinedTree implements IDecisionInt
     public void setInteractive( boolean value ) {
         interactive = value;
     }
+    
+	public DescriptorSpecification getSpecification() {
+        return new DescriptorSpecification(
+                "http://toxtree.sourceforge.net/start.html",
+                getTitle(),
+                this.getClass().getName(),                
+                "Toxtree plugin");
+	}
    
 }

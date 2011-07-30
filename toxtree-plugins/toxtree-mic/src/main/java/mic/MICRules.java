@@ -161,7 +161,7 @@ public class MICRules extends UserDefinedTree implements IDecisionInteractive{
 		setExplanation(
 				"ToxMIC-ISS plug-in allows the identification of Structure Alerts for the in vivo micronucleus assay. These Structure Alerts provide a coarse-grain filter for a preliminary screening of potentially in vivo mutagens." 
 				);
-        setPriority(20);
+        setPriority(14);
         setFalseIfRuleNotImplemented(false);};
         
     	public DescriptorSpecification getSpecification() {

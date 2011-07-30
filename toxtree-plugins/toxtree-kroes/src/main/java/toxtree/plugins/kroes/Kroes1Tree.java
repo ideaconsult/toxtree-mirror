@@ -22,6 +22,7 @@ public class Kroes1Tree extends UserDefinedTree
         setChanged();
         notifyObservers();
         setExplanation("Kroes, R., Renwick, A.G., Cheeseman, M., Kleiner, J., Mangelsdorf, I., Piersma, A., Schilter, B., Schlatter, J., van Schothorst, F., Vos, J.G., Wurtzen, G. (2004). Structure based thresholds of toxicological concern (TTC): guidance for application to substances present at low levels in the diet. Food Chem. Toxicol. 42 pp.65 83");
+        setPriority(3);
     }    
     
     private static final long serialVersionUID = 0x4b97b63a593def3bL;
@@ -127,7 +128,7 @@ public class Kroes1Tree extends UserDefinedTree
     };
 	public DescriptorSpecification getSpecification() {
         return new DescriptorSpecification(
-                "http://toxtree.sourceforge.net/ttc.html",
+                "http://toxtree.sourceforge.net/kroes.html",
                 getTitle(),
                 this.getClass().getName(),                
                 "Toxtree plugin");
