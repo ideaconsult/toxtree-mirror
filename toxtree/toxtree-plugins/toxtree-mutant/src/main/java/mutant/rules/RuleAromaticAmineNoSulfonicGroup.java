@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007  
+Copyright Ideaconsult Ltd. (C) 2005-2011 
 
-Contact: nina@acad.bg
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -51,13 +51,15 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
             b.append("c");
             
             for (int i=0; i < 6; i++) {
-                a.append("c");
+                a.append(":c");
 
+     
                 b.append(";");
                 b.append("!$(");
                 b.append(a.toString());
                 b.append("[SX4](=[OX1])(=[OX1])([O-,OX2H1])");
                 b.append(")");
+    
 				
                 //not heteroaromatic
                 if (i<5) {
@@ -69,9 +71,10 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
 
             }
             b.append("]");
-            b.append("[");
-            b.append("NX3v3");
+            b.append("!@[");
+            b.append("N;X3;v3;R0");
 
+    
             String[][] exclusion_rules = {
                     {"Aromatic N-methylols","N[CX4H2][OX2H1]"},
                     {"Aromatic N mustards","N(CC[Cl,Br,F,I])(CC[Cl,Br,F,I])"},
@@ -79,7 +82,6 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
                     {"Aromatic aryl N-nitroso groups","N([#1,C])N=O"},
                     {"Aromatic azide and triazene groups","NN=N"},
                     {"Aromatic Hydroxylamines","N[OX2H1]"},
-                    {"The possibility that the Nitrogen atom of aromatic amine is part of a cycle","N(@*)"},
                   
             };
 
@@ -89,6 +91,8 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
                 b.append(exclusion_rules[i][1]);
                 b.append(")");                
             }
+               
+       
             
             b.append("]");            
             //System.out.println(b.toString());
@@ -106,11 +110,12 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
 			e.append("Aromatic amine with sulphonic group on the ring");
 			e.append("<li>");
 			e.append("Heterocyclic aromatic amines");
+		
             for (int i=0; i < exclusion_rules.length;i++) {
     			e.append("<li>");
     			e.append(exclusion_rules[i][0]);
             }
-			
+            e.append("The possibility that the Nitrogen atom of aromatic amine is part of a cycle");
 			e.append("</ul>");
 /**
  * For QSAR6 calculation of mutagenicity of aromatic amines, molecules that contain also NA_27 (aromatic nitro), should be excluded. In this case NA_27 is lower ranking with respect of the aromatic amine. 
