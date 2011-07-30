@@ -51,7 +51,7 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
             b.append("c");
             
             for (int i=0; i < 6; i++) {
-                a.append(":c");
+                a.append(":[c;R1]");
 
      
                 b.append(";");

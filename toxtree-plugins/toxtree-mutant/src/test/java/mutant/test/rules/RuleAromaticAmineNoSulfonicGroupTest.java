@@ -68,6 +68,13 @@ public class RuleAromaticAmineNoSulfonicGroupTest extends TestMutantRules {
     public void testHeterocyclic_aromatic_amine_1() throws Exception {
         assertFalse(verify("NC=1N=C(N)N=C(N=1)C2=CC=CC=C2"));
     }    
+    
+    /**
+     * https://sourceforge.net/tracker/index.php?func=detail&aid=3089694&group_id=152702&atid=785126
+     */
+    public void test_bug3089694() throws Exception {
+        assertFalse(verify("c12-c3c(cccc3)Nc1nc(N)cc2 "));
+    }       
     /**
      * https://sourceforge.net/tracker/?func=detail&aid=3138561&group_id=152702&atid=785126
      */
