@@ -47,7 +47,6 @@ public class ToxForestApp extends CompoundMethodApplication {
 
 	public ToxForestApp() {
 		super("ToxForest",new Color(239,243,255),new Color(32,89,201));
-		EditorFactory.setInstance(new SwingEditorFactory());
 	}
 
 	/**
