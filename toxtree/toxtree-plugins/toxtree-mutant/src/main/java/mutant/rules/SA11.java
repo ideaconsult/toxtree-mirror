@@ -24,6 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
+import toxTree.tree.rules.StructureAlertAmbit;
 import toxTree.tree.rules.StructureAlertCDK;
 import ambit2.smarts.query.SMARTSException;
 
@@ -45,6 +46,15 @@ public class SA11 extends StructureAlertCDK {
 			setContainsAllSubstructures(true);
 			//addSubstructure("Simple aldehyde","[#6][$([CX3H1]);!$(C[#6]=*)](=O)");
 			addSubstructure("Simple aldehyde","[#6][$([CX3H1]);!$(CC=C)](=O)");
+			/**
+			 * https://sourceforge.net/tracker/?func=detail&aid=3138569&group_id=152702&atid=785126
+			 * could be resolved by
+			 * setting 
+			 * setContainsAllSubstructures(false);
+			 * and adding
+			 * addSubstructure("Formaldehyde", "[CX3H2]=O"); 
+			 */
+			
 			//addSubstructure("Simple aldehyde", "[#6][CX3H1]=O");
 			//addSubstructure("a,b- unsaturated aldehydes","[CX3H1](=O)[#6]=*",true);
 			

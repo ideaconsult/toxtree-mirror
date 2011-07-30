@@ -274,24 +274,19 @@ public abstract class TestMutantRules extends TestCase {
     }   
 	protected void verifyExample(boolean answer) throws DecisionMethodException {
 		IMolecule m = ruleToTest.getExampleMolecule(answer);
+		verifyExample(m, answer);
+	}
+	
+	protected void verifyExample(IMolecule m, boolean answer) throws DecisionMethodException {
 		try {
-			/*
-			HydrogenAdder ha = new HydrogenAdder();
-			ha.addExplicitHydrogensToSatisfyValency(m);
-			*/
 			MolAnalyser.analyse(m);
 			for (int i=0; i < m.getAtomCount();i++)
-				/*
-            	https://sourceforge.net/tracker/?func=detail&aid=3020065&group_id=20024&atid=120024
-                System.out.println(m.getAtom(i).getSymbol() + '\t'+ m.getAtom(i).getHydrogenCount());
-            	*/
 				System.out.println(m.getAtom(i).getSymbol() + '\t'+ m.getAtom(i).getImplicitHydrogenCount());
 		} catch (Exception x) {
 			throw new DecisionMethodException(x);
 		}
 		assertEquals(answer,ruleToTest.verifyRule(m));
-	}
-	
+	}	
 	public void testExampleNo() throws DecisionMethodException {
 		verifyExample(false);
 	}
