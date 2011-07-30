@@ -93,6 +93,7 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
 				if (contains(atom.getSymbol())) {
 					if ("S".equals(atom.getSymbol())) {
 						if (atom.getValency()==2) c++;
+						else selected.addAtom(atom);
 					} else c++;
 				} else 
 					if ((selected!=null) && !atom.getSymbol().equals("H")) selected.addAtom(atom);
