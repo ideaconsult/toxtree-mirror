@@ -248,7 +248,7 @@ public class VerhaarScheme extends UserDefinedTree {
 		setExplanation("Verhaar H.J.M., Van Leeuven C., Hermens J.L.M.,Classifying Environmental Pollutants. 1: Structure-Activity Relationships for Prediction of Aquatic Toxicity, Chemosphere, Vol.25, No.4, pp.471-491, 1992.");
 		setChanged();
 		notifyObservers();
-        setPriority(10);
+        setPriority(4);
 	}	
 	public DescriptorSpecification getSpecification() {
         return new DescriptorSpecification(

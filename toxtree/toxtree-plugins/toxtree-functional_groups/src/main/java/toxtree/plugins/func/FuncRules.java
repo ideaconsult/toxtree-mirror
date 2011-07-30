@@ -551,12 +551,12 @@ public class FuncRules extends UserDefinedTree implements IDecisionInteractive{
 				"<html>Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups.<br>" +
 				"Reference: <a href='http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_24871_EN.pdf'>JRC report</a></html>" 
 				);
-        setPriority(20);
+        setPriority(100);
         setFalseIfRuleNotImplemented(false);};
         
     	public DescriptorSpecification getSpecification() {
             return new DescriptorSpecification(
-                    "http://toxtree.sourceforge.net/func.html",
+                    "http://toxtree.sourceforge.net/issfunc.html",
                     getTitle(),
                     this.getClass().getName(),                
                     "Toxtree plugin");

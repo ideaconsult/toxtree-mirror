@@ -249,7 +249,7 @@ public class SicretRules extends UserDefinedTree implements IDecisionInteractive
 				"<i>2.John D. Walker, Ingrid Gerner, Etje Hulzebos, Kerstin Schlegel, The Skin Irritation Corrosion Rules Estimation Tool (SICRET), QSAR Comb. Sci. 2005, 24, pp.378-384<br><br>\n"+
 				"<i>3.Etje Hulzebos, John D. Walker, Ingrid Gerner, and Kerstin Schlegel, Use of structural alerts to develop rules for identifying chemical substances with skin irritation or skin corrosion potential, QSAR Comb. Sci. 2005, 24, pp.332-342<br><br>\n"
 				);
-        setPriority(20);
+        setPriority(7);
 	}
 
 

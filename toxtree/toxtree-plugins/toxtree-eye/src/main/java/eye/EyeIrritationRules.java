@@ -247,7 +247,7 @@ public class EyeIrritationRules extends UserDefinedTree implements IDecisionInte
 				"Gerner, I., Liebsch, M., Spielmann, H. (2005). Assessment of the eye irritating properties of chemicals by applying alternatives to the Draize rabbit eye test: the use of QSARs and in vitro tests for the classification of eye irritation. Alternatives to Laboratory Animals 33, 215-237.</i></ul></html>"
 				
 				);
-        setPriority(20);
+        setPriority(8);
 	}
 
 

@@ -99,18 +99,20 @@ public class ToxTreeApp extends CompoundMethodApplication {
 		}
 		if (methods.size() == 0) {
 			try {
-				methods.add(Introspection.loadCreateObject("toxTree.tree.cramer.CramerRules"));
-				methods.add(Introspection.loadCreateObject("cramer2.CramerRulesWithExtensions"));
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.kroes.Kroes1Tree"));
-				methods.add(Introspection.loadCreateObject("sicret.SicretRules"));
-				methods.add(Introspection.loadCreateObject("mutant.BB_CarcMutRules"));
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.smartcyp.SMARTCYPPlugin"));
-				methods.add(Introspection.loadCreateObject("michaelacceptors.MichaelAcceptorRules"));
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.skinsensitisation.SkinSensitisationPlugin"));
-				methods.add(Introspection.loadCreateObject("com.molecularnetworks.start.BiodgeradationRules"));
-				methods.add(Introspection.loadCreateObject("verhaar.VerhaarScheme"));
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.verhaar2.VerhaarScheme2"));
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.func.FuncRules"));
+				methods.add(Introspection.loadCreateObject("toxTree.tree.cramer.CramerRules")); //1
+				methods.add(Introspection.loadCreateObject("cramer2.CramerRulesWithExtensions")); //2
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.kroes.Kroes1Tree")); //3
+				methods.add(Introspection.loadCreateObject("verhaar.VerhaarScheme")); //4
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.verhaar2.VerhaarScheme2")); //5
+				methods.add(Introspection.loadCreateObject("mutant.BB_CarcMutRules")); //6
+				methods.add(Introspection.loadCreateObject("sicret.SicretRules")); //7
+				methods.add(Introspection.loadCreateObject("eye.EyeIrritationRules")); //8				
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.skinsensitisation.SkinSensitisationPlugin"));//10
+				methods.add(Introspection.loadCreateObject("michaelacceptors.MichaelAcceptorRules")); //11
+				methods.add(Introspection.loadCreateObject("com.molecularnetworks.start.BiodgeradationRules"));//12
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.smartcyp.SMARTCYPPlugin"));//13
+				methods.add(Introspection.loadCreateObject("mic.MICRules"));//14
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.func.FuncRules"));//100
 				//methods.add(Introspection.loadCreateObject("toxtree.plugins.search.CompoundLookup"));
 			} catch (Exception x) { 
 				x.printStackTrace();
