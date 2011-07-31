@@ -38,10 +38,10 @@ public class LewisTree extends UserDefinedTree {
         rules = new DecisionNodesList(categories, c_rules, c_transitions);
         if(rules instanceof Observable)
             ((Observable)rules).addObserver(this);
-        setTitle("Human Cytochrome P450 Substrate Selectivitys");
+        setTitle("Human Cytochrome P450 Substrate Selectivity");
         setChanged();
         notifyObservers();
-        setExplanation("Lewis, Human Cytochrome P450 Substrate Selectivity and characteristics,");
+        setPriority(1000);
     }    
     
     private static final long serialVersionUID = 0x4b97b63a593def3bL;

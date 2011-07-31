@@ -96,6 +96,7 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 		super(new CategoriesList(), nodesFactory.createNodesList());
 		setNodesFactory(new DecisionNodesFactory());
 		treeRoot = 0;
+		setExplanation(retrieveExplanation(getClass().getName()));
 	}
 	public UserDefinedTree() {
 		this(new DecisionNodesFactory());
@@ -123,7 +124,7 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 		this.rules = nodesFactory.createNodesList(getCategories(),customRules,customTransitions);
 		if (rules instanceof Observable) ((Observable)rules).addObserver(this);
 		if (categories instanceof Observable) ((Observable)categories).addObserver(this);
-		
+		setExplanation(retrieveExplanation(getClass().getName()));		
 	}
 	
 	/* (non-Javadoc)

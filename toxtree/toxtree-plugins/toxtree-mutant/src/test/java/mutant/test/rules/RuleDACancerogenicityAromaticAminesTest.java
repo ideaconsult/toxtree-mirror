@@ -97,16 +97,12 @@ public class RuleDACancerogenicityAromaticAminesTest extends LDARuleTest {
 		assertNotNull(d.get(9));
 	}	
 	
-	public void test() {
-		try {
+	public void test() throws Exception {
 			IAtomContainer c = FunctionalGroups.createAtomContainer("CC=1C=CC=CC=1(N)",true);
 			MolAnalyser.analyse(c);
 			ruleToTest.verifyRule(c);
 			System.out.println(c.getProperties());
-		} catch (Exception x) {
-			x.printStackTrace();
-			fail(x.getMessage());
-		}
+
 	}
 }
 

@@ -141,10 +141,7 @@ public class BiodgeradationRules extends UserDefinedTree implements IDecisionInt
         setChanged();
         notifyObservers();
         setTitle( "START Biodegradability" );
-        setExplanation(
-            "Estimates the biodegradability potential of a chemical compound " +
-            "based on structural alerts compiled from the Canadian EPA."
-        );
+
         setInteractive( false );
         setPriority( 12);
     }

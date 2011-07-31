@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.ui.tree;
 
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,6 +41,8 @@ import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.html.HTMLEditorKit;
@@ -50,6 +53,7 @@ import toxTree.core.IDecisionRule;
 import toxTree.core.Introspection;
 import toxTree.core.ToxTreePackageEntries;
 import toxTree.core.ToxTreePackageEntry;
+import toxTree.io.Tools;
 import toxTree.tree.DecisionNode;
 
 /**
@@ -298,8 +302,23 @@ class DetailsTextPane extends JTextPane implements ListSelectionListener {
         super();
         setEditorKit(new HTMLEditorKit());
         this.list = list;
+		addHyperlinkListener(new HyperlinkListener() {
+		    public void hyperlinkUpdate(HyperlinkEvent e) {
+		        if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+		        	try { 
+		        		if(Desktop.isDesktopSupported()) {
+		        		    Desktop.getDesktop().browse(e.getURL().toURI());
+		        		} else 
+		        			Tools.openURL(e.getURL().toString());
+		        	} catch (Exception x) {
+		        		x.printStackTrace();
+		        	}
+		        }
+		    }
+		});
     }
 
+    
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting())
             return;

@@ -42,6 +42,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.ResourceBundle;
 
 import javax.swing.JComponent;
 
@@ -68,7 +69,6 @@ import toxTree.exceptions.XMLDecisionMethodException;
 import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 import toxTree.ui.EditorFactory;
-import toxTree.ui.IEditorFactory;
 import toxTree.ui.tree.categories.CategoriesRenderer;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
@@ -634,6 +634,39 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 		}
 		return buffer;
 	}    
+	
+	protected String retrieveExplanation(String resourceBundle) {
+		ResourceBundle labels =  ResourceBundle.getBundle(resourceBundle);
+		
+		StringBuilder b = new StringBuilder();
+		
+		for (int i=1;i<100;i++) {
+			String key = String.format("reference%d",i);
+			if (labels.containsKey(key)) {
+				String ref=labels.getString(key);
+				if (ref.startsWith("http"))
+					b.append(String.format("<li><a href='%s'>%s</a>",ref,ref));
+				else
+				 b.append(String.format("<li>%s",ref));
+			} else 
+				break;
+		}
+		String vendor = labels.getString("vendor");
+		String vendoruri = labels.getString("vendoruri");
+		String uri = labels.getString("uri");
+		
+		return String.format("<html><body>" +
+				"<h3>%s</h3><h5>WWW: <a href='%s'>%s</a></h5><h5>Vendor: <a href='%s'>%s</a></h5>" +
+				"<hr><h3>References:</h3><ol>%s</ol></body></html>",
+				labels.getString("explanation"),
+				uri,
+				uri,
+				vendoruri,
+				vendor,
+				b.toString()
+				);
+	
+	}
 }
 
 class TreeSelector implements IProcessor<IAtomContainer,IChemObjectSelection> {
@@ -671,6 +704,5 @@ class TreeSelector implements IProcessor<IAtomContainer,IChemObjectSelection> {
 	public void setEnabled(boolean value) {
 	}
 	
-	
-	
+
 }

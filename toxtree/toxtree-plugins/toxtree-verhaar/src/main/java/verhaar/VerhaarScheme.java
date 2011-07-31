@@ -245,7 +245,7 @@ public class VerhaarScheme extends UserDefinedTree {
 				new DecisionNodesList(categories,c_rules_normal,c_transitions_normal);
 		if (rules instanceof Observable) ((Observable)rules).addObserver(this);		
 		setTitle("Verhaar scheme");
-		setExplanation("Verhaar H.J.M., Van Leeuven C., Hermens J.L.M.,Classifying Environmental Pollutants. 1: Structure-Activity Relationships for Prediction of Aquatic Toxicity, Chemosphere, Vol.25, No.4, pp.471-491, 1992.");
+		
 		setChanged();
 		notifyObservers();
         setPriority(4);

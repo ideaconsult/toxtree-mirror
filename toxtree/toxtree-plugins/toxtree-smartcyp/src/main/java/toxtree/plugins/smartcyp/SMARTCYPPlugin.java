@@ -76,8 +76,6 @@ public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInterac
 		}
 		*/
 		setTitle("Cytochrome P450-Mediated Drug Metabolism");
-		setExplanation(
-				"Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman, Lars Olsen, SMARTCyp: A 2D Method for Prediction of Cytochrome P450-Mediated Drug Metabolism, ACS Med. Chem. Lett., 2010,1 (3), pp 96 100");
 				
 
         setPriority(13);

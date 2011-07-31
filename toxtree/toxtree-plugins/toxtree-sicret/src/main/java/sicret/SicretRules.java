@@ -243,12 +243,7 @@ public class SicretRules extends UserDefinedTree implements IDecisionInteractive
 		}
 		*/
 		setTitle("Skin irritation / skin corrosion");
-		setExplanation(
-				"Estimates skin corrosion and irritatiion potential by physicochemical property limits and structural rules, according to:<br>\n" +
-				"<i>1.Ingrid Gerner, Kerstin Schlegel, John D. Walker, and Etje Hulzebosc, Use of Physicochemical Property Limits to Develop Rules for Identifying Chemical Substances with no Skin Irritation or Corrosion Potential, QSAR Comb. Sci. 2004, 23, pp.726-733<br><br>\n"+
-				"<i>2.John D. Walker, Ingrid Gerner, Etje Hulzebos, Kerstin Schlegel, The Skin Irritation Corrosion Rules Estimation Tool (SICRET), QSAR Comb. Sci. 2005, 24, pp.378-384<br><br>\n"+
-				"<i>3.Etje Hulzebos, John D. Walker, Ingrid Gerner, and Kerstin Schlegel, Use of structural alerts to develop rules for identifying chemical substances with skin irritation or skin corrosion potential, QSAR Comb. Sci. 2005, 24, pp.332-342<br><br>\n"
-				);
+
         setPriority(7);
 	}
 

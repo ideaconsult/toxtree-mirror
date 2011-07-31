@@ -33,7 +33,6 @@ public class CompoundLookup extends UserDefinedTree {
 		
 		setChanged();
 		notifyObservers();
-		setExplanation("Finds chemical compounds by identifier");
         setPriority(Integer.MAX_VALUE);		
 	}
 }

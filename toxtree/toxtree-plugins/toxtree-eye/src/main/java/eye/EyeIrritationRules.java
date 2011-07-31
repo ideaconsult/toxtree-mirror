@@ -242,11 +242,6 @@ public class EyeIrritationRules extends UserDefinedTree implements IDecisionInte
 		}
 		*/
 		setTitle("Eye irritation and corrosion");
-		setExplanation(
-				"<html>Estimates eye irritation and corrosion potential by physicochemical property limits and structural rules, according to:<br><ul><li><i>"+ 
-				"Gerner, I., Liebsch, M., Spielmann, H. (2005). Assessment of the eye irritating properties of chemicals by applying alternatives to the Draize rabbit eye test: the use of QSARs and in vitro tests for the classification of eye irritation. Alternatives to Laboratory Animals 33, 215-237.</i></ul></html>"
-				
-				);
         setPriority(8);
 	}
 
