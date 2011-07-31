@@ -40,6 +40,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -636,8 +637,7 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 	}    
 	
 	protected String retrieveExplanation(String resourceBundle) {
-		ResourceBundle labels =  ResourceBundle.getBundle(resourceBundle);
-		
+		ResourceBundle labels =  ResourceBundle.getBundle(resourceBundle,Locale.ENGLISH,getClass().getClassLoader());
 		StringBuilder b = new StringBuilder();
 		
 		for (int i=1;i<100;i++) {
