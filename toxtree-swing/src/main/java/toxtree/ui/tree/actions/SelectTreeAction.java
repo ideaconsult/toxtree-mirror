@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.ui.tree.actions;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import javax.swing.Action;
@@ -69,7 +70,8 @@ public class SelectTreeAction extends DataModuleAction {
 					module.getActions().getFrame(),
 					"Select a tree",
 					"Available decision trees",
-					new ListTableModel(((DecisionMethodsDataModule) module).getMethods()),actions);
+					new ListTableModel(((DecisionMethodsDataModule) module).getMethods()),actions,
+					new Dimension(450,250));
 			addTree((IDecisionMethod)o);
 
 	}
