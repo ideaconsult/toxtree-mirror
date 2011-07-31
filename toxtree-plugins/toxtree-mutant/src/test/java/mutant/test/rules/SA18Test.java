@@ -67,60 +67,43 @@ public class SA18Test extends TestMutantRules {
         super.tearDown();
     }
     
-    public void testTrue() {
+    public void testTrue() throws Exception {
         //IAtomContainer c = FunctionalGroups.createAtomContainer("CC(=O)NC=1C=CC=C2C3=CC=CC=C3(CC=12)",true);
         IAtomContainer c = FunctionalGroups.createAtomContainer("C=1C=C2C=CC3=CC=CC4=CC=C(C=1)C2=C34",true);
         
-        
-        try {
             MolAnalyser.analyse(c);
             assertTrue(ruleToTest.verifyRule(c));
-        } catch (Exception x) {
-            fail(x.getMessage());
-        }
+
 
     }
-    public void test3() {
+    public void test3()  throws Exception  {
         IAtomContainer c = FunctionalGroups.createAtomContainer("c1(Cl)cc2c3cc(Cl)c(Cl)cc3c2cc1Cl",true);
-        
-        try {
             MolAnalyser.analyse(c);
             assertTrue(ruleToTest.verifyRule(c));
-        } catch (Exception x) {
-            fail(x.getMessage());
-        }
+
 
     }
     
-    public void test2rings() {
+    public void test2rings()  throws Exception {
         IAtomContainer c = FunctionalGroups.createAtomContainer("C=1C=CC=2C=CC=CC=2(C=1)",true);
         
-        try {
             MolAnalyser.analyse(c);
             assertFalse(ruleToTest.verifyRule(c));
-        } catch (Exception x) {
-            fail(x.getMessage());
-        }
+
 
     }
-    public void test1() {
-    	try {
+    public void test1()  throws Exception {
     		assertTrue(
     		verifyRule(ruleToTest , "[H]C=1C([H])=C([H])C3=C(C=1([H]))C=2C(=C([H])C([H])=C([H])C=2C3([H])([H]))N([H])C(=O)C([H])([H])[H]")
     		);
-    	} catch (Exception e) {
-			fail(e.getMessage());
-		}
+
     }
 
-    public void testIndene() {
-    	try {
+    public void testIndene()  throws Exception {
     		assertTrue(
     		verifyRule(ruleToTest , "C=1C=CC=2CCCC=2(C=1)")
     		);
-    	} catch (Exception e) {
-			fail(e.getMessage());
-		}
+
     }    
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
