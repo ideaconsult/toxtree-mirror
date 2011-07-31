@@ -25,8 +25,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package mutant.test.rules;
 
 import java.beans.XMLEncoder;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+
+import junit.framework.Assert;
 
 import mutant.rules.SA2;
 import mutant.test.TestMutantRules;
@@ -51,34 +54,33 @@ public class SA2Test extends TestMutantRules {
 		return "NA2";
 	}
 	
-	public void testSave() {
-		try {
+	public void testSave() throws Exception {
 			IDecisionMethod tree = NewRuleAction.treeFromRule(new SA2());
 			System.out.println(tree.getTopRule());
 			assertEquals("NO",tree.getCategories().get(0).getName());
 			assertEquals("YES",tree.getCategories().get(1).getName());
 
 			
-			String filename= "/data/Misc/test.tml";
-
-			FileOutputStream os = new FileOutputStream(filename);
+			File file= File.createTempFile("testSA2", "tml");
+			file.deleteOnExit();
+			FileOutputStream os = new FileOutputStream(file);
 			//Thread.currentThread().setContextClassLoader(Introspection.getLoader());
 			XMLEncoder encoder = new XMLEncoder(os);
 			encoder.writeObject(tree);
 			encoder.close();	
+			os.close();
+			
+			Assert.assertTrue(file.exists());
 			
 			Introspection.setLoader(getClass().getClassLoader());
-			IDecisionMethod newtree = Introspection.loadRulesXML(new FileInputStream(filename),"new tree");
+			IDecisionMethod newtree = Introspection.loadRulesXML(new FileInputStream(file),"new tree");
 			assertEquals("NO",newtree.getCategories().get(0).getName());
 			assertEquals("YES",newtree.getCategories().get(1).getName());
 			
 			assertTrue(((DecisionNode)newtree.getTopRule()).getRule() instanceof SA2);
-			System.out.println(newtree.getTitle());
+			//System.out.println(newtree.getTitle());
 			
-		} catch (Exception x) {
-			x.printStackTrace();
-			fail(x.getMessage());
-		}
+
 	}
 	public void testHalogenSubstituents() throws Exception {
 		String[] smiles = {
