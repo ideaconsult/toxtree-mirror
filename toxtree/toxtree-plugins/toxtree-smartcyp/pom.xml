@@ -18,7 +18,8 @@ Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen, SM
   		<name>Nina Jeliazkova</name>
   		<email>jeliazkova.nina@gmail.com</email>
   		<roles>
-  			<role>?</role>
+  			<role>Integrating SMARTCyp in ToxTree</role>
+  			<role>Metabolite generation code</role>
   		</roles>
   	</developer>
   	<developer>
@@ -26,6 +27,9 @@ Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen, SM
   		<name>Patrik Rydberg</name>
   		<email>pry@farma.ku.dk</email>
   		<url>http://www.farma.ku.dk/index.php/Patrik-Rydberg/5304/0/</url>
+  		<roles>
+  			<role>SMARTCyp</role>
+  		</roles>
   	</developer>
   </developers>
   <build>
@@ -72,6 +76,6 @@ Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen, SM
   	</dependency>
   </dependencies>
   <properties>
-  	<smartcyp.version>1.5.4-SNAPSHOT</smartcyp.version>
+  	<smartcyp.version>1.5.4</smartcyp.version>
   </properties>  
 </project>
