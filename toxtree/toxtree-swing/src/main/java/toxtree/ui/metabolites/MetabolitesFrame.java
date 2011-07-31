@@ -6,9 +6,8 @@ import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-
-import toxTree.core.IDecisionMethod;
 
 public class MetabolitesFrame extends JFrame {
 	protected MetabolitesPanel metabolitesPanel;
@@ -17,17 +16,27 @@ public class MetabolitesFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -6393108313154870081L;
-
+	
 	public MetabolitesFrame() throws HeadlessException {
        super();
        addWidgets(null);
        setTitle("Metabolites");
+       
    }
+	
+	protected void copyMolecule(IAtomContainer ac) {
+		firePropertyChange("metabolite", null,ac);
+	}
+
 	protected void addWidgets(IAtomContainerSet products) {
 		   	
 			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	        //
-			metabolitesPanel = new MetabolitesPanel();
+			metabolitesPanel = new MetabolitesPanel() {
+				public void transferMolecule(org.openscience.cdk.interfaces.IAtomContainer ac) {
+					copyMolecule(ac);
+				};
+			};
 	        
 	        getContentPane().add(metabolitesPanel);
 	        
