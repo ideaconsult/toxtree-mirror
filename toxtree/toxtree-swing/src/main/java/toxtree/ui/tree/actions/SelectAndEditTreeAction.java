@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.ui.tree.actions;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -89,7 +90,8 @@ public class SelectAndEditTreeAction extends EditDecisionMethodAction {
     			module.getActions().getFrame(),
     			"Select a tree to edit",
     			"Available decision trees",
-    			new ListTableModel(((DecisionMethodsDataModule)module).getMethods()),null);
+    			new ListTableModel(((DecisionMethodsDataModule)module).getMethods()),null,
+    			new Dimension(450,250));
     	if ((selectedObject != null) && (selectedObject instanceof IDecisionMethod)) {
     		IDecisionMethod tree = (IDecisionMethod) selectedObject;
     		if (!tree.isEditable()) try {

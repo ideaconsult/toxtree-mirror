@@ -70,16 +70,21 @@ public class SelectListDialog {
 	protected SelectListDialog() {
 		super();
 	}
-
 	public static Object selectFromList(Component parent, String dlgCaption, String panelCaption,
 			ListTableModel list,
 			ActionMap actions) {
+		return selectFromList(parent,dlgCaption,panelCaption,list,actions,new Dimension(300,150));
+	}
+	public static Object selectFromList(Component parent, String dlgCaption, String panelCaption,
+			ListTableModel list,
+			ActionMap actions, 
+			Dimension size) {
 		ListPanel panel = new ListPanel(panelCaption, list, actions);
 		panel.addListSelectionListener(panel);
         DetailsTextPane text = new DetailsTextPane(list.getList());
         text.setEditable(false);
         panel.addListSelectionListener(text);
-        text.setPreferredSize(new Dimension(300,150));
+        text.setPreferredSize(size);
         JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT, panel,new JScrollPane(text)); 
             
 		JOptionPane pane = new JOptionPane(split, JOptionPane.PLAIN_MESSAGE,
