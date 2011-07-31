@@ -52,7 +52,8 @@ public class SA30Test extends TestMutantRules {
 		for (IAtom a : m.atoms()) {
 			aromatic += a.getFlag(CDKConstants.ISAROMATIC)?1:0;
 		}
-		Assert.assertEquals(10,aromatic);
+		//OK, the heteroring is not aromatic indeed 
+		Assert.assertEquals(6,aromatic);
 		
 	}
 }
