@@ -34,5 +34,13 @@
   	  		<type>jar</type>
   	  		<scope>test</scope>
   	  	</dependency>
+
+  	  	<dependency>
+  	  		<groupId>toxtree</groupId>
+  	  		<artifactId>toxtree-bundle</artifactId>
+  	  		<version>${project.version}</version>
+  	  		<type>jar</type>
+  	  		<scope>compile</scope>
+  	  	</dependency>
   </dependencies>
 </project>

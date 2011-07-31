@@ -50,6 +50,7 @@ import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.inchi.InChIGeneratorFactory;
 import org.openscience.cdk.inchi.InChIToStructure;
+import org.openscience.cdk.index.CASNumber;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
@@ -57,7 +58,11 @@ import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.query.FunctionalGroups;
+import toxtree.ui.remote.RemoteCompoundLookup;
+import ambit2.base.config.Preferences;
+import ambit2.base.data.Property;
 import ambit2.core.config.AmbitCONSTANTS;
+import ambit2.core.data.EINECS;
 import ambit2.namestructure.Name2StructureProcessor;
 
 /**
@@ -91,12 +96,8 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 
 
 	private void addWidgets() {
-		//TODO history of entered SMILES to be persistent accross instances
-		//TODO select na cialoto edit pole pri click (kakto w IE
-		//TODO Go da prawi i estimate
 
 		initLayout();
-		//setBackground(Color.black);
 
 
         JPanel top = new JPanel();
@@ -129,8 +130,8 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
         forwardButton.setDefaultCapable(false);
         forwardButton.setPreferredSize(d);
         forwardButton.setMinimumSize(d);
-        forwardButton.setToolTipText("Forward to the next SMILES");
-        backButton.setToolTipText("Back to the previous SMILES");
+        forwardButton.setToolTipText("Forward to the next entry");
+        backButton.setToolTipText("Back to the previous entry");
         top.add(backButton);top.add(forwardButton);
 
         JLabel labelSmi = new JLabel("SMILES,InChI or name:");
@@ -192,42 +193,63 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
         
 
 	}
-	protected boolean createMoleculeFromSMILES(String smiles) {
+	
+	protected boolean createMoleculeFromSMILES(String input) {
 		String errormsg = null;
-		smiles = smiles.replace('\n',' ').trim();
-    	IAtomContainer a = FunctionalGroups.createAtomContainer(smiles,false);
-    	if (a != null) { 
-	    	a.setProperty(CDKConstants.COMMENT,"Created from SMILES");
-	    	a.setProperty(AmbitCONSTANTS.SMILES,smiles);
-	    	//a.setProperty(AmbitCONSTANTS.FORMULA,mf.analyseAtomContainer(a));
-    	} else try {
-    		errormsg = "invalid SMILES "+smiles;
-    		a = isInChI(smiles);
-    		if (a != null) {
-	    		a.setProperty(CDKConstants.COMMENT,"Created from InChI");
-		    	a.setProperty(AmbitCONSTANTS.INCHI,smiles);
-		    	a.setID(smiles);
-
-    		} else {
-    			errormsg = "invalid InChI "+smiles;
-    			Name2StructureProcessor p = new Name2StructureProcessor();
-    			a = p.process(smiles);
-    			if (a != null) {
-    	    		a.setProperty(CDKConstants.COMMENT,"Created from name");
-    		    	a.setProperty(AmbitCONSTANTS.NAMES,smiles);
-    		    	a.setID(smiles);
-    		    	if (a instanceof IMolecule) 
-    		    	try { 
-    		    		SmilesGenerator g = new SmilesGenerator(); 
-    		    		a.setProperty(AmbitCONSTANTS.SMILES, g.createSMILES((IMolecule)a));
-    		    	} catch (Exception x) {};
-    			} else errormsg = "Can't parse "+smiles;
-    		}
-    	} catch (Exception x) {
-    		a = null;
-    		errormsg = x.getMessage();
-    	}
-    	
+		input = input.replace('\n',' ').trim();
+		boolean cas = CASNumber.isValid(input);
+		boolean einecs = EINECS.isValid(input);
+		IAtomContainer a = null;
+		if (cas || einecs) {
+			if (Preferences.getProperty(Preferences.REMOTELOOKUP).equals("true")) {
+				a =  retrieveRemote(input);
+				if (a!=null) {
+					a.setID(input);
+					if (cas) a.setProperty(Property.CAS, input);
+					else if (einecs) a.setProperty(Property.EC, input);
+	
+				} else {
+					errormsg = String.format("%s entered, failed to retrieve from remote server",
+								cas?"CAS":einecs?"EINECS":"Unknown query");
+				}
+			} else {
+				errormsg = String.format("%s entered, but remote queries are disabled. Enable remote queries via 'Method/Decision Tree Options' menu.",
+						cas?"CAS":einecs?"EINECS":"Unknown query");
+			}
+		} else {
+	    	a = FunctionalGroups.createAtomContainer(input,false);
+	    	if (a != null) { 
+		    	a.setProperty(CDKConstants.COMMENT,"Created from SMILES");
+		    	a.setProperty(AmbitCONSTANTS.SMILES,input);
+		    	//a.setProperty(AmbitCONSTANTS.FORMULA,mf.analyseAtomContainer(a));
+	    	} else try {
+	    		errormsg = "invalid SMILES "+input;
+	    		a = isInChI(input);
+	    		if (a != null) {
+		    		a.setProperty(CDKConstants.COMMENT,"Created from InChI");
+			    	a.setProperty(AmbitCONSTANTS.INCHI,input);
+			    	a.setID(input);
+	
+	    		} else {
+	    			errormsg = "invalid InChI "+input;
+	    			Name2StructureProcessor p = new Name2StructureProcessor();
+	    			a = p.process(input);
+	    			if (a != null) {
+	    	    		a.setProperty(CDKConstants.COMMENT,"Created from name by OPSIN");
+	    		    	a.setProperty(AmbitCONSTANTS.NAMES,input);
+	    		    	a.setID(input);
+	    		    	if (a instanceof IMolecule) 
+	    		    	try { 
+	    		    		SmilesGenerator g = new SmilesGenerator(); 
+	    		    		a.setProperty(AmbitCONSTANTS.SMILES, g.createSMILES((IMolecule)a));
+	    		    	} catch (Exception x) {};
+	    			} else errormsg = "Can't parse "+input;
+	    		}
+	    	} catch (Exception x) {
+	    		a = null;
+	    		errormsg = x.getMessage();
+	    	}
+		}
     	
     	if (a != null) {
     		if (a instanceof IMolecule) 
@@ -253,7 +275,7 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
             
 	        setMolecule(a);
 	        
-	        smilesBox.addItem(smiles);
+	        smilesBox.addItem(input);
 	        return true;
     	} else {
 			JOptionPane.showMessageDialog(getParent(),
@@ -300,7 +322,17 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 
+
+	}
+	
+	protected IAtomContainer retrieveRemote(String input)  {
+		try {
+			RemoteCompoundLookup lookup = new RemoteCompoundLookup();
+			return lookup.lookup(input);
+		} catch (Exception x) {
+			return null;
+		}
+		
 	}
 }
