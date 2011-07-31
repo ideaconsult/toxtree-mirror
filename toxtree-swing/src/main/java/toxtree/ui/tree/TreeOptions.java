@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.ui.tree;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
@@ -34,9 +35,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.UIManager;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 import javax.swing.plaf.ButtonUI;
+import javax.swing.text.html.HTMLEditorKit;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -69,7 +73,24 @@ public class TreeOptions extends JSplitPane {
 	    	addMoleculeTab(outlook, atomcontainer);
 	    addTreeTab(outlook, tree);
 	    setLeftComponent(outlook);
-	    setRightComponent(new JTextArea(tree.getExplanation()));
+	    JTextPane details = new JTextPane();
+	    details.addHyperlinkListener(new HyperlinkListener() {
+		    public void hyperlinkUpdate(HyperlinkEvent e) {
+		        if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+		        	try { 
+		        		if(Desktop.isDesktopSupported()) {
+		        		    Desktop.getDesktop().browse(e.getURL().toURI());
+		        		} else 
+		        			Tools.openURL(e.getURL().toString());
+		        	} catch (Exception x) {
+		        		x.printStackTrace();
+		        	}
+		        }
+		    }
+		});
+	    details.setEditorKit(new HTMLEditorKit());
+	    details.setText(tree.getExplanation());
+	    setRightComponent(new JScrollPane(details));
 	    setPreferredSize(new Dimension(400,300));
 	    
 	}
