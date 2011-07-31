@@ -9,27 +9,19 @@
   <artifactId>toxtree-bundle</artifactId>
   <name>Toxtree-bundle</name>
   <packaging>jar</packaging>
+  <description>Helper classes</description>
+  <organization>
+  	<name>Ideaconsult Ltd.</name>
+  	<url>http://www.ideaconsult.net</url>
+  </organization>
   <dependencies>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-plugins</artifactId>
-  		<version>${project.version}</version>
-  		<type>pom</type>
-  		<scope>compile</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-core</artifactId>
-  		<version>${project.version}</version>
-  		<type>jar</type>
-  		<scope>compile</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-app</artifactId>
-  		<version>${project.version}</version>
-  		<type>jar</type>
-  		<scope>compile</scope>
-  	</dependency>
+  	  <dependency>
+  	  		<groupId>ambit</groupId>
+  	  		<artifactId>opentox-opensso</artifactId>
+  	  		<version>1.0.1</version>
+  	  		<type>jar</type>
+  	  		<scope>compile</scope>
+  	  	</dependency>
+  	
   </dependencies>
 </project>
