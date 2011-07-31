@@ -21,17 +21,14 @@ public class SA28Test extends TestMutantRules {
 		return "NA28";
 	}
 	
-	public void testNnotinring() {
-		try {
+	public void testNnotinring() throws Exception  {
             TTLogger.configureLog4j(true);
 			assertFalse(verifyRule(ruleToTest,"ON2CCC=1C=CC=CC=12"));
-		} catch (Exception x) {
-			fail(x.getMessage());
-		}
+
 	}
 
-	public void testSO3H() {
-		try {
+	public void testSO3H() throws Exception {
+
 			
 			assertTrue(
 			applySmarts(SA28.amine_and_SO3H,
@@ -45,28 +42,20 @@ public class SA28Test extends TestMutantRules {
 			assertTrue(applySmarts(SA28.amine_and_SO3H,"O=S(=O)([O-])C1=CC=CC2=CC(N)=CC=C12"));
 			assertTrue(applySmarts(SA28.amine_and_SO3H,"O=S(=O)([O-])C=1C=CC2=CC(N)=CC=C2(C=1)"));
 			
-		} catch (Exception e) {
-			fail(e.getMessage());
-		}
+
 		
 	}
 	
-	public void testOrthoSubstitution_ignoreAromatic() {
-		try {
+	public void testOrthoSubstitution_ignoreAromatic() throws Exception {
+		
 			assertTrue(verifyRule(ruleToTest, "CC=1C=CC=2C=CC=CC=2(C=1(N))")
 			);
-		} catch (Exception e) {
-			fail(e.getMessage());
-		}
+
 	}
-	public void test669() {
-		try {
+	public void test669() throws Exception {
 			assertFalse(
 			verifyRule(ruleToTest, "[H]C(=C([H])C=1C([H])=C([H])C(=C([H])C=1S(=O)(=O)[O-])N([H])[H])C=2C([H])=C([H])C(=C([H])C=2S(=O)(=O)[O-])N([H])[H]")
 			);
-		} catch (Exception e) {
-			fail(e.getMessage());
-		}
 	}
     public void test_ortho_carboxylicacid() throws Exception {
         exclusionRuleTest(SA28.index_ortho_carboxylicacid);

@@ -78,23 +78,13 @@ public class SA10Test extends TestMutantRules {
 	}
 	
 
-	public void testCarboxylate() {
-		try {
+	public void testCarboxylate() throws Exception {
 			assertTrue(applySmarts("C!@;=C!@C(=O)[O]","CC=CC(=O)O"));
-		}  catch (Exception x) {
-			fail(x.getMessage());
-		}
 	}
-	public void testDetachSubstituentAtBetaCarbon() {
+	public void testDetachSubstituentAtBetaCarbon() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.ab_unsaturated_carbonyl();
 		IAtomContainer c = FunctionalGroups.createAtomContainer("CC(C)CCC=CC=O");
-		try {
 			MolAnalyser.analyse(c);
-		} catch (MolAnalyseException x) {
-			fail();
-		}
-		
-		
 		
 		IMoleculeSet sc = ((SA10)ruleToTest).detachSubstituentAtBetaCarbon(c);
 		assertNotNull(sc);
@@ -118,7 +108,7 @@ public class SA10Test extends TestMutantRules {
 
 		}
 	}
-	protected IMolecule create663() {
+	protected IMolecule create663() throws Exception {
 			  IMolecule mol = new Molecule();
 			  IAtom a1 = MoleculeTools.newAtom(mol.getBuilder(),Elements.CARBON);
 			  a1.setPoint2d(new Point2d(2.598076211353316, -4.440892098500626E-16));  mol.addAtom(a1);
