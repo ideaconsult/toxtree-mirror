@@ -656,10 +656,10 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 		String uri = labels.getString("uri");
 		
 		String traindata = labels.containsKey("trainingdata")?
-				String.format("<h5>Training data: <a href='%s'>%s</a></h5>",labels.getString("trainingdata"),labels.getString("trainingdata")):"";
+				String.format("<h5>Training data: <a href='%s'>%s</a></h5>",labels.getString("trainingdata"),"Click to retrieve"):"";
 		
 		String testdata = labels.containsKey("testdata")?
-				String.format("<h5>Test data: <a href='%s'>%s</a></h5>",labels.getString("testdata"),labels.getString("testdata")):"";
+				String.format("<h5>Test data: <a href='%s'>%s</a></h5>",labels.getString("testdata"),"Click to retrieve"):"";
 
 		
 		return String.format("<html><body>" +
