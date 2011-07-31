@@ -655,14 +655,25 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 		String vendoruri = labels.getString("vendoruri");
 		String uri = labels.getString("uri");
 		
+		String traindata = labels.containsKey("trainingdata")?
+				String.format("<h5>Training data: <a href='%s'>%s</a></h5>",labels.getString("trainingdata"),labels.getString("trainingdata")):"";
+		
+		String testdata = labels.containsKey("testdata")?
+				String.format("<h5>Test data: <a href='%s'>%s</a></h5>",labels.getString("testdata"),labels.getString("testdata")):"";
+
+		
 		return String.format("<html><body>" +
-				"<h3>%s</h3><h5>WWW: <a href='%s'>%s</a></h5><h5>Vendor: <a href='%s'>%s</a></h5>" +
-				"<hr><h3>References:</h3><ol>%s</ol></body></html>",
+				"<h3>%s</h3><h5>WWW: <a href='%s'>%s</a></h5>" +
+				"<h5>Vendor: <a href='%s'>%s</a></h5>" +
+				"%s%s" +
+				"<hr><h3>References:</h3><ol>%s</ol>" +
+				"</body></html>",
 				labels.getString("explanation"),
 				uri,
 				uri,
 				vendoruri,
 				vendor,
+				traindata,testdata,
 				b.toString()
 				);
 	
