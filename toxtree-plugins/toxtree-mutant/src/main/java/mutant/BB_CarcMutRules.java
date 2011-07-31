@@ -212,9 +212,6 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
 		setChanged();
 		notifyObservers();
 		setTitle("Benigni / Bossa rulebase (for mutagenicity and carcinogenicity)");
-		setExplanation(
-				"Predicts the possibility of carcinogenicity and mutagenicity by discriminant analysis and structural rules. See The Reference guide." 
-				);
         setPriority(6);
         setFalseIfRuleNotImplemented(false);
         

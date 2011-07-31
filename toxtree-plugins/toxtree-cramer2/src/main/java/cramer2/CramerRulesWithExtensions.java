@@ -178,7 +178,7 @@ public class CramerRulesWithExtensions extends UserDefinedTree  {
 			changes.firePropertyChange("Transitions", transitions,null);
 		}
 		*/
-		setExplanation("Cramer rules, with extensions. Like the original Cramer rules, these rules predict a level of toxicological concern (when administered orally) from the molecular structure. <br>- I: low concern, <br>- II: intermediate concern, <br>- III: high concern (unknown/unsafe compound).");
+
         setPriority(2);
 	}
 

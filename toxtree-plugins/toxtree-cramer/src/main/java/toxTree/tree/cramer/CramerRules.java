@@ -160,13 +160,7 @@ public class CramerRules extends UserDefinedTree  {
 		
 		setChanged();
 		notifyObservers();
-		/*
-		if (changes != null ) {
-			changes.firePropertyChange("Rules", rules,null);
-			changes.firePropertyChange("Transitions", transitions,null);
-		}
-		*/
-		setExplanation("Cramer G. M., R. A. Ford, R. L. Hall, Estimation of Toxic Hazard - A Decision Tree Approach, J. Cosmet. Toxicol., Vol.16, pp. 255-276, Pergamon Press, 1978");
+
         setPriority(1);
 	}
 
