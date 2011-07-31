@@ -6,11 +6,9 @@ Plugins:
 SMARTCyp
 
  SmartCyp code refactored as a separate maven project. Used as dependency in Toxtree
- 1.5.3 (last stable)
- https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/smartcyp-1.5.3
+ 1.5.4
+ https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/smartcyp-1.5.4
  
- Currently in trunk 1.5.4-SNAPSHOT
- https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/smartcyp
  
  Refactored to provide SMIRKS along with SMARTS and energy for each reaction.
  
