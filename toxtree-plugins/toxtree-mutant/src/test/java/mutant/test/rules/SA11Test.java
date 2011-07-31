@@ -66,7 +66,7 @@ public class SA11Test extends TestMutantRules {
 	public void test_bug3138569() throws Exception {
 		SmilesParser p = new SmilesParser(NoNotificationChemObjectBuilder.getInstance());
 		IMolecule m = p.parseSmiles("C=O");
-		verifyExample(m, true);
+		verifyExample(m, false);
 		
 	}
 }
