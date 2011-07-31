@@ -1,20 +1,28 @@
 Change log
 
-2.5.0-SNAPSHOT
-
-SMARTCyp
+Toxtree 2.5.0-SNAPSHOT
 
 - New plugins
   Functional groups, modified Verhaar scheme
   
 - Improved plugins: 
   Cramer rules, Verhaar scheme, SMARTCyp, Benigni/Bossa rules for carcinogenicity and mutagenicity
-  For plugin change log, consider relevant CHANGELOG.txt files
+  For the plugin change log, consider relevant CHANGELOG.txt files
 
-Common features for all plugins. 
+Updates, common for all plugins. 
     
 - Metabolite generation user interface. 
  If a plugin allows metabolite generation, the metabolite can be viewed by clicking the "Metabolite" link in the middle of the right panel.
   
-- Help menus improved (About / Files info / Help)
+- Improved help menus improved (About / Files info / Help)
 
+- OpenBabel is no more distributed embedded in Toxtree. 
+  In order to use OpenBabel from within Toxtree, install OpenBabe and set the OBABEL_HOME environment variable to point to the OpenBabel directory,
+  
+- The Ambit library upgraded to 2.4.2
+
+- The CDK library upgraded to 1.3.8 
+
+- Added metadata for all plugins (explanation, references, vendor, links to datasets); improved display of decision tree details
+
+- Lookup by CAS & EINECS via remote OpenTox service
