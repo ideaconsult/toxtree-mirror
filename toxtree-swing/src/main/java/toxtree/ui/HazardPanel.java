@@ -207,7 +207,7 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
      	
 		metabolites = new JLabel("<html><u><b>Metabolites</b></u></html>");
 		metabolites.setAlignmentX(RIGHT_ALIGNMENT);
-        metabolites.setToolTipText("Click to show predicted metabolites.");
+        metabolites.setToolTipText("Click to view the predicted metabolites.");
         metabolites.addMouseListener(new MetabolitesMouseAdapter() {
 	   		@Override
 			public void mouseClicked(MouseEvent e) {

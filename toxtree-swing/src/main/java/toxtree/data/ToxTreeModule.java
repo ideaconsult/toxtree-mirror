@@ -30,11 +30,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package toxtree.data;
 
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.Observable;
 
 import javax.swing.JFrame;
 
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 
 import toxTree.core.IDecisionMethod;
@@ -73,7 +75,7 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
      */
     private static final long serialVersionUID = 8292481405980136292L;
     
-
+    protected PropertyChangeListener listener;
 	private TreeFrame treeFrame = null;
 	private MetabolitesFrame metabolitesFrame = null;
 
@@ -91,6 +93,11 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
         	setRules(methods.getMethod(0));
         
         actions = new ToxTreeActions(frame,this);
+        listener = new PropertyChangeListener() {
+        	public void propertyChange(java.beans.PropertyChangeEvent evt) {
+        		dataContainer.setMolecule(((IAtomContainer)evt.getNewValue()));
+        	};
+        };
 
     }
     @Override
@@ -120,6 +127,7 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
         if (treeResult.isEstimating()) return; //can't change compound during estimation
         if (o instanceof DecisionMethodData) {
             treeResult.clear();
+            if (metabolitesFrame!=null) metabolitesFrame.setProducts(null);
             setChanged();
             notifyObservers();
         }
@@ -184,6 +192,7 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
         }    
         
         if (metabolitesFrame !=null) {
+        	metabolitesFrame.removePropertyChangeListener(listener);
         	metabolitesFrame.dispose();
         	metabolitesFrame = null;
         }
@@ -221,8 +230,10 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
 
 			IAtomContainerSet products = ((IMetaboliteGenerator)getRules()).getProducts(getDataContainer().getMolecule());
 			
-	        if (metabolitesFrame == null) 
+	        if (metabolitesFrame == null)  {
 	        	metabolitesFrame = new MetabolitesFrame();
+	        	metabolitesFrame.addPropertyChangeListener("metabolite",listener);
+	        }
  
 	        metabolitesFrame.setProducts(products);
 	        metabolitesFrame.setVisible(true);

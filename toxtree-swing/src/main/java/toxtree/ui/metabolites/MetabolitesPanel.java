@@ -3,8 +3,10 @@ package toxtree.ui.metabolites;
 import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -38,10 +40,23 @@ public class MetabolitesPanel extends JPanel {
 			add(new JLabel("No metabolites predicted!"));
 		else
 			for (IAtomContainer ac : products.atomContainers()) {
-				Panel2D p = new Panel2D();
+				Panel2D p = new Panel2D() {
+					protected void launchEditor(java.awt.Component parentComponent) {
+						//transferMolecule(atomContainer);
+					};
+				};
+				p.setEditable(true);
 				p.setAtomContainer(ac, true);
-				add(new JLabel(ac.getID()));
+				
+				JToolBar toolbar = new JToolBar();
+				toolbar.setFloatable(false);
+				toolbar.add(new JLabel(ac.getID()));
+								
+				add(toolbar);
 				add(p);
 			}
+	}
+	public void transferMolecule(IAtomContainer ac) {
+		
 	}
 }
