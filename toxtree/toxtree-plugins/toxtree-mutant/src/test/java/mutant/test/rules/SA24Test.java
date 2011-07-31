@@ -47,7 +47,7 @@ public class SA24Test extends TestMutantRules {
 		} catch (Exception x) {
 			throw new DecisionMethodException(x);
 		}
-		assertEquals(true,ruleToTest.verifyRule(m));
+		assertEquals(false,ruleToTest.verifyRule(m));
 		
 	}
 	
