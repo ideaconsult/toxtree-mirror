@@ -127,7 +127,10 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
         }
         explainArea.setText(b.toString());
         
-        metabolites.setVisible(getDataModule().getRules() instanceof IMetaboliteGenerator);
+        if (getDataModule().getRules() instanceof IMetaboliteGenerator) {
+        	metabolites.setVisible(true);
+        	metabolites.setToolTipText(((IMetaboliteGenerator)getDataModule().getRules()).getHelp());
+        } else metabolites.setVisible(false);
         repaint();
     }
     
