@@ -21,6 +21,8 @@ public class MetabolitesFrame extends JFrame {
        super();
        addWidgets(null);
        setTitle("Metabolites");
+       setFocusable(true);
+       setAlwaysOnTop(true);
        
    }
 	

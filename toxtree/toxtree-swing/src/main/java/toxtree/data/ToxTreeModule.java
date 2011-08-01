@@ -225,8 +225,8 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
     public void showMetabolites() throws Exception {
 		if (getRules() instanceof IMetaboliteGenerator) {
 			
-			//if (!treeResult.isEstimated()) 
-			treeResult.classify(getDataContainer().getMolecule());
+			if (!treeResult.isEstimated()) 
+				treeResult.classify(getDataContainer().getMolecule());
 
 			IAtomContainerSet products = ((IMetaboliteGenerator)getRules()).getProducts(getDataContainer().getMolecule());
 			
@@ -237,6 +237,7 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
  
 	        metabolitesFrame.setProducts(products);
 	        metabolitesFrame.setVisible(true);
+
 			
 		}
     }    
