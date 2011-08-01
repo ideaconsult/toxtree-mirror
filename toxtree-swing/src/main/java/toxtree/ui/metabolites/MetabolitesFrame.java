@@ -54,7 +54,7 @@ public class MetabolitesFrame extends JFrame {
 	   public IAtomContainerSet getProducts() {
 			return metabolitesPanel.getProducts();
 		}
-		public void setProducts(IAtomContainerSet products) {
-			metabolitesPanel.setProducts(products);
+		public void setProducts(String help,IAtomContainerSet products) {
+			metabolitesPanel.setProducts(help,products);
 		}
 }

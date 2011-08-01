@@ -5,4 +5,5 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 
 public interface IMetaboliteGenerator  {
 	IAtomContainerSet getProducts(IAtomContainer reactant) throws Exception;
+	String getHelp();
 }
