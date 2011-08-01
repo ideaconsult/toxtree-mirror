@@ -245,4 +245,11 @@ public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInterac
         		return ((SMARTCYPRuleRank1)rules.getRule(i)).getProducts(reactant);
         return null;
 	}
+	@Override
+	public String getHelp() {
+        for (int i=0; i < rules.size(); i++) 
+        	if ((rules.getRule(i) != null) && (rules.getRule(i) instanceof SMARTCYPRuleRank1))
+        		return ((SMARTCYPRuleRank1)rules.getRule(i)).getHelp();
+        return "";
+	}
 }
