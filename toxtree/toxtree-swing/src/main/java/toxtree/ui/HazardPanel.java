@@ -1,8 +1,8 @@
 
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2009 
+Copyright Ideaconsult Ltd. (C) 2005-2011 
 
-Contact: nina@acad.bg
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -106,6 +106,7 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
         methodLabel.setText("<html><b> by <u>" + 
                 getDataModule().getRules().toString() + 
                 "</u></b></html>");
+        methodLabel.setToolTipText(getDataModule().getRules().getExplanation());
 
         tBorder.setTitle(getDataModule().getRules().toString());
         
