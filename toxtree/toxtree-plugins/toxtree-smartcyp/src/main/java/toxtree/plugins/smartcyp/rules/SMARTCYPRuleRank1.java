@@ -38,7 +38,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 		super();
 		setRank(rank);
 		setID(String.format("%d",rank));
-		setTitle("SMARTCyp primary sites of metabolism");
+		setTitle(bundle.getString("title"));
 		setExplanation(String.format("Rank%d",rank));
 		setEditable(false);
 		setExamples(new String[] {
@@ -187,5 +187,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 		AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
 		return super.getProducts(mol);
 	}
+	
+
 	
 }

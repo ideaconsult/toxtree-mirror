@@ -2,21 +2,19 @@ package toxtree.plugins.smartcyp.rules;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Vector;
 
-import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.isomorphism.matchers.smarts.AromaticAtom;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IMetaboliteGenerator;
 import toxTree.tree.AbstractRule;
-import ambit2.core.processors.structure.AtomConfigurator;
 import ambit2.smarts.IAcceptable;
 import ambit2.smarts.SMIRKSManager;
 import ambit2.smarts.SMIRKSReaction;
@@ -33,7 +31,12 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 	private static final long serialVersionUID = -3202810538351239202L;
 	protected SMIRKSManager smrkMan;
 	protected int rank;
-
+	protected ResourceBundle bundle;
+	
+	public MetaboliteGenerator() {
+		super();
+		bundle = ResourceBundle.getBundle(getClass().getName(),Locale.ENGLISH,getClass().getClassLoader());
+	}
 	public int getRank() {
 		return rank;
 	}
@@ -144,4 +147,9 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 		return ok;
 	}
 
+	@Override
+	public String getHelp() {
+
+		return bundle.getString("metabolite_help");
+	}
 }

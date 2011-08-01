@@ -9,7 +9,6 @@ public class SMARTCYPRuleHigherRank extends SMARTCYPRuleRank1 {
 	private static final long serialVersionUID = 2711634544165374724L;
 	public SMARTCYPRuleHigherRank() {
 		super(4);
-		setTitle("SMARTCyp sites of metabolism with Rank>=4");
 		setExplanation(String.format("Rank >= %d",rank));	
 		
 	}
