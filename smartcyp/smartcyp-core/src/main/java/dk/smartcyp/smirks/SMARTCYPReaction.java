@@ -58,7 +58,12 @@ public enum SMARTCYPReaction {
 			return "S-oxidation";
 		}
 	},
-
+	Thioesther_cleavage {
+		@Override
+		public String getSMIRKS() {
+			return "[#16:1][C;X3:2] >>[#16:1][H].[C;X3:2][O]";
+		}
+	},
 	N_oxidation {
 		@Override
 		public String getSMIRKS() {
@@ -92,7 +97,12 @@ public enum SMARTCYPReaction {
 			return "[C:1]([H])[O:2][H]>>[C:1]=[O:2]";
 		}
 	},
-
+	Dihydropyrrole_aromatization {
+		@Override
+		public String getSMIRKS() {
+			return "[N:1]1[C:2][C:3]=[C:4][C:5]1>>[N:1]1[C:2]=[C:3][C:4]=[C:5]1";
+		}
+	},
 	Aromatization_of_dihydropyridines {
 		@Override
 		public String getSMIRKS() {

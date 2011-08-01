@@ -31,8 +31,13 @@ public class SMARTSnEnergiesTable {
 		SMARTSnEnergiesTable.put("[SX2H1]", new SMARTSData(41.5, SMARTCYPReaction.S_oxidation));
 		SMARTSnEnergiesTable.put("[$([SX2H0]);!$([S][*^2]);!$([S][CX4H0])]", 
 								new SMARTSData(26.3, SMARTCYPReaction.S_oxidation) );
-		SMARTSnEnergiesTable.put("[$([SX2H0][*^2]);!$([S](~[^2])[^2]);!$([S][CX4H0])]", 
+		
+		SMARTSnEnergiesTable.put("[$([SX2H0][*^2]);!$([S](~[^2])[^2]);!$([S][CX4H0]);!$([S][CX3]=[O])]", 
 								new SMARTSData(34.4, SMARTCYPReaction.S_oxidation) );
+		//split from S-oxidation 
+		SMARTSnEnergiesTable.put("[$([SX2H0][*^2]);$([S][CX3]=[O]);!$([S](~[^2])[^2]);!$(S[CX4H0])]", 
+				new SMARTSData(34.4, SMARTCYPReaction.Thioesther_cleavage) );		
+			
 		SMARTSnEnergiesTable.put("[$([S][*D4H0]);$([SX2H0])]", 
 								new SMARTSData(44.4, SMARTCYPReaction.S_oxidation) );
 		SMARTSnEnergiesTable.put("[$([SX2H0]([*^2])[*^2]);!$([S][CX4H0])]", 
@@ -49,17 +54,35 @@ public class SMARTSnEnergiesTable {
 								new SMARTSData(13.3, SMARTCYPReaction.Desulphurization_of_phosphor));
 		SMARTSnEnergiesTable.put("[$([CX4]([#6^2])([#6^2])[#6^2]);!$([CH0])]", 
 								new SMARTSData(33.1, SMARTCYPReaction.Aliphatic_hydroxylation) );
+		
+		//SMARTSnEnergiesTable.put("[$([CX4][N]);!$([CH0]);!$([C][N]([*^2])[*^2]);!$([C][N]=[#6X3]);!$([CX4][NX3][C]=[O]);!$([CX4][NX3][#16X4](=[OX1])(=[OX1]));!$([CX4][NX3][N]=[O]);!$([CX4]1[C][C]2[C][C][N]1[C][C]2)]", 
+		//						new SMARTSData(39.8, SMARTCYPReaction.N_dealkylation) );
+		//A fix for N-dealkylation which should be aromatization in aromatization of dihydropyrroles (example senecionine).
+		//Old one:
+		//SMARTSnEnergiesTable.put("[$([CX4][N]);!$([CH0]);!$([C][N]([*^2])[*^2]);!$([C][N]=[#6X3]);!$([CX4][NX3][C]=[O]);!$([CX4][NX3][#16X4](=[OX1])(=[OX1]));!$([CX4][NX3][N]=[O]);!$([CX4]1[C][C]2[C][C][N]1[C][C]2)]", 39.8, [N:1][C:2]([H])>>[N:1][H].[C:2]=[O] );
+		//New ones: (name for second: dihydropyrrole aromatization)
+//;!$([CX4]1[C]=[C][C][N]1)
 		SMARTSnEnergiesTable.put("[$([CX4][N]);!$([CH0]);!$([C][N]([*^2])[*^2]);!$([C][N]=[#6X3]);!$([CX4][NX3][C]=[O]);!$([CX4][NX3][#16X4](=[OX1])(=[OX1]));!$([CX4][NX3][N]=[O]);!$([CX4]1[C][C]2[C][C][N]1[C][C]2)]", 
-								new SMARTSData(39.8, SMARTCYPReaction.N_dealkylation) );
+				new SMARTSData(39.8, SMARTCYPReaction.N_dealkylation ));
+		
+		SMARTSnEnergiesTable.put("[$([CX4][N]);$([CX4]1[C]=[C][C][N]1);!$([CH0]);!$([C][N]([*^2])[*^2]);!$([C][N]=[#6X3]);!$([CX4][NX3][C]=[O]);!$([CX4][NX3][#16X4](=[OX1])(=[OX1]));!$([CX4][NX3][N]=[O]);!$([CX4]1[C][C]2[C][C][N]1[C][C]2)]", 
+				new SMARTSData(39.8, SMARTCYPReaction.Dihydropyrrole_aromatization));
+		
+		
 		SMARTSnEnergiesTable.put("[!$([CH0]);$([CX4]([C^2]~[C])[C^2]~[C]),$([CX4][#7]=[#6X3])]", 
 								new SMARTSData(48.5, SMARTCYPReaction.Aliphatic_hydroxylation));
 		SMARTSnEnergiesTable.put("[!$([CH0]);$([CX4]([#8])[#8]);!$([CX4]([#8])[#8][C]=[O])]", 
 								new SMARTSData(48.5, SMARTCYPReaction.Dioxolane_demethylation) );
 		SMARTSnEnergiesTable.put("[$([CX4][S]);!$([CH0]);!$([C][S]=[O])]", 
 								new SMARTSData(57.7, SMARTCYPReaction.Aliphatic_hydroxylation) );
-		SMARTSnEnergiesTable.put("[$([CX4][#6^2]~[#8]),$([CX4][cr5]),$([CX4]([c])[c]),$([CX4][#6^1]),$([CX4][C^2]=[C^2]-[#6^2]),$([CX4][NX3][N]=[O]);!$([CH0]);!$([CX4][C](=[O])[NX3]);!$([CX4][#6^2](=[#8])-[#8]);!$([CX4][C^2]([C^2])=[C^2]-[#6^2]);!$([CX4][#6^2](=[#8])[#6^2])]", 
-								new SMARTSData(59.7, SMARTCYPReaction.Aliphatic_hydroxylation) ); 
-								//new SMARTSData(59.7, SMARTCYPReaction.N_dealkylation) ); //can add ;!$([CX4][#7]) to avoid matching CN
+		//SMARTSnEnergiesTable.put("[$([CX4][#6^2]~[#8]),$([CX4][cr5]),$([CX4]([c])[c]),$([CX4][#6^1]),$([CX4][C^2]=[C^2]-[#6^2]),$([CX4][NX3][N]=[O]);!$([CH0]);!$([CX4][C](=[O])[NX3]);!$([CX4][#6^2](=[#8])-[#8]);!$([CX4][C^2]([C^2])=[C^2]-[#6^2]);!$([CX4][#6^2](=[#8])[#6^2])]", 
+		//						new SMARTSData(59.7, SMARTCYPReaction.Aliphatic_hydroxylation) ); 
+		//A fix for the N-dealkylation issue with NNK,
+		//Old one: SMARTSnEnergiesTable.put("[$([CX4][#6^2]~[#8]),$([CX4][cr5]),$([CX4]([c])[c]),$([CX4][#6^1]),$([CX4][C^2]=[C^2]-[#6^2]),$([CX4][NX3][N]=[O]);!$([CH0]);!$([CX4][C](=[O])[NX3]);!$([CX4][#6^2](=[#8])-[#8]);!$([CX4][C^2]([C^2])=[C^2]-[#6^2]);!$([CX4][#6^2](=[#8])[#6^2])]", 59.7, [C;X4:1][H:2]>>[C:1][O][H:2] );
+		//Two new ones (aliphatic hydroxylation and n-dealkylation):
+		SMARTSnEnergiesTable.put("[$([CX4][#6^2]~[#8]),$([CX4][cr5]),$([CX4]([c])[c]),$([CX4][#6^1]),$([CX4][C^2]=[C^2]-[#6^2]);!$([CH0]);!$([CX4][C](=[O])[NX3]);!$([CX4][#6^2](=[#8])-[#8]);!$([CX4][C^2]([C^2])=[C^2]-[#6^2]);!$([CX4][#6^2](=[#8])[#6^2])]",
+									new SMARTSData(59.7, SMARTCYPReaction.Aliphatic_hydroxylation ));
+		SMARTSnEnergiesTable.put("[$([CX4][NX3][N]=[O]);!$([CH0])]", new SMARTSData(59.7, SMARTCYPReaction.N_dealkylation));
 		
 		SMARTSnEnergiesTable.put("[$([CX4][OH0]);!$([CH0]);!$([C][O][C]=[O]);!$([CX4]1[O][C]1)]", 
 								//new SMARTSData(62.2, SMARTCYPReaction.Aliphatic_hydroxylation));
@@ -74,12 +97,24 @@ public class SMARTSnEnergiesTable {
 								new SMARTSData(72.3, SMARTCYPReaction.Aliphatic_hydroxylation));
 		SMARTSnEnergiesTable.put("[$([CX4][NX3H2][#16X4](=[OX1])(=[OX1]));!$([CH0])]", 
 								new SMARTSData(72.3, SMARTCYPReaction.N_dealkylation));
-		SMARTSnEnergiesTable.put("[CX4;CH1,CH2;!$([CH3][NX3,C^2]);!$([CH3][OX2][C^2]=[O])]", //[CX4;CH1,CH2;!$([CH3][NX3,C^2]);!$([CH3][OX2][C^2][=O])]"
-								new SMARTSData(76.1, SMARTCYPReaction.Aliphatic_hydroxylation));
+		
+		//SMARTSnEnergiesTable.put("[CX4;CH1,CH2;!$([CH3][NX3,C^2]);!$([CH3][OX2][C^2]=[O])]", //[CX4;CH1,CH2;!$([CH3][NX3,C^2]);!$([CH3][OX2][C^2][=O])]"
+		//						new SMARTSData(76.1, SMARTCYPReaction.Aliphatic_hydroxylation));
+		//SMARTSnEnergiesTable.put("[CX4;$([CH3][NX3])]", 
+			//	new SMARTSData(76.1, SMARTCYPReaction.N_dealkylation) );
+		
+		//NN_diethylformamide should give N-dealkylation, it is among the suggested reactions. But still Toxtree gives aliphatic hydroxylation…
+		//This happens since there are two smarts patterns with the same energy both matching this site. Here is a fix
+		//Old ones:
+		//SMARTSnEnergiesTable.put("[CX4;CH1,CH2;!$([CH3][NX3,C^2]);!$([CH3][OX2][C^2][=O])]", 76.1, [C;X4:1][H:2]>>[C:1][O][H:2]);
+		//SMARTSnEnergiesTable.put("[CX4;$([CH3][NX3])]", 76.1, [N:1][C:2]([H])>>[N:1][H].[C:2]=[O] );
+		//New ones:
+		SMARTSnEnergiesTable.put("[CX4;CH1,CH2;!$([C][NX3,C^2]);!$([C][OX2][C^2]=O)]", new SMARTSData( 76.1, SMARTCYPReaction.Aliphatic_hydroxylation));
+		SMARTSnEnergiesTable.put("[CX4;$([C][NX3]);!$([CH0])]", new SMARTSData(76.1, SMARTCYPReaction.N_dealkylation ));
+		
 		SMARTSnEnergiesTable.put("[CX4;$([CX4][OX2][#6^2]);!$([CH0])]", //[CX4;$([CX4][OX2][C^2][=O]);!$([CH0])]
 								new SMARTSData(76.1, SMARTCYPReaction.O_dealkylation) );
-		SMARTSnEnergiesTable.put("[CX4;$([CH3][NX3])]", 
-								new SMARTSData(76.1, SMARTCYPReaction.N_dealkylation) );
+
 		SMARTSnEnergiesTable.put("[CX4H3]", 
 								new SMARTSData( 89.6, SMARTCYPReaction.Aliphatic_hydroxylation) );
 		SMARTSnEnergiesTable.put("[$([CX3H2]);$([C]=[*^2]-[*^2])]", 
