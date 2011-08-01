@@ -36,7 +36,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -86,7 +85,16 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
     	forwardButton,
     	backButton,
     	forwardButton_hint,
-    	backButton_hint
+    	backButton_hint,
+    	createdByOpsin,
+    	createdBySMILES,
+    	createdByInChI,
+    	error_cas,
+    	error_einecs,
+    	error_inchi,
+    	error_smiles,
+    	error_remote,
+    	error_unknown
     }
     
 	/**
@@ -235,23 +243,23 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 		} else {
 	    	a = FunctionalGroups.createAtomContainer(input,false);
 	    	if (a != null) { 
-		    	a.setProperty(CDKConstants.COMMENT,"Created from SMILES");
+		    	a.setProperty(CDKConstants.COMMENT,labels.getString(_labels.createdBySMILES.name()));
 		    	a.setProperty(AmbitCONSTANTS.SMILES,input);
 		    	//a.setProperty(AmbitCONSTANTS.FORMULA,mf.analyseAtomContainer(a));
 	    	} else try {
-	    		errormsg = "invalid SMILES "+input;
+	    		errormsg = String.format(labels.getString(_labels.error_smiles.name()),input);
 	    		a = isInChI(input);
 	    		if (a != null) {
-		    		a.setProperty(CDKConstants.COMMENT,"Created from InChI");
+		    		a.setProperty(CDKConstants.COMMENT,labels.getString(_labels.createdByInChI.name()));
 			    	a.setProperty(AmbitCONSTANTS.INCHI,input);
 			    	a.setID(input);
 	
 	    		} else {
-	    			errormsg = "invalid InChI "+input;
+	    			errormsg = String.format(labels.getString(_labels.error_inchi.name()),input);
 	    			Name2StructureProcessor p = new Name2StructureProcessor();
 	    			a = p.process(input);
 	    			if (a != null) {
-	    	    		a.setProperty(CDKConstants.COMMENT,"Created from name by OPSIN");
+	    	    		a.setProperty(CDKConstants.COMMENT,labels.getString(_labels.createdByOpsin.name()));
 	    		    	a.setProperty(AmbitCONSTANTS.NAMES,input);
 	    		    	a.setID(input);
 	    		    	if (a instanceof IMolecule) 
@@ -259,7 +267,7 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	    		    		SmilesGenerator g = new SmilesGenerator(); 
 	    		    		a.setProperty(AmbitCONSTANTS.SMILES, g.createSMILES((IMolecule)a));
 	    		    	} catch (Exception x) {};
-	    			} else errormsg = "Can't parse "+input;
+	    			} else String.format(labels.getString(_labels.error_unknown.name()),input);
 	    		}
 	    	} catch (Exception x) {
 	    		a = null;
