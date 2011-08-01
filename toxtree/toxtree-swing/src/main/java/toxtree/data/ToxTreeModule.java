@@ -127,7 +127,7 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
         if (treeResult.isEstimating()) return; //can't change compound during estimation
         if (o instanceof DecisionMethodData) {
             treeResult.clear();
-            if (metabolitesFrame!=null) metabolitesFrame.setProducts(null);
+            if (metabolitesFrame!=null) metabolitesFrame.setProducts("Metabolites",null);
             setChanged();
             notifyObservers();
         }
@@ -235,7 +235,7 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
 	        	metabolitesFrame.addPropertyChangeListener("metabolite",listener);
 	        }
  
-	        metabolitesFrame.setProducts(products);
+	        metabolitesFrame.setProducts(((IMetaboliteGenerator)getRules()).getHelp(),products);
 	        metabolitesFrame.setVisible(true);
 
 			
