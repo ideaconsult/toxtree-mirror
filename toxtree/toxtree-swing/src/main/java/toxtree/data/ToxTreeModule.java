@@ -30,6 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package toxtree.data;
 
+import java.awt.Frame;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.Observable;
@@ -106,19 +107,8 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
         dc.addObserver(this);
         return dc;
     }
-    /*
-    public boolean databaseAvailable() {
-        if (useDatabase == 0) //have to check
-	        try { 
-	            Class.forName("toxTree.database.QueryDB").newInstance(); 
-	            useDatabase = 1;            
-	        } catch (Exception ex) { 
-	            // handle the error 
-	            useDatabase = -1;
-	        }
-	    return (useDatabase==1);    
-    }
-    */
+  
+
     /* (non-Javadoc)
      * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
      */
@@ -127,7 +117,10 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
         if (treeResult.isEstimating()) return; //can't change compound during estimation
         if (o instanceof DecisionMethodData) {
             treeResult.clear();
-            if (metabolitesFrame!=null) metabolitesFrame.setProducts("Metabolites",null);
+            if (metabolitesFrame!=null) {
+            	metabolitesFrame.setVisible(false);
+            	metabolitesFrame.setProducts("Metabolites",null);
+            }
             setChanged();
             notifyObservers();
         }
@@ -191,10 +184,13 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
             treeFrame = null;
         }    
         
-        if (metabolitesFrame !=null) {
+        synchronized (this) {
+			
+		if (metabolitesFrame !=null) {
         	metabolitesFrame.removePropertyChangeListener(listener);
         	metabolitesFrame.dispose();
         	metabolitesFrame = null;
+        }
         }
     }
 
@@ -238,7 +234,8 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
 	        metabolitesFrame.setProducts(((IMetaboliteGenerator)getRules()).getHelp(),products);
 	        metabolitesFrame.setVisible(true);
 
-			
+	        metabolitesFrame.setState ( Frame.NORMAL );
+
 		}
     }    
 
