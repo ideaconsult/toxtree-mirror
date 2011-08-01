@@ -54,7 +54,7 @@ public class SMARTSnEnergiesTable {
 		SMARTSnEnergiesTable.put("[!$([CH0]);$([CX4]([C^2]~[C])[C^2]~[C]),$([CX4][#7]=[#6X3])]", 
 								new SMARTSData(48.5, SMARTCYPReaction.Aliphatic_hydroxylation));
 		SMARTSnEnergiesTable.put("[!$([CH0]);$([CX4]([#8])[#8]);!$([CX4]([#8])[#8][C]=[O])]", 
-								new SMARTSData(48.5, SMARTCYPReaction.O_dealkylation_1) );
+								new SMARTSData(48.5, SMARTCYPReaction.Dioxolane_demethylation) );
 		SMARTSnEnergiesTable.put("[$([CX4][S]);!$([CH0]);!$([C][S]=[O])]", 
 								new SMARTSData(57.7, SMARTCYPReaction.Aliphatic_hydroxylation) );
 		SMARTSnEnergiesTable.put("[$([CX4][#6^2]~[#8]),$([CX4][cr5]),$([CX4]([c])[c]),$([CX4][#6^1]),$([CX4][C^2]=[C^2]-[#6^2]),$([CX4][NX3][N]=[O]);!$([CH0]);!$([CX4][C](=[O])[NX3]);!$([CX4][#6^2](=[#8])-[#8]);!$([CX4][C^2]([C^2])=[C^2]-[#6^2]);!$([CX4][#6^2](=[#8])[#6^2])]", 
@@ -119,7 +119,7 @@ public class SMARTSnEnergiesTable {
 		SMARTSnEnergiesTable.put("[$([N^3H0]);!$([N^3][*^2]);!$([NX3][#16X4](=[OX1])(=[OX1]))]", 
 								new SMARTSData(41.0, SMARTCYPReaction.N_oxidation) );
 		SMARTSnEnergiesTable.put("[$([N^3]);$([H1,H2]);!$([NX3][#16X4](=[OX1])(=[OX1]))]", 
-								new SMARTSData(54.1, SMARTCYPReaction.N_oxidation_1) );
+								new SMARTSData(54.1, SMARTCYPReaction.Amine_hydroxylation) );
 		SMARTSnEnergiesTable.put("[$([NX3H0]([#6^2]1)[#6^2]=[#6^2][#6^3][#6^2]=1)]", 
 								new SMARTSData( 61.9, SMARTCYPReaction.N_oxidation) );
 		SMARTSnEnergiesTable.put("[$([N]([C^3])=[C^2])]", 
@@ -133,7 +133,7 @@ public class SMARTSnEnergiesTable {
 		SMARTSnEnergiesTable.put("[nr5H0]", 
 								new SMARTSData(92.1, SMARTCYPReaction.N_oxidation) );
 		SMARTSnEnergiesTable.put("[$([NX3]);$([NX3][#16X4](=[OX1])(=[OX1]))]", 
-								new SMARTSData(94.4, SMARTCYPReaction.N_oxidation_1) );
+								new SMARTSData(94.4, SMARTCYPReaction.Amine_hydroxylation) );
 		SMARTSnEnergiesTable.put("[$([NX3H1]([#6^2]1)[#6^2]=[#6^2][#6^3][#6^2]=1)]", 
 								new SMARTSData(10.4, SMARTCYPReaction.Aromatization_of_dihydropyridines) );
 	}
