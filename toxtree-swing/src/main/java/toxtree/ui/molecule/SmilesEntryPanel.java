@@ -32,8 +32,11 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -69,13 +72,23 @@ import ambit2.namestructure.Name2StructureProcessor;
  * A {@link javax.swing.JPanel} to enter a SMILES. Now it supports a history of entered SMILES that can be 
  * navigated back and forward and by a drop down list.
  * @author Nina Jeliazkova
- * <b>Modified</b> 2005-9-3
+ * <b>Modified</b> 2011-8-1
  */
 public class SmilesEntryPanel extends StructureEntryPanel implements ItemListener, ActionListener {
 	JComboBox smilesBox = null;
 	protected JPopupMenu popup;
-
+	protected ResourceBundle labels;
     protected StructureDiagramGenerator sdg = null;
+    enum _labels {
+    	go,
+    	title,
+    	hint,
+    	forwardButton,
+    	backButton,
+    	forwardButton_hint,
+    	backButton_hint
+    }
+    
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
@@ -86,8 +99,10 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	 */
 	public SmilesEntryPanel() {
 		super();
-		//history = new Vector();
-		addWidgets();
+		labels =  ResourceBundle.getBundle(getClass().getName(),
+					Locale.ENGLISH,
+					getClass().getClassLoader());
+		addWidgets();		
 	}
 
 	private void initLayout() {
@@ -103,8 +118,8 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
         JPanel top = new JPanel();
         top.setLayout(new BoxLayout(top,BoxLayout.LINE_AXIS));
         
-        Dimension d = new Dimension(52,24);
-        JButton backButton = new JButton(new AbstractAction("<<") {
+        Dimension d = new Dimension(48,24);
+        JButton backButton = new JButton(new AbstractAction(labels.getString(_labels.backButton.name())) {
 			private static final long serialVersionUID = 7046410922163328877L;
 			public void actionPerformed(ActionEvent arg0) {
         		int index = smilesBox.getSelectedIndex();
@@ -117,7 +132,7 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
         backButton.setDefaultCapable(false);
         backButton.setPreferredSize(d);
         backButton.setMinimumSize(d);
-        JButton forwardButton = new JButton(new AbstractAction(">>") {
+        JButton forwardButton = new JButton(new AbstractAction(labels.getString(_labels.forwardButton.name())) {
 			private static final long serialVersionUID = 8892599118153155748L;
 			public void actionPerformed(ActionEvent arg0) {
         		int index = smilesBox.getSelectedIndex();
@@ -130,15 +145,16 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
         forwardButton.setDefaultCapable(false);
         forwardButton.setPreferredSize(d);
         forwardButton.setMinimumSize(d);
-        forwardButton.setToolTipText("Forward to the next entry");
-        backButton.setToolTipText("Back to the previous entry");
+
+        forwardButton.setToolTipText(labels.getString(_labels.forwardButton_hint.name()));
+        backButton.setToolTipText(labels.getString(_labels.backButton_hint.name()));
         top.add(backButton);top.add(forwardButton);
 
-        JLabel labelSmi = new JLabel("SMILES,InChI or name:");
+        JLabel labelSmi = new JLabel(labels.getString(_labels.title.name()));
         labelSmi.setOpaque(true);
         //labelSmi.setBackground(Color.black);
         //labelSmi.setForeground(Color.white);
-        labelSmi.setPreferredSize(new Dimension(110,24));
+        labelSmi.setPreferredSize(new Dimension(80,24));
         labelSmi.setAlignmentX(CENTER_ALIGNMENT);
 
         top.add(labelSmi);
@@ -148,7 +164,7 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
         smilesBox.setEditable(true);
         smilesBox.setFocusable(true);
         //smilesBox.setHorizontalAlignment(JTextField.LEFT);
-        smilesBox.setToolTipText("Enter SMILES, InChI or IUPAC name here");
+        smilesBox.setToolTipText(String.format("<html>%s</html>",labels.getString(_labels.hint.name())));
         smilesBox.setPreferredSize(new Dimension(Integer.MAX_VALUE,24));
         
         //smilesEdit.addActionListener(this);
@@ -177,7 +193,7 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
         //add(labelSmi,BorderLayout.WEST);
         add(top,BorderLayout.WEST);
         add(smilesBox,BorderLayout.CENTER);        
-        JButton go = new JButton(new AbstractAction("<html><b> Go! </b></html>") {
+        JButton go = new JButton(new AbstractAction(labels.getString(_labels.go.name())) {
 			private static final long serialVersionUID = 7605151410870720861L;
 			public void actionPerformed(ActionEvent e) {
 				if (smilesBox.getSelectedItem() != null) {
