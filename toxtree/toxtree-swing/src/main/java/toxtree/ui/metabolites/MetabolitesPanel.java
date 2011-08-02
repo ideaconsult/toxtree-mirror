@@ -43,12 +43,12 @@ public class MetabolitesPanel extends JPanel {
 		repaint();
 		if ((products==null) || (products.getAtomContainerCount()==0))
 			add(new JLabel("No metabolites predicted!"));
-		else
+		else {
 			add(help);
 			for (IAtomContainer ac : products.atomContainers()) {
 				Panel2D p = new Panel2D() {
 					protected void launchEditor(java.awt.Component parentComponent) {
-						//transferMolecule(atomContainer);
+						transferMolecule(atomContainer);
 					};
 				};
 				p.setEditable(true);
@@ -61,6 +61,7 @@ public class MetabolitesPanel extends JPanel {
 				add(toolbar);
 				add(p);
 			}
+		}
 	}
 	public void transferMolecule(IAtomContainer ac) {
 		

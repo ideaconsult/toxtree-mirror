@@ -117,7 +117,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 					products = NoNotificationChemObjectBuilder.getInstance()
 							.newInstance(IAtomContainerSet.class);
 				product = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainer.class);
-				product.setID(String.format("Can't generate products! (SMIRKS doesn't match?)<br>%s<br>%s<br>%s",
+				product.setID(String.format("Can't generate products! <br>%s<br>%s<br>%s",
 						reaction.name(),
 						reaction.getSMIRKS(),
 						smrkMan.getErrors()));

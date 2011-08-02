@@ -128,6 +128,9 @@ public class DataContainer extends Observable {
     	} else return getCurrentNo();
     }
     public int lookup(String field, Object value) {
+    	return lookup(field, value,false);
+    }
+    public int lookup(String field, Object value,boolean silent) {
     	if ((field == null) || (value == null)) return -1;
     	IAtomContainer  ac = null;
 		for (int record =0; record < containers.getMoleculesCount(); record++) {
@@ -135,9 +138,11 @@ public class DataContainer extends Observable {
 			try {
 			    ac = containers.getAtomContainer(record);
 				if (value.equals(ac.getProperty(field))) {
-					containers.setCurrentNo(record);
-					setChanged();
-					notifyObservers(ac);
+					if (!silent) {
+						containers.setCurrentNo(record);
+						setChanged();
+						notifyObservers(ac);
+					}
 					return record;
 				}
 			} catch (Exception x) {
