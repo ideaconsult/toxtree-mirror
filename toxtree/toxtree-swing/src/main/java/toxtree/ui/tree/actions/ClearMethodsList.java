@@ -53,7 +53,7 @@ public class ClearMethodsList extends DataModuleAction {
 	}
 
 	@Override
-	public void run() {
+	public void run() throws Exception {
 		((DecisionMethodsDataModule)module).getMethods().clear();
 
 	}

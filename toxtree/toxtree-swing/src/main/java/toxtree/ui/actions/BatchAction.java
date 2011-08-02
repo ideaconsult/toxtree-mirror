@@ -82,7 +82,7 @@ public class BatchAction extends DataModuleAction {
 
 	
 	@Override
-	public void run() {
+	public void run() throws Exception {
 		startBatch(null);
 
 	}

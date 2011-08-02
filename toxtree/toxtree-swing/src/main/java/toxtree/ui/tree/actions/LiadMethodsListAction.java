@@ -63,7 +63,7 @@ public class LiadMethodsListAction extends DataModuleAction {
 	
 
 	@Override
-	public void run() {
+	public void run() throws Exception {
 		Component parent = null;
 		Object o = getValue(AbstractTreeAction.PARENTKEY);
 		if ((o!=null) && (o  instanceof Component)) parent = (Component) o;

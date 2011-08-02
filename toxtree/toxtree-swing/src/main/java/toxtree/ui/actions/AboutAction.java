@@ -77,7 +77,7 @@ public class AboutAction extends DataModuleAction {
 		putValue(AbstractAction.SHORT_DESCRIPTION,"Version info");
 	}
 	@Override
-	public void run() {
+	public void run() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

@@ -67,7 +67,7 @@ public class ExplainAction extends DataModuleAction {
 	}
 
 	@Override
-	public void run() {
+	public void run() throws Exception {
     	((DecisionMethodsDataModule) module).explain();
 	}
 

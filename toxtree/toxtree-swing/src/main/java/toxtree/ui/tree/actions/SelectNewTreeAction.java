@@ -73,7 +73,7 @@ public class SelectNewTreeAction extends DataModuleAction {
                 ((DecisionMethodsDataModule) module).getMethods().addDecisionMethod((IDecisionMethod)o);
 	}
 	@Override
-	public void run() {
+	public void run() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
