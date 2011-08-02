@@ -61,8 +61,7 @@ public abstract class RemoteLookup<RESULT> {
 				throw new InvalidCredentials("Invalid token submited to ");
 			}
 		}
-		ssotoken.getAttributes(new String[] {"uid"},results);
-		System.out.println(results);
+//		ssotoken.getAttributes(new String[] {"uid"},results);
 		
 	}
 	public void logout() throws Exception {

@@ -60,7 +60,7 @@ import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.query.FunctionalGroups;
-import toxtree.ui.remote.RemoteCompoundLookup;
+import toxTree.query.remote.RemoteCompoundLookup;
 import ambit2.base.config.Preferences;
 import ambit2.base.data.Property;
 import ambit2.core.config.AmbitCONSTANTS;
