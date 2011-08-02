@@ -111,10 +111,12 @@ public class DataContainer extends Observable {
     		}
     		*/
     		List<CategoryFilter> f = treeResult.getFilters();
-    		for (int i=0; i < f.size();i++)
-    			((FilteredMoleculesIterator) containers).addFilter(f.get(i));
-			setChanged();
-			notifyObservers();
+    		if (f!=null) {
+	    		for (int i=0; i < f.size();i++)
+	    			((FilteredMoleculesIterator) containers).addFilter(f.get(i));
+				setChanged();
+				notifyObservers();
+    		}
     		
     	} else throw new FilterException("Filtering not supported!");
 
