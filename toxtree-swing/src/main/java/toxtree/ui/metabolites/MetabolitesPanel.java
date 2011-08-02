@@ -1,8 +1,13 @@
 package toxtree.ui.metabolites;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 
+import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
@@ -12,6 +17,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 
+import toxTree.io.Tools;
 import ambit2.ui.Panel2D;
 
 public class MetabolitesPanel extends JPanel {
@@ -46,18 +52,34 @@ public class MetabolitesPanel extends JPanel {
 		else {
 			add(help);
 			for (IAtomContainer ac : products.atomContainers()) {
-				Panel2D p = new Panel2D() {
-					protected void launchEditor(java.awt.Component parentComponent) {
-						transferMolecule(atomContainer);
-					};
+				Icon toxTreeIcon = null; 
+				try {
+					toxTreeIcon = Tools.getImage("molecule.png");
+		        } catch (Exception x) {
+		            toxTreeIcon = null;
+		        }
+				AbstractAction action = new AbstractAction("Copy molecule",toxTreeIcon) {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+						transferMolecule((IAtomContainer) getValue("molecule"));
+						} catch (Exception x) {};
+					}
 				};
-				p.setEditable(true);
+				action.putValue("molecule", ac);
+				
+				Panel2D p = new Panel2D();
+				p.setEditable(false);
 				p.setAtomContainer(ac, true);
 				
 				JToolBar toolbar = new JToolBar();
+				toolbar.setBorder(BorderFactory.createRaisedBevelBorder());
+				toolbar.setRollover(true);
 				toolbar.setFloatable(false);
 				toolbar.add(new JLabel(String.format("<html>Reaction: <b>%s</b></html>",ac.getID())));
-								
+				JButton copy = new JButton(action);
+				copy.setToolTipText("Add as a new molecule into the main Toxtree set of molecules");
+				toolbar.add(copy);
 				add(toolbar);
 				add(p);
 			}
