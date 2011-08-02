@@ -98,17 +98,7 @@ public class SMARTSnEnergiesTable {
 		SMARTSnEnergiesTable.put("[$([CX4][NX3H2][#16X4](=[OX1])(=[OX1]));!$([CH0])]", 
 								new SMARTSData(72.3, SMARTCYPReaction.N_dealkylation));
 		
-		//SMARTSnEnergiesTable.put("[CX4;CH1,CH2;!$([CH3][NX3,C^2]);!$([CH3][OX2][C^2]=[O])]", //[CX4;CH1,CH2;!$([CH3][NX3,C^2]);!$([CH3][OX2][C^2][=O])]"
-		//						new SMARTSData(76.1, SMARTCYPReaction.Aliphatic_hydroxylation));
-		//SMARTSnEnergiesTable.put("[CX4;$([CH3][NX3])]", 
-			//	new SMARTSData(76.1, SMARTCYPReaction.N_dealkylation) );
-		
-		//NN_diethylformamide should give N-dealkylation, it is among the suggested reactions. But still Toxtree gives aliphatic hydroxylation…
-		//This happens since there are two smarts patterns with the same energy both matching this site. Here is a fix
-		//Old ones:
-		//SMARTSnEnergiesTable.put("[CX4;CH1,CH2;!$([CH3][NX3,C^2]);!$([CH3][OX2][C^2][=O])]", 76.1, [C;X4:1][H:2]>>[C:1][O][H:2]);
-		//SMARTSnEnergiesTable.put("[CX4;$([CH3][NX3])]", 76.1, [N:1][C:2]([H])>>[N:1][H].[C:2]=[O] );
-		//New ones:
+
 		SMARTSnEnergiesTable.put("[CX4;CH1,CH2;!$([C][NX3,C^2]);!$([C][OX2][C^2]=O)]", new SMARTSData( 76.1, SMARTCYPReaction.Aliphatic_hydroxylation));
 		SMARTSnEnergiesTable.put("[CX4;$([C][NX3]);!$([CH0])]", new SMARTSData(76.1, SMARTCYPReaction.N_dealkylation ));
 		
