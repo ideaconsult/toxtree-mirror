@@ -76,9 +76,9 @@ public class   MetabolyteRecycler implements PropertyChangeListener {
 					inchi = gen.getInchi();
 		       		result.setProperty(Property.opentox_InChI_std,inchi);
 		       		result.setProperty(Property.opentox_InChIAuxInfo_std,gen.getAuxInfo());
-		       		result.setProperty(Property.opentox_InChIKey_std,gen.getInchiKey());
+		       		//result.setProperty(Property.opentox_InChIKey_std,gen.getInchiKey());
 				}
-			} catch (Exception x) {}
+			} catch (Throwable x) {}
 			
 			if ((inchi!=null) && Preferences.getProperty(Preferences.REMOTELOOKUP).equals("true")) try {
 				RemoteCompoundLookup lookup = new RemoteCompoundLookup();
