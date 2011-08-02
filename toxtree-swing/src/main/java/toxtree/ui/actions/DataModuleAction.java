@@ -68,7 +68,7 @@ public abstract class DataModuleAction extends AbstractAction {
     public synchronized void setFrame(Component frame) {
         this.frame = frame;
     }
-    public abstract void run();
+    public abstract void run() throws Exception;
     public void actionPerformed(ActionEvent arg0) {
         final toxtree.ui.GUIWorker worker = new toxtree.ui.GUIWorker() {
             @Override
@@ -77,6 +77,7 @@ public abstract class DataModuleAction extends AbstractAction {
             	try {
             		run();
             	} catch (Exception x) {
+            		x.printStackTrace();
             		ToxTreeActions.showMsg("Error", x.getMessage());
             		module.getActions().allActionsEnable(true);
             	}

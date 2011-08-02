@@ -56,7 +56,7 @@ public class TreeOptionsAction extends DataModuleAction {
 	}
 
 	@Override
-	public void run() {
+	public void run() throws Exception {
 		IDecisionMethod m = ((ToxTreeModule) module).getRules();
 		boolean interactive = true;
 		if (m instanceof IDecisionInteractive) {

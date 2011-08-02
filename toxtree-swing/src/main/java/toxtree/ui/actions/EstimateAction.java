@@ -72,7 +72,7 @@ public class EstimateAction extends DataModuleAction {
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
-	public void run() {
+	public void run() throws Exception {
     	//module.getActions().enable(false,ToxTreeActions._HazardAction);
         ((DecisionMethodsDataModule)module).classify();
     	//module.getActions().enable(true,ToxTreeActions._HazardAction);

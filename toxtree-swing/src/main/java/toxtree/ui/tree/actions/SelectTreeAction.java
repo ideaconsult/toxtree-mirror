@@ -81,7 +81,7 @@ public class SelectTreeAction extends DataModuleAction {
             }        
     }
 	@Override
-	public void run() {
+	public void run() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

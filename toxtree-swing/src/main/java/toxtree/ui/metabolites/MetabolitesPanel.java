@@ -62,8 +62,14 @@ public class MetabolitesPanel extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						try {
-						transferMolecule((IAtomContainer) getValue("molecule"));
-						} catch (Exception x) {};
+							setEnabled(false);
+							transferMolecule((IAtomContainer) getValue("molecule"));
+						} catch (Exception x) {
+							
+						} finally {
+							setEnabled(true);
+						}
+						
 					}
 				};
 				action.putValue("molecule", ac);
