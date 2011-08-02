@@ -31,14 +31,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.data;
 
 import java.awt.Frame;
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.util.List;
 import java.util.Observable;
 
 import javax.swing.JFrame;
 
+import org.openscience.cdk.graph.ConnectivityChecker;
+import org.openscience.cdk.inchi.InChIGenerator;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IMetaboliteGenerator;
@@ -48,6 +55,10 @@ import toxTree.io.batch.ToxTreeBatchProcessing;
 import toxTree.tree.DecisionMethodsList;
 import toxtree.ui.metabolites.MetabolitesFrame;
 import toxtree.ui.tree.TreeFrame;
+import ambit2.base.data.Property;
+import ambit2.core.config.AmbitCONSTANTS;
+import ambit2.core.processors.structure.AtomConfigurator;
+import ambit2.core.processors.structure.InchiProcessor;
 
 /**
  * Contains data essential for {@link toxTree.apps.ToxTreeApp} application
@@ -76,7 +87,7 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
      */
     private static final long serialVersionUID = 8292481405980136292L;
     
-    protected PropertyChangeListener listener;
+    protected MetabolyteRecycler listener;
 	private TreeFrame treeFrame = null;
 	private MetabolitesFrame metabolitesFrame = null;
 
@@ -94,9 +105,23 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
         	setRules(methods.getMethod(0));
         
         actions = new ToxTreeActions(frame,this);
-        listener = new PropertyChangeListener() {
-        	public void propertyChange(java.beans.PropertyChangeEvent evt) {
-        		dataContainer.setMolecule(((IAtomContainer)evt.getNewValue()));
+        listener = new MetabolyteRecycler() {
+        	protected void handleproduct(IAtomContainer product) {
+        		int found = -1;
+        		try {
+        			dataContainer.setEnabled(false);
+        			found =dataContainer.lookup(Property.opentox_InChI_std,product.getProperty(Property.opentox_InChI_std),true);
+
+        		} catch (Exception x) { found = -1;
+        		} 
+        		finally {
+        			dataContainer.setEnabled(true);
+        		}
+        		if (found>=0) {
+        			dataContainer.gotoRecord(found+1);
+        		}  else 
+        			dataContainer.addMolecule(product);        		
+
         	};
         };
 
@@ -241,4 +266,73 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
 
 }
 
+class  MetabolyteRecycler implements PropertyChangeListener {
+	
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+  		if (evt.getNewValue()==null) return;
+		IAtomContainer products = ((IAtomContainer)evt.getNewValue());
+		prepare(products);
+		
+	}
+	protected void handleproduct(IAtomContainer product) {
+		
+	}
+	
+	protected void prepare(IAtomContainer products) {
 
+		InchiProcessor inchip = null;
+		try {
+			inchip = new InchiProcessor();
+		} catch (Exception x) {
+			inchip = null;
+		}
+		
+
+		SmilesGenerator smigen = null;
+		try {
+			smigen = new SmilesGenerator();
+		} catch (Exception x) {
+			smigen = null;
+		}		
+		AtomConfigurator cfg = new AtomConfigurator();        		
+		IAtomContainerSet set  = ConnectivityChecker.partitionIntoMolecules(products);
+		for (IAtomContainer result : set.atomContainers()) {
+			//quick hack for 5-valent carbon bug
+			for (IAtom a : result.atoms()) {
+				if ("C".equals(a.getSymbol()) && result.getBondOrderSum(a)==5){
+					List<IAtom> neighbors = result.getConnectedAtomsList(a);
+					for (IAtom neighbor : neighbors) {
+						if ("H".equals(neighbor.getSymbol())) { 
+
+							result.removeBond(a, neighbor);
+							result.removeAtom(neighbor);
+							try {cfg.process(result);} catch (Exception x) {}
+							break;
+						}
+					}
+				}
+			}
+			result = AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(result);
+			result.setProperty("Created by SMARTCyp metabolite prediction",products.getID());        	
+			try {
+				if (inchip!=null) {
+					InChIGenerator gen = inchip.process(result);
+		       		result.setProperty(Property.opentox_InChI_std,gen.getInchi());
+		       		result.setProperty(Property.opentox_InChIAuxInfo_std,gen.getAuxInfo());
+		       		result.setProperty(Property.opentox_InChIKey_std,gen.getInchiKey());
+				}
+			} catch (Exception x) {}
+			
+			try {
+				if(smigen !=null) {
+		       		result.setProperty(AmbitCONSTANTS.SMILES,smigen.createSMILES(result));
+				}
+			} catch (Exception x) {
+				x.printStackTrace();
+			}				
+			handleproduct(result);
+		}
+	}
+	
+}
