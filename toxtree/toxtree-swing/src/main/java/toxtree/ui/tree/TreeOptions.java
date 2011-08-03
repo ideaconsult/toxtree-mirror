@@ -91,7 +91,7 @@ public class TreeOptions extends JSplitPane {
 	    details.setEditorKit(new HTMLEditorKit());
 	    details.setText(tree.getExplanation());
 	    setRightComponent(new JScrollPane(details));
-	    setPreferredSize(new Dimension(400,300));
+	    setPreferredSize(new Dimension(450,400));
 	    
 	}
 	void addGenericTab(JOutlookBar tabs) {
@@ -105,7 +105,7 @@ public class TreeOptions extends JSplitPane {
        		public void actionPerformed(ActionEvent e) {
 
        			setRightComponent(new PreferencesPanel(
-       					new Preferences.VTAGS[] {VTAGS.General,VTAGS.Structure,VTAGS.Conversion3D}
+       					new Preferences.VTAGS[] {VTAGS.General,VTAGS.Structure,VTAGS.RemoteQuery}
        					).getJComponent());
        		}
        	});
