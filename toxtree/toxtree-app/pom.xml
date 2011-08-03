@@ -85,7 +85,7 @@
   	<dependency>
   		<groupId>dk.smartcyp</groupId>
   		<artifactId>smartcyp-core</artifactId>
-  		<version>1.5.4-SNAPSHOT</version>
+  		<version>1.5.5</version>
   		<scope>compile</scope>
   	</dependency>
   	<dependency>
