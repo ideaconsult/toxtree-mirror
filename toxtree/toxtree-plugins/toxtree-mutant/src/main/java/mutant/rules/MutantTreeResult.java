@@ -264,8 +264,7 @@ public class MutantTreeResult extends TreeResult {
 
 	}
     public List<CategoryFilter> getFilters() {
-    	return null;
-    	/*
+
     	ArrayList<CategoryFilter> l = new ArrayList<CategoryFilter>();
     	IDecisionCategories c = getDecisionMethod().getCategories();
 		for (int i=0; i < c.size();i++) 
@@ -276,7 +275,6 @@ public class MutantTreeResult extends TreeResult {
     		logger.error(x);
     	}
     	return l;
-    	*/
     }
 }
 
