@@ -15,6 +15,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IMetaboliteGenerator;
 import toxTree.tree.AbstractRule;
+import toxTree.tree.RuleResult;
 import ambit2.smarts.IAcceptable;
 import ambit2.smarts.SMIRKSManager;
 import ambit2.smarts.SMIRKSReaction;
@@ -46,8 +47,8 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 	}
 
 	@Override
-	public IAtomContainerSet getProducts(IAtomContainer reactant)
-			throws Exception {
+	public IAtomContainerSet getProducts(IAtomContainer reactant,
+			RuleResult ruleResult) throws Exception {
 		IAtomContainerSet products = null;
 	//	AtomConfigurator cfg = new AtomConfigurator();
 		if (smrkMan == null) {
@@ -148,8 +149,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 	}
 
 	@Override
-	public String getHelp() {
-
+	public String getHelp(RuleResult ruleresult) {
 		return bundle.getString("metabolite_help");
 	}
 }

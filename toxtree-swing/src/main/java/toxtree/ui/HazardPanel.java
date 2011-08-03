@@ -127,10 +127,15 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
         }
         explainArea.setText(b.toString());
         
+        /*
+        // merged with alerts clickable links
         if (getDataModule().getRules() instanceof IMetaboliteGenerator) {
         	metabolites.setVisible(true);
-        	metabolites.setToolTipText(((IMetaboliteGenerator)getDataModule().getRules()).getHelp());
-        } else metabolites.setVisible(false);
+        	metabolites.setToolTipText(((IMetaboliteGenerator)getDataModule().getRules()).getHelp(null));
+        } else
+          
+        */	
+        metabolites.setVisible(false);
         repaint();
     }
     
@@ -281,7 +286,9 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
 			    		if (rule != null) try {
 			    			//hilight alerts
 			    			getDataModule().getTreeResult().hilightAlert(rule);
+			    			
 			    		} catch (Exception x) { x.printStackTrace();}
+
 				    }  else if (he.getURL().toString().startsWith(RuleResult.resultURL)) {
 			    		String id = he.getURL().toString().substring(RuleResult.resultURL.length());
 			    		
@@ -289,6 +296,8 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
 				    		RuleResult ruleResult = getDataModule().getTreeResult().getRuleResult(Integer.parseInt(id));
 
 			    			getDataModule().getTreeResult().hilightAlert(ruleResult);
+			    			if (getDataModule().getRules() instanceof IMetaboliteGenerator)
+			    				dataModule.showMetabolites(ruleResult);
 			    		} catch (Exception x) { x.printStackTrace();}
 				    }
 				    	

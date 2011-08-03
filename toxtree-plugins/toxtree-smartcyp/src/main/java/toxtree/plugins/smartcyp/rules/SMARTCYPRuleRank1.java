@@ -13,6 +13,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
+import toxTree.tree.RuleResult;
 import toxTree.ui.tree.categories.CategoriesRenderer;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
@@ -178,16 +179,16 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 	public boolean isImplemented() {
 		return true;
 	}
-
 	@Override
-	public IAtomContainerSet getProducts(IAtomContainer reactant)
-			throws Exception {
+	public IAtomContainerSet getProducts(IAtomContainer reactant,
+			RuleResult ruleResult) throws Exception {
 		MoleculeKU mol = (reactant instanceof MoleculeKU)?(MoleculeKU)reactant:calculate(reactant);
 		//This is a workaround. CDK smarts matching needs implicit hydrogens, while ambit smarts/smirks matching needs explicit hydrogens...
 		AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
-		return super.getProducts(mol);
+		return super.getProducts(mol,ruleResult);
 	}
-	
-
-	
+	@Override
+	public String getHelp(RuleResult ruleresult) {
+		return super.getHelp(ruleresult);
+	}
 }

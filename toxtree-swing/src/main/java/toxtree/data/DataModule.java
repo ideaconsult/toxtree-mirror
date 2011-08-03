@@ -40,7 +40,6 @@ import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.core.IDecisionMethod;
-import toxTree.core.IMetaboliteGenerator;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
@@ -197,6 +196,6 @@ public abstract class DataModule extends Observable implements Serializable, Obs
     public abstract ActionList getActions();
     protected abstract DataContainer createDataContainer(File inputFile);
     public abstract void viewMethod(IDecisionMethod method,boolean editable) throws DecisionMethodException ;
-    public void showMetabolites() throws Exception {};
+    public String showMetabolites() throws Exception {return null; };
 
 }
