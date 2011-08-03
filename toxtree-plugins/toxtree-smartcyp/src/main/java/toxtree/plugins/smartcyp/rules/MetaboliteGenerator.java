@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import java.util.Vector;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -102,15 +101,18 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 					ac.setID(reaction.toString());
 					
 					for (IAtom atom: ac.atoms()) {
-						/*
-					   a.setFormalNeighbourCount(null);
-					   a.setAtomTypeName(null);
-					   a.setHybridization(null);
-					   a.setBondOrderSum(null);
-					   a.setValency(null);
+
+						atom.setFormalNeighbourCount((Integer) CDKConstants.UNSET);
+					      atom.setAtomTypeName((String) CDKConstants.UNSET);
+				            atom.setMaxBondOrder((IBond.Order) CDKConstants.UNSET);
+				            atom.setBondOrderSum((Double) CDKConstants.UNSET);
+				            atom.setHybridization((IAtomType.Hybridization) CDKConstants.UNSET);
+					 //  atom.setBondOrderSum(null);
+					  // atom.setValency(null);
 					   
-					   a.setFlag(CDKConstants.ISAROMATIC, false);
-							*/
+					   atom.setFlag(CDKConstants.ISAROMATIC, false);
+
+						/*
 					      atom.setAtomTypeName((String) CDKConstants.UNSET);
 				            atom.setMaxBondOrder((IBond.Order) CDKConstants.UNSET);
 				            atom.setBondOrderSum((Double) CDKConstants.UNSET);
@@ -125,12 +127,16 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 				            atom.setFlag(CDKConstants.ISAROMATIC, false);
 				            atom.setProperty("org.openscience.cdk.renderer.color", CDKConstants.UNSET);
 				            atom.setAtomicNumber((Integer) CDKConstants.UNSET);
-				            atom.setExactMass((Double) CDKConstants.UNSET);						
+				            atom.setExactMass((Double) CDKConstants.UNSET);			
+				            */			
+					}
+					for (IBond bond : ac.bonds()) {
+						bond.setFlag(CDKConstants.ISAROMATIC, false);
 					}
 					//AtomContainerManipulator.clearAtomConfigurations(ac); //not all!
 					AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
 					//AtomContainerManipulator.percieveAtomTypesAndConfigureUnsetProperties(ac);
-					CDKHueckelAromaticityDetector.detectAromaticity(ac);
+					//CDKHueckelAromaticityDetector.detectAromaticity(ac);
 					
 				}
 				products.add(rproducts);
@@ -147,10 +153,10 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 						reaction.getSMIRKS(),
 						smrkMan.getErrors()));
 				products.addAtomContainer(product);
-				
+				/*
 				System.err.println(String.format("%s %s", reactant.getID(),
 						reaction.name()));
-
+				*/
 			}
 		}
 
