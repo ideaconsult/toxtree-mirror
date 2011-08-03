@@ -6,10 +6,13 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
+import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.interfaces.IAtomType;
+import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
@@ -98,10 +101,31 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 				for (IAtomContainer ac : rproducts.atomContainers()) {
 					ac.setID(reaction.toString());
 					
-					for (IAtom a: ac.atoms()) { 
+					for (IAtom atom: ac.atoms()) {
+						/*
 					   a.setFormalNeighbourCount(null);
 					   a.setAtomTypeName(null);
 					   a.setHybridization(null);
+					   a.setBondOrderSum(null);
+					   a.setValency(null);
+					   
+					   a.setFlag(CDKConstants.ISAROMATIC, false);
+							*/
+					      atom.setAtomTypeName((String) CDKConstants.UNSET);
+				            atom.setMaxBondOrder((IBond.Order) CDKConstants.UNSET);
+				            atom.setBondOrderSum((Double) CDKConstants.UNSET);
+				            atom.setCovalentRadius((Double) CDKConstants.UNSET);
+				            atom.setValency((Integer) CDKConstants.UNSET);
+				           // atom.setFormalCharge((Integer) CDKConstants.UNSET);
+				            atom.setHybridization((IAtomType.Hybridization) CDKConstants.UNSET);
+				            atom.setFormalNeighbourCount((Integer) CDKConstants.UNSET);
+				            atom.setFlag(CDKConstants.IS_HYDROGENBOND_ACCEPTOR, false);
+				            atom.setFlag(CDKConstants.IS_HYDROGENBOND_DONOR, false);
+				            atom.setProperty(CDKConstants.CHEMICAL_GROUP_CONSTANT, CDKConstants.UNSET);
+				            atom.setFlag(CDKConstants.ISAROMATIC, false);
+				            atom.setProperty("org.openscience.cdk.renderer.color", CDKConstants.UNSET);
+				            atom.setAtomicNumber((Integer) CDKConstants.UNSET);
+				            atom.setExactMass((Double) CDKConstants.UNSET);						
 					}
 					//AtomContainerManipulator.clearAtomConfigurations(ac); //not all!
 					AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
