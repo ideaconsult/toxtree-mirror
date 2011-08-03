@@ -24,12 +24,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.skinsensitisation.rules;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionRule;
+import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DMethodNotAssigned;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.DecisionNode;
@@ -141,6 +144,20 @@ public class SkinSensitisationTreeResult extends TreeResult {
 		}
 		return b;
 	}
+	
+    public List<CategoryFilter> getFilters() {
+
+    	ArrayList<CategoryFilter> l = new ArrayList<CategoryFilter>();
+    	IDecisionCategories c = getDecisionMethod().getCategories();
+		for (int i=0; i < c.size();i++) 
+		try { 
+    		l.add(new CategoryFilter(c.get(i).toString(),Answers.toString(Answers.YES)));
+    		l.add(new CategoryFilter(c.get(i).toString(),Answers.toString(Answers.NO)));
+    	} catch (Exception x) {
+    		logger.error(x);
+    	}
+    	return l;
+    }
 }
 
 class Answers {

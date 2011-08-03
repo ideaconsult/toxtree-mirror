@@ -48,19 +48,15 @@ public class MICTreeResult extends TreeResult {
 	
 	private static final long serialVersionUID = -1505391697761215610L;
 
+    @Override
 	public void assignResult(IAtomContainer mol) throws DecisionResultException {
-		if (mol == null) return;
-		IDecisionCategories c = decisionMethod.getCategories();
-		for (int i=0; i < c.size();i++) {
-			String result = Answers.toString(Answers.NO);
-			if (getAssignedCategories().indexOf(c.get(i))>-1)
-				result = Answers.toString(Answers.YES);
-			mol.setProperty(
-	        		c.get(i).toString(),
-	                result);
-		}
+    	if (mol ==null) return;
+    	if (getCategory()!=null)
+        mol.setProperty(
+        		getResultPropertyNames()[0],
+                getCategory().toString());
 
-        String paths = getClass().getName()+"#explanation";
+    	String paths = getClass().getName()+"#explanation";
         if (getDecisionMethod().getRules().size() > 1) {
 	        mol.setProperty(
 	        		paths,
@@ -73,17 +69,13 @@ public class MICTreeResult extends TreeResult {
 	        }
         } else
         	mol.removeProperty(paths);
-        firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);        
+        firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);  
+    }
+    @Override
+    public String[] getResultPropertyNames() {
+    	return new String[] {"ISSMIC"};
+    }
 
-	}
-	@Override
-	public String[] getResultPropertyNames() {
-		IDecisionCategories c = decisionMethod.getCategories();
-		String[] names = new String[c.size()];
-		for (int i=0; i < c.size();i++) 
-			names[i] = c.get(i).toString();
-		return names;
-	}
 	protected ArrayList<IAtomContainer> getAllAssignedMolecules() {
         ArrayList<IAtomContainer> residues = new ArrayList<IAtomContainer>();
         return residues;
@@ -133,7 +125,7 @@ public class MICTreeResult extends TreeResult {
 				
 					
 	}
-	
+	/*
 	@Override
    public List<CategoryFilter> getFilters() {
     	ArrayList<CategoryFilter> l = new ArrayList<CategoryFilter>();
@@ -147,6 +139,7 @@ public class MICTreeResult extends TreeResult {
     	}
     	return l;
     }
+	*/
 }
 
 

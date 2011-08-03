@@ -3,13 +3,10 @@ package toxtree.plugins.func.rules;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionRule;
-import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DMethodNotAssigned;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.DecisionNode;
@@ -23,15 +20,11 @@ public class FuncTreeResult extends TreeResult {
 
 	public void assignResult(IAtomContainer mol) throws DecisionResultException {
 		if (mol == null) return;
-		IDecisionCategories c = decisionMethod.getCategories();
-		for (int i=0; i < c.size();i++) {
-			String result = Answers.toString(Answers.NO);
-			if (getAssignedCategories().indexOf(c.get(i))>-1)
-				result = Answers.toString(Answers.YES);
-			mol.setProperty(
-	        		c.get(i).toString(),
-	                result);
-		}
+    	if (getCategory()!=null) 
+            mol.setProperty(
+            		getResultPropertyNames()[0],
+                    getCategory().toString());
+            
 
         String paths = getClass().getName()+"#explanation";
         if (getDecisionMethod().getRules().size() > 1) {
@@ -51,11 +44,7 @@ public class FuncTreeResult extends TreeResult {
 	}
 	@Override
 	public String[] getResultPropertyNames() {
-		IDecisionCategories c = decisionMethod.getCategories();
-		String[] names = new String[c.size()];
-		for (int i=0; i < c.size();i++) 
-			names[i] = c.get(i).toString();
-		return names;
+		return new String[] {"ISSFUNC"};
 	}
 	protected ArrayList<IAtomContainer> getAllAssignedMolecules() {
         ArrayList<IAtomContainer> residues = new ArrayList<IAtomContainer>();
@@ -106,7 +95,7 @@ public class FuncTreeResult extends TreeResult {
 				
 					
 	}
-	
+	/*
 	@Override
    public List<CategoryFilter> getFilters() {
     	ArrayList<CategoryFilter> l = new ArrayList<CategoryFilter>();
@@ -120,6 +109,7 @@ public class FuncTreeResult extends TreeResult {
     	}
     	return l;
     }
+    */
 }
 
 

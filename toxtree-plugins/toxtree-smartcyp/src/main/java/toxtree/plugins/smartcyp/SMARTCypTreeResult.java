@@ -30,7 +30,6 @@ import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionCategory;
@@ -44,6 +43,7 @@ import toxTree.tree.TreeResult;
 import toxTree.tree.rules.IAlertCounter;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
 import dk.smartcyp.core.SMARTSData;
+import dk.smartcyp.smirks.SMARTCYPReaction;
 
 
 
@@ -295,17 +295,22 @@ public class SMARTCypTreeResult extends TreeResult {
 		return b;
 	}
 
-	
+	@Override
     public List<CategoryFilter> getFilters() {
+    	//no reasonable way of grouping these - perhaps by reactions?
     	ArrayList<CategoryFilter> l = new ArrayList<CategoryFilter>();
-    	IDecisionCategories c = getDecisionMethod().getCategories();
-		for (int i=0; i < c.size();i++) 
-		try { 
-    		l.add(new CategoryFilter(c.get(i).toString(),Answers.toString(Answers.YES)));
-    		l.add(new CategoryFilter(c.get(i).toString(),Answers.toString(Answers.NO)));
-    	} catch (Exception x) {
-    		logger.error(x);
-    	}
+    	IDecisionCategories c = decisionMethod.getCategories();
+		for (int i=0; i < c.size();i++) {
+			String q=c.get(i).getID()==4?">=":"";
+			String property = String.format(FORMAT,q,c.get(i).getID(),SMARTCYP_PROPERTY.Reaction);
+	    	for (SMARTCYPReaction reaction : SMARTCYPReaction.values()) 
+				try { 
+		    		l.add(new CategoryFilter(property,reaction.toString()));
+		    	} catch (Exception x) {
+		    		logger.error(x);
+		    	}
+		}	
+
     	return l;
     }	
 }
