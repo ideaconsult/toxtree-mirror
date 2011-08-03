@@ -24,13 +24,16 @@ import toxTree.core.IMetaboliteGenerator;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.CategoriesList;
+import toxTree.tree.DecisionNode;
 import toxTree.tree.DecisionNodesFactory;
+import toxTree.tree.RuleResult;
 import toxTree.tree.UserDefinedTree;
 import toxTree.ui.tree.categories.CategoriesRenderer;
 import toxtree.plugins.smartcyp.categories.SitesHigherRank;
 import toxtree.plugins.smartcyp.categories.SitesRank1;
 import toxtree.plugins.smartcyp.categories.SitesRank2;
 import toxtree.plugins.smartcyp.categories.SitesRank3;
+import toxtree.plugins.smartcyp.rules.MetaboliteGenerator;
 import toxtree.plugins.smartcyp.rules.SMARTCYPRuleRank1;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.core.data.ArrayResult;
@@ -236,20 +239,34 @@ public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInterac
 		}
 		return buffer;
 	}    
-	
 	@Override
-	public IAtomContainerSet getProducts(IAtomContainer reactant)
-			throws Exception {
-        for (int i=0; i < rules.size(); i++) 
-        	if ((rules.getRule(i) != null) && (rules.getRule(i) instanceof SMARTCYPRuleRank1))
-        		return ((SMARTCYPRuleRank1)rules.getRule(i)).getProducts(reactant);
+	public IAtomContainerSet getProducts(IAtomContainer reactant,
+			RuleResult ruleResult) throws Exception {
+
+		if (ruleResult==null)
+	        for (int i=0; i < rules.size(); i++) 
+	        	if ((rules.getRule(i) != null) && (rules.getRule(i) instanceof SMARTCYPRuleRank1))
+	        		return ((SMARTCYPRuleRank1)rules.getRule(i)).getProducts(reactant,ruleResult);
+	        	else {}
+		else {
+			IDecisionRule rule = ruleResult.getRule();
+			if (ruleResult.getRule() instanceof DecisionNode) rule = ((DecisionNode)rule).getRule();
+			return ((MetaboliteGenerator)rule).getProducts(reactant,ruleResult);
+		}
+	        		
         return null;
 	}
 	@Override
-	public String getHelp() {
-        for (int i=0; i < rules.size(); i++) 
-        	if ((rules.getRule(i) != null) && (rules.getRule(i) instanceof SMARTCYPRuleRank1))
-        		return ((SMARTCYPRuleRank1)rules.getRule(i)).getHelp();
+	public String getHelp(RuleResult ruleResult) {
+		if (ruleResult!=null) {
+			IDecisionRule rule = ruleResult.getRule();
+			if (ruleResult.getRule() instanceof DecisionNode) rule = ((DecisionNode)rule).getRule();
+			return ((IMetaboliteGenerator)rule).getHelp(ruleResult);
+		} else
+			for (int i=0; i < rules.size(); i++) 
+				if ((rules.getRule(i) != null) && (rules.getRule(i) instanceof SMARTCYPRuleRank1))
+					return ((IMetaboliteGenerator)rules.getRule(i)).getHelp(ruleResult);
+        		
         return "";
 	}
 }

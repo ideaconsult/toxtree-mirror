@@ -46,6 +46,7 @@ import toxTree.io.batch.BatchProcessingException;
 import toxTree.io.batch.ToxTreeBatchProcessing;
 import toxTree.query.metabolite.MetabolyteRecycler;
 import toxTree.tree.DecisionMethodsList;
+import toxTree.tree.RuleResult;
 import toxtree.ui.metabolites.MetabolitesFrame;
 import toxtree.ui.tree.TreeFrame;
 import ambit2.base.data.Property;
@@ -233,25 +234,28 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
 
     }
       */  
-    public void showMetabolites() throws Exception {
+    public String showMetabolites(RuleResult ruleResult) throws Exception {
 		if (getRules() instanceof IMetaboliteGenerator) {
 			
 			if (!treeResult.isEstimated()) 
 				treeResult.classify(getDataContainer().getMolecule());
 
-			IAtomContainerSet products = ((IMetaboliteGenerator)getRules()).getProducts(getDataContainer().getMolecule());
+			IAtomContainerSet products = ((IMetaboliteGenerator)getRules()).getProducts(
+							getDataContainer().getMolecule(),
+							ruleResult);
 			
 	        if (metabolitesFrame == null)  {
 	        	metabolitesFrame = new MetabolitesFrame();
 	        	metabolitesFrame.addPropertyChangeListener("metabolite",listener);
 	        }
  
-	        metabolitesFrame.setProducts(((IMetaboliteGenerator)getRules()).getHelp(),products);
+	        metabolitesFrame.setProducts(((IMetaboliteGenerator)getRules()).getHelp(ruleResult),products);
 	        metabolitesFrame.setVisible(true);
 
 	        metabolitesFrame.setState ( Frame.NORMAL );
 
 		}
+		return null;
     }    
 
 }
