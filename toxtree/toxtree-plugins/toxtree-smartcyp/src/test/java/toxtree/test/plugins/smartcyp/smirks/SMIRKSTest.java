@@ -177,7 +177,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 					}
 					htmlFileWriter.write(String.format("</td>"));
 					
-					IAtomContainerSet set = smartcyp.getProducts(result.getRuleResult(0).getMolecule());
+					IAtomContainerSet set = smartcyp.getProducts(result.getRuleResult(0).getMolecule(),null);
 					//Assert.assertNotNull(set);
 					//Assert.assertTrue(set.getAtomContainerCount()>0);
 					if (set != null) {
@@ -265,7 +265,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 				IChemObject mol = reader.next();
 
 				Object molid = mol.getProperty("ID");
-				//if (!"isoquinoline".equals(molid)) continue;
+				if (!"SENECIONINE".equals(molid)) continue;
 				//if (!"barnidipine".equals(molid)) continue;
 				//if (!"dihydropyridine".equals(molid)) continue;
 				
@@ -295,7 +295,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 				
 				String smartcypReaction = "None";
 				if (products)  {
-					IAtomContainerSet set = smartcyp.getProducts((IAtomContainer) ((IAtomContainer)mol).clone());
+					IAtomContainerSet set = smartcyp.getProducts((IAtomContainer) ((IAtomContainer)mol).clone(),null);
 					//Assert.assertNotNull(set);
 					//Assert.assertTrue(set.getAtomContainerCount()>0);
 					if (set != null) {
