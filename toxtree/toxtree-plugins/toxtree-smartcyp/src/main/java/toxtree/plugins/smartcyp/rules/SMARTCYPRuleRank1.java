@@ -20,6 +20,7 @@ import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.MoleculeTools;
 import ambit2.rendering.CompoundImageTools;
 import dk.smartcyp.core.MoleculeKU;
+import dk.smartcyp.core.SMARTSData;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
 import dk.smartcyp.core.SMARTSnEnergiesTable;
 
@@ -76,7 +77,8 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 			
 			for (IAtom atom: newmol.atoms()) {
 				Number atom_rank = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
-				if((atom_rank!=null) && hasRank(atom_rank.intValue()))
+				SMARTSData data = SMARTCYP_PROPERTY.Energy.getData(atom);
+				if((atom_rank!=null) && hasRank(atom_rank.intValue()) && (data !=null))
 					return true;
 			}
 			return false;			
