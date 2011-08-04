@@ -237,7 +237,7 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 								cas?"CAS":einecs?"EINECS":"Unknown query");
 				}
 			} else {
-				errormsg = String.format("%s entered, but remote queries are disabled. Enable remote queries via 'Method/Decision Tree Options' menu.",
+				errormsg = String.format("%s entered, but remote queries are disabled. Enable remote queries via 'Method/Decision Tree Options/Remote query' menu.",
 						cas?"CAS":einecs?"EINECS":"Unknown query");
 			}
 		} else {
