@@ -1,6 +1,6 @@
 Change log
 
-Toxtree 2.5.0-SNAPSHOT
+Toxtree 2.5.0
 
 - New plugins
   Functional groups, modified Verhaar scheme
