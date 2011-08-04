@@ -220,6 +220,7 @@
             <nonFilteredFileExtension>exe</nonFilteredFileExtension>
             <nonFilteredFileExtension>dll</nonFilteredFileExtension>
             <nonFilteredFileExtension>obf</nonFilteredFileExtension>
+            <nonFilteredFileExtension>sdf</nonFilteredFileExtension>
           </nonFilteredFileExtensions>
         </configuration>
         </plugin>
