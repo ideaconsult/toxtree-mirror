@@ -40,7 +40,7 @@ public enum SMARTCYPReaction {
 	N_dealkylation {
 		@Override
 		public String getSMIRKS() {
-			return "[N:1][C:2]([H])>>[N:1][H].[C:2]=[O]";
+			return "[#7:1][C:2]([H])>>[#7:1][H].[C:2]=[O]";
 			
 		}
 		@Override
