@@ -20,7 +20,29 @@ Michael Acceptors
 
  [Schultz 2007] T. Wayne Schultz, Jason W. Yarbrough, Robert S. Hunter, Aynur O. Aptula (2007) Verification of the Structural Alerts for Michael Acceptors. Chem. Res. Toxicol. 20, 1359–1363 
 
+* For developers
  
-* Source 
+	* Source 
 
  {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-michaelacceptors}source code}}
+ 
+	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-michaelacceptors</artifactId>
+  <version>2.5.0</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++---------------------------------  

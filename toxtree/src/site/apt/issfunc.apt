@@ -24,6 +24,29 @@ Structural Alerts for Functional Group Identification (ISSFUNC)
 
  [EUR 24871 EN -2011] {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_24871_EN.pdf} Benigni R., Olga Tcheremenskaia O.,and A. Worth, Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups - a New Toxtree Rulebase}}
   
-* Source 
+* For developers
+  
+	* Source 
 
  {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups}source code}}
+ 
+	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-issfunc</artifactId>
+  <version>2.5.0</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++---------------------------------  

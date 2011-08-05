@@ -28,4 +28,30 @@ START biodegradation  and persistence plug-in
  
  [START, 2008] {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/Toxtree_start_manual.pdf}Installation and user manual}}	
  
+* For developers
+
+   * Source
+	  
+	    {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-biodegradation}https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-biodegradation}}
+	
+   * {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-biodegradation</artifactId>
+  <version>2.5.0</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++--------------------------------- 
  

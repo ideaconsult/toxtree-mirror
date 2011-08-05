@@ -8,7 +8,7 @@ Structure Alerts for the in vivo micronucleus assay in rodents
  
 Structure Alerts for the in vivo micronucleus assay in rodents
 
- Structure Alerts for the in vivo micronucleus assay in rodents, based  on the rules, published in the document “Development of structural alerts  for the in vivo  micronucleus assay in  rodents”, by Romualdo  Benigni, Cecilia Bossa, Olga Tcheremenskaia and Andrew Worth, European Commission report EUR 23844 EN
+ Structure Alerts for the in vivo micronucleus assay in rodents, based  on the rules, published in the document "Development of structural alerts  for the in vivo  micronucleus assay in  rodents", by Romualdo  Benigni, Cecilia Bossa, Olga Tcheremenskaia and Andrew Worth, European Commission report EUR 23844 EN
  
  Available since {{{./download.html#Toxtree-v1.60}ToxTree 1.60}}
  
@@ -33,6 +33,29 @@ Structure Alerts for the in vivo micronucleus assay in rodents
 
   {{{https://sourceforge.net/forum/forum.php?forum_id=966732}ToxMic rulebase forum}}
   
-* Source 
+* For developers
+  
+	* Source 
 
  {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-mic}source code}}
+ 
+	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-mic</artifactId>
+  <version>2.5.0</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++---------------------------------  
