@@ -1,0 +1,73 @@
+ -----
+ Toxic Hazard Estimation by decision tree approach
+ -----
+ Nina Jeliazkova
+ ----- 
+ 2011/07/21
+ -----
+ 
+{Toxtree} - Toxic Hazard Estimation by decision tree approach 
+
+    Toxtree  is  a  full-featured   and  flexible  user-friendly  open  source application, which is able to estimate toxic hazard by applying a  decision tree approach. 
+    
+    Toxtree could  be applied  to datasets from various compatible file  types.
+    User-defined  molecular  structures  are also  supported  -  they could  be
+    entered by  SMILES, or by using the built-in  2D structure diagram  editor.
+
+*{ToxTree online}
+
+    Find chemical compounds and apply Toxtree (and other methods) online! 
+    
+    {{{http://toxpredict.org}ToxPredict}}  (Several Toxtree modules and more)
+	
+*{Multiplatform}
+
+	The  Toxtree  application  is suitable  for a  standalone PC and can run on any platform, supported by Java 1.5 or higher. 
+	  
+*Modular plugin design
+
+    Toxtree has  been   designed with  flexible capabilities  for future  extensions in  mind (e.g.
+    other classification schemes that could be developed at a future date). New
+    decision trees with arbitrary rules can be built with the help of graphical
+    user interface or by developing new plug-ins. Toxtree was commissioned by {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}JRC Computational Toxicology and Modelling}} and developed by {{{http://www.ideaconsult.net}Ideaconsult Ltd.}} (Sofia, Bulgaria).
+	Plugins have been and are currently being developed by several different organisations.  
+   
+*{Plugins}
+
+	* {{{./cramer.html}Cramer rules}} & {{{/cramer2.html}  Cramer  rules with  extensions}}
+	
+	* {{{./verhaar.html}Verhaar scheme}} 
+	
+	* {{{./skin.html}Skin irritation prediction}}
+	
+	* {{{./eye.html}Eye irritation prediction}}
+	
+	* {{{./mutant.html}Benigni  / Bossa  rulebase for mutagenicity and carcinogenicity}}
+	
+	* {{{./start.html}START biodegradation  and persistence}}
+	
+	* {{{./mic.html}Structure Alerts for the in vivo micronucleus assay in rodents}}
+	
+	* {{{./michaelacceptors.html}Structure Alerts  for identification of  Michael Acceptors}}
+	
+	* {{{./skinsensitisation.html}Structure Alerts  for skin sensitisation}}
+	
+	* {{{./kroes.html}Kroes TTC Decision tree}}
+	
+	* {{{./smartcyp.html}SMARTCyp - Cytochrome P450-Mediated Drug Metabolism}}
+	
+	* {{{./issfunc.html}Structural Alerts for Functional Group Identification (ISSFUNC)}}
+	
+*{Downloads}
+
+	* {{{./download.html#Toxtree_2.5.0}Toxtree-2.5.0}}
+
+    * {{{./download.html#Toxtree_2.2.0}Toxtree-2.2.0}}
+    
+    * {{{./download.html#Toxtree_2.1.0}Toxtree-2.1.0}}
+    
+    * {{{./download.html#Toxtree-v1.60}Toxtree-1.60}}
+    
+    * {{{./download.html#Toxtree-v1.51}Toxtree-1.51}}
+    
+    * {{{./download.html#Toxtree-v1.20}Toxtree-1.20}}

@@ -1,0 +1,29 @@
+ -----
+Structural Alerts for Functional Group Identification (ISSFUNC)
+ -----
+ Nina Jeliazkova
+ -----
+ 2011/07/21
+ -----
+ 
+Structural Alerts for Functional Group Identification (ISSFUNC)
+
+ Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups.
+ 
+ Developed by {{{http://www.iss.it}Istituto Superiore di Sanita}} 2011 
+ 
+ Screenshots: {{{./images/issfunc/screen.jpg}Main screen}} , {{{./images/issfunc/tree.jpg}Decision tree}}
+  
+* Download
+
+	{{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/issfunc.zip}Download plugin for ToxTree 1.60}}
+	
+	The plugin will be distributed with the main ToxTree release starting with Toxtree 2.5.0
+	  
+* Reference
+
+ [EUR 24871 EN -2011] {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_24871_EN.pdf} Benigni R., Olga Tcheremenskaia O.,and A. Worth, Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups - a New Toxtree Rulebase}}
+  
+* Source 
+
+ {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups}source code}}
