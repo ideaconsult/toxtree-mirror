@@ -28,6 +28,29 @@ Verhaar scheme for predicting toxicity mode of action
 
  {{{http://sourceforge.net/forum/forum.php?forum_id=867720}Verhaar scheme forum}}
  
-* Source 
+* For developers
+ 
+	* Source 
 
  {{{http://toxtree.svn.sourceforge.net/viewvc/toxtree/plugins/verhaar/}source code}} 
+ 
+	 	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-verhaar</artifactId>
+  <version>2.5.0</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++---------------------------------  

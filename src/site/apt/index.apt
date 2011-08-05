@@ -34,19 +34,19 @@
    
 *{Plugins}
 
+	{{{./download.html#Toxtree_2.5.0}Toxtree-2.5.0}} is distributed with 14 plugins:
+	
 	* {{{./cramer.html}Cramer rules}} & {{{/cramer2.html}  Cramer  rules with  extensions}}
 	
-	* {{{./verhaar.html}Verhaar scheme}} 
+	* {{{./verhaar.html}Verhaar scheme}} & {{{./verhaar2.html}Modified Verhaar scheme}} 
 	
 	* {{{./skin.html}Skin irritation prediction}}
 	
 	* {{{./eye.html}Eye irritation prediction}}
 	
-	* {{{./mutant.html}Benigni  / Bossa  rulebase for mutagenicity and carcinogenicity}}
+	* {{{./carc.html}Benigni  / Bossa  rulebase for mutagenicity and carcinogenicity}}
 	
 	* {{{./start.html}START biodegradation  and persistence}}
-	
-	* {{{./mic.html}Structure Alerts for the in vivo micronucleus assay in rodents}}
 	
 	* {{{./michaelacceptors.html}Structure Alerts  for identification of  Michael Acceptors}}
 	
@@ -54,14 +54,16 @@
 	
 	* {{{./kroes.html}Kroes TTC Decision tree}}
 	
-	* {{{./smartcyp.html}SMARTCyp - Cytochrome P450-Mediated Drug Metabolism}}
+	* {{{./smartcyp.html}SMARTCyp - Cytochrome P450-Mediated Drug Metabolism and metabolites prediction}}
+	
+	* {{{./mic.html}Structure Alerts for the in vivo micronucleus assay in rodents (ISSMIC)}}	
 	
 	* {{{./issfunc.html}Structural Alerts for Functional Group Identification (ISSFUNC)}}
 	
 *{Downloads}
 
 	* {{{./download.html#Toxtree_2.5.0}Toxtree-2.5.0}}
-
+	
     * {{{./download.html#Toxtree_2.2.0}Toxtree-2.2.0}}
     
     * {{{./download.html#Toxtree_2.1.0}Toxtree-2.1.0}}
