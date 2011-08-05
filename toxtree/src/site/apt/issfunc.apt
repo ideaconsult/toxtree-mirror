@@ -16,10 +16,10 @@ Structural Alerts for Functional Group Identification (ISSFUNC)
   
 * Download
 
-	{{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/issfunc.zip}Download plugin for ToxTree 1.60}}
+	The plugin is distributed with the main ToxTree release starting with Toxtree 2.5.0
 	
-	The plugin will be distributed with the main ToxTree release starting with Toxtree 2.5.0
-	  
+	For Toxtree 1.60 download the {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/issfunc.zip}plugin}} and copy it into the <ext> folder.
+	
 * Reference
 
  [EUR 24871 EN -2011] {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_24871_EN.pdf} Benigni R., Olga Tcheremenskaia O.,and A. Worth, Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups - a New Toxtree Rulebase}}

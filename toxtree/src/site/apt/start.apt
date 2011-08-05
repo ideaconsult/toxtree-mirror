@@ -19,9 +19,10 @@ START biodegradation  and persistence plug-in
   
 * Download
 
-	{{{http://ecb.jrc.ec.europa.eu/produits/toxBiodegradation.zip}Download plugin for ToxTree 1.51}}
+	The plugin is distributed with the main ToxTree release starting with Toxtree 1.60
 	
-	The plugin will be distributed with the main ToxTree release starting with Toxtree 1.60
+	For Toxtree 1.51 download the {{{http://ecb.jrc.ec.europa.eu/produits/toxBiodegradation.zip}plugin}} and copy it into the <ext> folder.
+
 	  
 * Reference
 
