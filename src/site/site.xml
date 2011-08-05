@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Toxtree">
+  <bannerLeft>
+    <name>Toxtree</name>
+    <src>images/toxtree-logo.gif</src>
+    <href>index.html</href>
+  </bannerLeft>
+  <body>
+    <links>
+
+      <item name="Toxtree" href="/index.html"/>
+      <item name="Toxmatch" href="http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxmatch"/>
+      <item name="ToxPredict" href="http://toxpredict.org"/>
+      <item name="AMBIT 2.0" href="http://ambit.sourceforge.net"/>
+      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net:8080/ambit2"/>
+
+    </links>
+
+      <!--<item name="Xdoc Example" href="xdoc.html"/>-->
+    <menu name="Toxtree">
+      <item name="Introduction" href="/index.html"/>
+      
+      <item name="Download" href="/download.html" >
+      		<item name="Toxtree 2.5.0" href="/download.html#Toxtree_2.5.0"/>
+            <item name="Toxtree 2.2.0" href="/download.html#Toxtree_2.2.0"/>
+            <item name="Toxtree 2.1.0" href="/download.html#Toxtree_2.1.0"/>
+            <item name="Toxtree 1.60" href="/download.html#Toxtree-v1.60"/>
+            <item name="Toxtree 1.51" href="/download.html#Toxtree-v1.51"/>
+            <item name="Toxtree 1.20" href="/download.html#Toxtree-v1.20"/>
+      </item>
+	</menu>
+	<menu name="Support">      
+	  <item name="Support and feedback" href="/intro.html" />
+  	  <item name="Forum" href="http://sourceforge.net/forum/?group_id=152702" />
+	  <item name="Mailing lists" href="http://sourceforge.net/mail/?group_id=152702" />
+	  <item name="Bug reports" href="/issue-tracking.html" />
+    </menu>
+    <menu name="Toxtree plugins">
+      <item name="Cramer rules" href="/cramer.html"/>
+      <item name="Extended Cramer rules" href="/cramer2.html"/>
+      <item name="Verhaar scheme" href="/verhaar.html"/>
+      <item name="Modified Verhaar scheme" href="/verhaar2.html"/>
+      <item name="Skin irritation" href="skin.html" />
+	  <item name="Eye irritation" href="/eye.html"/>
+	  <item name="Benigni-Bossa rule base for carcinogenicity and mutagenicity" href="/carc.html"/>
+	  <item name="Structure Alerts (ISSMIC)" href="/mic.html"/>	  
+	  <item name="Functional Group (ISSFUNC)" href="/issfunc.html" />
+	  <item name="START (biodegradation and persistence)" href="/start.html"/>	
+	  <item name="Michael Acceptors" href="/michaelacceptors.html" />
+	  <item name="Skin sensitisation alerts" href="/skinsensitisation.html" />
+	  <item name="SMARTCyp" href="/smartcyp.html" />
+	  <item name="Kroes TTC decision tree" href="/kroes.html" />
+
+	  
+    </menu>
+    <menu ref="reports"/>
+    <!--
+    <menu ref="modules" />
+    <menu ref="parent"/>
+    -->
+
+  </body>
+
+  <poweredBy>
+    <logo name="SourceForge" href="http://sourceforge.net/projects/toxtree"
+          img="http://sflogo.sourceforge.net/sflogo.php?group_id=152702&amp;type=12"/>
+  </poweredBy>
+
+<!-- 
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-application-skin</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </skin>
+ -->
+</project>
