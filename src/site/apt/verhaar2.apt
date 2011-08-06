@@ -17,6 +17,8 @@ Verhaar scheme for predicting toxicity mode of action (modified)
  
  Screenshots: {{{./images/verhaar2/screen.jpg}Main screen}} , {{{./images/verhaar2/tree.jpg}Decision tree}}
   
+[images/verhaar2/thumb.jpg]
+  
 * Reference
 
  [Verhaar, 1992] Verhaar HJM, van Leeuwen CJ and Hermens JLM (1992) Classifying environmental pollutants. 1. Structure-activity relationships for prediction of aquatic toxicity. Chemosphere 25, 471-491. 

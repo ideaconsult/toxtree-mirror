@@ -17,6 +17,8 @@ START biodegradation  and persistence plug-in
   
  Screenshots: {{{./images/start/screen.jpg}Main screen}} , {{{./images/start/tree.jpg}Decision tree}}
   
+[images/start/thumb.jpg]
+  
 * Download
 
 	The plugin is distributed with the main ToxTree release starting with Toxtree 1.60

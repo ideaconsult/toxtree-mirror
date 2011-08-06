@@ -14,6 +14,8 @@ Structural Alerts for Functional Group Identification (ISSFUNC)
  
  Screenshots: {{{./images/issfunc/screen.jpg}Main screen}} , {{{./images/issfunc/tree.jpg}Decision tree}}
   
+[images/issfunc/thumb.jpg]
+  
 * Download
 
 	The plugin is distributed with the main ToxTree release starting with Toxtree 2.5.0
