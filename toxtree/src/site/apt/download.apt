@@ -18,12 +18,18 @@
     
     * {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.0/Toxtree_user_manual.pdf/download} User manual}} 
     
+      []
+      
+[images/smartcyp/thumb.jpg] Toxtree 2.5.0 SMARTCyp module screenshot      
+    
     * <<Change log>>
     
       * build date 5 Aug 2011
     	
       * updated to {{{http://cdk.sf.net}cdk 1.3.8}};
 
+      * updated to {{{http://opsin.ch.cam.ac.uk/information.html} Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.0.0}};
+      
       * updated to {{{http://ambit.sf.net}ambit-2.4.2}};
 
       * {{{./smartcyp.html}SMARTCyp plug-in}} - added metabolite generation, based on Site of Metabolism, calculated by {{{http://www.farma.ku.dk/index.php/SMARTCyp/7990/0/}SMARTCyp}} and ambit-SMIRKS package;
@@ -57,7 +63,8 @@
       * {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/2.5.0}Source code}}  
       
       * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;quick~toxtree}Maven repository}}
-    
+      
+      
 {Toxtree-2.2.0} 
 
   <<Toxtree 2.2.0 is a library upgrade and bug fix release.>>

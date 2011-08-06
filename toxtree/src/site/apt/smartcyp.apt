@@ -9,6 +9,10 @@
 SMARTCyp - Cytochrome P450-Mediated Drug Metabolism
 
   A Toxtree plugin, predicting sites of metabolism and metabolites.
+
+  [ Aug 9, 2011, Technical University of Munich] {{{http://opentox.org/meet/opentox2011/opentox2011metabolites}Hands on exercise}} at {{{http://opentox.org/meet/opentox2011}OpenTox Interaction meeting}}
+    
+  []
     
   Available since {{{./download.html#Toxtree_2.1.0}ToxTree 2.1.0}}
      
@@ -17,9 +21,8 @@ SMARTCyp - Cytochrome P450-Mediated Drug Metabolism
   
   Screenshots: {{{./images/smartcyp/screen.jpg}Main screen}} , {{{./images/smartcyp/tree.jpg}Decision tree}}
 
-* News
+[images/smartcyp/thumb.jpg]
 
-  [ Aug 9, 2011, Technical University of Munich] {{{http://opentox.org/meet/opentox2011/opentox2011metabolites}Hands on exercise}} at {{{http://opentox.org/meet/opentox2011}OpenTox Interaction meeting}}
 
 * Reference
 

@@ -14,6 +14,8 @@
     User-defined  molecular  structures  are also  supported  -  they could  be
     entered by  SMILES, or by using the built-in  2D structure diagram  editor.
 
+[images/cramer/thumb.jpg] Toxtree Cramer rules module screenshot 
+
 *{ToxTree online}
 
     Find chemical compounds and apply Toxtree (and other methods) online! 
@@ -31,7 +33,7 @@
     decision trees with arbitrary rules can be built with the help of graphical
     user interface or by developing new plug-ins. Toxtree was commissioned by {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}JRC Computational Toxicology and Modelling}} and developed by {{{http://www.ideaconsult.net}Ideaconsult Ltd.}} (Sofia, Bulgaria).
 	Plugins have been and are currently being developed by several different organisations.  
-   
+	
 *{Plugins}
 
 	{{{./download.html#Toxtree_2.5.0}Toxtree-2.5.0}} is distributed with 14 plugins:
