@@ -10,7 +10,7 @@ A decision tree for estimating eye irritation and corrosion potential
 
  Estimates eye irritation and corrosion potential by physicochemical property ranges and structural rules.
  
- Developed by Ivanka Tsakovska & {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria)
+ Developed by {{{http://www.clbme.bas.bg/pwp/ivanka_tsakovska/publications.htm}I. Tsakovska}} and {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria) for {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC}}
   
  Screenshots: {{{./images/eye/screen.jpg}Main screen}} , {{{./images/eye/tree.jpg}Decision tree}}
   
