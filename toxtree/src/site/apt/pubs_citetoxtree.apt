@@ -1,0 +1,48 @@
+ -----
+ Cite Toxtree
+ -----
+ Nina Jeliazkova
+ -----
+ 2011/08/18
+ -----
+
+
+Toxtree publications
+
+ If you use Toxtree, please cite the following paper:
+  
+ [Patlewicz, 2008] Patlewicz G, Jeliazkova N, Safford RJ, Worth AP, Aleksiev B. (2008) An evaluation of the implementation of the Cramer classification scheme in the Toxtree software. SAR QSAR Environ Res. ;19(5-6):495-524.
+
+ []
+ 
+ or/and  this web site
+
+ [Toxtree site] {{{http://toxtree.sourceforge.net}http://toxtree.sourceforge.net}}
+ 
+ []
+ 
+ For publications, specific to plugins, refer to the plugin page and manuals. 
+
+ * {{{./cramer.html}Cramer rules}} & {{{/cramer2.html}  Cramer  rules with  extensions}}
+	
+ * {{{./verhaar.html}Verhaar scheme}} & {{{./verhaar2.html}Modified Verhaar scheme}} 
+	
+ * {{{./skin.html}Skin irritation prediction}}
+	
+ * {{{./eye.html}Eye irritation prediction}}
+	
+ * {{{./carc.html}Benigni  / Bossa  rulebase for mutagenicity and carcinogenicity}}
+	
+ * {{{./start.html}START biodegradation  and persistence}}
+	
+ * {{{./michaelacceptors.html}Structure Alerts  for identification of  Michael Acceptors}}
+	
+ * {{{./skinsensitisation.html}Structure Alerts  for skin sensitisation}}
+	
+ * {{{./kroes.html}Kroes TTC Decision tree}}
+	
+ * {{{./smartcyp.html}SMARTCyp - Cytochrome P450-Mediated Drug Metabolism and metabolites prediction}}
+	
+ * {{{./mic.html}Structure Alerts for the in vivo micronucleus assay in rodents (ISSMIC)}}	
+	
+ * {{{./issfunc.html}Structural Alerts for Functional Group Identification (ISSFUNC)}}  

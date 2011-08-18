@@ -1,0 +1,41 @@
+ -----
+ Toxtree evaluations
+ -----
+ Nina Jeliazkova
+ -----
+ 2011/08/18
+ -----
+
+
+Evaluation studies:
+
+*{{{./download.html#Toxtree-v1.20}Toxtree 1.20}} 
+
+ {{{./cramer.html}Cramer rules}} 
+
+ [Patlewicz, 2008] Patlewicz G, Jeliazkova N, Safford RJ, Worth AP, Aleksiev B. (2008) An evaluation of the implementation of the Cramer classification scheme in the Toxtree software. SAR QSAR Environ Res. ;19(5-6):495-524. {{{http://www.ncbi.nlm.nih.gov/pubmed/18853299}PubMed}}
+
+*{{{./download.html#Toxtree-v1.60}Toxtree 1.60}}
+
+ {{{./verhaar.html}Verhaar scheme}}
+
+ [Enoch 2008] Enoch SJ, Hewitt M, Cronin MT, Azam S, Madden JC., Classification of chemicals according to mechanism of aquatic toxicity: an evaluation of the implementation of the Verhaar scheme in Toxtree. Chemosphere. 2008 Sep;73(3):243-8. Epub 2008 Aug 9. {{{http://www.ncbi.nlm.nih.gov/pubmed/18692861}PubMed}}
+
+ []
+
+ {{{./mic.html}Structure Alerts for the in vivo micronucleus assay in rodents}}
+   
+ [Benigni 2010] Romualdo Benigni, Cecilia Bossa and Andrew Worth, {{{http://mutage.oxfordjournals.org/content/25/4/335.full}Structural analysis and predictive value of the rodent in vivo micronucleus assay results}}, Mutagenesis (2010) 25 (4): 335-341.
+
+ []
+ 
+ {{{./carc.html}Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity)}} 
+ 
+ [Mombelli 2010] Mombelli E, Devillers J., Evaluation of the OECD (Q)SAR Application Toolbox and Toxtree for predicting and profiling the carcinogenic potential of chemicals.,SAR QSAR Environ Res. 2010 Oct;21(7-8):731-52. {{{http://www.ncbi.nlm.nih.gov/pubmed/21120759}PubMed}}
+
+ [Devillers 2010a] Devillers J, Mombelli E., Evaluation of the OECD QSAR Application Toolbox and Toxtree for estimating the mutagenicity of chemicals. Part 1. Aromatic amines.,SAR QSAR Environ Res. 2010 Oct;21(7-8):753-69. {{{http://www.ncbi.nlm.nih.gov/pubmed/21120760}PubMed}} 
+
+ [Devillers 2010b] Devillers J, Mombelli E. Evaluation of the OECD QSAR Application Toolbox and Toxtree for estimating the mutagenicity of chemicals. Part 2. \u00391-\u00392 unsaturated aliphatic aldehydes.,SAR QSAR Environ Res. 2010 Oct;21(7-8):771-83. {{{http://www.ncbi.nlm.nih.gov/pubmed/21120761}PubMed}} 
+   
+ [Hillebrecht 2011] Hillebrecht A, Muster W, Brigo A, Kansy M, Weiser T, Singer T.,Comparative evaluation of in silico systems for ames test mutagenicity prediction: scope and limitations.,Chem Res Toxicol. 2011 Jun 20;24(6):843-54. Epub 2011 May 2. {{{http://www.ncbi.nlm.nih.gov/pubmed/21534561}PubMed}}
+   

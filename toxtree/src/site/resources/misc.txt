@@ -1,0 +1,28 @@
+
+*{{{./download.html#Toxtree-v1.60}Toxtree 1.60}}
+
+ ADMET profiling / Lead optimization
+  
+ [Jitendra 2011] Singh Jitendra, Randhawa Vinay, {{{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3082862/}Structure based drug designing of a novel antiflaviviral inhibitor for nonstructural 3 protein.}},Bioinformation. 2011; 6(2): 57–60.
+
+ []
+  
+ Comparison between several software models for carcinogenicity prediction  
+ 
+ [Mazzatorta] Mazzatorta P., Ringeissen S., Note R.,Schilter B., Meunier J.R. {{{http://www.lhasalimited.org/resources/Mazzatorta_Poster.pdf}In sillco models to predict rodent carcinogenicity of naturally-occurring chemicals: comparative study and first Insights into modes of action}}
+ 
+ []
+
+*{{{./download.html#Toxtree-v1.20}Toxtree 1.20}} 
+
+ {{{./cramer.html}Cramer rules}} 
+
+ [Patlewicz, 2008] Patlewicz G, Jeliazkova N, Safford RJ, Worth AP, Aleksiev B. (2008) An evaluation of the implementation of the Cramer classification scheme in the Toxtree software. SAR QSAR Environ Res. ;19(5-6):495-524. {{{http://www.ncbi.nlm.nih.gov/pubmed/18853299}PubMed}}
+
+*{{{./download.html#Toxtree-v1.00}Toxtree 1.00}
+
+ Web services, workflows
+ 
+ [Kim 2008] Jungkee Kim, {{{http://www.sersc.org/journals/IJGDC/vol1_no1/papers/03.pdf}Searching Toxics: A Web Service for Chemoinformatics Workflows.}}, International Journal of Grid and Distributed Computing,  Vol. 1, No. 1, Dec 2008
+
+ 
