@@ -74,8 +74,8 @@
     </menu>
     <menu name="Toxtree publications">
     	<item name="How to cite Toxtree" href="/pubs_citetoxtree.html" />
-    	<item name="Studies, using Toxtree" href="/pubs_usage.html" />
-    	<item name="Studies, evaluating Toxtree" href="/pubs_eval.html" />
+    	<item name="Toxtree citations" href="/pubs_usage.html" />
+    	<item name="Toxtree evaluations" href="/pubs_eval.html" />
     </menu> 
     <menu ref="reports"/>
     <!--
