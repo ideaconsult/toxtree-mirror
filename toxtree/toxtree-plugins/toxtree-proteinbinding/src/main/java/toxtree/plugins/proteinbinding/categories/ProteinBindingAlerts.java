@@ -648,7 +648,7 @@ public enum ProteinBindingAlerts {
 		}
 		@Override
 		public String getCategoryTitle() {
-			return "No skin sensitisation alerts identified.";
+			return "No protein binding alerts identified.";
 		}
 		@Override
 		public String getTitle() {
