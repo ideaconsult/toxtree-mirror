@@ -30,6 +30,7 @@
     <module>toxtree-functional_groups</module>
     <module>toxtree-verhaar2</module>    
     <module>toxtree-search</module>
+    <module>toxtree-proteinbinding</module>
   </modules>
   <dependencies>
   	<dependency>
