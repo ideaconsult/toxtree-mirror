@@ -1,0 +1,81 @@
+
+  CDK     0913110819
+
+  4  3  0  0  0  0  0  0  0  0999 V2000
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  2  1  1  0  0  0  0 
+  3  2  1  0  0  0  0 
+  4  3  1  0  0  0  0 
+M  END
+> <Kroes TTC decision tree>
+Substance would not be expected to be a safety concern
+
+> <SMILES>
+CCCC
+
+> <Kroes TTC decision tree#explanation>
+Q1N,Alerts(genotoxic)Y,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,Q2N,Q5Y,Q6N,Q8N,Q10N,Q12N
+
+> <DailyIntake>
+3.14
+
+$$$$
+
+  CDK     0913110819
+
+  5  4  0  0  0  0  0  0  0  0999 V2000
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  2  1  1  0  0  0  0 
+  3  2  1  0  0  0  0 
+  4  3  1  0  0  0  0 
+  5  4  1  0  0  0  0 
+M  END
+> <Kroes TTC decision tree>
+Substance would not be expected to be a safety concern
+
+> <SMILES>
+CCCCC
+
+> <Kroes TTC decision tree#explanation>
+Q1N,Alerts(genotoxic)Y,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,Q2N,Q5Y,Q6N,Q8N,Q10N,Q12N
+
+> <DailyIntake>
+3.141
+
+$$$$
+
+  CDK     0913110819
+
+  6  5  0  0  0  0  0  0  0  0999 V2000
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  2  1  1  0  0  0  0 
+  3  2  1  0  0  0  0 
+  4  3  1  0  0  0  0 
+  5  4  1  0  0  0  0 
+  6  5  1  0  0  0  0 
+M  END
+> <Kroes TTC decision tree>
+Substance would not be expected to be a safety concern
+
+> <SMILES>
+CCCCCC
+
+> <Kroes TTC decision tree#explanation>
+Q1N,Alerts(genotoxic)Y,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,Q2N,Q5Y,Q6N,Q8N,Q10N,Q12N
+
+> <DailyIntake>
+3.1416
+
+$$$$

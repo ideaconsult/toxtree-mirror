@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs title="Frequently Asked Questions">
+  <part id="General">
+    <faq id="T1">
+      <question>Which is the latest Toxtree version?</question>
+      <answer>
+        <p>
+          <a href='http://toxtree.sourceforge.net/download.html#Toxtree_2.5.0'>Toxtree 2.5.0</a> is the latest release.
+        </p>
+      </answer>
+    </faq>
+    <faq id="T2">
+      <question>What is the format of Toxtree input files?</question>
+      <answer>
+        <p>
+     The list of supported file formats can be found in the <a href="http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.0/Toxtree_user_manual.pdf/download">user manual</a>. 
+     A brief list of the most common formats follows: 
+     <ul>
+     <li><i>filename.SDF</i> is <a href="http://www.symyx.com/downloads/public/ctfile/ctfile.pdf">Structure Data Format</a></li>
+     <li><i>filename.CSV</i> is comma delimited text file,with mandatory header row. 
+     A column,containing SMILES, should have title "SMILES". The number,titles and order of the columns are arbitrary. <a href='https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-cramer/src/test/resources/Cramer/CramerRules.csv'>Example</a></li>
+     <source>
+NAME,CAS,SMILES
+Acetic acid,64-19-7,CC(O)=O
+Acetoin,513-86-0,CC(O)C(C)=O
+     </source>
+     <li><i>filename.TXT</i> is tab delimited text file. A column,containing SMILES, should have title "SMILES".  The number,titles and order of the columns are arbitrary.</li>
+     </ul>     
+        </p>
+      </answer>
+    </faq>    
+         
+    <faq id="K1">
+      <question>How to specify daily intakes in a batch file,for computation of Kroes TTC?</question>
+      <answer>
+        <p>
+           The amount of daily intake (in <i>microgram/day</i>) can be specified as an additional column / SDfile field, with the name "<b>DailyIntake</b>".
+           The following files are example of the proper formatting (the values are for illustration only):
+           <ul> 	
+           <li><a href='./examples/kroes.csv'>Input .CSV  file example</a></li> 
+           <li><a href='./examples/kroes.sdf'>Input .SDF  file example</a></li>
+           
+           <li><a href='./examples/kroes-processing.csv'>Output .CSV  file</a></li>
+           <li><a href='./examples/kroes-processing.sdf'>Output .SDF  file</a></li>
+           </ul>
+        </p>
+      </answer>
+    </faq>
+ 
+  </part>
+</faqs>
