@@ -3,7 +3,7 @@
   <parent>
     <artifactId>toxtree</artifactId>
     <groupId>toxtree</groupId>
-    <version>2.5.0</version>
+    <version>2.5.1</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
@@ -31,6 +31,7 @@
     <module>toxtree-verhaar2</module>    
     <module>toxtree-search</module>
     <module>toxtree-proteinbinding</module>
+    <module>toxtree-moa</module>
   </modules>
   <dependencies>
   	<dependency>

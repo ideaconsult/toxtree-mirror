@@ -1,0 +1,15 @@
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>toxtree-plugins</artifactId>
+    <groupId>toxtree</groupId>
+    <version>2.5.1</version>
+  </parent>
+  <groupId>toxtree-moa</groupId>
+  <artifactId>toxtree-moa</artifactId>
+  <version>2.5.1</version>
+  <name>Toxtree module: Mode of Action</name>
+  <description>Environmental Toxicology and Chemistry, Vol. 16, No. 5, pp. 948–967, 1997</description>
+  <url>http://www.epa.gov/ncct/dsstox/Citations/ETC_Russom_1997_v16p948.pdf</url>
+  <inceptionYear>2011</inceptionYear>
+</project>
