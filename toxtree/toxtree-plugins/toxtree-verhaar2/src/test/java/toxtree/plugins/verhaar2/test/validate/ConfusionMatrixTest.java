@@ -44,7 +44,7 @@ Expected	4.0	Predicted	Class 5 (Not possible to classify according to these rule
  */
 	@Test
 	public void testVerhaar2() throws Exception {
-		 rules = new VerhaarScheme2(false);
+		 rules = new VerhaarScheme2();
 		testFile(getClass().getClassLoader().getResource("toxtree/plugins/verhaar2/Verhaar2000.sdf").getFile(),
 				new String[] {"Class","Class_additional"});
 	}

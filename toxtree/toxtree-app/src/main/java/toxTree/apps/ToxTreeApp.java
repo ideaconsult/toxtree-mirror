@@ -112,6 +112,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 				methods.add(Introspection.loadCreateObject("toxtree.plugins.smartcyp.SMARTCYPPlugin"));//13
 				methods.add(Introspection.loadCreateObject("mic.MICRules"));//14
 				methods.add(Introspection.loadCreateObject("toxtree.plugins.func.FuncRules"));//100
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.moa.MOARules"));//100
 				//methods.add(Introspection.loadCreateObject("toxtree.plugins.search.CompoundLookup"));
 			} catch (Exception x) { 
 				x.printStackTrace();

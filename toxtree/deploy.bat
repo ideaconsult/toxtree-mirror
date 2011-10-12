@@ -1,5 +1,5 @@
 mkdir dist
-copy toxtree-app\target\Toxtree-2.5.0.jar dist
+copy toxtree-app\target\Toxtree-2.5.1.jar dist
 mkdir dist\ext
 del dist\ext\*
 copy toxtree-plugins\toxtree-cramer\target\*.jar dist\ext
@@ -16,3 +16,5 @@ copy toxtree-plugins\toxtree-skinsensitisation\target\*.jar dist\ext
 copy toxtree-plugins\toxtree-biodegradation\target\*.jar dist\ext
 ;copy toxtree-plugins\toxtree-verhaar2\target\*.jar dist\ext
 copy toxtree-plugins\toxtree-functional_groups\target\*.jar dist\ext
+copy toxtree-plugins\toxtree-proteinbinding\target\*.jar dist\ext
+copy toxtree-plugins\toxtree-moa\target\*.jar dist\ext
