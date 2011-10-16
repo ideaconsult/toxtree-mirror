@@ -40,7 +40,7 @@ Acetoin,513-86-0,CC(O)C(C)=O
            <li><a href='./examples/kroes.csv'>Input .CSV  file example</a></li> 
            <li><a href='./examples/kroes.sdf'>Input .SDF  file example</a></li>
            
-           <li><a href='./examples/kroes-processing.csv'>Output .CSV  file</a></li>
+           <li><a href='./examples/kroes-predictions.csv'>Output .CSV  file</a></li>
            <li><a href='./examples/kroes-processing.sdf'>Output .SDF  file</a></li>
            </ul>
         </p>
