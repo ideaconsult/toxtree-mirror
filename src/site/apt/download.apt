@@ -34,7 +34,7 @@
 
       * {{{./smartcyp.html}SMARTCyp plug-in}} - added metabolite generation, based on Site of Metabolism, calculated by {{{http://www.farma.ku.dk/index.php/SMARTCyp/7990/0/}SMARTCyp}} and ambit-SMIRKS package;
 
-      * improved implementation of {{{./varhaar.html}Verhaar scheme plugin}}; validated against a published dataset;
+      * improved implementation of {{{./verhaar.html}Verhaar scheme plugin}}; validated against a published dataset;
       
       * added two new plug-ins: {{{./verhaar2.html}Modified Verhaar scheme}}, and {{{./issfunc.html}Structural Alerts for Functional Group Identification (ISSFUNC)}};
 

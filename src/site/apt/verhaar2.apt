@@ -11,7 +11,7 @@ Verhaar scheme for predicting toxicity mode of action (modified)
 
  Verhaar scheme for predicting toxicity mode of action (modified). Reuses rules from {{{/verhaar.html}Verhaar scheme module}}, and is partially updated, according to recommendations in [Enoch 2008]
  
- The plugin will be distributed with the main ToxTree release starting with {{{./downloads.html#Toxtree_2.5.0}Toxtree 2.5.0}}
+ The plugin will be distributed with the main ToxTree release starting with {{{./download.html#Toxtree_2.5.0}Toxtree 2.5.0}}
  
  Developed by {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria)
  
