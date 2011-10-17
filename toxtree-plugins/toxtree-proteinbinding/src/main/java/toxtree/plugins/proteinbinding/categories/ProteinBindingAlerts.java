@@ -193,7 +193,7 @@ public enum ProteinBindingAlerts {
 					{
 					"Polarised-alkenes",
 					"Polarised-alkene-pyrimidines", //13
-					"$([CH2]),$([CH][#6])]=[CH,$(C[#6])][$(c1ncncc1),$(c1ncccn1),$(c1cncnc1)]"
+					"[$([CH2]),$([CH][#6])]=[CH,$(C[#6])][$(c1ncncc1),$(c1ncccn1),$(c1cncnc1)]"
 					},		
 					{
 					"Polarised-alkenes",
