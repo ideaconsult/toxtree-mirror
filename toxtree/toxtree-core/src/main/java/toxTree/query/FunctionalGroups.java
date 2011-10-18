@@ -1207,6 +1207,7 @@ public class FunctionalGroups {
             r[i].addSymbol("H");
             r[i].addSymbol("O");
             r[i].addSymbol("S");
+            r[i].addSymbol("N");
             r[i].setProperty(DONTMARK,query.getID());
             query.addAtom(r[i]);
         }
@@ -2409,7 +2410,7 @@ public class FunctionalGroups {
     	  SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
     	  mol.addAtom(c1);
     	  InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom();
-    	  r.addSymbol("O");  r.addSymbol("S");  mol.addAtom(r);
+    	  r.addSymbol("O");  r.addSymbol("S"); r.addSymbol("N");  mol.addAtom(r);
     	  SymbolQueryAtom c2 = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
     	  mol.addAtom(c2);
     	  SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN));
