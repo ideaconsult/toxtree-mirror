@@ -82,7 +82,7 @@ public class SkinSensitisationPlugin extends UserDefinedTree  implements IDecisi
 				changes.firePropertyChange("Transitions", transitions,null);
 			}
 			*/
-			setTitle("Skin Sensitisation Alerts");
+			setTitle("DNA binding");
 
 	        setPriority(9);
 	        setFalseIfRuleNotImplemented(false);
