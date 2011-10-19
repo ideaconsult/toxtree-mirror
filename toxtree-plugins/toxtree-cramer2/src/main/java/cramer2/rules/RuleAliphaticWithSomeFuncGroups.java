@@ -84,7 +84,7 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 		title = "Aliphatic with some functional groups (see explanation)";
 		explanation.append("<html>Is the structure a linear or <i>simply branched</i> (I) <i>aliphatic</i> (A) compound, containing any one or combination of only the following <i>functional groups</i> (E): <UL>");
 		explanation.append("<LI>(a)four or less, each, of alcohol, aldehyde, carboxylic acid or esters and/or");
-		explanation.append("<LI>(b)one each of one or more of the following: acetal, either ketone or ketal but not both, mercaptan, sulphide (mono- or poly-), thioester, polyoxyethylene [(-OCH2CH2-)x with x <= 4], or ");
+		explanation.append("<LI>(b)one each of one or more of the following: acetal, either ketone or ketal but not both, mercaptan, sulphide (mono- or poly-), thioester, polyoxyethylene [(-OCH2CH2-)x with x no greather than 4], or ");
 		explanation.append("primary or tertiary amine </UL>");
 		explanation.append("this question should be answered YES if the structure contains one or any possible combination of alcoholic, aldehydic or carboxylic acid or ester groups, provided there are no more than four of any one kind.");
 		explanation.append("It should be answered YES if the structure contains in addition to, or instead of, those just listed, any assortment of no more than one each of the following:");
