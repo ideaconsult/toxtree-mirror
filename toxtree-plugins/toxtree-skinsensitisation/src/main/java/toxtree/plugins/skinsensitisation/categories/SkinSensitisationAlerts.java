@@ -226,11 +226,11 @@ public enum SkinSensitisationAlerts {
 	NO_ALERTS {
 		@Override
 		public String getCategoryExplanation() {
-			return "No structural alerts have been identified.";
+			return "No structural alerts for DNA binding have been identified.";
 		}
 		@Override
 		public String getCategoryTitle() {
-			return "No skin sensitisation alerts identified.";
+			return "No DNA binding alerts identified.";
 		}
 		@Override
 		public String getTitle() {
