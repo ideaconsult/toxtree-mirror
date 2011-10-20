@@ -41,7 +41,7 @@ public class FG87 extends FG {
         	  setID("FG87");
               setTitle("aromatic compound");
              
-            addSubstructure("FG87", "[c]:[c]");
+            addSubstructure("FG87", "[a]");
            
            
             
