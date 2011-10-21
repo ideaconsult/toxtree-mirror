@@ -16,13 +16,26 @@ Cramer rules
   Screenshots: {{{./images/cramer/screen.jpg}Main screen}} , {{{./images/cramer/tree.jpg}Decision tree}}
    
 [images/cramer/thumb.jpg]
+
+* Applicability of Cramer rules Toxtree module
+ 
+ The Toxtree implementation of the Cramer scheme can, in principle, be applied to organic molecules, organic salts and organometallics, and
+ structurally well-defined oligomers and polymers.
+ 
+ With regards to oligomers and polymers: Despite there is no technical limitation in Toxtree in running oligomers and polymers
+ (assuming their structures are well defined), these substances are generally considered out of scope of the Cramer scheme since they were not present in
+ the dataset from which the scheme was derived [Cramer, 1978], with the exception of substances containing a polyoxyethylene [(-
+ OCH2CH2-)x, with x no greater than 4] chain (cf. questions 20 and 32).
    
 * Reference
 
  [Cramer, 1978] Cramer GM, Ford RA, Hall RL (1978) Estimation of Toxic Hazard - A Decision Tree Approach. J. Cosmet. Toxicol. 16, 255-276.
 
  [Patlewicz, 2008] Patlewicz G, Jeliazkova N, Safford RJ, Worth AP, Aleksiev B. (2008) An evaluation of the implementation of the Cramer classification scheme in the Toxtree software. SAR QSAR Environ Res. ;19(5-6):495-524.
-
+ 
+ [Lapenna 2011] Lapenna S & Worth A (2011), Analysis of the Cramer classification scheme for oral systemic toxicity - implications for its implementation in Toxtree. 
+ {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_24898_EN.pdf}EUR 24898 EN. Publications Office of the European Union, Luxembourg}}.
+ 
 * Forum
 
  {{{http://sourceforge.net/forum/forum.php?forum_id=867719}Cramer rules forum}}
