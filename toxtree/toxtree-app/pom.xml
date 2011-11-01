@@ -85,7 +85,7 @@
   	<dependency>
   		<groupId>dk.smartcyp</groupId>
   		<artifactId>smartcyp-core</artifactId>
-  		<version>1.5.5</version>
+  		<version>${smartcyp.version}</version>
   		<scope>compile</scope>
   	</dependency>
   	<dependency>
@@ -127,6 +127,12 @@
   		<artifactId>toxtree-moa</artifactId>
   		<version>${project.version}</version>
   		<type>jar</type>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>toxtree-proteinbinding</groupId>
+  		<artifactId>toxtree-proteinbinding</artifactId>
+  		<version>2.5.2-SNAPSHOT</version>
   		<scope>provided</scope>
   	</dependency>
   </dependencies>
