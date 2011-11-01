@@ -333,8 +333,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
  	<ambit.version>2.4.4-SNAPSHOT</ambit.version>
- 	<cdk.version>1.4.4</cdk.version>
+ 	<cdk.version>1.4.5</cdk.version>
     <junit.version>4.8.1</junit.version>
-  	<smartcyp.version>1.5.6-SNAPSHOT</smartcyp.version>
+  	<smartcyp.version>1.5.6</smartcyp.version>
   </properties>    
 </project>
