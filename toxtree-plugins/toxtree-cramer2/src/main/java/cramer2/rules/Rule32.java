@@ -25,8 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package cramer2.rules;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.Ring;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
@@ -95,7 +95,7 @@ public class Rule32 extends RuleOnlyAllowedSubstructures {
 		final String c = "C";
 		if (FunctionalGroups.singleFusedRing(mol,rings)) {
 			for (int i = 0; i < rings.getAtomContainerCount(); i++) {
-				Ring ring = (Ring) rings.getAtomContainer(i);
+				IRing ring = (IRing) rings.getAtomContainer(i);
 				if (ring.getFlag(CDKConstants.ISAROMATIC)) {
 					logger.debug("Aromatic ring found");
 					return false;

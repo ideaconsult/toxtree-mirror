@@ -116,7 +116,7 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 					try {
 						//trying to hydrolize
 						b = true;
-						SetOfAtomContainers residues = sr.isReadilyHydrolised((Molecule)a);
+						SetOfAtomContainers residues = sr.isReadilyHydrolised((IMolecule)a);
 						canBeHydrolized = (residues != null); 
 						if (residues == null) {
 							logger.debug("Long chain substituent can't be hydrolized!\t - ",c);

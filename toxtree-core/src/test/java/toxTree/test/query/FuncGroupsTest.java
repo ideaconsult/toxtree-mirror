@@ -39,8 +39,6 @@ import junit.framework.TestCase;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.Molecule;
-import org.openscience.cdk.Ring;
-import org.openscience.cdk.RingSet;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.exception.InvalidSmilesException;
@@ -51,6 +49,7 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.io.CDKSourceCodeWriter;
 import org.openscience.cdk.io.IChemObjectWriter;
@@ -612,11 +611,11 @@ public class FuncGroupsTest extends TestCase {
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    assertNotNull(mf);
 	    IRingSet rs = mf.getRingset();
-	    int size = ((RingSet) rs).getAtomContainerCount();
+	    int size = ((IRingSet) rs).getAtomContainerCount();
 	    assertNotNull(rs);
 	    assertEquals(2,size);
 	    for (int i=0; i < size; i++) {
-	        Ring r = (Ring) rs.getAtomContainer(i);
+	        IRing r = (IRing) rs.getAtomContainer(i);
 	        logger.debug("Ring\t"+(i+1));
 
 	        IAtomContainer mc = FunctionalGroups.cloneDiscardRingAtomAndBonds(mol,r);	        

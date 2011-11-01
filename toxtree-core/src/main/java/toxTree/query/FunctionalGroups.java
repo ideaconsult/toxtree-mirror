@@ -43,7 +43,6 @@ import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.Molecule;
-import org.openscience.cdk.Ring;
 import org.openscience.cdk.RingSet;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.exception.CDKException;
@@ -1148,7 +1147,7 @@ public class FunctionalGroups {
         if ((list !=null) && (list.size()>=2)) { //can be
         	markMaps(mol,query,list);
         	for (int i=0; i < rings.getAtomContainerCount(); i++) { 
-        		Ring ring = (Ring) rings.getAtomContainer(i);
+        		IRing ring = (IRing) rings.getAtomContainer(i);
         		esterGroups.clear();
         		for (int b=0;b<ring.getBondCount();b++) {
         			Object o = ring.getBond(b).getProperty(query.getID());
@@ -2187,7 +2186,7 @@ public class FunctionalGroups {
 	    	List list = null;
 	    	int found = 0;
 	  	    for (int i=0; i < query.size(); i++) {
-	    		AtomContainer q = (AtomContainer) query.get(i);
+	    		IAtomContainer q = (IAtomContainer) query.get(i);
 	    		list = FunctionalGroups.getUniqueBondMap(mol, q,isPreprocessed);
 	    		if ((list == null) || (list.size() == 0)) continue;
 	    		FunctionalGroups.markMaps(mol, q, list);
@@ -3320,11 +3319,11 @@ public class FunctionalGroups {
         
     	if ((rings == null) || (rings.getAtomContainerCount()==0)) return false;
     	int size = rings.getAtomContainerCount();
-    	Ring r = null;
+    	IRing r = null;
     	//Atom[] neighbors = null;
     	List neighbors = null;
 	    for (int i=0; i < size; i++) {
-	        r = (Ring) rings.getAtomContainer(i);
+	        r = (IRing) rings.getAtomContainer(i);
 	        for (int j=0; j< r.getAtomCount(); j++) {
 	        	//
 	        	neighbors = mol.getConnectedBondsList(r.getAtom(j));
@@ -3425,7 +3424,7 @@ public class FunctionalGroups {
 		if ((rings == null) || (rings.getAtomContainerCount() ==0) ) return false;
 		int size = rings.getAtomContainerCount();
 		if (size==1) return true;
-		IRingSet allRings = rings.getConnectedRings((Ring)rings.getAtomContainer(0));
+		IRingSet allRings = rings.getConnectedRings((IRing)rings.getAtomContainer(0));
 		boolean b = (allRings.getAtomContainerCount() == size);
 		if (b) logger.debug("Single fused ring found");
 		allRings = null;

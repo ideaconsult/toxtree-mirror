@@ -35,9 +35,9 @@ package cramer2.rules;
 import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.Ring;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecularFormula;
+import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.SSSRFinder;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
@@ -98,7 +98,7 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 		final String c = "C";
 		if (FunctionalGroups.singleFusedRing(mol,rings)) {
 			for (int i = 0; i < rings.getAtomContainerCount(); i++) {
-				Ring ring = (Ring) rings.getAtomContainer(i);
+				IRing ring = (IRing) rings.getAtomContainer(i);
 				if (ring.getFlag(CDKConstants.ISAROMATIC)) {
 					logger.debug("Aromatic ring found");
 					return false;

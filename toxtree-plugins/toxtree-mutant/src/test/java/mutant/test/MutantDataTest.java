@@ -285,7 +285,7 @@ public class MutantDataTest extends TestCase {
                 assertNotNull(object);
                 assertTrue((object instanceof Molecule));
                 /*if(molCount==1){
-                	Molecule mol = (Molecule)object; 
+                	IMolecule mol = (IMolecule)object; 
                 	Hashtable temp = mol.getProperties();
                 	Enumeration e  = temp.keys();            		
                 	while(e.hasMoreElements()){ 
@@ -293,9 +293,9 @@ public class MutantDataTest extends TestCase {
                 		
                 	}
                 }*/
-                if(object instanceof Molecule){
+                if(object instanceof IMolecule){
               
-                Molecule mol = (Molecule)object; 
+                IMolecule mol = (IMolecule)object; 
                 //smiles,class,name,tree path,MeltingPoint,LogKow,LipidSolubility,MoleculWeight,SurfaceTension,VapourPressure,AqueousSolubility
                 molecules[molCount][0] = mol.getProperty("SMILES").toString();               
                 molecules[molCount][1] = "1";

@@ -34,8 +34,8 @@ package toxTree.tree.cramer;
 
 import java.util.List;
 
-import org.openscience.cdk.Ring;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
@@ -106,7 +106,7 @@ public class RuleLactoneOrCyclicDiester extends RuleSubstructures {
 			IRingSet rings = mf.getRingset();
 
 			for (int i=0; i < rings.getAtomContainerCount(); i++) {
-				Ring ring = (Ring) rings.getAtomContainer(i);
+				IRing ring = (IRing) rings.getAtomContainer(i);
 				if ((ring.getAtomCount() > 3)  /*&& (ring.getAtomCount() < 7) */) {
 
 					//can be lactone ring

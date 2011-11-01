@@ -36,10 +36,10 @@ import org.junit.Test;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.ChemFile;
-import org.openscience.cdk.ChemObject;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IChemFile;
+import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.MDLReader;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
@@ -135,8 +135,8 @@ public class RuleStructuresListTest  {
 					r++;
 					Object o = reader.next();
 					
-					if (o instanceof AtomContainer) {
-						Molecule m = (Molecule) o;
+					if (o instanceof IAtomContainer) {
+						IMolecule m = (IMolecule) o;
 						try {
 							MolAnalyser.analyse(m);			
 							//hadder.addExplicitHydrogensToSatisfyValency(m);
@@ -172,10 +172,10 @@ public class RuleStructuresListTest  {
 		verifyFile("foodmol.sdf");
 	}	
 	protected void verifyFile(String filename) throws Exception {
-		ChemFile m = null;
+		IChemFile m = null;
 		InputStream in = getClass().getClassLoader().getResourceAsStream(filename);
 		MDLReader reader = new MDLReader(in);
-		m = (ChemFile)reader.read((ChemObject)new ChemFile());
+		m = (IChemFile)reader.read((IChemObject)new ChemFile());
 		reader.close();
 
 		List c = ChemFileManipulator.getAllAtomContainers(m);

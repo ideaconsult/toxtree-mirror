@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.Ring;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
@@ -126,7 +125,7 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 	    }
 	    int benzene = 0;
 	    for (int i=0; i < rings.getAtomContainerCount(); i++) {
-		    Ring r = (Ring) rings.getAtomContainer(i);
+		    IRing r = (IRing) rings.getAtomContainer(i);
 		    if (r.getAtomCount() != 6 ) continue;
 		    if (!r.getFlag(CDKConstants.ISAROMATIC)) continue;
 		    Object o = r.getProperty(MolAnalyser.HETEROCYCLIC);
