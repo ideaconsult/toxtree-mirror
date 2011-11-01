@@ -19,7 +19,7 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.CMLWriter;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
@@ -195,7 +195,7 @@ public class   MetabolyteRecycler implements PropertyChangeListener {
 	protected IAtomContainer quick_and_dirty_viainchi(String inchi) {
     	try {
     		InChIGeneratorFactory inchiFactory = InChIGeneratorFactory.getInstance();
-    		InChIToStructure c =inchiFactory.getInChIToStructure(inchi, NoNotificationChemObjectBuilder.getInstance());
+    		InChIToStructure c =inchiFactory.getInChIToStructure(inchi, SilentChemObjectBuilder.getInstance());
     		return c.getAtomContainer();   
     	} catch (Exception x) {
     		return null;

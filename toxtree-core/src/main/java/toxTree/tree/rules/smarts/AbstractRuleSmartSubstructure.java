@@ -28,11 +28,10 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
-import toxTree.core.IDecisionRuleEditor;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.AbstractRule;
@@ -100,7 +99,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
     		public IChemObjectSelection process(IAtomContainer mol)
     				throws AmbitException {
     			try {
-    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
+    				IAtomContainer selected = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
     				try { MolAnalyser.analyse(mol); } catch (Exception x) {};
 	    			boolean ok = verifyRule(mol, selected);
 					if (selected.getAtomCount()==0) return null;

@@ -12,7 +12,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IMetaboliteGenerator;
@@ -72,7 +72,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 			SMARTSData data = SMARTCYP_PROPERTY.Energy.getData(atom);
 			if (data == null) {
 				if (products == null)
-					products = NoNotificationChemObjectBuilder.getInstance()
+					products = SilentChemObjectBuilder.getInstance()
 							.newInstance(IAtomContainerSet.class);
 				//IAtomContainer product = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainer.class);
 				//product.setID(String.format("No energy for rank 1 atom!"));
@@ -95,7 +95,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 			//if (smrkMan.applyTransformation(product, this, smr)) {
 				
 				if (products == null)
-					products = NoNotificationChemObjectBuilder.getInstance()
+					products = SilentChemObjectBuilder.getInstance()
 							.newInstance(IAtomContainerSet.class);
 				for (IAtomContainer ac : rproducts.atomContainers()) {
 					ac.setID(reaction.toString());
@@ -145,9 +145,9 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 				//products.addAtomContainer(product);
 			} else {
 				if (products == null)
-					products = NoNotificationChemObjectBuilder.getInstance()
+					products = SilentChemObjectBuilder.getInstance()
 							.newInstance(IAtomContainerSet.class);
-				product = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainer.class);
+				product = SilentChemObjectBuilder.getInstance().newInstance(IAtomContainer.class);
 				product.setID(String.format("Can't generate products! <br>%s<br>%s<br>%s",
 						reaction.name(),
 						reaction.getSMIRKS(),

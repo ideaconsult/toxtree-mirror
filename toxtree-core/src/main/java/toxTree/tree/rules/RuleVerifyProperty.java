@@ -32,9 +32,9 @@ import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionInteractive;
@@ -257,7 +257,7 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 	    		public IChemObjectSelection process(IAtomContainer mol)
 	    				throws AmbitException {
 	    			try {
-	    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
+	    				IAtomContainer selected = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
 		    			if (verifyRule(mol)) {
 		    				selected.add(mol);
 		    				return new SingleSelection<IAtomContainer>(selected);
