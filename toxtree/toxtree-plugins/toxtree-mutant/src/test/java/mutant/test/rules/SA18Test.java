@@ -33,9 +33,9 @@ import mutant.rules.SA18;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
@@ -129,8 +129,8 @@ public class SA18Test extends TestMutantRules {
 
 
         SmilesParser sp = new SmilesParser 
-(DefaultChemObjectBuilder.getInstance());
-        CDKHydrogenAdder ha = CDKHydrogenAdder.getInstance(DefaultChemObjectBuilder.getInstance());
+(SilentChemObjectBuilder.getInstance());
+        CDKHydrogenAdder ha = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
         for (String smile : smiles) {
             IAtomContainer mol = sp.parseSmiles(smile);
             countAromaticAtoms(mol);
@@ -166,7 +166,7 @@ public class SA18Test extends TestMutantRules {
     public void testAromaticitySmiles() throws Exception {
 
 
-        SmilesParser sp = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+        SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 
         for (String smile : smiles) {
             IAtomContainer mol = sp.parseSmiles(smile);

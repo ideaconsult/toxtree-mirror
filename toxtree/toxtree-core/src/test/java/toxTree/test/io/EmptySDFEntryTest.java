@@ -31,11 +31,11 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.openscience.cdk.ChemFile;
 import org.openscience.cdk.ChemObject;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
 import toxTree.logging.TTLogger;
@@ -81,7 +81,7 @@ public class EmptySDFEntryTest {
 
 			IteratingMDLReader reader = new IteratingMDLReader(
 					this.getClass().getClassLoader().getResourceAsStream("data/Misc/emptyStructure.sdf"),
-			        DefaultChemObjectBuilder.getInstance());
+					SilentChemObjectBuilder.getInstance());
             int molCount = 0;
             while (reader.hasNext()) {
                 Object object = reader.next();

@@ -29,8 +29,8 @@ import java.io.InputStream;
 import mutant.rules.RuleAromaticAmineNoSulfonicGroup;
 import mutant.test.TestMutantRules;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 
 import toxTree.core.IDecisionRule;
@@ -131,7 +131,7 @@ public class RuleAromaticAmineNoSulfonicGroupTest extends TestMutantRules {
 			fail(x.getMessage());
 		}
 	}
-    protected IIteratingChemObjectReader getReader(InputStream stream, DefaultChemObjectBuilder b) {
+    protected IIteratingChemObjectReader getReader(InputStream stream, IChemObjectBuilder b) {
     	try {
     		return  new IteratingDelimitedFileReader(stream);
     	} catch (Exception x) {

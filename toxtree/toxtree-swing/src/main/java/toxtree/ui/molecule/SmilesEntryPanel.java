@@ -48,7 +48,6 @@ import javax.swing.SwingConstants;
 import javax.vecmath.Vector2d;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.inchi.InChIGeneratorFactory;
 import org.openscience.cdk.inchi.InChIToStructure;
@@ -57,6 +56,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.query.FunctionalGroups;
@@ -314,7 +314,7 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	public IAtomContainer isInChI(String inchi) throws Exception {
 		if (inchi.startsWith(AmbitCONSTANTS.INCHI)) {
 			InChIGeneratorFactory f = InChIGeneratorFactory.getInstance();
-			InChIToStructure c =f.getInChIToStructure(inchi, DefaultChemObjectBuilder.getInstance());
+			InChIToStructure c =f.getInChIToStructure(inchi, SilentChemObjectBuilder.getInstance());
 			if ((c==null) || (c.getAtomContainer()==null) || (c.getAtomContainer().getAtomCount()==0)) 
 				throw new Exception("Invalid InChI");
 			return c.getAtomContainer();

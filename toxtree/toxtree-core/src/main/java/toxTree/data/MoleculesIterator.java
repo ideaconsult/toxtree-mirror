@@ -36,7 +36,6 @@ import java.util.List;
 import javax.vecmath.Point2d;
 import javax.vecmath.Vector2d;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
@@ -207,7 +206,7 @@ public class MoleculesIterator implements IMoleculesIterator {
 	}
     protected void useIterativeReader(InputStream in) {
         containers.clear();
-        MyIteratingMDLReader reader = new MyIteratingMDLReader(in, DefaultChemObjectBuilder.getInstance());
+        MyIteratingMDLReader reader = new MyIteratingMDLReader(in, SilentChemObjectBuilder.getInstance());
         int r = 0;
         while (reader.hasNext()) {
             Object o = reader.next();
@@ -252,7 +251,7 @@ public class MoleculesIterator implements IMoleculesIterator {
             
             if (reader != null) {
                 try {
-                	IChemFile content = (IChemFile)reader.read(MoleculeTools.newChemFile(DefaultChemObjectBuilder.getInstance()));
+                	IChemFile content = (IChemFile)reader.read(MoleculeTools.newChemFile(SilentChemObjectBuilder.getInstance()));
 	                //SetOfMolecules content = (SetOfMolecules) reader.read(new SetOfMolecules());
 	                reader.close();
 	                if (content == null) {

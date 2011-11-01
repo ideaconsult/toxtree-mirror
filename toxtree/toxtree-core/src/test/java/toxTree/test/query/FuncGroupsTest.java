@@ -38,7 +38,6 @@ import junit.framework.TestCase;
 
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.Ring;
 import org.openscience.cdk.RingSet;
@@ -62,6 +61,7 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainerCreator;
 import org.openscience.cdk.isomorphism.matchers.SymbolAndChargeQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AnyOrderQueryBond;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -113,7 +113,7 @@ public class FuncGroupsTest extends TestCase {
      */
     public FuncGroupsTest(String arg0) {
         super(arg0);
-        gen = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+        gen = new SmilesParser(SilentChemObjectBuilder.getInstance());
         logger = new TTLogger(this);
         TTLogger.configureLog4j(true);
         LoggingTool.configureLog4j();
@@ -136,8 +136,8 @@ public class FuncGroupsTest extends TestCase {
     }
     public void testmatchInherited() throws Exception {
 
-        SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolAndChargeQueryAtom c2 = new SymbolAndChargeQueryAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolAndChargeQueryAtom c2 = new SymbolAndChargeQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
     	IAtomContainer c = MoleculeFactory.makeAlkane(2); 
         
     	QueryAtomContainer query1 = new QueryAtomContainer();
@@ -637,22 +637,22 @@ public class FuncGroupsTest extends TestCase {
 
 	}   
 	protected IMolecule salt() {
-	    IMolecule mol = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());
-	    IAtom a1 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+	    IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+	    IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 	    mol.addAtom(a1);
-	    IAtom a2 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+	    IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 	    mol.addAtom(a2);
-	    IAtom a3 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+	    IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 	    mol.addAtom(a3);
-	    IAtom a4 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+	    IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 	    mol.addAtom(a4);
-	    IAtom a5 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.NITROGEN);
+	    IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
 	    mol.addAtom(a5);
-	    IAtom a6 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+	    IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 	    mol.addAtom(a6);
-	    IAtom a7 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+	    IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 	    mol.addAtom(a7);
-	    IAtom a8 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CHLORINE);
+	    IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CHLORINE);
 	    mol.addAtom(a8);
 	    Bond b1 = new Bond(a2, a1, IBond.Order.SINGLE);
 	    mol.addBond(b1);
@@ -979,50 +979,50 @@ public class FuncGroupsTest extends TestCase {
 	
 	public static IMolecule phenazineMethosulphate() 
 	{
-		  IMolecule mol = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());
-		  IAtom nq = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.NITROGEN);
+		  IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+		  IAtom nq = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
 		  nq.setFormalCharge(+1);
 		  mol.addAtom(nq);
-		  IAtom a2 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.SULFUR);
+		  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR);
 		  mol.addAtom(a2);
-		  IAtom a3 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.NITROGEN);
+		  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
 		  mol.addAtom(a3);
-		  IAtom a4 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a4);
-		  IAtom a5 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a5);
-		  IAtom a6 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a6);
-		  IAtom a7 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a7);
-		  IAtom o1 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN);
+		  IAtom o1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
 		  o1.setFormalCharge(-1);
 		  mol.addAtom(o1);
-		  IAtom a9 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN);
+		  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
 		  mol.addAtom(a9);
-		  IAtom a10 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN);
+		  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
 		  mol.addAtom(a10);
-		  IAtom a11 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN);
+		  IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
 		  mol.addAtom(a11);
-		  IAtom a12 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a12);
-		  IAtom a13 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a13 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a13);
-		  IAtom a14 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a14 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a14);
-		  IAtom a15 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a15 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a15);
-		  IAtom a16 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a16 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a16);
-		  IAtom a17 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a17 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a17);
-		  IAtom a18 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a18 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a18);
-		  IAtom a19 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a19 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a19);
-		  IAtom a20 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a20 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a20);
-		  IAtom a21 = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+		  IAtom a21 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a21);
 		  Bond b1 = new Bond(a3, a7, IBond.Order.SINGLE);
 		  mol.addBond(b1);

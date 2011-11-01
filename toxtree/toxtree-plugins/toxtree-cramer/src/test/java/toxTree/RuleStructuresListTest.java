@@ -37,7 +37,6 @@ import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.ChemFile;
 import org.openscience.cdk.ChemObject;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -46,6 +45,7 @@ import org.openscience.cdk.io.MDLReader;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
@@ -128,7 +128,7 @@ public class RuleStructuresListTest  {
 			IIteratingChemObjectReader reader;
 
 			InputStream in = this.getClass().getClassLoader().getResourceAsStream("bodymol.sdf");
-			reader = new IteratingMDLReader(in,DefaultChemObjectBuilder.getInstance());
+			reader = new IteratingMDLReader(in,SilentChemObjectBuilder.getInstance());
 				int r = 0;
 				boolean ok = false;
 				while (reader.hasNext()) {

@@ -30,12 +30,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IChemObjectChangeEvent;
 import org.openscience.cdk.interfaces.IChemObjectListener;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.logging.TTLogger;
 /**
@@ -209,7 +209,7 @@ public class ListOfAtomContainers extends ArrayList<IAtomContainer> implements	I
 
 	public IChemObjectBuilder getBuilder() {
 
-		return DefaultChemObjectBuilder.getInstance();
+		return SilentChemObjectBuilder.getInstance();
 	}
 	/* (non-Javadoc)
      * @see org.openscience.cdk.interfaces.IChemObject#setNotification(boolean)

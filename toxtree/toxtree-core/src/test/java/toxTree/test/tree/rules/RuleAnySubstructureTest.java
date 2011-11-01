@@ -26,9 +26,9 @@ package toxTree.test.tree.rules;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
 
@@ -86,7 +86,7 @@ public class RuleAnySubstructureTest extends TestCase {
 			fail();
 		}
 		
-		SmilesParser sp = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+		SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		try {
 			mol = sp.parseSmiles("CCCCCc1ccccc1");
 		} catch (InvalidSmilesException x) {

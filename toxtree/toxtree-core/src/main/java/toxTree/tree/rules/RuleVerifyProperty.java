@@ -28,7 +28,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
@@ -183,7 +182,7 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 	public IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
 		int index = 0;
 		if (ruleResult) index = 1;
-		SmilesParser p = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		try {
 			IMolecule m = p.parseSmiles(examples[index]);		
 	        m.setProperty(getPropertyName(), propertyExamples[index]);

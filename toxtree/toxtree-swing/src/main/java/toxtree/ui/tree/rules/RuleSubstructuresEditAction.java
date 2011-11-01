@@ -28,11 +28,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IRuleSubstructures;
 import ambit2.core.data.MoleculeTools;
@@ -83,7 +83,7 @@ public class RuleSubstructuresEditAction extends RuleMoleculeEditAction {
 	public void actionPerformed(ActionEvent arg0) {
 			if (createNewMolecule) {
 				IMolecule m = new org.openscience.cdk.Molecule();
-				m.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
+				m.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
 				setMolecule(m);
 			}
 			super.actionPerformed(arg0);

@@ -5,11 +5,11 @@ import java.io.File;
 import java.util.List;
 import java.util.Observable;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionResult;
@@ -47,8 +47,8 @@ public class DataContainer extends Observable {
 
     public void newMolecule() {
     	if (!enabled) return;
-    	IMolecule mol = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());
-    	//mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
+    	IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+    	//mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
     	mol.setProperty("SMILES","");
     	newMolecule(mol);
     }
@@ -61,7 +61,7 @@ public class DataContainer extends Observable {
     public void addMolecule() {
     	if (!enabled) return;
     	Molecule mol = new Molecule();
-    	mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON));
+    	mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
     	addMolecule(mol);
     }
     

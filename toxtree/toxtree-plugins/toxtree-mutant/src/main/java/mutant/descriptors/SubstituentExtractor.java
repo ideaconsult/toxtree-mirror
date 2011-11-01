@@ -6,7 +6,6 @@ import java.util.Hashtable;
 import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
@@ -19,6 +18,7 @@ import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.mcss.RMap;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
@@ -192,8 +192,8 @@ public class SubstituentExtractor {
 	            	
 	            if (a != null) {
 	            	//System.out.println("Substituent starting with "+a.getSymbol() + " " + a.getProperties());
-	            	//IAtom r = DefaultChemObjectBuilder.getInstance().newAtom("R");
-                    IAtom r = MoleculeTools.newPseudoAtom(DefaultChemObjectBuilder.getInstance(),"R");
+	            	//IAtom r = SilentChemObjectBuilder.getInstance().newAtom("R");
+                    IAtom r = MoleculeTools.newPseudoAtom(SilentChemObjectBuilder.getInstance(),"R");
 	            	result.addAtom(r);
 	            	result.addBond(MoleculeTools.newBond(NoNotificationChemObjectBuilder.getInstance(),a, r, b.getOrder()));
 	            }

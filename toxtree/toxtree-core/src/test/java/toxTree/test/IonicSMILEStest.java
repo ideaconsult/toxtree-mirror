@@ -25,10 +25,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.test;
 
 import org.junit.Test;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
 
@@ -49,7 +49,7 @@ public class IonicSMILEStest {
 	@Test
 	public void ionicSmiles(String smiles) throws Exception {
 		
-		SmilesParser p = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 
 			IMolecule m = p.parseSmiles(smiles);
 			IMoleculeSet c = ConnectivityChecker.partitionIntoMolecules(m);

@@ -28,9 +28,9 @@ import java.io.FileOutputStream;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
 /**
@@ -44,7 +44,7 @@ public class parseKTest extends TestCase {
 		junit.textui.TestRunner.run(parseKTest.class);
 	}
 	public void testParseK() {
-		SmilesParser p = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		try {
 			IMolecule mol = p.parseSmiles("C=CCC(=NOS(=O)(=O)[O-])SC1OC(CO)C(O)C(O)C1(O).[Na+]");
 			assertNotNull(mol);

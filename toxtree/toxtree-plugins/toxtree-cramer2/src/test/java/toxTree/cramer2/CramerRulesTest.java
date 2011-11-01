@@ -24,10 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.cramer2;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
 
@@ -55,7 +55,7 @@ public class CramerRulesTest extends RulesTestCase {
 		} catch (DecisionMethodException x) {
 			fail();
 		}	
-        gen = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+        gen = new SmilesParser(SilentChemObjectBuilder.getInstance());
         
 	}
 
