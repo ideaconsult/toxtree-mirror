@@ -75,7 +75,5 @@ Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman and Lars Olsen, SM
   		<version>${ambit.version}</version>
   	</dependency>
   </dependencies>
-  <properties>
-  	<smartcyp.version>1.5.5</smartcyp.version>
-  </properties>  
+
 </project>
