@@ -1,9 +1,9 @@
 package toxTree.tree;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
@@ -30,7 +30,7 @@ public abstract class AbstractRuleHilightHits extends AbstractRule {
 	    				x.printStackTrace();
 	    			}
 	    			try {
-	    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
+	    				IAtomContainer selected = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
 		    			boolean ok = verifyRule(mol, selected);
 		    			//selected = AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(selected);
 		    			if (selected.getAtomCount()==0) return null;

@@ -30,9 +30,9 @@ import java.util.List;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IElement;
 import org.openscience.cdk.interfaces.IMolecularFormula;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.core.SmartElementsList;
@@ -206,7 +206,7 @@ public class RuleElements extends AbstractRule {
     		public IChemObjectSelection process(IAtomContainer mol)
     				throws AmbitException {
     			try {
-    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
+    				IAtomContainer selected = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
 	    			verifyRule(mol, selected);
 	    			return new SingleSelection<IAtomContainer>(selected);
     			} catch (DecisionMethodException x) {

@@ -26,7 +26,7 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.SymbolSetQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AromaticQueryBond;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
@@ -110,7 +110,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
         {
             IIteratingChemObjectReader reader;
             if(format.endsWith(".sdf"))
-                reader = new IteratingMDLReader(fStream, NoNotificationChemObjectBuilder.getInstance());
+                reader = new IteratingMDLReader(fStream, SilentChemObjectBuilder.getInstance());
             else
             if(format.endsWith(".csv"))
                 reader = new IteratingDelimitedFileReader(fStream);

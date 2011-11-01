@@ -5,9 +5,9 @@ import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
@@ -20,8 +20,8 @@ import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.MoleculeTools;
 import ambit2.rendering.CompoundImageTools;
 import dk.smartcyp.core.MoleculeKU;
-import dk.smartcyp.core.SMARTSData;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
+import dk.smartcyp.core.SMARTSData;
 import dk.smartcyp.core.SMARTSnEnergiesTable;
 
 public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
@@ -31,7 +31,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 	 */
 	private static final long serialVersionUID = -8348454708993409448L;
 
-	protected CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(NoNotificationChemObjectBuilder.getInstance());
+	protected CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
 	
 	public SMARTCYPRuleRank1() {
 		this(1);
@@ -71,7 +71,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 					newmol = calculate(mol);
 			}
 			MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
-			IAtomContainerSet set = NoNotificationChemObjectBuilder.getInstance().newInstance(IAtomContainerSet.class);
+			IAtomContainerSet set = SilentChemObjectBuilder.getInstance().newInstance(IAtomContainerSet.class);
 			set.addAtomContainer(newmol);
 			mf.setResidues(set);
 			
@@ -133,7 +133,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
     		public IChemObjectSelection process(IAtomContainer mol)
     				throws AmbitException {
     			try {
-    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
+    				IAtomContainer selected = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
 	    			verifyRule(mol, selected);
 	    			return new SingleSelection<IAtomContainer>(selected);
     			} catch (DecisionMethodException x) {

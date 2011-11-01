@@ -9,7 +9,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
 
@@ -42,7 +42,7 @@ public class RulesSelectorTest {
 	@Test
 	public void testTreeHilights() throws Exception {
 		SMARTCYPPlugin rules = new SMARTCYPPlugin();
-		SmilesParser parser = new SmilesParser(NoNotificationChemObjectBuilder.getInstance());
+		SmilesParser parser = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		IMolecule mol = parser.parseSmiles("NCCC1=CC(O)=C(O)C=C1"); //NCCc1ccc(O)c(O)c1
 		MolAnalyser.analyse(mol);
 	    BufferedImage image = rules.getImage(mol,null, 200,200,false);

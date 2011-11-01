@@ -51,7 +51,7 @@ import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.SMILESReader;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.templates.MoleculeFactory;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
@@ -385,7 +385,7 @@ public class MoleculesIterator implements IMoleculesIterator {
 		IMoleculeSet m = null;
 		//JCP crashes if empty molecule is submitted, so let's give it single C atom
 		if ((getMolecule()==null) || (getMolecule().getAtomCount()==0)) {
-			IChemObjectBuilder builder = NoNotificationChemObjectBuilder.getInstance();
+			IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
 			IMolecule mol = MoleculeTools.newMolecule(builder);
 			IAtom a = MoleculeTools.newAtom(builder,"C");
 			a.setPoint2d(new Point2d(0,0));

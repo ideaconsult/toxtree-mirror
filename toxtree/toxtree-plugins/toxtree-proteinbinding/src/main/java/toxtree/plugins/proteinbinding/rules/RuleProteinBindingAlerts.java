@@ -12,8 +12,8 @@ public class RuleProteinBindingAlerts extends RuleInitAlertCounter {
 
 	public RuleProteinBindingAlerts() {
 		super();
-		setID("Skin sensitisation alerts");
-		setTitle("Verify structural alerts for potential skin sensitisation");
+		setID("Protein binding alerts");
+		setTitle("Verify structural alerts for protein binding");
 		setExplanation("");
 		
 	}

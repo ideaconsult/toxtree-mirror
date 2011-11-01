@@ -29,10 +29,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.qsar.IDescriptor;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.Introspection;
 import toxTree.exceptions.DecisionMethodException;
@@ -108,7 +108,7 @@ public abstract class RuleDescriptor extends AbstractRule {
 	    		public IChemObjectSelection process(IAtomContainer mol)
 	    				throws AmbitException {
 	    			try {
-	    				IAtomContainer selected = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
+	    				IAtomContainer selected = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
 		    			verifyRule(mol, selected);
 		    			return new SingleSelection<IAtomContainer>(selected);
 	    			} catch (DecisionMethodException x) {

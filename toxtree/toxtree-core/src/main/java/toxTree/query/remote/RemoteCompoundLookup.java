@@ -4,13 +4,10 @@ import java.io.InputStream;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IChemObject;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
-
-import ambit2.core.io.MyIteratingMDLReader;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxtree.lookup.RemoteLookup;
+import ambit2.core.io.MyIteratingMDLReader;
 
 public class RemoteCompoundLookup extends RemoteLookup<IAtomContainer> {
 	
@@ -20,7 +17,7 @@ public class RemoteCompoundLookup extends RemoteLookup<IAtomContainer> {
 
 	@Override
 	public IAtomContainer processStream(String uri,String input,InputStream in) throws Exception {
-		MyIteratingMDLReader reader = new MyIteratingMDLReader(in, NoNotificationChemObjectBuilder.getInstance());
+		MyIteratingMDLReader reader = new MyIteratingMDLReader(in, SilentChemObjectBuilder.getInstance());
 		while (reader.hasNext()) {
 			Object o = reader.next();
 			if (o instanceof IAtomContainer) {

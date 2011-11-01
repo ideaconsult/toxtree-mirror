@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -22,8 +21,8 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.templates.MoleculeFactory;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
@@ -100,7 +99,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 		SmilesGenerator g = new SmilesGenerator();
 		SMARTCYPPlugin smartcyp = new SMARTCYPPlugin();
 		File file = new File(getClass().getClassLoader().getResource("toxtree/test/plugins/smartcyp/3A4_substrates.sdf").getFile());
-		IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream(file), NoNotificationChemObjectBuilder.getInstance());
+		IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream(file), SilentChemObjectBuilder.getInstance());
 		
 		File htmlFile = new File(String.format("%s/metabolites.html", file.getParentFile()));
 		if (htmlFile.exists()) htmlFile.delete();
@@ -252,8 +251,8 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 					
 		htmlFileWriter.write("<a href='#Compounds'>Compounds<a>&nbsp;<a href='#Reactions'>Reactions<a><hr>");
 		htmlFileWriter.write("<a name='#Compounds'/a>");
-		IMolecule placeholder = NoNotificationChemObjectBuilder.getInstance().newInstance(IMolecule.class);
-		IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream(file), NoNotificationChemObjectBuilder.getInstance());
+		IMolecule placeholder = SilentChemObjectBuilder.getInstance().newInstance(IMolecule.class);
+		IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream(file), SilentChemObjectBuilder.getInstance());
 		
 		Hashtable<String, String> compounds = new Hashtable<String, String>();
 		
@@ -481,7 +480,7 @@ java.lang.NullPointerException
 		SmilesGenerator g = new SmilesGenerator();
 		SMARTCYPPlugin smartcyp = new SMARTCYPPlugin();
 		File file = new File(getClass().getClassLoader().getResource("toxtree/test/plugins/smartcyp/3A4_substrates.sdf").getFile());
-		IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream(file), NoNotificationChemObjectBuilder.getInstance());
+		IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream(file), SilentChemObjectBuilder.getInstance());
 		
 		AtomConfigurator  cfg = new AtomConfigurator();
 		HydrogenAdderProcessor hadder = new HydrogenAdderProcessor();
