@@ -47,7 +47,6 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
@@ -158,10 +157,10 @@ public class SubstituentsTest  {
 			Assert.assertTrue(lookup.find((IMolecule) a) > -1);
 			System.out.println(System.currentTimeMillis() - now);
 
-			a = MoleculeTools.newAtomContainer(NoNotificationChemObjectBuilder.getInstance());
-			IAtom a1 = MoleculeTools.newAtom(NoNotificationChemObjectBuilder.getInstance(),Elements.OXYGEN);
-			IAtom a2 = MoleculeTools.newAtom(NoNotificationChemObjectBuilder.getInstance(),"R");
-			IAtom a3 = MoleculeTools.newAtom(NoNotificationChemObjectBuilder.getInstance(),	Elements.HYDROGEN);
+			a = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
+			IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+			IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),"R");
+			IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),	Elements.HYDROGEN);
 			a.addAtom(a1);
 			a.addAtom(a2);
 			a.addAtom(a3);

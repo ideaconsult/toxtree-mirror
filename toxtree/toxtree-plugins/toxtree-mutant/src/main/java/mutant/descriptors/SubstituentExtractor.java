@@ -17,7 +17,6 @@ import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.mcss.RMap;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.logging.TTLogger;
@@ -179,10 +178,10 @@ public class SubstituentExtractor {
                     IAtom a = null;
                     if (a1 != null) a = a1;
                     else if (a2 != null) a = a2;                    
-                    IAtom h = MoleculeTools.newAtom(NoNotificationChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+                    IAtom h = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
                     result.addAtom(h);
                     result.addBond(
-                    		MoleculeTools.newBond(NoNotificationChemObjectBuilder.getInstance(),a, h, CDKConstants.BONDORDER_SINGLE));                    
+                    		MoleculeTools.newBond(SilentChemObjectBuilder.getInstance(),a, h, CDKConstants.BONDORDER_SINGLE));                    
                 }
             else {
             	
@@ -195,7 +194,7 @@ public class SubstituentExtractor {
 	            	//IAtom r = SilentChemObjectBuilder.getInstance().newAtom("R");
                     IAtom r = MoleculeTools.newPseudoAtom(SilentChemObjectBuilder.getInstance(),"R");
 	            	result.addAtom(r);
-	            	result.addBond(MoleculeTools.newBond(NoNotificationChemObjectBuilder.getInstance(),a, r, b.getOrder()));
+	            	result.addBond(MoleculeTools.newBond(SilentChemObjectBuilder.getInstance(),a, r, b.getOrder()));
 	            }
             }
         }
