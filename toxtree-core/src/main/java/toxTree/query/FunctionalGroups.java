@@ -38,12 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.openscience.cdk.Atom;
-import org.openscience.cdk.AtomContainer;
-import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.Molecule;
-import org.openscience.cdk.RingSet;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.exception.InvalidSmilesException;
@@ -362,11 +357,11 @@ public class FunctionalGroups {
         IQueryAtom r;
         if (aliphatic) r= new TopologySymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON),false); 
         else r = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        ((Atom)r).setProperty(DONTMARK,query.getID());
+        ((IAtom)r).setProperty(DONTMARK,query.getID());
         SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
         SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
         SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        query.addAtom((Atom)r);
+        query.addAtom((IAtom)r);
         query.addAtom(n);
         query.addAtom(h1);
         query.addAtom(h2);        
@@ -551,7 +546,7 @@ public class FunctionalGroups {
         		a.setFormalCharge(-1);
         		o[i] = new SymbolAndChargeQueryAtom(a);
         	} else	o[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        	query.addAtom((Atom)o[i]);
+        	query.addAtom((IAtom)o[i]);
         	if (i<2)
         		query.addBond(new OrderQueryBond(s, o[i], CDKConstants.BONDORDER_SINGLE));
         	else
@@ -770,7 +765,7 @@ public class FunctionalGroups {
         query.setID(QUATERNARY_NITROGEN);
         query.addAtom(r1);query.addAtom(r2);
         query.addAtom(r3);query.addAtom(r4);
-        query.addAtom((Atom)n);
+        query.addAtom((IAtom)n);
         query.addBond(new OrderQueryBond(r1, n, CDKConstants.BONDORDER_SINGLE));
         query.addBond(new OrderQueryBond(r2, n, CDKConstants.BONDORDER_SINGLE));
         query.addBond(new OrderQueryBond(r3, n, CDKConstants.BONDORDER_SINGLE));
@@ -797,7 +792,7 @@ public class FunctionalGroups {
         query.setID(QUATERNARY_NITROGEN);
         query.addAtom(r1);query.addAtom(r2);
         query.addAtom(r3);
-        query.addAtom((Atom)n);
+        query.addAtom((IAtom)n);
         query.addBond(new OrderQueryBond(r1, n, CDKConstants.BONDORDER_SINGLE));
         query.addBond(new OrderQueryBond(r2, n, CDKConstants.BONDORDER_SINGLE));
         query.addBond(new OrderQueryBond(r3, n, CDKConstants.BONDORDER_DOUBLE));
@@ -1135,7 +1130,7 @@ public class FunctionalGroups {
         return query;
     }
     
-    public static boolean isCyclicDiester(IAtomContainer mol, RingSet rings) {
+    public static boolean isCyclicDiester(IAtomContainer mol, IRingSet rings) {
         QueryAtomContainer query = lactone(false);
         query.setID(CYCLIC_DIESTER);     
         List list = getUniqueBondMap(mol,query,false);
@@ -1657,59 +1652,8 @@ public class FunctionalGroups {
         }
         return result;
     }    
-    // discards ring atom and bonds
-    /*
-    public static AtomContainer cloneDiscardRingAtomAndBonds(AtomContainer ac, Ring ring) {
-        AtomContainer result = new AtomContainer();
-        Hashtable table = new Hashtable();
-        for (int i =0; i < ac.getAtomCount(); i++) {
-            Atom a = ac.getAtomAt(i);
-            if (ring.contains(a)) continue;
-            Atom newAtom = (Atom) a.clone();
-            table.put(a,newAtom);
-            result.addAtom(newAtom);
-        }
-        Atom[] atoms;
-        for (int i =0; i < ac.getBondCount(); i++) {
-            Bond b = ac.getBondAt(i);
-            atoms = b.getAtoms();
-            Atom a1 = (Atom) table.get(atoms[0]);
-            if (a1 == null) continue;
-            Atom a2 = (Atom) table.get(atoms[1]);
-            if (a2 == null) continue;
-            Bond newBond = new org.openscience.cdk.Bond(a1, a2, b.getOrder());
-            newBond.setFlag(CDKConstants.ISAROMATIC,b.getFlag(CDKConstants.ISAROMATIC));
-            result.addBond(newBond);
-        }
-        return result;
-    }
-    */
-    /*
-    public static AtomContainer cloneDiscardRingBo nds(AtomContainer ac, Ring ring) {
-        AtomContainer result = new AtomContainer();
-        Hashtable table = new Hashtable();
-        for (int i =0; i < ac.getAtomCount(); i++) {
-            Atom a = ac.getAtomAt(i);
-            if (ring.contains(a)) continue;
-            Atom newAtom = (Atom) a.clone();
-            table.put(a,newAtom);
-            result.addAtom(newAtom);
-        }
-        Atom[] atoms;
-        for (int i =0; i < ac.getBondCount(); i++) {
-            Bond b = ac.getBondAt(i);
-            atoms = b.getAtoms();
-            Atom a1 = (Atom) table.get(atoms[0]);
-            if (a1 == null) continue;
-            Atom a2 = (Atom) table.get(atoms[1]);
-            if (a2 == null) continue;
-            Bond newBond = new Bond(a1, a2, b.getOrder());
-            newBond.setFlag(CDKConstants.ISAROMATIC,b.getFlag(CDKConstants.ISAROMATIC));
-            result.addBond(newBond);
-        }
-        return result;
-    }
-    */
+   
+   
     /**
      * 
      * @param mol - The molecule to be searched  {@link AtomContainer}
@@ -1746,8 +1690,8 @@ public class FunctionalGroups {
         boolean overlaped = false;
 		for (int i = 0; i < first.size(); i++) {
 			RMap rmap = (RMap)first.get(i);
-			IBond b1 = ((Bond) mol.getBond(rmap.getId1()));
-			IBond b2 = ((Bond) q.getBond(rmap.getId2()));
+			IBond b1 = ((IBond) mol.getBond(rmap.getId1()));
+			IBond b2 = ((IBond) q.getBond(rmap.getId2()));
 			
 			Object o = b2.getProperty(DONTMARK);
 			if ((o != null) && (o.equals(id))) continue;
@@ -2508,23 +2452,23 @@ public class FunctionalGroups {
     	  mol.addAtom(a9);
     	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a10);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.SINGLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.SINGLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a5, a3, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a5, a3, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a6, a3, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a6, a3, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a7, a6, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a7, a6, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a8, a6, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a8, a6, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a9, a8, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a9, a8, IBond.Order.SINGLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a10, a8, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a10, a8, IBond.Order.SINGLE);
     	  mol.addBond(b9);
     	  QueryAtomContainer q = QueryAtomContainerCreator.createBasicQueryContainer(mol);
   		  q.setID("secondary alcohol attached to terminal vinyl group");
@@ -2560,23 +2504,23 @@ public class FunctionalGroups {
     	  mol.addAtom(a11);
     	  IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a12);
-    	  Bond b1 = new org.openscience.cdk.Bond(a1, a2, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a1, a2, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a1, a3, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a1, a3, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a1, a4, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a1, a4, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a2, a5, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a2, a5, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a2, a6, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a2, a6, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a6, a7, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a6, a7, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a6, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a6, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a8, a9, IBond.Order.DOUBLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a8, a9, IBond.Order.DOUBLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a8, a10, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a8, a10, IBond.Order.SINGLE);
     	  mol.addBond(b9);
     	  IBond b10 = new org.openscience.cdk.Bond(a10, a11, IBond.Order.SINGLE);
     	  mol.addBond(b10);
@@ -2608,23 +2552,23 @@ public class FunctionalGroups {
     	  mol.addAtom(a9);
     	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a10);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a1, a5, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a1, a5, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a2, a7, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a2, a7, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a3, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a3, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a3, a9, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a3, a9, IBond.Order.SINGLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a4, a10, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a4, a10, IBond.Order.SINGLE);
     	  mol.addBond(b9);
     	  mol.setID("allyl alcohol");
     	  return mol;
@@ -2676,45 +2620,45 @@ public class FunctionalGroups {
     	  mol.addAtom(a20);
     	  IAtom a21 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a21);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.SINGLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.SINGLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.DOUBLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.DOUBLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a6, a1, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a6, a1, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a7, a6, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a7, a6, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a8, a7, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a8, a7, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a9, a8, IBond.Order.DOUBLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a9, a8, IBond.Order.DOUBLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a10, a1, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a10, a1, IBond.Order.SINGLE);
     	  mol.addBond(b9);
-    	  Bond b10 = new org.openscience.cdk.Bond(a1, a11, IBond.Order.SINGLE);
+    	  IBond b10 = new org.openscience.cdk.Bond(a1, a11, IBond.Order.SINGLE);
     	  mol.addBond(b10);
-    	  Bond b11 = new org.openscience.cdk.Bond(a3, a12, IBond.Order.SINGLE);
+    	  IBond b11 = new org.openscience.cdk.Bond(a3, a12, IBond.Order.SINGLE);
     	  mol.addBond(b11);
-    	  Bond b12 = new org.openscience.cdk.Bond(a3, a13, IBond.Order.SINGLE);
+    	  IBond b12 = new org.openscience.cdk.Bond(a3, a13, IBond.Order.SINGLE);
     	  mol.addBond(b12);
-    	  Bond b13 = new org.openscience.cdk.Bond(a7, a14, IBond.Order.SINGLE);
+    	  IBond b13 = new org.openscience.cdk.Bond(a7, a14, IBond.Order.SINGLE);
     	  mol.addBond(b13);
-    	  Bond b14 = new org.openscience.cdk.Bond(a7, a15, IBond.Order.SINGLE);
+    	  IBond b14 = new org.openscience.cdk.Bond(a7, a15, IBond.Order.SINGLE);
     	  mol.addBond(b14);
-    	  Bond b15 = new org.openscience.cdk.Bond(a4, a16, IBond.Order.SINGLE);
+    	  IBond b15 = new org.openscience.cdk.Bond(a4, a16, IBond.Order.SINGLE);
     	  mol.addBond(b15);
-    	  Bond b16 = new org.openscience.cdk.Bond(a8, a17, IBond.Order.SINGLE);
+    	  IBond b16 = new org.openscience.cdk.Bond(a8, a17, IBond.Order.SINGLE);
     	  mol.addBond(b16);
-    	  Bond b17 = new org.openscience.cdk.Bond(a5, a18, IBond.Order.SINGLE);
+    	  IBond b17 = new org.openscience.cdk.Bond(a5, a18, IBond.Order.SINGLE);
     	  mol.addBond(b17);
-    	  Bond b18 = new org.openscience.cdk.Bond(a5, a19, IBond.Order.SINGLE);
+    	  IBond b18 = new org.openscience.cdk.Bond(a5, a19, IBond.Order.SINGLE);
     	  mol.addBond(b18);
-    	  Bond b19 = new org.openscience.cdk.Bond(a9, a20, IBond.Order.SINGLE);
+    	  IBond b19 = new org.openscience.cdk.Bond(a9, a20, IBond.Order.SINGLE);
     	  mol.addBond(b19);
-    	  Bond b20 = new org.openscience.cdk.Bond(a9, a21, IBond.Order.SINGLE);
+    	  IBond b20 = new org.openscience.cdk.Bond(a9, a21, IBond.Order.SINGLE);
     	  mol.addBond(b20);
     	  QueryAtomContainer q = QueryAtomContainerCreator.createBasicQueryContainer(mol);
   		  q.setID("allyl alcohol acetal");
@@ -2723,7 +2667,7 @@ public class FunctionalGroups {
     }
     public static QueryAtomContainer allylAlcoholEsterDerivative() {
     	//TODO "CC=CCOC(=O)C[*]"
-    	  Molecule mol = new org.openscience.cdk.Molecule();
+    	  IMolecule mol = new org.openscience.cdk.Molecule();
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -2748,27 +2692,27 @@ public class FunctionalGroups {
     	  mol.addAtom(a11);
     	  IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a12);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a2, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a2, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a6, a5, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a6, a5, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a7, a5, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a7, a5, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a8, a5, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a8, a5, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a9, a8, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a9, a8, IBond.Order.SINGLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a10, a8, IBond.Order.DOUBLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a10, a8, IBond.Order.DOUBLE);
     	  mol.addBond(b9);
-    	  Bond b10 = new org.openscience.cdk.Bond(a11, a10, IBond.Order.SINGLE);
+    	  IBond b10 = new org.openscience.cdk.Bond(a11, a10, IBond.Order.SINGLE);
     	  mol.addBond(b10);
-    	  Bond b11 = new org.openscience.cdk.Bond(a12, a10, IBond.Order.SINGLE);
+    	  IBond b11 = new org.openscience.cdk.Bond(a12, a10, IBond.Order.SINGLE);
     	  mol.addBond(b11);
     	  QueryAtomContainer q = QueryAtomContainerCreator.createBasicQueryContainer(mol);
   		  q.setID("allyl alcohol ester derivative");
@@ -2799,23 +2743,23 @@ public class FunctionalGroups {
     	  mol.addAtom(a9);
     	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a10);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a1, a5, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a1, a5, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a2, a7, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a2, a7, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a3, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a3, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a3, a9, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a3, a9, IBond.Order.SINGLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a4, a10, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a4, a10, IBond.Order.SINGLE);
     	  mol.addBond(b9);
     	  mol.setID("allyl mercaptan");
     	  return mol;
@@ -2845,32 +2789,32 @@ public class FunctionalGroups {
     	  mol.addAtom(a10);
     	  IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a11);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a1, a5, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a1, a5, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a2, a7, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a2, a7, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a3, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a3, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a3, a9, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a3, a9, IBond.Order.SINGLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a4, a10, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a4, a10, IBond.Order.SINGLE);
     	  mol.addBond(b9);
-    	  Bond b10 = new org.openscience.cdk.Bond(a4, a11, IBond.Order.SINGLE);
+    	  IBond b10 = new org.openscience.cdk.Bond(a4, a11, IBond.Order.SINGLE);
     	  mol.addBond(b10);
     	  mol.setID("allyl amine");
     	  return mol;
     }         
     public static IAtomContainer allylSulphide() {
     	//return createAtomContainer("C=CCSCC=C","allyl sulphide");
-    	  Molecule mol = new org.openscience.cdk.Molecule();
+    	  IMolecule mol = new org.openscience.cdk.Molecule();
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -2905,37 +2849,37 @@ public class FunctionalGroups {
     	  mol.addAtom(a16);
     	  IAtom a17 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a17);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a6, a5, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a6, a5, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a7, a6, IBond.Order.DOUBLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a7, a6, IBond.Order.DOUBLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a1, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a1, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a1, a9, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a1, a9, IBond.Order.SINGLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a2, a10, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a2, a10, IBond.Order.SINGLE);
     	  mol.addBond(b9);
-    	  Bond b10 = new org.openscience.cdk.Bond(a3, a11, IBond.Order.SINGLE);
+    	  IBond b10 = new org.openscience.cdk.Bond(a3, a11, IBond.Order.SINGLE);
     	  mol.addBond(b10);
-    	  Bond b11 = new org.openscience.cdk.Bond(a3, a12, IBond.Order.SINGLE);
+    	  IBond b11 = new org.openscience.cdk.Bond(a3, a12, IBond.Order.SINGLE);
     	  mol.addBond(b11);
-    	  Bond b12 = new org.openscience.cdk.Bond(a5, a13, IBond.Order.SINGLE);
+    	  IBond b12 = new org.openscience.cdk.Bond(a5, a13, IBond.Order.SINGLE);
     	  mol.addBond(b12);
-    	  Bond b13 = new org.openscience.cdk.Bond(a5, a14, IBond.Order.SINGLE);
+    	  IBond b13 = new org.openscience.cdk.Bond(a5, a14, IBond.Order.SINGLE);
     	  mol.addBond(b13);
-    	  Bond b14 = new org.openscience.cdk.Bond(a6, a15, IBond.Order.SINGLE);
+    	  IBond b14 = new org.openscience.cdk.Bond(a6, a15, IBond.Order.SINGLE);
     	  mol.addBond(b14);
-    	  Bond b15 = new org.openscience.cdk.Bond(a7, a16, IBond.Order.SINGLE);
+    	  IBond b15 = new org.openscience.cdk.Bond(a7, a16, IBond.Order.SINGLE);
     	  mol.addBond(b15);
-    	  Bond b16 = new org.openscience.cdk.Bond(a7, a17, IBond.Order.SINGLE);
+    	  IBond b16 = new org.openscience.cdk.Bond(a7, a17, IBond.Order.SINGLE);
     	  mol.addBond(b16);
     	  mol.setID("allyl sulphide");
     	  return mol;
@@ -2967,27 +2911,27 @@ public class FunctionalGroups {
     	  mol.addAtom(a11);
     	  IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a12);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a1, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a1, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a6, a5, IBond.Order.DOUBLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a6, a5, IBond.Order.DOUBLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a1, a7, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a1, a7, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a4, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a4, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a4, a9, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a4, a9, IBond.Order.SINGLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a5, a10, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a5, a10, IBond.Order.SINGLE);
     	  mol.addBond(b9);
-    	  Bond b10 = new org.openscience.cdk.Bond(a6, a11, IBond.Order.SINGLE);
+    	  IBond b10 = new org.openscience.cdk.Bond(a6, a11, IBond.Order.SINGLE);
     	  mol.addBond(b10);
-    	  Bond b11 = new org.openscience.cdk.Bond(a6, a12, IBond.Order.SINGLE);
+    	  IBond b11 = new org.openscience.cdk.Bond(a6, a12, IBond.Order.SINGLE);
     	  mol.addBond(b11);
     	  mol.setID("allyl thioester");
     	  return mol;
@@ -3011,19 +2955,19 @@ public class FunctionalGroups {
     	  mol.addAtom(a7);
     	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a8);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.DOUBLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.DOUBLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a1, a5, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a1, a5, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a2, a7, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a2, a7, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a3, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a3, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
     	  mol.setID("acrolein");
     	  return mol;
@@ -3053,25 +2997,25 @@ public class FunctionalGroups {
     	  mol.addAtom(a10);
     	  IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a11);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a2, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a2, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.DOUBLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.DOUBLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a1, a7, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a1, a7, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a3, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a3, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a3, a9, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a3, a9, IBond.Order.SINGLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a3, a10, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a3, a10, IBond.Order.SINGLE);
     	  mol.addBond(b9);
-    	  Bond b10 = new org.openscience.cdk.Bond(a4, a11, IBond.Order.SINGLE);
+    	  IBond b10 = new org.openscience.cdk.Bond(a4, a11, IBond.Order.SINGLE);
     	  mol.addBond(b10);
     	  mol.setID("Methacrolein");
     	  return mol;
@@ -3118,43 +3062,43 @@ public class FunctionalGroups {
     	  mol.addAtom(a19);
     	  IAtom a20 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a20);
-    	  Bond b1 = new org.openscience.cdk.Bond(a1, a2, IBond.Order.SINGLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a1, a2, IBond.Order.SINGLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a2, a3, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a2, a3, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a3, a4, IBond.Order.DOUBLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a3, a4, IBond.Order.DOUBLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a2, a5, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a2, a5, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a2, a6, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a2, a6, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a1, a7, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a1, a7, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a1, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a1, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a1, a9, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a1, a9, IBond.Order.SINGLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a3, a10, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a3, a10, IBond.Order.SINGLE);
     	  mol.addBond(b9);
-    	  Bond b10 = new org.openscience.cdk.Bond(a5, a11, IBond.Order.SINGLE);
+    	  IBond b10 = new org.openscience.cdk.Bond(a5, a11, IBond.Order.SINGLE);
     	  mol.addBond(b10);
-    	  Bond b11 = new org.openscience.cdk.Bond(a6, a12, IBond.Order.SINGLE);
+    	  IBond b11 = new org.openscience.cdk.Bond(a6, a12, IBond.Order.SINGLE);
     	  mol.addBond(b11);
-    	  Bond b12 = new org.openscience.cdk.Bond(a4, a13, IBond.Order.SINGLE);
+    	  IBond b12 = new org.openscience.cdk.Bond(a4, a13, IBond.Order.SINGLE);
     	  mol.addBond(b12);
-    	  Bond b13 = new org.openscience.cdk.Bond(a4, a14, IBond.Order.SINGLE);
+    	  IBond b13 = new org.openscience.cdk.Bond(a4, a14, IBond.Order.SINGLE);
     	  mol.addBond(b13);
-    	  Bond b14 = new org.openscience.cdk.Bond(a12, a15, IBond.Order.SINGLE);
+    	  IBond b14 = new org.openscience.cdk.Bond(a12, a15, IBond.Order.SINGLE);
     	  mol.addBond(b14);
-    	  Bond b15 = new org.openscience.cdk.Bond(a12, a16, IBond.Order.SINGLE);
+    	  IBond b15 = new org.openscience.cdk.Bond(a12, a16, IBond.Order.SINGLE);
     	  mol.addBond(b15);
-    	  Bond b16 = new org.openscience.cdk.Bond(a12, a17, IBond.Order.SINGLE);
+    	  IBond b16 = new org.openscience.cdk.Bond(a12, a17, IBond.Order.SINGLE);
     	  mol.addBond(b16);
-    	  Bond b17 = new org.openscience.cdk.Bond(a11, a18, IBond.Order.SINGLE);
+    	  IBond b17 = new org.openscience.cdk.Bond(a11, a18, IBond.Order.SINGLE);
     	  mol.addBond(b17);
-    	  Bond b18 = new org.openscience.cdk.Bond(a11, a19, IBond.Order.SINGLE);
+    	  IBond b18 = new org.openscience.cdk.Bond(a11, a19, IBond.Order.SINGLE);
     	  mol.addBond(b18);
-    	  Bond b19 = new org.openscience.cdk.Bond(a11, a20, IBond.Order.SINGLE);
+    	  IBond b19 = new org.openscience.cdk.Bond(a11, a20, IBond.Order.SINGLE);
     	  mol.addBond(b19);
     	  mol.setID("Methacrolein acetal");
     	  return mol;    	  
@@ -3181,21 +3125,21 @@ public class FunctionalGroups {
     	  mol.addAtom(a8);
     	  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a9);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a3, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a5, a3, IBond.Order.DOUBLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a5, a3, IBond.Order.DOUBLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a1, a6, IBond.Order.SINGLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a1, a7, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a1, a7, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a2, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a2, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a4, a9, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a4, a9, IBond.Order.SINGLE);
     	  mol.addBond(b8);
     	  mol.setID("acrylic acid");
     	  return mol;
@@ -3227,27 +3171,27 @@ public class FunctionalGroups {
     	  mol.addAtom(a11);
     	  IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
     	  mol.addAtom(a12);
-    	  Bond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
+    	  IBond b1 = new org.openscience.cdk.Bond(a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
-    	  Bond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
+    	  IBond b2 = new org.openscience.cdk.Bond(a3, a2, IBond.Order.SINGLE);
     	  mol.addBond(b2);
-    	  Bond b3 = new org.openscience.cdk.Bond(a4, a2, IBond.Order.SINGLE);
+    	  IBond b3 = new org.openscience.cdk.Bond(a4, a2, IBond.Order.SINGLE);
     	  mol.addBond(b3);
-    	  Bond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.SINGLE);
+    	  IBond b4 = new org.openscience.cdk.Bond(a5, a4, IBond.Order.SINGLE);
     	  mol.addBond(b4);
-    	  Bond b5 = new org.openscience.cdk.Bond(a6, a4, IBond.Order.DOUBLE);
+    	  IBond b5 = new org.openscience.cdk.Bond(a6, a4, IBond.Order.DOUBLE);
     	  mol.addBond(b5);
-    	  Bond b6 = new org.openscience.cdk.Bond(a1, a7, IBond.Order.SINGLE);
+    	  IBond b6 = new org.openscience.cdk.Bond(a1, a7, IBond.Order.SINGLE);
     	  mol.addBond(b6);
-    	  Bond b7 = new org.openscience.cdk.Bond(a1, a8, IBond.Order.SINGLE);
+    	  IBond b7 = new org.openscience.cdk.Bond(a1, a8, IBond.Order.SINGLE);
     	  mol.addBond(b7);
-    	  Bond b8 = new org.openscience.cdk.Bond(a3, a9, IBond.Order.SINGLE);
+    	  IBond b8 = new org.openscience.cdk.Bond(a3, a9, IBond.Order.SINGLE);
     	  mol.addBond(b8);
-    	  Bond b9 = new org.openscience.cdk.Bond(a3, a10, IBond.Order.SINGLE);
+    	  IBond b9 = new org.openscience.cdk.Bond(a3, a10, IBond.Order.SINGLE);
     	  mol.addBond(b9);
-    	  Bond b10 = new org.openscience.cdk.Bond(a3, a11, IBond.Order.SINGLE);
+    	  IBond b10 = new org.openscience.cdk.Bond(a3, a11, IBond.Order.SINGLE);
     	  mol.addBond(b10);
-    	  Bond b11 = new org.openscience.cdk.Bond(a5, a12, IBond.Order.SINGLE);
+    	  IBond b11 = new org.openscience.cdk.Bond(a5, a12, IBond.Order.SINGLE);
     	  mol.addBond(b11);
     	  mol.setID("methacrylic acid");
     	  return mol;
@@ -3679,7 +3623,7 @@ public class FunctionalGroups {
 						} else if (((ChargeConsumed)aCharge).getCharge()==0) continue;	
 						
 						for (int m=0; m<match.size(); m++) {
-							Atom mAtom = (Atom) match.get(m);
+							IAtom mAtom = (IAtom) match.get(m);
 							if ((mAtom.getFormalCharge() != null) && (mAtom.getFormalCharge() == 0)) continue;
 							
 							Object o = mAtom.getProperty(ChargeConsumed.CHARGECONSUMED);
@@ -3709,13 +3653,13 @@ public class FunctionalGroups {
 			}
 			//verify if all atoms are matched
 			for (int j=0;j<match.size();j++) {
-				Object o = ((Atom) match.get(j)).getProperty(ChargeConsumed.CHARGECONSUMED);
+				Object o = ((IAtom) match.get(j)).getProperty(ChargeConsumed.CHARGECONSUMED);
 				if (o==null) {
 					notMatched.append('\t');
-					notMatched.append(((Atom)match.get(j)).getSymbol());
+					notMatched.append(((IAtom)match.get(j)).getSymbol());
 				} else if (( (ChargeConsumed) o).getCharge() != 0) {
 					notMatched.append('\t');
-					notMatched.append(((Atom)match.get(j)).getSymbol());					
+					notMatched.append(((IAtom)match.get(j)).getSymbol());					
 				}
 			}	
 					
@@ -3774,7 +3718,7 @@ public class FunctionalGroups {
 		}	
 		if (logger.isDebugEnabled()) 
 			for (int i=0; i< bondsToBreak.size();i++) {
-				Bond b = (Bond)bondsToBreak.get(i);
+				IBond b = (IBond)bondsToBreak.get(i);
 				logger.debug("Break bond between\t",b.getAtom(0).getSymbol(),"\t",b.getAtom(1).getSymbol());
 			}
 		for (int i=0; i< bondsToBreak.size();i++) {

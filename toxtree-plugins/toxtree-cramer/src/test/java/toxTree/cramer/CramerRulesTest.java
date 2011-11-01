@@ -84,7 +84,7 @@ public class CramerRulesTest extends RulesTestCase {
 	}
 
 	/*
-	 * Class under test for int classify(Molecule)
+	 * Class under test for int classify(IMolecule)
 	 */
 	@Test
 	public void testClassifyMolecule() {
