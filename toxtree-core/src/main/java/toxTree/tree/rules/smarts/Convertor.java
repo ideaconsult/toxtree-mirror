@@ -32,13 +32,13 @@ import joelib.molecule.JOEMol;
 
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IElement;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.LoggingTool;
 
 import toxTree.core.ConnectionMatrix;
@@ -148,14 +148,14 @@ public class Convertor {
      **/
     public static IAtom convert(JOEAtom atom) {
         if (atom != null) {
-            IAtom convertedAtom = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+            IAtom convertedAtom = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
             try {
                 // try to give the atom the correct symbol
                 org.openscience.cdk.config.IsotopeFactory isotopeFactory =
                     org.openscience.cdk.config.IsotopeFactory.getInstance(convertedAtom.getBuilder());
                 //isotopeFactory.configure(convertedAtom);
                 IElement element = isotopeFactory.getElement(atom.getAtomicNum());
-                convertedAtom = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),element.getSymbol());
+                convertedAtom = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),element.getSymbol());
             } catch (java.lang.Exception exception) {
                 logger.debug("Error in getting the isotope factory");
             }

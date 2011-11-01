@@ -38,12 +38,12 @@ import java.beans.PropertyChangeSupport;
 import java.util.Map;
 import java.util.Observable;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
@@ -58,7 +58,6 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.XMLDecisionMethodException;
 import toxTree.logging.TTLogger;
 import toxTree.ui.EditorFactory;
-import toxTree.ui.IEditorFactory;
 import ambit2.base.interfaces.IProcessor;
 
 /**
@@ -224,7 +223,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 		*/
 	}
     public IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
-	    SmilesParser sp = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+	    SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 	    int index;
 	    if (ruleResult) index = 1; else index =0;
 		    try {

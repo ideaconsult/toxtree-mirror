@@ -33,7 +33,6 @@ import joelib.smiles.JOESmilesParser;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
@@ -41,6 +40,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.IsomorphismTester;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
@@ -53,12 +53,12 @@ public class JoelibSmartsTest  {
 	   public void testCDKJoeMolMatch() {
 	        Molecule mol = new Molecule();
 	        
-	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
-	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 1
-	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 2
-	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 3
-	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 4
-	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN)); // 5
+	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
+	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 1
+	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 2
+	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 3
+	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 4
+	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN)); // 5
 
 	        mol.addBond(0, 1, IBond.Order.SINGLE); // 1
 	        mol.addBond(1, 2, IBond.Order.SINGLE); // 2
@@ -91,8 +91,8 @@ public class JoelibSmartsTest  {
 	    public void testCDKJoeMol() throws Exception {
 	        Molecule mol = new Molecule();
 	        
-	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
-	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.OXYGEN)); // 5
+	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
+	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN)); // 5
 
 	        mol.addBond(0, 1, IBond.Order.SINGLE); // 1
 
@@ -110,7 +110,7 @@ public class JoelibSmartsTest  {
 	    }
 	@Test
 	    public void testAtom() {
-	        IAtom a = MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON);
+	        IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 	        a.setPoint3d(new Point3d(1,1,1));
 
 	        JOEAtom converted = Convertor.convert(a);
@@ -127,8 +127,8 @@ public class JoelibSmartsTest  {
 	    public void testCDKJoeMolAllC() throws Exception {
 	        Molecule mol = new Molecule();
 	        
-	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
-	        mol.addAtom(MoleculeTools.newAtom(DefaultChemObjectBuilder.getInstance(),Elements.CARBON)); // 5
+	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
+	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 5
 
 	        mol.addBond(0, 1, IBond.Order.SINGLE); // 1
 

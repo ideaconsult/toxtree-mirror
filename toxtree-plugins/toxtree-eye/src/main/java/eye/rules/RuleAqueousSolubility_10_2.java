@@ -19,8 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package eye.rules;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import sicret.rules.RuleAqueousSolubility;
 import toxTree.exceptions.DecisionMethodException;
@@ -49,7 +49,7 @@ public class RuleAqueousSolubility_10_2 extends RuleAqueousSolubility {
 
 	}
 	public IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
-		IMolecule m = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());        
+		IMolecule m = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());        
         if (ruleResult){
         	
         		m = (IMolecule)FunctionalGroups.createAtomContainer("Oc(c(cc(c1)Cc(cc(c(O)c2C(C)(C)C)C(C)(C)C)c2)C(C)(C)C)c1C(C)(C)C",false);

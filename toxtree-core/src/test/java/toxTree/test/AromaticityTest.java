@@ -29,7 +29,6 @@ import java.util.Iterator;
 import junit.framework.TestCase;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.atomtype.CDKAtomTypeMatcher;
 import org.openscience.cdk.interfaces.IAtom;
@@ -37,6 +36,7 @@ import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IBond.Order;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -56,7 +56,7 @@ public class AromaticityTest extends TestCase {
 		junit.textui.TestRunner.run(AromaticityTest.class);
 	}
 	public void aromaticRoundTrip(String smiles) throws Exception  {
-		SmilesParser p = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		IMolecule m = p.parseSmiles(smiles);
 		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
 		CDKHueckelAromaticityDetector.detectAromaticity(m);
@@ -64,7 +64,7 @@ public class AromaticityTest extends TestCase {
 	}
 	
 	public void aromaticRoundTrip(IMolecule m)  throws Exception  {
-		SmilesParser p = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		SmilesGenerator sg = new SmilesGenerator(true);
 
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
@@ -100,7 +100,7 @@ public class AromaticityTest extends TestCase {
 	
 	}
 	public void testDeduceBondOrders() throws Exception  {
-        SmilesParser p = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+        SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
         IMolecule m = p.parseSmiles("c1ccccc1");
         
     	CDKAtomTypeMatcher matcher = CDKAtomTypeMatcher.getInstance(m.getBuilder());

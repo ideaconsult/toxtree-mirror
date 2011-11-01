@@ -3,11 +3,11 @@ package mutant.test.rules;
 import mutant.rules.SA29;
 import mutant.test.TestMutantRules;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.SSSRFinder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.smiles.smarts.SMARTSQueryTool;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -38,7 +38,7 @@ public class SA29Test extends TestMutantRules {
 
 	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
         
-	   SmilesParser sp = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+	   SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 	        	
 	   IAtomContainer atomContainer = sp.parseSmiles(smiles);
 	           

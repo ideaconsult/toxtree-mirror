@@ -410,7 +410,7 @@ public class SimpleReactions {
 		 * 
 		 * //break the bond mol.removeElectronContainer(bondToSplitMol); for
 		 * (int i=0; i <2; i++) { // add H and link it to each atom f the broken
-		 * bond Atom h = DefaultChemObjectBuilder.getInstance().newAtom(Elements.HYDROGEN); mol.addAtom(h); mol.addBond(new
+		 * bond Atom h = SilentChemObjectBuilder.getInstance().newAtom(Elements.HYDROGEN); mol.addAtom(h); mol.addBond(new
 		 * Bond(atoms[i],h,CDKConstants.BONDORDER_SINGLE)); }
 		 */
 		// finally separate the resulting molecules

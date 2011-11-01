@@ -5,10 +5,10 @@ import java.util.Iterator;
 import mutant.rules.SA27;
 import mutant.test.TestMutantRules;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.smiles.smarts.SMARTSQueryTool;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
@@ -81,7 +81,7 @@ public class SA27Test extends TestMutantRules {
     			
     	};
     	
-        SmilesParser sp = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+        SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
         for (int i=0; i < smiles.length;i++) {
         	IAtomContainer ac = sp.parseSmiles(smiles[i][0].toString());
         	System.out.print(smiles[i][0]);

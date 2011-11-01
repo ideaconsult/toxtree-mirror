@@ -1,6 +1,5 @@
 package toxtree.plugins.smartcyp.rules;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -97,7 +96,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 
 			IAtomContainer iAtomContainer = AtomContainerManipulator.removeHydrogens(iAtomContainerTmp);	
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(iAtomContainer);
-			CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(DefaultChemObjectBuilder.getInstance());
+			CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
 			CDKHueckelAromaticityDetector.detectAromaticity(iAtomContainer); 
 			adder.addImplicitHydrogens(iAtomContainer);
 

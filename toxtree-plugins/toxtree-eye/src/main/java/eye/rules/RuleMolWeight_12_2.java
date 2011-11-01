@@ -19,8 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package eye.rules;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import sicret.rules.RuleMolWeight;
 import toxTree.exceptions.DecisionMethodException;
@@ -48,7 +48,7 @@ public class RuleMolWeight_12_2  extends RuleMolWeight {
 
 	}
 	public IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
-		IMolecule m = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());  
+		IMolecule m = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());  
         if (ruleResult){
         	
         		m = (IMolecule)FunctionalGroups.createAtomContainer("OS(=O)(=O)c1cc2NC4(Nc2c(c1)S(O)(=O)=O)C=3\\C=C/C4=C\\C=3",false);

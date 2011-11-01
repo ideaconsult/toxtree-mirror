@@ -52,7 +52,7 @@ public class SMIRKSTest {
 	
 		/*
 		CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(
-				DefaultChemObjectBuilder.getInstance()
+				SilentChemObjectBuilder.getInstance()
 		);
 		*/
 		

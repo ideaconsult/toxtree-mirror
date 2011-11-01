@@ -38,7 +38,6 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.atomtype.CDKAtomTypeMatcher;
 import org.openscience.cdk.exception.CDKException;
@@ -49,6 +48,7 @@ import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.smiles.smarts.SMARTSQueryTool;
 import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
@@ -112,7 +112,7 @@ public abstract class TestProteinBindingRules extends TestCase {
 		assertNotNull(source);
 		assertNotNull(results);
 		
-		IChemObjectBuilder b = DefaultChemObjectBuilder.getInstance();
+		IChemObjectBuilder b = SilentChemObjectBuilder.getInstance();
 		
 		ArrayList<String> resultsID = new ArrayList<String>();
 		ArrayList<String> missedResults = new ArrayList<String>();
@@ -287,7 +287,7 @@ public abstract class TestProteinBindingRules extends TestCase {
 	}
     public int printAromaticity() throws Exception {
     	IteratingMDLReader resultsReader = new IteratingMDLReader(
-    			this.getClass().getClassLoader().getResourceAsStream("data/"+getHitsFile()),DefaultChemObjectBuilder.getInstance());
+    			this.getClass().getClassLoader().getResourceAsStream("data/"+getHitsFile()),SilentChemObjectBuilder.getInstance());
     	int aromaticCompounds = 0;
     	while (resultsReader.hasNext()) {
     		Object o = resultsReader.next();
@@ -332,7 +332,7 @@ public abstract class TestProteinBindingRules extends TestCase {
     }
     protected int[] match(String smarts, String smiles) throws Exception {
         SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
-        SmilesParser sp = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+        SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
         IAtomContainer atomContainer = sp.parseSmiles(smiles);
         MolAnalyser.analyse(atomContainer);
         boolean status = sqt.matches(atomContainer);

@@ -38,7 +38,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.fingerprint.Fingerprinter;
 import org.openscience.cdk.interfaces.IAtom;
@@ -49,6 +48,7 @@ import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.data.MoleculesFile;
@@ -105,7 +105,7 @@ public class SubstituentsTest  {
 		n.append("M  END\n");
 		MDLV2000Reader reader = new MDLV2000Reader(new StringReader(n
 				.toString()));
-		IMolecule mol = MoleculeTools.newMolecule(DefaultChemObjectBuilder.getInstance());  
+		IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());  
 		reader.read(mol);
 		reader.close();
 		return mol;
@@ -118,7 +118,7 @@ public class SubstituentsTest  {
 			// LookupFile("/src/mutant/descriptors/substituents.sdf");
 			// LookupFile lookup = new LookupFile("substituents.sdf");
 			MoleculesFile lookup = new MoleculesFile("substituents.sdf",
-					DefaultChemObjectBuilder.getInstance(), null);
+					SilentChemObjectBuilder.getInstance(), null);
 			// lookup.setUseCache(false);
 			// lookup.setCheckAromaticity(false);
 
@@ -190,14 +190,14 @@ public class SubstituentsTest  {
 	public void testAll() throws Exception {
 			// LookupFile lookup = new
 			// LookupFile("plugins/mutant/src/mutant/descriptors/substituents.sdf");
-			MoleculesFile lookup = new MoleculesFile("substituents.sdf", DefaultChemObjectBuilder.getInstance(),null);
+			MoleculesFile lookup = new MoleculesFile("substituents.sdf", SilentChemObjectBuilder.getInstance(),null);
 			/*
 			 * LookupFile lookup = new LookupFile("substituents.sdf");
 			 * lookup.setUseCache(false); lookup.setCheckAromaticity(true);
 			 */
 				SmilesGenerator g = new SmilesGenerator(true);
 				InputStream in = getClass().getClassLoader().getResourceAsStream("substituents.sdf");
-				IteratingMDLReader reader = new IteratingMDLReader(in,DefaultChemObjectBuilder.getInstance());
+				IteratingMDLReader reader = new IteratingMDLReader(in,SilentChemObjectBuilder.getInstance());
 				int record = 0;
 				int found_records = 0;
 				while (reader.hasNext()) {
@@ -296,7 +296,7 @@ public class SubstituentsTest  {
 	@Test
 	public void testSmiles() throws Exception {
 		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
-				DefaultChemObjectBuilder.getInstance(), null);
+				SilentChemObjectBuilder.getInstance(), null);
 		SmilesGenerator g = new SmilesGenerator(true);
 		int r = 0;
 		for (int i = 0; i < lookup.getAtomContainerCount(); i++) {
@@ -327,7 +327,7 @@ public class SubstituentsTest  {
 		// lookup.setUseCache(true);
 		// lookup.setCheckAromaticity(false);
 		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
-				DefaultChemObjectBuilder.getInstance(),null);
+				SilentChemObjectBuilder.getInstance(),null);
 		SmilesGenerator g = new SmilesGenerator(true);
 		for (int k = 0; k < s.getAtomContainerCount(); k++) {
 			System.out.println("Substituent\t" + k);

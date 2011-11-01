@@ -33,12 +33,12 @@ import java.io.UnsupportedEncodingException;
 
 import javax.swing.ProgressMonitorInputStream;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.io.IChemObjectWriter;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingSMILESReader;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import ambit2.core.io.DelimitedFileFormat;
 import ambit2.core.io.DelimitedFileWriter;
@@ -104,9 +104,9 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 					return new MyIteratingMDLReader(new ProgressMonitorInputStream(
                                 null,
                                 "Reading " + file.getFile().getName(),
-                                new FileInputStream(file.getFile())),DefaultChemObjectBuilder.getInstance());
+                                new FileInputStream(file.getFile())),SilentChemObjectBuilder.getInstance());
 				else
-					return new MyIteratingMDLReader(new FileInputStream(file.getFile()),DefaultChemObjectBuilder.getInstance());
+					return new MyIteratingMDLReader(new FileInputStream(file.getFile()),SilentChemObjectBuilder.getInstance());
 			else if (fname.endsWith(extensions[SMI_INDEX])) 
 				return new IteratingSMILESReader(new FileInputStream(file.getFile()));
 			else if (fname.endsWith(extensions[CSV_INDEX]))

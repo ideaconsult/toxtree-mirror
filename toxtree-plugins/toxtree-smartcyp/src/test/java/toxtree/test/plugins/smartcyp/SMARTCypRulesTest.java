@@ -22,10 +22,10 @@ package toxtree.test.plugins.smartcyp;
 
 
 import org.junit.Test;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.exceptions.MolAnalyseException;
@@ -48,7 +48,7 @@ public class SMARTCypRulesTest extends RulesTestCase {
 		super();
 		rules = new SMARTCYPPlugin();
 		((SMARTCYPPlugin)rules).setResiduesIDVisible(false);
-        gen = new SmilesParser(DefaultChemObjectBuilder.getInstance());
+        gen = new SmilesParser(SilentChemObjectBuilder.getInstance());
         
 	}
 
