@@ -34,12 +34,11 @@ package cramer2.rules;
 
 import java.util.List;
 
-import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.Ring;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
@@ -99,7 +98,7 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 		    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 		    IRingSet rings = mf.getRingset();
 		    if (rings.getAtomContainerCount() == 1) { //single ring
-		    	Ring ring = (Ring)rings.getAtomContainer(0);
+		    	IRing ring = (IRing)rings.getAtomContainer(0);
 		    	int ac = ring.getAtomCount();
 		    	if ((ac >= 5) && (ac<=6)) {
 		    		logger.debug("Single ring found, 5- or 6- membered");
@@ -122,9 +121,9 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 		    	logger.debug("More than one ring, will check if fused");
 		    	//find lactone ring bond, it should has property FunctionalGroups.LACTONE set
 
-		    	Ring lactoneRing = null;
+		    	IRing lactoneRing = null;
 		    	for (int i=0; i< rings.getAtomContainerCount(); i++) {
-		    		Ring ring = (Ring)rings.getAtomContainer(i);
+		    		IRing ring = (IRing)rings.getAtomContainer(i);
 		    		for (int j=0; j< ring.getBondCount(); j++) {
 		    			IBond b = ring.getBond(j);
 		    			Object o = b.getProperty(FunctionalGroups.LACTONE);
@@ -151,9 +150,9 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 			FunctionalGroups.clearMark(mol,FunctionalGroups.LACTONE);
 			if (lactoneBreakable == null) lactoneBreakable = FunctionalGroups.lactoneBreakable();
 			
-			AtomContainer a = null;
+			IAtomContainer a = null;
 			try {
-			a = (AtomContainer) mol.clone();
+			a = (IAtomContainer) mol.clone();
 			} catch (CloneNotSupportedException x) {
 			    throw new DecisionMethodException(x);
 			}

@@ -27,7 +27,6 @@ package cramer2.rules;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
@@ -159,9 +158,9 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 			}
 		}		
 		if (super.verifyRule(mol)) {
-			AtomContainer residue = null;
+			IAtomContainer residue = null;
 			try {
-			    residue = (AtomContainer) mol.clone();
+			    residue = (IAtomContainer) mol.clone();
 			} catch (CloneNotSupportedException x) {
 			    throw new DecisionMethodException(x);
 			}

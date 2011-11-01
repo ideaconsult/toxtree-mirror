@@ -27,7 +27,6 @@ package toxTree.tree.cramer;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -159,9 +158,9 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 			}
 		}		
 		if (super.verifyRule(mol,selected)) {
-			AtomContainer residue = null;
+			IAtomContainer residue = null;
 			try {
-			    residue = (AtomContainer) mol.clone();
+			    residue = (IAtomContainer) mol.clone();
 			} catch (CloneNotSupportedException x) {
 			    throw new DecisionMethodException(x);
 			}

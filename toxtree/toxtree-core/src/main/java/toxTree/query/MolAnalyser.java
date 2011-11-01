@@ -236,7 +236,7 @@ public class MolAnalyser {
 	        HydrogenAdder h = new HydrogenAdder();
 	        try {
 	        	if (mol instanceof Molecule)
-	        		h.addExplicitHydrogensToSatisfyValency((Molecule)mol);
+	        		h.addExplicitHydrogensToSatisfyValency((IMolecule)mol);
 	        	else {
 	        		IMoleculeSet moleculeSet = ConnectivityChecker.partitionIntoMolecules(mol);
 	        	      

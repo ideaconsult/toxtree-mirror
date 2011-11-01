@@ -31,9 +31,9 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openscience.cdk.AtomContainer;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IReaction;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
@@ -104,9 +104,9 @@ public class SimpleReactionsTest {
 				//TODO problem with CML Writer !!!!!!!!!!!!!!!!!!!!
 				/*
 				Reaction r = new Reaction();
-				r.addReactant((Molecule)mol);
+				r.addReactant((IMolecule)mol);
 				for (int p=0; p< sc.getAtomContainerCount(); p++)
-					r.addProduct((Molecule)sc.getAtomContainer(p));
+					r.addProduct((IMolecule)sc.getAtomContainer(p));
 		        StringWriter writer = new StringWriter();
 		        CMLWriter cmlWriter = new CMLWriter(writer);
 		        try {
@@ -212,9 +212,9 @@ public class SimpleReactionsTest {
 			if (products == null) return;
 			for (int p=0; p< products.getAtomContainerCount(); p++)
 				System.out.println((p+1)+".\n"+
-					FunctionalGroups.mapToString((Molecule)products.getAtomContainer(p)));
+					FunctionalGroups.mapToString((IMolecule)products.getAtomContainer(p)));
 				logger.debug((p+1)+".\t"+
-					g.createSMILES((Molecule)products.getAtomContainer(p)));
+					g.createSMILES((IMolecule)products.getAtomContainer(p)));
 				*/
 		
 	}
@@ -268,13 +268,13 @@ public class SimpleReactionsTest {
 		SimpleReactions sr = new SimpleReactions();
 		
 			
-				Molecule mol;
+				IMolecule mol;
 				
 				int success = 0;
 				
 				for (int r=0; r < answers.length; r++) { 
 					
-					mol = (Molecule) FunctionalGroups.createAtomContainer((String)answers[r][0],true);
+					mol = (IMolecule) FunctionalGroups.createAtomContainer((String)answers[r][0],true);
 					IAtomContainerSet results = sr.canMetabolize(mol,true);
 					boolean canM = results != null;
 					if (((Boolean) answers[r][1]).booleanValue()) {
@@ -335,7 +335,7 @@ public class SimpleReactionsTest {
 	@Test
 	public void testMultipleReactions() throws Exception  {
 		logger.debug("MultipleReactions");
-		Molecule Gr3 = (Molecule) FunctionalGroups.createAtomContainer(
+		IMolecule Gr3 = (IMolecule) FunctionalGroups.createAtomContainer(
 				"CCN(Cc1cccc(c1)S(=O)(=O)O[Na])c2cccc(c2)C(=C3C=CC(C=C3)=[N+](CC)Cc4cccc(c4)S(=O)(=O)O[Na])c5ccc(O)cc5S6(=O)(=O)([O-]6)"
 				,true);
 		SimpleReactions sr = new SimpleReactions();

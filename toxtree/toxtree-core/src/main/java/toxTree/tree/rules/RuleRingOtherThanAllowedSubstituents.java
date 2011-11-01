@@ -128,7 +128,7 @@ public abstract class RuleRingOtherThanAllowedSubstituents extends RuleRingSubst
 	    FunctionalGroups.markCHn(mol);	    
 	    //iterating over all rings in the ringset
 	    for (int i=0; i < rs.size(); i++) {
-	        Ring r = (Ring) rs.get(i);
+	        IRing r = (IRing) rs.get(i);
 	        logger.debug("Ring\t",(i+1));
 	        
 	        //new atomcontainer with ring atoms/bonds deleted

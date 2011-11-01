@@ -30,9 +30,10 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.openscience.cdk.ChemFile;
-import org.openscience.cdk.ChemObject;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IChemFile;
+import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -45,7 +46,7 @@ public class EmptySDFEntryTest {
 	public void testEmptyEntry() throws Exception {
 			MDLV2000Reader reader = new MDLV2000Reader(
 					this.getClass().getClassLoader().getResourceAsStream("data/Misc/emptyStructure.sdf"));
-        	ChemFile content = (ChemFile)reader.read((ChemObject)new ChemFile());
+        	IChemFile content = (IChemFile)reader.read((IChemObject)new ChemFile());
         	List c = ChemFileManipulator.getAllAtomContainers(content);
         	Assert.assertNotNull(c);
         	Assert.assertEquals(2,c.size());
