@@ -31,7 +31,6 @@ import java.util.List;
 
 import org.openscience.cdk.Atom;
 import org.openscience.cdk.AtomContainerSet;
-import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.PseudoAtom;
 import org.openscience.cdk.exception.CDKException;
@@ -277,7 +276,7 @@ public class SimpleReactions {
 					"Hydrolize: Can't find the bond to break in the reactant!");
 		IBond bondToSplitMol = null;
 		for (int b = 0; b < bondsToSplitMol.size(); b++) {
-			bondToSplitMol = (Bond) bondsToSplitMol.get(b);
+			bondToSplitMol = (IBond) bondsToSplitMol.get(b);
 			//IAtom[] atoms = bondToSplitMol.getAtoms();
 			int ohAtom = -1;
 			int hAtom = -1;

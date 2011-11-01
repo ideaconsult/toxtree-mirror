@@ -38,7 +38,6 @@ import junit.framework.TestCase;
 
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.exception.InvalidSmilesException;
@@ -365,7 +364,7 @@ public class FuncGroupsTest extends TestCase {
         assertTrue(query("O=S(=O)(O[Na])NC1CCCCC1",q));
         assertFalse(query("CS(=O)(=O)O[Na]",q));
         
-        Molecule mol = (Molecule) FunctionalGroups.createAtomContainer("O=S(=O)(O[Na])NC1CCCCC1",true);
+        IMolecule mol = (IMolecule) FunctionalGroups.createAtomContainer("O=S(=O)(O[Na])NC1CCCCC1",true);
         List list = FunctionalGroups.getBondMap(mol,q,false);
         FunctionalGroups.markMaps(mol,q,list);
         assertNotNull(list);
