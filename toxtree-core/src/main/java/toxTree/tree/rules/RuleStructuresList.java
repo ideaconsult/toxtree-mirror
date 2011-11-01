@@ -160,7 +160,7 @@ public class RuleStructuresList extends AbstractRule {
     		public IChemObjectSelection process(IAtomContainer mol)
     				throws AmbitException {
     			//try {
-    				//IAtomContainer selected = NoNotificationChemObjectBuilder.getInstance().newAtomContainer();
+    				//IAtomContainer selected = SilentChemObjectBuilder.getInstance().newAtomContainer();
 	    			//verifyRule(mol, selected);
 	    			return new SingleSelection<IAtomContainer>(mol);
     			//} catch (DecisionMethodException x) {
