@@ -4,7 +4,7 @@
   <artifactId>smartcyp</artifactId>
   <packaging>pom</packaging>
   <name>SMARTCyp </name>
-  <version>1.5.6-SNAPSHOT</version>
+  <version>1.5.6</version>
   <repositories>
     	 <repository>
         <id>ambit-plovdiv</id>
@@ -60,6 +60,6 @@
   	</build>
     <properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<cdk.version>1.4.4</cdk.version>
+    	<cdk.version>1.4.5</cdk.version>
     </properties>	
 </project>
