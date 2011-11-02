@@ -323,7 +323,7 @@ public class Convertor {
      **/
     public static IMolecule convert(JOEMol mol) {
         if (mol != null) {
-            IMolecule converted = new Molecule();
+            IMolecule converted = SilentChemObjectBuilder.getInstance().newInstance(IMolecule.class);
             int NOatoms = mol.numAtoms();
             for (int i=1; i<=NOatoms; i++) {
                 /* JOEMol.getAtom() needs ids [1,...] */

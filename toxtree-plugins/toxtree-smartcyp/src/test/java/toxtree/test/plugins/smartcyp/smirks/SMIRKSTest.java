@@ -230,7 +230,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 		smartcyp.setImageSize(new Dimension(200,200));
 		boolean explicitH = true;
 		AtomConfigurator  cfg = new AtomConfigurator();
-		SMIRKSManager smrkMan = new SMIRKSManager();
+		SMIRKSManager smrkMan = new SMIRKSManager(SilentChemObjectBuilder.getInstance());
 		SmilesGenerator g = new SmilesGenerator();
 		HydrogenAdderProcessor hadder = new HydrogenAdderProcessor();
 		hadder.setAddEexplicitHydrogens(explicitH);

@@ -37,7 +37,7 @@ import org.openscience.cdk.isomorphism.matchers.IQueryBond;
  * <b>Modified</b> 2005-9-23
  */
 public class AssociationQueryBond extends MyAssociationBond implements IQueryBond {
-
+	
 	private static final long serialVersionUID = 2683414374611772988L;
 
 	/**

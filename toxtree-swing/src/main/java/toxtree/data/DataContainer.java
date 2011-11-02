@@ -60,7 +60,7 @@ public class DataContainer extends Observable {
     
     public void addMolecule() {
     	if (!enabled) return;
-    	Molecule mol = new Molecule();
+    	IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
     	mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
     	addMolecule(mol);
     }

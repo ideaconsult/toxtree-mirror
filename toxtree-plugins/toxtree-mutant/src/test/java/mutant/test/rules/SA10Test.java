@@ -41,6 +41,7 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.smiles.smarts.SMARTSQueryTool;
@@ -109,7 +110,7 @@ public class SA10Test extends TestMutantRules {
 		}
 	}
 	protected IMolecule create663() throws Exception {
-			  IMolecule mol = new Molecule();
+			  IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
 			  IAtom a1 = MoleculeTools.newAtom(mol.getBuilder(),Elements.CARBON);
 			  a1.setPoint2d(new Point2d(2.598076211353316, -4.440892098500626E-16));  mol.addAtom(a1);
 			  IAtom a2 = MoleculeTools.newAtom(mol.getBuilder(),Elements.CARBON);

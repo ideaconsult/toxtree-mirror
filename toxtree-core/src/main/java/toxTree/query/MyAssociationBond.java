@@ -24,10 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.query;
 
-import org.openscience.cdk.Atom;
-import org.openscience.cdk.Bond;
+
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.silent.Bond;
 
 /**
  * This is a hack to allow query for ionic bonds
@@ -63,7 +63,7 @@ public class MyAssociationBond extends Bond {
 	 * @param atom2
 	 * @param order
 	 */
-	public MyAssociationBond(Atom atom1, Atom atom2, IBond.Order order) {
+	public MyAssociationBond(IAtom atom1, IAtom atom2, IBond.Order order) {
 		super(atom1, atom2, order);
 	}
 
@@ -73,7 +73,7 @@ public class MyAssociationBond extends Bond {
 	 * @param order
 	 * @param stereo
 	 */
-	public MyAssociationBond(Atom atom1, Atom atom2, IBond.Order order, Stereo stereo) {
+	public MyAssociationBond(IAtom atom1, IAtom atom2, IBond.Order order, Stereo stereo) {
 		super(atom1, atom2, order, stereo);
 	}
 
