@@ -54,7 +54,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 		IAtomContainerSet products = null;
 	//	AtomConfigurator cfg = new AtomConfigurator();
 		if (smrkMan == null) {
-			smrkMan = new SMIRKSManager();
+			smrkMan = new SMIRKSManager(SilentChemObjectBuilder.getInstance());
 			//smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL_FIRST);
 			smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL);
 			smrkMan.FlagFilterEquivalentMappings = true;

@@ -19,15 +19,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package verhaar.query;
 
-import org.openscience.cdk.Atom;
-import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
+import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IPseudoAtom;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.InverseSymbolSetQueryAtom;
@@ -38,12 +37,12 @@ import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.SymbolSetQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AnyAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AnyOrderQueryBond;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
-
-
 
 import toxTree.query.TopologyAnyBond;
 import toxTree.query.TopologyOrderQueryBond;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * A singleton class providing static methods for various functional groups in {@link verhaar.VerhaarScheme}.
@@ -148,7 +147,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	public static QueryAtomContainer halogenAtBetaFromUnsaturation(String[] halogens) {
 		QueryAtomContainer q = new QueryAtomContainer();
 		q.setID(HALOGEN_BETA_FROM_UNSATURATION);
-		Atom a[] = new Atom[4];
+		IAtom a[] = new IAtom[4];
 		for (int i=0;i<a.length;i++) {
 			if (i==3) {
 				a[i] = new SymbolSetQueryAtom();
@@ -204,11 +203,12 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		return q;
 	}
 	public static QueryAtomContainer phenol() {
+		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
 		QueryAtomContainer q = new QueryAtomContainer();
 		q.setID(PHENOL);
-		Atom[] a = new Atom[6];
+		IAtom[] a = new IAtom[6];
 		for (int i=0;i<a.length;i++) {
-			a[i] = new SymbolQueryAtom(new org.openscience.cdk.Atom("C"));
+			a[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,"C"));
 			q.addAtom(a[i]);
 			if (i > 0) {
 				q.addBond(new  verhaar.query.AromaticQueryBond((IQueryAtom)a[i],(IQueryAtom)a[i-1]));
@@ -216,9 +216,9 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		}
 		q.addBond(new verhaar.query.AromaticQueryBond((IQueryAtom)a[0],(IQueryAtom)a[5]));
 		
-		SymbolQueryAtom o = new SymbolQueryAtom(new org.openscience.cdk.Atom("O"));
+		SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,"O"));
 		q.addAtom(o);
-		SymbolQueryAtom h = new SymbolQueryAtom(new org.openscience.cdk.Atom("H"));
+		SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(builder,"H"));
 		q.addAtom(h);
 		q.addBond(new OrderQueryBond(o,h,CDKConstants.BONDORDER_SINGLE));
 		q.addBond(new OrderQueryBond(o,(IQueryAtom)a[0],CDKConstants.BONDORDER_SINGLE));
@@ -228,7 +228,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	public static QueryAtomContainer aniline() {
 		QueryAtomContainer q = new QueryAtomContainer();
 		q.setID(ANILINE);
-		Atom[] a = new Atom[6];
+		IAtom[] a = new IAtom[6];
 		for (int i=0;i<a.length;i++) {
 			a[i] = new SymbolQueryAtom(new org.openscience.cdk.Atom("C"));
 			q.addAtom(a[i]);
@@ -250,7 +250,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	public static QueryAtomContainer pyridine() {
 		QueryAtomContainer q = new QueryAtomContainer();
 		q.setID(PYRIDINE);
-		Atom[] a = new Atom[6];
+		IAtom[] a = new IAtom[6];
 		for (int i=0;i<a.length;i++) {
 			if (i==0) a[i] = new SymbolQueryAtom(new org.openscience.cdk.Atom("N"));
 			else a[i] = new SymbolQueryAtom(new org.openscience.cdk.Atom("C"));
@@ -266,7 +266,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	public static QueryAtomContainer pyridine_character() {
 		QueryAtomContainer q = new QueryAtomContainer();
 		q.setID(PYRIDINE);
-		IAtom[] a = new Atom[6];
+		IAtom[] a = new IAtom[6];
 		for (int i=0;i<a.length;i++) {
 			if (i==0) a[i] = new SymbolQueryAtom(new org.openscience.cdk.Atom("N"));
 			else {
@@ -299,7 +299,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	public static QueryAtomContainer ketone_a_b_unsaturated() {
 		QueryAtomContainer q = new QueryAtomContainer();
 		q.setID(KETONE_A_B_UNSATURATED);
-		Atom[] a = new Atom[5];
+		IAtom[] a = new IAtom[5];
 		for (int i=0; i < a.length; i++) {
 			switch (i) {
 			case 0: { a[i] = new AnyAtom(); break;}
@@ -325,47 +325,48 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		}
 		return q;
 	}
-	public static Molecule makeNitroPhenol() {
-		  Molecule mol = new Molecule();
-		  Atom a1 = new org.openscience.cdk.Atom("C");
+	public static IMolecule makeNitroPhenol() {
+		 IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+		  IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+		  IAtom a1 = MoleculeTools.newAtom(builder,"C");
 		  mol.addAtom(a1);
-		  Atom a2 = new org.openscience.cdk.Atom("C");
+		  IAtom a2 = MoleculeTools.newAtom(builder,"C");
 		  mol.addAtom(a2);
-		  Atom a3 = new org.openscience.cdk.Atom("C");
+		  IAtom a3 = MoleculeTools.newAtom(builder,"C");
 		  mol.addAtom(a3);
-		  Atom a4 = new org.openscience.cdk.Atom("C");
+		  IAtom a4 = MoleculeTools.newAtom(builder,"C");
 		  mol.addAtom(a4);
-		  Atom a5 = new org.openscience.cdk.Atom("C");
+		  IAtom a5 = MoleculeTools.newAtom(builder,"C");
 		  mol.addAtom(a5);
-		  Atom a6 = new org.openscience.cdk.Atom("C");
+		  IAtom a6 = MoleculeTools.newAtom(builder,"C");
 		  mol.addAtom(a6);
-		  Atom a7 = new org.openscience.cdk.Atom("O");
+		  IAtom a7 = MoleculeTools.newAtom(builder,"O");
 		  mol.addAtom(a7);
-		  Atom a8 = new org.openscience.cdk.Atom("N");
+		  IAtom a8 = MoleculeTools.newAtom(builder,"N");
 		  mol.addAtom(a8);
-		  Atom a9 = new org.openscience.cdk.Atom("O");
+		  IAtom a9 = MoleculeTools.newAtom(builder,"O");
 		  mol.addAtom(a9);
-		  Atom a10 = new org.openscience.cdk.Atom("O");
+		  IAtom a10 = MoleculeTools.newAtom(builder,"O");
 		  mol.addAtom(a10);
-		  Bond b1 = new Bond(a1, a2, IBond.Order.DOUBLE);
+		  IBond b1 = MoleculeTools.newBond(builder, a1, a2, IBond.Order.DOUBLE);
 		  mol.addBond(b1);
-		  Bond b2 = new Bond(a2, a3, IBond.Order.SINGLE);
+		  IBond b2 = MoleculeTools.newBond(builder,a2, a3, IBond.Order.SINGLE);
 		  mol.addBond(b2);
-		  Bond b3 = new Bond(a3, a4, IBond.Order.DOUBLE);
+		  IBond b3 = MoleculeTools.newBond(builder,a3, a4, IBond.Order.DOUBLE);
 		  mol.addBond(b3);
-		  Bond b4 = new Bond(a4, a5, IBond.Order.SINGLE);
+		  IBond b4 = MoleculeTools.newBond(builder,a4, a5, IBond.Order.SINGLE);
 		  mol.addBond(b4);
-		  Bond b5 = new Bond(a5, a6, IBond.Order.DOUBLE);
+		  IBond b5 = MoleculeTools.newBond(builder,a5, a6, IBond.Order.DOUBLE);
 		  mol.addBond(b5);
-		  Bond b6 = new Bond(a6, a1, IBond.Order.SINGLE);
+		  IBond b6 = MoleculeTools.newBond(builder,a6, a1, IBond.Order.SINGLE);
 		  mol.addBond(b6);
-		  Bond b7 = new Bond(a4, a7, IBond.Order.SINGLE);
+		  IBond b7 = MoleculeTools.newBond(builder,a4, a7, IBond.Order.SINGLE);
 		  mol.addBond(b7);
-		  Bond b8 = new Bond(a2, a8, IBond.Order.SINGLE);
+		  IBond b8 = MoleculeTools.newBond(builder,a2, a8, IBond.Order.SINGLE);
 		  mol.addBond(b8);
-		  Bond b9 = new Bond(a8, a9, IBond.Order.DOUBLE);
+		  IBond b9 = MoleculeTools.newBond(builder,a8, a9, IBond.Order.DOUBLE);
 		  mol.addBond(b9);
-		  Bond b10 = new Bond(a8, a10, IBond.Order.DOUBLE);
+		  IBond b10 = MoleculeTools.newBond(builder,a8, a10, IBond.Order.DOUBLE);
 		  mol.addBond(b10);
 		  return mol;
 		}

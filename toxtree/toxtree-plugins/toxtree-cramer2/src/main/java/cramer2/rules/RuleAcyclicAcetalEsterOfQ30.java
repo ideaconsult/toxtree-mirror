@@ -27,6 +27,7 @@ package cramer2.rules;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.ReactionException;

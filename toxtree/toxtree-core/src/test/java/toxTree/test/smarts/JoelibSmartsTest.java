@@ -89,7 +89,7 @@ public class JoelibSmartsTest  {
 	    }
 	@Test
 	    public void testCDKJoeMol() throws Exception {
-	        Molecule mol = new Molecule();
+			IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
 	        
 	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
 	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN)); // 5
@@ -125,7 +125,7 @@ public class JoelibSmartsTest  {
 	    }
 	    @Test
 	    public void testCDKJoeMolAllC() throws Exception {
-	        Molecule mol = new Molecule();
+	        IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
 	        
 	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
 	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 5
