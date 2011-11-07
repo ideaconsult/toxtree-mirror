@@ -82,12 +82,12 @@ public class DNABindingTreeResult extends TreeResult {
 	public void addRuleResult(IDecisionRule rule, boolean value, IAtomContainer molecule)
 	throws DecisionResultException {
 			super.addRuleResult(rule, value,molecule);
-			if (rule instanceof RuleDNABindingAlerts)
+			if (rule instanceof RuleDNAbindingAlerts)
 				setSilent(true);
 
 			else setSilent((rule instanceof DecisionNode) &&	
 					(
-				(((DecisionNode)rule).getRule() instanceof RuleDNABindingAlerts) 
+				(((DecisionNode)rule).getRule() instanceof RuleDNAbindingAlerts) 
 
 
 				)
