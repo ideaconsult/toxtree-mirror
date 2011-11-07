@@ -121,7 +121,7 @@ public enum DNABindingAlerts {
 		}		
 		@Override
 		public String getShortName() {
-			return "SNA1";
+			return "SN1";
 		}
 	},	
 

@@ -123,18 +123,24 @@
   		<scope>provided</scope>
   	</dependency>
   	<dependency>
-  		<groupId>toxtree-moa</groupId>
+  		<groupId>toxtree</groupId>
   		<artifactId>toxtree-moa</artifactId>
   		<version>${project.version}</version>
   		<type>jar</type>
   		<scope>provided</scope>
   	</dependency>
   	<dependency>
-  		<groupId>toxtree-proteinbinding</groupId>
+  		<groupId>toxtree</groupId>
   		<artifactId>toxtree-proteinbinding</artifactId>
-  		<version>2.5.2-SNAPSHOT</version>
+  		<version>${project.version}</version>
   		<scope>provided</scope>
   	</dependency>
+	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-dnabinding</artifactId>
+  		<version>${project.version}</version>
+  		<scope>provided</scope>
+  	</dependency>  	
   </dependencies>
     <build>
   	<plugins>

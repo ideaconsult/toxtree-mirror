@@ -63,12 +63,12 @@ public class DNABindingPlugin extends UserDefinedTree  implements IDecisionInter
 	  
 	    };	
 	    private final static transient String c_categories[] ={
-			"toxtree.plugins.proteinbinding.categories.SNArAlerts", //1
-			"toxtree.plugins.proteinbinding.categories.ShiffBaseAlerts", //2			
-			"toxtree.plugins.proteinbinding.categories.MichaelAcceptors", //3
-			"toxtree.plugins.proteinbinding.categories.AcylTransferAlerts", //4
-			"toxtree.plugins.proteinbinding.categories.SN2Alerts", //4
-			"toxtree.plugins.proteinbinding.categories.NoAlerts" //5
+			"toxtree.plugins.dnabinding.categories.SNArAlerts", //1
+			"toxtree.plugins.dnabinding.categories.ShiffBaseAlerts", //2			
+			"toxtree.plugins.dnabinding.categories.MichaelAcceptors", //3
+			"toxtree.plugins.dnabinding.categories.AcylTransferAlerts", //4
+			"toxtree.plugins.dnabinding.categories.SN2Alerts", //4
+			"toxtree.plugins.dnabinding.categories.NoAlerts" //5
 		};
 	    
 		public DNABindingPlugin() throws DecisionMethodException {
@@ -175,7 +175,7 @@ public class DNABindingPlugin extends UserDefinedTree  implements IDecisionInter
 
 		public DescriptorSpecification getSpecification() {
 	        return new DescriptorSpecification(
-	                "http://toxtree.sourceforge.net/proteinbinding.html",
+	                "http://toxtree.sourceforge.net/dnabinding.html",
 	                getTitle(),
 	                this.getClass().getName(),                
 	                "Toxtree plugin");
