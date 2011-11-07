@@ -31,6 +31,7 @@
     <module>toxtree-verhaar2</module>    
     <module>toxtree-search</module>
     <module>toxtree-proteinbinding</module>
+    <module>toxtree-dnabinding</module>
     <module>toxtree-moa</module>
   </modules>
   <dependencies>
