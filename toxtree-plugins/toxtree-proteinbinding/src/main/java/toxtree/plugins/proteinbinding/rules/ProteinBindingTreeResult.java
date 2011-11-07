@@ -88,7 +88,6 @@ public class ProteinBindingTreeResult extends TreeResult {
 			else setSilent((rule instanceof DecisionNode) &&	
 					(
 				(((DecisionNode)rule).getRule() instanceof RuleProteinBindingAlerts) 
-				//(((DecisionNode)rule).getRule() instanceof RuleSkinSensitisationAlerts)
 
 				)
 				);

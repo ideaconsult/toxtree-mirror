@@ -22,7 +22,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
-package toxtree.plugins.skinsensitisation.rules;
+package toxtree.plugins.dnabinding.rules;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -40,9 +40,8 @@ import toxTree.tree.ProgressStatus;
 import toxTree.tree.RuleResult;
 import toxTree.tree.TreeResult;
 import toxTree.tree.rules.IAlertCounter;
-import toxtree.plugins.skinsensitisation.categories.RuleSkinSensitisationAlerts;
 
-public class SkinSensitisationTreeResult extends TreeResult {
+public class DNABindingTreeResult extends TreeResult {
     protected static String SUFFIX = "SUFFIX";
 
 	/**
@@ -83,13 +82,13 @@ public class SkinSensitisationTreeResult extends TreeResult {
 	public void addRuleResult(IDecisionRule rule, boolean value, IAtomContainer molecule)
 	throws DecisionResultException {
 			super.addRuleResult(rule, value,molecule);
-			if (rule instanceof RuleSkinSensitisationAlerts)
+			if (rule instanceof RuleDNABindingAlerts)
 				setSilent(true);
 
 			else setSilent((rule instanceof DecisionNode) &&	
 					(
-				(((DecisionNode)rule).getRule() instanceof RuleSkinSensitisationAlerts) 
-				//(((DecisionNode)rule).getRule() instanceof RuleSkinSensitisationAlerts)
+				(((DecisionNode)rule).getRule() instanceof RuleDNABindingAlerts) 
+
 
 				)
 				);

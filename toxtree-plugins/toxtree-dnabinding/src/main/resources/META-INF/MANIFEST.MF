@@ -1,0 +1,13 @@
+﻿Package: toxtree.plugins.dnabinding
+Name: toxtree/plugins/dnabinding/DNABindingPlugin.class
+Manifest-version: ${project.version}
+Class-Path: toxtree-skinsensitisation-${project.version}.jar
+Specification-Title: DNA binding
+Specification-Version: ${project.version}
+Specification-Vendor: Ideaconsult LTD
+Implementation-Title: DNA binding
+Implementation-Version: ${project.version}
+Implementation-Vendor: Ideaconsult LTD
+Package-Title: toxTree.plugins.dnabinding
+Package-Version: ${project.version}
+Package-Vendor: Ideaconsult LTD
