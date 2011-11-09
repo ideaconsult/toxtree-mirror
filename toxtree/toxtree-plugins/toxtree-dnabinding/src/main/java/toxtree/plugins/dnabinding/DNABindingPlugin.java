@@ -16,8 +16,21 @@ import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.CategoriesList;
 import toxTree.tree.DecisionNodesFactory;
 import toxTree.tree.UserDefinedTree;
+import toxtree.plugins.dnabinding.categories.AcylTransferAlerts;
 import toxtree.plugins.dnabinding.categories.DNABindingAlerts;
+import toxtree.plugins.dnabinding.categories.MichaelAcceptors;
+import toxtree.plugins.dnabinding.categories.NoAlerts;
+import toxtree.plugins.dnabinding.categories.SN1Alerts;
+import toxtree.plugins.dnabinding.categories.SN2Alerts;
+import toxtree.plugins.dnabinding.categories.ShiffBaseAlerts;
+import toxtree.plugins.dnabinding.rules.AcylTransferRule;
 import toxtree.plugins.dnabinding.rules.DNABindingTreeResult;
+import toxtree.plugins.dnabinding.rules.MichaelAcceptorRule;
+import toxtree.plugins.dnabinding.rules.RuleDNABindingAlerts;
+import toxtree.plugins.dnabinding.rules.SN1Rule;
+import toxtree.plugins.dnabinding.rules.SN2Rule;
+import toxtree.plugins.dnabinding.rules.ShiffBaseRule;
+import toxtree.plugins.dnabinding.rules.VerifyAlertsDNABinding;
 
 /**
  * Protein binding
@@ -33,13 +46,13 @@ public class DNABindingPlugin extends UserDefinedTree  implements IDecisionInter
 
 	   protected boolean residuesIDVisible;
 	    public final static transient String[] c_rules = {
-	    	"toxtree.plugins.dnabinding.rules.RuleDNABindingAlerts",
-	    	"toxtree.plugins.dnabinding.rules.SN1Rule",
-	    	"toxtree.plugins.dnabinding.rules.ShiffBaseRule",
-	    	"toxtree.plugins.dnabinding.rules.MichaelAcceptorRule",
-	    	"toxtree.plugins.dnabinding.rules.AcylTransferRule",
-	    	"toxtree.plugins.dnabinding.rules.SN2Rule",
-	    	"toxtree.plugins.dnabinding.rules.VerifyAlertsDNABinding"
+	    	RuleDNABindingAlerts.class.getName(),
+	    	SN1Rule.class.getName(),
+	    	ShiffBaseRule.class.getName(),
+	    	MichaelAcceptorRule.class.getName(),
+	    	AcylTransferRule.class.getName(),
+	    	SN2Rule.class.getName(),
+	    	VerifyAlertsDNABinding.class.getName()
 
 	        };
 	    private final static transient int c_transitions[][] ={
@@ -63,12 +76,12 @@ public class DNABindingPlugin extends UserDefinedTree  implements IDecisionInter
 	  
 	    };	
 	    private final static transient String c_categories[] ={
-			"toxtree.plugins.dnabinding.categories.SNArAlerts", //1
-			"toxtree.plugins.dnabinding.categories.ShiffBaseAlerts", //2			
-			"toxtree.plugins.dnabinding.categories.MichaelAcceptors", //3
-			"toxtree.plugins.dnabinding.categories.AcylTransferAlerts", //4
-			"toxtree.plugins.dnabinding.categories.SN2Alerts", //4
-			"toxtree.plugins.dnabinding.categories.NoAlerts" //5
+	    	SN1Alerts.class.getName(), //1
+			ShiffBaseAlerts.class.getName(),			
+			MichaelAcceptors.class.getName(),
+			AcylTransferAlerts.class.getName(),
+			SN2Alerts.class.getName(),
+			NoAlerts.class.getName()
 		};
 	    
 		public DNABindingPlugin() throws DecisionMethodException {

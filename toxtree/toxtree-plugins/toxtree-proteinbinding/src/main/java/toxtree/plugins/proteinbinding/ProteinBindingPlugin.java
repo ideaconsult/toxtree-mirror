@@ -16,8 +16,21 @@ import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.CategoriesList;
 import toxTree.tree.DecisionNodesFactory;
 import toxTree.tree.UserDefinedTree;
+import toxtree.plugins.proteinbinding.categories.AcylTransferAlerts;
+import toxtree.plugins.proteinbinding.categories.MichaelAcceptors;
+import toxtree.plugins.proteinbinding.categories.NoAlerts;
 import toxtree.plugins.proteinbinding.categories.ProteinBindingAlerts;
+import toxtree.plugins.proteinbinding.categories.SN2Alerts;
+import toxtree.plugins.proteinbinding.categories.SNArAlerts;
+import toxtree.plugins.proteinbinding.categories.ShiffBaseAlerts;
+import toxtree.plugins.proteinbinding.rules.AcylTransferRule;
+import toxtree.plugins.proteinbinding.rules.MichaelAcceptorRule;
 import toxtree.plugins.proteinbinding.rules.ProteinBindingTreeResult;
+import toxtree.plugins.proteinbinding.rules.RuleProteinBindingAlerts;
+import toxtree.plugins.proteinbinding.rules.SN2Rule;
+import toxtree.plugins.proteinbinding.rules.SNARRule;
+import toxtree.plugins.proteinbinding.rules.ShiffBaseRule;
+import toxtree.plugins.proteinbinding.rules.VerifyAlertsProteinBinding;
 
 /**
  * Protein binding
@@ -33,13 +46,13 @@ public class ProteinBindingPlugin extends UserDefinedTree  implements IDecisionI
 
 	   protected boolean residuesIDVisible;
 	    public final static transient String[] c_rules = {
-	    	"toxtree.plugins.proteinbinding.rules.RuleProteinBindingAlerts",
-	    	"toxtree.plugins.proteinbinding.rules.SNARRule",
-	    	"toxtree.plugins.proteinbinding.rules.ShiffBaseRule",
-	    	 "toxtree.plugins.proteinbinding.rules.MichaelAcceptorRule",
-	    	 "toxtree.plugins.proteinbinding.rules.AcylTransferRule",
-	    	 "toxtree.plugins.proteinbinding.rules.SN2Rule",
-	    	 "toxtree.plugins.proteinbinding.rules.VerifyAlertsProteinBinding"
+	    	RuleProteinBindingAlerts.class.getName(),
+	    	SNARRule.class.getName(),
+	    	ShiffBaseRule.class.getName(),
+	    	MichaelAcceptorRule.class.getName(),
+	    	AcylTransferRule.class.getName(),
+	    	SN2Rule.class.getName(),
+	    	VerifyAlertsProteinBinding.class.getName()
 
 	        };
 	    private final static transient int c_transitions[][] ={
@@ -63,12 +76,12 @@ public class ProteinBindingPlugin extends UserDefinedTree  implements IDecisionI
 	  
 	    };	
 	    private final static transient String c_categories[] ={
-			"toxtree.plugins.proteinbinding.categories.SNArAlerts", //1
-			"toxtree.plugins.proteinbinding.categories.ShiffBaseAlerts", //2			
-			"toxtree.plugins.proteinbinding.categories.MichaelAcceptors", //3
-			"toxtree.plugins.proteinbinding.categories.AcylTransferAlerts", //4
-			"toxtree.plugins.proteinbinding.categories.SN2Alerts", //4
-			"toxtree.plugins.proteinbinding.categories.NoAlerts" //5
+			SNArAlerts.class.getName(),
+			ShiffBaseAlerts.class.getName(),			
+			MichaelAcceptors.class.getName(),
+			AcylTransferAlerts.class.getName(),
+			SN2Alerts.class.getName(),
+			NoAlerts.class.getName()
 		};
 	    
 		public ProteinBindingPlugin() throws DecisionMethodException {
