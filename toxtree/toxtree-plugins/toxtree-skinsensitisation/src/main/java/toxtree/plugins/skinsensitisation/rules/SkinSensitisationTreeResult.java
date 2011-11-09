@@ -40,7 +40,6 @@ import toxTree.tree.ProgressStatus;
 import toxTree.tree.RuleResult;
 import toxTree.tree.TreeResult;
 import toxTree.tree.rules.IAlertCounter;
-import toxtree.plugins.skinsensitisation.categories.RuleSkinSensitisationAlerts;
 
 public class SkinSensitisationTreeResult extends TreeResult {
     protected static String SUFFIX = "SUFFIX";
