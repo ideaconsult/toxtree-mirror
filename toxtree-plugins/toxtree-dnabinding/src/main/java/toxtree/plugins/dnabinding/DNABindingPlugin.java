@@ -33,13 +33,13 @@ public class DNABindingPlugin extends UserDefinedTree  implements IDecisionInter
 
 	   protected boolean residuesIDVisible;
 	    public final static transient String[] c_rules = {
-	    	"toxtree.plugins.dnabinding.rules.RuleDNAbindingAlerts",
+	    	"toxtree.plugins.dnabinding.rules.RuleDNABindingAlerts",
 	    	"toxtree.plugins.dnabinding.rules.SN1Rule",
 	    	"toxtree.plugins.dnabinding.rules.ShiffBaseRule",
 	    	"toxtree.plugins.dnabinding.rules.MichaelAcceptorRule",
 	    	"toxtree.plugins.dnabinding.rules.AcylTransferRule",
 	    	"toxtree.plugins.dnabinding.rules.SN2Rule",
-	    	"toxtree.plugins.dnabinding.rules.VerifyAlertsDNAbinding"
+	    	"toxtree.plugins.dnabinding.rules.VerifyAlertsDNABinding"
 
 	        };
 	    private final static transient int c_transitions[][] ={

@@ -2,7 +2,7 @@ package toxtree.plugins.dnabinding.rules;
 
 import toxTree.tree.rules.RuleInitAlertCounter;
 
-public class RuleDNAbindingAlerts extends RuleInitAlertCounter {
+public class RuleDNABindingAlerts extends RuleInitAlertCounter {
 
 
 	/**
@@ -10,7 +10,7 @@ public class RuleDNAbindingAlerts extends RuleInitAlertCounter {
 	 */
 	private static final long serialVersionUID = -5388334940521878939L;
 
-	public RuleDNAbindingAlerts() {
+	public RuleDNABindingAlerts() {
 		super();
 		setID("DNA binding alerts");
 		setTitle("Verify structural alerts for DNA binding");
