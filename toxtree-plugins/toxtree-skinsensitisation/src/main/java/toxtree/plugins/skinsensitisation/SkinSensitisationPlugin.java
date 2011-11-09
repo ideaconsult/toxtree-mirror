@@ -82,7 +82,7 @@ public class SkinSensitisationPlugin extends UserDefinedTree  implements IDecisi
 				changes.firePropertyChange("Transitions", transitions,null);
 			}
 			*/
-			setTitle("DNA binding");
+			setTitle("Skin sensitisation reactivity domains");
 
 	        setPriority(9);
 	        setFalseIfRuleNotImplemented(false);

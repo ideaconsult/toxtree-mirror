@@ -12,8 +12,8 @@ public class RuleSkinSensitisationAlerts extends RuleInitAlertCounter {
 
 	public RuleSkinSensitisationAlerts() {
 		super();
-		setID("DNA binding");
-		setTitle("Verify structural alerts for DNA binding");
+		setID("Skin sensitisation");
+		setTitle("Verify structural alerts for Skin sensitisation reactivity domains");
 		setExplanation("");
 		
 	}
