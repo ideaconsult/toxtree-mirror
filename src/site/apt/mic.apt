@@ -20,9 +20,8 @@ Structure Alerts for the in vivo micronucleus assay in rodents
   
 * Download
 
-	{{{http://ecb.jrc.ec.europa.eu/produits/ToxMic.zip}Download plugin for ToxTree 1.51}}
-	
-	The plugin will be distributed with the main ToxTree release starting with Toxtree 1.60
+
+	The plugin is included in the ToxTree distribution starting with Toxtree 1.60
 	  
 * Reference
 
