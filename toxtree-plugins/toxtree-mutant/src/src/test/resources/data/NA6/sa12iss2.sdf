@@ -1,0 +1,278 @@
+iss2_15
+
+
+  6  6  0  0  0  0  0  0  0  0999 V2000
+    2.2627   -2.2757    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.9363   -2.2757    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.9363   -0.9363    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.2627   -0.9363    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -3.2120    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1990   -0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  1  4  1  0  0  0  0
+  2  3  1  0  0  0  0
+  2  5  1  0  0  0  0
+  3  4  1  0  0  0  0
+  4  6  2  0  0  0  0
+M  END
+>  <Substance ID> (iss2_15)
+iss2_15
+
+>  <Molecular.Weight> (iss2_15)
+86.09
+
+>  <FW_iss2> (iss2_15)
+86.09
+
+>  <Parent.Atom.Count> (iss2_15)
+6.0
+
+>  <Parent.Molecular.Weight> (iss2_15)
+86.09
+
+>  <Rotatable.Bonds> (iss2_15)
+0.0
+
+>  <Hydrogen.Bond.Acceptors> (iss2_15)
+1.0
+
+>  <Polar.Surface.Area> (iss2_15)
+26.3
+
+>  <Lipinski.Score> (iss2_15)
+0.0
+
+>  <Canc_iss2> (iss2_15)
+3.0
+
+>  <ALogP> (iss2_15)
+0.32
+
+>  <Hydrogen.Bond.Donors> (iss2_15)
+0.0
+
+>  <ChemName_iss2> (iss2_15)
+beta-Butyrolactone
+
+>  <SMILES_iss2> (iss2_15)
+CC1CC(=O)O1
+
+>  <SAL_iss2> (iss2_15)
+3
+
+>  <CAS_iss2> (iss2_15)
+3068-88-0
+
+>  <Formula_iss2> (iss2_15)
+C4H6O2
+
+$$$$
+iss2_22
+
+
+  5  5  0  0  0  0  0  0  0  0999 V2000
+    1.2799   -1.1531    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9515   -0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1046   -0.6589    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4330   -1.8121    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -1.4953    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  1  4  1  0  0  0  0
+  1  5  2  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  1  0  0  0  0
+M  END
+>  <Substance ID> (iss2_22)
+iss2_22
+
+>  <Molecular.Weight> (iss2_22)
+72.06
+
+>  <FW_iss2> (iss2_22)
+72.06
+
+>  <Parent.Atom.Count> (iss2_22)
+5.0
+
+>  <Parent.Molecular.Weight> (iss2_22)
+72.06
+
+>  <Rotatable.Bonds> (iss2_22)
+0.0
+
+>  <Hydrogen.Bond.Acceptors> (iss2_22)
+1.0
+
+>  <Polar.Surface.Area> (iss2_22)
+26.3
+
+>  <Lipinski.Score> (iss2_22)
+0.0
+
+>  <Canc_iss2> (iss2_22)
+3.0
+
+>  <ALogP> (iss2_22)
+-0.07
+
+>  <Hydrogen.Bond.Donors> (iss2_22)
+0.0
+
+>  <ChemName_iss2> (iss2_22)
+beta-Propiolactone
+
+>  <SMILES_iss2> (iss2_22)
+O=C1CCO1
+
+>  <SAL_iss2> (iss2_22)
+3
+
+>  <CAS_iss2> (iss2_22)
+57-57-8
+
+>  <Formula_iss2> (iss2_22)
+C3H4O2
+
+$$$$
+iss2_219
+
+
+  7  7  0  0  0  0  0  0  0  0999 V2000
+    2.4351   -3.1018    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2900   -2.4351    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9567   -1.2900    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1018   -1.9423    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.6089   -0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3479   -3.3772    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -2.0872    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  1  4  1  0  0  0  0
+  2  3  1  0  0  0  0
+  2  6  1  0  0  0  0
+  2  7  1  0  0  0  0
+  3  4  1  0  0  0  0
+  3  5  2  0  0  0  0
+M  END
+>  <Substance ID> (iss2_219)
+iss2_219
+
+>  <Molecular.Weight> (iss2_219)
+100.1
+
+>  <FW_iss2> (iss2_219)
+100.1
+
+>  <Parent.Atom.Count> (iss2_219)
+7.0
+
+>  <Parent.Molecular.Weight> (iss2_219)
+100.1
+
+>  <Rotatable.Bonds> (iss2_219)
+0.0
+
+>  <Hydrogen.Bond.Acceptors> (iss2_219)
+1.0
+
+>  <Polar.Surface.Area> (iss2_219)
+26.3
+
+>  <Lipinski.Score> (iss2_219)
+0.0
+
+>  <Canc_iss2> (iss2_219)
+3.0
+
+>  <ALogP> (iss2_219)
+0.57
+
+>  <Hydrogen.Bond.Donors> (iss2_219)
+0.0
+
+>  <ChemName_iss2> (iss2_219)
+Pivalolactone
+
+>  <SMILES_iss2> (iss2_219)
+O(CC1(C)C)C1=O
+
+>  <SAL_iss2> (iss2_219)
+3
+
+>  <CAS_iss2> (iss2_219)
+1955-45-9
+
+>  <Formula_iss2> (iss2_219)
+C5H8O2
+
+$$$$
+iss2_550
+
+
+  7  7  0  0  0  0  0  0  0  0999 V2000
+    1.9681   -0.2719    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0976   -1.6056    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.8805   -2.1494    0.0000 S   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -1.1524    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.6604   -0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -3.1334    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2948   -3.4053    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  1  5  1  0  0  0  0
+  2  3  1  0  0  0  0
+  3  4  1  0  0  0  0
+  3  6  2  0  0  0  0
+  3  7  2  0  0  0  0
+  4  5  1  0  0  0  0
+M  END
+>  <Substance ID> (iss2_550)
+iss2_550
+
+>  <Molecular.Weight> (iss2_550)
+122.1
+
+>  <FW_iss2> (iss2_550)
+122.1
+
+>  <Parent.Atom.Count> (iss2_550)
+7.0
+
+>  <Parent.Molecular.Weight> (iss2_550)
+122.1
+
+>  <Rotatable.Bonds> (iss2_550)
+0.0
+
+>  <Hydrogen.Bond.Acceptors> (iss2_550)
+2.0
+
+>  <Polar.Surface.Area> (iss2_550)
+43.37
+
+>  <Lipinski.Score> (iss2_550)
+0.0
+
+>  <Canc_iss2> (iss2_550)
+3.0
+
+>  <ALogP> (iss2_550)
+-0.26
+
+>  <Hydrogen.Bond.Donors> (iss2_550)
+0.0
+
+>  <ChemName_iss2> (iss2_550)
+Propane sultone
+
+>  <SMILES_iss2> (iss2_550)
+O=S1(=O)CCCO1
+
+>  <SAL_iss2> (iss2_550)
+3
+
+>  <CAS_iss2> (iss2_550)
+1120-71-4
+
+>  <Formula_iss2> (iss2_550)
+C3H6O3S
+
+$$$$

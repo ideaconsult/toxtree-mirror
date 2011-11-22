@@ -1,0 +1,21 @@
+Chemical Name (Not IUPAC),CAS Number,SMILES,Structural Formula,Genotoxic activity (3=active; 1= inactive),MR Daylight,logP Daylight,LUMO [eV] PM3; MMOPAC 6.0
+Acrolein,107-02-8,C=CC=O,C3H4O,3,1.655,-0.01,-0.15105
+2-Chloroacrolein,683-51-2,C=C(Cl)C=O,C3H3ClO,3,2.147,0.644,-0.4395
+2-Bromoacrolein,14925-39-4,BrC(=C)C=O,C3H3BrO,3,2.432,0.734,-0.50965
+Crotonaldehyde,4170-30-3,C\C=C\C=O,C4H6O,3,2.119,0.52,-0.13665
+"2,4-Hexadienal",142-83-6,C\C=C\C=C\C=O,C6H8O,3,3.325,1.154,-0.60528
+Cinnamaldehyde,104-55-2,O=C\C=C\c1ccccc1,C9H8O,1,4.394,1.9,-0.80765
+Citral,5392-40-5,C\C(C)=C\CCC(\C)=C\C=O,C10H16O,1,4.876,2.95,-0.16113
+o-Methoxycinnamaldehyde,60125-24-8,COc1ccccc1/C=C/C=O,C10H10O2,1,5.011,1.818,-0.72165
+"2-Dichloromethyl-3,3-dichloroacrolein",14109-84-1,ClC(Cl)C(\C=O)=C(/Cl)Cl,C4H2Cl4O,3,4.085,2.132,-1.15895
+2-Methylacrolein,78-85-3,CC(=C)C=O,C4H6O,3,2.119,0.3,-0.11045
+2-Chloro-3-methylacrolein,53175-28-3,C\C=C(/Cl)C=O,C4H5ClO,3,2.61,1.173,-0.39375
+"2-Chloro-3,3-dimethylacrolein",02.9.7364,C/C(C)=C(/Cl)C=O,C5H7ClO,3,3.074,1.572,-0.41
+2-Ethylacrolein,922-63-4,CCC(=C)C=O,C5H8O,3,2.583,1.24,-0.10135
+2-Propylacrolein,1070-13-9,CCCC(=C)C=O,C6H10O,3,3.047,1.358,-0.1028
+2-Butylacrolein,1070-66-2,CCCCC(=C)C=O,C7H12O,3,3.51,1.887,-0.1101
+2-Pentenal,1576-87-0,CC\C=C\C=O,C5H8O,3,2.583,1.049,-0.12915
+2-Hexenal,6728-26-3,CCC\C=C\C=O,C6H10O,3,3.047,1.578,-0.1335
+2-Heptenal,18829-55-5,CCCC\C=C\C=O,C7H12O,3,3.51,2.107,-0.13485
+2-Chlorocinnamaldehyde,18365-42-9,Cl\C(=C/c1ccccc1)C=O,C9H7ClO,3,4.886,2.602,-0.99007
+2-Bromocinnamaldehyde,5443-49-2,Br\C(C=O)=C/c1ccccc1,C9H7BrO,3,5.171,2.742,-1.0918
