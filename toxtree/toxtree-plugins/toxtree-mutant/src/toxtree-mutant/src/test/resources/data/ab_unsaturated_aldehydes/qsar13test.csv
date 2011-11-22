@@ -1,0 +1,6 @@
+Chemical Name (Not IUPAC),CAS Number,SMILES,Structural Formula,Genotoxic activity (3=active; 1= inactive),MR Daylight,logP Daylight,LUMO [eV] PM3; MMOPAC 6.0
+4-hydroxy-3-methoxy cinammaldehyde,458-36-6,Oc1ccc(cc1OC)\C=C\C=O,C10H10O3,1,5.164,1.231,-0.827
+3-Ethoxymethylacrolein,42588-57-8,C/C(=C\OCC)C=O,C6H10O2,1,3.199,0.592,0.074
+"3,3-Dimethylacrolein",107-86-8,C/C(C)=C\C=O,C5H8O,3,2.583,0.919,-0.1445
+trans-2-Methyl-2-butenal,497-03-0,C/C(=C\C)C=O,C5H8O,3,2.583,0.829,-0.131
+"3,3-Diphenylacrolein",1210-39-5,O=C\C=C(/c1ccccc1)c2ccccc2,C15H12O,1,6.91,3.487,-0.5875

@@ -1,0 +1,22 @@
+Change log
+
+2.5.0
+
+Plugins:
+Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity).
+ Fixed:
+ SA31b
+ https://sourceforge.net/tracker/?func=detail&aid=3138564&group_id=152702&atid=785126
+ SA30
+ https://sourceforge.net/tracker/?func=detail&aid=3138566&group_id=152702&atid=785126
+ Rule "Aromatic amine without sulfonic group on the same ring"
+ https://sourceforge.net/tracker/?func=detail&aid=3138562&group_id=152702&atid=785126
+ QSAR6,8 applicable? (Aromatic amine without sulfonic group on the same ring)
+ https://sourceforge.net/tracker/?func=detail&aid=3138561&group_id=152702&atid=785126
+ https://sourceforge.net/tracker/?func=detail&aid=3089694&group_id=152702&atid=785126
+ 
+Wont'fix, further discussion required
+ SA24
+ https://sourceforge.net/tracker/?func=detail&aid=3138570&group_id=152702&atid=785126
+ SA11
+ https://sourceforge.net/tracker/?func=detail&aid=3138569&group_id=152702&atid=785126
