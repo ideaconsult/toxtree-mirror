@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test.rules;
 
-import mutant.rules.SA13;
+import mutant.rules.SA13_gen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 
@@ -32,7 +32,7 @@ public class SA13Test extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA13();
+		return new SA13_gen();
 	}
 	@Override
 	public String getHitsFile() {
@@ -43,7 +43,7 @@ public class SA13Test extends TestMutantRules {
 		return "NA13";
 	}
 	/**
-	 * Overlap with SA22
+	 * Overlap with SA22_gen
 	 *
 	 */
 	public void testSA22_separate() {
@@ -54,7 +54,7 @@ public class SA13Test extends TestMutantRules {
 		}
 	}		
 	/**
-	 * Overlap with SA22
+	 * Overlap with SA22_gen
 	 *
 	 */
 	public void testSA22_embedding() {

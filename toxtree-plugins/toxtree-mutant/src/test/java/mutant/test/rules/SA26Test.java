@@ -1,6 +1,6 @@
 package mutant.test.rules;
 
-import mutant.rules.SA26;
+import mutant.rules.SA26_gen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
@@ -9,7 +9,7 @@ public class SA26Test extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA26();
+		return new SA26_gen();
 	}
 	@Override
 	public String getHitsFile() {

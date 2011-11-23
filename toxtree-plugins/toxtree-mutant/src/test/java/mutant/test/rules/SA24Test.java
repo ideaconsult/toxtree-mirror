@@ -1,6 +1,6 @@
 package mutant.test.rules;
 
-import mutant.rules.SA24;
+import mutant.rules.SA24_gen;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.interfaces.IMolecule;
@@ -14,7 +14,7 @@ import toxTree.query.MolAnalyser;
 public class SA24Test extends TestMutantRules {
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA24();
+		return new SA24_gen();
 	}
 	@Override
 	public String getHitsFile() {

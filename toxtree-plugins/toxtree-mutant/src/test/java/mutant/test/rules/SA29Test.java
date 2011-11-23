@@ -1,6 +1,6 @@
 package mutant.test.rules;
 
-import mutant.rules.SA29;
+import mutant.rules.SA29_gen;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
@@ -21,7 +21,7 @@ public class SA29Test extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA29();
+		return new SA29_gen();
 	}
 	@Override
 	public String getHitsFile() {
@@ -76,16 +76,16 @@ public class SA29Test extends TestMutantRules {
 			//"[H]OC2=C([H])C([H])=C3C([H])=C(C([H])=C([H])C3(=C2(N=NC1=C([H])C([H])=C(C([H])=C1([H]))S(=O)(=O)[O-])))S(=O)(=O)[O-]";
 			"[H]OC2=CC=C(C([H])=C2(N=NC1=CC=C(C([H])=C1([H]))S(=O)(=O)[O-]))S(=O)(=O)[O-]";
         assertTrue(CDKSmarts(
-        		SA29.SA29_noSO3H
+        		SA29_gen.SA29_noSO3H
         		, smiles)>0);
 	}
 	public void testCDKSmarts82() throws Exception  {
 		String smiles="[H]OC=3C(N=NC=1C([H])=C([H])C(=C2C([H])=C([H])C([H])=C([H])C=12)S(=O)(=O)[O-])=C([H])C(=C4C([H])=C([H])C([H])=C([H])C=34)S(=O)(=O)[O-]";
-        assertTrue(CDKSmarts(SA29.SA29_noSO3H, smiles)>0);
+        assertTrue(CDKSmarts(SA29_gen.SA29_noSO3H, smiles)>0);
 	}	
 	public void testCDKSmarts138() throws Exception  {
 		String smiles="[H]OC2=C([H])C([H])=C3C([H])=C(C([H])=C([H])C3(=C2(N=NC1=C([H])C([H])=C(C([H])=C1([H]))S(=O)(=O)[O-])))S(=O)(=O)[O-]";
-        assertTrue(CDKSmarts(SA29.SA29_noSO3H, smiles)>0);
+        assertTrue(CDKSmarts(SA29_gen.SA29_noSO3H, smiles)>0);
 	}
 	public void testRule29_138() throws Exception  {
 		String smiles="[H]OC2=C([H])C([H])=C3C([H])=C(C([H])=C([H])C3(=C2(N=NC1=C([H])C([H])=C(C([H])=C1([H]))S(=O)(=O)[O-])))S(=O)(=O)[O-]";

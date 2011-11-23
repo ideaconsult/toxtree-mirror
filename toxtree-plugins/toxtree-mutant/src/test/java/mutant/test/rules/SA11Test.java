@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test.rules;
 
-import mutant.rules.SA11;
+import mutant.rules.SA11_gen;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.interfaces.IMolecule;
@@ -38,7 +38,7 @@ import toxTree.query.MolAnalyser;
 public class SA11Test extends TestMutantRules {
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA11();
+		return new SA11_gen();
 	}
 	@Override
 	public String getHitsFile() {

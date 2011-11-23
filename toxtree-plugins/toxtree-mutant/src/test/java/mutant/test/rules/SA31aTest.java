@@ -1,6 +1,6 @@
 package mutant.test.rules;
 
-import mutant.rules.SA31a;
+import mutant.rules.SA31a_nogen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
@@ -9,7 +9,7 @@ public class SA31aTest extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA31a();
+		return new SA31a_nogen();
 	}
 	@Override
 	public String getHitsFile() {
@@ -40,13 +40,13 @@ public class SA31aTest extends TestMutantRules {
     }       
      
     public void exclusionRuleHalTest(int index) throws Exception {
-        assertTrue(verifySMARTS((AbstractRuleSmartSubstructure)ruleToTest,SA31a.exclusion_rules_Hal[index][1],SA31a.exclusion_rules_Hal[index][2])>0);
-        assertFalse(verifyRule(ruleToTest,SA31a.exclusion_rules_Hal[index][2]));
+        assertTrue(verifySMARTS((AbstractRuleSmartSubstructure)ruleToTest,SA31a_nogen.exclusion_rules_Hal[index][1],SA31a_nogen.exclusion_rules_Hal[index][2])>0);
+        assertFalse(verifyRule(ruleToTest,SA31a_nogen.exclusion_rules_Hal[index][2]));
     }
     public void exclusionRuleTest(int index) throws Exception {
-        assertTrue(verifySMARTS((AbstractRuleSmartSubstructure)ruleToTest,SA31a.exclusion_rules[index][1].toString(),SA31a.exclusion_rules[index][2].toString())>0);
-        assertEquals(((Boolean)SA31a.exclusion_rules[index][4]).booleanValue()
-                ,verifyRule(ruleToTest,SA31a.exclusion_rules[index][2].toString()));
+        assertTrue(verifySMARTS((AbstractRuleSmartSubstructure)ruleToTest,SA31a_nogen.exclusion_rules[index][1].toString(),SA31a_nogen.exclusion_rules[index][2].toString())>0);
+        assertEquals(((Boolean)SA31a_nogen.exclusion_rules[index][4]).booleanValue()
+                ,verifyRule(ruleToTest,SA31a_nogen.exclusion_rules[index][2].toString()));
     }    
     public void test_o_m_halogen() throws Exception {
         exclusionRuleHalTest(0);
@@ -54,39 +54,39 @@ public class SA31aTest extends TestMutantRules {
        
     }
     public void test_nitroaromatic() throws Exception {
-        exclusionRuleTest(SA31a.index_nitro_aromatic);
+        exclusionRuleTest(SA31a_nogen.index_nitro_aromatic);
 
     }
     public void test_primaryaromaticamine() throws Exception {
-        exclusionRuleTest(SA31a.index_primary_aromatic_amine);
+        exclusionRuleTest(SA31a_nogen.index_primary_aromatic_amine);
     }    
     public void test_hydroxylamine() throws Exception {
-        exclusionRuleTest(SA31a.index_hydroxyl_amine);
+        exclusionRuleTest(SA31a_nogen.index_hydroxyl_amine);
     }    
     
     public void test_hydroxylamineester() throws Exception {
-        exclusionRuleTest(SA31a.index_hydroxyl_amineester);
+        exclusionRuleTest(SA31a_nogen.index_hydroxyl_amineester);
     }        
     public void test_mono_and_dialkylamine() throws Exception {
-        exclusionRuleTest(SA31a.index_monodialkylamine1);
-        exclusionRuleTest(SA31a.index_monodialkylamine2);
-        exclusionRuleTest(SA31a.index_monodialkylamine3);
+        exclusionRuleTest(SA31a_nogen.index_monodialkylamine1);
+        exclusionRuleTest(SA31a_nogen.index_monodialkylamine2);
+        exclusionRuleTest(SA31a_nogen.index_monodialkylamine3);
     }     
     public void test_N_acyl_amine() throws Exception {
-        exclusionRuleTest(SA31a.index_nacymamine);
+        exclusionRuleTest(SA31a_nogen.index_nacymamine);
     }     
     public void test_aromatic_diazo() throws Exception {
-        exclusionRuleTest(SA31a.index_diazo);
+        exclusionRuleTest(SA31a_nogen.index_diazo);
     }
     public void test_biphenyl_rules() throws Exception {
-        exclusionRuleTest(SA31a.index_biphenyl);
+        exclusionRuleTest(SA31a_nogen.index_biphenyl);
     }           
     public void test_diphenyl_rules() throws Exception {
-        exclusionRuleTest(SA31a.index_diphenyl1);
-        exclusionRuleTest(SA31a.index_diphenyl2);
+        exclusionRuleTest(SA31a_nogen.index_diphenyl1);
+        exclusionRuleTest(SA31a_nogen.index_diphenyl2);
     }
     public void test_fused() throws Exception  {
-        //exclusionRuleTest(SA31a.index_singlering);
+        //exclusionRuleTest(SA31a_nogen.index_singlering);
         assertFalse(verifyRule(ruleToTest,"C=1C=CC2=C(C=1)C=CC=C2I"));
     }
 

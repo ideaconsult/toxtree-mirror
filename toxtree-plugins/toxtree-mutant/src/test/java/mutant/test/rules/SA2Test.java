@@ -31,7 +31,7 @@ import java.io.FileOutputStream;
 
 import junit.framework.Assert;
 
-import mutant.rules.SA2;
+import mutant.rules.SA2_gen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
@@ -43,7 +43,7 @@ public class SA2Test extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA2();
+		return new SA2_gen();
 	}
 	@Override
 	public String getHitsFile() {
@@ -55,7 +55,7 @@ public class SA2Test extends TestMutantRules {
 	}
 	
 	public void testSave() throws Exception {
-			IDecisionMethod tree = NewRuleAction.treeFromRule(new SA2());
+			IDecisionMethod tree = NewRuleAction.treeFromRule(new SA2_gen());
 			System.out.println(tree.getTopRule());
 			assertEquals("NO",tree.getCategories().get(0).getName());
 			assertEquals("YES",tree.getCategories().get(1).getName());
@@ -77,7 +77,7 @@ public class SA2Test extends TestMutantRules {
 			assertEquals("NO",newtree.getCategories().get(0).getName());
 			assertEquals("YES",newtree.getCategories().get(1).getName());
 			
-			assertTrue(((DecisionNode)newtree.getTopRule()).getRule() instanceof SA2);
+			assertTrue(((DecisionNode)newtree.getTopRule()).getRule() instanceof SA2_gen);
 			//System.out.println(newtree.getTitle());
 			
 

@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test.rules;
 
-import mutant.rules.SA16;
+import mutant.rules.SA16_gen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 
@@ -32,7 +32,7 @@ public class SA16Test extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA16();
+		return new SA16_gen();
 	}
 	@Override
 	public String getHitsFile() {

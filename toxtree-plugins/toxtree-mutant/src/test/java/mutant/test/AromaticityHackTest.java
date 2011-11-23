@@ -3,7 +3,7 @@ package mutant.test;
 import java.util.List;
 
 import junit.framework.TestCase;
-import mutant.rules.SA27;
+import mutant.rules.SA27_gen;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.config.Elements;
@@ -52,7 +52,7 @@ public class AromaticityHackTest extends TestCase {
 			assertEquals(6,aromatic);
 			System.out.println(FunctionalGroups.mapToString(a));
 			
-			SA27 rule = new SA27();
+			SA27_gen rule = new SA27_gen();
 			assertTrue(rule.verifyRule(a));
 		} catch (Exception x ) {
 			x.printStackTrace();
