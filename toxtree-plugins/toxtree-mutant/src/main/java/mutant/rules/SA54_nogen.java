@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005-2006  
+Copyright Ideaconsult Ltd. (C) 2005-2007  
 
 Contact: nina@acad.bg
 
@@ -24,31 +24,31 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import toxTree.tree.rules.RuleInitAlertCounter;
+import toxTree.tree.rules.StructureAlertCDK;
+import ambit2.smarts.query.SMARTSException;
+public class SA54_nogen extends StructureAlertCDK {
 
-public class RuleAlertsNongenotoxicCarcinogenicity extends RuleInitAlertCounter {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7260662529206464920L;
+	private static final long serialVersionUID = 8723199576199214305L;
 
-	public RuleAlertsNongenotoxicCarcinogenicity() {
+	public SA54_nogen() {
 		super();
-		setID("Alerts(nongenotoxic)");
-		setTitle("Verify structural alerts for potential nongenotoxic carcinogenicity");
-        StringBuffer b = new StringBuffer();
-        String[] s = new String[] {
-                "SA17_nogen","SA31a_nogen","SA31b_nogen","SA31c_nogen"
-        };
-        for (int i=0; i < s.length;i++) {
-            b.append("<a href=\"#");
-            b.append(s[i]);
-            b.append("\">");
-            b.append(s[i]);
-            b.append("</a>");
-        }
-        setExplanation(b.toString());
+		try {
+			addSubstructure("[C;!$(C(C)(C))]1Oc2ccccc2O1");
+			
+			setID("SA54_nogen");
+			setTitle("1,3-Benzodioxoles");
+			setExplanation("Nongenotoxic mechanism");
+			
+				
+	
+		} catch (SMARTSException x) {
+			logger.error(x);
+		}
 	}
+
 }
 
 

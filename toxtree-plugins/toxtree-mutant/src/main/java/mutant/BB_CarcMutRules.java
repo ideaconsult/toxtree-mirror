@@ -60,69 +60,94 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
 
         public final static transient String[] c_rules = { 
             "mutant.rules.RuleAlertsForGenotoxicCarcinogenicity", // Rule  1         
-            "mutant.rules.SA1", //2
-            "mutant.rules.SA2", //3
-            "mutant.rules.SA3", //4
-            "mutant.rules.SA4", //5
-            "mutant.rules.SA5", //6
-            "mutant.rules.SA6", //7
-            "mutant.rules.SA7", //8
-            "mutant.rules.SA8", //9
-            "mutant.rules.SA9", //10
-            "mutant.rules.SA11", //11
-            "mutant.rules.SA12", //12
-            "mutant.rules.SA13", //13
-            "mutant.rules.SA14", //14
-            "mutant.rules.SA15", //15
-            "mutant.rules.SA16", //16
-            "mutant.rules.SA18", //17
-            "mutant.rules.SA19", //18 
-            "mutant.rules.SA21", //29
-            "mutant.rules.SA22", //20
-            "mutant.rules.SA23", //21
-            "mutant.rules.SA24", //22
-            "mutant.rules.SA25", //23
-            "mutant.rules.SA26", //24
-            "mutant.rules.SA27", //25
-            "mutant.rules.SA28", //26
-            "mutant.rules.SA28bis", //27
-            "mutant.rules.SA28ter", //28   
-            "mutant.rules.SA29",    //29
-            "mutant.rules.SA30", //30
-            "mutant.rules.VerifyAlertsGenotoxic", //31
-            "mutant.rules.RuleAlertsNongenotoxicCarcinogenicity", //32
-            "mutant.rules.SA17", //33 nongenotoxic
-            "mutant.rules.SA20", //34 nongenotoxic
-            "mutant.rules.SA31a", //35 nongenotoxic
-            "mutant.rules.SA31b", //36 nongenotoxic
-            "mutant.rules.SA31c", //37 nongenotoxic
-            "mutant.rules.VerifyAlertsNongenotoxic", //38
-            "mutant.rules.SA10", //39
-            "mutant.rules.RuleAromaticDiazo", //40
-            "mutant.rules.RuleDerivedAromaticAmines", //41
-            "mutant.rules.RuleAromaticAmineNoSulfonicGroup", //is aromatic amine Rule  42
-            "mutant.rules.UserInputAromaticAmine", //43
-            "mutant.rules.RuleDACancerogenicityAromaticAmines", //QSAR8  Rule 44
-            //"mutant.rules.QSAR6Applicable", //Aromatic amine with no nitro group on the ring  Rule 45
-            "mutant.rules.RuleDAMutagenicityAromaticAmines", //QSAR6 Rule 46
-            //get here by No alerts for genotoxic carc. branch 
-            "mutant.rules.RuleAlertsNongenotoxicCarcinogenicity", //47
-            "mutant.rules.SA17", //48 nongenotoxic
-            "mutant.rules.SA20", //49 nongenotoxic
-            "mutant.rules.SA31a", //50 nongenotoxic
-            "mutant.rules.SA31b", //51 nongenotoxic
-            "mutant.rules.SA31c", //52 nongenotoxic
-            "mutant.rules.VerifyAlertsNongenotoxic", //53
-            "mutant.rules.RuleABUnsaturatedAldehyde", //is a,b unsaturated aldehyde Rule 54
+            "mutant.rules.SA1_gen", //2
+            "mutant.rules.SA2_gen", //3
+            "mutant.rules.SA3_gen", //4
+            "mutant.rules.SA4_gen", //5
+            "mutant.rules.SA5_gen", //6
+            "mutant.rules.SA6_gen", //7
+            "mutant.rules.SA7_gen", //8
+            "mutant.rules.SA8_gen", //9
+            "mutant.rules.SA9_gen", //10
+            "mutant.rules.SA11_gen", //11
+            "mutant.rules.SA12_gen", //12
+            "mutant.rules.SA13_gen", //13
+            "mutant.rules.SA14_gen", //14
+            "mutant.rules.SA15_gen", //15
+            "mutant.rules.SA16_gen", //16
+            "mutant.rules.SA18_gen", //17
+            "mutant.rules.SA19_gen", //18 
+            "mutant.rules.SA21_gen", //29
+            "mutant.rules.SA22_gen", //20
+            "mutant.rules.SA23_gen", //21
+            "mutant.rules.SA24_gen", //22
+            "mutant.rules.SA25_gen", //23
+            "mutant.rules.SA26_gen", //24
+            "mutant.rules.SA27_gen", //25
+            "mutant.rules.SA28_gen", //26
+            "mutant.rules.SA28bis_gen", //27
+            "mutant.rules.SA28ter_gen", //28   
+            "mutant.rules.SA29_gen",    //29
+            "mutant.rules.SA30_gen", //30
+            "mutant.rules.SA37_gen", //28//31   
+            "mutant.rules.SA38_gen",    //32
+            "mutant.rules.SA39_gen_and_nogen", //33
+                                       
+            "mutant.rules.VerifyAlertsGenotoxic", //31//34 no go to qsar 13, no go to sa10, cat 8 neg and 1 pos
             
-            "mutant.rules.SA10", //55
-            //finally, QSAR13
-            "mutant.rules.UserInputABUnsaturatedAldehyde", //56
-            "mutant.rules.RuleDAMutagenicityABUnsaturatedAldehydes", //QSAR13 Rule 57
+            "mutant.rules.RuleABUnsaturatedAldehyde", //is a,b unsaturated aldehyde Rule 54//35 app13? no go to sa10, yes go to proceed next?
+            "mutant.rules.UserInputABUnsaturatedAldehyde", //56//36 proceed qsar13? no go to sa 10, yes to to qsar 13, no cat 0 yes cat 7
+            "mutant.rules.RuleDAMutagenicityABUnsaturatedAldehydes", //QSAR13 Rule 57// 37 both go to sa 10, cat. 4 neg 3 pos
+            
+            "mutant.rules.SA10_gen", //39// 38  sa10 yes no go next, cat no 0 pos 1 
+            
+            "mutant.rules.RuleAromaticDiazo", //40//39
+            "mutant.rules.RuleDerivedAromaticAmines", //41//40
+            "mutant.rules.RuleAromaticAmineNoSulfonicGroup", //is aromatic amine Rule  42/app 8 and 6//41 no go to nongen sa 45, yes go next
+            "mutant.rules.UserInputAromaticAmine", //43//42  roceed qsar8 and 6? no go to sa nongen 45, yes to to next, no cat 0 yes cat 7
+            "mutant.rules.RuleDACancerogenicityAromaticAmines", //QSAR8  Rule 44// 43 rules next, cat. 6 neg 5 pos
+            "mutant.rules.RuleDAMutagenicityAromaticAmines", //QSAR6 Rule 46// 44 rules next, cat. 4 neg 3 pos
+            //get here by No alerts for genotoxic carc. branch 
+            
+  
+            "mutant.rules.RuleAlertsNongenotoxicCarcinogenicity", //32//45
+            "mutant.rules.SA17_nogen", //33 nongenotoxic//46
+            "mutant.rules.SA20_nogen", //34 nongenotoxic//47
+            "mutant.rules.SA31a_nogen", //35 nongenotoxic//48
+            "mutant.rules.SA31b_nogen", //36 nongenotoxic//49
+            "mutant.rules.SA31c_nogen", //37 nongenotoxic//50
+            
+            "mutant.rules.SA39_gen_and_nogen", //51
+            
+            "mutant.rules.SA40_nogen", //33 nongenotoxic//52
+            "mutant.rules.SA41_nogen", //33 nongenotoxic//53
+            "mutant.rules.SA42_nogen", //34 nongenotoxic//54
+            "mutant.rules.SA43_nogen", //33 nongenotoxic//55
+            "mutant.rules.SA44_nogen", //34 nongenotoxic//56
+            "mutant.rules.SA45_nogen", //33 nongenotoxic//57
+            "mutant.rules.SA46_nogen", //34 nongenotoxic//58
+            "mutant.rules.SA47_nogen", //33 nongenotoxic//59
+            "mutant.rules.SA48_nogen", //34 nongenotoxic//60
+            "mutant.rules.SA49_nogen", //33 nongenotoxic//61
+            "mutant.rules.SA50_nogen", //34 nongenotoxic//62
+            "mutant.rules.SA51_nogen", //34 nongenotoxic//63
+            "mutant.rules.SA52_nogen", //34 nongenotoxic//64
+            "mutant.rules.SA53_nogen", //34 nongenotoxic//65
+            "mutant.rules.SA54_nogen", //34 nongenotoxic//66
+            "mutant.rules.SA55_nogen", //34 nongenotoxic//67
+            "mutant.rules.SA56_nogen", //34 nongenotoxic//68
+            
+            "mutant.rules.VerifyAlertsNongenotoxic", //38//69 rules 0 0  cat neg 9 pos 2
+        
+        
+         
+            
             };
         private final static transient int c_transitions[][] ={
             //{if no go to, if yes go to, assign if no, assign if yes}
+        	
             {2,2,0,0}, //Rule 1  1
+            
             {3,3,0,0}, //sa1 2
             {4,4,0,0}, //sa2 3
             {5,5,0,0}, //sa3  4
@@ -152,40 +177,72 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
             {29,29,0,0}, //sa28ter 28
             {30,30,0,0}, //sa29 29
             {31,31,0,0}, //sa30 30
-            {46,32,8,1}, //any alert 31
-            //if yes go to nongenotoxic alerts #32, if no, go to nongenotoxic alerts #x
-            {33,33,0,0}, //nongenotoxic alerts 32
-            {34,34,0,0}, //sa17 33
-            {35,35,0,0}, //sa20 34
-            {36,36,0,0}, //sa31a 35
-            {37,37,0,0}, //sa31b 36 
-            {38,38,0,0}, //sa31c 37
-            {39,39,9,2}, //any alert 38
-            {40,40,0,1}, //SA10 39 if yes assign SA for genotoxic carc. 
-            //amines
-            {41,41,0,0}, //Rule 40 aN=Na  - if yes will be split into ar amines, otherwise will work with the original compound 41
-            {42,42,0,0}, //Rule 41 (ii)     
-            {0,43,0,0}, //Rule 42 ar amine 
-            {0,44,7,0}, //Rule 43 user input 
-            {45,45,6,5}, //Rule 44 QSAR8 //Yes (>threshold)- carcinogen,No - not a carcinogen
-            //{0,46,0,0}, //Rule 45 QSAR6 applicable 
-            {0,0,4,3}, //Rule 45 QSAR6 
+            {32,32,0,0}, //sa37 31
+            {33,33,0,0}, //sa38 32
+            {34,34,0,0}, //sa39mix 33
+                        
+            {35,38,8,1}, //counter non gen alert senza sa10 34
+            //no go to qsar 13 next, yes go to sa10 38, cat 8 neg and 1 pos
             
-            //No alerts for genotoxic carc
-            {47,47,0,0}, //nongenotoxic alerts 46
-            {48,48,0,0}, //sa17 47
-            {49,49,0,0}, //sa20 48
-            {50,50,0,0}, //sa31a 49
-            {51,51,0,0}, //sa31b 50 
-            {52,52,0,0}, //sa31c 51
-            {53,39,9,2}, //any alert 52
+                        
+            {38,36,0,0}, //app Q13? 35
+            //no go to sa10, yes go to proceed next
             
-            {39,54,0,0}, //Rule 53 a,b aldehyde; if no  can't be aldehyde and apply QSAR13 , go to check SA10 at the other branch
-            {55,55,0,1}, //SA10 54 if yes assign SA for genotoxic carc.;if no, can still be (aromatic) aldehyde and apply QSAR13 
-            //come here when SA10 is applied on NO_ALERTS branch (no genotoxic, no non genotoxic alerts). 
-            //the only option is to apply sa10 and then qsar13 if a,b unsaturated aldehyde 
-            {0,56,7,0}, //Rule 55 user input 
-            {40,40,4,3}, //Rule 56 QSAR13 //that's it, the end 
+            {38,37,7,0}, //proceed Q13? 36
+            //no go to sa 10, yes to to qsar 13, no cat 0 yes cat 7
+                        
+            {38,38,4,3}, //Q13 37
+            //both go to sa 10, cat. 4 neg 3 pos
+            
+            {39,39,0,1}, //sa110 38
+            //yes no go next, cat no 0 pos 1 
+            
+            {40,40,0,0}, // 39   aN=Na  - if yes will be split into ar amines, otherwise will work with the original compound 41
+            {41,41,0,0}, //40  Rule  (ii)    
+            
+            {45,42,0,0}, //41  qsar 8 and 6 app? ar amine? 
+            //no go to nongen sa 46, yes go next
+            
+            {45,43,7,0}, // 42 user input proceed?
+            //no go to sa nongen 46, yes to to next, no cat 0 yes cat 7?
+            
+            {44,44,6,5}, //43 QSAR8 //Yes (>threshold)- carcinogen,No - not a carcinogen/next, cat. 6 neg 5 pos
+            
+            {45,45,4,3}, //44 QSAR6 //rules next, cat. 4 neg 3 pos
+            
+            
+            
+            {46,46,0,0}, //nongenotoxic alerts 45
+            {47,47,0,0}, //sa17 46
+            {48,48,0,0}, //sa20 47
+            {49,49,0,0}, //sa31a 48
+            
+            
+            {50,50,0,0}, //sa31b 49
+            {51,51,0,0}, //sa31c 50
+            {52,52,0,0}, //sa39mixed 51
+            
+            {53,53,0,0}, //sa40 52
+            {54,54,0,0}, //sa41 53
+            {55,53,0,0}, //sa42 54
+            {56,56,0,0}, //sa43 55
+            {57,57,0,0}, //sa44 56
+            {58,58,0,0}, //sa45 57
+            {59,59,0,0}, //sa46 58
+            {60,60,0,0}, //sa47 59
+            {61,61,0,0}, //sa48 60
+            {62,62,0,0}, //sa49 61
+            {63,63,0,0}, //sa50 62
+            {64,64,0,0}, //sa51 63
+            {65,65,0,0}, //sa52 64
+            {66,66,0,0}, //sa53 65
+            {67,67,0,0}, //sa54 66
+            {68,68,0,0}, //sa55 67
+            {69,69,0,0}, //sa56 68
+            
+            {0,0,9,2}, //any nongen alert? 69
+            
+          
 
             
         };	
@@ -211,7 +268,7 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
         //getRule(53).setID("SA10a");
 		setChanged();
 		notifyObservers();
-		setTitle("Benigni / Bossa rulebase (for mutagenicity and carcinogenicity)");
+		setTitle("Carcinogenicity (genotox and nongenotox) and mutagenicity rulebase by ISS");
         setPriority(6);
         setFalseIfRuleNotImplemented(false);
         

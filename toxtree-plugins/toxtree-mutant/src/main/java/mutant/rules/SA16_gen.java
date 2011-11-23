@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005-2006  
+Copyright Ideaconsult Ltd. (C) 2005-2007  
 
 Contact: nina@acad.bg
 
@@ -24,31 +24,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import toxTree.tree.rules.RuleInitAlertCounter;
+import toxTree.tree.rules.StructureAlert;
+import ambit2.smarts.query.SMARTSException;
 
-public class RuleAlertsNongenotoxicCarcinogenicity extends RuleInitAlertCounter {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7260662529206464920L;
-
-	public RuleAlertsNongenotoxicCarcinogenicity() {
-		super();
-		setID("Alerts(nongenotoxic)");
-		setTitle("Verify structural alerts for potential nongenotoxic carcinogenicity");
-        StringBuffer b = new StringBuffer();
-        String[] s = new String[] {
-                "SA17_nogen","SA31a_nogen","SA31b_nogen","SA31c_nogen"
-        };
-        for (int i=0; i < s.length;i++) {
-            b.append("<a href=\"#");
-            b.append(s[i]);
-            b.append("\">");
-            b.append(s[i]);
-            b.append("</a>");
+public class SA16_gen extends StructureAlert {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2255928320356164303L;
+    public static String sa16_title = "Alkyl carbamate and thiocarbamate";
+    public static String sa16_smarts = "[NX3]([CX4,#1])([CX4,#1])C(=[O,S])[O,S][CX4]";
+    public SA16_gen() {
+        super();
+        try {
+            //addSubstructure("1", "[NX3H2]C(=[O,S])[O,S]C");
+            //addSubstructure("2", "[NX3H](C)C(=[O,S])[O,S]C");
+            addSubstructure("3", sa16_smarts);
+            setID("SA16_gen");
+            setTitle(sa16_title);
+            setExplanation(sa16_title);
+            
+            examples[0] = "[H]N([H])C(=O)Oc1ccccc1";
+            examples[1] = "[H]N([H])C(=O)OCCCC";   
+        } catch (SMARTSException x) {
+            logger.error(x);
         }
-        setExplanation(b.toString());
-	}
+    }
 }
 
 

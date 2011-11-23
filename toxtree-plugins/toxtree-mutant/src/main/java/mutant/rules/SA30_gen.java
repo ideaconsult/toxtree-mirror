@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005-2006  
+Copyright Ideaconsult Ltd. (C) 2005-2007  
 
 Contact: nina@acad.bg
 
@@ -24,31 +24,38 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import toxTree.tree.rules.RuleInitAlertCounter;
+import toxTree.tree.rules.StructureAlert;
+import ambit2.smarts.query.SMARTSException;
 
-public class RuleAlertsNongenotoxicCarcinogenicity extends RuleInitAlertCounter {
+public class SA30_gen extends StructureAlert {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7260662529206464920L;
-
-	public RuleAlertsNongenotoxicCarcinogenicity() {
-		super();
-		setID("Alerts(nongenotoxic)");
-		setTitle("Verify structural alerts for potential nongenotoxic carcinogenicity");
-        StringBuffer b = new StringBuffer();
-        String[] s = new String[] {
-                "SA17_nogen","SA31a_nogen","SA31b_nogen","SA31c_nogen"
-        };
-        for (int i=0; i < s.length;i++) {
-            b.append("<a href=\"#");
-            b.append(s[i]);
-            b.append("\">");
-            b.append(s[i]);
-            b.append("</a>");
+	private static final long serialVersionUID = -1901197961906586765L;
+	public static String SA30_title = "Coumarins and Furocoumarins";
+	
+	
+    public SA30_gen() {
+        super();
+        try {
+        	setContainsAllSubstructures(false);
+        	
+        	addSubstructure("1","O=c1ccc2ccccc2(o1)");
+        	addSubstructure("2","O=C1C=Cc2ccccc2O1");
+        	
+     	
+            setID("SA30_gen");
+            setTitle(SA30_title);
+            
+            setExplanation(SA30_title);
+            
+            examples[0] = "C=1C=COC=1";
+            examples[1] = "O=C2C=CC3=CC=C1OC=CC1=C3(O2)";   
+            editable = false;
+        } catch (SMARTSException x) {
+            logger.error(x);
         }
-        setExplanation(b.toString());
-	}
+    }	
 }
 
 

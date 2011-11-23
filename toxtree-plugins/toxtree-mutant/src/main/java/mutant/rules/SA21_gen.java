@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005-2006  
+Copyright Ideaconsult Ltd. (C) 2005-2007  
 
 Contact: nina@acad.bg
 
@@ -24,31 +24,41 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import toxTree.tree.rules.RuleInitAlertCounter;
+import toxTree.tree.rules.StructureAlert;
+import ambit2.smarts.query.SMARTSException;
 
-public class RuleAlertsNongenotoxicCarcinogenicity extends RuleInitAlertCounter {
+public class SA21_gen extends StructureAlert {
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7260662529206464920L;
+	private static final long serialVersionUID = -4846012217142617415L;
+	public static String SA21_title = "Alkyl and aryl N-nitroso groups";
+	/**
+	 * TODO
+Please, could you add in this alert also aryl or alkyl substances with the substructure: -N=N-O-H?
+Perhaps with the following MSARTS?
 
-	public RuleAlertsNongenotoxicCarcinogenicity() {
-		super();
-		setID("Alerts(nongenotoxic)");
-		setTitle("Verify structural alerts for potential nongenotoxic carcinogenicity");
-        StringBuffer b = new StringBuffer();
-        String[] s = new String[] {
-                "SA17_nogen","SA31a_nogen","SA31b_nogen","SA31c_nogen"
-        };
-        for (int i=0; i < s.length;i++) {
-            b.append("<a href=\"#");
-            b.append(s[i]);
-            b.append("\">");
-            b.append(s[i]);
-            b.append("</a>");
+[C,c]N[NX2;v3]=O
+OR 
+[C,c]N=N[OH1]
+
+	 */
+    public SA21_gen() {
+        super();
+        try {
+            addSubstructure(SA21_title, "[C,c]N[NX2;v3]=O");
+            setID("SA21_gen");
+            setTitle(SA21_title);
+            setExplanation(SA21_title);
+            
+            examples[0] = "CCN(CC)N(=O)O";
+            examples[1] = "O=NNCCC";   
+            editable = false;
+        } catch (SMARTSException x) {
+            logger.error(x);
         }
-        setExplanation(b.toString());
-	}
+    }	
 }
 
 

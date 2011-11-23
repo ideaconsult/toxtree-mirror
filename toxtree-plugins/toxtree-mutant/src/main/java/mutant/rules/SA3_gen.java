@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005-2006  
+Copyright Ideaconsult Ltd. (C) 2005-2007  
 
 Contact: nina@acad.bg
 
@@ -24,31 +24,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import toxTree.tree.rules.RuleInitAlertCounter;
+import toxTree.tree.rules.StructureAlert;
+import ambit2.smarts.query.SMARTSException;
 
-public class RuleAlertsNongenotoxicCarcinogenicity extends RuleInitAlertCounter {
+public class SA3_gen extends StructureAlert {
+
+	/*
+	 * SA8_gen
+	 */
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7260662529206464920L;
+	private static final long serialVersionUID = -3604542364984702836L;
 
-	public RuleAlertsNongenotoxicCarcinogenicity() {
-		super();
-		setID("Alerts(nongenotoxic)");
-		setTitle("Verify structural alerts for potential nongenotoxic carcinogenicity");
-        StringBuffer b = new StringBuffer();
-        String[] s = new String[] {
-                "SA17_nogen","SA31a_nogen","SA31b_nogen","SA31c_nogen"
-        };
-        for (int i=0; i < s.length;i++) {
-            b.append("<a href=\"#");
-            b.append(s[i]);
-            b.append("\">");
-            b.append(s[i]);
-            b.append("</a>");
-        }
-        setExplanation(b.toString());
+	public SA3_gen() {
+
+		try {
+			super.initSingleSMARTS(super.smartsPatterns,"N-methylol derivatives", "[CX4H2](N)([OX2H1])");
+			setID("SA3_gen");
+			setTitle("N-methylol derivatives");
+			setExplanation("N-methylol derivatives");
+			
+			examples[0] = "CC(C)(N)O";
+			examples[1] = "C=CC(=O)NCO";	
+			editable = false;
+		} catch (SMARTSException x) {
+			logger.error(x);
+		}		
 	}
+
 }
 
 
