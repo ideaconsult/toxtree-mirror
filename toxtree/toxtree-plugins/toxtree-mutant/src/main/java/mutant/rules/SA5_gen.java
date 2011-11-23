@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005-2006  
+Copyright Ideaconsult Ltd. (C) 2005-2007  
 
 Contact: nina@acad.bg
 
@@ -24,31 +24,33 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import toxTree.tree.rules.RuleInitAlertCounter;
+import toxTree.tree.rules.StructureAlert;
+import ambit2.smarts.query.SMARTSException;
 
-public class RuleAlertsNongenotoxicCarcinogenicity extends RuleInitAlertCounter {
+public class SA5_gen extends StructureAlert {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7260662529206464920L;
+	private static final long serialVersionUID = -6468810632146505927L;
+	public static String SA5_title = "S or N mustard";
+	public static String SA5_smarts = "[F,Cl,Br,I][CX4H2][CX4H2][N,S][CX4H2][CX4H2][F,Cl,Br,I]";
 
-	public RuleAlertsNongenotoxicCarcinogenicity() {
-		super();
-		setID("Alerts(nongenotoxic)");
-		setTitle("Verify structural alerts for potential nongenotoxic carcinogenicity");
-        StringBuffer b = new StringBuffer();
-        String[] s = new String[] {
-                "SA17_nogen","SA31a_nogen","SA31b_nogen","SA31c_nogen"
-        };
-        for (int i=0; i < s.length;i++) {
-            b.append("<a href=\"#");
-            b.append(s[i]);
-            b.append("\">");
-            b.append(s[i]);
-            b.append("</a>");
-        }
-        setExplanation(b.toString());
+	public SA5_gen() {
+		try {
+			super.initSingleSMARTS(super.smartsPatterns,SA5_title,SA5_smarts );
+			setID("SA5_gen");
+			setTitle(SA5_title);
+			setExplanation(SA5_title);
+			
+			examples[0] = "CN(CCCl)CCl";
+			examples[1] = "CN(CCCl)CCCl";	
+			editable = false;
+		} catch (SMARTSException x) {
+			logger.error(x);
+		}
 	}
+
 }
 
 

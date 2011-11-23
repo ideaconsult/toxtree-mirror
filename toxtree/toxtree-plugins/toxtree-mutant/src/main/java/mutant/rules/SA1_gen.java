@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005-2006  
+Copyright Ideaconsult Ltd. (C) 2005-2007  
 
 Contact: nina@acad.bg
 
@@ -24,31 +24,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import toxTree.tree.rules.RuleInitAlertCounter;
+import toxTree.tree.rules.StructureAlertCDK;
+import ambit2.smarts.query.SMARTSException;
 
-public class RuleAlertsNongenotoxicCarcinogenicity extends RuleInitAlertCounter {
+public class SA1_gen extends StructureAlertCDK {
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7260662529206464920L;
+	private static final long serialVersionUID = 8723199576199214305L;
 
-	public RuleAlertsNongenotoxicCarcinogenicity() {
+	public SA1_gen() {
 		super();
-		setID("Alerts(nongenotoxic)");
-		setTitle("Verify structural alerts for potential nongenotoxic carcinogenicity");
-        StringBuffer b = new StringBuffer();
-        String[] s = new String[] {
-                "SA17_nogen","SA31a_nogen","SA31b_nogen","SA31c_nogen"
-        };
-        for (int i=0; i < s.length;i++) {
-            b.append("<a href=\"#");
-            b.append(s[i]);
-            b.append("\">");
-            b.append(s[i]);
-            b.append("</a>");
-        }
-        setExplanation(b.toString());
+		try {
+			addSubstructure("Acyl halides", "[!$([OH1,SH1])]C(=O)[Br,Cl,F,I]");
+			setID("SA1_gen");
+			setTitle("Acyl halides");
+			setExplanation("Acyl halide RC(=O)[Br,Cl,F,I], where R is not OH or SH.");
+			
+			examples[0] = "O=C(Cl)S";
+			examples[1] = "CN(C)C(=O)Cl";	
+	
+		} catch (SMARTSException x) {
+			logger.error(x);
+		}
 	}
+
 }
 
 

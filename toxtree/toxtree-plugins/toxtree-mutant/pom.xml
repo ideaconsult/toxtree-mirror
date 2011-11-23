@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-mutant</artifactId>
-  <name>Toxtree module: Benigni-Bossa rule base for carcinogenicity and mutagenicity</name>
+  <name>Toxtree module: Carcinogenicity (genotox and nongenotox)and mutagenicity rulebase by ISS</name>
   <dependencies>
   	<dependency>
   		<groupId>ambit</groupId>

@@ -51,7 +51,7 @@ public class RuleABUnsaturatedAldehyde extends RuleSMARTSubstructureCDK {
                 b.append(abunsaturated_aldehyde);
                 b.append("<br>");
                 b.append("For the QSAR calculation of \u03B1,\u03B2 unsaturated aldehydes, molecules that contain another separate alerting group should be excluded."); 
-                b.append("This holds true except in the following cases: if the \u03B1,\u03B2 unsaturated aldehyde contains a partial overlap with SA4 or SA24, the molecule should be considered for QSAR calculation.");                
+                b.append("This holds true except in the following cases: if the \u03B1,\u03B2 unsaturated aldehyde contains a partial overlap with SA4_gen or SA24_gen, the molecule should be considered for QSAR calculation.");                
                 setExplanation(b.toString());
 				examples[0] = "O=CC=1CCCCC=1";
 				examples[1] = "CCC=CC=O";	

@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2005-2006  
+Copyright Ideaconsult Ltd. (C) 2005-2007  
 
 Contact: nina@acad.bg
 
@@ -24,31 +24,37 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import toxTree.tree.rules.RuleInitAlertCounter;
+import toxTree.tree.rules.StructureAlertCDK;
+import ambit2.smarts.query.SMARTSException;
 
-public class RuleAlertsNongenotoxicCarcinogenicity extends RuleInitAlertCounter {
+public class SA23_gen extends StructureAlertCDK {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7260662529206464920L;
+	private static final long serialVersionUID = -3589707922783454840L;
+	/**
+	 * 
+	 */
 
-	public RuleAlertsNongenotoxicCarcinogenicity() {
-		super();
-		setID("Alerts(nongenotoxic)");
-		setTitle("Verify structural alerts for potential nongenotoxic carcinogenicity");
-        StringBuffer b = new StringBuffer();
-        String[] s = new String[] {
-                "SA17_nogen","SA31a_nogen","SA31b_nogen","SA31c_nogen"
-        };
-        for (int i=0; i < s.length;i++) {
-            b.append("<a href=\"#");
-            b.append(s[i]);
-            b.append("\">");
-            b.append(s[i]);
-            b.append("</a>");
+	public static String SA23_title = "Aliphatic N-nitro";
+    public SA23_gen() {
+        super();
+        try {
+        	setContainsAllSubstructures(false);
+        	addSubstructure(SA23_title, "[C!r][NH1]N(=O)O");
+        	addSubstructure(SA23_title+"1", "[C!r]N(A)N(=O)O");
+     	
+            setID("SA23_gen");
+            setTitle(SA23_title);
+            setExplanation(SA23_title + "<br>The possibility to have an aromatic substituent on the nitrogen should be excluded.");
+            
+            examples[0] = "CCN(C1=CC=CC=C1)N(=O)O";
+            examples[1] = "CCCN(CC)N(=O)O";   
+            editable = false;
+        } catch (SMARTSException x) {
+            logger.error(x);
         }
-        setExplanation(b.toString());
-	}
+    }	
 }
 
 

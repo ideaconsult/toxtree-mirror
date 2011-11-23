@@ -1,10 +1,10 @@
 Manifest-version: ${project.version}
-Specification-Title: Benigni / Bossa rulebase (for mutagenicity and carcinogenicity)
+Specification-Title: Carcinogenicity (genotox and nongenotox)and mutagenicity rulebase by ISS
 Specification-Version: ${project.version}
 Specification-Vendor: Ideaconsult LTD
-Implementation-Title: Classes implementing Benigni / Bossa rulebase (for mutagenicity and carcinogenicity)
+Implementation-Title: Classes implementing Carcinogenicity (genotox and nongenotox)and mutagenicity rulebase by ISS
 Implementation-Version: ${project.version}
-Implementation-Vendor: Ideaconsult LTD
+Implementation-Vendor: ISS and Ideaconsult LTD
 Package-Title: mutant
 Package-Version: ${project.version}
-Package-Vendor: Ideaconsult LTD
+Package-Vendor: ISS andIdeaconsult LTD
