@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test.rules;
 
-import mutant.rules.SA8;
+import mutant.rules.SA8_gen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 
@@ -32,7 +32,7 @@ public class SA8Test extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA8();
+		return new SA8_gen();
 	}
 	@Override
 	public String getHitsFile() {
@@ -43,28 +43,28 @@ public class SA8Test extends TestMutantRules {
 		return "NA8";
 	}
 	/**
-	 * Overlap with SA5
+	 * Overlap with SA5_gen
 	 *
 	 */
 	public void testSA5_embedding() throws Exception {
 			assertFalse(verifyRule(ruleToTest,"CCC1=CC=C(C=C1)CN(CCCl)CCCl"));
 	}		
 	/**
-	 * Overlap with SA5
+	 * Overlap with SA5_gen
 	 *
 	 */
 	public void testSA5_separate() throws Exception {
 			assertTrue(verifyRule(ruleToTest,"ClCCC1=CC=C(C=C1)CN(CCCl)CCCl"));
 	}	
 	/**
-	 * Overlap with SA1
+	 * Overlap with SA1_gen
 	 *
 	 */
 	public void testSA1_embedding() throws Exception {
 			assertFalse(verifyRule(ruleToTest,"[H]C(=O)Cl"));
 	}
 	/**
-	 * Overlap with SA1
+	 * Overlap with SA1_gen
 	 *
 	 */
 	public void testSA1_separate() throws Exception {
@@ -72,7 +72,7 @@ public class SA8Test extends TestMutantRules {
 	}		
 	
 	/**
-	 * Overlap with SA2
+	 * Overlap with SA2_gen
 	 *
 	 */
 	public void testSA2_embedding_phosphonic() throws Exception {
@@ -80,7 +80,7 @@ public class SA8Test extends TestMutantRules {
 	}
 
 	/**
-	 * Overlap with SA2
+	 * Overlap with SA2_gen
 	 *
 	 */
 	public void testSA2_embedding_sulphonic() throws Exception {
@@ -88,28 +88,28 @@ public class SA8Test extends TestMutantRules {
 	}	
 
 	/**
-	 * Overlap with SA4
+	 * Overlap with SA4_gen
 	 *
 	 */
 	public void testSA4_embedding() throws Exception {
 			assertFalse(verifyRule(ruleToTest,"CCCCC(=O)Cl"));
 	}		
 	/**
-	 * Overlap with SA4
+	 * Overlap with SA4_gen
 	 *
 	 */
 	public void testSA4_separate() throws Exception {
 			assertTrue(verifyRule(ruleToTest,"[H]C(CCCl)=C(C)Cl"));
 	}	
 	/**
-	 * Overlap with SA20
+	 * Overlap with SA20_nogen
 	 *
 	 */
 	public void testSA20_separate() throws Exception {
 			assertTrue(verifyRule(ruleToTest,"C1C(CCCCCCCCCl)C(C(CC1Br)I)Cl"));
 	}		
 	/**
-	 * Overlap with SA20
+	 * Overlap with SA20_nogen
 	 *
 	 */
 	public void testSA20_embedding()  throws Exception{

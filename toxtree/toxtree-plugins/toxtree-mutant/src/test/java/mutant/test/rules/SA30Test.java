@@ -1,7 +1,7 @@
 package mutant.test.rules;
 
 import junit.framework.Assert;
-import mutant.rules.SA30;
+import mutant.rules.SA30_gen;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.CDKConstants;
@@ -17,7 +17,7 @@ public class SA30Test extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA30();
+		return new SA30_gen();
 	}
 	@Override
 	public String getHitsFile() {

@@ -1,6 +1,6 @@
 package mutant.test.rules;
 
-import mutant.rules.SA28bis;
+import mutant.rules.SA28bis_gen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 
@@ -8,7 +8,7 @@ public class SA28bisTest extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA28bis();
+		return new SA28bis_gen();
 	}
 	@Override
 	public String getHitsFile() {

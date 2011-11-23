@@ -24,14 +24,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test.rules;
 
-import mutant.rules.SA17;
+import mutant.rules.SA17_nogen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 
 public class SA17Test extends TestMutantRules {
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA17();
+		return new SA17_nogen();
 	}
 	@Override
 	public String getHitsFile() {

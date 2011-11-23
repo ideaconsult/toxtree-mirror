@@ -1,6 +1,6 @@
 package mutant.test.rules;
 
-import mutant.rules.SA31b;
+import mutant.rules.SA31b_nogen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 
@@ -8,7 +8,7 @@ public class SA31bTest extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA31b();
+		return new SA31b_nogen();
 	}
 	@Override
 	public String getHitsFile() {

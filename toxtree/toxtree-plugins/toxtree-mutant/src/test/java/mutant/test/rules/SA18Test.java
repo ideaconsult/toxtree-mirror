@@ -29,7 +29,7 @@
 
 package mutant.test.rules;
 
-import mutant.rules.SA18;
+import mutant.rules.SA18_gen;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.CDKConstants;
@@ -107,7 +107,7 @@ public class SA18Test extends TestMutantRules {
     }    
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA18();
+		return new SA18_gen();
 	}
 	@Override
 	public String getHitsFile() {

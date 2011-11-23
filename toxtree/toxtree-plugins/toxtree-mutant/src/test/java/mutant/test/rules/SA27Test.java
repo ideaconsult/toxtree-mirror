@@ -2,7 +2,7 @@ package mutant.test.rules;
 
 import java.util.Iterator;
 
-import mutant.rules.SA27;
+import mutant.rules.SA27_gen;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
@@ -20,7 +20,7 @@ public class SA27Test extends TestMutantRules {
 
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA27();
+		return new SA27_gen();
 	}
 	@Override
 	public String getHitsFile() {

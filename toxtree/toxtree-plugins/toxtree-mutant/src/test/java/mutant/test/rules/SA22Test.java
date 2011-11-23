@@ -1,13 +1,13 @@
 package mutant.test.rules;
 
-import mutant.rules.SA22;
+import mutant.rules.SA22_gen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 
 public class SA22Test extends TestMutantRules {
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA22();
+		return new SA22_gen();
 	}
 	@Override
 	public String getHitsFile() {

@@ -28,7 +28,7 @@ import java.util.Hashtable;
 
 import javax.vecmath.Point2d;
 
-import mutant.rules.SA10;
+import mutant.rules.SA10_gen;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.Molecule;
@@ -66,7 +66,7 @@ public class SA10Test extends TestMutantRules {
 	}
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA10();
+		return new SA10_gen();
 	}
 	
 	public void test663() throws Exception {
@@ -87,7 +87,7 @@ public class SA10Test extends TestMutantRules {
 		IAtomContainer c = FunctionalGroups.createAtomContainer("CC(C)CCC=CC=O");
 			MolAnalyser.analyse(c);
 		
-		IMoleculeSet sc = ((SA10)ruleToTest).detachSubstituentAtBetaCarbon(c);
+		IMoleculeSet sc = ((SA10_gen)ruleToTest).detachSubstituentAtBetaCarbon(c);
 		assertNotNull(sc);
 		Hashtable<String,Integer> results = new Hashtable<String,Integer>();
 		results.put("[H]C([H])([H])C([H])([H])C([H])(C([H])([H])[H])C([H])([H])[H]",new Integer(5));
