@@ -29,7 +29,20 @@ Acetoin,513-86-0,CC(O)C(C)=O
         </p>
       </answer>
     </faq>    
-         
+     <faq id="T3">
+      <question>I use Toxtree version 2.5.0. If I try to use a chemical identifier, I receive a message like "failed to retrieve from remote server"?. However, it works, if using chemical names.</question>
+      <answer>
+        <p>
+		Chemical identifiers are resolved via remote server (if enabled). The remote query may fail to retrieve an identifier for the following reasons:
+		<ul>
+		<li>The identifier is not found at the server.
+		<li>Your computer is behind a firewall, blocking port 8080, and preventing the remote query. 
+		</ul>
+		Chemical names are parsed locally, and do not require remote query. 
+
+        </p>
+      </answer>
+    </faq>         
     <faq id="K1">
       <question>How to specify daily intakes in a batch file,for computation of Kroes TTC?</question>
       <answer>
@@ -47,5 +60,7 @@ Acetoin,513-86-0,CC(O)C(C)=O
       </answer>
     </faq>
  
+
+
   </part>
 </faqs>
