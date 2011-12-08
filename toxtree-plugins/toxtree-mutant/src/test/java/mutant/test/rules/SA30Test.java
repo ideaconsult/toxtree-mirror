@@ -7,7 +7,7 @@ import mutant.test.TestMutantRules;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionRule;
@@ -34,7 +34,7 @@ public class SA30Test extends TestMutantRules {
 	 * https://sourceforge.net/tracker/?func=detail&aid=3138566&group_id=152702&atid=785126
 	 */
 	public void test_bug3138566() throws Exception {
-		SmilesParser p = new SmilesParser(NoNotificationChemObjectBuilder.getInstance());
+		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		IMolecule m = p.parseSmiles("O=C1\\C=C/c2ccccc2O1");
 		verifyExample(m, true);
 		
@@ -45,7 +45,7 @@ public class SA30Test extends TestMutantRules {
 	 * https://sourceforge.net/tracker/?func=detail&aid=3138566&group_id=152702&atid=785126
 	 */
 	public void test_bug3138566_coumarin_aromaticity() throws Exception {
-		SmilesParser p = new SmilesParser(NoNotificationChemObjectBuilder.getInstance());
+		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		IMolecule m = p.parseSmiles("O=C1\\C=C/c2ccccc2O1");
 		MolAnalyser.analyse(m);
 		int aromatic = 0;

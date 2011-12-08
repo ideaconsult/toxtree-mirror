@@ -4,7 +4,7 @@ import mutant.rules.SA24_gen;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionRule;
@@ -29,7 +29,7 @@ public class SA24Test extends TestMutantRules {
 	 * https://sourceforge.net/tracker/?func=detail&aid=3138570&group_id=152702&atid=785126
 	 */
 	public void test_bug3138570() throws Exception {
-		SmilesParser p = new SmilesParser(NoNotificationChemObjectBuilder.getInstance());
+		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		IMolecule m = p.parseSmiles("C1CC=CO1");
 
 		try {
