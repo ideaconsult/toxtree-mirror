@@ -28,7 +28,7 @@ import mutant.rules.SA11_gen;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionRule;
@@ -62,7 +62,7 @@ public class SA11Test extends TestMutantRules {
 	 * https://sourceforge.net/tracker/?func=detail&aid=3138569&group_id=152702&atid=785126
 	 */
 	public void test_bug3138569() throws Exception {
-		SmilesParser p = new SmilesParser(NoNotificationChemObjectBuilder.getInstance());
+		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		IMolecule m = p.parseSmiles("C=O");
 		verifyExample(m, false);
 		
