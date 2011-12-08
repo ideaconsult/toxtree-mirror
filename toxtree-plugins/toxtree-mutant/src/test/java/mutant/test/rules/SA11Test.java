@@ -32,8 +32,6 @@ import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionRule;
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.query.MolAnalyser;
 
 public class SA11Test extends TestMutantRules {
 	@Override

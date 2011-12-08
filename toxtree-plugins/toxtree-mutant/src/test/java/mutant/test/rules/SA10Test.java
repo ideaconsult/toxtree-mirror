@@ -31,7 +31,6 @@ import javax.vecmath.Point2d;
 import mutant.rules.SA10_gen;
 import mutant.test.TestMutantRules;
 
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -50,7 +49,6 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.core.IDecisionRule;
-import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import ambit2.core.data.MoleculeTools;
