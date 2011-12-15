@@ -224,7 +224,7 @@ public class BB_CarcMutRules extends UserDefinedTree implements IDecisionInterac
             
             {53,53,0,0}, //sa40 52
             {54,54,0,0}, //sa41 53
-            {55,53,0,0}, //sa42 54
+            {55,55,0,0}, //sa42 54
             {56,56,0,0}, //sa43 55
             {57,57,0,0}, //sa44 56
             {58,58,0,0}, //sa45 57
