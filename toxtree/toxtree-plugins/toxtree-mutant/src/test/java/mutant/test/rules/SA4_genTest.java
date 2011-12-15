@@ -24,24 +24,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test.rules;
 
-import mutant.rules.SA9_gen;
+import mutant.rules.SA4_gen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
 
-public class SA9Test extends TestMutantRules {
+public class SA4_genTest extends TestMutantRules {
 	@Override
 	protected IDecisionRule createRuleToTest() throws Exception {
-		return new SA9_gen();
+		return new SA4_gen();
 	}
 	@Override
 	public String getHitsFile() {
-		return "NA9/sa22iss2.sdf";
+		return "NA4/sa09_l_iss2.sdf";
 	}
 	@Override
 	public String getResultsFolder() {
-		return "NA9";
+		return "NA4";
 	}
-	
+	public void testExcludedSubstituents() throws Exception {
+		String[] smiles = {
+				"O=C=CCl",
+				"ClC=CCl",
+		};
+		for (int i=0; i < smiles.length;i++) {
+			//System.out.print(smiles[i]);
+			assertFalse(verify(smiles[i]));
+			//System.out.println(" ok");
+		}
+		
+	}	
 }
 
 
