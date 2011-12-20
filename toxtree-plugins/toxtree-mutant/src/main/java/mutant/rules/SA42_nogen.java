@@ -42,7 +42,9 @@ public class SA42_nogen extends StructureAlertCDK {
 			setTitle("phthalate diesters and monoesters");
 			setExplanation("Nongenotoxic mechanism");
 			
-		
+			 examples[0] = "O=C(O)c1ccccc1";
+	            examples[1] = "O=C(O)c1ccccc1C(=O)O";   
+	            editable = false;
 	
 		} catch (SMARTSException x) {
 			logger.error(x);

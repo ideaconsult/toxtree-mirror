@@ -43,7 +43,9 @@ public class SA55_nogen extends StructureAlertCDK {
 			setTitle("Phenoxy herbicides");
 			setExplanation("Nongenotoxic mechanisms");
 			
-		
+			 examples[0] = "c1cc(O)ccc1OC(C)CO";
+	            examples[1] = "c1cc(O)ccc1OC(C)C(=O)O";   
+	            editable = false;
 	
 		} catch (SMARTSException x) {
 			logger.error(x);

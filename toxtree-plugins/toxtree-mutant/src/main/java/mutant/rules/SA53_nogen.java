@@ -45,7 +45,9 @@ public class SA53_nogen extends StructureAlertCDK {
 			setID("SA53_nogen");
 			setTitle("Benzensulfonic ethers");
 			setExplanation("Nongenotoxic mechanism");
-		
+			 examples[0] = "c1ccccc1S(=O)(=O)O";
+	            examples[1] = "c1cc(C)ccc1S(=O)(=O)O";   
+	            editable = false;
 	
 		} catch (SMARTSException x) {
 			logger.error(x);

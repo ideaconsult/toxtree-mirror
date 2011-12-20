@@ -41,7 +41,9 @@ public class SA52_nogen extends StructureAlertCDK {
 			setID("SA52_nogen");
 			setTitle("Metals, oxidative stress");
 			setExplanation("Nongenotoxic mechanism");
-			
+			 examples[0] = "[Ni]";
+	            examples[1] = "[Cu]";   
+	            editable = false;
 		
 		} catch (SMARTSException x) {
 			logger.error(x);

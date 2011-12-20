@@ -44,7 +44,9 @@ public class SA47_nogen extends StructureAlertCDK {
 			setID("SA47_nogen");
 			setTitle("o-phenylphenol");
 			setExplanation("Nongenotoxic mechanisms");
-			
+			 examples[0] = "c1c(c2ccccc2)cccc1";
+	            examples[1] = "Oc1c(c2ccccc2)cccc1";   
+	            editable = false;	
 	
 		} catch (SMARTSException x) {
 			logger.error(x);

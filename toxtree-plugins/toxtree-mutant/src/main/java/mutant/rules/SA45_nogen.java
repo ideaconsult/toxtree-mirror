@@ -42,7 +42,9 @@ public class SA45_nogen extends StructureAlertCDK {
 			setTitle("indole-3-carbinol");
 			setExplanation("Ngenotoxic mechanisms");
 			
-			
+			 examples[0] = "c1c[nH]c2ccccc12";
+	            examples[1] = "OCc1c[nH]c2ccccc12";   
+	            editable = false;
 	
 		} catch (SMARTSException x) {
 			logger.error(x);

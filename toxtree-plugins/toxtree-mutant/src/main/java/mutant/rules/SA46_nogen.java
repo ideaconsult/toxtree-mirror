@@ -44,7 +44,9 @@ public class SA46_nogen extends StructureAlertCDK {
 			setTitle("pentachlorophenol");
 			setExplanation("Nongenotoxic mechanism");
 			
-	
+			 examples[0] = "Clc1cc(Cl)c(Cl)c(Cl)c1O";
+	            examples[1] = "Clc1c(Cl)c(Cl)c(Cl)c(Cl)c1O";   
+	            editable = false;
 		} catch (SMARTSException x) {
 			logger.error(x);
 		}

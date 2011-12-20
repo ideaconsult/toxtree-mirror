@@ -45,7 +45,9 @@ public class SA44_nogen extends StructureAlertCDK {
 			setTitle("Trichloro (or fluoro) ethylene and Tetrachloro (or fluoro) ethylene");
 			setExplanation("Nongenotoxic mechanism");
 			
-				
+			 examples[0] = "C=C(Cl)Cl";
+	            examples[1] = "ClC=C(Cl)Cl";   
+	            editable = false;	
 	
 		} catch (SMARTSException x) {
 			logger.error(x);

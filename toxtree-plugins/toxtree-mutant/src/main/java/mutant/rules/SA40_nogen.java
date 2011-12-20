@@ -44,7 +44,9 @@ public class SA40_nogen extends StructureAlertCDK {
 			setTitle("substituted phenoxyacid");
 			setExplanation("Nongenotoxic mechanism");
 				
-	
+			 examples[0] = "c1ccc(OC(C)(C)C(OCC)=O)cc1";
+	            examples[1] = "Clc1ccc(OC(C)(C)C(OCC)=O)cc1";   
+	            editable = false;
 		} catch (SMARTSException x) {
 			logger.error(x);
 		}
@@ -52,4 +54,4 @@ public class SA40_nogen extends StructureAlertCDK {
 
 }
 
-
+//

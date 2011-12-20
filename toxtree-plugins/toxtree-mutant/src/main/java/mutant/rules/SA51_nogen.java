@@ -42,7 +42,9 @@ public class SA51_nogen extends StructureAlertCDK {
 			setID("SA51_nogen");
 			setTitle("dimethylpyridine");
 			setExplanation("Nongenotoxic mechanism");
-			
+			 examples[0] = "Cc1ccccn1";
+	            examples[1] = "Cc1cccc(C)n1";   
+	            editable = false;
 	
 		} catch (SMARTSException x) {
 			logger.error(x);

@@ -1,0 +1,152 @@
+
+csCF1100/12201114152D
+
+ 11 12  0  0  0  0  0  0  0  0999 V2000
+    5.5584    0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.1890    0.2911    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7563    1.6226    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5792    2.7552    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7563    3.8878    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4249    3.4552    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2124    4.1552    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    3.4552    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    2.0552    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2124    1.3552    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4249    2.0552    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  2  3  1  0        0
+  3  4  2  0        0
+  4  5  1  0        0
+  5  6  1  0        0
+  6  7  2  0        0
+  7  8  1  0        0
+  8  9  2  0        0
+  9 10  1  0        0
+ 10 11  2  0        0
+  3 11  1  0        0
+  6 11  1  0        0
+M  END
+>  <MolfileName> (1)
+iss2_69
+
+>  <cdk_Title> (1)
+iss2_69
+
+>  <Substance ID> (1)
+iss2_969
+
+>  <Molecular_Weight> (1)
+434.6
+
+>  <FW_iss2> (1)
+434.6
+
+>  <Parent_Atom_Count> (1)
+29.0
+
+>  <Parent_Molecular_Weight> (1)
+434.6
+
+>  <Rotatable_Bonds> (1)
+21.0
+
+>  <Hydrogen_Bond_Acceptors> (1)
+1.0
+
+>  <Polar_Surface_Area> (1)
+44.76
+
+>  <Lipinski_Score> (1)
+1.0
+
+>  <Canc_iss2> (1)
+3
+
+>  <ALogP> (1)
+7.72
+
+>  <Hydrogen_Bond_Donors> (1)
+0.0
+
+>  <ChemName_iss2> (1)
+Tris(2-Ethylhexyl)phosphate
+
+>  <SMILES_iss2> (1)
+O=P(OCC(CCCC)CC)(OCC(CCCC)CC)OCC(CCCC)CC
+
+>  <SAL_iss2> (1)
+1
+
+>  <CAS_iss2> (1)
+78-42-2
+
+>  <Formula_iss2> (1)
+C24H51O4P
+
+>  <Structural Alert for genotoxic carcinogenicity> (1)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (1)
+NO
+
+>  <SA42_nogen> (1)
+NO
+
+>  <SA47_nogen> (1)
+NO
+
+>  <SA44_nogen> (1)
+NO
+
+>  <SA41_nogen> (1)
+NO
+
+>  <SA49_nogen> (1)
+NO
+
+>  <SA46_nogen> (1)
+NO
+
+>  <SA43_nogen> (1)
+NO
+
+>  <SA40_nogen> (1)
+NO
+
+>  <SA48_nogen> (1)
+NO
+
+>  <SA45_nogen> (1)
+NO
+
+>  <SA38_gen> (1)
+NO
+
+>  <SA50_nogen> (1)
+NO
+
+>  <SA55_nogen> (1)
+NO
+
+>  <SA52_nogen> (1)
+NO
+
+>  <SA54_nogen> (1)
+NO
+
+>  <SA51_nogen> (1)
+NO
+
+>  <SA56_nogen> (1)
+NO
+
+>  <SA53_nogen> (1)
+NO
+
+>  <SA39_gen_and_nogen> (1)
+NO
+
+>  <SA37_gen> (1)
+NO
+
+$$$$

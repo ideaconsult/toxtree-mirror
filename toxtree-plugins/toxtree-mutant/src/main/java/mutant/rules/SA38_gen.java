@@ -42,8 +42,10 @@ public class SA38_gen extends StructureAlertCDK {
 			setID("SA38_gen");
 			setTitle("Alkenylbenzenes");
 			setExplanation("Genotoxic mechanism");
-
-	
+			 examples[0] = "Oc1c(OC)cc(CCC)cc1";
+	            examples[1] = "Oc1c(OC)cc(CC=C)cc1";   
+	            editable = false;
+			//Oc1c(OC)cc(CC=C)cc1
 		} catch (SMARTSException x) {
 			logger.error(x);
 		}
