@@ -44,7 +44,9 @@ public class SA56_nogen extends StructureAlertCDK {
 			setExplanation("Nongenotoxic mechanism");
 			
 		
-	
+			 examples[0] = "CCl";
+	            examples[1] = "ClC(Cl)Cl";   
+	            editable = false;
 		} catch (SMARTSException x) {
 			logger.error(x);
 		}

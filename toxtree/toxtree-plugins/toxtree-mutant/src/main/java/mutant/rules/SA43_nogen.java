@@ -41,7 +41,9 @@ public class SA43_nogen extends StructureAlertCDK {
 			setTitle("Perfluorooctanoic acid (PFOA)");
 			setExplanation("Nongenotoxic mechanism");
 			
-		
+			 examples[0] = "CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F";
+	            examples[1] = "CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F";   
+	            editable = false;
 	
 		} catch (SMARTSException x) {
 			logger.error(x);

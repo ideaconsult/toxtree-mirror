@@ -43,7 +43,9 @@ public class SA48_nogen extends StructureAlertCDK {
 			setTitle("quercetin-type flavonoids");
 			setExplanation("Nongenotoxic mechanisms");
 			
-	
+			 examples[0] = "Oc1cc(O)c2C(=O)C(O)=C(Oc2c1)c3ccccc3";
+	            examples[1] = "Oc1cc(O)c2C(=O)C(O)=C(Oc2c1)c3ccc(O)c(O)c3";   
+	            editable = false;
 		} catch (SMARTSException x) {
 			logger.error(x);
 		}

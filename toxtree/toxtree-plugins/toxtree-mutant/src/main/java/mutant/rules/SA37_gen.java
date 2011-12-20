@@ -42,7 +42,9 @@ public class SA37_gen extends StructureAlertCDK {
 			setID("SA37_gen");
 			setTitle("Pyrrolizidine Alkaloids");
 			setExplanation("Genotoxic mechanism");
-			
+			 examples[0] = "[H][C@@]12C(COC(C(O)(C(O)C)C(C)C)=O)=CCC1CC[C@H]2OC(/C(C)=C/C)=O";
+	            examples[1] = "[H][C@@]12C(COC(C(O)(C(O)C)C(C)C)=O)=CCN1CC[C@H]2OC(/C(C)=C/C)=O";   
+	            editable = false;
 		
 	
 		} catch (SMARTSException x) {

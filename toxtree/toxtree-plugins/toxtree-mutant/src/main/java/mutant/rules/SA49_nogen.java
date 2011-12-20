@@ -45,7 +45,9 @@ public class SA49_nogen extends StructureAlertCDK {
 			setTitle("imidazole and benzimidazole");
 			setExplanation("Nongenotoxic mechanism");
 			
-	
+			 examples[0] = "c2c1ccccc1cc2";
+	            examples[1] = "Sc1c(N=CN2)c2ncn1";   
+	            editable = false;
 		} catch (SMARTSException x) {
 			logger.error(x);
 		}

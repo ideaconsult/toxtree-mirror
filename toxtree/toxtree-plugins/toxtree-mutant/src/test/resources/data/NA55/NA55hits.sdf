@@ -1,0 +1,155 @@
+
+csCF1100/12201114392D
+
+ 13 13  0  0  0  0  0  0  0  0999 V2000
+    3.6373    0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4249    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2124    0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2124    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.4249    2.8000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.6373    2.1000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.8497    2.8000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    6.0622    2.1000    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    6.0622    0.7000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2746    2.8000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2746    4.2000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    8.4871    2.1000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  2  3  2  0        0
+  3  4  1  0        0
+  3  5  1  0        0
+  5  6  2  0        0
+  6  7  1  0        0
+  1  7  2  0        0
+  7  8  1  0        0
+  8  9  1  0        0
+  9 10  1  0        0
+  9 11  1  0        0
+ 11 12  2  0        0
+ 11 13  1  0        0
+M  END
+>  <MolfileName> (1)
+iss2_12
+
+>  <cdk_Title> (1)
+iss2_12
+
+>  <Substance ID> (1)
+iss2_912
+
+>  <Molecular_Weight> (1)
+179.2
+
+>  <FW_iss2> (1)
+179.2
+
+>  <Parent_Atom_Count> (1)
+11.0
+
+>  <Parent_Molecular_Weight> (1)
+179.2
+
+>  <Rotatable_Bonds> (1)
+3.0
+
+>  <Hydrogen_Bond_Acceptors> (1)
+1.0
+
+>  <Polar_Surface_Area> (1)
+26.79
+
+>  <Lipinski_Score> (1)
+0.0
+
+>  <Canc_iss2> (1)
+3
+
+>  <ALogP> (1)
+-0.29
+
+>  <Hydrogen_Bond_Donors> (1)
+0.0
+
+>  <ChemName_iss2> (1)
+Hexamethylphosphoramide
+
+>  <SMILES_iss2> (1)
+O=P(N(C)C)(N(C)C)N(C)C
+
+>  <SAL_iss2> (1)
+1
+
+>  <CAS_iss2> (1)
+680-31-9
+
+>  <Formula_iss2> (1)
+C6H18N3OP
+
+>  <Structural Alert for genotoxic carcinogenicity> (1)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (1)
+NO
+
+>  <SA42_nogen> (1)
+NO
+
+>  <SA47_nogen> (1)
+NO
+
+>  <SA44_nogen> (1)
+NO
+
+>  <SA41_nogen> (1)
+NO
+
+>  <SA49_nogen> (1)
+NO
+
+>  <SA46_nogen> (1)
+NO
+
+>  <SA43_nogen> (1)
+NO
+
+>  <SA40_nogen> (1)
+NO
+
+>  <SA48_nogen> (1)
+NO
+
+>  <SA45_nogen> (1)
+NO
+
+>  <SA38_gen> (1)
+NO
+
+>  <SA50_nogen> (1)
+NO
+
+>  <SA55_nogen> (1)
+NO
+
+>  <SA52_nogen> (1)
+NO
+
+>  <SA54_nogen> (1)
+NO
+
+>  <SA51_nogen> (1)
+NO
+
+>  <SA56_nogen> (1)
+NO
+
+>  <SA53_nogen> (1)
+NO
+
+>  <SA39_gen_and_nogen> (1)
+NO
+
+>  <SA37_gen> (1)
+NO
+
+$$$$

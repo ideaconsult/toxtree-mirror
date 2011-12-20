@@ -43,7 +43,9 @@ public class SA50_nogen extends StructureAlertCDK {
 			setID("SA50_nogen");
 			setTitle("dicarboximide");
 			setExplanation("Nongenotoxic mechanism");
-			
+			 examples[0] = "O=C(N1SC(Cl)(C(Cl)Cl)Cl)C(CC=CC2)C2C1";
+	            examples[1] = "O=C(N1SC(Cl)(C(Cl)Cl)Cl)C(CC=CC2)C2C1=O";   
+	            editable = false;
 	
 		} catch (SMARTSException x) {
 			logger.error(x);

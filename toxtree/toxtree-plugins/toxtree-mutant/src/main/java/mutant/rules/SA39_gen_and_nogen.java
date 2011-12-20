@@ -42,7 +42,9 @@ public class SA39_gen_and_nogen extends StructureAlertCDK {
 			setID("SA39_gen_and_nogen");
 			setTitle("Steroidal estrogens");
 			setExplanation("Mixed genotoxic and non genotoxic mechanism");
-			
+			 examples[0] = "C[C@@]12CC[C@@]3([H])c4c(CC[C@]3([H])[C@@]1([H])CC[C@H]2O)cccc4";
+	            examples[1] = "C[C@@]12CC[C@@]3([H])c4c(CC[C@]3([H])[C@@]1([H])CC[C@H]2O)cc(O)cc4";   
+	            editable = false;
 			
 	
 		} catch (SMARTSException x) {

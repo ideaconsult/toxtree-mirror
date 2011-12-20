@@ -42,7 +42,9 @@ public class SA54_nogen extends StructureAlertCDK {
 			setTitle("1,3-Benzodioxoles");
 			setExplanation("Nongenotoxic mechanism");
 			
-				
+			 examples[0] = "C1Cc2ccccc2O1";
+	            examples[1] = "C1Oc2ccccc2O1";   
+	            editable = false;		
 	
 		} catch (SMARTSException x) {
 			logger.error(x);
