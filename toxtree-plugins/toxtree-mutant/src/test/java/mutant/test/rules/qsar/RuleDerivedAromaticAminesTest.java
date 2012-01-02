@@ -1,10 +1,9 @@
-package mutant.test.rules;
+package mutant.test.rules.qsar;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 import junit.framework.Assert;
-
 import mutant.rules.RuleDerivedAromaticAmines;
 import mutant.test.TestMutantRules;
 
@@ -15,7 +14,6 @@ import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.core.IDecisionRule;
-import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.query.MolFlags;

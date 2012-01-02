@@ -23,9 +23,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 import mutant.BB_CarcMutRules;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.interfaces.IMolecule;
 
@@ -39,64 +41,21 @@ import toxtree.ui.tree.actions.SaveTreeAction;
 import ambit2.core.io.IteratingDelimitedFileReader;
 
 
-public class MutantDataTest extends TestCase {
-	protected BB_CarcMutRules cr = null;
+public class MutantDataTest  {
+	protected static BB_CarcMutRules cr = null;
 	static protected TTLogger logger = new TTLogger(MutantDataTest.class);
-	//smiles,class,name,tree path
-	/*public static String[][] compoundsClass1 ={
-		{"CC1(C(CC=C1C)C=CC(C)(C)C(O)C)C","1","R38-I",""},
-			
-	};
-	public static String[][] compoundsClass2 ={
-		{"O=C1C=COC(=C1(O))CC","2","EM","1N,2N,3N,5N,6N,7Y,8N,10N,11N,12N,22Y"},
-			
-	};
-	//smiles,class,name,tree path,MeltingPoint,LogKow,LipidSolubility,MoleculWeight,SurfaceTension,VapourPressure,AqueousSolubility
-	public static String[][] compoundsClass3 ={
-		{"BrCCCCCCBr","3","1.6 - Dibromohexane","","7.880843","3.60806786664511","423","243.979991","0","0.250285","10.293935"}
-				
-	};	
 	
-	public static String[][] compoundsClass4 ={
-		{"CC1(C(CC=C1C)C=CC(C)(C)C(O)C)C","4","(+/-) trans-3,3-dimethyl-5-(2,2,3-trimethyl-cyclopent-3-en-1-yl)-pent-4-en-2-ol","","63.639511","3.61402048827646","0.2","222.371995","0","0.000125","2.710853"
-		}
-				
-	};*/
 	public static String[][] compoundsClass =new String[100][11];
 	public static String[][] compoundsClass_1 =new String[9][11];
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(MutantDataTest.class);
+
+	@BeforeClass
+	public static void setUp() throws Exception {
+		cr = new BB_CarcMutRules();
+		cr.setResiduesIDVisible(false);
+		TTLogger.configureLog4j(false);
 	}
 
-	/*
-	 * @see TestCase#setUp()
-	 */
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
 
-	/*
-	 * @see TestCase#tearDown()
-	 */
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
-	/**
-	 * Constructor for CramerDataTest.
-	 * @param arg0
-	 */
-	public MutantDataTest(String arg0) {
-		super(arg0);
-		try {
-			cr = new BB_CarcMutRules();
-			cr.setResiduesIDVisible(false);
-			TTLogger.configureLog4j(false);
-		} catch (DecisionMethodException x) {
-			fail();
-		}	
-	}
-	
 	protected  IDecisionResult classify(String smiles,String id,BB_CarcMutRules rules){
 		IDecisionResult result = rules.createDecisionResult();
 		
@@ -162,19 +121,20 @@ public class MutantDataTest extends TestCase {
 	public void testClass4() {
 		assertEquals(compoundsClass4.length,classify(compoundsClass4,4));
 	}*/
+	@Test
 	public void testNullPointerBug() throws Exception {
 		cr.setFalseIfRuleNotImplemented(false);
 		IDecisionResult result = classify("CC(O)(CS(=O)(=O)C1=CC=C(F)C=C1)C(=O)NC2=CC=C(C(=C2)C(F)(F)F)C(N)=O", "npe", cr);
 		
 		System.out.println(result.getAssignedCategories());
 	}
-	public void testClass() {
+	public void testClass() throws Exception {
 	    testCSVFile(compoundsClass);
-		assertEquals(compoundsClass.length,classify_without_classID(compoundsClass));
+		Assert.assertEquals(compoundsClass.length,classify_without_classID(compoundsClass));
 	}
-	public void testClass1() {
+	public void testClass1() throws Exception {
 		testCSVFile1(compoundsClass_1);
-		assertEquals(compoundsClass_1.length,classify_without_classID(compoundsClass_1));
+		Assert.assertEquals(compoundsClass_1.length,classify_without_classID(compoundsClass_1));
 	}
 	protected void writeCompounds(String[][] array, DataOutputStream f) throws IOException {
 		for (int i=0; i < array.length; i++) {
@@ -187,8 +147,8 @@ public class MutantDataTest extends TestCase {
 			f.writeBytes("\n");
 		}
 	}
-	public void testWriteCompounds() {
-		try {
+	@Test
+	public void testWriteCompounds() throws Exception {
 			DataOutputStream f = new DataOutputStream(
 					new FileOutputStream("appendix1.csv"));
 			f.writeBytes("SMILES,CLASS,Name,Path\n");
@@ -198,16 +158,13 @@ public class MutantDataTest extends TestCase {
 			//writeCompounds(compoundsClass4,f);
 			//writeCompounds(compoundsClass,f);
 			f.close();
-		} catch (IOException x) {
-			x.printStackTrace();
-		}
 	}
-	public void testCSVFile(String[][] molecules) {
+
+	public void testCSVFile(String[][] molecules) throws Exception {
         String filename = "toxTree/test/tree/sicret/BfR_irritation.csv";
         System.out.println("Testing: " + filename);
         
         //molecules = new String[118][11];
-        try {
         	InputStream ins = this.getClass().getClassLoader().getResourceAsStream(filename);
         //FileInputStream ins = new FileInputStream(filename);
         
@@ -216,7 +173,7 @@ public class MutantDataTest extends TestCase {
             int molCount = 0;
             while (reader.hasNext()) {
                 Object object = reader.next();
-                assertNotNull(object);
+                Assert.assertNotNull(object);
                 if(object instanceof IMolecule){
               
                 IMolecule mol = (IMolecule)object; 
@@ -263,17 +220,13 @@ public class MutantDataTest extends TestCase {
                 
             System.out.println("MolCount: " + molCount);
             //assertEquals(88, molCount);
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
     }
-	public void testCSVFile1(String[][] molecules) {
+	public void testCSVFile1(String[][] molecules) throws Exception {
         String filename = "toxTree/test/tree/sicret/BfR_corrosion.csv";
         System.out.println("Testing: " + filename);
         //InputStream ins = this.getClass().getClassLoader().getResourceAsStream(filename);
         //molecules = new String[118][11];
-        try {
+
         	InputStream ins = this.getClass().getClassLoader().getResourceAsStream(filename);
         //FileInputStream ins = new FileInputStream(filename);
         
@@ -282,8 +235,8 @@ public class MutantDataTest extends TestCase {
             int molCount = 0;
             while (reader.hasNext()) {
                 Object object = reader.next();
-                assertNotNull(object);
-                assertTrue((object instanceof Molecule));
+                Assert.assertNotNull(object);
+                Assert.assertTrue((object instanceof Molecule));
                 /*if(molCount==1){
                 	IMolecule mol = (IMolecule)object; 
                 	Hashtable temp = mol.getProperties();
@@ -339,11 +292,7 @@ public class MutantDataTest extends TestCase {
             }
                 
             System.out.println("MolCount: " + molCount);
-            //assertEquals(88, molCount);
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+
     }
 	 protected int classify_without_classID(String[][] molecules) {
 			int success = 1;
@@ -377,28 +326,26 @@ public class MutantDataTest extends TestCase {
 			//System.err.println("Wrong classification of " + (molecules.length-success) + " compounds");
 			return success;
 		}
-	public void test() {
+	 
+	 @Test
+	public void test() throws Exception {
 
 		IDecisionResult r = classify("CCC=CC=O", "CCC=CC=O", cr);
 		System.out.println(r.getAssignedCategories());
 	}
-	public void testReport() {
-		try {
-			BB_CarcMutRules rules = new BB_CarcMutRules();
-			SaveTreeAction a = new SaveTreeAction(rules);
-			a.actionPerformed(null);
-		} catch (Exception x) {
-			fail(x.getMessage());
-		}
+	 @Test
+	public void testReport() throws Exception {
+		BB_CarcMutRules rules = new BB_CarcMutRules();
+		SaveTreeAction a = new SaveTreeAction(rules);
+		a.actionPerformed(null);
 	}
-    public void testHasUnreachableRules() {
+	 @Test
+    public void testHasUnreachableRules() throws Exception {
     	IDecisionRuleList unvisited = cr.hasUnreachableRules();
     	if ((unvisited == null) || (unvisited.size()==0))
-    		assertTrue(true);
+    		Assert.assertTrue(true);
     	else {
-    		System.out.println("Unvisited rules:");
-    		System.out.println(unvisited);
-    		fail();
+    		Assert.fail(String.format("Unvisited rules %d", unvisited));
     	} 
     	
     }	
