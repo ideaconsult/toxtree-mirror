@@ -72,7 +72,7 @@ public enum SkinSensitisationAlerts {
 				"[#6]C(=[O,SX2])C(=[O,SX2])[#6]",
 				"[#6]C(=[O,SX2])[CX4]C(=[O,SX2])[#6]",
 				"[#6][$([NX2]=O),$(N=C=O),$(OC#N),$(SC#N),$(N=C=S)]",
-				"[CH2][NH2]"
+				"[CH2][NH2+0]"
 			};
 		}
 		@Override
