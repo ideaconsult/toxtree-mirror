@@ -55,7 +55,7 @@ public class MyAssociationBond extends Bond {
 	 * @param atom2
 	 */
 	public MyAssociationBond(IAtom atom1, IAtom atom2) {
-		super(atom1, atom2);
+		super(atom1, atom2,null);
 	}
 
 	/**
