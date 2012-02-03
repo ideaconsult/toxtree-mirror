@@ -35,8 +35,8 @@ Acetoin,513-86-0,CC(O)C(C)=O
         <p>
 		Chemical identifiers are resolved via remote server (if enabled). The remote query may fail to retrieve an identifier for the following reasons:
 		<ul>
-		<li>The identifier is not found at the server.
-		<li>Your computer is behind a firewall, blocking port 8080, and preventing the remote query. 
+		<li>The identifier is not found at the server.</li>
+		<li>Your computer is behind a firewall, blocking port 8080, and preventing the remote query. </li>
 		</ul>
 		Chemical names are parsed locally, and do not require remote query. 
 
