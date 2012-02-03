@@ -1,0 +1,57 @@
+ -----
+  Estimates skin corrosion and irritatiion potential by physicochemical property ranges and structural rules
+ -----
+ Nina Jeliazkova
+ -----
+ 2009/07/19
+ ----- 
+ 
+A decision tree for  estimating skin irritation and corrosion  potential
+
+ Estimates skin corrosion and irritatiion potential by physicochemical property ranges and structural rules
+ 
+ Available since {{{./previous.html#Toxtree-v1.12}ToxTree 1.12}}
+ 
+ Developed by {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria) for {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC}}
+  
+ Screenshots: {{{./images/sicret/screen.jpg}Main screen}} , {{{./images/sicret/tree.jpg}Decision tree}}
+  
+* Reference
+
+ [Gerner 2004] Ingrid Gerner, Kerstin Schlegel, John D. Walker, and Etje Hulzebosc, Use of Physicochemical Property Limits to Develop Rules for Identifying Chemical Substances with no Skin Irritation or Corrosion Potential, QSAR Comb. Sci. 2004, 23, pp.726-733  
+ 
+ [Hulzebos 2005] Etje Hulzebos, John D. Walker, Ingrid Gerner, and Kerstin Schlegel, Use of structural alerts to develop rules for identifying chemical substances with skin irritation or skin corrosion potential, QSAR Comb. Sci. 2005, 24, pp.332-342
+ 
+ [Walker 2005] John D. Walker, Ingrid Gerner, Etje Hulzebos, Kerstin Schlegel, The Skin Irritation Corrosion Rules Estimation Tool (SICRET), QSAR Comb. Sci. 2005, 24, pp378-384. 
+
+ 
+* Forum
+
+ {{{http://sourceforge.net/forum/forum.php?forum_id=867721}Skin irritation forum}}
+ 
+* For developers
+ 
+	* Source 
+
+ {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-sicret}source code}}
+ 
+	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-sicret</artifactId>
+  <version>2.5.0</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++---------------------------------  

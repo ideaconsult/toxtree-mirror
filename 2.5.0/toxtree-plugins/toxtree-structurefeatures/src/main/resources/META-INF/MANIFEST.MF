@@ -1,0 +1,10 @@
+Manifest-version: ${project.version}
+Specification-Title: Structure features (TODO add reference Yang 2008)
+Specification-Version: ${project.version}
+Specification-Vendor: Nina Jeliazkova
+Implementation-Title: Classes implementing functional groups scheme
+Implementation-Version: ${project.version}
+Implementation-Vendor: AMBIT project http://ambit.sourceforge.net
+Package-Title: structurefeatures
+Package-Version: ${project.version}
+Package-Vendor: Martin Martinov

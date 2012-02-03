@@ -1,0 +1,10 @@
+Manifest-version: ${project.version}
+Specification-Title: Michael acceptors
+Specification-Version: ${project.version}
+Specification-Vendor:  Structural Alerts for Michael Acceptors
+Implementation-Title: Classes implementing structural Alerts for Michael Acceptors
+Implementation-Version: ${project.version}
+Implementation-Vendor: Ideaconsult LTD
+Package-Title: michaelacceptors
+Package-Version: ${project.version}
+Package-Vendor: Ideaconsult Ltd

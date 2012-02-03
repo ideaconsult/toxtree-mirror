@@ -1,0 +1,137 @@
+NAME,CAS,SMILES,Cramer Class,"NOEL, mg/kg/day"
+Acetic acid,64-19-7,CC(O)=O,Low (Class I),726
+Acetoin,513-86-0,CC(O)C(C)=O,Low (Class I),330
+Acetone,67-64-1,CC(C)=O,Low (Class I),100
+Adipic acid,124-04-9,OC(=O)CCCCC(O)=O,Low (Class I),250
+Allura Red AC,25956-17-6,[Na+].[Na+].COC1=C(C=C(C)C(=C1)S([O-])(=O)=O)\N=N\C2=C(O)C=CC3=CC(=CC=C23)S([O-])(=O)=O,Low (Class I),1001
+"Aminoundecanoic acid, 11-",2432-99-7,NCCCCCCCCCCC(O)=O,Low (Class I),1500
+Ascorbic acid,50-81-7,OC[C@H](O)[C@H]1OC(=O)C(O)=C1O,Low (Class I),5.5
+Benzaldehyde,100-52-7,[H]C(=O)C1=CC=CC=C1,Low (Class I),1458
+Benzoic acid,65-85-0,OC(=O)C1=CC=CC=C1,Low (Class I),300
+Benzyl acetate,140-11-4,CC(=O)OCC1=CC=CC=C1,Low (Class I),887
+Benzyl alcohol,100-51-6,OCC1=CC=CC=C1,Low (Class I),510
+Bis(2-ethylhexyl)phthalate,117-81-7,CCCCC(CC)COC(=O)C1=C(C=CC=C1)C(=O)OCC(CC)CCCC,Low (Class I),100
+Brilliant Black PN,2519-30-4,[Na+].[Na+].[Na+].[Na+].CC(=O)NC1=CC=C(C2=C1C(O)=C(\N=N\C3=CC=C(\N=N\C4=CC=C(C=C4)S([O-])(=O)=O)C5=C3C=C(C=C5)S([O-])(=O)=O)C(=C2)S([O-])(=O)=O)S([O-])(=O)=O,Low (Class I),18
+"Butanediol, 1,3-",107-88-0,CC(O)CCO,Low (Class I),60
+"Butanol, 2-",78-92-2,CCC(C)O,Low (Class I),6883
+"Butanol, n-",71-36-3,CCCCO,Low (Class I),1644
+Butyl benzyl phthalate,85-68-7,CCCCOC(=O)C1=C(C=CC=C1)C(=O)OCC2=CC=CC=C2,Low (Class I),125
+Butylated hydroxyanisole,25013-16-5,[#6]C([#6])([#6])[#117].[#6]OC1=CC=C([#8])C=C1,Low (Class I),1228
+"Butyrolactone, y-",96-48-0,O=C1CCCO1,Low (Class I),115
+Calcium cyclamate,139-06-0,[Ca++].[O-]S(=O)(=O)NC1CCCCC1.[O-]S(=O)(=O)NC2CCCCC2,Low (Class I),525
+Calcium formate,544-17-2,[Ca++].[O-]C=O.[O-]C=O,Low (Class I),7203
+Calcium stearoyl lactylate,5793-94-2,[Ca++].CCCCCCCCCCCCCCCCCC(=O)OC(C)C(=O)OC(C)C([O-])=O.CCCCCCCCCCCCCCCCCC(=O)OC(C)C(=O)OC(C)C([O-])=O,Low (Class I),355
+"Carotenoic acid, beta-apo-8’-, methyl ester",4273-73-8,CC1=C(C(CCC1)(C)C)\C=C\C(=C\C=C\C(=C\C=C\C=C(\C)/C=C/C=C(\C)/C(=O)OC)\C)\C,Low (Class I),4435
+Cinnamaldehyde,104-55-2,O=C\C=C\C1=CC=CC=C1,Low (Class I),100
+Citral,5392-40-5,C\C(C)=C\CC\C(C)=C\C=O,Low (Class I),125
+Citranaxanthin,3604-90-8,CC(=O)\C=C\C(C)=C\C=C\C(C)=C\C=C\C=C(C)\C=C\C=C(C)\C=C\C1=C(C)CCCC1(C)C,Low (Class I),887
+Cumene,98-82-8,CC(C)C1=CC=CC=C1,Low (Class I),59
+Di(2-ethylhexyl)adipate,103-23-1,CCCCC(CC)COC(=O)CCCCC(=O)OCC(CC)CCCC,Low (Class I),154
+Dibutyl phthalate,84-74-2,CCCCOC(=O)C1=C(C=CC=C1)C(=O)OCCCC,Low (Class I),170
+Diethyl phthalate,84-66-2,CCOC(=O)C1=C(C=CC=C1)C(=O)OCC,Low (Class I),125
+Diethylene glycol,111-46-6,OCCOCCO,Low (Class I),2218
+Diethylene glycol monoethyl ether,111-90-0,CCOCCOCCO,Low (Class I),1250
+Dimethoxane,828-00-2,CC(=O)OC1CC(C)OC(C)O1,Low (Class I),250
+Dimethyl terephthalate,120-61-6,COC(=O)C1=CC=C(C=C1)C(=O)OC,Low (Class I),62.5
+Dimethylcarbonate,616-38-6,COC(=O)OC,Low (Class I),250
+Dimethyldicarbonate,4525-33-1,COC(=O)OC(=O)OC,Low (Class I),1475
+"Dimethylphenol, 2,4-",105-67-9,CC1=CC(C)=C(O)C=C1,Low (Class I),590
+"Dimethylphenol, 2,6-",576-26-1,CC1=CC=CC(C)=C1O,Low (Class I),0.6
+"Dimethylphenol, 3,4-",95-65-8,CC1=C(C)C=C(O)C=C1,Low (Class I),1.4
+Dioctyl sodium sulfosuccinate,577-11-7,[Na+].CCCCC(CC)COC(=O)CC(C(=O)OCC(CC)CCCC)S([O-])(=O)=O,Low (Class I),86
+Disodium 5’-guanylate,12/9/5550,[Na+].[Na+].NC1=NC2=C(N=CN2[C@@H]3O[C@H](COP([O-])([O-])=O)[C@@H](O)[C@H]3O)C(=O)N1,Low (Class I),100
+Disodium 5-inosinate,4691-65-0,[Na+].[Na+].O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP([O-])([O-])=O)N2C=NC3=C2N=CNC3=O,Low (Class I),1441
+Dodecyl gallate,1166-52-5,CCCCCCCCCCCCOC(=O)C1=CC(O)=C(O)C(O)=C1,Low (Class I),10
+Ethanol,64-17-5,CCO,Low (Class I),5241
+Ethyl acetate,141-78-6,CCOC(C)=O,Low (Class I),900
+Ethyl acrylate,140-88-5,CCOC(=O)C=C,Low (Class I),8.4
+Ethyl butyrate,105-54-4,CCCC(=O)OCC,Low (Class I),14.4
+Ethyl ether,60-29-7,CCOCC,Low (Class I),500
+Ethyl formate,109-94-4,CCOC=O,Low (Class I),500
+Ethyl glycol monomethyl ether,109-86-4,COCCO,Low (Class I),12.5
+Ethyl heptanoate,106-30-9,CCCCCCC(=O)OCC,Low (Class I),887
+Ethyl nonanoate,123-29-5,CCCCCCCCC(=O)OCC,Low (Class I),887
+"Ethyl-1-hexanol, 2-",104-76-7,CCCCC(CC)CO,Low (Class I),125
+Ethylbenzene,100-41-4,CCC1=CC=CC=C1,Low (Class I),136
+"Ethylbutyric acid, 2-",88-09-5,CCC(CC)C(O)=O,Low (Class I),534
+Ethylene-glycol,107-21-1,OCCO,Low (Class I),100
+"Ethylbexanoic acid, 2-",123-66-0,CCCCCC(=O)OCC,Low (Class I),100
+Ethylphthalyl ethylglycolate,84-72-0,CCOC(=O)COC(=O)C1=CC=CC=C1C(=O)OCC,Low (Class I),250
+Eugenol,97-53-0,COC1=C(O)C=CC(CC=C)=C1,Low (Class I),79.3
+FD & C Blue No. 1,3844-45-9,[Na+].[Na+].CCN(CC1=CC=CC(=C1)S([O-])(=O)=O)C2=CC=C(C=C2)C(=C3/C=CC(\C=C3)=[N+](/CC)CC4=CC=CC(=C4)S([O-])(=O)=O)\C5=CC=CC=C5S([O-])(=O)=O,Low (Class I),3502
+FD & C Blue No. 2,860-22-0,[Na+].[Na+].[O-]S(=O)(=O)C1=CC=C2N\C(C(=O)C2=C1)=C3\NC4=C(C=C(C=C4)S([O-])(=O)=O)C3=O,Low (Class I),550
+Formaldehyde,50-00-0,[H]C([H])=O,Low (Class I),15
+Fumaric acid,110-17-8,OC(=O)\C=C\C(O)=O,Low (Class I),720
+Geranyl acetate,105-87-3,CC(=O)OC\C=C(/C)CC\C=C(\C)C,Low (Class I),887
+"Glutamate, monosodium",142-47-2,[Na+].NC(CCC(O)=O)C([O-])=O,Low (Class I),25
+Glutantic acid hydrochloride,138-15-8,[Cl-].[N+]C(CCC(O)=O)C(O)=O,Low (Class I),25
+"Glutamic acid, L-",56-86-0,NC(CCC(O)=O)C(O)=O,Low (Class I),288
+Glycerol,56-81-5,OCC(O)CO,Low (Class I),3442
+Glyceryl tribenzoate,614-33-5,O=C(OCC(COC(=O)C1=CC=CC=C1)OC(=O)C2=CC=CC=C2)C3=CC=CC=C3,Low (Class I),604
+"Hexenal, 2- (trans)",505-57-7,CCC\C=C/C=O,Low (Class I),80
+"Hexylresorcinol, 4-",136-77-6,CCCCCCC1=C(O)C=C(O)C=C1,Low (Class I),62.5
+Hydroquinone,123-31-9,OC1=CC=C(O)C=C1,Low (Class I),25
+"Hydroxybenzoic acid butyl ester, p-",94-26-8,CCCCOC(=O)C1=CC=C(O)C=C1,Low (Class I),900
+"Hydroxybenzoic acid ethyl ester, p-",120-47-8,CCOC(=O)C1=CC=C(O)C=C1,Low (Class I),1441
+"Hydroxybenxoic acid methyl ester, p-",99-76-3,COC(=O)C1=CC=C(O)C=C1,Low (Class I),150
+"Hydroxybenxoic acid propyl ester, p-",94-13-3,CCCOC(=O)C1=CC=C(O)C=C1,Low (Class I),150
+Hydroxybenxyl acetone,5471-51-2,CC(=O)CCC1=CC=C(O)C=C1,Low (Class I),100
+Inosine monophosphate,131-99-7,OC1=NC=NC2=C1N=CN2[C@@H]3O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]3O,Low (Class I),1774
+Ionone,8013-90-9,CC(=O)\C=C\C1C(C)=CCCC1(C)C,Low (Class I),10
+Isoamyl butyrate,106-27-4,CCCC(=O)OCCC(C)C,Low (Class I),887
+Isoamyl salicylate,87-20-7,CC(C)CCOC(=O)C1=C(O)C=CC=C1,Low (Class I),4.7
+Isobutyl alcohol,78-83-1,CC(C)CO,Low (Class I),316
+Isomaltitol,534-73-6,OC[C@H]1O[C@H](OC[C@@H](O)[C@@H](O)[C@H](O)[C@@H](O)CO)[C@H](O)[C@@H](O)[C@@H]1O,Low (Class I),2927
+Isopropyl alcohol,67-63-0,CC(C)O,Low (Class I),0.018
+Isovaleric acid,503-74-2,CC(C)CC(O)=O,Low (Class I),2154
+Lactiol,585-86-4,[H][C@@](O[C@@H]1O[C@H](CO)[C@H](O)C(O)[C@H]1O)([C@H](O)CO)[C@H](O)[C@@H](O)CO,Low (Class I),1472
+"Limonene, d-",5989-27-5,CC(=C)C1CCC(C)=CC1,Low (Class I),250
+Lithocholic acid,434-13-9,[H][C@]12CC[C@@]3([H])[C@]4([H])CC[C@]([H])([C@H](C)CCC(O)=O)[C@@]4(C)CC[C@]3([H])[C@@]1(C)CC[C@@H](O)C2,Low (Class I),250
+"Malonaldehyde, sodium salt",24382-04-5,[Na+].O=C[CH-]C=O,Low (Class I),30
+Mannitol,69-65-8,OC[C@@H](O)[C@@H](O)[C@H](O)[C@H](O)CO,Low (Class I),1600
+Menthol,89-78-1,CC(C)C1CCC(C)CC1O,Low (Class I),296
+Methanol,67-56-1,CO,Low (Class I),500
+Methyl ethyl carbonate,623-53-0,CCOC(=O)OC,Low (Class I),156
+Methyl methacrylate,79-41-4,COC(=O)C(C)=C,Low (Class I),8.4
+Methyl salicylate,119-36-8,COC(=O)C1=C(O)C=CC=C1,Low (Class I),72
+"Methyl-1-phenylpentan-2-ol, 4-",7779-78-4,CC(C)CC(CC1=CC=CC=C1)O,Low (Class I),10
+"Methylenebis, 2,2’-",22656-77-5,CN(C)C(=S)SCSC(=S)N(C)C,Low (Class I),187
+"Methylphenol, 3-",108-39-4,CC1=CC=CC(O)=C1,Low (Class I),50
+Methylphenylcarbinyl acetate,93-92-5,CC(OC(C)=O)C1=CC=CC=C1,Low (Class I),50
+"Myrcene, beta-",123-35-3,C\C(C)=C\CCC(=C)C=C,Low (Class I),250
+"Nonalactone, gamma-",104-61-0,CCCCCC1CCC(=O)O1,Low (Class I),360
+Octyl acetate,112-14-1,CCCCCCCCOC(C)=O,Low (Class I),100
+Octyl gallate,1034-01-1,CCCCCCCCOC(=O)C1=CC(O)=C(O)C(O)=C1,Low (Class I),89
+Oleylamine,1838-19-3,CCCCCCCC\C=C\CCCCCCCCN,Low (Class I),3
+Oxalic acid,144-62-7,OC(=O)C(O)=O,Low (Class I),840
+Phenol,108-95-2,OC1=CC=CC=C1,Low (Class I),153
+Phenoxyethanol,122-99-6,OCCOC1=CC=CC=C1,Low (Class I),80
+"Phenyl-1-propanol, 2-",698-87-3,CC(O)CC1=CC=CC=C1,Low (Class I),10
+Phenylalanine,63-91-2,N[C@@H](CC1=CC=CC=C1)C(O)=O,Low (Class I),835
+Potassium sorbate,24634-61-5,[K+].C\C=C\C=C\C([O-])=O,Low (Class I),1774
+Propyl gallate,121-79-9,CCCOC(=O)C1=CC(O)=C(O)C(O)=C1,Low (Class I),86
+Propylene glycol,57-55-6,CC(O)CO,Low (Class I),2500
+Resorcinol,108-46-3,OC1=CC=CC(O)=C1,Low (Class I),32
+Retinol,68-26-8,CC(=C/CO)\C=C\C=C(C)\C=C\C1=C(C)CCCC1(C)C,Low (Class I),10
+Riboflavin,83-88-5,CC1=CC2=C(C=C1C)N(C[C@@H](O)[C@@H](O)[C@@H](O)CO)C3=NC(=O)NC(=O)C3=N2,Low (Class I),4
+Sodium benzoate,532-32-1,[Na+].[O-]C(=O)C1=CC=CC=C1,Low (Class I),1000
+Sodium erythorbate,89-65-6,[H][C@@](O)(CO)[C@H]1OC(=O)C(O)=C1O,Low (Class I),784
+Sodium lauryl glyceryl ether sulfonate,67409-24-9,[Na+].CCCCCCCCCCCCOC[C@H](O)COS([O-])(=O)=O,Low (Class I),360
+Sodium lauryl trioxyethylene sulfate,13150-00-0,[Na+].CCCCCCCCCCCCOCCOCCOCCOS([O-])(=O)=O,Low (Class I),360
+Sodium stearoyl lactylate,25383-99-7,[Ca+2].CCCCCCCCCCCCCCCCCC(=O)OC(C)C(=O)OC(C)C(=O)[O-].CCCCCCCCCCCCCCCCCC(=O )OC(C)C(=O)OC(C)C(=O)[O-],Low (Class I),4435
+Sorbic acid,110-44-1,C\C=C\C=C\C(O)=O,Low (Class I),3602
+Stearyl tartrate,,CCCCCCCCCCCCCCCCCCOC(=O)[C@@H]([C@@H](C(=O)O)O)O,Low (Class I),3600
+Styrene,100-42-5,C=CC1=CC=CC=C1,Low (Class I),12
+Sucrose monopalmitate,26446-38-8,CCCCCCCCCCCCCCCC(=O)O[C@]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@H]1O)[C@@]2(CO)O[C@H](CO)[C@@H](O)[C@@H]2O,Low (Class I),720
+Sucrose monostearate,25168-73-4,CCCCCCCCCCCCCCCCCC(=O)O[C@]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@H]1O)[C@@]2(CO)O[C@H](CO)[C@@H](O)[C@@H]2O,Low (Class I),2000
+Tartaric acid,133-37-9,OC(=O)C(O)C(O)C(O)=O,Low (Class I),181
+Tertiary butyl hydroquinone,1948-33-0,CC(C)(C)C1=C(O)C=CC(O)=C1,Low (Class I),129
+"Tocopherol, alpha-",59-02-9,CC1=C(C)C2=C(CC[C@](C)(CCC[C@H](C)CCC[C@@H](C)CCCC(C)C)O2)C(C)=C1O,Low (Class I),310
+Tolualdehyde,1334-78-7,[#6]-[#117].O=CC1=CC=CC=C1,Low (Class I),250
+Toluene,108-88-3,CC1=CC=CC=C1,Low (Class I),590
+Triethylene glycol,112-27-6,OCCOCCOCCO,Low (Class I),0.5
+Triethylene glycol monomethyl ether,112-35-6,COCCOCCOCCO,Low (Class I),1000
+Trimethylamine,75-50-3,CN(C)C,Low (Class I),138
+"Undecalacetone, gamma-",104-67-6,CCCCCCCC1CCC(=O)O1,Low (Class I),360
+Vanillin,121-33-5,COC1=C(O)C=CC(C=O)=C1,Low (Class I),1441
+Xylitol,87-99-0,OC[C@@H](O)C(O)[C@@H](O)CO,Low (Class I),100

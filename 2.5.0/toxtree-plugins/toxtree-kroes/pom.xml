@@ -1,0 +1,48 @@
+﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<description>Kroes, R., Renwick, A.G., Cheeseman, M., Kleiner, J., Mangelsdorf, I., Piersma, A.,
+Schilter, B., Schlatter, J., van Schothorst, F., Vos, J.G., W�rtzen, G. (2004). Structure based thresholds of toxicological concern (TTC): guidance for application to substances present at low levels in the diet. Food Chem. Toxicol. 42, 65�83</description>
+  <parent>
+    <artifactId>toxtree-plugins</artifactId>
+    <groupId>toxtree</groupId>
+    <version>2.5.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-kroes</artifactId>
+  <name>Toxtree module: Kroes decision tree</name>
+  <dependencies>
+  	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-cramer2</artifactId>
+  		<version>${project.version}</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-cramer</artifactId>
+  		<version>${project.version}</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-mutant</artifactId>
+  		<version>${project.version}</version>
+  	</dependency>
+  </dependencies>
+   <build>
+  	<pluginManagement>
+  		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+				<skip>false</skip>
+				<disableXmlReport>true</disableXmlReport>
+        		<argLine>-Xmx1024m</argLine>
+				</configuration>
+			</plugin>
+  		</plugins>
+  	</pluginManagement>
+  </build>
+</project>

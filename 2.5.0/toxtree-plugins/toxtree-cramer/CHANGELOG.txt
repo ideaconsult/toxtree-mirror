@@ -1,0 +1,18 @@
+Change log
+
+2.5.0
+
+Plugins:
+Cramer rules
+ Fixed:
+ Q2
+ https://sourceforge.net/tracker/?func=detail&aid=3086676&group_id=152702&atid=785126
+ https://sourceforge.net/tracker/?func=detail&aid=3089713&group_id=152702&atid=785126
+ Q3
+ https://sourceforge.net/tracker/?func=detail&aid=3095528&group_id=152702&atid=785126
+ 
+Wont'fix, further discussion required
+ Q4
+ https://sourceforge.net/tracker/?func=detail&aid=3089711&group_id=152702&atid=785126
+ Q24
+ https://sourceforge.net/tracker/?func=detail&aid=2949129&group_id=152702&atid=785126

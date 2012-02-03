@@ -1,0 +1,19 @@
+Change log
+
+2.5.0
+
+Plugins:
+Verhaar scheme 
+ The implementation of Verhaar scheme was considerably improved.
+ https://sourceforge.net/tracker/index.php?func=detail&aid=2822925&group_id=152702&atid=785126#
+ 
+The statistics of applying Verhaar scheme plugin against the validation dataset, provided in [1] and available in SVN [2]
+
+ Verhaar scheme (original)	Class 1 Class 2	Class 3	Class 4	Class5	 Accuracy
+ Expected Class 1			40	 							40		100.00%
+ Expected Class 2			2		16	 			4		22		72.73%
+ Expected Class 3			6	 		16		5	11		38		42.11%
+ Expected Class 4			3	 		7		13	2		25		52.00%
+
+[1] Verhaar et al, Chemosphere Volume 40, Issue 8, April 2000, Pages 875-883 , http://www.sciencedirect.com/science/article/pii/S0045653599003173 
+[2] https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-verhaar2/src/test/resources/toxtree/plugins/verhaar2/Verhaar2000.sdf

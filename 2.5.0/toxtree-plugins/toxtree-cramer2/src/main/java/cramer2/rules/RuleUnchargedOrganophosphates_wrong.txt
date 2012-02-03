@@ -1,0 +1,207 @@
+package cramer2.rules;
+
+import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
+import toxTree.tree.rules.smarts.SMARTSException;
+
+/**
+ * Uncharged Organophosph(othion)ates <br>
+ * SMARTS patterns [$(P)!$(P([OH,O-])(=O)(O)O)]
+ * @author Jeroen Kazius kazius@Curios-IT.com
+ * <b>Modified</b> Dec 15, 2008
+ */
+
+//?
+import org.openscience.cdk.AtomContainer;
+import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.cdk.smiles.SmilesGenerator;
+
+import toxTree.query.FunctionalGroups;
+import toxTree.query.MolFlags;
+
+
+import toxTree.tree.rules.smarts.ISmartsPattern;
+import joelib.molecule.JOEMol;
+import java.util.Enumeration;
+//import java.util.Hashtable;
+
+import org.openscience.cdk.interfaces.IAtomContainer;
+
+//import toxTree.core.IDecisionRuleEditor;
+import toxTree.exceptions.DecisionMethodException;
+//import toxTree.tree.AbstractRule;
+//import toxTree.ui.tree.rules.SMARTSRuleEditor;
+//?
+
+
+public class RuleUnchargedOrganophosphates extends  RuleSMARTSubstructure{//jeroen
+	private static final long serialVersionUID = 0;
+
+    //?
+	protected static transient SmilesGenerator sg= null;
+    protected static transient QueryAtomContainer phosphate = null;
+	protected static final transient String[] Me = new String[]{"Na","K","Ca"};
+    //?
+
+	public RuleUnchargedOrganophosphates() {
+		//TODO fix sterically hindered condition (example NO fails)
+		super();
+		id = "40";
+		title = "Possibly harmful organophosphate or organophosphothionate...";
+		explanation = new StringBuffer();
+		explanation.append("<html>Is any element not listed in Q3 an uncharged organophosphate?</html>");
+
+		examples[0] = "OP(=O)(O)CC(O)C(=O)O";//  no hit (X,0,X,0)
+		examples[1] = "COP(=O)(OC)OC(C)=CC(=O)NC";//hit (0,X,0,X)
+		try {
+			super.initSingleSMARTS(super.smartsPatterns,"1","[$(PO)!$(P([O-,OH])(=O)([$([O-,OH]),$(O(P)[C,P])])[$([O-,OH]),$(O(P)[C,P])])]");
+			editable = false;
+		} catch (SMARTSException x) {
+			logger.error(x);
+		}
+
+    //?
+    editable = false;
+    phosphate = FunctionalGroups.phosphate(Me,false);
+    //addSubstructure(FunctionalGroups.phosphate(Me));// OR copy set of substructures?
+	//addSubstructure(phosphate);
+    //?
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public boolean  verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol) throws DecisionMethodException {
+		logger.info(getID());
+		JOEMol moltotest = getObjectToVerify(mol);
+		if (!isAPossibleHit(mol,moltotest)) {
+			logger.debug("Not a possible hit due to the prescreen step.");
+			return false;
+		}
+
+		Enumeration e  = smartsPatterns.keys();
+		boolean is_true = false;
+		String temp_id = "";
+    	while(e.hasMoreElements()){
+    		temp_id = e.nextElement().toString();
+
+    		ISmartsPattern pattern = smartsPatterns.get(temp_id);
+            if (pattern == null)
+            {
+            	throw new DecisionMethodException("ID '" + id + "' is missing in " +
+            			getClass().getName());
+            }
+
+    		is_true = pattern.hasSMARTSPattern(moltotest)>0;
+
+    		logger.debug("SMARTS " + temp_id,'\t',pattern.toString(),'\t',is_true);
+
+    		if (pattern.isNegate()) is_true = ! is_true;
+
+    		if(containsAllSubstructures && !is_true){
+
+    			return false;
+    		}
+    		else if(!containsAllSubstructures && is_true){
+    			is_true = true;
+    			break;
+    		}
+
+
+
+    	}
+//    	if (final_and_patch != null) {
+//    		boolean b = final_and_patch.hasSMARTSPattern(moltotest)>0;
+//    		if (final_and_patch.isNegate()) b = !b;
+//    		return is_true && b;
+//    	} else return is_true;
+	//}
+
+      if (super.verifyRule(mol)) {//parent is ok
+		AtomContainer residue = null;
+		try {
+		    residue = (AtomContainer) mol.clone();
+		} catch (CloneNotSupportedException x) {
+		    throw new DecisionMethodException(x);
+		}
+		IMoleculeSet residues = null;
+
+		Object detached = null;
+
+	    if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.PHOSPHATE)) {
+			detached = FunctionalGroups.PHOSPHATE;
+			FunctionalGroups.clearMark(residue,detached);
+			if (phosphate == null) phosphate = FunctionalGroups.phosphate(Me,false);
+			residues = FunctionalGroups.detachGroup(residue,phosphate);
+			residues.setID("Unphosphated ");
+        }
+
+			if (residues != null) {
+				MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
+				if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
+					/* this will make subsequent rules to work with the residue rather than with the original molecule
+					*  If a rule needs the original structure instead, it can get it by getProperty(MolFlags.PARENT)
+					*/
+	//				residue.setProperty(MolFlags.PARENT,mol);
+	//				mf.addResidue(residue);
+				mf.setResidues(null);  //clear residues if any
+				for (int i=0; i< residues.getAtomContainerCount();i++) {
+					IMolecule a = residues.getMolecule(i);
+
+					if (sg == null) sg = new SmilesGenerator();
+					if (!residueIDHidden)  {
+						a.setID(residues.getID() + sg.createSMILES(a));
+						/*if set to smth different than mol.getId() will affect path representation
+						(not the decision!) which makes it difficult to automatically compare with the path from the paper :)
+						*/
+
+					} else a.setID(mol.getID());
+					logger.info("Subsequent rules will proceed on\t",residues.getID()," part of the compound.");
+
+					FunctionalGroups.clearMarks(a);
+					a.setProperty(MolFlags.PARENT,mol); //very important for the rules to be able to get the original structure if needed
+					mf.addResidue(a);
+
+				}
+		}
+		is_true = true;
+	  } else is_true = false;
+    	if (final_and_patch != null) {
+    		boolean b = final_and_patch.hasSMARTSPattern(moltotest)>0;
+    		if (final_and_patch.isNegate()) b = !b;
+    		return is_true && b;
+    	} else return is_true;
+    }
+
+
+
+}

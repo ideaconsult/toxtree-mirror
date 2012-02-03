@@ -1,0 +1,48 @@
+ -----
+ Skin sensitisation alerts
+ -----
+ Nina Jeliazkova
+ -----
+ 2010/06/16
+ -----
+
+Skin sensitisation alerts
+
+  Identification of mechanisms of toxic action for skin sensitisation using a SMARTS pattern based approach.
+    
+ Available since {{{./download.html#Toxtree_2.1.0}ToxTree 2.1.0}}
+
+  Developed by {{{http://www.pg.com}Procter and Gamble}} 2010
+  
+  Screenshots: {{{./images/skinsensitisation/screen.jpg}Main screen}} , {{{./images/skinsensitisation/tree.jpg}Decision tree}}
+   
+* Reference
+
+ [Enoch, 2008] Enoch SJ, Madden JC, Cronin MT,Identification of mechanisms of toxic action for skin sensitisation using a SMARTS pattern based approach.,SAR QSAR Environ Res. 2008;19(5-6):555-78.
+
+* For developers 
+
+	* Source 
+
+ {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-skinsensitisation}source code}}
+ 
+	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-skinsensitisation</artifactId>
+  <version>2.5.0</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++---------------------------------  

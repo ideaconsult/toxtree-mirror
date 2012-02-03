@@ -1,0 +1,21 @@
+Change log
+
+2.5.0
+
+Plugins:
+Verhaar scheme 
+ The implementation of the original Verhaar scheme was considerably improved.
+ This modified scheme differs by reordering the rules, according to [1] (class 4 first)
+ https://sourceforge.net/tracker/index.php?func=detail&aid=2822925&group_id=152702&atid=785126#
+ 
+The statistics of applying Verhaar scheme plugin against the validation dataset, provided in [2] and available in SVN [3]
+
+ Verhaar scheme (modified)	Class 1	Class 2	Class 3	Class 4	Class 5		Accuracy		
+ Expected Class 1			40									40		100.00%
+ Expected Class 2			2			15		1		4		22		68.18%
+ Expected Class 3			1			18		8		11		38		47.37%
+ Expected Class 4						2		21		2		25		84.00%
+
+[1] S.J. Enoch, M. Hewitt, M.T.D. Cronin, S. Azam, J.C. Madden, Classification of chemicals according to mechanism of aquatic toxicity: An evaluation of the implementation of the Verhaar scheme in Toxtree, Chemosphere 73 (2008) 243-248
+[2] Verhaar et al, Chemosphere Volume 40, Issue 8, April 2000, Pages 875-883 , http://www.sciencedirect.com/science/article/pii/S0045653599003173 
+[3] https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-verhaar2/src/test/resources/toxtree/plugins/verhaar2/Verhaar2000.sdf

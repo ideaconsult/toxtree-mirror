@@ -1,0 +1,11 @@
+Manifest-version: ${project.version}
+Class-Path: toxtree-functional_groups-${project.version}.jar
+Package-Title: Structural Alerts for Functional Group Identification (ISSFUNC)
+Specification-Title: http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_24871_EN.pdf
+Specification-Version: ${project.version}
+Specification-Vendor: Istituto Superiore di Sanita
+Implementation-Title: Structural Alerts for Functional Group Identification (ISSFUNC)
+Implementation-Version: ${project.version}
+Implementation-Vendor: Istituto Superiore di Sanita
+Package-Version: ${project.version}
+Package-Vendor: Istituto Superiore di Sanita

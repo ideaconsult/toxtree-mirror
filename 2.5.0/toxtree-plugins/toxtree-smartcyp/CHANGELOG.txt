@@ -1,0 +1,16 @@
+Change log
+
+2.5.0
+
+Plugins:
+SMARTCyp
+
+ SmartCyp code refactored as a separate maven project. Used as dependency in Toxtree
+ 1.5.5
+ https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/smartcyp-1.5.5
+ 
+ 
+ Refactored to provide SMIRKS along with SMARTS and energy for each reaction.
+ 
+ New classes, allowing metabolite generation, based on SOM calculated by SMARTCyp and ambit-SMIRKS (included in ambit-SMARTS package)
+ https://ambit.svn.sourceforge.net/svnroot/ambit/trunk/ambit2-all/ambit2-smarts 

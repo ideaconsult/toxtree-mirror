@@ -1,0 +1,12 @@
+Change log
+
+2.5.0
+
+Plugins:
+Structural Alerts for Functional Group Identification (ISSFUNC)
+
+Included in Toxtree starting with this version.
+The code was provided by Olga Tcheremenskaia (ISS) at http://www.box.net/shared/szjf2exynhmzh329t8iz
+
+Plugin for Toxtree 1.60 available at http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE
+

@@ -1,0 +1,12 @@
+Manifest-version: ${project.version}
+Package: verhaar
+Name: verhaar/VerhaarScheme.class
+Specification-Version: ${project.version}
+Specification-Vendor: Ideaconsult Ltd. Sofia, Bulgaria nina@acad.bg
+Specification-Title: Verhaar scheme as in "Verhaar H.J.M., Van Leeuven C., Hermens J.L.M.,Classifying Environmental Pollutants. 1: Structure-Activity Relationships for Prediction of Aquatic Toxicity, Chemosphere, Vol.25, No.4, pp.471-491, 1992."
+Implementation-Title: Classes implementing Verhaar scheme
+Implementation-Version: ${project.version}
+Implementation-Vendor: AMBIT project http://ambit.sourceforge.net
+Package-Title: verhaar
+Package-Version: ${project.version}
+Package-Vendor: Ideaconsult Ltd. Sofia, Bulgaria jeliazkova.nina@gmail.com

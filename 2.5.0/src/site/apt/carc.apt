@@ -1,0 +1,57 @@
+ -----
+ Benigni/ Bossa rulebase (for mutagenicity and carcinogenicity)
+ -----
+ Nina Jeliazkova
+ -----
+ 2009/07/19
+ -----
+ 
+ 
+Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity). 
+
+ A decision tree for estimating carcinogenicity and mutagenicity by discriminant analysis and structural rules, based on published in  the document {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_23241_EN.pdf}[Benigni 2008]}};
+ 
+ Available since {{{./previous.html#Toxtree-1.30}ToxTree 1.30}}
+ 
+ Developed by by {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria) and {{{http://www.iss.it}Istituto Superiore di Sanita}} for {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}JRC IHCP Computational Toxicology and Modelling}}
+   
+ Screenshots: {{{./images/mutant/screen.jpg}Main screen}} , {{{./images/mutant/tree.jpg}Decision tree}}
+  
+* Reference
+
+ [Benigni 2007] R. Benigni, C. Bossa, T. Netzeva, A. Rodomonte, and I. Tsakovska (2007) Mechanistic QSAR of aromatic amines: new models for discriminating between mutagens and nonmutagens, and validation of models for carcinogens. Environ mol mutag 48:754-771 
+
+ [Benigni 2008] R. Benigni,  C. Bossa, N. Jeliazkova, T. Netzeva, and A. Worth. The Benigni / Bossa rulebase for mutagenicity and carcinogenicity - a module of Toxtree {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_23241_EN.pdf}(European Commission report EUR 23241)}}
+
+
+* Forum
+
+  {{{http://sourceforge.net/forum/forum.php?forum_id=867722}Benigni/Bossa rulebase forum}}
+  
+* For developers
+  
+	* Source 
+
+ 	{{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-mutant}source code}}
+ 
+	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-mutant</artifactId>
+  <version>2.5.0</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++---------------------------------
+

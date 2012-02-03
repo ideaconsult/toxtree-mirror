@@ -1,0 +1,218 @@
+ -----
+ Downloads
+ -----
+ Nina Jeliazkova
+ -----
+ 2011/08/05
+ -----
+
+{Toxtree-2.5.0} 
+
+ <<Toxtree-v2.5.0 is a stable release including 2 new plugins, 2 improved plugins, new features and bug fixes.>>
+ 
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.0/Toxtree-v2.5.0-setup.exe/download}Windows installer}}  (source and executable, Windows)
+
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.0/Toxtree-v2.5.0.zip/download}ZIP archive}}  (source and executable, platform independent)
+	
+    * {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.0/Toxtree_installation_manual.pdf/download} Installation manual}}
+    
+    * {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.0/Toxtree_user_manual.pdf/download} User manual}} 
+    
+    * <<Change log>>
+    
+      * build date 5 Aug 2011
+    	
+      * updated to {{{http://cdk.sf.net}cdk 1.3.8}};
+
+      * updated to {{{http://ambit.sf.net}ambit-2.4.2}};
+
+      * {{{./smartcyp.html}SMARTCyp plug-in}} - added metabolite generation, based on Site of Metabolism, calculated by {{{http://www.farma.ku.dk/index.php/SMARTCyp/7990/0/}SMARTCyp}} and ambit-SMIRKS package;
+
+      * improved implementation of {{{./varhaar.html}Verhaar scheme plugin}}; validated against a published dataset;
+      
+      * added two new plug-ins: {{{./verhaar2.html}Modified Verhaar scheme}}, and {{{./issfunc.html}Structural Alerts for Functional Group Identification (ISSFUNC)}};
+
+      * fixed {{{./cramer.html}Cramer rules}} Q2 (NC#N recognised as functional group associated with enhanced toxicity);
+
+      * fixed {{{./carc.html}Benigni / Bossa rulebase}} SA31b (biphenyls recognition);
+      
+      * fixed {{{./carc.html}Benigni / Bossa rulebase}} SA30 (coumarins recognition);
+      
+      * fixed {{{./carc.html}Benigni / Bossa rulebase}} rule (QSAR6,8 applicability domain);
+      
+      * included jre-6u26-windows-i586.exe in Windows installer;
+      
+      * {{{http://http://openbabel.org}OpenBabel}} is no longer included in the distribution; in order to use OpenBabel (optionally) from within Toxtree, install OpenBabel separately and set the OBABEL_HOME environment variable to point to the folder where OpenBabel is installed
+      
+      * added metadata for all plugins (explanation, references, vendor, links to datasets)
+      
+      * improved display of decision tree details
+      
+      * improved help menus (About / Files info / Help);
+      
+      * enabled CAS & EINECS lookup in remote {{{http://opentox.org}OpenTox}} {{{http://apps.ideaconsult.net:8080/ambit2/query/compound/search/all} service}}; this new functionality is disabled by default -- check "Method/Decision tree option/Remote Query" menu to enable it;
+
+      * updated {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.0/Toxtree_user_manual.pdf/download}manuals}} and {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.0/README.txt/download}README}}.	
+      
+      * {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/2.5.0}Source code}}  
+      
+      * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;quick~toxtree}Maven repository}}
+    
+{Toxtree-2.2.0} 
+
+  <<Toxtree 2.2.0 is a library upgrade and bug fix release.>>
+
+	* {{{http://ambit.uni-plovdiv.bg/downloads/toxtree/Toxtree-v2.2.0-setup.exe}Windows installer}}  (source and executable, Windows)
+
+	* {{{http://ambit.uni-plovdiv.bg/downloads/toxtree/Toxtree-v2.2.0.zip}ZIP archive}}  (source and executable, platform independent)
+
+    * Change log
+    
+      * build date 25 Oct 2010
+    	
+      * updated to cdk 1.3.6 and jni-inchi 0.7;
+
+      * updated to jchempaint-3.1.3;
+
+      * fixed not working Edit/Preferences;
+
+      * removed valency labels that were appearing in JChemPaint by default;
+
+      * fixed rendering of disconnected structures (e.g. salts);
+
+      * fixed Cramer rule Q3 - Sulphur in aromatic ring is now recognized as divalent;
+
+      * included jre-6u22-windows-i586.exe in Windows installer;
+
+      * upgraded to Java 1.6;
+
+      * upgraded to OpenBabel v2.2.3;
+
+      * fixed SMILES parsing (OpenBabel v2.2.3);
+
+      * enabled InChI-to-structure conversion based on jni-inchi-0.7-std;
+
+      * enabled name-to-structure conversion based on OPSIN v0.8.0;
+
+      * fixed outcome from QSAR8;
+
+      * values "true" and "false" in input file will be parsed into 1 or 0;
+
+      * fixed batch processing "Non serializable exception" for micronucleus  and skin sensitiation plugins;
+
+      * added check for phosphates in Q4 of Cramer Extended rules;
+
+      * updated manuals and README.	
+      
+    * {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/2.2.0}Source code}}  
+	
+{Toxtree 2.1.0}
+
+ << {{{https://sourceforge.net/projects/toxtree/files/}Toxtree 2.1.0}} is released July 2010, and includes 3 new plugins and several bug fixes.>>
+
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v2.1.0/Toxtree-v2.1.0-setup.exe/download}Windows installer}}  (source and executable, Windows)
+
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v2.1.0/Toxtree-v2.1.0.zip/download}ZIP archive}}  (source and executable, platform independent)
+
+	* {{{https://www.ideaconsult.net/docs/toxtree/installation}Installation manual}}
+
+	* {{{https://www.ideaconsult.net/docs/toxtree/user-manual}User manual}}
+	
+    * <<Change log>>
+    
+       * build date 30 Jun 2010
+    	
+	   * supports structural alerts highlighting (funded by {{{http://www.pg.com}Procter & Gamble}})
+	   
+	   * new Skin sensitisation alerts plugin (developed by {{{http://www.pg.com}Procter & Gamble}})
+	   
+	   * new {{{kroes.html}Kroes TTC decision tree plugin}}
+	
+	   * new {{{smartcyp.html}SMARTCyp plugin}}
+	
+	   * upgraded to CDK 1.3.3 and JChemPaint;
+	
+	* {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/2.1.0}Source code}}  
+	   
+{Toxtree-v1.60} 
+
+  <<{{{https://sourceforge.net/projects/toxtree/files/}Toxtree 1.60}} includes 4 new plugins and several bug fixes.>>
+
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree%201.60/Toxtree-v1.60-setup.exe/download}Windows installer}}  (source and executable, Windows)
+
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree%201.60/Toxtree-v1.60.zip/download}ZIP archive}}  (source and executable, platform independent)
+
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree_installation_manual.pdf/download}Installation manual}}
+
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree_user_manual.pdf/download}User manual}}
+	
+    * <<Change log>>
+    	
+       * build date 15 Jul 2009
+       	
+	   * added Cramer rules with extensions plugin and updated bodymol.sdf;
+	
+	   * added  Structure Alerts  for the  in vivo  micronucleus assay  in rodents plugin;
+	
+	   * added START biodegradation and persistence plugin;
+	
+	   * added Structural Alerts for identification of Michael Acceptors plugin;
+	
+	   * Skin irritation plugin: fixed bugs in rules Q52 and Q53;
+	
+	   * Cramer rules plugin: fixed bugs in Q8 and Q21;
+	
+	   * Begnini/Bossa rulebase  plugin: fixed issue  when results for  structural alerts (e.g. SA10) are not displayed if the outcome is YES;
+	
+	   *  Begnini/Bossa  rulebase  plugin:  QSAR8  question  rephrased,  to  avoid confusion;
+	
+	   * fixed issue when editing an  example in the decision tree editor  was not working;
+	
+	   * introduced TOXTREE environment variable, which should be set to point  to the <Toxtree-version.jar>  and helps  locating SDF  files and  plugins when Toxtree is used by third party software;
+	
+	   * fixed issue when after creating a new tree it could not be saved.
+
+	* {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/toxTree}Source code}} 
+	   
+{Toxtree-v1.51} 			   	
+
+    * {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}Toxtree 1.51}} at JRC Computational Toxicology
+
+	* build date 26 Jun 2008
+	
+	* Windows installer
+
+	* ZIP archive
+
+	* Installation manual
+
+	* User manual
+	
+{Toxtree-v1.20} 	
+
+  * {{{http://sourceforge.net/project/showfiles.php?group_id=152702}Toxtree 1.20}} at SourceForge
+  
+  * <<Change log>>
+  
+  	  * build date 11 Mar 2007
+  	  
+      * added global  options for  skin irritation  rules (in  addition to  rule
+    specific options);
+
+      * added "Silent" option for  skin irritation property rules (the  answer of
+    the property rule will always be "No" if a property is missing);
+
+      * improved implementation of Verhaar scheme Class 4;
+
+      * fixed error when writing SMARTS rule to .tree file;
+
+      * updated installation manual;
+
+      * updated user manual;
+
+      * updated README;
+      
+Previous versions
+ 
+  * {{{./previous.html}Change log}}   
+

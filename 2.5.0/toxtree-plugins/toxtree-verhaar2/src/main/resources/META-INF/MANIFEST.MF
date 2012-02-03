@@ -1,0 +1,12 @@
+Manifest-version: ${project.version}
+Package: verhaar
+Name: toxtree/plugins/verhaar2/VerhaarScheme2.class
+Specification-Version: ${project.version}
+Specification-Vendor: Ideaconsult Ltd. Sofia, Bulgaria jeliazkova.nina@gmail.com
+Specification-Title: S.J. Enoch, M. Hewitt, M.T.D. Cronin, S. Azam, J.C. Madden, Classification of chemicals according to mechanism of aquatic toxicity:An evaluation of the implementation of the Verhaar scheme in Toxtree, Chemosphere 73 (2008) 243-248
+Implementation-Title: Classes implementing modified Verhaar scheme
+Implementation-Version: ${project.version}
+Implementation-Vendor: AMBIT project http://ambit.sourceforge.net
+Package-Title: toxtree.plugins.verhaar2
+Package-Version: ${project.version}
+Package-Vendor: Ideaconsult Ltd. Sofia, Bulgaria jeliazkova.nina@gmail.com

@@ -1,0 +1,11 @@
+Manifest-version: ${project.version}
+Main-Class: toxTree.apps.toxForest.ToxForestApp
+Specification-Title: Toxforest Application - Multiple Decision Trees
+Specification-Version: ${project.version}
+Specification-Vendor: Ideaconsult LTD
+Package-Title: toxTree.apps.toxForest
+Package-Version: ${project.version}
+Package-Vendor: Ideaconsult LTD
+Implementation-Title: Toxforest
+Implementation-Version: ${project.version}
+Implementation-Vendor: Ideaconsult LTD

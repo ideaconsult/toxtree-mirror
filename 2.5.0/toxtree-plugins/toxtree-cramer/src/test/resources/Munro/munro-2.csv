@@ -1,0 +1,29 @@
+NAME,CAS,SMILES,Cramer Class,"NOEL, mg/kg/day"
+Acrilic acid,79-10-7,OC(=O)C=C,Intermediate (Class II),53
+Allyl alcohol,107-18-6,OCC=C,Intermediate (Class II),4.8
+Allyl heptanoate,142-19-8,CCCCCCC(=O)OCC=C,Intermediate (Class II),49.6
+Allyl hexanoate,123-68-2,CCCCCC(=O)OCC=C,Intermediate (Class II),125
+Butylated hydroxytoluene,128-37-0,CC1=CC(=C(O)C(=C1)C(C)(C)C)C(C)(C)C,Intermediate (Class II),25
+Caffeine,58-08-2,CN1C=NC2=C1C(=O)N(C)C(=O)N2C,Intermediate (Class II),10.1
+"Carotene, beta-",7235-40-7,CC1=C(\C=C\C(C)=C\C=C\C(C)=C\C=C\C=C(C)\C=C\C=C(C)\C=C\C2=C(C)CCCC2(C)C)C(C)(C)CCC1,Intermediate (Class II),89
+Carvone,99-49-0,CC(=C)C1CC=C(C)C(=O)C1,Intermediate (Class II),125
+"Carvone, d-",2244-16-8,CC(=C)[C@H]1CC=C(C)C(=O)C1,Intermediate (Class II),750
+Diacetyl,431-03-8,CC(=O)C(C)=O,Intermediate (Class II),90
+Diallyl phtalate,131-17-9,C=CCOC(=O)C1=C(C=CC=C1)C(=O)OCC=C,Intermediate (Class II),150
+Diketopiperazine,29990-68-9,O=C1NCCNC1=O,Intermediate (Class II),500
+Ethyl maltol,4940-11-8,CCC1=C(O)C(=O)C=CO1,Intermediate (Class II),200
+Ethyl vanillin,121-32-4,CCOC1=C(O)C=CC(C=O)=C1,Intermediate (Class II),1441
+"Ethylhexyl phtalate, mono-2-",4376-20-9,CCCCC(CC)COC(=O)C1=CC=CC=C1C(O)=O,Intermediate (Class II),50
+Etretinate,54350-48-0,CCOC(=O)\C=C(C)\C=C\C=C(C)\C=C\C1=C(C)C(C)=C(OC)C=C1C,Intermediate (Class II),6
+Fenthion,55-38-9,COP(=S)(OC)OC1=CC(C)=C(SC)C=C1,Intermediate (Class II),16
+Furfural,98-01-1,O=CC1=CC=CO1,Intermediate (Class II),30
+Isobornyl acetate,125-12-2,CC(=O)O[C@@H]1C[C@@H]2CC[C@]1(C)C2(C)C,Intermediate (Class II),15
+Isophorone,78-59-1,CC1=CC(=O)CC(C)(C)C1,Intermediate (Class II),500
+Maltol,118-71-8,CC1=C(O)C(=O)C=CO1,Intermediate (Class II),20
+Methyl amyl ketone,110-43-0,CCCCCC(C)=O,Intermediate (Class II),20
+Methyl anthranilate,134-20-3,COC(=O)C1=C(N)C=CC=C1,Intermediate (Class II),150
+Piperidine,110-89-4,C1CCNCC1,Intermediate (Class II),69
+Piperonal,120-57-0,O=CC1=CC2=C(OCO2)C=C1,Intermediate (Class II),360
+Propargyl alcohol,107-19-7,OCC#C,Intermediate (Class II),5
+Pyridine,110-86-1,C1=CC=NC=C1,Intermediate (Class II),1
+Thujone,546-80-5,CC(C)C12CC(=O)C(C)C1C2,Intermediate (Class II),5

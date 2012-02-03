@@ -1,0 +1,13 @@
+Package: toxtree.plugins.skinsensitisation
+Name: toxtree/plugins/skinsensitisation/SkinSensitisationPlugin.class
+Manifest-version: ${project.version}
+Class-Path: toxtree-skinsensitisation-${project.version}.jar
+Specification-Title: Implementation of "Enoch SJ, Madden JC, Cronin MT,Identification of mechanisms of toxic action for skin sensitisation using a SMARTS pattern based approach.,SAR QSAR Environ Res. 2008;19(5-6):555-78."
+Specification-Version: ${project.version}
+Specification-Vendor: Ideaconsult LTD
+Implementation-Title: Skin sensitisation alerts
+Implementation-Version: ${project.version}
+Implementation-Vendor: Ideaconsult LTD
+Package-Title: toxTree.plugins.skinsensitisation
+Package-Version: ${project.version}
+Package-Vendor: Ideaconsult LTD
