@@ -21,13 +21,16 @@ package verhaar.test;
 
 import junit.framework.TestCase;
 
+import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
+import verhaar.VerhaarScheme;
 import verhaar.query.FunctionalGroups;
 import verhaar.rules.Rule01;
 import verhaar.rules.Rule11;
@@ -38,6 +41,7 @@ import verhaar.rules.Rule142;
 import verhaar.rules.Rule143;
 import verhaar.rules.Rule171;
 import verhaar.rules.Rule21;
+import verhaar.rules.RuleIonicGroups;
 import verhaar.rules.RuleLogPRange;
 
 /**
@@ -197,4 +201,11 @@ public class RulesTest extends TestCase {
 		ruleTest(new Rule13(),smiles,answers);
 	}		
 
+	public void testIonic() {
+		String[] smiles = {"[NH3+]CCC1=CC=C([NH3+])C=C1.[S-]C(=S)N(CC1=CC=CC=C1)CC1=CC=CC=C1.[S-]C(=S)N(CC1=CC=CC=C1)CC1=CC=CC=C1"};
+		boolean[] answers = {true};
+		ruleTest(new RuleIonicGroups(),smiles,answers);
+	}
+	
+	 
 }

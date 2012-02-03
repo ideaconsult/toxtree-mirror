@@ -19,10 +19,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package verhaar.test;
 
+import org.openscience.cdk.DefaultChemObjectBuilder;
+import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.exceptions.DecisionMethodException;
 import verhaar.VerhaarScheme;
+import verhaar.rules.Rule13;
 
 public class VerhaarSchemeTest extends RulesTestCase {
 
@@ -64,4 +67,6 @@ public class VerhaarSchemeTest extends RulesTestCase {
 		}
 	}
 	*/
+
+
 }
