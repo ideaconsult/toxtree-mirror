@@ -55,7 +55,7 @@ public class Rule32 extends RuleOnlyAllowedSubstructures {
 		explanation.append("<html>");
 		explanation.append("Does the substance contain only the <i>functional groups</i> (E) listed in Q30, or their derivatives listed in Q31, but with any or all of the following:<UL>");
 		explanation.append("<LI>(a)a single fused non-aromatic carbocyclic ring");
-		explanation.append("<LI>(b)Ii>aliphatic</i> (A) substituent chains longer than 5 carbon atoms, or");
+		explanation.append("<LI>(b)<i>aliphatic</i> (A) substituent chains longer than 5 carbon atoms, or");
 		explanation.append("<LI>(c)a polyoxyethylene [(-OCH2CH2-)x, with x <= 4] chain either on the aromatic ring or on an aliphatic side chain?");
 		explanation.append("</UL>");
 		explanation.append("<P>Part (a) is intended to allow simple derivatives of tetralin into class II while putting polyciclic compounds such as steroids ultimately into class III except those that may be normal food components.");
