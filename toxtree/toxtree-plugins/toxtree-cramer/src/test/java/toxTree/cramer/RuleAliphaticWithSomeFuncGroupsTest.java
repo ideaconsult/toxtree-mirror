@@ -24,13 +24,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.cramer;
 
+import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
+import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.cramer.RuleAliphaticWithSomeFuncGroups;
+import ambit2.base.config.Preferences;
 
 /**
  * Test for {@link RuleAliphaticWithSomeFuncGroups} rule.
@@ -91,7 +96,66 @@ public class RuleAliphaticWithSomeFuncGroupsTest extends AbstractRuleTest {
 	    
 	}
 	
-		
-	
+	/*	
 
+	public void testBugAnyAtom() throws Exception {
+	    //two smiles of the same compound
+	    Object[][] answer = {
+	            {"CCOC=O",new Boolean(true)}, 
+	            
+	            };
+	    Preferences.setProperty(Preferences.SMILESPARSER,"true");
+	    IMolecule mol1 = (IMolecule) FunctionalGroups.createAtomContainer((String)answer[0][0]);
+	    System.out.println("OpenBabel");        	
+	    MolAnalyser.analyse(mol1);
+       	int i=0;
+        for (IAtom atom : mol1.atoms()) {
+       		System.out.println(String.format("%s\t%s",atom.getSymbol(),atom.getMassNumber()));
+       		i++;
+       		atom.setID(Integer.toString(i));
+        }
+        
+       	for (IBond bond: mol1.bonds())
+       		System.out.println(String.format("%s\t%s\t(%s.%s,%s.%s)",bond.getOrder(),bond.getFlag(CDKConstants.ISAROMATIC),
+       				bond.getAtom(0).getID(),bond.getAtom(0).getSymbol(),
+       				bond.getAtom(1).getID(),bond.getAtom(1).getSymbol()));
+
+       	QueryAtomContainer ester = FunctionalGroups.ester();
+       	i=0;
+        for (IAtom atom : ester.atoms()) {
+        	atom.setID(Integer.toString(i));
+        	i++;
+        }	
+     	for (IBond bond: ester.bonds())
+       		System.out.println(String.format("Ester\t%s\t%s\t(%s.%s.%s,%s.%s.%s)",bond.getOrder(),bond.getFlag(CDKConstants.ISAROMATIC),
+       				bond.getAtom(0).getID(),bond.getAtom(0).getClass().getName(),bond.getAtom(0).getSymbol(),
+       				bond.getAtom(1).getID(),bond.getAtom(1).getClass().getName(),bond.getAtom(1).getSymbol()));
+     	
+        assertTrue(UniversalIsomorphismTester.isSubgraph(mol1,ester));
+        assertTrue(rule2test.verifyRule(mol1));
+        
+        
+	    Preferences.setProperty(Preferences.SMILESPARSER,"false");
+	    IMolecule mol2 = (IMolecule) FunctionalGroups.createAtomContainer((String)answer[0][0]);
+	    System.out.println("CDK");
+		MolAnalyser.analyse(mol2);  	
+		i = 0;
+       	for (IAtom atom : mol2.atoms()) {
+       		System.out.println(String.format("%s\t%s",atom.getSymbol(),atom.getMassNumber()));
+       		i++;
+       		atom.setID(Integer.toString(i));
+       	}
+       	for (IBond bond: mol2.bonds())
+       		System.out.println(String.format("%s\t%s\t(%s.%s,%s.%s)",bond.getOrder(),bond.getFlag(CDKConstants.ISAROMATIC),
+       				bond.getAtom(0).getID(),bond.getAtom(0).getSymbol(),
+       				bond.getAtom(1).getID(),bond.getAtom(1).getSymbol()));
+       	
+       	
+		 assertTrue(UniversalIsomorphismTester.isSubgraph(mol2,ester));
+       	assertTrue(UniversalIsomorphismTester.isIsomorph(mol1,mol2));
+       
+        assertTrue(rule2test.verifyRule(mol2));
+	    
+	}
+	*/
 }

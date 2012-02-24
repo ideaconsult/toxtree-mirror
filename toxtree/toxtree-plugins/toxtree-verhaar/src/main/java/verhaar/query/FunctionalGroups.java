@@ -40,6 +40,7 @@ import org.openscience.cdk.isomorphism.matchers.smarts.AnyOrderQueryBond;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
+import toxTree.query.ReallyAnyAtom;
 import toxTree.query.TopologyAnyBond;
 import toxTree.query.TopologyOrderQueryBond;
 import ambit2.core.data.MoleculeTools;
@@ -77,8 +78,8 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	public static QueryAtomContainer ionicGroup() {
 		QueryAtomContainer q = new QueryAtomContainer();
 		q.setID(IONICGROUP);
-		AnyAtom a1 = new AnyAtom();
-		AnyAtom a2 = new AnyAtom();
+		AnyAtom a1 = new ReallyAnyAtom();
+		AnyAtom a2 = new ReallyAnyAtom();
 		q.addAtom(a1);q.addAtom(a2);
 		q.addBond(new QueryAssociationBond(a1,a2));
 		return q;
@@ -94,7 +95,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 			
 			if (i==1) {
 				a[i] = new SymbolQueryAtom(new org.openscience.cdk.Atom("C"));
-			} else a[i] = new AnyAtom(); 
+			} else a[i] = new ReallyAnyAtom(); 
 			q.addAtom(a[i]);
 			if (i > 0) {
 				TopologyAnyBond b = new TopologyAnyBond(a[i],a[i-1],true);
@@ -123,7 +124,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 				a[i] = new SymbolSetQueryAtom();
 				for (int j=0; j < halogens.length;j++)
 					((SymbolSetQueryAtom)a[i]).addSymbol(halogens[j]);
-			} else a[i] = new AnyAtom(); 
+			} else a[i] = new ReallyAnyAtom(); 
 			q.addAtom(a[i]);
 			switch (i) {
 			case 0: break;
@@ -153,7 +154,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 				a[i] = new SymbolSetQueryAtom();
 				for (int j=0; j < halogens.length;j++)
 					((SymbolSetQueryAtom)a[i]).addSymbol(halogens[j]);
-			} else a[i] = new AnyAtom(); 
+			} else a[i] = new ReallyAnyAtom(); 
 			q.addAtom(a[i]);
 			switch (i) {
 			case 0: break;
@@ -302,7 +303,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		IAtom[] a = new IAtom[5];
 		for (int i=0; i < a.length; i++) {
 			switch (i) {
-			case 0: { a[i] = new AnyAtom(); break;}
+			case 0: { a[i] = new ReallyAnyAtom(); break;}
 			case 1: { a[i] = new SymbolQueryAtom(new org.openscience.cdk.Atom("C"));
 					q.addBond(new QueryUnsaturatedBond(a[0],a[1]));
 					break;}
@@ -379,7 +380,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
         for (int i = 0; i < container.getAtomCount(); i++) {
         	IAtom atom = container.getAtom(i);
         	if (atom instanceof IPseudoAtom)
-        		queryContainer.addAtom(new AnyAtom());
+        		queryContainer.addAtom(new ReallyAnyAtom());
         	else if (atom.getSymbol().equals("X")) { //halogen
         		SymbolSetQueryAtom a = new SymbolSetQueryAtom();
         		a.addSymbol("Cl");
@@ -408,7 +409,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
     public static QueryAtomContainer cyclicEster() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID(CYCLICESTER);        
-        AnyAtom r = new AnyAtom();
+        AnyAtom r = new ReallyAnyAtom();
         r.setProperty(DONTMARK,query.getID());
         InverseSymbolSetQueryAtom e = new InverseSymbolSetQueryAtom();
         e.addSymbol("H");
