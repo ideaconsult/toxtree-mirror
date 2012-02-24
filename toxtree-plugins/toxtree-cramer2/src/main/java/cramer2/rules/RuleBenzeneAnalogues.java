@@ -27,9 +27,14 @@ import ambit2.smarts.query.SMARTSException;
  * <b>Modified</b> Dec, 2008
  */
 public class RuleBenzeneAnalogues extends RuleSMARTSubstructure{//jeroen
-	private static final long serialVersionUID = 0;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6600673583244915910L;
+	
+	public static final String smarts = "[$([aH1;r6]),$([aX2;r6]),$([a;r6]~A)!$(a~A~*)]1~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]1";
+
 	public RuleBenzeneAnalogues() {
-		//TODO fix sterically hindered condition (example NO fails)
 		super();
 		id = "42";
 		title = "Possibly harmful analogue of benzene...";
@@ -39,8 +44,8 @@ public class RuleBenzeneAnalogues extends RuleSMARTSubstructure{//jeroen
 		examples[0] = "c1ccccc1C(=O)N";//  no hit (X,0,X,0)
 		examples[1] = "c1ccccc1O";//hit (0,X,0,X)
 		try {
-			super.initSingleSMARTS(super.smartsPatterns,"1", 
-                    "[$([aH1;r6]),$([aX2;r6]),$([a;r6]~A)!$(a~A~*)]1~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]1");
+			super.initSingleSMARTS(super.smartsPatterns,"1", smarts);
+                    
                     //"[$( )" + ",$([$([aH1;r5]),$([aX2;r5]),$([a;r5]~A)!$(a~A~*)]1~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~1)]");
 			editable = false;
 		} catch (SMARTSException x) {
