@@ -92,6 +92,8 @@ public class RuleCarbohydrate extends RuleSubstructures {
 		idsAcyclic.add(getSubstructure(index_aldehyde).getID());
 		idsAcyclic.add(getSubstructure(index_ketone).getID());
 		
+		examples[1]="OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O";
+		examples[0]="C(=O)C(=O)C(=O)C(=O)C(=O)C(=O)";
 	}
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
