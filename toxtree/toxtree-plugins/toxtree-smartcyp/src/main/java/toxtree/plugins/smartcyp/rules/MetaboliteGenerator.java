@@ -32,9 +32,9 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 	 * 
 	 */
 	private static final long serialVersionUID = -3202810538351239202L;
-	protected SMIRKSManager smrkMan;
+	protected transient SMIRKSManager smrkMan;
 	protected int rank;
-	protected ResourceBundle bundle;
+	protected transient ResourceBundle bundle;
 	
 	public MetaboliteGenerator() {
 		super();
