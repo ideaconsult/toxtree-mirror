@@ -30,7 +30,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 	 */
 	private static final long serialVersionUID = -8348454708993409448L;
 
-	protected CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
+	protected transient CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
 	
 	public SMARTCYPRuleRank1() {
 		this(1);
@@ -96,7 +96,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 
 			IAtomContainer iAtomContainer = AtomContainerManipulator.removeHydrogens(iAtomContainerTmp);	
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(iAtomContainer);
-			CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
+			if (adder==null) adder = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
 			CDKHueckelAromaticityDetector.detectAromaticity(iAtomContainer); 
 			adder.addImplicitHydrogens(iAtomContainer);
 
