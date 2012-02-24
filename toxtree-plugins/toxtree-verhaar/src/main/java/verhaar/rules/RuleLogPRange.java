@@ -48,7 +48,9 @@ public class RuleLogPRange extends RuleDescriptorRange implements IAlertCounter 
 		super();
 		alertsCounter = new DefaultAlertCounter();
 		id = "0.2";
-		setDescriptor(new XLogPDescriptor());
+		XLogPDescriptor d = new XLogPDescriptor();
+		try {d.setParameters(new Object[] {Boolean.TRUE});} catch (Exception x) {}
+		setDescriptor(d);
 		//a bit loose range, to allow for calculation errors ...
 		setMaxValue(6.75);
 		setMinValue(-.75);

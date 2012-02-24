@@ -64,11 +64,11 @@ import org.openscience.cdk.isomorphism.matchers.SymbolAndChargeQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.SymbolSetQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AliphaticSymbolAtom;
-import org.openscience.cdk.isomorphism.matchers.smarts.AnyAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AnyOrderQueryBond;
 import org.openscience.cdk.isomorphism.matchers.smarts.AromaticSymbolAtom;
 import org.openscience.cdk.isomorphism.mcss.RMap;
 import org.openscience.cdk.ringsearch.SSSRFinder;
+import org.openscience.cdk.silent.AtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
@@ -79,6 +79,7 @@ import toxTree.logging.TTLogger;
 import toxTree.tree.AbstractRule;
 import ambit2.core.data.MoleculeTools;
 import ambit2.core.smiles.SmilesParserWrapper;
+import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
 
 /**
  * This class provides static methods for various functional groups
@@ -205,7 +206,7 @@ public class FunctionalGroups {
     public static QueryAtomContainer methoxy() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID(METHOXY);
-        AnyAtom r = new AnyAtom(); r.setSymbol("R");
+        ReallyAnyAtom r = new ReallyAnyAtom(); r.setSymbol("R");
         SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
         SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
         SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
@@ -749,10 +750,10 @@ public class FunctionalGroups {
     
     public static QueryAtomContainer quaternaryNitrogen1(boolean charged) {
     	
-     	AnyAtom r1 = new AnyAtom();
-     	AnyAtom r2 = new AnyAtom();
-     	AnyAtom r3 = new AnyAtom();
-     	AnyAtom r4 = new AnyAtom();
+    	ReallyAnyAtom r1 = new ReallyAnyAtom();
+    	ReallyAnyAtom r2 = new ReallyAnyAtom();
+    	ReallyAnyAtom r3 = new ReallyAnyAtom();
+    	ReallyAnyAtom r4 = new ReallyAnyAtom();
 
      	//SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
      	IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
@@ -777,9 +778,9 @@ public class FunctionalGroups {
     
     public static QueryAtomContainer quaternaryNitrogen2(boolean charged) {
     	
-     	AnyAtom r1 = new AnyAtom();
-     	AnyAtom r2 = new AnyAtom();
-     	AnyAtom r3 = new AnyAtom();
+    	ReallyAnyAtom r1 = new ReallyAnyAtom();
+    	ReallyAnyAtom r2 = new ReallyAnyAtom();
+    	ReallyAnyAtom r3 = new ReallyAnyAtom();
 
      	//SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
      	IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
@@ -803,8 +804,8 @@ public class FunctionalGroups {
     
     
     public static QueryAtomContainer quarternaryNitrogenException() {
-     	AnyAtom nr1 = new AnyAtom();
-     	AnyAtom nr2 = new AnyAtom();
+    	ReallyAnyAtom nr1 = new ReallyAnyAtom();
+    	ReallyAnyAtom nr2 = new ReallyAnyAtom();
      	SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
      	IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
      	a.setFormalCharge(1);
@@ -832,7 +833,7 @@ public class FunctionalGroups {
     public static QueryAtomContainer carboxylicAcid() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID(CARBOXYLIC_ACID);        
-        AnyAtom r = new AnyAtom();
+        ReallyAnyAtom r = new ReallyAnyAtom();
         r.setProperty(DONTMARK,query.getID());
         
         SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
@@ -1007,7 +1008,7 @@ public class FunctionalGroups {
     public static QueryAtomContainer ester() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID(ESTER);        
-        AnyAtom r = new AnyAtom();
+        ReallyAnyAtom r = new ReallyAnyAtom();
         r.setProperty(DONTMARK,query.getID());
         InverseSymbolSetQueryAtom e = new InverseSymbolSetQueryAtom();
         e.addSymbol("H");
@@ -1016,7 +1017,9 @@ public class FunctionalGroups {
         SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
         SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
         SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        query.addAtom(r); query.addAtom(e); query.addAtom(c);
+        query.addAtom(r); 
+        query.addAtom(e); 
+        query.addAtom(c);
         query.addAtom(o1); query.addAtom(o2);
         query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE));
         query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE));
@@ -1028,7 +1031,7 @@ public class FunctionalGroups {
     public static QueryAtomContainer carbonate() {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID(CARBONATE);        
-        AnyAtom r = new AnyAtom();
+        ReallyAnyAtom r = new ReallyAnyAtom();
         r.setProperty(DONTMARK,query.getID());
         InverseSymbolSetQueryAtom e = new InverseSymbolSetQueryAtom();
         e.addSymbol("H");
@@ -1300,7 +1303,7 @@ public class FunctionalGroups {
         query.addBond(new OrderQueryBond(c, c1, CDKConstants.BONDORDER_SINGLE));
         SymbolQueryAtom c2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
         query.addBond(new OrderQueryBond(c2, c1, CDKConstants.BONDORDER_DOUBLE));
-        AnyAtom a = new AnyAtom();
+        ReallyAnyAtom a = new ReallyAnyAtom();
         query.addBond(new AnyOrderQueryBond(c2, a, CDKConstants.BONDORDER_DOUBLE));
         a.setProperty(DONTMARK,query.getID());
         return query;
@@ -1535,7 +1538,7 @@ public class FunctionalGroups {
 	        for (int i=0; i < setOfAtoms.length; i++)
 	            m.addSymbol(setOfAtoms[i]);
 		}
-        AnyAtom r = new AnyAtom();
+        ReallyAnyAtom r = new ReallyAnyAtom();
         r.setProperty(DONTMARK,query.getID());
         
         SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR));
@@ -1566,7 +1569,7 @@ public class FunctionalGroups {
 	        for (int i=0; i < setOfAtoms.length; i++)
 	            m.addSymbol(setOfAtoms[i]);
 		}
-        AnyAtom r = new AnyAtom();
+        ReallyAnyAtom r = new ReallyAnyAtom();
         r.setProperty(DONTMARK,query.getID());
         
         SymbolQueryAtom p = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.PHOSPHORUS));
@@ -1593,9 +1596,9 @@ public class FunctionalGroups {
     public static QueryAtomContainer polyoxyethylene(int n) {
         QueryAtomContainer query = new QueryAtomContainer();
         query.setID(POLYOXYETHYLENE);
-        AnyAtom a1 = new AnyAtom();
+        ReallyAnyAtom a1 = new ReallyAnyAtom();
         a1.setProperty(DONTMARK,query.getID());
-        AnyAtom a2 = new AnyAtom();
+        ReallyAnyAtom a2 = new ReallyAnyAtom();
         a2.setProperty(DONTMARK,query.getID());
         
         SymbolQueryAtom o;
@@ -1870,7 +1873,7 @@ public class FunctionalGroups {
 			boolean markIt = true;
 			for (int k=0; k<b2.getAtomCount();k++) {
 				IAtom a2 = b2.getAtom(k);
-				if (a2 instanceof AnyAtom) {
+				if (a2 instanceof ReallyAnyAtom) {
 					markIt = false; break;
 				}
 				Object o =a2.getProperty(DONTMARK);
@@ -2177,6 +2180,7 @@ public class FunctionalGroups {
             while(iterator.hasNext()) {
             	Object anID = iterator.next();
 	            Object o = a.getProperty(anID);
+	           
 	            if (o!=null) {
 	            	//this atom has at least one mark, no need to check for more
 	            	ok = true; 
@@ -2267,29 +2271,41 @@ public class FunctionalGroups {
         return true;
     }
     public static IAtomContainer createAtomContainer(String smiles, String id) {
-    	return createAtomContainer(smiles,false,id);
-    }    
+    	return createAtomContainer(smiles,false,id,null);
+    }
+    public static IAtomContainer createAtomContainer(String smiles, String id,SMILES_PARSER mode) {
+    	return createAtomContainer(smiles,false,id,mode);
+    }
     public static IAtomContainer createAtomContainer(String smiles) {
-    	return createAtomContainer(smiles,false,smiles);
+    	return createAtomContainer(smiles,(SMILES_PARSER)null);
+    }
+    public static IAtomContainer createAtomContainer(String smiles,SMILES_PARSER mode) {
+    	return createAtomContainer(smiles,false,smiles,mode);
     }
     public static IAtomContainer createAtomContainer(String smiles,boolean addHydrogens) {
     	return createAtomContainer(smiles,addHydrogens,smiles);
     }
-    
     public static IAtomContainer createAtomContainer(String smiles,boolean addHydrogens,String id) {
+    	return createAtomContainer(smiles, addHydrogens, id,null);
+    }
+    public static IAtomContainer createAtomContainer(String smiles,boolean addHydrogens,String id,SMILES_PARSER mode) {
         try {
         	//logger.debug("Creating molecule from SMILES\t",smiles);
-        	SmilesParserWrapper sp = SmilesParserWrapper.getInstance();
+        	SmilesParserWrapper sp = mode==null?SmilesParserWrapper.getInstance():SmilesParserWrapper.getInstance(mode);
         	
             IAtomContainer mol = sp.parseSmiles(smiles);
             if ((mol != null) && (mol.getAtomCount()==0)) return null;
 
+            //for (IAtom atom : mol.atoms())
+            //	System.out.println(atom.getAtomTypeName());
+            
             if (addHydrogens) 
             try {
             	//logger.debug("Adding explicit hydrogens");
             	AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
                 h.addImplicitHydrogens(mol);
                 AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
+      
                 //h.addExplicitHydrogensToSatisfyValency((IMolecule)mol);
             } catch (InvalidSmilesException x ) {
                 logger.error(x);
@@ -2311,7 +2327,7 @@ public class FunctionalGroups {
     	return createQuery(smiles,smiles);
     }
     public static QueryAtomContainer createQuery(String smiles,String id) {
-    	IAtomContainer mol = createAtomContainer(smiles);
+    	IAtomContainer mol = createAtomContainer(smiles,id,SMILES_PARSER.CDK);
     	if (mol !=null) {
     		QueryAtomContainer q = QueryAtomContainerCreator.createBasicQueryContainer(mol);
     		q.setID(id);
@@ -3715,7 +3731,7 @@ public class FunctionalGroups {
 				IAtom stayAtom = null;
 				//if the bond belongs to the group, the stayAtom will remain null
 				for (int k=0; k<b2.getAtomCount();k++)  
-					if (b2.getAtom(k) instanceof AnyAtom) stayAtom = b2.getAtom(k);
+					if (b2.getAtom(k) instanceof ReallyAnyAtom) stayAtom = b2.getAtom(k);
 					else {
 						Object o = b2.getAtom(k).getProperty(DONTMARK);
 						if ((o != null) && (o.equals(q.getID()))) stayAtom = b2.getAtom(k);
@@ -3851,13 +3867,13 @@ public class FunctionalGroups {
 		QueryAtomContainer q = new QueryAtomContainer();
 		q.setID("RING "+Integer.toString(size));
 		SymbolQueryAtom[] c= new SymbolQueryAtom[size];
-		AnyAtom[] h= new AnyAtom[size];
+		ReallyAnyAtom[] h= new ReallyAnyAtom[size];
 		for (int i=0;i < size; i++) {
 			c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
 			c[i].setProperty(RING_NUMBERING,new Integer(i));
 			q.addAtom(c[i]);
 			if (i>0) q.addBond(new AnyOrderQueryBond(c[i],c[i-1],IBond.Order.SINGLE));
-			h[i] = new AnyAtom();
+			h[i] = new ReallyAnyAtom();
 			h[i].setProperty(RING_NUMBERING,new Integer(i));
 			q.addAtom(h[i]);
 			q.addBond(new AnyOrderQueryBond(c[i],h[i],IBond.Order.SINGLE));
