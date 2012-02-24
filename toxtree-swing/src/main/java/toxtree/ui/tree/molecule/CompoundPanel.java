@@ -42,8 +42,10 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
+import toxTree.query.MyAssociationBond;
 import toxTree.tree.ProgressStatus;
 import toxtree.data.DataContainer;
 import toxtree.ui.molecule.NavigationPanel;
@@ -161,7 +163,7 @@ public class CompoundPanel extends JPanel implements   Observer, PropertyChangeL
 	    }
 
 	}
-
+/*
     public void propertyChange(PropertyChangeEvent evt) {
         if ((evt.getNewValue() instanceof ProgressStatus) && ((ProgressStatus)evt.getNewValue()).isEstimated()) {
 
@@ -170,6 +172,29 @@ public class CompoundPanel extends JPanel implements   Observer, PropertyChangeL
         	picturePanel.setSelector((IProcessor<IAtomContainer,IChemObjectSelection>)evt.getNewValue());	
         } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_molecule.toString())) {
         	picturePanel.setAtomContainer((IAtomContainer)evt.getNewValue());	
+        	picturePanel.setSelector(null);
+        }           	
+        
+        
+    }
+
+*/
+    public void propertyChange(PropertyChangeEvent evt) {
+        if ((evt.getNewValue() instanceof ProgressStatus) && ((ProgressStatus)evt.getNewValue()).isEstimated()) {
+
+            display();
+        } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_selected.toString())) {
+        	picturePanel.setSelector((IProcessor<IAtomContainer,IChemObjectSelection>)evt.getNewValue());	
+        } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_molecule.toString())) {
+        	
+        	IAtomContainer mol = (IAtomContainer)evt.getNewValue();
+        	boolean showCurrentMolecule = false;
+        	//a workaround to cope with JCP crashing on null bond order
+        	if (mol != null) for (IBond bond: mol.bonds()) if (bond instanceof MyAssociationBond) {
+        		showCurrentMolecule = true; break;
+        	}
+        	if (!showCurrentMolecule)
+        		picturePanel.setAtomContainer((IAtomContainer)evt.getNewValue());	
         	picturePanel.setSelector(null);
         }           	
         
