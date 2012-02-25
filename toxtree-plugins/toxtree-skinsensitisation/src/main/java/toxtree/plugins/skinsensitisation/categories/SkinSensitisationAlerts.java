@@ -230,7 +230,7 @@ public enum SkinSensitisationAlerts {
 		}
 		@Override
 		public String getCategoryTitle() {
-			return "No kin sensitisation reactivity domains alerts identified.";
+			return "No skin sensitisation reactivity domains alerts identified.";
 		}
 		@Override
 		public String getTitle() {
