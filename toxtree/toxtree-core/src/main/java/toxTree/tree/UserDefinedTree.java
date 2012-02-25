@@ -83,7 +83,7 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 	public void setListener(PropertyChangeListener listener) {
 		this.listener = listener;
 	}
-	protected PropertyChangeListener listener;
+	transient protected PropertyChangeListener listener;
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
