@@ -105,18 +105,22 @@ public class MunroTest {
 			Assert.assertEquals(applyError,0);
 
 	}
+	//junit.framework.AssertionFailedError: expected:<134> but was:<103>
+	
 	@Test
 	public void testMunroClass1() throws Exception {
 		IDecisionCategory c = rules.getCategories().getCategory(new DefaultCategory("",1));
 		URL url = getClass().getClassLoader().getResource("Munro/munro-1.csv");
 		testFile(url.getFile(),c);
 	}
+	//junit.framework.AssertionFailedError: expected:<28> but was:<15>
 	@Test
 	public void testMunroClass2() throws Exception {
 		IDecisionCategory c = rules.getCategories().getCategory(new DefaultCategory("",2));
 		URL url = getClass().getClassLoader().getResource("Munro/munro-2.csv");
 		testFile(url.getFile(),c);
 	}	
+	//junit.framework.AssertionFailedError: expected:<445> but was:<441>
 	@Test
 	public void testMunroClass3() throws Exception {
 		IDecisionCategory c = rules.getCategories().getCategory(new DefaultCategory("",3));

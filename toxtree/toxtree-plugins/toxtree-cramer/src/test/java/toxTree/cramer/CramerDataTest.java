@@ -228,14 +228,20 @@ public class CramerDataTest extends TestCase {
 	
 	public void testClass1() {
 		SMILES_PARSER p = SmilesParserWrapper.getInstance().getParser();
+		//junit.framework.AssertionFailedError: expected:<31> but was:<22>
+		
 		SmilesParserWrapper.getInstance().setParser(SMILES_PARSER.OPENBABEL);
 		assertEquals(compoundsClass1.length,classify(compoundsClass1,1));
 		SmilesParserWrapper.getInstance().setParser(p);
 		
 	}
+	//junit.framework.AssertionFailedError: expected:<7> but was:<6>
+	
 	public void testClass2() {
 		assertEquals(compoundsClass2.length,classify(compoundsClass2,2));
 	}
+	//junit.framework.AssertionFailedError: expected:<43> but was:<42>
+	
 	public void testClass3() {
 		assertEquals(compoundsClass3.length,classify(compoundsClass3,3));
 	}	
