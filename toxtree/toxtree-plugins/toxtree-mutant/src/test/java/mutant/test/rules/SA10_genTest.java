@@ -31,7 +31,6 @@ import javax.vecmath.Point2d;
 import mutant.rules.SA10_gen;
 import mutant.test.TestMutantRules;
 
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -40,7 +39,6 @@ import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.cdk.nonotify.NoNotificationChemObjectBuilder;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
@@ -50,7 +48,6 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.core.IDecisionRule;
-import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import ambit2.core.data.MoleculeTools;
@@ -233,9 +230,9 @@ public class SA10_genTest extends TestMutantRules {
 	}
 	
 	public void testException() throws Exception {
-		SmilesParser sp = new SmilesParser(NoNotificationChemObjectBuilder.getInstance());
+		SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		IAtomContainer ac = sp.parseSmiles("CCCC(=O)C=C"); //"OC(=O)C=C");
-		CDKHydrogenAdder h = CDKHydrogenAdder.getInstance(NoNotificationChemObjectBuilder.getInstance());
+		CDKHydrogenAdder h = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
 		h.addImplicitHydrogens(ac);
 		AtomContainerManipulator.convertImplicitToExplicitHydrogens(ac);
 		/**
