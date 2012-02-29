@@ -16,7 +16,7 @@
      The list of supported file formats can be found in the <a href="http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.0/Toxtree_user_manual.pdf/download">user manual</a>. 
      A brief list of the most common formats follows: 
      <ul>
-     <li><i>filename.SDF</i> is <a href="http://www.symyx.com/downloads/public/ctfile/ctfile.pdf">Structure Data Format</a></li>
+     <li><i>filename.SDF</i> is <a href="http://accelrys.com/products/informatics/cheminformatics/ctfile-formats/no-fee.php">Structure Data Format</a></li>
      <li><i>filename.CSV</i> is comma delimited text file,with mandatory header row. 
      A column,containing SMILES, should have title "SMILES". The number,titles and order of the columns are arbitrary. <a href='https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-cramer/src/test/resources/Cramer/CramerRules.csv'>Example</a></li>
      <source>
