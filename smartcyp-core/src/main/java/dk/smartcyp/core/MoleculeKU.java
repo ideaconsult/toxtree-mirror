@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.openscience.cdk.Atom;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.PathTools;
@@ -299,7 +298,7 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 		EquivalentClassPartitioner symmtest = new EquivalentClassPartitioner((AtomContainer) this);
 		int[] symmetryNumbersArray = symmtest.getTopoEquivClassbyHuXu((AtomContainer) this);
 		for(int atomIndex = 0; atomIndex < this.getAtomCount(); atomIndex++){
-			atom = (Atom) this.getAtom(atomIndex);
+			atom = (IAtom) this.getAtom(atomIndex);
 			SMARTCYP_PROPERTY.SymmetryNumber.set(atom,symmetryNumbersArray[atomIndex+1]);
 		}
 	}
