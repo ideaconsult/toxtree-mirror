@@ -41,7 +41,7 @@ public class FG71 extends FG {
         	  setID("FG71");
               setTitle("nitro compound");
              
-            addSubstructure("FG71", "[#6][$([NX3](=O)=O),$([N+X3](=O)[O-]))]");
+            addSubstructure("FG71", "[#6][$([NX3](=O)=O),$([N+X3](=O)[O-])]");
            
            
             
