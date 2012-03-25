@@ -1,53 +1,716 @@
-Change log
+                                  Toxtree README
 
-Toxtree 2.5.0
+              (2.5.3-SNAPSHOT is the current version under development)
 
-- New plugin:   Structural Alerts for Functional Group Identification (ISSFUNC)
-  EUR 24871 EN -2011, Benigni R., Olga Tcheremenskaia O.,and A. Worth, Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups - a New Toxtree Rulebase
+    This is the README file  for the Toxtree installer distribution.  If you're
+    reading this,  you've probably  just run   our installer  and installed the
+    Toxtree application on your system.
 
-- New plugin:  Modified Verhaar scheme, rules reordered to start the evaluation with Class 4 instead of Class 1, as recommended in
-  S.J. Enoch, M. Hewitt, M.T.D. Cronin, S. Azam, J.C. Madden, Classification of chemicals according to mechanism of aquatic toxicity: An evaluation of the implementation of the Verhaar scheme in Toxtree, Chemosphere 73 (2008) 243-248
+    The present README file could be also accessed at "Start -> All Programs ->
+    Ideaconsult -> Toxtree-vX.YZ -> README").
 
-- Improved plugins: 
+CONTENTS
 
-- Fixed Cramer rules Q2 "NC#N not recognised as functional group associated with enhanced toxicity"
+    * Introduction
+    * System Requirements & Installation
+    * Release Notes
+    * Bug Reports and Feedback
+    * Toxtree Documentation
+    * Redistribution
+    * Change Log
+    * To Do
 
-- Fixed Cramer rules Q2 "Doesn't highligh the secondary amine"
+INTRODUCTION
 
-- Fixed Cramer rules Q3 "Hydrogens highlighting"
+    Toxtree  is  a  full-featured   and  flexible  user-friendly  open   source
+    application, which is able to estimate toxic hazard by applying a  decision
+    tree approach. Currently it includes the following plugins:
 
-- Fixed Benigni/ Bossa rulebase SA31b "biphenyls recognition"
+    - Cramer rules (Cramer G. M., R.  A. Ford, R. L. Hall, Estimation of  Toxic
+    Hazard - A  Decision Tree Approach,  J. Cosmet. Toxicol.,  Vol.16,  pp. 255
+    -276, Pergamon  Press, 1978);
 
-- Fixed Benigni/ Bossa rulebase SA30 "coumarins recognition"
+    - Verhaar scheme for predicting toxicity mode of actions (Verhaar HJM,  van
+    Leeuwen CJ and Hermens JLM (1992) Classifying environmental pollutants.  1.
+    Structure-activity  relationships  for  prediction  of  aquatic   toxicity.
+    Chemosphere 25, 471-491);
 
-- Fixed Benigni/ Bossa rulebase Rule "QSAR6,8 applicability domain"
+    - A decision tree for  estimating skin irritation and corrosion  potential,
+    based on rules published in “The Skin Irritation Corrosion Rules Estimation
+    Tool  (SICRET),  John  D. Walker,  Ingrid  Gerner,  Etje Hulzebos,  Kerstin
+    Schlegel, QSAR Comb. Sci. 2005, 24, pp. 378-384”;
 
-- The implementation of Verhaar scheme was considerably improved. Validated against published dataset.
+    - A decision  tree for estimating  eye irritation and  corrosion potential,
+    based on rules published in “Assessment of the eye irritating properties of
+    chemicals by applying alternatives to  the Draize rabbit eye test:  the use
+    of  QSARs and  in vitro  tests for  the classification  of eye  irritation,
+    Ingrid  Gerner,  Manfred  Liebsch   &  Horst  Spielmann,  Alternatives   to
+    Laboratory Animals, 2005, 33, pp. 215-237”;
 
-- SMARTCyp - added metabolite generation, based on Site of Metabolism, calculated by SMARTCyp and ambit-SMIRKS
+    - A decision tree for estimating carcinogenicity and mutagenicity, based on
+    the rules  published in  the document:  “The Benigni  / Bossa  rulebase for
+    mutagenicity and carcinogenicity – a module of Toxtree”, by R. Benigni,  C.
+    Bossa, N. Jeliazkova, T. Netzeva, and A. Worth. European Commission  report
+    EUR 23241 EN;
 
-Updates, common for all plugins. 
+    - START (Structural  Alerts for Reactivity  in Toxtree) biodegradation  and
+    persistence plug-in  is based  on a  compilation of  structural alerts  for
+    environmental persistence and biodegradability. These structural alerts are
+    molecular functional groups or substructures that are known to be linked to
+    the  environmental  persistence  or  biodegradability  of  chemicals.   The
+    rulebase utilizes the structural alerts  in logical decision trees. If  one
+    or more the  structural alerts embedded  in the molecular  structure of the
+    chemical  are recognized,  the system  flags the  potential persistence  or
+    biodegradability of the chemical. Installation and user manuals  available;
+
+    - Structure Alerts for the in vivo micronucleus assay in rodents, based  on
+    the rules, published in the document “Development of structural alerts  for
+    the in vivo  micronucleus assay in  rodents”, by Romualdo  Benigni, Cecilia
+    Bossa, Olga Tcheremenskaia and Andrew Worth, European Commission report EUR
+    23844 EN;
+
+    - Cramer  rules with  extensions: This  plug-in is  a copy  of the original
+    plug-in, plus minor extensions. Like the Cramer plug-in, this plug-in works
+    by assigning compounds to Class I, II, or III, according to the rules  from
+    Cramer, and some extra ones. Several compounds were classified by Munro  in
+    1996 as Class I or Class  II compounds according to the Cramer  rules, even
+    though Munro reported low NOEL values upon oral administration  (indicating
+    relatively high toxicity). To overcome such misclassifications, five  rules
+    have been introduced to capture the possible toxicity of  these  compounds;
+
+    - Structure Alerts  for identification of  Michael Acceptors: This  plug-in
+    contains structural alerts, able to identify Michael Acceptors, as  defined
+    in 	T. Wayne Schultz, Jason W. Yarbrough, Robert S. Hunter, Aynur O. Aptula
+    (2007) Verification  of the  Structural Alerts for Michael Acceptors. Chem.
+    Res. Toxicol. 20, 1359–1363;
+
+    -  Skin  sensitization alerts,  as  per Enoch  SJ,  Madden JC,  Cronin  MT,
+    Identification of mechanisms of toxic action for skin sensitisation using a
+    SMARTS pattern based approach, SAR QSAR Environ Res. 2008; 19(5-6):555-78; 
+
+    -  SMARTCyp  - Cytochrome  P450  - Mediated  Metabolism,  implementation of
+    Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman, Lars  Olsen,
+    SMARTCyp:  A  2D Method  for  Prediction of  Cytochrome  P450-Mediated Drug
+    Metabolism, ACS Med. Chem. Lett., 2010, 1 (3), pp 96–100;
+
+    -  Kroes TTC  decision tree  - Kroes,  R., Renwick,  A.G., Cheeseman,  M., 
+    Kleiner, J., Mangelsdorf, I., Piersma, A., Schilter, B., Schlatter, J., van
+    Schothorst, F., Vos, J.G.,  Wurtzen, G. (2004). Structure  based thresholds
+    of  toxicological concern  (TTC): guidance  for application  to substances 
+    present at low levels in the diet. Food Chem. Toxicol. 42, 65–83;
+
+    - Modified Verhaar scheme for  predicting toxicity mode of actions  - rules
+    reordered, according to S.J. Enoch, M. Hewitt, M.T.D. Cronin, S. Azam, J.C.
+    Madden,  Classification  of  chemicals according  to  mechanism  of aquatic
+    toxicity: An  evaluation of  the implementation  of the  Verhaar scheme  in
+    Toxtree, Chemosphere 73 (2008) 243-248;
+
+    -  Structural  Alerts  for Functional  Group  Identification  ISSFUNC (DOI:
+    10.2788/33281,  Catalogue   Number:  LB-NA-24871-EN-N),   Benigni  R.,   O.
+    Tcheremenskaia, and A.  Worth, Computational Characterisation  of Chemicals
+    and  Datasets  in  Terms  of Organic  Functional  Groups  -  a New  Toxtree
+    Rulebase.
+
+    Toxtree could  be applied  to datasets from various compatible file  types.
+    User-defined  molecular  structures  are also  supported  -  they could  be
+    entered by  SMILES, or by using the built-in  2D structure diagram  editor.
+
+    The  Toxtree  application  is suitable  for a  standalone PC.  It has  been
+    designed with  flexible capabilities  for future  extensions in  mind (e.g.
+    other classification schemes that could be developed at a future date). New
+    decision trees with arbitrary rules can be built with the help of graphical
+    user interface or by developing new plug-ins.
+
+SYSTEM REQUIREMENTS & INSTALLATION
+
+    Toxtree requires Java(TM)  2 Runtime Environment,  Standard Edition 1.6  or
+    newer on the  target system and  it is platform-independent.  It runs under
+    any host operating  system, which supports Java(TM) 2 Runtime  Environment,
+    Standard Edition.
+
+    The  Toxtree  application is  distributed  with a  fully  automated offline
+    installer (Toxtree-vX.Y.Z-setup.exe),  compatible with  recent versions  of
+    the Microsoft Windows  (NT, 2000, XP,  2003) operating system.  In order to
+    install Toxtree  just run  the installer  and follow  its instructions.  It
+    contains  all  the  required packages,  including  the  Java(TM) 2  Runtime
+    Environment, Standard Edition 1.6 setup.
+
+    If the installer does not detect Java(TM) 2 Runtime  Environment,  Standard
+    Edition 1.6 or  newer on the  target system, it will attempt to install  it
+    before proceeding with  the Toxtree setup.  In this case,  the user running
+    the installer SHOULD  HAVE ADMINISTRATIVE PRIVILEGES  on the target  system
+    (otherwise the Java(TM) 2 Runtime Environment, Standard Edition setup would
+    be aborted and Toxtree would not be installed).
+
+    If the installer detects  Java(TM) 2 Runtime Environment,  Standard Edition
+    1.6  or  newer  already installed  on the  target system,  it will  proceed
+    directly with the  Toxtree setup. In  this case, ADMINISTRATIVE  PRIVILEGES
+    ARE RECOMMENDED BUT NOT NECESSARILY REQUIRED.
     
-- The CDK library upgraded to 1.3.8 
+    When the installer is launched by a user with administrative privileges, it
+    will create Toxtree  start menu shortcuts  for all the  users registered in
+    the target system. Otherwise, start menu shortcuts will be created only for
+    the unprivileged user, who launched the installation.
 
-- The Ambit library upgraded to 2.4.2
+    After a successful installation, Toxtree  could be launched from the  Start
+    Menu ("Start ->  All Programs ->  Ideaconsult -> Toxtree-vX.Y.Z  -> Toxtree
+    -vX.Y.Z").
 
-- OpenBabel is not anymore distributed embedded in Toxtree. 
-  In order to use OpenBabel from within Toxtree, install OpenBabel and set the OBABEL_HOME environment variable to point to the OpenBabel directory,
+    Each version of Toxtree could  be uninstalled either by using  the "Control
+    Panel  -> Add  or Remove  Programs" or  by  clicking  the "Uninstall"  link
+    located  in  "Start  -> All  Programs ->  Ideaconsult ->  Toxtree-vX.Y.Z ->
+    Uninstall-Toxtree-vX.Y.Z". Any  application files  which may  happen to  be
+    locked  during the  uninstall procedure  would be  deleted after  the  next
+    reboot  of the  system. Java(TM)  2 Runtime  Environment, Standard  Edition
+    would not be uninstalled by the Toxtree uninstaller. If needed, it could be
+    uninstalled via its own entry in "Control Panel -> Add or Remove Programs".
 
-- Added metadata for all plugins (explanation, references, vendor, links to datasets); improved display of decision tree details
- 
-- Improved help menus (About / Files info / Help)
+RELEASE NOTES
 
-- All jars and dependencies available in a Maven repository http://ambit.uni-plovdiv.bg:8083/nexus/index.html
+    Toxtree-v2.5.1 is a stable bug fix release.
 
-- Lookup by CAS & EINECS via remote OpenTox service. Disabled by default, use "Method/Decision tree option/Remote Query" menu to enable
+BUG REPORTS AND FEEDBACK
+
+    You should send any comments, inquiries, bug reports, feature requests  and
+    other suggestions to Nina Jeliazkova <jeliazkova.nina@gmail.com>
+
+TOXTREE DOCUMENTATION
+
+    The  complete Toxtree  documentation is  located in  the "doc"  application
+    subfolder.
+
+REDISTRIBUTION
+
+    Toxtree  is  distributed  under   the  GNU  General  Public   License  (see
+    LICENSE.txt). It is freely distributable.
+
+CHANGE LOG
 
 
+    * Toxtree 2.5.3-SNAPSHOT  (current version under development)
+
+    - The CDK library upgraded to 1.4.8 
+
+    - The Ambit library upgraded to 2.4.5
 
 
+    * Toxtree-v2.5.1 (build date 03 Feb 2012):
 
+    - corrected Schiff base SMARTS;
 
+    - fixed ionic bonds matching;
 
+    - fixed explanation for RuleAliphaticWithSomeFuncGroups in Cramer rules and
+    Extended Cramer rules;
 
+    - fixed recognition of  carbonyl in amide group,  affecting Q18 and Q20  of
+    Cramer rules;
 
+    - included jre-6u30-windows-i586.exe in Windows installer;
+
+    - updated manuals and README;
+
+    * Toxtree-v2.5.0 (build date 05 Aug 2011):
+
+    - updated to cdk 1.3.8;
+
+    - updated to ambit-2.4.2;
+
+    - OpenBabel  is no  longer included  in the  distribution; in  order to use
+    OpenBabel (optionally)  from within  Toxtree, install  OpenBabel separately
+    and set the OBABEL_HOME environment  variable to point to the  folder where
+    OpenBabel is installed;
+
+    - added metadata for all plugins (explanation, references, vendor, links to
+    datasets);
+
+    - improved display of decision tree details;
+
+    - improved help menus (About / Files info / Help);
+
+    - enabled  CAS  &  EINECS  lookup  in  remote  OpenTox  service;  this  new
+    functionality  is  disabled  by  default  --  check  "Method/Decision  tree
+    option/Remote Query" menu to enable it;
+
+    - added two  new plug-ins: Modified  Verhaar scheme, and  Structural Alerts
+    for Functional Group Identification (ISSFUNC);
+
+    - fixed  Cramer rules  Q2 (NC#N  recognised as  functional group associated
+    with enhanced toxicity);
+
+    - fixed Cramer rules Q2 (secondary amine highlight);
+
+    - fixed Benigni / Bossa rulebase SA31b (biphenyls recognition);
+
+    - fixed Benigni / Bossa rulebase SA30 (coumarins recognition);
+
+    - fixed Benigni / Bossa rulebase rule (QSAR6,8 applicability domain);
+
+    - improved  implementation of  Verhaar scheme  plugin; validated  against a
+    published dataset;
+
+    - SMARTCyp  plug-in  -  added  metabolite  generation,  based  on  Site  of
+    Metabolism, calculated by SMARTCyp and ambit-SMIRKS package.
+
+    - included jre-6u26-windows-i586.exe in Windows installer;
+
+    - updated manuals and README;
+
+    * Toxtree-v2.2.0 (build date 25 Oct 2010):
+
+    - updated to cdk 1.3.67 (= cdk 1.3.6 + jni-inchi 0.7 );
+
+    - updated to jchempaint-3.1.3;
+
+    - fixed not working Edit/Preferences;
+
+    - removed valency labels that were appearing in JChemPaint by default;
+
+    - fixed rendering of disconnected structures (e.g. salts);
+
+    - fixed Cramer rule Q3 - S in aromatic ring is now recognized as divalent;
+
+    - included jre-6u22-windows-i586.exe in Windows installer;
+
+    - updated manuals and README.
+
+    * Toxtree-v2.1.1 (build date 07 Oct 2010):
+
+    - upgraded to Java 1.6;
+
+    - included jre-6u21-windows-i586.exe in Windows installer;
+
+    - upgraded to OpenBabel v2.2.3;
+
+    - fixed SMILES parsing (OpenBabel v2.2.3);
+
+    - enabled InChI-to-structure conversion based on jni-inchi-0.7-std;
+
+    - enabled name-to-structure conversion based on OPSIN v0.8.0;
+
+    - fixed outcome from QSAR8;
+
+    - values "true" and "false" in input file will be parsed into 1 or 0;
+
+    - fixed batch processing "Non serializable exception" for micronucleus  and
+    skin sensitiation plugins;
+
+    - added check for phosphates in Q4 of Cramer Extended rules;
+
+    - updated manuals and README.
+
+    * Toxtree-v2.1.0 (build date 30 Jun 2010):
+
+    - added highlighting of structural alerts;
+
+    - upgraded Toxtree to JChemPaint 3.0.1 and CDK 1.3.3;
+
+    - added 3  new plug-ins (Skin  sensitization alerts, SMARTCyp  - Cytochrome
+    P450 - Mediated Metabolism & Kroes TTC  decision tree);
+
+    - implemented several bug fixes;
+
+    - updated manuals and README.
+
+    * Toxtree-v1.60 (build date 15 Jul 2009):
+
+    - added Cramer rules with extensions plugin and updated bodymol.sdf;
+
+    - added  Structure Alerts  for the  in vivo  micronucleus assay  in rodents
+    plugin;
+
+    - added START biodegradation and persistence plugin;
+
+    - added tructural Alerts for identification of Michael Acceptors plugin;
+
+    - Skin irritation plugin: fixed bugs in rules Q52 and Q53;
+
+    - Cramer rules plugin: fixed bugs in Q8 and Q21;
+
+    - Begnini/Bossa rulebase  plugin: fixed issue  when results for  structural
+    alerts (e.g. SA10) are not displayed if the outcome is YES;
+
+    -  Begnini/Bossa  rulebase  plugin:  QSAR8  question  rephrased,  to  avoid
+    confusion;
+
+    - fixed issue when editing an  example in the decision tree editor  was not
+    working;
+
+    - introduced TOXTREE environment variable, which should be set to point  to
+    the Toxtree-<version>.jar  and helps  locating SDF  files and  plugins when
+    Toxtree is used by third party software;
+
+    - fixed issue when after creating a new tree it could not be saved;
+
+- OpenBabel updated to v2.2.1 (build March 2, 2009);
+
+    - updated documentation;
+
+    - updated README;
+
+    * Toxtree-v1.51 (build date 26 Jun 2008):
+
+    - fixed property checking rules bug;
+
+    - updated README;
+
+    * Toxtree-v1.50 (build date 30 May 2008):
+
+    - added support for eye irritation/corrosion prediction;
+
+    - updated user manual;
+
+    - updated README;
+
+    * Toxtree-v1.40 (build date 24 Mar 2008):
+
+    - improved descriptor calculations (I(An),I(BiBr));
+
+    - updated QSAR6, QSAR8, QSAR13;
+
+    - new decision  tree layout based  on prefuse library  - can be exported as
+    .png, .bmp, .jpg or .gif;
+
+    - new decision tree export options - .html, .pdf or .txt;
+
+    - user preference options (persistent accross application instances);
+
+    - updated user manual;
+
+    - updated README;
+
+    * Toxtree-v1.36 (build date 17 Feb 2008):
+
+    -  improved  partial  molar  refractivity,  Sterimol  and  Idist descriptor
+    calculation;
+
+    - updated README;
+
+    * Toxtree-v1.35 (build date 3 Feb 2008):
+
+    -  updated  the  structural  alerts  for  predicting  carcinogenicity   and
+    mutagenicity;
+
+    - updated descriptor computations;
+
+    - updated README;
+
+    * Toxtree-v1.34 (build date 20 Jan 2008):
+
+    - updated CDK library;
+
+    -  updated  the  structural  alerts  for  predicting  carcinogenicity   and
+    mutagenicity;
+
+    - updated descriptor computations;
+
+    - updated README;
+
+    * Toxtree-v1.33 (build date 6 Jan 2008):
+
+    - updated to CDK 1.1 release;
+
+    -  updated  the  structural  alerts  for  predicting  carcinogenicity   and
+    mutagenicity to take into account overlaps;
+
+    - updated README;
+
+    * Toxtree-v1.32 (build date 26 Sep 2007):
+
+    - support for assigning multiple labels;
+
+    - improved implementation  of structural alerts  for the decision  tree for
+    predicting carcinogenicity and mutagenicity;
+
+    - MOPAC call bug fix;
+
+    - updated README;
+
+    * Toxtree-v1.31 (build date 21 Aug 2007):
+
+    - initial  implementation of a decision tree for predicting carcinogenicity
+    and mutagenicity -  35 structural alerts  and 3 linear  discriminant rules,
+    making use of 11 descriptors;
+
+    - new descriptors implemented:
+
+        +Partial  Molar  Refractivity  of substituents,  according to  a lookup
+        table
+
+        +Sterimol L & B5 descriptors, according to a lookup table
+
+        +Molar Refractivity  (uses Joelib implementation of "S. A. Wildman  and
+        G. M. Crippen,  Prediction of  Physicochemical  Parameters  by   Atomic
+        Contributions, J. Chem. Inf. Comput. Sci., 39, 868-873, 1999")"
+
+        +Descriptors for structure presence of aniline, NO2 & bridged biphenyls
+
+        +EHOMO, ELUMO and other electronic descriptors calculated  by launching
+        MOPAC 7.1 (http://openmopac.net) with fixed options (AM1)
+
+    - added substituents.sdf file (substituents lookup table);
+
+    - added helper directory, containing MOPAC_7.1.exe;
+
+    - updated README;
+
+    * Toxtree-v1.30 (build date 19 Jun 2007):
+
+    - updated to CDK 1.0 release;
+
+    - updated to jre-1_5_0_12;
+
+    -   prototype   implementation   of   a   decision   tree   for  predicting
+    carcinogenicity and mutagenicity;
+
+    - updated README;
+
+    * Toxtree-v1.20 (build date 11 Mar 2007):
+
+    -  added global  options for  skin irritation  rules (in  addition to  rule
+    specific options);
+
+    - added "Silent" option for  skin irritation property rules (the  answer of
+    the property rule will always be "No" if a property is missing);
+
+    - improved implementation of Verhaar scheme Class 4;
+
+    - fixed error when writing SMARTS rule to .tree file;
+
+    - updated installation manual;
+
+    - updated user manual;
+
+    - updated README;
+
+    * Toxtree-v1.12 (build date 18 Jan 2007):
+
+    - added new rule type based on SMARTS;
+
+    - redesigned decision tree editor;
+
+    - added Verhaar scheme plugin (Toxicity mode of action prediction);
+
+    - added BfR rules plugin (skin irritation/corrosion prediction);
+
+    - updated CDK library;
+
+    - updated README.
+
+    * Toxtree-v1.00 (build date 23 Oct 2005):
+
+    - added complete application documentation, including installation  manual,
+    user manual, updated README, documentation of the source code;
+
+    - improvements of the decision tree editor.
+
+    * Toxtree-v0.05 (build date 14 Oct 2005):
+
+    - user defined decision tree concept introduced;
+
+    - decision trees can be saved to  and loaded from a file (a custom  ".tree"
+    file type is used);
+
+    - added graphical user interface for building decision trees;
+
+    - the structure diagram editor  (JChemPaint) is now launched as  a nonmodal
+    dialog.  This  resolves  the   issue  of  some  JChemPaint   windows  being
+    inaccessible if the editor is launched as a modal dialog;
+
+    - after  structure is  edited in  JChemPaint, SMILES  is created  and other
+    properties  are retained;
+
+    - new command line options are introduced:
+
+    java -jar Toxtree.jar -f <input file for normal open>
+
+    java -jar Toxtree.jar -b <finput file for batch processing>
+
+    - improved recognition of carbohydrates;
+
+    - several nucleotides added to bodymol.sdf according to an expert advice;
+
+    - better recognition of some  ionic groups (note that [Ca++]  is recognised
+    only as [Ca+]. For correct representation use [Ca+2] in SMILES);
+
+    - batch processing can not be  started anymore when input and output  files
+    are the same;
+
+    - Q11: when a heterocyclic ring substituents are analysed, only heteroatoms
+    in the ring analysed  are disregarded (as specified  in the Cramer et  all,
+    1976) but not the heteroatoms in other rings. This behaviour is the one  of
+    v0.03. In  the v0.04  release the  behaviour was  changed to  disregard all
+    heteroatoms, which doesn't follow the specification of Q11 to analyze  each
+    ring separately,  with the  remainder of  the structure  as substituents of
+    that heteroring;
+
+    - added the application source code in the installers;
+
+    * Toxtree-v0.04 (build date 04 Oct 2005):
+
+    - Q5: better heuristics for carbohydrates;
+
+    -  Q6:  return  "yes"  only if  the  a)-  and  b)-substituents are  present
+    simultaneously;
+
+    - Q9: if it is  a lactone from this point  on treat the structure as  if it
+    were the hydroxy acid;
+
+    - Q11: ketone changed to R-C(=O)-R where R is not (O or H);
+
+    -  checked  the  search  path for  bodymol.sdf  and  foodmol.sdf,  when the
+    application is run from the installer;
+
+    - checked that compounds are  assigned always the highest (most  hazardous)
+    class of their constituents/hydrolysis products;
+
+    - optimized searching in foodmol.sdf and bodymol.sdf;
+
+    - updated foodmol.sdf and bodymol.sdf according to an expert advice;
+
+    - added  Back/Forward buttons  for easier navigation in the history of  the
+    SMILES drop down list;
+
+    - made the SMILES entry panel inaccessible for user input, when there is an
+    open file. The name  of the file is  displayed instead of the  SMILES entry
+    panel. If changes are made in the file contents in memory, an  asterisk (*)
+    is displayed after the file name. The asterisk is removed after saving  the
+    file. Access to the SMILES entry panel is restored after File/New.
+
+    - added keyboard shortcut (hotkey CTRL+SHIFT+T) for application launching;
+
+    - added Start Menu tool tips;
+
+    - minor enhancements of the installers;
+
+    - updated README.
+
+    * Toxtree-v0.03 (build date 30 Sep 2005):
+
+    - included a  2D molecular structure  editor based on  JChemPaint. It could
+    be accessed via the Compound/Edit menu;
+
+    - processes correctly SDF, CSV and TXT files with empty molecules;
+
+    - fixed incorrect perception of a specific functional groups configuration;
+
+    - bodymol.sdf and foodmol.sdf updated according to an expert advice;
+
+    - minor enhancements of the user interface;
+
+    - updated README.
+
+    * Toxtree-v0.02 (build date 25 Sep 2005):
+
+    - Q1 and Q22: implemented to  look up for "normal constituent of  the body"
+    and "common component of food" in bodymol.sdf and foodmol.sdf respectively.
+    Only  a very  limited number  of molecules  are listed  currently in  these
+    files. The user can  replace these files with  his own files, provided  the
+    names are the same. The files are  expected to be in the same directory  as
+    Toxtree.jar (the executable file of the Toxtree application). If the  files
+    are not found there, the  corresponding rules behave  as "NOT  IMPLEMENTED"
+    and answer "NO" for every compound;
+
+    - Q4: treat the compound as free acid, amine, unsulphonated or  unsulphated
+    compound except  for  the purposes of  Q24 and Q33  (as specified in  Q4 of
+    Cramer rules);
+
+    - Q15,  Q17,  Q29,  Q30, Q31:  hydrolysis products  (if  any) are processed
+    separately,  as  required by  these  rules. If  the  products are  assigned
+    different classes, the entire compound will be assigned the most  hazardous
+    class (i.e. - if one  product is of class I  and another of class III,  the
+    entire compound is considered of class III);
+
+    - ionic  representation of  compounds is  processed correctly  now (please,
+    report any exceptions);
+
+    -  checked that  the following  input  file  types are  processed correctly
+    (File/Open):
+
+    CML
+    CSV - comma delimited, has a header;
+    HIN
+    ICHI
+    INCHI
+    MDL MOL
+    MDL SDF
+    MOL2
+    PDB
+    SMI - each  line starts with  a SMILES, optional  name delimited by  single
+    space, no header);
+    TXT - tab delimited;
+    XYZ
+
+    - input/output of CSV and TXT: a column with "SMILES" heading is  mandatory
+    in order the structure to be  read. All other fields are optional,  will be
+    read as molecule properties and displayed as such;
+
+    - all the properties from SDF files are read;
+
+    - output (File/Save): molecules  can be written to  SDF, CSV or TXT  files,
+    together with their Cramer classification data (class & path);
+
+    - decision tree results are  written as SDF properties or  CSV/TXT columns.
+    The     class      assignment     is      stored     in      a     property
+    "toxTree.tree.cramer.CramerRules". The  tree path  is stored  in a property
+    "toxTree.tree.cramer.CramerTreeResult";
+
+    - added a  batch processing facility.  It allows faster  processing without
+    loading simultaneously  all the  compounds into  memory. Please,  use batch
+    processing if the file has more  than thousand compounds. A batch could  be
+    paused,  continued  after  pause or  cancelled.  Batch  configuration (i.e.
+    input/output file and processed records) could be  saved in a file,  loaded
+    and continued in a later moment, even after the application has been closed
+    and started again later. Batch  configuration is saved in a  temporary file
+    by default. This file is  deleted if  the batch completes  successfully. If
+    the batch configuration is saved into a user defined file, it will  persist
+    even after the batch completes;
+
+    -  moved  the  SMILES  entry  panel  from   the  left  to  the  top  of the
+    application window;
+
+    - history of entered SMILES' is kept in a drop down list;
+
+    - the left  panel now displays  all the properties  defined for a  molecule
+    (not only CAS, SMILES and NAME as in the previous version). The  properties
+    are read from a file (e.g.  CSV columns, SDF fields) or set   when decision
+    tree estimation  is performed.  When the  compound is  created  from SMILES
+    (using the SMILES  entry panel at  the top) the  property SMILES is  set as
+    well as a remark "Created from SMILES";
+
+    -  compounds, consisting  of more  than one  disconnected moiety,  are now
+    displayed;
+
+    - removed  the "Explain"  button on  the right  panel, since  the result is
+    automatically explained on estimation. A check box "Verbose explanation" is
+    added instead. It affects the way results are explained;
+
+    - since there can be more than one hydrolysis product, the results for each
+    product are displayed in brackets ();
+
+    - the application can be configured  to output a lot of information  on its
+    behaviour. This could be useful for debugging as well as for detailed study
+    of decision  tree results.  In order  to start  the application  and output
+    debugging messages  to the  console, type  on a  command line the following
+    command:
+
+    java -DtoxTree.debugging=true -jar toxTree.jar
+
+    To store log in a file use: 
+
+    java -DtoxTree.debugging=true -jar toxTree.jar > toxTree.log
+
+    - minor enhancements of the installer;
+
+    - updated README.
+
+    * Toxtree-v0.01 (build date 24 Aug 2005):
+
+    - first public beta-release of the Toxtree application.
+
+TO DO
+
+    * this section is empty.
+
+-------------------------------------------------------------------------------
+Developed (2012) by Ideaconsult Ltd., 4 Angel Kanchev St., 1000 Sofia, Bulgaria
