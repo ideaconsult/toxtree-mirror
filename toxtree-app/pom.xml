@@ -141,6 +141,15 @@
   		<version>${project.version}</version>
   		<scope>provided</scope>
   	</dependency>  	
+  	  	<!-- JChemPaint still uses NoNotify builders and if not loaded throws ClassNotFound exceptions -->
+  	  	<dependency>
+  	  		<groupId>org.openscience.cdk</groupId>
+  	  		<artifactId>cdk-nonotify</artifactId>
+  	  		<version>${cdk.version}</version>
+  	  		<scope>compile</scope>
+  	  	</dependency>  	
+
+  	  	
   </dependencies>
     <build>
   	<plugins>
