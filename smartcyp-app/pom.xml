@@ -23,20 +23,18 @@
 	  <groupId>org.openscience.cdk</groupId>
 	  <artifactId>cdk-render</artifactId>
 	  <version>${cdk.version}</version>
-	</dependency>
+	</dependency>	
   	<dependency>
-  		<groupId>org.openscience.cdk</groupId>
-  		<artifactId>cdk-jchempaint</artifactId>
-  		<version>18</version>
-  	</dependency>	
-  	<!-- 
+	  <groupId>org.openscience.cdk</groupId>
+	  <artifactId>cdk-renderawt</artifactId>
+	  <version>${cdk.version}</version>
+	</dependency>		
   	  	<dependency>
   		<groupId>org.openscience.cdk</groupId>
   		<artifactId>cdk-jchempaint</artifactId>
-  		<version>15</version>
+  		<version>25</version>
   	</dependency>
-  	-->
-  	  	
+
   </dependencies>
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
