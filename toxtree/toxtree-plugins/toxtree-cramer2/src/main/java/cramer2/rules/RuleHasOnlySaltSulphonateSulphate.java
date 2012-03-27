@@ -129,7 +129,8 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 	 * 
 	 */
 	@Override
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
 		
 		FunctionalGroups.mark(mol,elements);
 		//take care of divalent S
