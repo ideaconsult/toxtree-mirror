@@ -28,11 +28,9 @@ import org.openscience.cdk.Association;
 import org.openscience.cdk.interfaces.IAtom;
 
 /**
- * This is a hack to allow query for ionic bonds
- * if Association class is used, there is no way to implement QueryBond interface to
- * return smth like "bond instance of Association" 
- * @author ThinClient
+ * 
  * <b>Modified</b> 2005-9-23
+ * <b>Modified</b> 2012-2-25
  */
 public class MyAssociationBond extends Association {
 
