@@ -29,7 +29,7 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
-import cramer2.rules.RuleSomeBenzeneDerivatives;
+import toxTree.tree.cramer.RuleSomeBenzeneDerivatives;
 
 /**
  * TODO add description

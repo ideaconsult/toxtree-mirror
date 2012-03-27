@@ -62,11 +62,11 @@ public class CramerRulesWithExtensions extends UserDefinedTree  {
     protected boolean residuesIDVisible;
     
 	public final static transient String[] c_rules = { 
-			"cramer2.rules.RuleNormalBodyConstituent", //1 
-			"toxTree.tree.cramer.RuleToxicFunctionalGroups",  //2
-			"toxTree.tree.cramer.RuleHasOtherThanC_H_O_N_S2", //3
-			"cramer2.rules.RuleHasOnlySaltSulphonateSulphate", //4 
-			"toxTree.tree.cramer.RuleSimplyBranchedAliphaticHydrocarbon", //5
+			cramer2.rules.RuleNormalBodyConstituent.class.getName(), //1 
+			toxTree.tree.cramer.RuleToxicFunctionalGroups.class.getName(),  //2
+			toxTree.tree.cramer.RuleHasOtherThanC_H_O_N_S2.class.getName(), //3
+			cramer2.rules.RuleHasOnlySaltSulphonateSulphate.class.getName(), //4 
+			toxTree.tree.cramer.RuleSimplyBranchedAliphaticHydrocarbon.class.getName(), //5
             "toxTree.tree.cramer.RuleSomeBenzeneDerivatives", //6
             "toxTree.tree.cramer.RuleIsHeterocyclic",  //7
 			"toxTree.tree.cramer.RuleLactoneOrCyclicDiester", //8 

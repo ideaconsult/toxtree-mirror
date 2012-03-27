@@ -35,7 +35,7 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.query.MolFlags;
 import toxTree.tree.AbstractRule;
-import cramer2.rules.Rule3FuncGroups;
+import toxTree.tree.cramer.Rule3FuncGroups;
 import cramer2.rules.RuleHasOnlySaltSulphonateSulphate;
 
 /**

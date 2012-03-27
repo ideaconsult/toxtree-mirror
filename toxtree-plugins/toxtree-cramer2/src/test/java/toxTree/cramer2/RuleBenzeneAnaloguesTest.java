@@ -8,7 +8,6 @@ import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.MolAnalyser;
-import ambit2.base.config.Preferences;
 import ambit2.smarts.query.SmartsPatternAmbit;
 import cramer2.rules.RuleBenzeneAnalogues;
 
@@ -27,23 +26,21 @@ public class RuleBenzeneAnaloguesTest  extends AbstractRuleTest {
 		//Preferences.setProperty(Preferences.SMILESPARSER,"false");
 	    Object[][] answer = {
 	            {"Oc1ccc(O)cc1",new Boolean(true)},
-	            {"Cc1cccc(C)c1O",new Boolean(true)},
-	            {"O1C(C)=CC(=O)C(C(=O)C)C(=O)1",new Boolean(true)}, 
+	      //      {"Cc1cccc(C)c1O",new Boolean(true)},
+	      //      {"Cc1cc(O)ccc1C",new Boolean(true)},
 	            };
-        
-	   //String smarts = "[$([aH1;r6]),$([aX2;r6]),$([a;r6]~A)!$(a~A~*)]1~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]~[$([aH1]),$([aX2]),$(a~A)!$(a~A~*)]1";
-	    String smarts = "[$([aH1;r6]),$([aX2;r6]),$([a;r6]~[A;D1])]1~[$([aH1]),$([aX2]),$(a~[A;D1])]~[$([aH1]),$([aX2]),$(a~[A;D1])]~[$([aH1]),$([aX2]),$(a~[A;D1])]~[$([aH1]),$([aX2]),$(a~[A;D1])]~[$([aH1]),$([aX2]),$(a~[A;D1])]1";
-	   // String smarts = "a";
 	   
-	   SmartsPatternAmbit p = new SmartsPatternAmbit(smarts);
+	   SmartsPatternAmbit p = new SmartsPatternAmbit(RuleBenzeneAnalogues.smarts);
 	   SmilesParser smi = new SmilesParser(SilentChemObjectBuilder.getInstance());
 	   
 	   for (Object[] row : answer) {
 		   IMolecule testMol = smi.parseSmiles(row[0].toString());
-		   Assert.assertTrue(p.match(testMol)>0);
+		   int result = p.match(testMol);
+		   System.out.println(row[0] + "\t"+result);
+		   Assert.assertTrue(result>0);
 		   MolAnalyser.analyse(testMol);
-		   //AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(testMol);
-		   //CDKHueckelAromaticityDetector.detectAromaticity(testMol);
+		  // AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(testMol);
+		  // CDKHueckelAromaticityDetector.detectAromaticity(testMol);
 		   int r = p.match(testMol);
 		   Assert.assertTrue(r>0);
 		

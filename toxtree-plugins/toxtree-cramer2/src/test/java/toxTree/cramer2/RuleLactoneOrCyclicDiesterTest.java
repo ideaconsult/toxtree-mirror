@@ -1,7 +1,7 @@
 package toxTree.cramer2;
 
 import toxTree.core.IDecisionRule;
-import cramer2.rules.RuleLactoneOrCyclicDiester;
+import toxTree.tree.cramer.RuleLactoneOrCyclicDiester;
 
 
 public class RuleLactoneOrCyclicDiesterTest extends AbstractRuleTest {

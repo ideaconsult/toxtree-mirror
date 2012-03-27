@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.cramer2;
 
 import toxTree.core.IDecisionRule;
-import cramer2.rules.RuleRingComplexSubstituents30;
+import toxTree.tree.cramer.RuleRingComplexSubstituents30;
 
 /**
  * Test for {@link RuleRingComplexSubstituents30}
