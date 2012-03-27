@@ -87,7 +87,7 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
 			throws DecisionMethodException {
 		try {
 			int c = 0;
-			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
+		
 			for (IAtom atom : mol.atoms()) {
 				if (atom.getSymbol().equals("H")) c++;
 				if (contains(atom.getSymbol())) {
