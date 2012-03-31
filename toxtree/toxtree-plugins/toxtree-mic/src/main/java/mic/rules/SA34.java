@@ -29,7 +29,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mic.rules;
 
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
+
+import toxTree.tree.rules.StructureAlert;
+import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
+import ambit2.smarts.query.SmartsPatternAmbit;
 
 public class SA34 extends StructureAlert {
     /**
@@ -40,25 +45,27 @@ public class SA34 extends StructureAlert {
 	
 	public SA34() {
         super();
-        try {
-        	
-        	
-        	  setID("SA34");
-              setTitle("H-acceptor-path3-H-acceptor");
-              setExplanation("");
-              
-        	setContainsAllSubstructures(false);
-            addSubstructure("SA34", "[O,o,OH,N,n,$(P=O),$(C=S),$(S=O),$(C=O)]~[A,a]~[A,a]~[O,o,OH,N,n,$(P=O),$(C=S),$(S=O),$(C=O)]");
-            
-           
-           
-            
-          
-           
-        } catch (SMARTSException x) {
-            logger.error(x);
-        }
+       	setID("SA34");
+        setTitle("H-acceptor-path3-H-acceptor");
+        setExplanation(getTitle());
+       	setContainsAllSubstructures(false);
+       	try {
+       		addSubstructure("SA34", "[O,o,OH,N,n,$(P=O),$(C=S),$(S=O),$(C=O)]~[A,a]~[A,a]~[O,o,OH,N,n,$(P=O),$(C=S),$(S=O),$(C=O)]");
+       	} catch (Exception x) {
+       		x.printStackTrace();
+       	}
+        examples[0] = "[S-]C(=S)N";
     }
+	
+	@Override
+	public ISmartsPattern createSmartsPattern(String smarts, boolean negate) throws SMARTSException {
+		SmartsPatternAmbit sp = new SmartsPatternAmbit(smarts,negate,SilentChemObjectBuilder.getInstance());
+		/**
+		 * because of https://sourceforge.net/tracker/?func=detail&aid=3472325&group_id=152702&atid=785126
+		 */
+		sp.setUseCDKIsomorphism(false);
+		return sp;
+	}	
 
 }
 

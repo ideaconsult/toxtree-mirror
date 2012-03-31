@@ -16,7 +16,7 @@ public class SA34Test extends AbstractRuleTest {
 				{"[S-]C(=S)N",Boolean.FALSE},
 		};
 		
-		for (int i=0; i < 2;i++) {
+		for (int i=0; i < answer.length;i++) {
 			IAtomContainer a = FunctionalGroups.createAtomContainer(answer[i][0].toString());
 			
 			MolAnalyser.analyse(a);
