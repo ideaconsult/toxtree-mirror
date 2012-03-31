@@ -32,11 +32,15 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IChemModel;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.core.IDecisionMethod;
@@ -44,6 +48,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
 import toxTree.logging.TTLogger;
+import toxTree.query.MolAnalyser;
 import ambit2.core.data.MoleculeTools;
 import ambit2.jchempaint.editor.JChemPaintDialog;
 
@@ -66,7 +71,8 @@ public abstract class DataModule extends Observable implements Serializable, Obs
 		super();
 		dataContainer = createDataContainer(inputFile);
 		if (dataContainer != null) dataContainer.addObserver(this);
-        jcpModel = MoleculeTools.newChemModel(DefaultChemObjectBuilder.getInstance());  
+        //jcpModel = MoleculeTools.newChemModel(SilentChemObjectBuilder.getInstance());  
+		jcpModel = MoleculeTools.newChemModel(DefaultChemObjectBuilder.getInstance());
         /*
         jcpModel.setMoleculeSet(jcpModel.getBuilder().newMoleculeSet());
         jcpModel.getMoleculeSet().addAtomContainer(
@@ -123,6 +129,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
     	IMoleculeSet molecule4edit = null;
     	try {
     		molecule4edit = dataContainer.containers.getMoleculeForEdit();
+    		
     	} catch (Exception x) {
     		x.printStackTrace();
     		return;
@@ -137,14 +144,24 @@ public abstract class DataModule extends Observable implements Serializable, Obs
 
 					@Override
 					public IMolecule okAction() {
-                        IMolecule updatedMolecule = super.okAction();
- 
-                        //updatedMolecule.setProperties(dataContainer.getMolecule().getProperties());
+						
+						result = JOptionPane.OK_OPTION;
+						setVisible(false);
+					        
+						
+						IChemObjectBuilder builder4toxtree = SilentChemObjectBuilder.getInstance();
+					    IMolecule updatedMolecule = builder4toxtree.newInstance(IMolecule.class);
+					        
+					    IMoleculeSet m = jcpep.getChemModel().getMoleculeSet();  
+					    //copy  
+					    for (int i=0; i < m.getAtomContainerCount(); i++)  {
+					          updatedMolecule.add(MoleculeTools.copyChangeBuilders(m.getMolecule(i),builder4toxtree));
+					    }
+
                         getDataContainer().setEnabled(true);
                         SmilesGenerator g = new SmilesGenerator(true);
                         updatedMolecule.setProperty("SMILES",g.createSMILES(updatedMolecule));
                                                 
-                        
                         getDataContainer().setMolecule(updatedMolecule);
                         getActions().allActionsEnable(true);
 
