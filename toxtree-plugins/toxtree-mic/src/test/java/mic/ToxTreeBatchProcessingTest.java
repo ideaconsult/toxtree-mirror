@@ -50,18 +50,18 @@ import toxTree.logging.TTLogger;
 public class ToxTreeBatchProcessingTest {
 	static TTLogger logger = new TTLogger(ToxTreeBatchProcessing.class); 
 	protected ToxTreeBatchProcessing batch = null;
-	protected String config = "data/batch/batch.cfg";
-	protected String configInterrupted = "data/batch/batchInterrupted.cfg";
+	protected String sdf = "mic/data/batch/chemid.sdf";
+	protected String config = "mic/data/batch/batch.cfg";
+	protected String configInterrupted = "mic/data/batch/batchInterrupted.cfg";
 	protected IDecisionMethod  rules;
 
 	@Before
 	public void setUp() throws Exception {
         Introspection.setLoader(getClass().getClassLoader());
         rules = new MICRules();
-        try {
-        	URL url1 = getClass().getClassLoader().getResource("data/batch/test.sdf");
-            batch = new ToxTreeBatchProcessing(
-                    url1.getFile(),
+       	URL url1 = getClass().getClassLoader().getResource(sdf);
+           batch = new ToxTreeBatchProcessing(
+                   url1.getFile(),
                     "batchResults.sdf"
                     );
             ((ToxTreeBatchProcessing) batch).setDecisionMethod(rules);
@@ -71,31 +71,28 @@ public class ToxTreeBatchProcessingTest {
             batch.close();
             batch = null;
 
-        } catch (BatchProcessingException x) {
-            x.printStackTrace();
-        }
         TTLogger.configureLog4j(true);        
 	}
 	@Test
 	public void testSuccessfullBatch() throws Exception  {
-			URL url1 = getClass().getClassLoader().getResource("data/batch/test.sdf");
-			ToxTreeBatchProcessing bp = new ToxTreeBatchProcessing(
+		URL url1 = getClass().getClassLoader().getResource(sdf);
+		final ToxTreeBatchProcessing bp = new ToxTreeBatchProcessing(
 					url1.getFile(),
 					"batchResults.sdf"
 					);
-			bp.setDecisionMethod(rules);
-			bp.addObserver(new Observer() {
-				public void update(Observable o, Object arg) {
+		bp.setDecisionMethod(rules);
+		bp.addObserver(new Observer() {
+			public void update(Observable o, Object arg) {
 					BatchProcessing b =	(BatchProcessing) o;
 					b.deleteObservers();
 					Assert.assertTrue(b.getConfigFile().exists());
 				}
 			});
-			bp.start();
-			Assert.assertFalse(bp.getConfigFile().exists()); //tmp files deleted on success
-			Assert.assertTrue(bp.isStatus(BatchProcessing.STATUS_FINISHED));
-			Assert.assertEquals(bp.getReadRecordsCount(),29);
-			Assert.assertEquals(bp.getWrittenRecordsCount(),29);
+		bp.start();
+		Assert.assertFalse(bp.getConfigFile().exists()); //tmp files deleted on success
+		Assert.assertTrue(bp.isStatus(BatchProcessing.STATUS_FINISHED));
+		Assert.assertEquals(3,bp.getReadRecordsCount());
+		Assert.assertEquals(3,bp.getWrittenRecordsCount());
 
 	}
 	/*
@@ -121,7 +118,7 @@ public class ToxTreeBatchProcessingTest {
 	*/
 	@Test
 	public void testBatchInThread() throws Exception {
-		URL url1 = getClass().getClassLoader().getResource("data/batch/test.sdf");
+		URL url1 = getClass().getClassLoader().getResource(sdf);
 			ToxTreeBatchProcessing bp = new ToxTreeBatchProcessing(
 					url1.getFile(),
 					//"cellbox:/nina/Databases/ligand_info_subset_1_dos.sdf", space after property line
@@ -145,8 +142,8 @@ public class ToxTreeBatchProcessingTest {
 			
 			
 			Assert.assertTrue(bp.isStatus(BatchProcessing.STATUS_FINISHED));
-			Assert.assertEquals(bp.getReadRecordsCount(),29);
-			Assert.assertEquals(bp.getWrittenRecordsCount(),29);
+			Assert.assertEquals(3,bp.getReadRecordsCount());
+			Assert.assertEquals(3,bp.getWrittenRecordsCount());
 
 	}
 	@Test
@@ -196,7 +193,7 @@ public class ToxTreeBatchProcessingTest {
 	@Test
 	public void testInterruptedJob() throws Exception  {
 		
-		URL url1 = getClass().getClassLoader().getResource("data/batch/test.sdf");
+		URL url1 = getClass().getClassLoader().getResource(sdf);
 			batch = new ToxTreeBatchProcessing(
 					url1.getFile(),
 					"batchInterruptedResults.sdf"
@@ -219,7 +216,7 @@ public class ToxTreeBatchProcessingTest {
 				}
 			});
 			batch.start();
-			Assert.assertEquals(12,batch.getReadRecordsCount());
+			Assert.assertEquals(3,batch.getReadRecordsCount());
 			System.err.println("???\t" + batch);
 			batch.saveConfig();  //configuration should be saved after paused batch
 			batch.cancel(); //otherwise files will not be closed !!!!!!!!!!!
