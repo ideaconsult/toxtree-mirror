@@ -33,7 +33,9 @@ import ambit2.smarts.query.SmartsPatternFactory.SmartsParser;
 
 /**
  * An IDecisionRule, making use of Ambit SMARTS parser.
- * @author Nina Jeliazkova nina@acad.bg
+ * http://ambit.sourceforge.net/AMBIT2-LIBS/ambit2-smarts/index.html
+ * http://onlinelibrary.wiley.com/doi/10.1002/minf.201100028/abstract
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
  *
  */
 public class RuleSMARTSSubstructureAmbit extends AbstractRuleSmartSubstructure<IAtomContainer> {
