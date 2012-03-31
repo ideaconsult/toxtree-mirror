@@ -30,13 +30,10 @@ package mic.rules;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
-import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionRule;
-import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DMethodNotAssigned;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.DecisionNode;

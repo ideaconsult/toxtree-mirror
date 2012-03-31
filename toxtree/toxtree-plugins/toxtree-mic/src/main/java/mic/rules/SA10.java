@@ -40,6 +40,7 @@ import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.tree.rules.StructureAlertCDK;
 import ambit2.core.data.MoleculeTools;
 import ambit2.smarts.query.SMARTSException;
 
