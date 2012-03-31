@@ -29,6 +29,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mic.rules;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.tree.rules.StructureAlert;
@@ -41,18 +44,19 @@ public class SA34 extends StructureAlert {
 	 * 
 	 */
 	private static final long serialVersionUID = -4522164238365215591L;
-
-	
+	public static final String smarts = "[O,o,OH,N,n,$(P=O),$(C=S),$(S=O),$(C=O)]~[A,a]~[A,a]~[O,o,OH,N,n,$(P=O),$(C=S),$(S=O),$(C=O)]";
+	public final static String SA34 = "SA34";
+	public final static String SA34_title = "H-acceptor-path3-H-acceptor";
 	public SA34() {
         super();
-       	setID("SA34");
-        setTitle("H-acceptor-path3-H-acceptor");
+       	setID(SA34);
+        setTitle(SA34_title);
         setExplanation(getTitle());
        	setContainsAllSubstructures(false);
        	try {
-       		addSubstructure("SA34", "[O,o,OH,N,n,$(P=O),$(C=S),$(S=O),$(C=O)]~[A,a]~[A,a]~[O,o,OH,N,n,$(P=O),$(C=S),$(S=O),$(C=O)]");
+       		addSubstructure(SA34, smarts);
        	} catch (Exception x) {
-       		x.printStackTrace();
+       		Logger.getLogger(getClass().getClass().getName()).log(Level.SEVERE, String.format("Error on smarts initialisation %s",smarts));
        	}
         examples[0] = "[S-]C(=S)N";
     }
