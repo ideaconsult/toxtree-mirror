@@ -36,6 +36,7 @@ import java.util.List;
 import javax.vecmath.Point2d;
 import javax.vecmath.Vector2d;
 
+import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
@@ -379,33 +380,29 @@ public class MoleculesIterator implements IMoleculesIterator {
 		return c;
 	}
 	public IMoleculeSet getMoleculeForEdit() throws Exception {
+		IChemObjectBuilder builder4jcp = DefaultChemObjectBuilder.getInstance(); //JCP still works with default builders
 		sdg = null;
 		sdg = new StructureDiagramGenerator();
 		IMoleculeSet m = null;
 		//JCP crashes if empty molecule is submitted, so let's give it single C atom
 		if ((getMolecule()==null) || (getMolecule().getAtomCount()==0)) {
-			IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-			IMolecule mol = MoleculeTools.newMolecule(builder);
-			IAtom a = MoleculeTools.newAtom(builder,"C");
+			IMolecule mol = MoleculeTools.newMolecule(builder4jcp);
+			IAtom a = MoleculeTools.newAtom(builder4jcp,"C");
 			a.setPoint2d(new Point2d(0,0));
 			mol.addAtom(a);
-			m = MoleculeTools.newMoleculeSet(builder);
+			m = MoleculeTools.newMoleculeSet(builder4jcp);
 			m.addMolecule(mol);
 		} else {
 			m = ConnectivityChecker.partitionIntoMolecules(getMolecule());
 			//IMoleculeSet m =  new MoleculeSet();
 			for (int i=0; i< m.getMoleculeCount();i++) {
 				IMolecule a = m.getMolecule(i);
-				//if (!GeometryTools.has2DCoordinates(a)) {
-					
-					sdg.setMolecule((IMolecule)a);
-					sdg.generateCoordinates(new Vector2d(0,1));
-					//clean valencies, otherwise JCP shows valencies (e.g. C(v4) ) on every atom
-					for (IAtom atom : sdg.getMolecule().atoms())
-						atom.setValency(null);
-					m.replaceAtomContainer(i, sdg.getMolecule());
-				//}
-				//m.addMolecule(molecules[i]);
+				sdg.setMolecule((IMolecule)a);
+				sdg.generateCoordinates(new Vector2d(0,1));
+				//clean valencies, otherwise JCP shows valencies (e.g. C(v4) ) on every atom
+				for (IAtom atom : sdg.getMolecule().atoms())
+					atom.setValency(null);
+				m.replaceAtomContainer(i, MoleculeTools.copyChangeBuilders(sdg.getMolecule(),builder4jcp));
 			}
 		}
 		return m;		
