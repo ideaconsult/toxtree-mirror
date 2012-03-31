@@ -15,7 +15,7 @@ public class VerifyAlertsProteinBinding extends RuleVerifyAlertsCounter {
 	public VerifyAlertsProteinBinding() {
 		super();
 		setID("6");
-		setTitle("At least one alert for protin binding?");
+		setTitle("At least one alert for protein binding?");
 	}
 	@Override
 	public boolean isImplemented() {
