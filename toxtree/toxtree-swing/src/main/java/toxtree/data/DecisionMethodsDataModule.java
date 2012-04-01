@@ -159,7 +159,7 @@ public class DecisionMethodsDataModule extends DataModule {
     public int lookup(String field,Object value) {
     	try {
     		if (value==null) return -1;
-    		return ((DecisionMethodData) dataContainer).lookup(field, value.toString().trim());
+    		return ((DecisionMethodData) dataContainer).lookup(field, value.toString().toLowerCase().trim());
         } catch (Exception x) {
         	logger.error(x);
             return -1;
