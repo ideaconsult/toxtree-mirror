@@ -14,7 +14,9 @@ public class Rule_highLogP extends RuleDescriptorRange {
 	public Rule_highLogP() {
 		super();
 		id = "LogP";
-		setDescriptor(new XLogPDescriptor());
+		XLogPDescriptor d = new XLogPDescriptor();
+		try {d.setParameters(new Object[] {Boolean.TRUE});} catch (Exception x) {}
+		setDescriptor(d);
 		setMaxValue(Double.MAX_VALUE);
 		setMinValue(0.9);
 		/*
