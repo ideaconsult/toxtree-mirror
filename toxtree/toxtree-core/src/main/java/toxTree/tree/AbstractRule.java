@@ -37,8 +37,9 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Map;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
@@ -199,7 +200,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	 * @param yes
 	 * @return {@link org.openscience.cdk.interfaces.Molecule}
 	 */
-	public static Molecule makeMolecule(boolean yes) throws DecisionMethodException {
+	public static IMolecule makeMolecule(boolean yes) throws DecisionMethodException {
 		if (yes)
 			throw new DecisionMethodException("This rules has no 'YES' example molecule defined!");
 		else
@@ -210,7 +211,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	    if (ruleResult) index = 1; else index =0;
 		SmilesGenerator g = new SmilesGenerator(true);
 		//try {
-		    if (mol instanceof Molecule)
+		    if (mol instanceof IMolecule)
 		        examples[index] = g.createSMILES((org.openscience.cdk.Molecule) mol);
 		    else 
 		        examples[index] = "";
@@ -351,4 +352,13 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 		return null;
 	}
 	
+	protected void log(Level level,String message) {
+		Logger.getLogger(getClass().getName()).log(level, message);
+	}
+	protected void log(Level level,String message,Object param) {
+		Logger.getLogger(getClass().getName()).log(level, message,param);
+	}
+	protected void log(Level level,String message,Object[] params) {
+		Logger.getLogger(getClass().getName()).log(level, message,params);
+	}
 }
