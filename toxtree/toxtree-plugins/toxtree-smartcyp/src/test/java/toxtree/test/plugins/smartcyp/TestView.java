@@ -20,6 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 package toxtree.test.plugins.smartcyp;
 
+import org.junit.Test;
+
 import toxTree.exceptions.DecisionMethodException;
 import toxtree.plugins.smartcyp.SMARTCYPPlugin;
 
@@ -41,6 +43,10 @@ public class TestView {
 	public static void main(String[] args) {
 		TestView v = new TestView();
 		v.view();
+	}
+	@Test
+	public void test() {
+		
 	}
 }
 
