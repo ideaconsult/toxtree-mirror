@@ -4,7 +4,7 @@
   <artifactId>smartcyp</artifactId>
   <packaging>pom</packaging>
   <name>SMARTCyp </name>
-  <version>1.5.7</version>
+  <version>1.5.8-SNAPSHOT</version>
   <repositories>
     	 <repository>
         <id>ambit-plovdiv</id>

@@ -1,7 +1,5 @@
 package dk.smartcyp.core;
 
-import java.text.NumberFormat;
-
 import dk.smartcyp.smirks.SMARTCYPReaction;
 
 public class SMARTSData {
