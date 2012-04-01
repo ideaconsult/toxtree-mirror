@@ -88,7 +88,7 @@ public abstract class RemoteLookup<RESULT> {
 		HTTPClient cli = null;
 		InputStream in = null;
 		try {
-			login();
+			try { login(); } catch (Exception x) {}
 			cli = new HTTPClient(String.format(lookupService,input));
 			cli.get();
 			if (cli.getStatus()==200) {
