@@ -158,7 +158,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 					else logger.info("Found S valency ",Double.toString(order));
 			}
 		}		
-		if (super.verifyRule(mol)) {
+		if (super.verifyRule(mol,null)) {
 			IAtomContainer residue = null;
 			try {
 			    residue = (IAtomContainer) mol.clone();

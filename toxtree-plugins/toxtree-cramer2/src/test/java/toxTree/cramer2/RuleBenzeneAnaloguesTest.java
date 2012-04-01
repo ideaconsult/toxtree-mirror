@@ -7,6 +7,7 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionRule;
+import toxTree.cramer.AbstractRuleTest;
 import toxTree.query.MolAnalyser;
 import ambit2.smarts.query.SmartsPatternAmbit;
 import cramer2.rules.RuleBenzeneAnalogues;

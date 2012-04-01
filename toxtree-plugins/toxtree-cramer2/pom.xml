@@ -15,5 +15,12 @@
   		<version>${project.version}</version>
   		<scope>compile</scope>
   	</dependency>
+  	<dependency> <!-- reuse src/test/java code from cramer -->
+		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-cramer</artifactId>
+  		<version>${project.version}</version>
+		<scope>test</scope>
+		<classifier>tests</classifier>
+	</dependency>
   </dependencies>
 </project>
