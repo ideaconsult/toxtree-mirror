@@ -67,6 +67,7 @@ public class RuleReadilyHydrolysedPO4 extends RuleReadilyHydrolised {
 		editable = false;
         logger.debug("41 CHOPPING");
 	}
+
 	@Override
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
@@ -95,10 +96,10 @@ public class RuleReadilyHydrolysedPO4 extends RuleReadilyHydrolised {
     	    		) {
                 continue;
             }
+    	    iaci.setID(MolecularFormulaManipulator.getHillString(formula));
             mf.addResidue(iaci);
+            
         }
-        
-        //mf.setResidues(sc);
 	    return false;// always false
 	}
 
