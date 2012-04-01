@@ -21,16 +21,13 @@ package verhaar.test;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
-import verhaar.VerhaarScheme;
 import verhaar.query.FunctionalGroups;
 import verhaar.rules.Rule01;
 import verhaar.rules.Rule11;
