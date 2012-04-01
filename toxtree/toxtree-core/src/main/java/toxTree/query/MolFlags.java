@@ -31,12 +31,13 @@ package toxTree.query;
 
 
 
-import org.openscience.cdk.AtomContainerSet;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IRingSet;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.logging.TTLogger;
+import ambit2.core.data.MoleculeTools;
 
 /**
  * 
@@ -176,7 +177,7 @@ public class MolFlags {
 	}
 	public void addResidue(IAtomContainer residue) {
 		if (residues == null)
-			this.residues = new AtomContainerSet();
+			this.residues = MoleculeTools.newAtomContainerSet(SilentChemObjectBuilder.getInstance());
 		residues.addAtomContainer(residue);
 	}	
 	@Override
