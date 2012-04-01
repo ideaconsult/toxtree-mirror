@@ -21,17 +21,25 @@ package toxtree.test.plugins.smartcyp;
 
 
 
+import java.io.InputStream;
+
+import junit.framework.Assert;
+
 import org.junit.Test;
 import org.openscience.cdk.exception.InvalidSmilesException;
+import org.openscience.cdk.graph.invariant.EquivalentClassPartitioner;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
+import toxTree.exceptions.DecisionResultException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxtree.plugins.smartcyp.SMARTCYPPlugin;
+import ambit2.core.io.FileInputState;
 
 /**
  * TODO Add SMARTCypRulesTest description
@@ -96,5 +104,28 @@ public class SMARTCypRulesTest extends RulesTestCase {
     @Test
 	public void testPrintSmartCyp() throws Exception  {
 			System.out.println(new SMARTCYPPlugin().getRules());
+	}
+    
+	/**
+	 * https://sourceforge.net/tracker/?func=detail&aid=3389084&group_id=152702&atid=785126
+	 * @throws Exception
+	 */
+	@Test
+	public void test_3389084() throws Exception {
+		rules = new SMARTCYPPlugin();
+		InputStream in = getClass().getClassLoader().getResourceAsStream("toxtree/test/plugins/smartcyp/bug3389084.sdf");
+		IIteratingChemObjectReader reader = FileInputState.getReader(in, ".sdf");
+		while (reader.hasNext()) {
+			IAtomContainer mol = (IAtomContainer)reader.next();
+			try {
+				classify(mol, rules,rules.getCategories().size());
+			} catch (DecisionResultException x) {
+				Assert.assertEquals("PseudoAtoms are not supported! R",x.getCause().getMessage());
+			}
+		}
+		reader.close();
+		
+		
+
 	}
 }
