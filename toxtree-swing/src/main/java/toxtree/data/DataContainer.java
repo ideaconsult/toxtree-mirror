@@ -139,7 +139,9 @@ public class DataContainer extends Observable {
 
 			try {
 			    ac = containers.getAtomContainer(record);
-				if (value.equals(ac.getProperty(field))) {
+			    if (ac.getProperty(field)==null) continue;
+			    String property = ac.getProperty(field).toString().toLowerCase();
+				if (value.equals(property)) {
 					if (!silent) {
 						containers.setCurrentNo(record);
 						setChanged();
