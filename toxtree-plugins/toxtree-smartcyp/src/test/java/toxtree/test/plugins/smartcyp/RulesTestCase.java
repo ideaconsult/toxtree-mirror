@@ -79,13 +79,12 @@ public abstract class RulesTestCase  {
 			result.classify(mol);
 			System.out.println(result.toString());
 		} catch (DecisionResultException x) {
-			//if (rules != null) x.printStackTrace();
-			Assert.assertTrue(rules == null);
+			throw x;
 		}
 		try {
 		    System.out.println(result.explain(true));
 		} catch (DecisionResultException x) {
-			//if (rules != null) x.printStackTrace();
+			throw x;
 		}    
 		System.out.println(result.getCategory());
 		result.assignResult(mol);
