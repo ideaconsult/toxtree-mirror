@@ -8,4 +8,21 @@
   <groupId>toxtree</groupId>
   <artifactId>toxtree-cramer</artifactId>
   <name>Toxtree module: Cramer rules</name>
+ <build>
+ <plugins>
+ <!--  this create jar file of code from src/test/java so modules with tests can share code -->
+	<plugin>
+	  <groupId>org.apache.maven.plugins</groupId>
+	  <artifactId>maven-jar-plugin</artifactId>
+	<executions>
+	  <execution>
+	    <goals>
+	       <goal>test-jar</goal>
+	    </goals>
+	  </execution>
+	</executions>
+	</plugin>
+ </plugins>	
+ </build>
+
 </project>

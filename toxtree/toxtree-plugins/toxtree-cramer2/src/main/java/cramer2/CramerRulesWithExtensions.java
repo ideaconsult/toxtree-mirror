@@ -67,45 +67,45 @@ public class CramerRulesWithExtensions extends UserDefinedTree  {
 			toxTree.tree.cramer.RuleHasOtherThanC_H_O_N_S2.class.getName(), //3
 			cramer2.rules.RuleHasOnlySaltSulphonateSulphate.class.getName(), //4 
 			toxTree.tree.cramer.RuleSimplyBranchedAliphaticHydrocarbon.class.getName(), //5
-            "toxTree.tree.cramer.RuleSomeBenzeneDerivatives", //6
-            "toxTree.tree.cramer.RuleIsHeterocyclic",  //7
-			"toxTree.tree.cramer.RuleLactoneOrCyclicDiester", //8 
-            "toxTree.tree.cramer.RuleLactonesFusedOrUnsaturated", //9 
-			"toxTree.tree.cramer.Rule3MemberedHeterocycle", //10
-			"toxTree.tree.cramer.RuleHeterocyclicComplexSubstituents", //11
-			"toxTree.tree.cramer.RuleHeteroaromatic",//12
-			"toxTree.tree.cramer.RuleRingWithSubstituents",//13
-			"toxTree.tree.cramer.RuleManyAromaticRings14",//14
-			"toxTree.tree.cramer.RuleReadilyHydrolysedMononuclear",//15
-			"toxTree.tree.cramer.RuleIsCommonTerpene", //16
-			"toxTree.tree.cramer.RuleReadilyHydrolysedToCommonterpene", //17
-			"toxTree.tree.cramer.RuleKetoneAlcoholEtc", //18
-			"toxTree.tree.cramer.RuleIsOpenChain", //19
-			"toxTree.tree.cramer.RuleAliphaticWithSomeFuncGroups",//20
-			"toxTree.tree.cramer.Rule3FuncGroups",//21
-			"toxTree.tree.cramer.RuleCommonComponentOfFood",//22
-			"toxTree.tree.cramer.RuleIsAromatic",//23
-			"toxTree.tree.cramer.RuleMonocarbocyclic",//24
-			"toxTree.tree.cramer.RuleCyclopropaneEtc",//25
-			"toxTree.tree.cramer.RuleMonocycloalkanoneEtc",//26
-			"toxTree.tree.cramer.RuleRingsWithSubstituents",//27
-			"toxTree.tree.cramer.RuleManyAromaticRings28",  //this is the same as Q14
-			"toxTree.tree.cramer.RuleReadilyHydrolysed29", //this is the same as Q15
-			"toxTree.tree.cramer.RuleRingComplexSubstituents30",  //30
-			"toxTree.tree.cramer.RuleAcyclicAcetalEsterOfQ30",  //31
-			"toxTree.tree.cramer.Rule32",			//"cramer2.rules.RuleOnlyFuncGroupsQ30",		//32
-			"toxTree.tree.cramer.RuleSufficientSulphonateGroups",   //33
-			"toxTree.tree.rules.RuleOpenChain", //34 (Q9)
-			"toxTree.tree.rules.RuleHeterocyclic", //35
-			"toxTree.tree.rules.RuleAromatic", //36  (Q29)
-			"toxTree.tree.rules.RuleHeterocyclic", //37 (Q15)
-			"toxTree.tree.rules.RuleCommonTerpene", //38 (Q17)
-			"toxTree.tree.rules.RuleAromatic", //39  (Q30)
-			"cramer2.rules.RuleUnchargedOrganophosphates", //40
-			"cramer2.rules.RuleReadilyHydrolysedPO4", //41
-            "cramer2.rules.RuleBenzeneAnalogues", //42
-            "cramer2.rules.RuleDivalentSulphur", //43
-            "cramer2.rules.RuleFreeABUnsaturatedHetero" //44
+            toxTree.tree.cramer.RuleSomeBenzeneDerivatives.class.getName(), //6
+            toxTree.tree.cramer.RuleIsHeterocyclic.class.getName(),  //7
+			toxTree.tree.cramer.RuleLactoneOrCyclicDiester.class.getName(), //8 
+            toxTree.tree.cramer.RuleLactonesFusedOrUnsaturated.class.getName(), //9 
+			toxTree.tree.cramer.Rule3MemberedHeterocycle.class.getName(), //10
+			toxTree.tree.cramer.RuleHeterocyclicComplexSubstituents.class.getName(), //11
+			toxTree.tree.cramer.RuleHeteroaromatic.class.getName(),//12
+			toxTree.tree.cramer.RuleRingWithSubstituents.class.getName(),//13
+			toxTree.tree.cramer.RuleManyAromaticRings14.class.getName(),//14
+			toxTree.tree.cramer.RuleReadilyHydrolysedMononuclear.class.getName(),//15
+			toxTree.tree.cramer.RuleIsCommonTerpene.class.getName(), //16
+			toxTree.tree.cramer.RuleReadilyHydrolysedToCommonterpene.class.getName(), //17
+			toxTree.tree.cramer.RuleKetoneAlcoholEtc.class.getName(), //18
+			toxTree.tree.cramer.RuleIsOpenChain.class.getName(), //19
+			toxTree.tree.cramer.RuleAliphaticWithSomeFuncGroups.class.getName(),//20
+			toxTree.tree.cramer.Rule3FuncGroups.class.getName(),//21
+			toxTree.tree.cramer.RuleCommonComponentOfFood.class.getName(),//22
+			toxTree.tree.cramer.RuleIsAromatic.class.getName(),//23
+			toxTree.tree.cramer.RuleMonocarbocyclic.class.getName(),//24
+			toxTree.tree.cramer.RuleCyclopropaneEtc.class.getName(),//25
+			toxTree.tree.cramer.RuleMonocycloalkanoneEtc.class.getName(),//26
+			toxTree.tree.cramer.RuleRingsWithSubstituents.class.getName(),//27
+			toxTree.tree.cramer.RuleManyAromaticRings28.class.getName(),  //this is the same as Q14
+			toxTree.tree.cramer.RuleReadilyHydrolysed29.class.getName(), //this is the same as Q15
+			toxTree.tree.cramer.RuleRingComplexSubstituents30.class.getName(),  //30
+			toxTree.tree.cramer.RuleAcyclicAcetalEsterOfQ30.class.getName(),  //31
+			toxTree.tree.cramer.Rule32.class.getName(),			//.class.getName()cramer2.rules.RuleOnlyFuncGroupsQ30.class.getName(),		//32
+			toxTree.tree.cramer.RuleSufficientSulphonateGroups.class.getName(),   //33
+			toxTree.tree.rules.RuleOpenChain.class.getName(), //34 (Q9)
+			toxTree.tree.rules.RuleHeterocyclic.class.getName(), //35
+			toxTree.tree.rules.RuleAromatic.class.getName(), //36  (Q29)
+			toxTree.tree.rules.RuleHeterocyclic.class.getName(), //37 (Q15)
+			toxTree.tree.rules.RuleCommonTerpene.class.getName(), //38 (Q17)
+			toxTree.tree.rules.RuleAromatic.class.getName(), //39  (Q30)
+			cramer2.rules.RuleUnchargedOrganophosphates.class.getName(), //40
+			cramer2.rules.RuleReadilyHydrolysedPO4.class.getName(), //41
+            cramer2.rules.RuleBenzeneAnalogues.class.getName(), //42
+            cramer2.rules.RuleDivalentSulphur.class.getName(), //43
+            cramer2.rules.RuleFreeABUnsaturatedHetero.class.getName() //44
 			};
 	private final static transient int c_transitions[][] ={
 		//{if no go to, if yes go to, assign if no, assign if yes}

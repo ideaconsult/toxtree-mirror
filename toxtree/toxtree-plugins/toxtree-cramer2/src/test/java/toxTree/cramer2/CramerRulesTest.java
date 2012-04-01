@@ -25,14 +25,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.cramer2;
 
 import org.openscience.cdk.Molecule;
-import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
 
+import toxTree.cramer.RulesTestCase;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.MolAnalyser;
 import cramer2.CramerRulesWithExtensions;
 
@@ -47,76 +46,46 @@ public class CramerRulesTest extends RulesTestCase {
 	/**
 	 * 
 	 */
-	public CramerRulesTest() {
+	public CramerRulesTest() throws Exception {
 		super();
 		try {
 			rules = new CramerRulesWithExtensions();
 			((CramerRulesWithExtensions)rules).setResiduesIDVisible(false);
 		} catch (DecisionMethodException x) {
-			fail();
+			throw x;
 		}	
         gen = new SmilesParser(SilentChemObjectBuilder.getInstance());
         
 	}
 
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-	/* (non-Javadoc)
-	 * @see junit.framework.TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
 
-	public void testVerifyRule2() {
+	public void testVerifyRule2()  throws Exception {
 		Molecule mol = MoleculeFactory.makeAlkane(6);
-		try {
-			verifyRule(mol,2);
-		} catch (DecisionMethodException x) {
-			x.printStackTrace();
-			assertTrue(false);
-		}
+		verifyRule(mol,2);
+
 	}
 
 	/*
 	 * Class under test for int classify(Molecule)
 	 */
-	public void testClassifyMolecule() {
+	public void testClassifyMolecule()  throws Exception {
 		IMolecule mol = MoleculeFactory.makeAlkane(6);
 		classify(mol,rules,3);
 
 	}
 
-    protected IMolecule getMolecule(String smiles) {
-        try {
-        	IMolecule mol = gen.parseSmiles(smiles);
-            MolAnalyser.analyse(mol);
-            return mol;
-	    } catch (InvalidSmilesException x ) {
-	        x.printStackTrace();
-	        return null;
-	    } catch (MolAnalyseException x) {
-	        x.printStackTrace();
-	        return null;
-	    }    
+    protected IMolecule getMolecule(String smiles)  throws Exception {
+       	IMolecule mol = gen.parseSmiles(smiles);
+        MolAnalyser.analyse(mol);
+        return mol;
     }
-	public void testCramer() {
+	public void testCramer()  throws Exception {
 		CramerRulesWithExtensions rulesNew = (CramerRulesWithExtensions)objectRoundTrip(rules,"CramerRulesExtended");
 		rulesNew.setResiduesIDVisible(false);
 		rules = rulesNew;
 		tryImplementedRules();
 	}
-	public void testPrintCramer() {
-		try {
-			System.out.println(new CramerRulesWithExtensions().getRules());
-		} catch (Exception x) {
-			x.printStackTrace();
-		}
+	public void testPrintCramer() throws Exception  {
+		System.out.println(new CramerRulesWithExtensions().getRules());
 	}
 }

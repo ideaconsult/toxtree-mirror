@@ -24,16 +24,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.cramer2;
 
-import org.openscience.cdk.Bond;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.silent.Bond;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IDecisionRule;
+import toxTree.cramer.AbstractRuleTest;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.query.MolFlags;
@@ -46,6 +47,8 @@ import cramer2.rules.RuleHasOnlySaltSulphonateSulphate;
  * <b>Modified</b> 2005-9-25
  */
 public class RuleHasOnlySaltSulphonateSulphateTest extends AbstractRuleTest {
+	
+	
 	@Override
 	protected IDecisionRule createRule() {
 		return new RuleHasOnlySaltSulphonateSulphate();
@@ -192,49 +195,49 @@ public class RuleHasOnlySaltSulphonateSulphateTest extends AbstractRuleTest {
 		  mol.addAtom(a20);
 		  IAtom a21 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
 		  mol.addAtom(a21);
-		  Bond b1 = new Bond(a3, a7, IBond.Order.SINGLE);
+		  IBond b1 = new Bond(a3, a7, IBond.Order.SINGLE);
 		  mol.addBond(b1);
-		  Bond b2 = new Bond(a4, nq, IBond.Order.SINGLE);
+		  IBond b2 = new Bond(a4, nq, IBond.Order.SINGLE);
 		  mol.addBond(b2);
-		  Bond b3 = new Bond(a5, nq, IBond.Order.DOUBLE);
+		  IBond b3 = new Bond(a5, nq, IBond.Order.DOUBLE);
 		  mol.addBond(b3);
-		  Bond b4 = new Bond(a6, a5, IBond.Order.SINGLE);
+		  IBond b4 = new Bond(a6, a5, IBond.Order.SINGLE);
 		  mol.addBond(b4);
-		  Bond b5 = new Bond(a7, a4, IBond.Order.DOUBLE);
+		  IBond b5 = new Bond(a7, a4, IBond.Order.DOUBLE);
 		  mol.addBond(b5);
-		  Bond b6 = new Bond(o1, a2, IBond.Order.SINGLE);
+		  IBond b6 = new Bond(o1, a2, IBond.Order.SINGLE);
 		  mol.addBond(b6);
-		  Bond b7 = new Bond(a9, a2, IBond.Order.DOUBLE);
+		  IBond b7 = new Bond(a9, a2, IBond.Order.DOUBLE);
 		  mol.addBond(b7);
-		  Bond b8 = new Bond(a10, a2, IBond.Order.DOUBLE);
+		  IBond b8 = new Bond(a10, a2, IBond.Order.DOUBLE);
 		  mol.addBond(b8);
-		  Bond b9 = new Bond(a11, a2, IBond.Order.SINGLE);
+		  IBond b9 = new Bond(a11, a2, IBond.Order.SINGLE);
 		  mol.addBond(b9);
-		  Bond b10 = new Bond(a12, nq, IBond.Order.SINGLE);
+		  IBond b10 = new Bond(a12, nq, IBond.Order.SINGLE);
 		  mol.addBond(b10);
-		  Bond b11 = new Bond(a13, a4, IBond.Order.SINGLE);
+		  IBond b11 = new Bond(a13, a4, IBond.Order.SINGLE);
 		  mol.addBond(b11);
-		  Bond b12 = new Bond(a14, a5, IBond.Order.SINGLE);
+		  IBond b12 = new Bond(a14, a5, IBond.Order.SINGLE);
 		  mol.addBond(b12);
-		  Bond b13 = new Bond(a15, a6, IBond.Order.SINGLE);
+		  IBond b13 = new Bond(a15, a6, IBond.Order.SINGLE);
 		  mol.addBond(b13);
-		  Bond b14 = new Bond(a16, a7, IBond.Order.SINGLE);
+		  IBond b14 = new Bond(a16, a7, IBond.Order.SINGLE);
 		  mol.addBond(b14);
-		  Bond b15 = new Bond(a17, a11, IBond.Order.SINGLE);
+		  IBond b15 = new Bond(a17, a11, IBond.Order.SINGLE);
 		  mol.addBond(b15);
-		  Bond b16 = new Bond(a18, a13, IBond.Order.DOUBLE);
+		  IBond b16 = new Bond(a18, a13, IBond.Order.DOUBLE);
 		  mol.addBond(b16);
-		  Bond b17 = new Bond(a19, a14, IBond.Order.DOUBLE);
+		  IBond b17 = new Bond(a19, a14, IBond.Order.DOUBLE);
 		  mol.addBond(b17);
-		  Bond b18 = new Bond(a20, a19, IBond.Order.SINGLE);
+		  IBond b18 = new Bond(a20, a19, IBond.Order.SINGLE);
 		  mol.addBond(b18);
-		  Bond b19 = new Bond(a21, a16, IBond.Order.DOUBLE);
+		  IBond b19 = new Bond(a21, a16, IBond.Order.DOUBLE);
 		  mol.addBond(b19);
-		  Bond b20 = new Bond(a6, a3, IBond.Order.DOUBLE);
+		  IBond b20 = new Bond(a6, a3, IBond.Order.DOUBLE);
 		  mol.addBond(b20);
-		  Bond b21 = new Bond(a18, a21, IBond.Order.SINGLE);
+		  IBond b21 = new Bond(a18, a21, IBond.Order.SINGLE);
 		  mol.addBond(b21);
-		  Bond b22 = new Bond(a15, a20, IBond.Order.DOUBLE);
+		  IBond b22 = new Bond(a15, a20, IBond.Order.DOUBLE);
 		  mol.addBond(b22);
 		  return mol;
 		}
