@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
@@ -24,6 +23,7 @@ import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLReader;
 import org.openscience.cdk.io.ReaderFactory;
 import org.openscience.cdk.io.SMILESReader;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
@@ -162,7 +162,7 @@ public class SMARTCyp {
 
 
 		List<IAtomContainer> moleculeList;
-		IChemObjectBuilder builder = DefaultChemObjectBuilder.getInstance();
+		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
 		ISimpleChemObjectReader reader;
 
 		File inputFile;
@@ -207,7 +207,7 @@ public class SMARTCyp {
 				MoleculeKU moleculeKU;
 				IAtomContainer iAtomContainerTmp;		
 				IAtomContainer iAtomContainer;
-				CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(DefaultChemObjectBuilder.getInstance());
+				CDKHydrogenAdder adder = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
 				for(int atomContainerNr = 0; atomContainerNr < moleculeList.size() ; atomContainerNr++){				
 					iAtomContainerTmp = moleculeList.get(atomContainerNr);	
 

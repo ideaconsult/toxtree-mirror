@@ -12,14 +12,12 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import org.openscience.cdk.AtomContainer;
-import org.openscience.cdk.Molecule;
-import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.geometry.GeometryTools;
 import org.openscience.cdk.geometry.Projector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.renderer.AtomContainerRenderer;
 import org.openscience.cdk.renderer.IRenderer;
@@ -33,6 +31,8 @@ import org.openscience.cdk.renderer.generators.BasicSceneGenerator;
 import org.openscience.cdk.renderer.generators.IGenerator;
 import org.openscience.cdk.renderer.generators.RingGenerator;
 import org.openscience.cdk.renderer.visitor.AWTDrawVisitor;
+import org.openscience.cdk.silent.AtomContainer;
+import org.openscience.cdk.silent.Molecule;
 
 
 
@@ -60,7 +60,7 @@ public class GenerateImages {
 
 
 	// This is the "main" method that calls all other methods below
-	public void generateAndWriteImages(MoleculeSet moleculeSet) throws CloneNotSupportedException, CDKException{
+	public void generateAndWriteImages(IMoleculeSet moleculeSet) throws CloneNotSupportedException, CDKException{
 
 
 
