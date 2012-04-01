@@ -27,7 +27,7 @@ package toxTree;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.List;
+import java.net.URL;
 
 import junit.framework.Assert;
 
@@ -35,25 +35,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.ChemFile;
-import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IChemFile;
-import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.io.MDLReader;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
-import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
-import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
+import toxTree.io.Tools;
 import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.cramer.RuleCommonComponentOfFood;
+import toxTree.tree.rules.ILookupFile;
+import toxTree.tree.rules.InChILookupFile;
 import toxTree.tree.rules.RuleStructuresList;
+import ambit2.core.io.FileInputState;
 import ambit2.core.io.MDLWriter;
 
 /**
@@ -165,12 +162,57 @@ public class RuleStructuresListTest  {
 	}
 	@Test
 	public void testBodyMol() throws Exception {
-		verifyFile("bodymol.sdf");
+		ILookupFile lookup = verifyFile("bodymol.sdf");
+		Assert.assertEquals(398,lookup.size());
+		System.out.println(lookup);
 	}
 	@Test
-	public void testFoodMol() throws Exception {
-		verifyFile("foodmol.sdf");
+	public void testBodyMolInchi() throws Exception {
+		ILookupFile lookup = new InChILookupFile(Tools.getFileFromResourceSilent("bodymol.inchi"));
+		lookup = verifyFile(lookup,"bodymol.sdf");
+		Assert.assertEquals(398,lookup.size());
+
 	}	
+	@Test
+	public void testFoodMol() throws Exception {
+		ILookupFile lookup = verifyFile("foodmol.sdf");
+		//System.out.println(lookup);
+		Assert.assertEquals(104,lookup.size());
+	}	
+	@Test
+	public void testFoodMolInChi() throws Exception {
+		ILookupFile lookup = new InChILookupFile(Tools.getFileFromResourceSilent("foodmol.inchi"));
+		lookup = verifyFile(lookup,"foodmol.sdf");
+		//System.out.println(lookup);
+		Assert.assertEquals(104,lookup.size());
+	}		
+	protected ILookupFile verifyFile(String filename) throws Exception {
+		return verifyFile(null,filename);
+	}
+	protected ILookupFile verifyFile(ILookupFile lookupFile,String filename) throws Exception {
+		URL url = getClass().getClassLoader().getResource(filename);
+		ILookupFile lookup = lookupFile==null?new InChILookupFile(new File(url.getFile())):lookupFile;
+		InputStream stream = null;
+		IIteratingChemObjectReader<IAtomContainer> reader = null;
+		try {
+			stream = getClass().getClassLoader().getResourceAsStream(filename);
+			reader = FileInputState.getReader(stream, filename);
+			while (reader.hasNext()) {
+				IAtomContainer ac = (IAtomContainer)reader.next();
+				MolAnalyser.analyse(ac);
+				Object title = ac.getProperty(CDKConstants.TITLE);
+				//if (title !=null) System.out.println(title);
+				Assert.assertTrue(title==null?"":title.toString(),lookup.find(ac));
+			}
+		} catch (Exception x) {
+			throw x;
+		} finally {
+			try {if (reader!=null) reader.close();} catch (Exception x) {}
+			try {if (stream !=null) stream.close();} catch (Exception x) {}
+		}
+		return lookup;
+	}
+	/*
 	protected void verifyFile(String filename) throws Exception {
 		IChemFile m = null;
 		InputStream in = getClass().getClassLoader().getResourceAsStream(filename);
@@ -250,6 +292,8 @@ public class RuleStructuresListTest  {
 		Assert.assertEquals(okCount,allCount);
 		
 	}
+	
+	*/
 	protected void printBonds(AtomContainer m) {
 		for (int i=0; i < m.getBondCount(); i++)
 			if (m.getBond(i).getFlag(CDKConstants.ISAROMATIC))
