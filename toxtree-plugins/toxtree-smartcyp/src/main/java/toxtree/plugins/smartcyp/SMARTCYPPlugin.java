@@ -26,6 +26,7 @@ import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.CategoriesList;
 import toxTree.tree.DecisionNode;
 import toxTree.tree.DecisionNodesFactory;
+import toxTree.tree.MultiLabelDecisionNode;
 import toxTree.tree.RuleResult;
 import toxTree.tree.UserDefinedTree;
 import toxTree.ui.tree.categories.CategoriesRenderer;
@@ -183,7 +184,8 @@ public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInterac
 			int nrules=0;
 			Iterator<IDecisionRule> rules = p.getRules().iterator();
 			while (rules.hasNext()) {
-				IDecisionRule rule = rules.next();
+				IDecisionRule rule = ((MultiLabelDecisionNode)rules.next()).getRule();
+				
 				if (!(rule instanceof SMARTCYPRuleRank1)) return false;
 				nrules++;
 			}
@@ -198,7 +200,7 @@ public class SMARTCYPPlugin extends UserDefinedTree  implements IDecisionInterac
 					ncategories++;
 				}
 			}
-			return (nrules==1) && (ncategories==4) &&
+			return (nrules==4) && (ncategories==4) &&
 			p.getTitle().equals(getTitle()) &&
 			p.getExplanation().equals(getExplanation());
 			

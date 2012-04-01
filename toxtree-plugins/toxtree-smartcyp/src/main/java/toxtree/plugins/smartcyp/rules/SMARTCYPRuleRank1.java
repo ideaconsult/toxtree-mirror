@@ -44,8 +44,8 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 		setExplanation(String.format("Rank%d",rank));
 		setEditable(false);
 		setExamples(new String[] {
-				"",
-				"c1cc(c(cc1Cl)Cl)Cl"
+				"O",
+				"C1C=CNC=C1"
 		});
 	}
 

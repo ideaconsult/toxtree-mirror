@@ -10,6 +10,8 @@ public class SMARTCYPRuleHigherRank extends SMARTCYPRuleRank1 {
 	public SMARTCYPRuleHigherRank() {
 		super(4);
 		setExplanation(String.format("Rank >= %d",rank));	
+		examples[0] = "C1C=CNC=C1";
+		examples[1] = "O=[N+]([O-])c4ccc1ccc2cccc3ccc4(c1c23)";
 		
 	}
 	protected boolean hasRank(int atom_rank) {

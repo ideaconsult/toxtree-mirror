@@ -91,7 +91,7 @@ O_dealkylation  [O;H0:1][C:2]([H])>>[O:1][H].[C:2]=[O]
 Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 
 	 */
-	@Test
+	
 	public void testSMARTCypMetabolitesGenerator() throws Exception {
 		boolean explicitH=true;
 		AtomConfigurator  cfg = new AtomConfigurator();
@@ -208,7 +208,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 		
 	}
 	
-	@Test
+
 	/**
 	 * smartcyp + all reactions
 	 */
@@ -216,7 +216,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 		applyAllReactions(SMARTCYPReaction.values(),true);
 	}
 	
-	@Test
+	
 	/**
 	 * No smartcyp, just try all reactions
 	 */
@@ -511,10 +511,7 @@ java.lang.NullPointerException
 						Number num = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
 						
 						if (num==null) continue;
-						//System.out.println(num);
-					//	for (SMARTCYP_PROPERTY sp : SMARTCYP_PROPERTY.values()) {
-					//		System.out.println(sp.name() + " " + sp.atomProperty2String(atom));
-					//	}
+
 						
 						if (num.intValue()==1) {
 							SMARTSData data = SMARTCYP_PROPERTY.Energy.getData(atom);
@@ -523,16 +520,7 @@ java.lang.NullPointerException
 						}
 					
 					}
-					//System.out.println(mol.getProperties());
-					//IAtomContainerSet set = smartcyp.getProducts((IAtomContainer)mol);
-					//Assert.assertNotNull(set);
-					//Assert.assertTrue(set.getAtomContainerCount()>0);
-					//if (set != null) {
-						//System.out.println(set.getAtomContainerCount());
-						//for (int i=0; i < set.getAtomContainerCount(); i++) {
 
-						//}
-					//}
 				}
 			
 			}
