@@ -120,7 +120,9 @@ public class RuleDAMutagenicityABUnsaturatedAldehydes extends LinearDiscriminant
 		
 		List<IMolecularDescriptor> descriptors = new ArrayList<IMolecularDescriptor>();
 		descriptors.add(new DescriptorMolarRefractivity());
-		descriptors.add(new XLogPDescriptor());
+		XLogPDescriptor descriptor = new XLogPDescriptor();
+		try {descriptor.setParameters(new Object[] {Boolean.TRUE});} catch (Exception x) {}
+		descriptors.add(descriptor);
 		
 		try {
 			DescriptorMopacShell mopac = new DescriptorMopacShell();
