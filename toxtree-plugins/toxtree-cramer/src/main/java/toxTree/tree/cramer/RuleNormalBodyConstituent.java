@@ -51,7 +51,8 @@ public class RuleNormalBodyConstituent extends RuleStructuresList {
 	 * 
 	 */
 	public RuleNormalBodyConstituent() {
-		super("bodymol.sdf");
+		//super("bodymol.sdf");
+		super("bodymol.inchi");
 		title = "Normal constituent of the body";
 		explanation.append("<html>Is the substance a normal constituent of the body, or an optical isomer of such?<p>");
 		explanation.append("This question throws into class I all normal constituents of body tissues and fluids, including normal metabolites. Hormones are excluded, as are, by implication, the metabolites of environmental and food contaminants or those resulting from disease state.");

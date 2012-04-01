@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
@@ -48,7 +49,7 @@ import ambit2.base.interfaces.IProcessor;
  */
 public class RuleStructuresList extends AbstractRule {
 	
-	protected transient LookupFile lookupFile;
+	protected transient ILookupFile lookupFile;
     protected String filename = null;
 	/**
 	 * Comment for <code>serialVersionUID</code>
@@ -70,7 +71,8 @@ public class RuleStructuresList extends AbstractRule {
 		
 		try {
 			setFile(file);
-		} catch (IOException x) {
+			
+		} catch (Exception x) {
 			try {setFile(Tools.getFileFromResource(file.getName()));} catch (Exception xx) { lookupFile = null;}
 			logger.error(x);
 		}
@@ -92,9 +94,7 @@ public class RuleStructuresList extends AbstractRule {
 	 */
 	@Override
 	public boolean isImplemented() {
-		if (lookupFile==null) return false;
-		File file = lookupFile.getFile(); 
-		return (file !=null) && (file.exists());
+		return lookupFile.isEnabled();
 	}
 
 	/**
@@ -106,23 +106,18 @@ public class RuleStructuresList extends AbstractRule {
 	/**
 	 * @param file The file to set.
 	 */
-	public synchronized void setFile(File file) throws IOException {
-        
-		lookupFile = new LookupFile(file);
-		lookupFile.setLogger(logger);
+	
+	public synchronized void setFile(File file) throws CDKException,IOException {
+		lookupFile = new InChILookupFile(file);
         setFilename(file.getAbsolutePath());
+
 		logger.debug("Will be using file\t",file.getAbsoluteFile());		
 		
 	}
 	/**
-	 * @return Returns the useCache.
-	 */
 	public synchronized boolean isUsingCache() {
 		return lookupFile.isUseCache();
 	}
-	/**
-	 * @param useCache The useCache to set.
-	 */
 	public synchronized void setUsingCache(boolean useCache) {
 		lookupFile.setUseCache(useCache);
 	}
@@ -179,53 +174,3 @@ public class RuleStructuresList extends AbstractRule {
     }	
 	   
 }
-/*
-class RecordCache implements Comparable {
-	protected long offset= 0;
-	protected long recNum = 0;
-	protected String formula = "";
-	protected boolean aromatic = false;
-	
-	public RecordCache(long offset, long recNum, String formula) {
-		super();
-		this.offset = offset;
-		this.recNum = recNum;
-		this.formula = formula;
-	}
-	public RecordCache(long offset, long recNum) {
-		super();
-		this.offset = offset;
-		this.recNum = recNum;
-	
-	}	
-	
-	public boolean equals(Object obj) {
-		RecordCache o = (RecordCache) obj;
-		return formula.equals(o.formula); 
-			
-	}
-	
-	public int compareTo(Object o) {
-		return formula.compareTo(((RecordCache) o).formula);
-	}
-	
-	
-	
-	public synchronized String getFormula() {
-		return formula;
-	}
-
-	public synchronized void setFormula(String formula) {
-		this.formula = formula;
-	}
-	
-	public synchronized boolean isAromatic() {
-		return aromatic;
-	}
-
-	public synchronized void setAromatic(boolean aromatic) {
-		this.aromatic = aromatic;
-	}
-}
-
-*/

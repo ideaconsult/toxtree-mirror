@@ -43,7 +43,11 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import ambit2.core.io.IteratingDelimitedFileReader;
 
-public class LookupFile implements Serializable {
+public class LookupFile implements ILookupFile, Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5001289040650439243L;
 	protected File file;
 	protected transient ArrayList<String> fileCache = null;
 	protected boolean useCache = false; //will be true if fixed
@@ -194,6 +198,17 @@ public class LookupFile implements Serializable {
 	}
 	public void setCheckAromaticity(boolean checkAromaticity) {
 		this.checkAromaticity = checkAromaticity;
+	}
+	@Override
+	public boolean isEnabled() {
+		File file = getFile(); 
+		if (file==null) return false;
+		return (file !=null) && (file.exists());
+	}
+	
+	@Override
+	public int size() {
+		return fileCache==null?0:fileCache.size();
 	}
 }
 
