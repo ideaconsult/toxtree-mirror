@@ -44,6 +44,10 @@ public class TestBugs extends AbstractTreeTest {
 		Assert.assertEquals(3,result.getCategory().getID());
 		Assert.assertEquals("1N,2N,3Y,4Y,40Y",cr.explainRules(result,false).toString());
 		
+		result = classify("CCCCOP(OCC)(OCCC)=O");
+		Assert.assertEquals(3,result.getCategory().getID());
+		Assert.assertEquals("1N,2N,3Y,4Y,40Y",cr.explainRules(result,false).toString());
+		
 	}	
 	
 	
