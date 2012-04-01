@@ -237,8 +237,8 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 								cas?"CAS":einecs?"EINECS":"Unknown query");
 				}
 			} else {
-				errormsg = String.format("%s entered, but remote queries are disabled. Enable remote queries via 'Method/Decision Tree Options/Remote query' menu.",
-						cas?"CAS":einecs?"EINECS":"Unknown query");
+				errormsg = String.format("%s %s entered, but remote queries are disabled. Enable remote queries via 'Method/Decision Tree Options/Remote query' menu.",
+						cas?"CAS":einecs?"EINECS":"Unknown query",input);
 			}
 		} else {
 	    	a = FunctionalGroups.createAtomContainer(input,false);
@@ -257,7 +257,12 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	    		} else {
 	    			errormsg = String.format(labels.getString(_labels.error_inchi.name()),input);
 	    			Name2StructureProcessor p = new Name2StructureProcessor();
-	    			a = p.process(input);
+	    			try {
+	    				a = p.process(input);
+	    			} catch (Exception x) {
+	    	    		a = null;
+	    	    		errormsg = x.getMessage();
+	    			}
 	    			if (a != null) {
 	    	    		a.setProperty(CDKConstants.COMMENT,labels.getString(_labels.createdByOpsin.name()));
 	    		    	a.setProperty(AmbitCONSTANTS.NAMES,input);
@@ -267,7 +272,23 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	    		    		SmilesGenerator g = new SmilesGenerator(); 
 	    		    		a.setProperty(AmbitCONSTANTS.SMILES, g.createSMILES((IMolecule)a));
 	    		    	} catch (Exception x) {};
-	    			} else String.format(labels.getString(_labels.error_unknown.name()),input);
+	    			} else 
+	    				if (Preferences.getProperty(Preferences.REMOTELOOKUP).equals("true")) {
+	    					a =  retrieveRemote(input);
+	    					if (a!=null) {
+	    						a.setID(input);
+	    						if (cas) a.setProperty(Property.CAS, input);
+	    						else if (einecs) a.setProperty(Property.EC, input);
+	    						else a.setProperty(Property.Names, input);
+	    					} else {
+	    						errormsg = String.format("%s entered, failed to retrieve from remote server",
+	    									cas?"CAS":einecs?"EINECS":"Unknown query");
+	    					}
+	    				} else {
+	    					errormsg = String.format("%s '%s' entered. Name to structure conversion failed. Please enable remote queries via 'Method/Decision Tree Options/Remote query' menu.",
+	    							"Name",input);
+	    				}
+	    				
 	    		}
 	    	} catch (Exception x) {
 	    		a = null;
