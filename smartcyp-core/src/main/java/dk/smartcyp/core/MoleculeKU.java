@@ -295,8 +295,8 @@ public class MoleculeKU extends AtomContainer implements IMolecule {
 			atom.setCharge((double) atom.getFormalCharge());
 		}
 		//compute symmetry
-		EquivalentClassPartitioner symmtest = new EquivalentClassPartitioner((AtomContainer) this);
-		int[] symmetryNumbersArray = symmtest.getTopoEquivClassbyHuXu((AtomContainer) this);
+		EquivalentClassPartitioner symmtest = new EquivalentClassPartitioner((IAtomContainer) this);
+		int[] symmetryNumbersArray = symmtest.getTopoEquivClassbyHuXu((IAtomContainer) this);
 		for(int atomIndex = 0; atomIndex < this.getAtomCount(); atomIndex++){
 			atom = (IAtom) this.getAtom(atomIndex);
 			SMARTCYP_PROPERTY.SymmetryNumber.set(atom,symmetryNumbersArray[atomIndex+1]);
