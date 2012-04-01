@@ -108,7 +108,7 @@ public class RuleStructuresList extends AbstractRule {
 	 */
 	
 	public synchronized void setFile(File file) throws CDKException,IOException {
-		lookupFile = new InChILookupFile(file);
+		lookupFile = new LookupFile(file);
         setFilename(file.getAbsolutePath());
 
 		logger.debug("Will be using file\t",file.getAbsoluteFile());		
