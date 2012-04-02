@@ -90,9 +90,9 @@ public class RuleReadilyHydrolysedPO4 extends RuleReadilyHydrolised {
     	    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(iaci);
     	    
     	    if (
-    	    		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"C")) &&
-    	    		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"N")) &&
-    	    		MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"S"))     	    		
+    	    		!MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"C")) &&
+    	    		!MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"N")) &&
+    	    		!MolecularFormulaManipulator.containsElement(formula,MoleculeTools.newElement(formula.getBuilder(),"S"))     	    		
     	    		) {
                 continue;
             }

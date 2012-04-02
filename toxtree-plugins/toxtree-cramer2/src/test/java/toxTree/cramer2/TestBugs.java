@@ -47,18 +47,22 @@ public class TestBugs extends AbstractTreeTest {
 		result = classify("CCCCOP(OCC)(OCCC)=O");
 		Assert.assertEquals(3,result.getCategory().getID());
 		Assert.assertEquals("1N,2N,3Y,4Y,40Y",cr.explainRules(result,false).toString());
+
+	}	
+	@Test
+	public void test3089699_40N() throws Exception {
+		//toxtree 1.60 
+		IDecisionResult result = classify("CCCCOP([O-])(O)=O");
+		Assert.assertEquals(1,result.getCategory().getID());
+		Assert.assertEquals("1N,2N,3Y,4Y,40N,41N(7N,16N,17N,19Y,20Y,21N,44N,18N)",cr.explainRules(result,false).toString());
+		
 		
 		//toxtree 1.60 
 		result = classify("CCCCOP(OP(O)([O-])=O)(O)=O");
 		Assert.assertEquals(1,result.getCategory().getID());
 		Assert.assertEquals("1N,2N,3Y,4Y,40N,41N(7N,16N,17N,19Y,20Y,21N,44N,18N)",cr.explainRules(result,false).toString());
 		
-		//toxtree 1.60 
-		result = classify("CCCCOP([O-])(O)=O");
-		Assert.assertEquals(1,result.getCategory().getID());
-		Assert.assertEquals("1N,2N,3Y,4Y,40N,41N(7N,16N,17N,19Y,20Y,21N,44N,18N)",cr.explainRules(result,false).toString());
 		
-	}	
-	
+	}
 	
 }
