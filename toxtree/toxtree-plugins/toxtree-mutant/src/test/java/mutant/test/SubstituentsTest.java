@@ -89,7 +89,7 @@ public class SubstituentsTest  {
 		n.append("\n");
 		n.append("  4  3  0  0  0  0  0  0  0  0999 V2000\n");
 		n
-				.append("    0.0000    0.0000    0.0000 Xx  0  0  0  0  0  0  0  0  0  0  0  0\n");
+				.append("    0.0000    0.0000    0.0000 R   0  0  0  0  0  0  0  0  0  0  0  0\n");
 		n
 				.append("    0.0000    1.5000    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0\n");
 		n
