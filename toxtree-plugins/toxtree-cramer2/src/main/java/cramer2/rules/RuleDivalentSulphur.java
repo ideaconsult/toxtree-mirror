@@ -27,7 +27,13 @@ import ambit2.smarts.query.SMARTSException;
  * <b>Modified</b> Dec, 2008
  */
 public class RuleDivalentSulphur extends RuleSMARTSubstructure{//jeroen
-	private static final long serialVersionUID = 0;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8947181147979900214L;
+	//SMARTS rewritten to avoid double recursion
+	protected static final String smarts = "[$([S;H0;D2])!$([S;H0;D2]([CX4])[CX4])!$([S;H0;D2]([CX4])C(=O)C)!$([S;H0;D2](C(=O)C)C(=O)C)]";
+	protected static final String originalsmarts = "[$([S;H0;D2])!$([S;H0;D2]([$([CX4]),$(C(=O)C)])[$([CX4]),$(C(=O)C)])]";
 	public RuleDivalentSulphur() {
 		//TODO fix sterically hindered condition (example NO fails)
 		super();
@@ -39,8 +45,7 @@ public class RuleDivalentSulphur extends RuleSMARTSubstructure{//jeroen
 		examples[0] = "CC(=O)SCC";//  no hit (X,0,X,0)
 		examples[1] = "CCSC=NC";//hit (0,X,0,X)
 		try {
-			super.initSingleSMARTS(super.smartsPatterns,"1",
-                    "[$([S;H0;D2])!$([S;H0;D2]([$([CX4]),$(C(=O)C)])[$([CX4]),$(C(=O)C)])]");
+			super.initSingleSMARTS(super.smartsPatterns,"1",smarts);
 			editable = false;
 		} catch (SMARTSException x) {
 			logger.error(x);
