@@ -60,6 +60,6 @@
   	</build>
     <properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<cdk.version>1.4.8</cdk.version>
+    	<cdk.version>1.4.9</cdk.version>
     </properties>	
 </project>
