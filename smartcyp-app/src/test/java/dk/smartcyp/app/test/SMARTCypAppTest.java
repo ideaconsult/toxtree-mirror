@@ -20,7 +20,7 @@ public class SMARTCypAppTest {
 	}
 	public static void main(String[] args) {
 		try {
-			URL url = SMARTCypAppTest.class.getClassLoader().getResource("dk/smartcyp/app/test/3A4_substrates.sdf");
+			URL url = SMARTCypAppTest.class.getClassLoader().getResource("dk/smartcyp/test/3A4_substrates.sdf");
 			System.out.println(url);
 			SMARTCyp.main(new String[] {url.getFile()});
 		} catch (Exception x) {
