@@ -19,11 +19,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package verhaar.query;
 
-import org.openscience.cdk.Atom;
-import org.openscience.cdk.Bond;
-import org.openscience.cdk.ElectronContainer;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.isomorphism.matchers.IQueryBond;
+import org.openscience.cdk.silent.Bond;
+import org.openscience.cdk.silent.ElectronContainer;
 
 import toxTree.query.MyAssociationBond;
 
@@ -55,7 +55,7 @@ public class QueryAssociationBond extends Bond implements IQueryBond {
 	 * @param arg0
 	 * @param arg1
 	 */
-	public QueryAssociationBond(Atom arg0, Atom arg1) {
+	public QueryAssociationBond(IAtom arg0, IAtom arg1) {
 		super(arg0, arg1);
 	}
 
@@ -64,7 +64,7 @@ public class QueryAssociationBond extends Bond implements IQueryBond {
 	 * @param arg1
 	 * @param arg2
 	 */
-	public QueryAssociationBond(Atom arg0, Atom arg1, IBond.Order arg2) {
+	public QueryAssociationBond(IAtom arg0, IAtom arg1, IBond.Order arg2) {
 		super(arg0, arg1, arg2);
 	}
 
@@ -74,7 +74,7 @@ public class QueryAssociationBond extends Bond implements IQueryBond {
 	 * @param arg2
 	 * @param arg3
 	 */
-	public QueryAssociationBond(Atom arg0, Atom arg1,IBond.Order arg2, Stereo arg3) {
+	public QueryAssociationBond(IAtom arg0, IAtom arg1,IBond.Order arg2, Stereo arg3) {
 		super(arg0, arg1, arg2, arg3);
 	}
 
