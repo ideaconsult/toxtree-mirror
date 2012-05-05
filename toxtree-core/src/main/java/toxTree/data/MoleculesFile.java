@@ -40,7 +40,6 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IChemObjectChangeEvent;
 import org.openscience.cdk.interfaces.IChemObjectListener;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.listener.IReaderListener;
 import org.openscience.cdk.io.random.RandomAccessReader;
 import org.openscience.cdk.io.random.RandomAccessSDFReader;
@@ -327,7 +326,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
                 //generate unique smiles
                 
                 for (int i=0; i < getAtomContainerCount();i++) try {
-                    setProperty(i, "USMILES",smigen.createSMILES((IMolecule)getAtomContainer(i)));
+                    setProperty(i, "USMILES",smigen.createSMILES((IAtomContainer)getAtomContainer(i)));
                  } catch (Exception x) {
                      x.printStackTrace();
                  }
@@ -461,7 +460,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
                 }
         	}
         	if (index == -1) {
-        		logger.debug("Not found " + smigen.createSMILES((IMolecule)mol));
+        		logger.debug("Not found " + smigen.createSMILES((IAtomContainer)mol));
         	}
         }
         logger.debug("</lookup>");

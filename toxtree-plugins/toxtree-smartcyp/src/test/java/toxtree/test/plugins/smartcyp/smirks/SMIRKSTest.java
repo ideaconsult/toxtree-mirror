@@ -19,8 +19,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemObject;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -99,7 +98,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 		SmilesGenerator g = new SmilesGenerator();
 		SMARTCYPPlugin smartcyp = new SMARTCYPPlugin();
 		File file = new File(getClass().getClassLoader().getResource("toxtree/test/plugins/smartcyp/3A4_substrates.sdf").getFile());
-		IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream(file), SilentChemObjectBuilder.getInstance());
+		IteratingSDFReader reader = new IteratingSDFReader(new FileInputStream(file), SilentChemObjectBuilder.getInstance());
 		
 		File htmlFile = new File(String.format("%s/metabolites.html", file.getParentFile()));
 		if (htmlFile.exists()) htmlFile.delete();
@@ -127,7 +126,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 				//if (!molid.equals("fentanyl")) continue; //http://www.daylight.com/daycgi_tutorials/react.cgi
 				
 				mol.setID(molid.toString());
-				MolAnalyser.analyse((IMolecule)mol);
+				MolAnalyser.analyse((IAtomContainer)mol);
 	    	//	IAtomContainer mol = AtomContainerManipulator.removeHydrogens((IAtomContainer)origin);
 				
 				hadder.process((IAtomContainer)mol);
@@ -140,11 +139,11 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 				htmlFileWriter.write("\n<table border='1'>");
 				htmlFileWriter.write("\n<tr>");
 				
-				String smiles = g.createSMILES((IMolecule)mol);
+				String smiles = g.createSMILES((IAtomContainer)mol);
 				
 				String uri = getImageURI(smiles);
 				
-				String imguri = getImageURI((IMolecule)mol,smartcyp,file.getParentFile(),molid.toString());
+				String imguri = getImageURI((IAtomContainer)mol,smartcyp,file.getParentFile(),molid.toString());
 				
 				htmlFileWriter.write(String.format("<td bgcolor='#DDDDDD'><a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a></td>",
 								uri,imguri,smiles,smiles));
@@ -251,8 +250,8 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 					
 		htmlFileWriter.write("<a href='#Compounds'>Compounds<a>&nbsp;<a href='#Reactions'>Reactions<a><hr>");
 		htmlFileWriter.write("<a name='#Compounds'/a>");
-		IMolecule placeholder = SilentChemObjectBuilder.getInstance().newInstance(IMolecule.class);
-		IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream(file), SilentChemObjectBuilder.getInstance());
+		IAtomContainer placeholder = SilentChemObjectBuilder.getInstance().newInstance(IAtomContainer.class);
+		IteratingSDFReader reader = new IteratingSDFReader(new FileInputStream(file), SilentChemObjectBuilder.getInstance());
 		
 		Hashtable<String, String> compounds = new Hashtable<String, String>();
 		
@@ -276,7 +275,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 				
 				
 				masterWriter.setSdFields(mol.getProperties());
-				masterWriter.writeMolecule((IMolecule)mol) ;
+				masterWriter.writeMolecule((IAtomContainer)mol) ;
 				
 
 				htmlFileWriter.write(String.format("<h3><a name='%s'>%s</a>",molid,molid));
@@ -285,9 +284,9 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 				htmlFileWriter.write("\n<table border='1'>");
 				htmlFileWriter.write("\n<tr>");
 				
-				String smiles = g.createSMILES((IMolecule)mol);
+				String smiles = g.createSMILES((IAtomContainer)mol);
 				String uri = getImageURI(smiles);
-				String imguri = getImageURI((IMolecule)mol,smartcyp,file.getParentFile(),molid.toString());
+				String imguri = getImageURI((IAtomContainer)mol,smartcyp,file.getParentFile(),molid.toString());
 				
 				htmlFileWriter.write(String.format("<td bgcolor='#DDDDDD'><a href='%s&w=400&h=400' target=_blank><img src='%s' title='%s' alt='%s'></a><br><textarea rows='5' cols='20'>%s</textarea></td>",
 								uri,imguri,smiles,smiles,smiles));
@@ -373,7 +372,7 @@ Thioesther_bond_breaking  [S:1][C:2]=[O:3]>>[S:1][H].[C:2](O)=[O:3]
 						
 						MDLWriter writer = writers[reaction.ordinal()];
 						writer.setSdFields(mol.getProperties());
-						writer.writeMolecule((IMolecule)mol) ;		
+						writer.writeMolecule((IAtomContainer)mol) ;		
 						writer.setSdFields(c.getProperties());
 						writer.writeMolecule(c);
 						
@@ -480,7 +479,7 @@ java.lang.NullPointerException
 		SmilesGenerator g = new SmilesGenerator();
 		SMARTCYPPlugin smartcyp = new SMARTCYPPlugin();
 		File file = new File(getClass().getClassLoader().getResource("toxtree/test/plugins/smartcyp/3A4_substrates.sdf").getFile());
-		IteratingMDLReader reader = new IteratingMDLReader(new FileInputStream(file), SilentChemObjectBuilder.getInstance());
+		IteratingSDFReader reader = new IteratingSDFReader(new FileInputStream(file), SilentChemObjectBuilder.getInstance());
 		
 		AtomConfigurator  cfg = new AtomConfigurator();
 		HydrogenAdderProcessor hadder = new HydrogenAdderProcessor();

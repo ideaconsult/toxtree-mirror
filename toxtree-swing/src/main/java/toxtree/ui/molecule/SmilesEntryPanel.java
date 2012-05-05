@@ -53,8 +53,8 @@ import org.openscience.cdk.inchi.InChIGeneratorFactory;
 import org.openscience.cdk.inchi.InChIToStructure;
 import org.openscience.cdk.index.CASNumber;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -267,10 +267,10 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	    	    		a.setProperty(CDKConstants.COMMENT,labels.getString(_labels.createdByOpsin.name()));
 	    		    	a.setProperty(AmbitCONSTANTS.NAMES,input);
 	    		    	a.setID(input);
-	    		    	if (a instanceof IMolecule) 
+	    		    	if (a instanceof IAtomContainer) 
 	    		    	try { 
 	    		    		SmilesGenerator g = new SmilesGenerator(); 
-	    		    		a.setProperty(AmbitCONSTANTS.SMILES, g.createSMILES((IMolecule)a));
+	    		    		a.setProperty(AmbitCONSTANTS.SMILES, g.createSMILES((IAtomContainer)a));
 	    		    	} catch (Exception x) {};
 	    			} else 
 	    				if (Preferences.getProperty(Preferences.REMOTELOOKUP).equals("true")) {
@@ -297,18 +297,18 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 		}
     	
     	if (a != null) {
-    		if (a instanceof IMolecule) 
+    		if (a instanceof IAtomContainer) 
 	            try {
 	            	if (sdg == null) sdg = new StructureDiagramGenerator();
 	            	if (ConnectivityChecker.isConnected(a)) {
-	                    sdg.setMolecule((IMolecule)a);
+	                    sdg.setMolecule((IAtomContainer)a);
 	                    sdg.generateCoordinates(new Vector2d(0,1));
 	                    a = sdg.getMolecule();            		
 	            	} else {
-		            	IMoleculeSet molecules = ConnectivityChecker.partitionIntoMolecules(a);            	
+		            	IAtomContainerSet molecules = ConnectivityChecker.partitionIntoMolecules(a);            	
 		                a.removeAllElements();
-		        		for (int i=0; i< molecules.getMoleculeCount();i++) {
-		       				sdg.setMolecule(molecules.getMolecule(i));
+		        		for (int i=0; i< molecules.getAtomContainerCount();i++) {
+		       				sdg.setMolecule(molecules.getAtomContainer(i));
 		       				sdg.generateCoordinates(new Vector2d(0,1));
 		       				a.add(sdg.getMolecule());
 		        		}

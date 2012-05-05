@@ -25,6 +25,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.query;
 
 
+import java.util.Arrays;
+
+import javax.vecmath.Point2d;
+import javax.vecmath.Point3d;
+
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.isomorphism.matchers.IQueryBond;
@@ -32,7 +37,8 @@ import org.openscience.cdk.isomorphism.matchers.IQueryBond;
 
 
 /**
- * TODO add description
+ * WARNING: new methods added since CDK 1.5 
+ * TODO implement properly!
  * @author ThinClient
  * <b>Modified</b> 2005-9-23
  */
@@ -56,5 +62,74 @@ public class AssociationQueryBond extends MyAssociationBond implements IQueryBon
 	}
 	public boolean matches(IBond bond) {
 		return bond instanceof MyAssociationBond;
+	}
+	@Override
+	public Iterable<IAtom> atoms() {
+		return Arrays.asList(atoms);
+	}
+	
+	@Override
+	public Point2d get2DCenter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Point3d get3DCenter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IAtom getAtom(int position) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IAtom getConnectedAtom(IAtom atom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IAtom[] getConnectedAtoms(IAtom atom) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setAtom(IAtom atom, int position) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Order getOrder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setOrder(Order order) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Stereo getStereo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setStereo(Stereo stereo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isConnectedTo(IBond bond) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

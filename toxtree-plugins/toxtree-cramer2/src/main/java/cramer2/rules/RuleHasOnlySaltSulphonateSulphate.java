@@ -31,9 +31,8 @@ import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
@@ -165,7 +164,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 			} catch (CloneNotSupportedException x) {
 			    throw new DecisionMethodException(x);
 			}
-			IMoleculeSet residues = null;
+			IAtomContainerSet residues = null;
 			
 			Object detached = null;
 			
@@ -238,7 +237,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 	//				mf.addResidue(residue);
 				mf.setResidues(null);  //clear residues if any
 				for (int i=0; i< residues.getAtomContainerCount();i++) {
-					IMolecule a = residues.getMolecule(i);
+					IAtomContainer a = residues.getAtomContainer(i);
 					if (FunctionalGroups.hasGroupMarked(a,detached.toString())) 
 						if (detached.equals(FunctionalGroups.CARBOXYLIC_ACID_SALT) ||
 							detached.equals(FunctionalGroups.HYDROCHLORIDE_OF_AMINE)								

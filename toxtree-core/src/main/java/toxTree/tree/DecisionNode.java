@@ -38,7 +38,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.IDecisionCategory;
@@ -237,7 +236,7 @@ public class DecisionNode extends Observable implements IDecisionRule,IDecisionT
 	/* (non-Javadoc)
 	 * @see toxTree.core.IDecisionRule#getExampleMolecule(boolean)
 	 */
-	public IMolecule getExampleMolecule(boolean ruleResult)
+	public IAtomContainer getExampleMolecule(boolean ruleResult)
 			throws DecisionMethodException {
 		if (rule == null) return null;
 		else return rule.getExampleMolecule(ruleResult);

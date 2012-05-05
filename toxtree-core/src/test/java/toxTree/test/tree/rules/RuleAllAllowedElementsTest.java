@@ -26,7 +26,7 @@ package toxTree.test.tree.rules;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.Molecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.logging.TTLogger;
@@ -55,10 +55,10 @@ public class RuleAllAllowedElementsTest extends TestCase {
 		rule.addElement("N");
 
 		
-		Molecule m1= MoleculeFactory.makeAlkane(3);  //C only
+		IAtomContainer m1= MoleculeFactory.makeAlkane(3);  //C only
 
 		try {
-			Molecule m2= MoleculeFactory.makePyrrole(); //C & N
+			IAtomContainer m2= MoleculeFactory.makePyrrole(); //C & N
 			
 			//no hydrogens
 			rule.setComparisonMode(RuleElements.modeAllSpecifiedElements);

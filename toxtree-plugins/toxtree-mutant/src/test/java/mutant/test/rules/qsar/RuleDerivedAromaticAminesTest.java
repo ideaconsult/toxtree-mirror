@@ -9,8 +9,6 @@ import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.core.IDecisionRule;
@@ -57,7 +55,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 			results.add("[H]NC=1C([H])=C([H])C(=C(N[H])C=1([H]))C([H])([H])[H]");
 			*/
 			for (int i=0;i<sc.getAtomContainerCount();i++) {
-				String s = g.createSMILES((IMolecule)sc.getAtomContainer(i));
+				String s = g.createSMILES((IAtomContainer)sc.getAtomContainer(i));
 				System.out.println("result "+s);
 				assertTrue(results.indexOf(s)>-1);
 			}	
@@ -81,7 +79,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 
 		
 		
-		IMoleculeSet sc = ((RuleDerivedAromaticAmines)ruleToTest).detachSubstituent(RuleDerivedAromaticAmines.group1(),c);
+		IAtomContainerSet sc = ((RuleDerivedAromaticAmines)ruleToTest).detachSubstituent(RuleDerivedAromaticAmines.group1(),c);
 		assertNotNull(sc);
 		Hashtable<String,Integer> results = new Hashtable<String,Integer>();
 		results.put("[H]NC=1C([H])=C([H])C(=C([H])C=1(OC([H])([H])[H]))C=2C([H])=C([H])C(N[H])=C(OC([H])([H])[H])C=2([H])",new Integer(14));
@@ -89,7 +87,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 		if (sc != null) {
 			SmilesGenerator g = new SmilesGenerator(true);
 			for (int i=0;i<sc.getAtomContainerCount();i++) {
-				String s = g.createSMILES((IMolecule)sc.getAtomContainer(i));
+				String s = g.createSMILES((IAtomContainer)sc.getAtomContainer(i));
 				System.out.println(s);
 				//assertNotNull(results.get(s));
 				//MFAnalyser mf = new MFAnalyser(sc.getAtomContainer(i));

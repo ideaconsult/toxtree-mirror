@@ -27,7 +27,7 @@ package toxTree.test.tree.rules;
 import junit.framework.TestCase;
 
 import org.openscience.cdk.exception.InvalidSmilesException;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -73,7 +73,7 @@ public class RuleElementsTest extends TestCase {
 		RuleElements rule = new RuleElements();
 		rule.setComparisonMode(RuleElements.modeOnlySpecifiedElements);
 		rule.addElement("C");
-		IMolecule mol = MoleculeFactory.makeAlkane(20);
+		IAtomContainer mol = MoleculeFactory.makeAlkane(20);
 		try {
 			assertTrue(rule.verifyRule(mol));
 		} catch (DecisionMethodException x) {

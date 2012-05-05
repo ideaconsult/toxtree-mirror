@@ -27,7 +27,10 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.Icon;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
+
+import ambit2.core.data.MoleculeTools;
 
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
@@ -100,14 +103,14 @@ public class RuleExampleEditAction extends RuleMoleculeEditAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (rule != null) {
-			IMolecule m = null;
+			IAtomContainer m = null;
 			try {
 				m = rule.getExampleMolecule(answer);
 			} catch (DecisionMethodException x) {
 				m = null;
 			}
 			if (m==null) {
-				m = new org.openscience.cdk.Molecule();
+				m = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
 			}
 			setMolecule(m);
 			super.actionPerformed(arg0);
@@ -115,7 +118,7 @@ public class RuleExampleEditAction extends RuleMoleculeEditAction {
 		}
 	}
 	@Override
-	protected void updateMolecule(IMolecule mol) {
+	protected void updateMolecule(IAtomContainer mol) {
 	    super.updateMolecule(mol);
         rule.setExampleMolecule(mol,answer);
         setMolecule(null);

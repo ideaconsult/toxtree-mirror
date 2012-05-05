@@ -30,12 +30,11 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.openscience.cdk.ChemFile;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IChemFile;
 import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.io.MDLV2000Reader;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
@@ -80,14 +79,14 @@ public class EmptySDFEntryTest {
 	public void testEmptyEntryIteratingReader() throws Exception {
 		TTLogger.configureLog4j(true);
 
-			IteratingMDLReader reader = new IteratingMDLReader(
+			IteratingSDFReader reader = new IteratingSDFReader(
 					this.getClass().getClassLoader().getResourceAsStream("data/Misc/emptyStructure.sdf"),
 					SilentChemObjectBuilder.getInstance());
             int molCount = 0;
             while (reader.hasNext()) {
                 Object object = reader.next();
                 Assert.assertNotNull(object);
-                Assert.assertTrue(object instanceof Molecule);
+                Assert.assertTrue(object instanceof IAtomContainer);
                 molCount++;
             }
             

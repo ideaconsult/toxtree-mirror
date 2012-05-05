@@ -26,8 +26,8 @@ package toxTree.test;
 
 import org.junit.Test;
 import org.openscience.cdk.graph.ConnectivityChecker;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
@@ -51,12 +51,12 @@ public class IonicSMILEStest {
 		
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 
-			IMolecule m = p.parseSmiles(smiles);
-			IMoleculeSet c = ConnectivityChecker.partitionIntoMolecules(m);
+			IAtomContainer m = p.parseSmiles(smiles);
+			IAtomContainerSet c = ConnectivityChecker.partitionIntoMolecules(m);
 			System.out.println(c.getAtomContainerCount());
 			SmilesGenerator g = new SmilesGenerator(true);
 			for (int i=0; i < c.getAtomContainerCount(); i++) {
-				IMolecule m1 = (IMolecule) c.getAtomContainer(i); 
+				IAtomContainer m1 = (IAtomContainer) c.getAtomContainer(i); 
 				//System.out.println(g.createSMILESWithoutCheckForMultipleMolecules(m1,false,new boolean[m1.getBondCount()]));
 				System.out.println(g.createSMILES(m1,false,new boolean[m1.getBondCount()]));
 			}

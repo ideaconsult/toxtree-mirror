@@ -16,9 +16,8 @@ import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IBond.Order;
 import org.openscience.cdk.interfaces.IElement;
 import org.openscience.cdk.interfaces.IMolecularFormula;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.io.iterator.IteratingSMILESReader;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtomContainer;
@@ -110,14 +109,14 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
         {
             IIteratingChemObjectReader reader;
             if(format.endsWith(".sdf"))
-                reader = new IteratingMDLReader(fStream, SilentChemObjectBuilder.getInstance());
+                reader = new IteratingSDFReader(fStream, SilentChemObjectBuilder.getInstance());
             else
             if(format.endsWith(".csv"))
                 reader = new IteratingDelimitedFileReader(fStream);
             else
             if(format.endsWith(".smi"))
             {
-                reader = new IteratingSMILESReader(fStream);
+                reader = new IteratingSMILESReader(fStream,SilentChemObjectBuilder.getInstance());
             } else
             {
                 logger.error("Unsupported format");
@@ -131,7 +130,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
                 Object o = reader.next();
                 if(o instanceof IAtomContainer)
                 {
-                    IMolecule m = (IMolecule)o;
+                    IAtomContainer m = (IAtomContainer)o;
                     if(m.getAtomCount() > 0)
                         try
                         {

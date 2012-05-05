@@ -54,7 +54,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleEditor;
@@ -199,7 +199,7 @@ public class RulePanel extends JPanel implements Observer , IDecisionRuleEditor,
         updateExampleView();
     }
     protected void updateExampleView() {
-    	IMolecule mol = null;
+    	IAtomContainer mol = null;
     	try {
             moleculeEditAction.setAnswer(yesExample.isSelected());
     		mol = rule.getExampleMolecule(yesExample.isSelected());

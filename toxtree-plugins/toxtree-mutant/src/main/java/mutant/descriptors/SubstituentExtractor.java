@@ -13,7 +13,6 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.mcss.RMap;
@@ -65,7 +64,7 @@ public class SubstituentExtractor {
                 }
                 */
                 IAtomContainer mc = cloneDiscardRingAtomAndBonds(a,mark);
-                IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
+                IAtomContainerSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
                 
                 substituents.put(mark,s);
             } else 

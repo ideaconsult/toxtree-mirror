@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package eye.rules;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import sicret.rules.RuleAqueousSolubility;
@@ -48,15 +48,15 @@ public class RuleAqueousSolubility_10_2 extends RuleAqueousSolubility {
 		
 
 	}
-	public IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
-		IMolecule m = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());        
+	public IAtomContainer getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
+		IAtomContainer m = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());        
         if (ruleResult){
         	
-        		m = (IMolecule)FunctionalGroups.createAtomContainer("Oc(c(cc(c1)Cc(cc(c(O)c2C(C)(C)C)C(C)(C)C)c2)C(C)(C)C)c1C(C)(C)C",false);
+        		m = (IAtomContainer)FunctionalGroups.createAtomContainer("Oc(c(cc(c1)Cc(cc(c(O)c2C(C)(C)C)C(C)(C)C)c2)C(C)(C)C)c1C(C)(C)C",false);
     			m.setProperty(AqueousSolubility, 0.000171);
         }
     	else {
-    		m = (IMolecule)FunctionalGroups.createAtomContainer("BrCCCCCCBr",false);
+    		m = (IAtomContainer)FunctionalGroups.createAtomContainer("BrCCCCCCBr",false);
         		m.setProperty(AqueousSolubility, 10.293935);
     	}      	
 		return m;

@@ -27,9 +27,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.openscience.cdk.exception.InvalidSmilesException;
-import org.openscience.cdk.graph.invariant.EquivalentClassPartitioner;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
@@ -62,7 +60,7 @@ public class SMARTCypRulesTest extends RulesTestCase {
 
 	
 	/*
-	 * Class under test for int classify(IMolecule)
+	 * Class under test for int classify(IAtomContainer)
 	 */
 	@Test
 	public void testClassifyMolecule() throws Exception  {
@@ -81,9 +79,9 @@ public class SMARTCypRulesTest extends RulesTestCase {
 
 	}
 
-    protected IMolecule getMolecule(String smiles) {
+    protected IAtomContainer getMolecule(String smiles) {
         try {
-        	IMolecule mol = gen.parseSmiles(smiles);
+        	IAtomContainer mol = gen.parseSmiles(smiles);
             MolAnalyser.analyse(mol);
             return mol;
 	    } catch (InvalidSmilesException x ) {

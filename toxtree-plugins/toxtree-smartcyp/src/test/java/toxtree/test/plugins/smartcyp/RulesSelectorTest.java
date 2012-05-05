@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -30,7 +30,7 @@ public class RulesSelectorTest {
 	@Test
 	public void testRuleHilights() throws Exception {
 		SMARTCYPPlugin rules = new SMARTCYPPlugin();
-		IMolecule mol = MoleculeFactory.makeAlkane(6);
+		IAtomContainer mol = MoleculeFactory.makeAlkane(6);
 	    BufferedImage image = rules.getImage(mol, "2", 200,200,false);
 	    File file = new File(String.format("%s/testRuleHilights.png",System.getProperty("java.io.tmpdir")));
 	    file.deleteOnExit();
@@ -43,7 +43,7 @@ public class RulesSelectorTest {
 	public void testTreeHilights() throws Exception {
 		SMARTCYPPlugin rules = new SMARTCYPPlugin();
 		SmilesParser parser = new SmilesParser(SilentChemObjectBuilder.getInstance());
-		IMolecule mol = parser.parseSmiles("NCCC1=CC(O)=C(O)C=C1"); //NCCc1ccc(O)c(O)c1
+		IAtomContainer mol = parser.parseSmiles("NCCC1=CC(O)=C(O)C=C1"); //NCCc1ccc(O)c(O)c1
 		MolAnalyser.analyse(mol);
 	    BufferedImage image = rules.getImage(mol,null, 200,200,false);
 	    

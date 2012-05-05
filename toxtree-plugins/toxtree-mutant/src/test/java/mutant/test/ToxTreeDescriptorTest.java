@@ -3,7 +3,7 @@ package mutant.test;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -16,7 +16,7 @@ public class ToxTreeDescriptorTest {
 	public void test() throws Exception {
 		ToxTreeDescriptor d = new ToxTreeDescriptor();
 		d.setParameters(new Object[] {"mutant.BB_CarcMutRules"});
-		IMolecule mol = MoleculeFactory.makeAlkane(10);
+		IAtomContainer mol = MoleculeFactory.makeAlkane(10);
 		DescriptorValue value = d.calculate(mol);
 		IDescriptorResult result = value.getValue();
 		Assert.assertTrue(result instanceof ArrayResult);

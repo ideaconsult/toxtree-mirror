@@ -33,8 +33,8 @@ import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IMolecularFormula;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
@@ -85,7 +85,7 @@ public class SA10 extends StructureAlertCDK {
 		return ((!CH6SubstituentAtBetaCarbon(mol)) && super.verifyRule(mol));
 	}
 	
-	public IMoleculeSet detachSubstituentAtBetaCarbon(IAtomContainer c) {
+	public IAtomContainerSet detachSubstituentAtBetaCarbon(IAtomContainer c) {
 		List<?> map = FunctionalGroups.getBondMap(c,query,false);
 		FunctionalGroups.markMaps(c,query,map);
 		if (map == null) return null;
@@ -94,7 +94,7 @@ public class SA10 extends StructureAlertCDK {
 	public boolean CH6SubstituentAtBetaCarbon(IAtomContainer c) {
 		try {
 			IAtomContainer cc = (IAtomContainer) c.clone();
-			IMoleculeSet sc = detachSubstituentAtBetaCarbon(cc);
+			IAtomContainerSet sc = detachSubstituentAtBetaCarbon(cc);
 			if (sc != null) {
 				for (int i=0;i<sc.getAtomContainerCount();i++) {
 					IAtomContainer a = sc.getAtomContainer(i);

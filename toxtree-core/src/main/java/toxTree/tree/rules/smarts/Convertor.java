@@ -32,12 +32,11 @@ import joelib.molecule.JOEMol;
 
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IElement;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.LoggingTool;
 
@@ -253,7 +252,7 @@ public class Convertor {
      * @see #COORDINATES_3D
      * @see #COORDINATES_2D
      **/
-    public static JOEMol convert(IMolecule mol)  {
+    public static JOEMol convert(IAtomContainer mol)  {
         return convert(mol, -1);
     }
 
@@ -274,7 +273,7 @@ public class Convertor {
      * @see #COORDINATES_3D
      * @see #COORDINATES_2D
      **/
-    public static JOEMol convert(IMolecule mol, int coordType){
+    public static JOEMol convert(IAtomContainer mol, int coordType){
         if (mol != null) {
             JOEMol converted = new JOEMol();
             
@@ -321,9 +320,9 @@ public class Convertor {
      * @param   mol     class to be converted
      * @return          converted class in CDK
      **/
-    public static IMolecule convert(JOEMol mol) {
+    public static IAtomContainer convert(JOEMol mol) {
         if (mol != null) {
-            IMolecule converted = SilentChemObjectBuilder.getInstance().newInstance(IMolecule.class);
+            IAtomContainer converted = SilentChemObjectBuilder.getInstance().newInstance(IAtomContainer.class);
             int NOatoms = mol.numAtoms();
             for (int i=1; i<=NOatoms; i++) {
                 /* JOEMol.getAtom() needs ids [1,...] */

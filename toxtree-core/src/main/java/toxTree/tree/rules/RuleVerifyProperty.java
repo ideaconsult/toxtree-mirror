@@ -30,7 +30,7 @@ import java.text.NumberFormat;
 
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -50,7 +50,7 @@ import ambit2.core.data.MoleculeTools;
 /**
  * 
  * Verifies if property is >, < or = to a {@link #getProperty()} value.
- * Property to be read as {@link IMolecule}.getProperty({@link #getPropertyName()}).
+ * Property to be read as {@link IAtomContainer}.getProperty({@link #getPropertyName()}).
  * If there exist no such property of the molecule, a {@link #inputProperty(IAtomContainer)}
  * method is invoked, which typically waits for user input of the property value.
  * If the property is not assigned after {@link #inputProperty(IAtomContainer)} call, then {@link DRuleNotImplemented} is fired.
@@ -179,12 +179,12 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 		this.propertyName = propertyName;
 	}
 	@Override
-	public IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
+	public IAtomContainer getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
 		int index = 0;
 		if (ruleResult) index = 1;
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		try {
-			IMolecule m = p.parseSmiles(examples[index]);		
+			IAtomContainer m = p.parseSmiles(examples[index]);		
 	        m.setProperty(getPropertyName(), propertyExamples[index]);
 			return m;
 		} catch (InvalidSmilesException x) {
@@ -232,7 +232,7 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
     */
 	public String getImplementationDetails() {
 		StringBuffer b = new StringBuffer();
-		b.append("The value is expected to be assigned as a molecule property, available by IMolecule.getProperty(\"");
+		b.append("The value is expected to be assigned as a molecule property, available by IAtomContainer.getProperty(\"");
 		b.append(propertyName);
 		b.append("\".\n");
 		if (!"".equals(propertyUnits)) {

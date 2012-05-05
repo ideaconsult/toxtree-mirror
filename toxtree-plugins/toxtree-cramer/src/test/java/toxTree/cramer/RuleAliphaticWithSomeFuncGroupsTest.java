@@ -24,18 +24,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.cramer;
 
-import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.interfaces.IAtom;
-import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.cramer.RuleAliphaticWithSomeFuncGroups;
-import ambit2.base.config.Preferences;
 
 /**
  * Test for {@link RuleAliphaticWithSomeFuncGroups} rule.
@@ -83,8 +78,8 @@ public class RuleAliphaticWithSomeFuncGroupsTest extends AbstractRuleTest {
 	            
 	            };
 	    //1N,2N,3N,5N,6N,7N,16N,17N,19Y,20Y,21N,18N        
-	    IMolecule mol1 = (IMolecule) FunctionalGroups.createAtomContainer((String)answer[0][0]);
-	    IMolecule mol2 = (IMolecule) FunctionalGroups.createAtomContainer((String)answer[1][0]);
+	    IAtomContainer mol1 = (IAtomContainer) FunctionalGroups.createAtomContainer((String)answer[0][0]);
+	    IAtomContainer mol2 = (IAtomContainer) FunctionalGroups.createAtomContainer((String)answer[1][0]);
      	    assertTrue(UniversalIsomorphismTester.isIsomorph(mol1,mol2));
 	            	
           	MolAnalyser.analyse(mol1);
@@ -105,7 +100,7 @@ public class RuleAliphaticWithSomeFuncGroupsTest extends AbstractRuleTest {
 	            
 	            };
 	    Preferences.setProperty(Preferences.SMILESPARSER,"true");
-	    IMolecule mol1 = (IMolecule) FunctionalGroups.createAtomContainer((String)answer[0][0]);
+	    IAtomContainer mol1 = (IAtomContainer) FunctionalGroups.createAtomContainer((String)answer[0][0]);
 	    System.out.println("OpenBabel");        	
 	    MolAnalyser.analyse(mol1);
        	int i=0;
@@ -136,7 +131,7 @@ public class RuleAliphaticWithSomeFuncGroupsTest extends AbstractRuleTest {
         
         
 	    Preferences.setProperty(Preferences.SMILESPARSER,"false");
-	    IMolecule mol2 = (IMolecule) FunctionalGroups.createAtomContainer((String)answer[0][0]);
+	    IAtomContainer mol2 = (IAtomContainer) FunctionalGroups.createAtomContainer((String)answer[0][0]);
 	    System.out.println("CDK");
 		MolAnalyser.analyse(mol2);  	
 		i = 0;

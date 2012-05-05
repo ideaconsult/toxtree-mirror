@@ -26,7 +26,6 @@ package toxTree.cramer;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 
 import toxTree.core.IDecisionRule;
@@ -61,10 +60,10 @@ public class Rule3FuncGroupsTest extends AbstractRuleTest {
 
 
 	public void testSalt() throws Exception {
-		IMolecule acid_original = (IMolecule)FunctionalGroups.createAtomContainer("CC(=O)CCC(=O)O");
+		IAtomContainer acid_original = (IAtomContainer)FunctionalGroups.createAtomContainer("CC(=O)CCC(=O)O");
 		assertFalse(verify(acid_original));
 		
-    	IMolecule mol = (IMolecule)FunctionalGroups.createAtomContainer("CC(=O)CCC(=O)[O-].[Na+]");
+    	IAtomContainer mol = (IAtomContainer)FunctionalGroups.createAtomContainer("CC(=O)CCC(=O)[O-].[Na+]");
     	RuleHasOnlySaltSulphonateSulphate rule4 = new RuleHasOnlySaltSulphonateSulphate();
        	MolAnalyser.analyse(mol);
        	assertTrue(rule4.verifyRule(mol));

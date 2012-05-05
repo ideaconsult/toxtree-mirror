@@ -14,8 +14,6 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
@@ -157,7 +155,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                 SubstituentPosition place = null;
 			    for (int j=0;j <m.getAtomCount();j++) {
 			    	place = SubstituentExtractor.getSubstituentNumber(mark,m,j);
-                    IMolecule substituent = (IMolecule)m;
+                    IAtomContainer substituent = (IAtomContainer)m;
 
 			    	if (place != null)  
 			    	try {
@@ -227,8 +225,8 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
 		return new DescriptorValue(getSpecification(), getParameterNames(),
 			getParameters(), results, d );
 	}
-	protected IMolecule getAminoGroupSubstituents(IAtomContainer ac,int natom) throws CDKException {
-        IMolecule aminogroup_subst = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+	protected IAtomContainer getAminoGroupSubstituents(IAtomContainer ac,int natom) throws CDKException {
+        IAtomContainer aminogroup_subst = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
         List<IAtom> neighbors = ac.getConnectedAtomsList(ac.getAtom(natom));
         
         for (int i=0; i< ac.getAtomCount();i++) {
@@ -266,11 +264,11 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                 aminogroup_subst.addBond(newBond);
             }
         }
-        IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(aminogroup_subst);
-        IMolecule m = null;
+        IAtomContainerSet  s = ConnectivityChecker.partitionIntoMolecules(aminogroup_subst);
+        IAtomContainer m = null;
         int size = 0;
-        for (int i=0; i < s.getMoleculeCount();i++) {
-            IMolecule a = s.getMolecule(i);
+        for (int i=0; i < s.getAtomContainerCount();i++) {
+            IAtomContainer a = s.getAtomContainer(i);
             int asize = 0;
             
             for (int j=0; j < a.getAtomCount();j++)

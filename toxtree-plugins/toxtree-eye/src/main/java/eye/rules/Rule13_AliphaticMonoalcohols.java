@@ -27,8 +27,8 @@ import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
@@ -75,13 +75,13 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 			logger.info(getID());
 			int r = smartsPattern.hasSMARTSPattern(mol);
 			if (r == 0) return false;
-			IMoleculeSet chains = extractChains(mol, smartsPattern.getUniqueMatchingAtoms(mol));
+			IAtomContainerSet chains = extractChains(mol, smartsPattern.getUniqueMatchingAtoms(mol));
 			
 			int longchains = 0;
 			int allchains = 0;
-			for (int i=0; i < chains.getMoleculeCount(); i++) 
+			for (int i=0; i < chains.getAtomContainerCount(); i++) 
 				try {
-					int count = countChain(chains.getMolecule(i));
+					int count = countChain(chains.getAtomContainer(i));
 					if (count == 0) continue;
 					allchains++;
 					if ((count >=getMinChainLength()) && (count <=getMaxChainLength()))
@@ -97,7 +97,7 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
     		throw x;
     	}
 	}
-	protected int countChain(IMolecule m) throws DecisionMethodException {
+	protected int countChain(IAtomContainer m) throws DecisionMethodException {
 		int count = 0;
 		for (int j=0; j < m.getAtomCount();j++) {
 			if (m.getAtom(j).getFlag(CDKConstants.ISAROMATIC)) {
@@ -124,7 +124,7 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 	protected int getMaxChainLength() {
 		return 11;
 	}
-	protected IMoleculeSet extractChains(IAtomContainer mol, List<List<Integer>> matchedAtoms) throws DecisionMethodException {
+	protected IAtomContainerSet extractChains(IAtomContainer mol, List<List<Integer>> matchedAtoms) throws DecisionMethodException {
 
 		try {
 			IAtomContainer newmol = (IAtomContainer) mol.clone();

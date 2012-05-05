@@ -108,7 +108,7 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 				else
 					return new MyIteratingMDLReader(new FileInputStream(file.getFile()),SilentChemObjectBuilder.getInstance());
 			else if (fname.endsWith(extensions[SMI_INDEX])) 
-				return new IteratingSMILESReader(new FileInputStream(file.getFile()));
+				return new IteratingSMILESReader(new FileInputStream(file.getFile()),SilentChemObjectBuilder.getInstance());
 			else if (fname.endsWith(extensions[CSV_INDEX]))
 				return new IteratingDelimitedFileReader(new FileInputStream(file.getFile()));
 			else if (fname.endsWith(extensions[TXT_INDEX]))

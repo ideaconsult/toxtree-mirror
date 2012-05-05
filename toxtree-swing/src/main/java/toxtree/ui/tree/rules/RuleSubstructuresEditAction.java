@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
 
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
@@ -53,7 +53,7 @@ public class RuleSubstructuresEditAction extends RuleMoleculeEditAction {
 	/**
 	 * @param molecule
 	 */
-	public RuleSubstructuresEditAction(IMolecule molecule) {
+	public RuleSubstructuresEditAction(IAtomContainer molecule) {
 		this(molecule,"New substructures");
 
 	}
@@ -62,7 +62,7 @@ public class RuleSubstructuresEditAction extends RuleMoleculeEditAction {
 	 * @param molecule
 	 * @param arg0
 	 */
-	public RuleSubstructuresEditAction(IMolecule molecule, String arg0) {
+	public RuleSubstructuresEditAction(IAtomContainer molecule, String arg0) {
 		this(molecule, arg0,null);
 	}
 
@@ -71,7 +71,7 @@ public class RuleSubstructuresEditAction extends RuleMoleculeEditAction {
 	 * @param arg0
 	 * @param arg1
 	 */
-	public RuleSubstructuresEditAction(IMolecule molecule, String arg0, Icon arg1) {
+	public RuleSubstructuresEditAction(IAtomContainer molecule, String arg0, Icon arg1) {
 		super(molecule, arg0, arg1);
 		putValue(SHORT_DESCRIPTION, "Draw new substructure");
 		setModal(true);
@@ -82,7 +82,7 @@ public class RuleSubstructuresEditAction extends RuleMoleculeEditAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			if (createNewMolecule) {
-				IMolecule m = new org.openscience.cdk.Molecule();
+				IAtomContainer m = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
 				m.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
 				setMolecule(m);
 			}
@@ -91,7 +91,7 @@ public class RuleSubstructuresEditAction extends RuleMoleculeEditAction {
 			
 	}
     @Override
-    protected void updateMolecule(IMolecule mol) {
+    protected void updateMolecule(IAtomContainer mol) {
         super.updateMolecule(mol);
         if (rule instanceof IRuleSubstructures)  {
             IAtomContainer a = getMolecule();

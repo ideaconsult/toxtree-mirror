@@ -23,7 +23,7 @@ package sicret.test;
 
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
@@ -81,7 +81,7 @@ public class SicretRulesTest extends RulesTestCase {
 	}*/
 
 	/*
-	 * Class under test for int classify(IMolecule)
+	 * Class under test for int classify(IAtomContainer)
 	 */
 	public void testClassifyMolecule() {
 		IAtomContainer mol = FunctionalGroups.createAtomContainer("Nc1ccc3c(c1)Cc2cc(ccc23)Br",true);
@@ -99,9 +99,9 @@ public class SicretRulesTest extends RulesTestCase {
 
 	}
 
-    protected IMolecule getMolecule(String smiles) {
+    protected IAtomContainer getMolecule(String smiles) {
         try {
-        	IMolecule mol = gen.parseSmiles(smiles);
+        	IAtomContainer mol = gen.parseSmiles(smiles);
             MolAnalyser.analyse(mol);
             return mol;
 	    } catch (InvalidSmilesException x ) {

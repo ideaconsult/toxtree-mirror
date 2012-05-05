@@ -16,7 +16,6 @@ import org.openscience.cdk.inchi.InChIToStructure;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.CMLWriter;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -165,7 +164,7 @@ public class   MetabolyteRecycler implements PropertyChangeListener {
 			result.setProperty("Created by SMARTCyp metabolite prediction",products.getID());	
 			
         	if (sdg == null) sdg = new StructureDiagramGenerator();
-               sdg.setMolecule((IMolecule)result);
+               sdg.setMolecule((IAtomContainer)result);
                try {
                 sdg.generateCoordinates(new Vector2d(0,1));
                 result = sdg.getMolecule();

@@ -6,7 +6,6 @@ import joelib.molecule.JOEMol;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
@@ -27,7 +26,7 @@ public class DescriptorMolarRefractivity implements IMolecularDescriptor {
 	
 	public DescriptorValue calculate(IAtomContainer arg0)  {
 		try {
-			JOEMol converted = Convertor.convert((IMolecule)arg0);
+			JOEMol converted = Convertor.convert((IAtomContainer)arg0);
 	        return new DescriptorValue(getSpecification(), 
 	        		getParameterNames(), getParameters(),
 	                new DoubleResult(mr.getDoubleValue(converted)), names);

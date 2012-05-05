@@ -26,11 +26,10 @@ package toxTree.test.tree.rules;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.exception.InvalidSmilesException;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -78,7 +77,7 @@ public class RuleAllSubstructuresTest extends TestCase {
 	public void testRule() {
 		RuleAllSubstructures rule = new RuleAllSubstructures();
 		rule.addSubstructure(MoleculeFactory.makeAlkane(3));
-		IMolecule mol = MoleculeFactory.makeAlkane(20);
+		IAtomContainer mol = MoleculeFactory.makeAlkane(20);
 		try {
 			assertTrue(rule.verifyRule(mol));
 		} catch (DecisionMethodException x) {
@@ -111,7 +110,7 @@ public class RuleAllSubstructuresTest extends TestCase {
 		try {
 			RuleAllSubstructures rule1 = new RuleAllSubstructures();
 			rule1.addSubstructure(MoleculeFactory.makeAlkane(3));
-			Molecule q = MoleculeFactory.makeBenzene();
+			IAtomContainer q = MoleculeFactory.makeBenzene();
 			logger.debug("\nSubstructure is aromatic\t");
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(q);
 
