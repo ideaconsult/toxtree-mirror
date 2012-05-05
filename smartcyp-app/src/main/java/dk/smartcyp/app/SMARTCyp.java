@@ -13,10 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemFile;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.io.ISimpleChemObjectReader;
@@ -101,13 +101,13 @@ public class SMARTCyp {
 		
 		// Read in structures/molecules
 		System.out.println("\n ************** Reading molecule structures **************");
-		MoleculeSet moleculeSet = SMARTCypMain.readInStructures(filenames, SMARTSnEnergiesTable);
+		IAtomContainerSet moleculeSet = SMARTCypMain.readInStructures(filenames, SMARTSnEnergiesTable);
 
 
 
 		MoleculeKU moleculeKU;
-		for(int moleculeIndex = 0; moleculeIndex < moleculeSet.getMoleculeCount(); moleculeIndex++){
-			moleculeKU = (MoleculeKU) moleculeSet.getMolecule(moleculeIndex);
+		for(int moleculeIndex = 0; moleculeIndex < moleculeSet.getAtomContainerCount(); moleculeIndex++){
+			moleculeKU = (MoleculeKU) moleculeSet.getAtomContainer(moleculeIndex);
 
 			System.out.println("\n ************** Matching SMARTS to assign Energies **************");
 			moleculeKU.assignAtomEnergies(SMARTSnEnergiesTable);	
@@ -121,7 +121,7 @@ public class SMARTCyp {
 		}
 
 		//don't print csv if there are no molecules in the input
-		if (moleculeSet.getMoleculeCount()>0){
+		if (moleculeSet.getAtomContainerCount()>0){
 			if (nocsv==0){
 				// Write results as CSV
 				System.out.println("\n ************** Writing Results as CSV **************");
@@ -156,9 +156,9 @@ public class SMARTCyp {
 
 	// Reads the molecule infiles
 	// Stores MoleculeKUs and AtomKUs
-	public static MoleculeSet readInStructures(String[] inFileNames, HashMap<String, SMARTSData> SMARTSnEnergiesTable) throws CloneNotSupportedException, CDKException{
+	public static IAtomContainerSet readInStructures(String[] inFileNames, HashMap<String, SMARTSData> SMARTSnEnergiesTable) throws CloneNotSupportedException, CDKException{
 
-		MoleculeSet moleculeSet = new MoleculeSet();
+		IAtomContainerSet moleculeSet = SilentChemObjectBuilder.getInstance().newInstance(IAtomContainerSet.class);
 
 
 		List<IAtomContainer> moleculeList;
@@ -222,7 +222,7 @@ public class SMARTCyp {
 						CDKHueckelAromaticityDetector.detectAromaticity(iAtomContainer); 	
 							
 						moleculeKU = new MoleculeKU(iAtomContainer, SMARTSnEnergiesTable);	
-						moleculeSet.addMolecule(moleculeKU);
+						moleculeSet.addAtomContainer(moleculeKU);
 						moleculeKU.setID(Integer.toString(highestMoleculeID));
 						//set the molecule title in the moleculeKU object
 						if (iAtomContainer.getProperty("SMIdbNAME")!="" && iAtomContainer.getProperty("SMIdbNAME")!=null) {

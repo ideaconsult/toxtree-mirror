@@ -5,13 +5,13 @@
   <parent>
     <artifactId>smartcyp</artifactId>
     <groupId>dk.smartcyp</groupId>
-    <version>1.5.9-SNAPSHOT</version>
+    <version>1.6.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>dk.smartcyp</groupId>
   <artifactId>smartcyp-core</artifactId>
   <name>SMARTCyp core classes</name>
-  <version>1.5.9-SNAPSHOT</version>
+  <version>1.6.0-SNAPSHOT</version>
 <dependencies>
 	<dependency>
 	  <groupId>org.openscience.cdk</groupId>

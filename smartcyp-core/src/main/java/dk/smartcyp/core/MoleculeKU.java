@@ -13,11 +13,10 @@ import org.openscience.cdk.graph.invariant.EquivalentClassPartitioner;
 import org.openscience.cdk.graph.matrix.AdjacencyMatrix;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.silent.AtomContainer;
 import org.openscience.cdk.smiles.smarts.SMARTSQueryTool;
 
-public class MoleculeKU extends AtomContainer implements IMolecule {
+public class MoleculeKU extends AtomContainer {
 
 	public enum SMARTCYP_PROPERTY {
 		SymmetryNumber,
