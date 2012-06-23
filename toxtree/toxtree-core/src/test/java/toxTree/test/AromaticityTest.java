@@ -37,13 +37,14 @@ import org.openscience.cdk.interfaces.IBond.Order;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
+import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 
-import ambit2.core.smiles.DeduceBondSystemTool;
+
 
 /**
  * Test for some peculiarities of aromaticity detection in CDK
@@ -69,29 +70,32 @@ public class AromaticityTest extends TestCase {
 
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
 			boolean b = CDKHueckelAromaticityDetector.detectAromaticity(m);
-
+			/*
 			for (int i=0; i<m.getBondCount();i++) {
 				System.out.print("order "+m.getBond(i).getOrder());
 				if (m.getBond(i).getFlag(CDKConstants.ISAROMATIC))
 				System.out.print("\taromatic");
 				System.out.println();
 			}
+			*/
 
 			assertTrue(b);
-	        DeduceBondSystemTool dbst = new DeduceBondSystemTool();
-	        m = dbst.fixAromaticBondOrders(m);				
+	        FixBondOrdersTool dbst = new FixBondOrdersTool();
+	        m = dbst.kekuliseAromaticRings(m);				
 			String s = sg.createSMILES(m);
-			System.out.println(s);
+			//System.out.println(s);
 		
 			IMolecule m1 = p.parseSmiles(s);
 			
 			b = CDKHueckelAromaticityDetector.detectAromaticity(m);
 			
+			/*
 			for (int i=0; i<m1.getBondCount();i++) {
 				System.out.println("order "+m1.getBond(i).getOrder());
 				if (m1.getBond(i).getFlag(CDKConstants.ISAROMATIC))
 				System.out.println("\taromatic");
 			}
+			*/
 			
 			assertTrue(b);
 			
@@ -114,8 +118,8 @@ public class AromaticityTest extends TestCase {
     	
         boolean b = CDKHueckelAromaticityDetector.detectAromaticity(m);
         assertTrue(b);
-        DeduceBondSystemTool dbst = new DeduceBondSystemTool();
-        IMolecule m1 = dbst.fixAromaticBondOrders(m);
+        FixBondOrdersTool dbst = new FixBondOrdersTool();
+        IMolecule m1 = dbst.kekuliseAromaticRings(m);
         int single_bonds = 0;
         int double_bonds = 0;
         int aromatic_bonds = 0;
