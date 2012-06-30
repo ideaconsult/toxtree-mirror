@@ -33,8 +33,9 @@ import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.base.processors.search.AbstractFinder;
 import ambit2.namestructure.Name2StructureFinder;
-import ambit2.pubchem.EntrezSearchProcessor;
-import ambit2.pubchem.PubchemFinder;
+import ambit2.pubchem.rest.PUGRestRequest;
+import ambit2.pubchem.rest.PUGRestRequest.COMPOUND_DOMAIN_INPUT;
+import ambit2.pubchem.rest.PubChemRestFinder;
 import ambit2.search.AllSourcesFinder;
 import ambit2.search.chemidplus.ChemIdPlusRequest;
 import ambit2.search.csls.CSLSStringRequest;
@@ -101,11 +102,21 @@ public class Find extends AbstractRule {
 		IProcessor p;
 		IProcessor<String,String> request;
 		switch (searchSite) {
-		case PUBCHEM: {
-			p = new PubchemFinder(profile,mode);
-			le =  new LiteratureEntry("PubChem",EntrezSearchProcessor.entrezURL);
+		case PUBCHEM_CID: {
+			p = new PubChemRestFinder(profile,mode,COMPOUND_DOMAIN_INPUT.cid);
+			le =  new LiteratureEntry("PubChem",PUGRestRequest.PUGREST_URL);
 			break;
 		}
+		case PUBCHEM_NAME: {
+			p = new PubChemRestFinder(profile,mode,COMPOUND_DOMAIN_INPUT.name);
+			le =  new LiteratureEntry("PubChem",PUGRestRequest.PUGREST_URL);
+			break;
+		}
+		case PUBCHEM_INCHIKEY: {
+			p = new PubChemRestFinder(profile,mode,COMPOUND_DOMAIN_INPUT.inchikey);
+			le =  new LiteratureEntry("PubChem",PUGRestRequest.PUGREST_URL);
+			break;
+		}		
 		case OPENTOX: {
 			request = new OpenToxRequest(searchSite.getURI());
 			p = new AllSourcesFinder(profile,request,mode);
