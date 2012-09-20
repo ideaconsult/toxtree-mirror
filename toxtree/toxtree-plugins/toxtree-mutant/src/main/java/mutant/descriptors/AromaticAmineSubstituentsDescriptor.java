@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.DefaultChemObjectBuilder;
-import org.openscience.cdk.PseudoAtom;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
@@ -411,7 +410,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                         List<IAtom> neighbors = m.getConnectedAtomsList(m.getAtom(j));
                         for (int i=0; i < neighbors.size(); i++) {
                             IAtom n = neighbors.get(i); 
-                            if ((n instanceof PseudoAtom) || (H.equals(n.getSymbol()))) continue;
+                            if ((n instanceof IPseudoAtom) || (H.equals(n.getSymbol()))) continue;
                             else order = order + 1;
                             System.out.print('\t');                            
                             System.out.print(neighbors.get(i).getSymbol());
@@ -438,7 +437,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                     double order = 0; 
                     for (int i=0; i < neighbors.size(); i++) {
                         IAtom n = neighbors.get(i); 
-                        if ((n instanceof PseudoAtom) || (H.equals(n.getSymbol()))) continue;
+                        if ((n instanceof IPseudoAtom) || (H.equals(n.getSymbol()))) continue;
                         else order = order + 100;
                         Object ringsizes = n.getProperty(CDKConstants.RING_SIZES);
                         //penalty for an extended aromatic system as a substituent 
@@ -463,7 +462,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
 	                    } else {
 	                        double p = 0;
 	                        for (int n=0; n< m.getAtomCount();n++) {
-	                            if (m.getAtom(n) instanceof PseudoAtom) continue;
+	                            if (m.getAtom(n) instanceof IPseudoAtom) continue;
 	                            else if (!H.equals(m.getAtom(n).getSymbol()))
 	                                p += 10;
 	                            if (N.equals(m.getAtom(n).getSymbol()))

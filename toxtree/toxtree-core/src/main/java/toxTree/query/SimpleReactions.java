@@ -31,7 +31,6 @@ import java.util.List;
 
 import org.openscience.cdk.AtomContainerSet;
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.PseudoAtom;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtom;
@@ -45,6 +44,7 @@ import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IChemSequence;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IPseudoAtom;
 import org.openscience.cdk.interfaces.IReaction;
 import org.openscience.cdk.interfaces.IReactionSet;
 import org.openscience.cdk.io.CMLReader;
@@ -572,7 +572,7 @@ public class SimpleReactions {
 		
 		for (int i = 0; i < container.getAtomCount(); i++) {
 			IAtom atom = container.getAtom(i);
-			if (atom instanceof PseudoAtom) {
+			if (atom instanceof IPseudoAtom) {
 				InverseSymbolSetQueryAtom a = new InverseSymbolSetQueryAtom();
 				// a.setSymbol(atoms[i].getSymbol());
 				// a.setAtomTypeName(atoms[i].getAtomTypeName());
@@ -585,8 +585,8 @@ public class SimpleReactions {
 		boolean onlyRXbonds = true;
 		for (int i = 0; i < container.getBondCount(); i++) {
 			IBond bond = container.getBond(i);
-			if (!(bond.getAtom(0) instanceof PseudoAtom)
-					&& !(bond.getAtom(1) instanceof PseudoAtom)) {
+			if (!(bond.getAtom(0) instanceof IPseudoAtom)
+					&& !(bond.getAtom(1) instanceof IPseudoAtom)) {
 				onlyRXbonds = false; // a bond between two defined atoms
 				break;
 			}
@@ -594,8 +594,8 @@ public class SimpleReactions {
 
 		for (int i = 0; i < container.getBondCount(); i++) {
 			IBond bond = container.getBond(i);
-			boolean anyBond = (bond.getAtom(0) instanceof PseudoAtom)
-					|| (bond.getAtom(1) instanceof PseudoAtom);
+			boolean anyBond = (bond.getAtom(0) instanceof IPseudoAtom)
+					|| (bond.getAtom(1) instanceof IPseudoAtom);
 			int index1 = container.getAtomNumber(bond.getAtom(0));
 			int index2 = container.getAtomNumber(bond.getAtom(1));
 			IQueryAtom atom1 = (IQueryAtom) queryContainer.getAtom(index1);
