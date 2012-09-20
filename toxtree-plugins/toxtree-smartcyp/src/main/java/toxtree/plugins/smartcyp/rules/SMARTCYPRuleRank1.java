@@ -4,9 +4,9 @@ import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.interfaces.IPseudoAtom;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
-import org.openscience.cdk.silent.PseudoAtom;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
@@ -60,8 +60,8 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 			
 			boolean calculated = false;
 			for (IAtom atom: mol.atoms())
-				if ((atom instanceof PseudoAtom) || (atom instanceof org.openscience.cdk.PseudoAtom)) 
-					throw new DecisionMethodException(String.format("PseudoAtoms are not supported! %s",atom.getSymbol()));
+				if (atom instanceof IPseudoAtom) 
+					throw new DecisionMethodException(String.format("IPseudoAtoms are not supported! %s",atom.getSymbol()));
 				else	
 				if (SMARTCYP_PROPERTY.Accessibility.getNumber(atom)!=null) {
 					calculated=true;
