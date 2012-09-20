@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.PseudoAtom;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.exception.CDKException;
@@ -16,6 +17,7 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IPseudoAtom;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
@@ -69,7 +71,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
 		super(aromaticAmine(FunctionalGroups.RING_NUMBERING));
 		setDescriptorNames(new String[] {MR,"LSTM","B1STM","B5STM"});
 		try {
-			lookup = new MoleculesFile(Tools.getFileFromResource("substituents.sdf"),SilentChemObjectBuilder.getInstance());
+			lookup = new MoleculesFile(Tools.getFileFromResource("substituents.sdf"),DefaultChemObjectBuilder.getInstance());
             fusedrings_patterns = new Object[][] {
                     {AromAmine,new Boolean(true),new SmartsPatternCDK("Nc1c(~[*,#1])c(~[*,#1])c(~[*,#1])c(~[*,#1])c1(~[*,#1])")},                    
                     {MR,new Double(0.8),new SmartsPatternCDK("[cR2,cR3](:c)(:c)(:c)")},                    
@@ -233,7 +235,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         
         for (int i=0; i< ac.getAtomCount();i++) {
             IAtom a = ac.getAtom(i);
-            if (a instanceof PseudoAtom) continue;
+            if (a instanceof IPseudoAtom) continue;
             if (i==natom) continue;
             aminogroup_subst.addAtom(a);
         }
@@ -244,7 +246,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
             boolean addBond = true;
             for (int i=0; i< b.getAtomCount();i++) {
                 IAtom a = b.getAtom(i);
-                if (a instanceof PseudoAtom) {
+                if (a instanceof IPseudoAtom) {
                     addBond = false;
                     break;
                 }
@@ -252,7 +254,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                     addBond = false;
                     IAtom r = MoleculeTools.newPseudoAtom(SilentChemObjectBuilder.getInstance(),R);
                     aminogroup_subst.addAtom(r);
-                    IAtom otherAtom = b.getAtom((i+1) % b.getAtomCount());
+                    IAtom otherAtom = b.getConnectedAtom(a);
                     aminogroup_subst.addBond(
                     		MoleculeTools.newBond(SilentChemObjectBuilder.getInstance(),
                             otherAtom, r, b.getOrder()));
