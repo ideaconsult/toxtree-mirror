@@ -47,6 +47,7 @@ import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.AllRingsFinder;
 import org.openscience.cdk.ringsearch.SSSRFinder;
+import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
@@ -55,6 +56,7 @@ import org.openscience.cdk.tools.periodictable.PeriodicTable;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.logging.TTLogger;
 import ambit2.base.config.Preferences;
+import ambit2.core.data.MoleculeTools;
 
 
 /**
@@ -78,6 +80,17 @@ public class MolAnalyser {
     protected MolAnalyser() {
         super();
     }
+    
+	public static void printBuilders(IAtomContainer mol) {
+		System.out.println("mol builder "+ mol.getBuilder().getClass().getName());
+		for (IBond bond: mol.bonds()) 
+			System.out.println(String.format("%s bond builder %s",bond.getOrder(),bond.getBuilder().getClass().getName()));	
+		
+		for (IAtom atom: mol.atoms()) 
+			System.out.println(String.format("%s %s implicit H %d atom builder %s",atom.getSymbol(),atom.getAtomTypeName(),atom.getImplicitHydrogenCount(),atom.getBuilder().getClass().getName()));	
+
+
+	}
     
     public static void analyse(IAtomContainer mol) throws MolAnalyseException {
     	
@@ -107,7 +120,7 @@ public class MolAnalyser {
 	        //adding hydrogens
 	        CDKHydrogenAdder h = CDKHydrogenAdder.getInstance(mol.getBuilder());
 	        
-        	if (mol instanceof IMolecule) {
+        	if (mol instanceof IAtomContainer) {
                 try {
     	            h.addImplicitHydrogens(mol);
     	            logger.debug("Adding implicit hydrogens; atom count "+mol.getAtomCount());
@@ -121,14 +134,16 @@ public class MolAnalyser {
                 }
         	} else {
         		IMoleculeSet moleculeSet = ConnectivityChecker.partitionIntoMolecules(mol);
-        	      
+        	    IMolecule m = MoleculeTools.newMolecule(mol.getBuilder());  
         	      for (int k = 0; k < moleculeSet.getMoleculeCount(); k++) {
         	    	  IMolecule molPart = moleculeSet.getMolecule(k);
       		          h.addImplicitHydrogens(molPart);
       		          logger.debug("Adding implicit hydrogens; atom count "+molPart.getAtomCount());
     		          AtomContainerManipulator.convertImplicitToExplicitHydrogens(molPart);
-    		          logger.debug("Convert explicit hydrogens; atom count "+molPart.getAtomCount());    		          
+    		          logger.debug("Convert explicit hydrogens; atom count "+molPart.getAtomCount());
+    		          m.add(molPart);
         	      }
+        	      mol = m;
         	}
         	atoms = mol.atoms().iterator();
 	        while (atoms.hasNext()) {
