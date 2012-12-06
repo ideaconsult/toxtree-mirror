@@ -1,0 +1,332 @@
+iss2_340
+csCF1100/12201114282D
+
+ 18 19  0  0  0  0  0  0  0  0999 V2000
+    2.8856   -3.2939    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9609   -1.4292    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0970   -2.7495    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    2.6542   -1.1434    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    1.9873   -2.3003    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    0.6533   -2.3003    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -1.1434    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.6533    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9873    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5998   -4.5870    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9409   -0.5308    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2540   -3.4164    0.0000 S   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3973   -2.7495    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.7304   -1.5925    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    7.0643   -3.8928    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    7.5543   -2.0825    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5543   -0.7486    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    8.6977   -2.7495    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+  1  5  1  0        0
+  1  3  1  0        0
+  1 10  2  0        0
+  2  4  1  0        0
+  2  3  1  0        0
+  2 11  2  0        0
+  3 12  1  0        0
+  4  5  1  0        0
+  4  9  1  0        0
+  5  6  1  0        0
+  6  7  1  0        0
+  7  8  2  0        0
+  8  9  1  0        0
+ 12 13  1  0        0
+ 13 14  1  0        0
+ 13 15  1  0        0
+ 13 16  1  0        0
+ 16 17  1  0        0
+ 16 18  1  0        0
+M  END
+>  <MolfileName> (1)
+iss2_340
+
+>  <cdk_Title> (1)
+iss2_340
+
+>  <Substance ID> (1)
+iss2_340
+
+>  <Molecular_Weight> (1)
+349.1
+
+>  <FW_iss2> (1)
+349.1
+
+>  <Parent_Atom_Count> (1)
+18.0
+
+>  <Parent_Molecular_Weight> (1)
+349.1
+
+>  <Rotatable_Bonds> (1)
+3.0
+
+>  <Hydrogen_Bond_Acceptors> (1)
+2.0
+
+>  <Polar_Surface_Area> (1)
+37.38
+
+>  <Lipinski_Score> (1)
+0.0
+
+>  <Canc_iss2> (1)
+3
+
+>  <ALogP> (1)
+3.52
+
+>  <Hydrogen_Bond_Donors> (1)
+0.0
+
+>  <ChemName_iss2> (1)
+Captafol
+
+>  <SMILES_iss2> (1)
+C12C(C(=O)N(C1=O)SC(C(Cl)Cl)(Cl)Cl)C\C=C/C2
+
+>  <SAL_iss2> (1)
+1
+
+>  <CAS_iss2> (1)
+2425-06-1
+
+>  <Formula_iss2> (1)
+C10H9Cl4NO2S
+
+>  <Structural Alert for genotoxic carcinogenicity> (1)
+YES
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (1)
+YES
+
+>  <SA42_nogen> (1)
+NO
+
+>  <SA47_nogen> (1)
+NO
+
+>  <SA44_nogen> (1)
+NO
+
+>  <SA41_nogen> (1)
+NO
+
+>  <SA49_nogen> (1)
+NO
+
+>  <SA46_nogen> (1)
+NO
+
+>  <SA43_nogen> (1)
+NO
+
+>  <SA40_nogen> (1)
+NO
+
+>  <SA48_nogen> (1)
+NO
+
+>  <SA45_nogen> (1)
+NO
+
+>  <SA38_gen> (1)
+NO
+
+>  <SA50_nogen> (1)
+YES
+
+>  <SA55_nogen> (1)
+NO
+
+>  <SA52_nogen> (1)
+NO
+
+>  <SA54_nogen> (1)
+NO
+
+>  <SA51_nogen> (1)
+NO
+
+>  <SA56_nogen> (1)
+NO
+
+>  <SA53_nogen> (1)
+NO
+
+>  <SA39_gen_and_nogen> (1)
+NO
+
+>  <SA37_gen> (1)
+NO
+
+$$$$
+iss2_715
+csCF1100/12201114282D
+
+ 18 19  0  0  0  0  0  0  0  0999 V2000
+    6.5895   -4.5694    0.0000 S   0  0  0  0  0  0  0  0  0  0  0  0
+    6.5895   -5.9001    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.4512   -3.8960    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    6.5895   -7.2309    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    5.2588   -5.9001    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    7.9203   -5.9001    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    5.3069   -2.5813    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.2327   -4.4411    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3010   -1.6835    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0082   -2.2927    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    3.9441   -5.7398    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3349   -3.4471    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    3.3349   -1.1544    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0041   -3.4471    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0041   -1.1544    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3468   -2.2927    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.8580   -1.2826    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8859   -4.6977    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  1  3  1  0        0
+  2  4  1  0        0
+  2  5  1  0        0
+  2  6  1  0        0
+  3  7  1  0        0
+  3  8  1  0        0
+  7  9  2  0        0
+  7 10  1  0        0
+  8 11  2  0        0
+  8 12  1  0        0
+ 10 12  1  0        0
+ 10 13  1  6        0
+ 10 17  1  1        0
+ 12 14  1  6        0
+ 12 18  1  1        0
+ 13 15  1  0        0
+ 14 16  1  0        0
+ 15 16  2  0        0
+M  END
+>  <MolfileName> (2)
+iss2_715
+
+>  <cdk_Title> (2)
+iss2_715
+
+>  <Substance ID> (2)
+iss2_715
+
+>  <Molecular_Weight> (2)
+300.6
+
+>  <FW_iss2> (2)
+300.6
+
+>  <Parent_Atom_Count> (2)
+16.0
+
+>  <Parent_Molecular_Weight> (2)
+300.6
+
+>  <Rotatable_Bonds> (2)
+2.0
+
+>  <Hydrogen_Bond_Acceptors> (2)
+2.0
+
+>  <Polar_Surface_Area> (2)
+37.38
+
+>  <Lipinski_Score> (2)
+0.0
+
+>  <Canc_iss2> (2)
+3
+
+>  <ALogP> (2)
+2.91
+
+>  <Hydrogen_Bond_Donors> (2)
+0.0
+
+>  <ChemName_iss2> (2)
+Captan 
+
+>  <SMILES_iss2> (2)
+O=C1N(C(=O)C2C1CC=CC2)SC(Cl)(Cl)Cl
+
+>  <SAL_iss2> (2)
+3
+
+>  <CAS_iss2> (2)
+133-06-2
+
+>  <Formula_iss2> (2)
+C9H8Cl3NO2S
+
+>  <Structural Alert for genotoxic carcinogenicity> (2)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (2)
+YES
+
+>  <SA42_nogen> (2)
+NO
+
+>  <SA47_nogen> (2)
+NO
+
+>  <SA44_nogen> (2)
+NO
+
+>  <SA41_nogen> (2)
+NO
+
+>  <SA49_nogen> (2)
+NO
+
+>  <SA46_nogen> (2)
+NO
+
+>  <SA43_nogen> (2)
+NO
+
+>  <SA40_nogen> (2)
+NO
+
+>  <SA48_nogen> (2)
+NO
+
+>  <SA45_nogen> (2)
+NO
+
+>  <SA38_gen> (2)
+NO
+
+>  <SA50_nogen> (2)
+YES
+
+>  <SA55_nogen> (2)
+NO
+
+>  <SA52_nogen> (2)
+NO
+
+>  <SA54_nogen> (2)
+NO
+
+>  <SA51_nogen> (2)
+NO
+
+>  <SA56_nogen> (2)
+YES
+
+>  <SA53_nogen> (2)
+NO
+
+>  <SA39_gen_and_nogen> (2)
+NO
+
+>  <SA37_gen> (2)
+NO
+
+$$$$

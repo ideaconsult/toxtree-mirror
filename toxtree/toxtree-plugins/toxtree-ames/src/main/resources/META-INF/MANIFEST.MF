@@ -1,0 +1,10 @@
+Manifest-version: ${project.version}
+Specification-Title: Ames mutagenicity rulebase by ISS
+Specification-Version: ${project.version}
+Specification-Vendor: Ideaconsult LTD
+Implementation-Title: Classes implementing Ames test mutagenicity by ISS
+Implementation-Version: ${project.version}
+Implementation-Vendor: ISS and Ideaconsult LTD
+Package-Title: toxtree.plugins.ames
+Package-Version: ${project.version}
+Package-Vendor: ISS andIdeaconsult LTD

@@ -33,6 +33,7 @@
     <module>toxtree-proteinbinding</module>
     <module>toxtree-dnabinding</module>
     <module>toxtree-moa</module>
+    <module>toxtree-ames</module>
   </modules>
   <dependencies>
   	<dependency>
