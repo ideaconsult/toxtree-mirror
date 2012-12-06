@@ -1,0 +1,313 @@
+iss2_493
+csCF1100/12201114012D
+
+ 13 14  0  0  0  0  0  0  0  0999 V2000
+    0.6585    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9883    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9883   -2.3049    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.6585   -2.3049    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.6595   -1.1524    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -1.1524    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9892   -1.1524    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6478    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6487   -1.1524    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9775   -2.3049    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9775    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6478   -2.3049    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9892   -3.4573    0.0000 O   0  5  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0        0
+  1  6  1  0        0
+  2  5  1  0        0
+  3  4  1  0        0
+  3  5  2  0        0
+  4  6  2  0        0
+  5  7  1  0        0
+  7  8  2  0        0
+  7 12  1  0        0
+  8 11  1  0        0
+  9 10  1  0        0
+  9 11  2  0        0
+ 10 12  2  0        0
+ 12 13  1  0        0
+M  CHG  1  13  -1
+M  END
+>  <MolfileName> (1)
+iss2_493
+
+>  <cdk_Title> (1)
+iss2_493
+
+>  <Substance ID> (1)
+iss2_493
+
+>  <Molecular_Weight> (1)
+169.2
+
+>  <FW_iss2> (1)
+169.2
+
+>  <Parent_Atom_Count> (1)
+13.0
+
+>  <Parent_Molecular_Weight> (1)
+170.2
+
+>  <Rotatable_Bonds> (1)
+1.0
+
+>  <Hydrogen_Bond_Acceptors> (1)
+1.0
+
+>  <Polar_Surface_Area> (1)
+20.23
+
+>  <Lipinski_Score> (1)
+0.0
+
+>  <Canc_iss2> (1)
+3
+
+>  <ALogP> (1)
+3.06
+
+>  <Hydrogen_Bond_Donors> (1)
+0.0
+
+>  <ChemName_iss2> (1)
+Sodium ortho-phenylphenate
+
+>  <SMILES_iss2> (1)
+[Na+].[O-]c1ccccc1c2ccccc2
+
+>  <SAL_iss2> (1)
+1
+
+>  <CAS_iss2> (1)
+132-27-4
+
+>  <Formula_iss2> (1)
+C12H9O
+
+>  <Structural Alert for genotoxic carcinogenicity> (1)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (1)
+YES
+
+>  <SA42_nogen> (1)
+NO
+
+>  <SA47_nogen> (1)
+YES
+
+>  <SA44_nogen> (1)
+NO
+
+>  <SA41_nogen> (1)
+NO
+
+>  <SA49_nogen> (1)
+NO
+
+>  <SA46_nogen> (1)
+NO
+
+>  <SA43_nogen> (1)
+NO
+
+>  <SA40_nogen> (1)
+NO
+
+>  <SA48_nogen> (1)
+NO
+
+>  <SA45_nogen> (1)
+NO
+
+>  <SA38_gen> (1)
+NO
+
+>  <SA50_nogen> (1)
+NO
+
+>  <SA55_nogen> (1)
+NO
+
+>  <SA52_nogen> (1)
+NO
+
+>  <SA54_nogen> (1)
+NO
+
+>  <SA51_nogen> (1)
+NO
+
+>  <SA56_nogen> (1)
+NO
+
+>  <SA53_nogen> (1)
+NO
+
+>  <SA39_gen_and_nogen> (1)
+NO
+
+>  <SA37_gen> (1)
+NO
+
+$$$$
+iss2_495
+csCF1100/12201114012D
+
+ 13 14  0  0  0  0  0  0  0  0999 V2000
+    0.0000   -1.1531    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.6716    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.6611   -1.1531    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0021   -2.3062    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0021    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.6716   -2.3062    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.6611   -3.4467    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9916   -1.1531    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6632    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6526   -1.1531    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9937   -2.3062    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9937    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6632   -2.3062    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0        0
+  1  6  1  0        0
+  2  5  1  0        0
+  3  4  1  0        0
+  3  5  2  0        0
+  3  8  1  0        0
+  4  6  2  0        0
+  4  7  1  0        0
+  8  9  2  0        0
+  8 13  1  0        0
+  9 12  1  0        0
+ 10 11  1  0        0
+ 10 12  2  0        0
+ 11 13  2  0        0
+M  END
+>  <MolfileName> (2)
+iss2_495
+
+>  <cdk_Title> (2)
+iss2_495
+
+>  <Substance ID> (2)
+iss2_495
+
+>  <Molecular_Weight> (2)
+170.2
+
+>  <FW_iss2> (2)
+170.2
+
+>  <Parent_Atom_Count> (2)
+13.0
+
+>  <Parent_Molecular_Weight> (2)
+170.2
+
+>  <Rotatable_Bonds> (2)
+1.0
+
+>  <Hydrogen_Bond_Acceptors> (2)
+1.0
+
+>  <Polar_Surface_Area> (2)
+20.23
+
+>  <Lipinski_Score> (2)
+0.0
+
+>  <Canc_iss2> (2)
+3
+
+>  <ALogP> (2)
+3.06
+
+>  <Hydrogen_Bond_Donors> (2)
+1.0
+
+>  <ChemName_iss2> (2)
+Phenylphenol
+
+>  <SMILES_iss2> (2)
+OC1=C(C=CC=C1)C2=CC=CC=C2
+
+>  <SAL_iss2> (2)
+3
+
+>  <CAS_iss2> (2)
+90-43-7
+
+>  <Formula_iss2> (2)
+C12H10O
+
+>  <Structural Alert for genotoxic carcinogenicity> (2)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (2)
+YES
+
+>  <SA42_nogen> (2)
+NO
+
+>  <SA47_nogen> (2)
+YES
+
+>  <SA44_nogen> (2)
+NO
+
+>  <SA41_nogen> (2)
+NO
+
+>  <SA49_nogen> (2)
+NO
+
+>  <SA46_nogen> (2)
+NO
+
+>  <SA43_nogen> (2)
+NO
+
+>  <SA40_nogen> (2)
+NO
+
+>  <SA48_nogen> (2)
+NO
+
+>  <SA45_nogen> (2)
+NO
+
+>  <SA38_gen> (2)
+NO
+
+>  <SA50_nogen> (2)
+NO
+
+>  <SA55_nogen> (2)
+NO
+
+>  <SA52_nogen> (2)
+NO
+
+>  <SA54_nogen> (2)
+NO
+
+>  <SA51_nogen> (2)
+NO
+
+>  <SA56_nogen> (2)
+NO
+
+>  <SA53_nogen> (2)
+NO
+
+>  <SA39_gen_and_nogen> (2)
+NO
+
+>  <SA37_gen> (2)
+NO
+
+$$$$

@@ -1,0 +1,651 @@
+iss2_433
+csCF1100/12191114302D
+
+ 16 16  0  0  0  0  0  0  0  0999 V2000
+    1.9950   -5.7562    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.6735   -5.7562    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -4.6126    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.6735   -3.4563    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9950   -3.4563    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.6684   -4.6126    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -6.9125    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    2.6684   -2.2999    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9899   -2.2999    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.3242   -2.2999    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9899   -0.9784    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9899   -3.6342    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9849   -3.4563    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9849   -1.1563    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3191   -1.1563    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.9799    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0        0
+  1  6  1  0        0
+  2  3  1  0        0
+  2  7  1  0        0
+  3  4  2  0        0
+  4  5  1  0        0
+  5  6  2  0        0
+  5  8  1  0        0
+  8  9  1  0        0
+  9 10  1  0        0
+  9 11  1  0        0
+  9 12  1  0        0
+ 10 13  2  0        0
+ 10 14  1  0        0
+ 14 15  1  0        0
+ 15 16  1  0        0
+M  END
+>  <MolfileName> (1)
+iss2_433
+
+>  <cdk_Title> (1)
+iss2_433
+
+>  <Substance ID> (1)
+iss2_433
+
+>  <Molecular_Weight> (1)
+242.7
+
+>  <FW_iss2> (1)
+242.7
+
+>  <Parent_Atom_Count> (1)
+16.0
+
+>  <Parent_Molecular_Weight> (1)
+242.7
+
+>  <Rotatable_Bonds> (1)
+5.0
+
+>  <Hydrogen_Bond_Acceptors> (1)
+2.0
+
+>  <Polar_Surface_Area> (1)
+35.53
+
+>  <Lipinski_Score> (1)
+0.0
+
+>  <Canc_iss2> (1)
+3
+
+>  <ALogP> (1)
+3.06
+
+>  <Hydrogen_Bond_Donors> (1)
+0.0
+
+>  <ChemName_iss2> (1)
+Ethyl 2-(4-chlorophenoxy)-2-methylpropionate
+
+>  <SMILES_iss2> (1)
+CC(OC1=CC=C(C=C1)Cl)(C(=O)OCC)C
+
+>  <SAL_iss2> (1)
+1
+
+>  <CAS_iss2> (1)
+637-07-0
+
+>  <Formula_iss2> (1)
+C12H15ClO3
+
+>  <Structural Alert for genotoxic carcinogenicity> (1)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (1)
+YES
+
+>  <SA42_nogen> (1)
+NO
+
+>  <SA47_nogen> (1)
+NO
+
+>  <SA44_nogen> (1)
+NO
+
+>  <SA41_nogen> (1)
+NO
+
+>  <SA49_nogen> (1)
+NO
+
+>  <SA46_nogen> (1)
+NO
+
+>  <SA43_nogen> (1)
+NO
+
+>  <SA40_nogen> (1)
+YES
+
+>  <SA48_nogen> (1)
+NO
+
+>  <SA45_nogen> (1)
+NO
+
+>  <SA38_gen> (1)
+NO
+
+>  <SA50_nogen> (1)
+NO
+
+>  <SA55_nogen> (1)
+NO
+
+>  <SA52_nogen> (1)
+NO
+
+>  <SA54_nogen> (1)
+NO
+
+>  <SA51_nogen> (1)
+NO
+
+>  <SA56_nogen> (1)
+NO
+
+>  <SA53_nogen> (1)
+NO
+
+>  <SA39_gen_and_nogen> (1)
+NO
+
+>  <SA37_gen> (1)
+NO
+
+$$$$
+iss2_828
+csCF1100/12191114302D
+
+ 18 19  0  0  0  0  0  0  0  0999 V2000
+   10.7602   -3.1958    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    9.4474   -2.9698    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.2961   -2.3027    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    6.9618   -2.3027    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.2947   -3.4540    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9712   -3.4540    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3041   -2.3027    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9712   -1.1513    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.2947   -1.1513    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.9698   -2.3027    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3027   -1.1513    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1513   -1.8185    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1513   -3.1420    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -1.1513    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.6355    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4540   -0.4842    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.4474   -1.6355    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.9955   -4.2180    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  2  3  1  0        0
+  2 17  1  0        0
+  2 18  1  0        0
+  3  4  1  0        0
+  3 17  1  0        0
+  4  5  2  0        0
+  4  9  1  0        0
+  5  6  1  0        0
+  6  7  2  0        0
+  7  8  1  0        0
+  7 10  1  0        0
+  8  9  2  0        0
+ 10 11  1  0        0
+ 11 12  1  0        0
+ 11 15  1  0        0
+ 11 16  1  0        0
+ 12 13  2  0        0
+ 12 14  1  0        0
+M  END
+>  <MolfileName> (2)
+iss2_828
+
+>  <cdk_Title> (2)
+iss2_828
+
+>  <Substance ID> (2)
+iss2_828
+
+>  <Molecular_Weight> (2)
+289.2
+
+>  <FW_iss2> (2)
+289.2
+
+>  <Parent_Atom_Count> (2)
+18.0
+
+>  <Parent_Molecular_Weight> (2)
+289.2
+
+>  <Rotatable_Bonds> (2)
+4.0
+
+>  <Hydrogen_Bond_Acceptors> (2)
+3.0
+
+>  <Polar_Surface_Area> (2)
+46.53
+
+>  <Lipinski_Score> (2)
+0.0
+
+>  <Canc_iss2> (2)
+3
+
+>  <ALogP> (2)
+3.59
+
+>  <Hydrogen_Bond_Donors> (2)
+0.0
+
+>  <ChemName_iss2> (2)
+Ciprofibrate
+
+>  <SMILES_iss2> (2)
+ClC1(C(C2=CC=C(C=C2)OC(C(=O)O)(C)C)C1)Cl
+
+>  <SAL_iss2> (2)
+ND
+
+>  <CAS_iss2> (2)
+52214-84-3
+
+>  <Formula_iss2> (2)
+C13H14Cl2O3
+
+>  <Structural Alert for genotoxic carcinogenicity> (2)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (2)
+YES
+
+>  <SA42_nogen> (2)
+NO
+
+>  <SA47_nogen> (2)
+NO
+
+>  <SA44_nogen> (2)
+NO
+
+>  <SA41_nogen> (2)
+NO
+
+>  <SA49_nogen> (2)
+NO
+
+>  <SA46_nogen> (2)
+NO
+
+>  <SA43_nogen> (2)
+NO
+
+>  <SA40_nogen> (2)
+YES
+
+>  <SA48_nogen> (2)
+NO
+
+>  <SA45_nogen> (2)
+NO
+
+>  <SA38_gen> (2)
+NO
+
+>  <SA50_nogen> (2)
+NO
+
+>  <SA55_nogen> (2)
+NO
+
+>  <SA52_nogen> (2)
+NO
+
+>  <SA54_nogen> (2)
+NO
+
+>  <SA51_nogen> (2)
+NO
+
+>  <SA56_nogen> (2)
+NO
+
+>  <SA53_nogen> (2)
+NO
+
+>  <SA39_gen_and_nogen> (2)
+NO
+
+>  <SA37_gen> (2)
+NO
+
+$$$$
+iss2_852
+csCF1100/12191114302D
+
+ 17 17  0  0  0  0  0  0  0  0999 V2000
+    3.9876    0.0000    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    3.3290   -1.1496    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9876   -2.3111    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3290   -3.4607    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9998   -3.4607    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3292   -2.3111    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9998   -1.1496    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -2.3111    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    5.3168   -2.3111    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9874   -3.4607    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3166   -3.4607    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.9872   -4.6103    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.9872   -2.3111    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    9.3164   -2.3111    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.9750   -3.4607    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3042   -3.4607    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.9748   -4.6103    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  2  3  2  0        0
+  2  7  1  0        0
+  3  4  1  0        0
+  3  9  1  0        0
+  4  5  2  0        0
+  5  6  1  0        0
+  6  7  2  0        0
+  6  8  1  0        0
+  9 10  1  0        0
+ 10 11  1  0        0
+ 11 12  2  0        0
+ 11 13  1  0        0
+ 13 14  1  0        0
+ 14 15  1  0        0
+ 15 16  1  0        0
+ 16 17  1  0        0
+M  END
+>  <MolfileName> (3)
+iss2_852
+
+>  <cdk_Title> (3)
+iss2_852
+
+>  <Substance ID> (3)
+iss2_852
+
+>  <Molecular_Weight> (3)
+277.1
+
+>  <FW_iss2> (3)
+277.1
+
+>  <Parent_Atom_Count> (3)
+17.0
+
+>  <Parent_Molecular_Weight> (3)
+277.1
+
+>  <Rotatable_Bonds> (3)
+7.0
+
+>  <Hydrogen_Bond_Acceptors> (3)
+2.0
+
+>  <Polar_Surface_Area> (3)
+35.53
+
+>  <Lipinski_Score> (3)
+0.0
+
+>  <Canc_iss2> (3)
+1
+
+>  <ALogP> (3)
+3.72
+
+>  <Hydrogen_Bond_Donors> (3)
+0.0
+
+>  <ChemName_iss2> (3)
+2,4-Dichlorophenoxyacetic acid, n-butyl ester
+
+>  <SMILES_iss2> (3)
+ClC1=C(C=CC(=C1)Cl)OCC(=O)OCCCC
+
+>  <SAL_iss2> (3)
+ND
+
+>  <CAS_iss2> (3)
+94-80-4
+
+>  <Formula_iss2> (3)
+C12H14Cl2O3
+
+>  <Structural Alert for genotoxic carcinogenicity> (3)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (3)
+YES
+
+>  <SA42_nogen> (3)
+NO
+
+>  <SA47_nogen> (3)
+NO
+
+>  <SA44_nogen> (3)
+NO
+
+>  <SA41_nogen> (3)
+NO
+
+>  <SA49_nogen> (3)
+NO
+
+>  <SA46_nogen> (3)
+NO
+
+>  <SA43_nogen> (3)
+NO
+
+>  <SA40_nogen> (3)
+YES
+
+>  <SA48_nogen> (3)
+NO
+
+>  <SA45_nogen> (3)
+NO
+
+>  <SA38_gen> (3)
+NO
+
+>  <SA50_nogen> (3)
+NO
+
+>  <SA55_nogen> (3)
+NO
+
+>  <SA52_nogen> (3)
+NO
+
+>  <SA54_nogen> (3)
+NO
+
+>  <SA51_nogen> (3)
+NO
+
+>  <SA56_nogen> (3)
+NO
+
+>  <SA53_nogen> (3)
+NO
+
+>  <SA39_gen_and_nogen> (3)
+NO
+
+>  <SA37_gen> (3)
+NO
+
+$$$$
+iss2_853
+csCF1100/12191114302D
+
+ 16 16  0  0  0  0  0  0  0  0999 V2000
+    2.3019   -3.9920    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    2.3019   -2.6648    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1510   -2.0012    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1510   -0.6636    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3019    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4529   -0.6636    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4529   -2.0012    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6038   -2.6648    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.7651   -2.0012    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.9161   -2.6648    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.9161   -3.9920    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    8.0670   -2.0012    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2180   -2.6648    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3689   -2.0012    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2180   -3.9920    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  2  3  2  0        0
+  2  7  1  0        0
+  3  4  1  0        0
+  4  5  2  0        0
+  4 16  1  0        0
+  5  6  1  0        0
+  6  7  2  0        0
+  7  8  1  0        0
+  8  9  1  0        0
+  9 10  1  0        0
+ 10 11  2  0        0
+ 10 12  1  0        0
+ 12 13  1  0        0
+ 13 14  1  0        0
+ 13 15  1  0        0
+M  END
+>  <MolfileName> (4)
+iss2_853
+
+>  <cdk_Title> (4)
+iss2_853
+
+>  <Substance ID> (4)
+iss2_853
+
+>  <Molecular_Weight> (4)
+263.1
+
+>  <FW_iss2> (4)
+263.1
+
+>  <Parent_Atom_Count> (4)
+16.0
+
+>  <Parent_Molecular_Weight> (4)
+263.1
+
+>  <Rotatable_Bonds> (4)
+5.0
+
+>  <Hydrogen_Bond_Acceptors> (4)
+2.0
+
+>  <Polar_Surface_Area> (4)
+35.53
+
+>  <Lipinski_Score> (4)
+0.0
+
+>  <Canc_iss2> (4)
+1
+
+>  <ALogP> (4)
+3.32
+
+>  <Hydrogen_Bond_Donors> (4)
+0.0
+
+>  <ChemName_iss2> (4)
+2,4-Dichlorophenoxyacetic acid,isopropyl ester
+
+>  <SMILES_iss2> (4)
+ClC1=CC(=CC=C1OCC(=O)OC(C)C)Cl
+
+>  <SAL_iss2> (4)
+1
+
+>  <CAS_iss2> (4)
+94-11-1
+
+>  <Formula_iss2> (4)
+C11H12Cl2O3
+
+>  <Structural Alert for genotoxic carcinogenicity> (4)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (4)
+YES
+
+>  <SA42_nogen> (4)
+NO
+
+>  <SA47_nogen> (4)
+NO
+
+>  <SA44_nogen> (4)
+NO
+
+>  <SA41_nogen> (4)
+NO
+
+>  <SA49_nogen> (4)
+NO
+
+>  <SA46_nogen> (4)
+NO
+
+>  <SA43_nogen> (4)
+NO
+
+>  <SA40_nogen> (4)
+YES
+
+>  <SA48_nogen> (4)
+NO
+
+>  <SA45_nogen> (4)
+NO
+
+>  <SA38_gen> (4)
+NO
+
+>  <SA50_nogen> (4)
+NO
+
+>  <SA55_nogen> (4)
+NO
+
+>  <SA52_nogen> (4)
+NO
+
+>  <SA54_nogen> (4)
+NO
+
+>  <SA51_nogen> (4)
+NO
+
+>  <SA56_nogen> (4)
+NO
+
+>  <SA53_nogen> (4)
+NO
+
+>  <SA39_gen_and_nogen> (4)
+NO
+
+>  <SA37_gen> (4)
+NO
+
+$$$$

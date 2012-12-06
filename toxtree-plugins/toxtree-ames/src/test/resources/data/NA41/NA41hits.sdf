@@ -1,0 +1,3668 @@
+iss2_52
+csCF1100/12191115032D
+
+ 26 25  0  0  0  0  0  0  0  0999 V2000
+    0.0000   -5.9763    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -4.6497    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1463   -3.9928    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1463   -2.6662    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3055   -1.9964    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    3.4518   -2.6662    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5981   -1.9964    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.7445   -2.6662    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.7445   -3.9928    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    6.9037   -1.9964    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.0500   -2.6662    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1963   -1.9964    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3555   -2.6662    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.5018   -1.9964    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.5018   -0.6698    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   12.6481   -2.6662    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   13.7944   -1.9964    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   14.9536   -2.6662    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+   16.0999   -1.9964    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   17.2463   -2.6662    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   18.4055   -1.9964    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   19.5518   -2.6662    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3055   -0.6698    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1463    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   14.9536   -3.9928    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.7944   -4.6497    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  2  3  1  0        0
+  3  4  1  0        0
+  4  5  1  0        0
+  5  6  1  0        0
+  5 23  1  0        0
+  6  7  1  0        0
+  7  8  1  0        0
+  8  9  2  0        0
+  8 10  1  0        0
+ 10 11  1  0        0
+ 11 12  1  0        0
+ 12 13  1  0        0
+ 13 14  1  0        0
+ 14 15  2  0        0
+ 14 16  1  0        0
+ 16 17  1  0        0
+ 17 18  1  0        0
+ 18 19  1  0        0
+ 18 25  1  0        0
+ 19 20  1  0        0
+ 20 21  1  0        0
+ 21 22  1  0        0
+ 23 24  1  0        0
+ 25 26  1  0        0
+M  END
+>  <MolfileName> (1)
+iss2_52
+
+>  <Polar_Surface_Area> (1)
+52.6
+
+>  <SA11_NEW> (1)
+NO
+
+>  <SA10> (1)
+NO
+
+>  <SA11> (1)
+NO
+
+>  <SA12> (1)
+NO
+
+>  <SA21_NEW> (1)
+NO
+
+>  <SA6_NEW> (1)
+NO
+
+>  <SA20_NEW> (1)
+NO
+
+>  <Canc_iss2> (1)
+3
+
+>  <Formula_iss2> (1)
+C22H42O4
+
+>  <SA28ter> (1)
+NO
+
+>  <Alerts> (1)
+YES
+
+>  <Alerts_nongenotoxic_> (1)
+YES
+
+>  <SA18> (1)
+NO
+
+>  <SA17> (1)
+NO
+
+>  <SA19> (1)
+NO
+
+>  <SA15_NEW> (1)
+NO
+
+>  <SA14> (1)
+NO
+
+>  <SA13> (1)
+NO
+
+>  <Substance ID> (1)
+iss2_52
+
+>  <SA10_NEW> (1)
+NO
+
+>  <SA16> (1)
+NO
+
+>  <Parent_Atom_Count> (1)
+26.0
+
+>  <SA15> (1)
+NO
+
+>  <SA9_NEW> (1)
+NO
+
+>  <SA28bis> (1)
+NO
+
+>  <SA14_NEW> (1)
+NO
+
+>  <SA8_NEW> (1)
+NO
+
+>  <SA12_NEW> (1)
+NO
+
+>  <Nongenotoxic alert_> (1)
+NO
+
+>  <SA5> (1)
+NO
+
+>  <SA17_NEW> (1)
+NO
+
+>  <SA4> (1)
+NO
+
+>  <SA3> (1)
+NO
+
+>  <SA2> (1)
+NO
+
+>  <SMILES_iss2> (1)
+CCC(COC(=O)CCCCC(=O)OCC(CCCC)CC)CCCC
+
+>  <SA1> (1)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (1)
+2.0
+
+>  <SA2_NEW> (1)
+YES
+
+>  <Molecular_Weight> (1)
+370.6
+
+>  <SA9> (1)
+NO
+
+>  <SA8> (1)
+NO
+
+>  <SA7> (1)
+NO
+
+>  <ChemName_iss2> (1)
+Di-(2-Ethylhexyl) Adipate
+
+>  <SA6> (1)
+NO
+
+>  <SA5_NEW> (1)
+NO
+
+>  <Lipinski_Score> (1)
+1.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (1)
+YES
+
+>  <Rotatable_Bonds> (1)
+19.0
+
+>  <SA13_NEW> (1)
+NO
+
+>  <SA7_NEW> (1)
+NO
+
+>  <SAL_iss2> (1)
+1
+
+>  <New Non Genotoxic_explanation> (1)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10N,Any alert?N,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWY,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWN,SA18_NEWN,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (1)
+0.0
+
+>  <CAS_iss2> (1)
+103-23-1
+
+>  <SA31a> (1)
+NO
+
+>  <SA31c> (1)
+NO
+
+>  <SA3_NEW> (1)
+YES
+
+>  <SA31b> (1)
+NO
+
+>  <SA30> (1)
+NO
+
+>  <SA4_NEW> (1)
+NO
+
+>  <SA24> (1)
+NO
+
+>  <SA25> (1)
+NO
+
+>  <SA26> (1)
+NO
+
+>  <SA27> (1)
+NO
+
+>  <SA28> (1)
+NO
+
+>  <SA29> (1)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (1)
+NO
+
+>  <ALogP> (1)
+6.07
+
+>  <Title> (1)
+iss2_52
+
+>  <SA19_NEW> (1)
+NO
+
+>  <Parent_Molecular_Weight> (1)
+370.6
+
+>  <SA1_NEW> (1)
+NO
+
+>  <SA16_NEW> (1)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (1)
+NO
+
+>  <SA18_NEW> (1)
+NO
+
+>  <FW_iss2> (1)
+370.6
+
+>  <SA21> (1)
+NO
+
+>  <SA20> (1)
+NO
+
+>  <SA23> (1)
+NO
+
+>  <SA22> (1)
+NO
+
+>  <Any alert_> (1)
+NO
+
+$$$$
+iss2_53
+csCF1100/12191115032D
+
+ 28 28  0  0  0  0  0  0  0  0999 V2000
+    2.2667   -5.5898    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.2581   -4.3380    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4496   -6.2900    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4310   -3.6225    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5184   -2.3136    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.5542   -7.5970    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3399   -5.7367    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3282   -4.1642    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.7987   -8.1172    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.7562   -1.7771    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.0852   -6.2640    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.0678   -3.6795    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9774   -7.9739    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    5.9354   -1.9056    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    6.2483   -3.3341    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.2733   -6.5412    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6834   -0.8842    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.0944   -8.6513    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6899    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2873   -8.6986    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.9419   -1.0213    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.2045   -8.0419    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -4.3014    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0091   -5.6565    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2636   -6.1923    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2364   -3.6707    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3973   -8.0892    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.9484   -0.1371    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0        0
+  1  3  1  0        0
+  1 11  1  0        0
+  2  4  1  0        0
+  2 12  1  0        0
+  3  6  1  0        0
+  3  7  2  0        0
+  4  5  1  0        0
+  4  8  2  0        0
+  5 10  1  0        0
+  6  9  1  0        0
+  9 13  1  0        0
+ 10 14  1  0        0
+ 11 24  2  0        0
+ 12 23  2  0        0
+ 13 16  1  0        0
+ 13 18  1  0        0
+ 14 15  1  0        0
+ 14 17  1  0        0
+ 15 26  1  0        0
+ 16 25  1  0        0
+ 17 21  1  0        0
+ 18 22  1  0        0
+ 19 21  1  0        0
+ 19 28  1  0        0
+ 20 22  1  0        0
+ 20 27  1  0        0
+ 23 24  1  0        0
+M  END
+>  <MolfileName> (2)
+iss2_53
+
+>  <Polar_Surface_Area> (2)
+52.6
+
+>  <SA11_NEW> (2)
+NO
+
+>  <SA10> (2)
+NO
+
+>  <SA11> (2)
+NO
+
+>  <SA12> (2)
+NO
+
+>  <SA21_NEW> (2)
+NO
+
+>  <SA6_NEW> (2)
+NO
+
+>  <SA20_NEW> (2)
+NO
+
+>  <Canc_iss2> (2)
+3
+
+>  <Formula_iss2> (2)
+C24H38O4
+
+>  <SA28ter> (2)
+NO
+
+>  <Alerts> (2)
+YES
+
+>  <Alerts_nongenotoxic_> (2)
+YES
+
+>  <SA18> (2)
+NO
+
+>  <SA17> (2)
+NO
+
+>  <SA19> (2)
+NO
+
+>  <SA15_NEW> (2)
+NO
+
+>  <SA14> (2)
+NO
+
+>  <SA13> (2)
+NO
+
+>  <Substance ID> (2)
+iss2_53
+
+>  <SA10_NEW> (2)
+NO
+
+>  <SA16> (2)
+NO
+
+>  <Parent_Atom_Count> (2)
+28.0
+
+>  <SA15> (2)
+NO
+
+>  <SA9_NEW> (2)
+NO
+
+>  <SA28bis> (2)
+NO
+
+>  <SA14_NEW> (2)
+NO
+
+>  <SA8_NEW> (2)
+NO
+
+>  <SA12_NEW> (2)
+NO
+
+>  <Nongenotoxic alert_> (2)
+NO
+
+>  <SA5> (2)
+NO
+
+>  <SA17_NEW> (2)
+NO
+
+>  <SA4> (2)
+NO
+
+>  <SA3> (2)
+NO
+
+>  <SA2> (2)
+NO
+
+>  <SMILES_iss2> (2)
+O=C(C1=C(C=CC=C1)C(=O)OCC(CCCC)CC)OCC(CCCC)CC
+
+>  <SA1> (2)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (2)
+2.0
+
+>  <SA2_NEW> (2)
+YES
+
+>  <Molecular_Weight> (2)
+390.6
+
+>  <SA9> (2)
+NO
+
+>  <SA8> (2)
+NO
+
+>  <SA7> (2)
+NO
+
+>  <ChemName_iss2> (2)
+bis(2-Ethylhexyl) Phthalate 
+
+>  <SA6> (2)
+NO
+
+>  <SA5_NEW> (2)
+NO
+
+>  <Lipinski_Score> (2)
+1.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (2)
+YES
+
+>  <Rotatable_Bonds> (2)
+16.0
+
+>  <SA13_NEW> (2)
+NO
+
+>  <SA7_NEW> (2)
+NO
+
+>  <SAL_iss2> (2)
+1
+
+>  <New Non Genotoxic_explanation> (2)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10N,Any alert?N,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWY,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWN,SA18_NEWN,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (2)
+0.0
+
+>  <CAS_iss2> (2)
+117-81-7
+
+>  <SA31a> (2)
+NO
+
+>  <SA31c> (2)
+NO
+
+>  <SA3_NEW> (2)
+YES
+
+>  <SA31b> (2)
+NO
+
+>  <SA30> (2)
+NO
+
+>  <SA4_NEW> (2)
+NO
+
+>  <SA24> (2)
+NO
+
+>  <SA25> (2)
+NO
+
+>  <SA26> (2)
+NO
+
+>  <SA27> (2)
+NO
+
+>  <SA28> (2)
+NO
+
+>  <SA29> (2)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (2)
+NO
+
+>  <ALogP> (2)
+6.43
+
+>  <Title> (2)
+iss2_53
+
+>  <SA19_NEW> (2)
+NO
+
+>  <Parent_Molecular_Weight> (2)
+390.6
+
+>  <SA1_NEW> (2)
+NO
+
+>  <SA16_NEW> (2)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (2)
+NO
+
+>  <SA18_NEW> (2)
+NO
+
+>  <FW_iss2> (2)
+390.6
+
+>  <SA21> (2)
+NO
+
+>  <SA20> (2)
+NO
+
+>  <SA23> (2)
+NO
+
+>  <SA22> (2)
+NO
+
+>  <Any alert_> (2)
+NO
+
+$$$$
+iss2_69
+csCF1100/12191115032D
+
+ 29 28  0  0  0  0  0  0  0  0999 V2000
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3330    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9995   -1.1525    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3186   -1.1525    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9851   -2.3050    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    5.3181   -2.3050    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9846   -3.4575    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3176   -3.4575    0.0000 P   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6506   -3.4575    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3186   -3.4575    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9851   -4.6099    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.3032   -4.6099    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6362   -4.6099    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+   11.3027   -3.4575    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.6357   -3.4575    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3022   -2.3050    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   14.6352   -2.3050    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3027   -5.7485    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.6357   -5.7485    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3176   -4.7766    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    6.1651   -5.4431    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.1651   -6.7761    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    5.0126   -7.4426    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0126   -8.7756    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.8601   -9.4420    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.8601  -10.7612    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3176   -7.4426    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.4701   -6.7761    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3176   -2.1245    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  2  3  1  0        0
+  3  4  1  0        0
+  4  5  1  0        0
+  5  6  1  0        0
+  5 10  1  0        0
+  6  7  1  0        0
+  7  8  1  0        0
+  8  9  1  0        0
+  8 20  1  0        0
+  8 29  2  0        0
+  9 12  1  0        0
+ 10 11  1  0        0
+ 12 13  1  0        0
+ 13 14  1  0        0
+ 13 18  1  0        0
+ 14 15  1  0        0
+ 15 16  1  0        0
+ 16 17  1  0        0
+ 18 19  1  0        0
+ 20 21  1  0        0
+ 21 22  1  0        0
+ 22 23  1  0        0
+ 22 27  1  0        0
+ 23 24  1  0        0
+ 24 25  1  0        0
+ 25 26  1  0        0
+ 27 28  1  0        0
+M  END
+>  <MolfileName> (3)
+iss2_69
+
+>  <Polar_Surface_Area> (3)
+44.76
+
+>  <SA11_NEW> (3)
+NO
+
+>  <SA10> (3)
+NO
+
+>  <SA11> (3)
+NO
+
+>  <SA12> (3)
+NO
+
+>  <SA21_NEW> (3)
+NO
+
+>  <SA6_NEW> (3)
+NO
+
+>  <SA20_NEW> (3)
+NO
+
+>  <Canc_iss2> (3)
+3
+
+>  <Formula_iss2> (3)
+C24H51O4P
+
+>  <SA28ter> (3)
+NO
+
+>  <Alerts> (3)
+YES
+
+>  <Alerts_nongenotoxic_> (3)
+YES
+
+>  <SA18> (3)
+NO
+
+>  <SA17> (3)
+NO
+
+>  <SA19> (3)
+NO
+
+>  <SA15_NEW> (3)
+NO
+
+>  <SA14> (3)
+NO
+
+>  <SA13> (3)
+NO
+
+>  <Substance ID> (3)
+iss2_69
+
+>  <SA10_NEW> (3)
+NO
+
+>  <SA16> (3)
+NO
+
+>  <Parent_Atom_Count> (3)
+29.0
+
+>  <SA15> (3)
+NO
+
+>  <SA9_NEW> (3)
+NO
+
+>  <SA28bis> (3)
+NO
+
+>  <SA14_NEW> (3)
+NO
+
+>  <SA8_NEW> (3)
+NO
+
+>  <SA12_NEW> (3)
+NO
+
+>  <Nongenotoxic alert_> (3)
+NO
+
+>  <SA5> (3)
+NO
+
+>  <SA17_NEW> (3)
+NO
+
+>  <SA4> (3)
+NO
+
+>  <SA3> (3)
+NO
+
+>  <SA2> (3)
+NO
+
+>  <SMILES_iss2> (3)
+O=P(OCC(CCCC)CC)(OCC(CCCC)CC)OCC(CCCC)CC
+
+>  <SA1> (3)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (3)
+1.0
+
+>  <SA2_NEW> (3)
+YES
+
+>  <Molecular_Weight> (3)
+434.6
+
+>  <SA9> (3)
+NO
+
+>  <SA8> (3)
+NO
+
+>  <SA7> (3)
+NO
+
+>  <ChemName_iss2> (3)
+Tris(2-Ethylhexyl)phosphate
+
+>  <SA6> (3)
+NO
+
+>  <SA5_NEW> (3)
+NO
+
+>  <Lipinski_Score> (3)
+1.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (3)
+YES
+
+>  <Rotatable_Bonds> (3)
+21.0
+
+>  <SA13_NEW> (3)
+NO
+
+>  <SA7_NEW> (3)
+NO
+
+>  <SAL_iss2> (3)
+1
+
+>  <New Non Genotoxic_explanation> (3)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10N,Any alert?N,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWN,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWN,SA18_NEWN,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (3)
+0.0
+
+>  <CAS_iss2> (3)
+78-42-2
+
+>  <SA31a> (3)
+NO
+
+>  <SA31c> (3)
+NO
+
+>  <SA3_NEW> (3)
+NO
+
+>  <SA31b> (3)
+NO
+
+>  <SA30> (3)
+NO
+
+>  <SA4_NEW> (3)
+NO
+
+>  <SA24> (3)
+NO
+
+>  <SA25> (3)
+NO
+
+>  <SA26> (3)
+NO
+
+>  <SA27> (3)
+NO
+
+>  <SA28> (3)
+NO
+
+>  <SA29> (3)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (3)
+NO
+
+>  <ALogP> (3)
+7.72
+
+>  <Title> (3)
+iss2_69
+
+>  <SA19_NEW> (3)
+NO
+
+>  <Parent_Molecular_Weight> (3)
+434.6
+
+>  <SA1_NEW> (3)
+NO
+
+>  <SA16_NEW> (3)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (3)
+NO
+
+>  <SA18_NEW> (3)
+NO
+
+>  <FW_iss2> (3)
+434.6
+
+>  <SA21> (3)
+NO
+
+>  <SA20> (3)
+NO
+
+>  <SA23> (3)
+NO
+
+>  <SA22> (3)
+NO
+
+>  <Any alert_> (3)
+NO
+
+$$$$
+iss2_77
+csCF1100/12191115032D
+
+ 13 12  0  0  0  0  0  0  0  0999 V2000
+    1.1542   -1.1542    0.0000 S   0  0  0  0  0  0  0  0  0  0  0  0
+    1.8118    0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -0.4966    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.2950   -1.8253    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.4832   -2.3084    0.0000 O   0  5  0  0  0  0  0  0  0  0  0  0
+    3.4492   -1.1542    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6034   -1.8253    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    5.7442   -1.1542    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.8984   -1.8253    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.0526   -1.1542    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1934   -1.8253    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6034   -3.1539    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4492   -3.8116    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0        0
+  1  3  2  0        0
+  1  4  1  0        0
+  1  5  1  0        0
+  4  6  1  0        0
+  6  7  1  0        0
+  7  8  1  0        0
+  7 12  1  0        0
+  8  9  1  0        0
+  9 10  1  0        0
+ 10 11  1  0        0
+ 12 13  1  0        0
+M  CHG  1   5  -1
+M  END
+>  <MolfileName> (4)
+iss2_77
+
+>  <Polar_Surface_Area> (4)
+63.6
+
+>  <SA11_NEW> (4)
+NO
+
+>  <SA10> (4)
+NO
+
+>  <SA11> (4)
+NO
+
+>  <SA12> (4)
+NO
+
+>  <SA21_NEW> (4)
+NO
+
+>  <SA6_NEW> (4)
+NO
+
+>  <SA20_NEW> (4)
+NO
+
+>  <Canc_iss2> (4)
+3
+
+>  <Formula_iss2> (4)
+C8H17O4S
+
+>  <SA28ter> (4)
+NO
+
+>  <Alerts> (4)
+YES
+
+>  <Alerts_nongenotoxic_> (4)
+YES
+
+>  <SA18> (4)
+NO
+
+>  <SA17> (4)
+NO
+
+>  <SA19> (4)
+NO
+
+>  <SA15_NEW> (4)
+NO
+
+>  <SA14> (4)
+NO
+
+>  <SA13> (4)
+NO
+
+>  <Substance ID> (4)
+iss2_77
+
+>  <SA10_NEW> (4)
+NO
+
+>  <SA16> (4)
+NO
+
+>  <Parent_Atom_Count> (4)
+13.0
+
+>  <SA15> (4)
+NO
+
+>  <SA9_NEW> (4)
+NO
+
+>  <SA28bis> (4)
+NO
+
+>  <SA14_NEW> (4)
+NO
+
+>  <SA8_NEW> (4)
+NO
+
+>  <SA12_NEW> (4)
+NO
+
+>  <Nongenotoxic alert_> (4)
+NO
+
+>  <SA5> (4)
+NO
+
+>  <SA17_NEW> (4)
+NO
+
+>  <SA4> (4)
+NO
+
+>  <SA3> (4)
+NO
+
+>  <SA2> (4)
+NO
+
+>  <SMILES_iss2> (4)
+CCCCC(CC)COS(O[Na])(=O)=O
+
+>  <SA1> (4)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (4)
+3.0
+
+>  <SA2_NEW> (4)
+YES
+
+>  <Molecular_Weight> (4)
+209.3
+
+>  <SA9> (4)
+NO
+
+>  <SA8> (4)
+NO
+
+>  <SA7> (4)
+NO
+
+>  <ChemName_iss2> (4)
+Sodium 2-Ethylhexyl Sulfate
+
+>  <SA6> (4)
+NO
+
+>  <SA5_NEW> (4)
+NO
+
+>  <Lipinski_Score> (4)
+0.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (4)
+YES
+
+>  <Rotatable_Bonds> (4)
+7.0
+
+>  <SA13_NEW> (4)
+NO
+
+>  <SA7_NEW> (4)
+NO
+
+>  <SAL_iss2> (4)
+1
+
+>  <New Non Genotoxic_explanation> (4)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10N,Any alert?N,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWN,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWN,SA18_NEWN,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (4)
+0.0
+
+>  <CAS_iss2> (4)
+126-92-1
+
+>  <SA31a> (4)
+NO
+
+>  <SA31c> (4)
+NO
+
+>  <SA3_NEW> (4)
+NO
+
+>  <SA31b> (4)
+NO
+
+>  <SA30> (4)
+NO
+
+>  <SA4_NEW> (4)
+NO
+
+>  <SA24> (4)
+NO
+
+>  <SA25> (4)
+NO
+
+>  <SA26> (4)
+NO
+
+>  <SA27> (4)
+NO
+
+>  <SA28> (4)
+NO
+
+>  <SA29> (4)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (4)
+NO
+
+>  <ALogP> (4)
+2.02
+
+>  <Title> (4)
+iss2_77
+
+>  <SA19_NEW> (4)
+NO
+
+>  <Parent_Molecular_Weight> (4)
+210.3
+
+>  <SA1_NEW> (4)
+NO
+
+>  <SA16_NEW> (4)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (4)
+NO
+
+>  <SA18_NEW> (4)
+NO
+
+>  <FW_iss2> (4)
+209.3
+
+>  <SA21> (4)
+NO
+
+>  <SA20> (4)
+NO
+
+>  <SA23> (4)
+NO
+
+>  <SA22> (4)
+NO
+
+>  <Any alert_> (4)
+NO
+
+$$$$
+iss2_199
+csCF1100/12191115032D
+
+ 29 30  0  0  0  0  0  0  0  0999 V2000
+    5.4553   -3.0181    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    4.4123   -2.4470    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.2475   -2.5657    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.2023   -2.0198    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.0892   -2.2420    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -1.7194    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   14.2660   -3.0274    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9203   -2.7561    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+   12.1458   -2.1063    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+   10.8394   -1.9197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.9253   -2.7473    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    8.7454   -2.3569    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.8279   -3.2637    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0721   -4.5250    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.1791   -4.3597    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.5123   -2.9684    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    6.2471   -4.0809    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.0958   -5.0499    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1424   -4.3818    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.5747   -1.0233    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   12.1177   -2.8703    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   12.6420   -0.7937    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.7749   -0.2832    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.6637    0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   13.9045   -0.7745    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.4007   -3.9013    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   12.5271   -4.8535    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1136   -3.1200    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3589   -1.2468    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  1 16  1  0        0
+  1 15  1  0        0
+  2  3  1  0        0
+  3  4  1  0        0
+  3 28  2  0        0
+  4  5  2  0        0
+  4 29  1  0        0
+  5  6  1  0        0
+  7  8  1  0        0
+  8  9  1  0        0
+  8 26  1  0        0
+  9 10  1  0        0
+  9 21  1  0        0
+  9 22  1  0        0
+ 10 11  1  0        0
+ 10 20  2  0        0
+ 11 12  1  0        0
+ 12 13  1  0        0
+ 13 19  2  0        0
+ 13 16  1  0        0
+ 14 17  1  0        0
+ 14 15  1  0        0
+ 16 17  1  0        0
+ 17 18  1  0        0
+ 18 19  1  0        0
+ 22 23  1  0        0
+ 22 24  1  0        0
+ 22 25  1  0        0
+ 26 27  1  0        0
+M  END
+>  <MolfileName> (5)
+iss2_199
+
+>  <Polar_Surface_Area> (5)
+105.5
+
+>  <SA11_NEW> (5)
+NO
+
+>  <SA10> (5)
+NO
+
+>  <SA11> (5)
+NO
+
+>  <SA12> (5)
+NO
+
+>  <SA21_NEW> (5)
+NO
+
+>  <SA6_NEW> (5)
+NO
+
+>  <SA20_NEW> (5)
+NO
+
+>  <Canc_iss2> (5)
+3
+
+>  <Formula_iss2> (5)
+C21H33NO7
+
+>  <SA28ter> (5)
+NO
+
+>  <Alerts> (5)
+YES
+
+>  <Alerts_nongenotoxic_> (5)
+YES
+
+>  <SA18> (5)
+NO
+
+>  <SA17> (5)
+NO
+
+>  <SA19> (5)
+NO
+
+>  <SA15_NEW> (5)
+NO
+
+>  <SA14> (5)
+NO
+
+>  <SA13> (5)
+NO
+
+>  <Substance ID> (5)
+iss2_199
+
+>  <SA10_NEW> (5)
+NO
+
+>  <SA16> (5)
+NO
+
+>  <Parent_Atom_Count> (5)
+29.0
+
+>  <SA15> (5)
+NO
+
+>  <SA9_NEW> (5)
+NO
+
+>  <SA28bis> (5)
+NO
+
+>  <SA14_NEW> (5)
+NO
+
+>  <SA8_NEW> (5)
+NO
+
+>  <SA12_NEW> (5)
+NO
+
+>  <Nongenotoxic alert_> (5)
+NO
+
+>  <SA5> (5)
+NO
+
+>  <SA17_NEW> (5)
+YES
+
+>  <SA4> (5)
+NO
+
+>  <SA3> (5)
+NO
+
+>  <SA2> (5)
+NO
+
+>  <SMILES_iss2> (5)
+CO[CH](C)[C](O)(C(=O)OCC1=CCN2CC[CH](OC(=O)C(C)=CC)[CH]12)C(C)(C)O
+
+>  <SA1> (5)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (5)
+5.0
+
+>  <SA2_NEW> (5)
+YES
+
+>  <Molecular_Weight> (5)
+411.5
+
+>  <SA9> (5)
+NO
+
+>  <SA8> (5)
+NO
+
+>  <SA7> (5)
+NO
+
+>  <ChemName_iss2> (5)
+Lasiocarpine
+
+>  <SA6> (5)
+NO
+
+>  <SA5_NEW> (5)
+NO
+
+>  <Lipinski_Score> (5)
+0.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (5)
+YES
+
+>  <Rotatable_Bonds> (5)
+10.0
+
+>  <SA13_NEW> (5)
+NO
+
+>  <SA7_NEW> (5)
+NO
+
+>  <SAL_iss2> (5)
+3
+
+>  <New Non Genotoxic_explanation> (5)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10N,Any alert?N,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWN,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWY,SA18_NEWN,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (5)
+2.0
+
+>  <CAS_iss2> (5)
+303-34-4
+
+>  <SA31a> (5)
+NO
+
+>  <SA31c> (5)
+NO
+
+>  <SA3_NEW> (5)
+NO
+
+>  <SA31b> (5)
+NO
+
+>  <SA30> (5)
+NO
+
+>  <SA4_NEW> (5)
+NO
+
+>  <SA24> (5)
+NO
+
+>  <SA25> (5)
+NO
+
+>  <SA26> (5)
+NO
+
+>  <SA27> (5)
+NO
+
+>  <SA28> (5)
+NO
+
+>  <SA29> (5)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (5)
+NO
+
+>  <ALogP> (5)
+0.96
+
+>  <Title> (5)
+iss2_199
+
+>  <SA19_NEW> (5)
+NO
+
+>  <Parent_Molecular_Weight> (5)
+411.5
+
+>  <SA1_NEW> (5)
+NO
+
+>  <SA16_NEW> (5)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (5)
+NO
+
+>  <SA18_NEW> (5)
+NO
+
+>  <FW_iss2> (5)
+411.5
+
+>  <SA21> (5)
+NO
+
+>  <SA20> (5)
+NO
+
+>  <SA23> (5)
+NO
+
+>  <SA22> (5)
+NO
+
+>  <Any alert_> (5)
+NO
+
+$$$$
+iss2_380
+csCF1100/12191115032D
+
+ 42 49  0  0  0  0  0  0  0  0999 V2000
+    4.6717   -3.9362    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    5.4072   -4.9033    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    5.9656   -3.7728    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    3.8818   -4.9714    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.1678   -2.7377    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.1642   -5.8567    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    4.9441   -6.0201    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    6.9872   -4.5628    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    5.9112   -5.7205    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0452   -6.2653    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5878   -4.8079    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8875   -2.5742    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9577   -1.7025    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3742   -6.8918    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    5.0803   -7.0553    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    3.6502   -5.8431    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1176   -3.9090    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5864   -6.7420    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.7807   -6.3470    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.9147   -6.9191    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.0839   -3.5957    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.7979   -5.8431    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3835   -1.3620    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6388   -7.8588    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.2402   -7.8588    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.8036   -3.4323    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.0896   -1.1986    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1735   -0.3405    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    6.2789   -8.9893    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3312   -7.8316    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5864   -8.9893    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.5341   -7.8316    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.2996   -2.2337    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -4.4674    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.5993    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6115  -10.1062    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.2266  -10.1334    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.2517  -11.2367    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3176  -10.0926    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5592  -11.2503    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.5205  -10.1470    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5979  -12.3535    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  1  3  1  0        0
+  1  4  1  0        0
+  1  5  1  0        0
+  2  6  1  0        0
+  2  7  1  0        0
+  3  8  1  0        0
+  3  9  1  0        0
+  4 10  2  0        0
+  4 11  1  0        0
+  5 12  1  0        0
+  5 13  2  0        0
+  6 14  1  0        0
+  6  8  1  0        0
+  7 15  1  0        0
+  7 16  1  0        0
+  8 17  1  0        0
+  9 18  2  0        0
+  9 19  1  0        0
+ 10 20  1  0        0
+ 10 15  1  0        0
+ 11 21  1  0        0
+ 11 22  2  0        0
+ 12 23  1  0        0
+ 12 21  2  0        0
+ 14 24  1  0        0
+ 14 15  1  0        0
+ 14 18  1  0        0
+ 18 25  1  0        0
+ 21 26  1  0        0
+ 23 27  2  0        0
+ 23 28  1  0        0
+ 24 29  1  0        0
+ 24 30  2  0        0
+ 25 31  1  0        0
+ 25 32  2  0        0
+ 26 33  2  0        0
+ 26 34  1  0        0
+ 27 35  1  0        0
+ 27 33  1  0        0
+ 29 36  1  0        0
+ 29 31  2  0        0
+ 31 37  1  0        0
+ 36 38  2  0        0
+ 36 39  1  0        0
+ 37 40  2  0        0
+ 37 41  1  0        0
+ 38 42  1  0        0
+ 38 40  1  0        0
+M  END
+>  <MolfileName> (6)
+iss2_380
+
+>  <Polar_Surface_Area> (6)
+230.1
+
+>  <SA11_NEW> (6)
+NO
+
+>  <SA10> (6)
+YES
+
+>  <SA11> (6)
+NO
+
+>  <SA12> (6)
+NO
+
+>  <SA21_NEW> (6)
+NO
+
+>  <SA6_NEW> (6)
+NO
+
+>  <SA20_NEW> (6)
+NO
+
+>  <Canc_iss2> (6)
+3
+
+>  <Formula_iss2> (6)
+C30H22O12
+
+>  <SA28ter> (6)
+NO
+
+>  <Alerts> (6)
+YES
+
+>  <Alerts_nongenotoxic_> (6)
+YES
+
+>  <SA18> (6)
+NO
+
+>  <SA17> (6)
+NO
+
+>  <SA19> (6)
+NO
+
+>  <SA15_NEW> (6)
+NO
+
+>  <SA14> (6)
+NO
+
+>  <SA13> (6)
+NO
+
+>  <Substance ID> (6)
+iss2_380
+
+>  <SA10_NEW> (6)
+NO
+
+>  <SA16> (6)
+NO
+
+>  <Parent_Atom_Count> (6)
+42.0
+
+>  <SA15> (6)
+NO
+
+>  <SA9_NEW> (6)
+NO
+
+>  <SA28bis> (6)
+NO
+
+>  <SA14_NEW> (6)
+NO
+
+>  <SA8_NEW> (6)
+NO
+
+>  <SA12_NEW> (6)
+NO
+
+>  <Nongenotoxic alert_> (6)
+NO
+
+>  <SA5> (6)
+NO
+
+>  <SA17_NEW> (6)
+NO
+
+>  <SA4> (6)
+NO
+
+>  <SA3> (6)
+NO
+
+>  <SA2> (6)
+NO
+
+>  <SMILES_iss2> (6)
+O=C4c1c(O)c(cc(O)c1C(=O)\C5=C(/O)C7C28C(/C(=O)c3c(C2=O)c(O)c(cc3O)C)=C(/O)C6C(O)C8C(C456)C7O)C
+
+>  <SA1> (6)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (6)
+12.0
+
+>  <SA2_NEW> (6)
+YES
+
+>  <Molecular_Weight> (6)
+574.5
+
+>  <SA9> (6)
+NO
+
+>  <SA8> (6)
+NO
+
+>  <SA7> (6)
+NO
+
+>  <ChemName_iss2> (6)
+Luteoskyrin
+
+>  <SA6> (6)
+NO
+
+>  <SA5_NEW> (6)
+NO
+
+>  <Lipinski_Score> (6)
+3.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (6)
+YES
+
+>  <Rotatable_Bonds> (6)
+0.0
+
+>  <SA13_NEW> (6)
+NO
+
+>  <SA7_NEW> (6)
+NO
+
+>  <SAL_iss2> (6)
+1
+
+>  <New Non Genotoxic_explanation> (6)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10Y,Any alert?Y,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWN,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWN,SA18_NEWY,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (6)
+8.0
+
+>  <CAS_iss2> (6)
+21884-44-6
+
+>  <SA31a> (6)
+NO
+
+>  <SA31c> (6)
+NO
+
+>  <SA3_NEW> (6)
+NO
+
+>  <SA31b> (6)
+NO
+
+>  <SA30> (6)
+NO
+
+>  <SA4_NEW> (6)
+NO
+
+>  <SA24> (6)
+NO
+
+>  <SA25> (6)
+NO
+
+>  <SA26> (6)
+NO
+
+>  <SA27> (6)
+NO
+
+>  <SA28> (6)
+NO
+
+>  <SA29> (6)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (6)
+NO
+
+>  <ALogP> (6)
+1.42
+
+>  <Title> (6)
+iss2_380
+
+>  <SA19_NEW> (6)
+NO
+
+>  <Parent_Molecular_Weight> (6)
+574.5
+
+>  <SA1_NEW> (6)
+NO
+
+>  <SA16_NEW> (6)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (6)
+YES
+
+>  <SA18_NEW> (6)
+YES
+
+>  <FW_iss2> (6)
+574.5
+
+>  <SA21> (6)
+NO
+
+>  <SA20> (6)
+NO
+
+>  <SA23> (6)
+NO
+
+>  <SA22> (6)
+NO
+
+$$$$
+iss2_486
+csCF1100/12191115032D
+
+ 28 29  0  0  0  0  0  0  0  0999 V2000
+    3.7910   -6.2647    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.2641   -7.4795    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.9321   -7.3332    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.8103   -5.3718    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    1.6540   -6.0451    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    0.6733   -5.1523    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2149   -3.9374    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.5322   -4.0691    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    3.4251   -3.0884    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9666   -4.7131    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0937   -5.9866    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9866   -6.9819    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2893   -6.7038    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.0152   -1.8296    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9081   -0.8343    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.7125   -1.5515    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.3027   -0.2781    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.8197   -2.5322    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.6991   -5.4304    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    8.1821   -7.6845    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1089   -4.1716    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.4403   -5.0205    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    8.9579   -5.8402    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2360   -7.1429    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.9532   -4.9620    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    9.4116   -3.8935    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2161   -3.1762    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  4  1  0        0
+  1  2  2  0        0
+  1 11  1  0        0
+  2  3  1  0        0
+  3  5  1  0        0
+  4  5  1  0        0
+  4  8  1  0        0
+  4 10  1  1        0
+  5  6  1  0        0
+  6  7  1  0        0
+  7  8  1  0        0
+  8  9  1  1        0
+  9 14  1  0        0
+ 11 12  1  0        0
+ 12 13  1  0        0
+ 13 19  1  0        0
+ 13 20  2  0        0
+ 14 15  2  0        0
+ 14 16  1  0        0
+ 16 17  2  0        0
+ 16 18  1  0        0
+ 17 24  1  0        0
+ 19 21  1  0        0
+ 19 22  1  0        0
+ 19 23  1  0        0
+ 21 27  1  0        0
+ 21 28  1  0        0
+ 23 25  1  0        0
+ 23 26  1  0        0
+M  END
+>  <MolfileName> (7)
+iss2_486
+
+>  <Polar_Surface_Area> (7)
+96.3
+
+>  <SA11_NEW> (7)
+NO
+
+>  <SA10> (7)
+NO
+
+>  <SA11> (7)
+NO
+
+>  <SA12> (7)
+NO
+
+>  <SA21_NEW> (7)
+NO
+
+>  <SA6_NEW> (7)
+NO
+
+>  <SA20_NEW> (7)
+NO
+
+>  <Canc_iss2> (7)
+3
+
+>  <Formula_iss2> (7)
+C20H31NO6
+
+>  <SA28ter> (7)
+NO
+
+>  <Alerts> (7)
+YES
+
+>  <Alerts_nongenotoxic_> (7)
+YES
+
+>  <SA18> (7)
+NO
+
+>  <SA17> (7)
+NO
+
+>  <SA19> (7)
+NO
+
+>  <SA15_NEW> (7)
+NO
+
+>  <SA14> (7)
+NO
+
+>  <SA13> (7)
+NO
+
+>  <Substance ID> (7)
+iss2_486
+
+>  <SA10_NEW> (7)
+NO
+
+>  <SA16> (7)
+NO
+
+>  <Parent_Atom_Count> (7)
+27.0
+
+>  <SA15> (7)
+NO
+
+>  <SA9_NEW> (7)
+NO
+
+>  <SA28bis> (7)
+NO
+
+>  <SA14_NEW> (7)
+NO
+
+>  <SA8_NEW> (7)
+NO
+
+>  <SA12_NEW> (7)
+NO
+
+>  <Nongenotoxic alert_> (7)
+NO
+
+>  <SA5> (7)
+NO
+
+>  <SA17_NEW> (7)
+YES
+
+>  <SA4> (7)
+NO
+
+>  <SA3> (7)
+NO
+
+>  <SA2> (7)
+NO
+
+>  <SMILES_iss2> (7)
+C/C=C(/C(=O)OC1C2N(C\C=C/2COC(=O)C(C(C)O)(C(C)C)O)CC1)C
+
+>  <SA1> (7)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (7)
+4.0
+
+>  <SA2_NEW> (7)
+YES
+
+>  <Molecular_Weight> (7)
+381.5
+
+>  <SA9> (7)
+NO
+
+>  <SA8> (7)
+NO
+
+>  <SA7> (7)
+NO
+
+>  <ChemName_iss2> (7)
+Symphytine
+
+>  <SA6> (7)
+NO
+
+>  <SA5_NEW> (7)
+NO
+
+>  <Lipinski_Score> (7)
+0.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (7)
+YES
+
+>  <Rotatable_Bonds> (7)
+9.0
+
+>  <SA13_NEW> (7)
+NO
+
+>  <SA7_NEW> (7)
+NO
+
+>  <SAL_iss2> (7)
+ND
+
+>  <New Non Genotoxic_explanation> (7)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10N,Any alert?N,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWN,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWY,SA18_NEWN,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (7)
+2.0
+
+>  <CAS_iss2> (7)
+22571-95-5
+
+>  <SA31a> (7)
+NO
+
+>  <SA31c> (7)
+NO
+
+>  <SA3_NEW> (7)
+NO
+
+>  <SA31b> (7)
+NO
+
+>  <SA30> (7)
+NO
+
+>  <SA4_NEW> (7)
+NO
+
+>  <SA24> (7)
+NO
+
+>  <SA25> (7)
+NO
+
+>  <SA26> (7)
+NO
+
+>  <SA27> (7)
+NO
+
+>  <SA28> (7)
+NO
+
+>  <SA29> (7)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (7)
+NO
+
+>  <ALogP> (7)
+1.19
+
+>  <Title> (7)
+iss2_486
+
+>  <SA19_NEW> (7)
+NO
+
+>  <Parent_Molecular_Weight> (7)
+381.5
+
+>  <SA1_NEW> (7)
+NO
+
+>  <SA16_NEW> (7)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (7)
+NO
+
+>  <SA18_NEW> (7)
+NO
+
+>  <FW_iss2> (7)
+381.5
+
+>  <SA21> (7)
+NO
+
+>  <SA20> (7)
+NO
+
+>  <SA23> (7)
+NO
+
+>  <SA22> (7)
+NO
+
+>  <Any alert_> (7)
+NO
+
+$$$$
+iss2_532
+csCF1100/12191115032D
+
+ 67 71  0  0  0  0  0  0  0  0999 V2000
+    4.1476   -1.6599    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    5.5843   -1.1923    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    6.7972   -1.8491    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    8.0614   -1.3231    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    9.0962   -2.1697    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.4030   -4.6197    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3817   -5.0470    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.4114   -4.2003    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3008   -2.9811    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.1676   -2.1395    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.6733   -4.7477    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9471   -3.1198    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    2.5546   -3.8073    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    2.8443   -5.2509    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    1.8671   -3.4649    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1320   -4.5026    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    1.8174   -6.2452    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    2.6146   -7.4718    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.7735   -8.5616    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.9076   -9.6776    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.2331  -10.3790    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    5.6141  -10.5249    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.1358   -9.4079    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.3092   -8.9607    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.2376   -9.6709    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3883  -11.5150    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3213   -8.7268    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3500   -7.5746    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3390   -7.1194    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.4401   -7.8738    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.4769   -9.2631    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.5046   -8.5668    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.4449   -7.2062    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.3859   -6.7768    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.3858   -5.9581    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    8.2396   -5.5679    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    8.5446  -10.5104    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   10.5108   -6.3819    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5232   -7.5638    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.1172  -11.3461    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1946   -2.4028    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2523   -1.9507    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.3597   -1.8467    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6961   -9.2093    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.7131   -8.7020    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    8.2290    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1338   -2.1966    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6000   -0.1966    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.7284   -1.8981    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3158   -0.9480    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3898   -1.0399    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3821   -4.6434    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4728   -5.5521    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6484   -3.5662    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3623   -3.4428    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.8020   -3.0943    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    6.8902   -0.9322    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    1.0886   -5.3162    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.9796   -6.2797    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -7.1293    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.7674   -9.3837    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   12.6680  -10.7247    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.8928  -11.3992    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   14.9107  -10.8234    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   15.0628   -9.6002    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.9373   -8.7697    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   16.0314  -11.5422    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  1 12  1  0        0
+  1 50  1  1        0
+  1 51  1  6        0
+  2  3  1  0        0
+  2 48  1  1        0
+  2 49  1  6        0
+  3  4  1  0        0
+  3 56  1  6        0
+  3 57  1  1        0
+  4  5  1  0        0
+  4 46  1  1        0
+  4 47  1  6        0
+  5 10  2  0        0
+  6  7  2  0        0
+  7  8  1  0        0
+  7 38  1  0        0
+  8  9  2  0        0
+  8 11  1  0        0
+  9 10  1  0        0
+ 12 13  1  0        0
+ 12 54  1  1        0
+ 12 55  1  6        0
+ 13 14  1  0        0
+ 13 15  1  1        0
+ 13 16  1  6        0
+ 14 17  1  0        0
+ 14 52  1  1        0
+ 14 53  1  6        0
+ 15 41  1  0        0
+ 17 18  1  0        0
+ 17 58  1  1        0
+ 17 59  1  6        0
+ 18 19  2  0        0
+ 19 20  1  0        0
+ 21 20  1  1        0
+ 21 22  1  0        0
+ 21 25  1  0        0
+ 21 26  1  6        0
+ 22 23  1  0        0
+ 22 40  2  0        0
+ 23 24  2  0        0
+ 23 27  1  0        0
+ 24 25  1  0        0
+ 24 30  1  0        0
+ 27 28  2  0        0
+ 27 31  1  0        0
+ 28 29  1  0        0
+ 28 34  1  0        0
+ 29 30  2  0        0
+ 29 35  1  0        0
+ 30 39  1  0        0
+ 31 32  2  0        0
+ 31 37  1  0        0
+ 32 33  1  0        0
+ 32 44  1  0        0
+ 33 34  2  0        0
+ 33 38  1  0        0
+ 34 36  1  0        0
+ 41 42  2  0        0
+ 41 43  1  0        0
+ 44 45  2  0        0
+ 45 61  1  0        0
+ 59 60  1  0        0
+ 61 62  1  0        0
+ 61 66  1  0        0
+ 62 63  1  0        0
+ 63 64  1  0        0
+ 64 65  1  0        0
+ 64 67  1  0        0
+ 65 66  1  0        0
+M  END
+>  <MolfileName> (8)
+iss2_532
+
+>  <Polar_Surface_Area> (8)
+220.1
+
+>  <SA11_NEW> (8)
+NO
+
+>  <SA10> (8)
+YES
+
+>  <SA11> (8)
+NO
+
+>  <SA12> (8)
+NO
+
+>  <SA21_NEW> (8)
+NO
+
+>  <SA6_NEW> (8)
+NO
+
+>  <SA20_NEW> (8)
+NO
+
+>  <Canc_iss2> (8)
+3
+
+>  <Formula_iss2> (8)
+C43H58N4O12
+
+>  <SA28ter> (8)
+NO
+
+>  <Alerts> (8)
+YES
+
+>  <Alerts_nongenotoxic_> (8)
+YES
+
+>  <SA18> (8)
+NO
+
+>  <SA17> (8)
+NO
+
+>  <SA19> (8)
+NO
+
+>  <SA15_NEW> (8)
+NO
+
+>  <SA14> (8)
+NO
+
+>  <SA13> (8)
+YES
+
+>  <Substance ID> (8)
+iss2_532
+
+>  <SA10_NEW> (8)
+NO
+
+>  <SA16> (8)
+NO
+
+>  <Parent_Atom_Count> (8)
+59.0
+
+>  <SA15> (8)
+NO
+
+>  <SA9_NEW> (8)
+NO
+
+>  <SA28bis> (8)
+NO
+
+>  <SA14_NEW> (8)
+NO
+
+>  <SA8_NEW> (8)
+NO
+
+>  <SA12_NEW> (8)
+NO
+
+>  <Nongenotoxic alert_> (8)
+NO
+
+>  <SA5> (8)
+NO
+
+>  <SA17_NEW> (8)
+NO
+
+>  <SA4> (8)
+NO
+
+>  <SA3> (8)
+NO
+
+>  <SA2> (8)
+NO
+
+>  <SMILES_iss2> (8)
+O=C4c5c2c(O)c(\C=N\N1CCN(C)CC1)c3c(O)c2c(O)c(c5O[C@@]4(O/C=C/[C@H](OC)[C@H]([C@@H](OC(=O)C)[C@H](C)[C@H](O)[C@H](C)[C@@H](O)[C@H](\C=C\C=C(/C(=O)N3)C)C)C)C)C
+
+>  <SA1> (8)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (8)
+10.0
+
+>  <SA2_NEW> (8)
+YES
+
+>  <Molecular_Weight> (8)
+822.9
+
+>  <SA9> (8)
+NO
+
+>  <SA8> (8)
+NO
+
+>  <SA7> (8)
+NO
+
+>  <ChemName_iss2> (8)
+Rifampicin
+
+>  <SA6> (8)
+NO
+
+>  <SA5_NEW> (8)
+NO
+
+>  <Lipinski_Score> (8)
+3.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (8)
+YES
+
+>  <Rotatable_Bonds> (8)
+5.0
+
+>  <SA13_NEW> (8)
+NO
+
+>  <SA7_NEW> (8)
+NO
+
+>  <SAL_iss2> (8)
+ND
+
+>  <New Non Genotoxic_explanation> (8)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13Y,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10Y,Any alert?Y,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWN,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWN,SA18_NEWN,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (8)
+6.0
+
+>  <CAS_iss2> (8)
+13292-46-1
+
+>  <SA31a> (8)
+NO
+
+>  <SA31c> (8)
+NO
+
+>  <SA3_NEW> (8)
+NO
+
+>  <SA31b> (8)
+NO
+
+>  <SA30> (8)
+NO
+
+>  <SA4_NEW> (8)
+NO
+
+>  <SA24> (8)
+NO
+
+>  <SA25> (8)
+NO
+
+>  <SA26> (8)
+NO
+
+>  <SA27> (8)
+NO
+
+>  <SA28> (8)
+NO
+
+>  <SA29> (8)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (8)
+NO
+
+>  <ALogP> (8)
+4.34
+
+>  <Title> (8)
+iss2_532
+
+>  <SA19_NEW> (8)
+NO
+
+>  <Parent_Molecular_Weight> (8)
+822.9
+
+>  <SA1_NEW> (8)
+NO
+
+>  <SA16_NEW> (8)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (8)
+YES
+
+>  <SA18_NEW> (8)
+NO
+
+>  <FW_iss2> (8)
+822.9
+
+>  <SA21> (8)
+NO
+
+>  <SA20> (8)
+NO
+
+>  <SA23> (8)
+NO
+
+>  <SA22> (8)
+NO
+
+$$$$
+iss2_764
+csCF1100/12191115032D
+
+ 58 57  0  0  0  0  0  0  0  0999 V2000
+    0.3706   -9.8190    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.9276   -9.3551    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.2016   -7.9091    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+   -1.5666   -7.1061    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.8406   -5.6706    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.8921   -4.9132    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.8179   -4.0124    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+   -0.9237   -3.1887    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    0.2206   -2.1987    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.1133   -1.3652    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    1.2643   -0.3693    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1575    0.4591    0.0000 C   0  0  3  0  0  0  0  0  0  0  0  0
+    2.3015    1.4493    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.1938    2.2825    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3447    3.2785    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.2369    4.1117    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3810    5.1019    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    4.2741    5.9303    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.4182    6.9204    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    5.3116    7.7490    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    0.9650  -10.6177    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.5061   -9.9775    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.3315   -7.8529    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.0058   -8.5479    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.3812   -7.2783    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.9807   -5.2587    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.4612   -4.8217    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    0.4828   -5.6886    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.6585   -3.8804    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.5914   -2.9886    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.7887   -2.0474    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.7216   -1.1556    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.1175   -2.4569    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.1588   -3.2920    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.2703   -4.3255    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -4.1591   -2.7578    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -5.5649   -3.1977    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+   -5.9617   -2.5363    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -5.6112   -4.6990    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -6.8462   -5.0855    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -4.6784   -5.4464    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -7.3539   -2.9650    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -7.6003   -4.1953    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -8.1300   -2.3049    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.2109   -0.6130    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.0527    1.2006    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5911    4.3605    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6283    6.1789    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.3465    6.8313    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0320    8.4684    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.9452   -3.3534    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -0.8739   -3.8577    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.1632   -2.0356    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2072   -0.2100    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3313    5.7711    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.3685    7.5895    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+    0.5095   -5.4729    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+   -6.2796   -2.8942    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  1 21  1  0        0
+  1 22  2  0        0
+  2  3  1  0        0
+  3  4  1  6        0
+  3 23  1  1        0
+  4  5  1  0        0
+  5  6  1  0        0
+  5 26  2  0        0
+  6  7  1  0        0
+  7  8  1  6        0
+  7 27  1  0        0
+  7 51  1  1        0
+  8  9  1  0        0
+  8 33  1  0        0
+  8 52  1  6        0
+  9 10  1  6        0
+ 10 11  1  0        0
+ 10 45  1  0        0
+ 10 53  1  6        0
+ 11 12  1  6        0
+ 12 13  1  0        0
+ 12 46  1  0        0
+ 12 54  1  6        0
+ 13 14  1  0        0
+ 14 15  1  0        0
+ 15 16  1  0        0
+ 16 17  1  0        0
+ 17 18  1  6        0
+ 17 47  1  0        0
+ 17 55  1  1        0
+ 18 19  1  0        0
+ 19 20  1  6        0
+ 19 48  1  0        0
+ 19 56  1  1        0
+ 20 49  1  6        0
+ 20 50  1  0        0
+ 23 24  1  0        0
+ 23 25  2  0        0
+ 27 28  1  6        0
+ 27 29  1  0        0
+ 27 57  1  1        0
+ 29 30  1  0        0
+ 30 31  1  0        0
+ 31 32  1  0        0
+ 33 34  1  0        0
+ 34 35  2  0        0
+ 34 36  1  0        0
+ 36 37  1  0        0
+ 37 38  1  1        0
+ 37 39  1  0        0
+ 37 58  1  6        0
+ 38 42  1  0        0
+ 39 40  1  0        0
+ 39 41  2  0        0
+ 42 43  1  0        0
+ 42 44  2  0        0
+M  END
+>  <MolfileName> (9)
+iss2_764
+
+>  <Polar_Surface_Area> (9)
+288.5
+
+>  <SA11_NEW> (9)
+NO
+
+>  <SA10> (9)
+NO
+
+>  <SA11> (9)
+NO
+
+>  <SA12> (9)
+NO
+
+>  <SA21_NEW> (9)
+NO
+
+>  <SA6_NEW> (9)
+NO
+
+>  <SA20_NEW> (9)
+NO
+
+>  <Canc_iss2> (9)
+3
+
+>  <Formula_iss2> (9)
+C34H59NO15
+
+>  <SA28ter> (9)
+NO
+
+>  <Alerts> (9)
+YES
+
+>  <Alerts_nongenotoxic_> (9)
+YES
+
+>  <SA18> (9)
+NO
+
+>  <SA17> (9)
+NO
+
+>  <SA19> (9)
+NO
+
+>  <SA15_NEW> (9)
+NO
+
+>  <SA14> (9)
+NO
+
+>  <SA13> (9)
+NO
+
+>  <Substance ID> (9)
+iss2_764
+
+>  <SA10_NEW> (9)
+NO
+
+>  <SA16> (9)
+NO
+
+>  <Parent_Atom_Count> (9)
+50.0
+
+>  <SA15> (9)
+NO
+
+>  <SA9_NEW> (9)
+NO
+
+>  <SA28bis> (9)
+NO
+
+>  <SA14_NEW> (9)
+NO
+
+>  <SA8_NEW> (9)
+NO
+
+>  <SA12_NEW> (9)
+NO
+
+>  <Nongenotoxic alert_> (9)
+NO
+
+>  <SA5> (9)
+NO
+
+>  <SA17_NEW> (9)
+NO
+
+>  <SA4> (9)
+NO
+
+>  <SA3> (9)
+NO
+
+>  <SA2> (9)
+NO
+
+>  <SMILES_iss2> (9)
+O=C(O)[C@H2][C@H](C(=O)O)[C@H2]C(=O)O[C@@H]([C@@H]([C@H3])[C@H2][C@H2][C@H2][C@@H3])[C@@H](OC(=O)[C@@H2][C@@H](C(=O)O)[C@H2]C(=O)O)[C@@H2][C@@H]([C@H3])[C@@H2][C@@H](O)[C@H2][C@@H2][C@@H2][C@@H2][C@@H
+
+>  <SA1> (9)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (9)
+13.0
+
+>  <SA2_NEW> (9)
+YES
+
+>  <Molecular_Weight> (9)
+721.8
+
+>  <SA9> (9)
+NO
+
+>  <SA8> (9)
+NO
+
+>  <SA7> (9)
+NO
+
+>  <ChemName_iss2> (9)
+Fumonisin B1
+
+>  <SA6> (9)
+NO
+
+>  <SA5_NEW> (9)
+NO
+
+>  <Lipinski_Score> (9)
+3.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (9)
+YES
+
+>  <Rotatable_Bonds> (9)
+31.0
+
+>  <SA13_NEW> (9)
+NO
+
+>  <SA7_NEW> (9)
+NO
+
+>  <SAL_iss2> (9)
+1
+
+>  <New Non Genotoxic_explanation> (9)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10N,Any alert?N,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWN,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWN,SA18_NEWN,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (9)
+4.0
+
+>  <CAS_iss2> (9)
+116355-83-0
+
+>  <SA31a> (9)
+NO
+
+>  <SA31c> (9)
+NO
+
+>  <SA3_NEW> (9)
+NO
+
+>  <SA31b> (9)
+NO
+
+>  <SA30> (9)
+NO
+
+>  <SA4_NEW> (9)
+NO
+
+>  <SA24> (9)
+NO
+
+>  <SA25> (9)
+NO
+
+>  <SA26> (9)
+NO
+
+>  <SA27> (9)
+NO
+
+>  <SA28> (9)
+NO
+
+>  <SA29> (9)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (9)
+NO
+
+>  <ALogP> (9)
+2.56
+
+>  <Title> (9)
+iss2_764
+
+>  <SA19_NEW> (9)
+NO
+
+>  <Parent_Molecular_Weight> (9)
+721.8
+
+>  <SA1_NEW> (9)
+NO
+
+>  <SA16_NEW> (9)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (9)
+NO
+
+>  <SA18_NEW> (9)
+NO
+
+>  <FW_iss2> (9)
+721.8
+
+>  <SA21> (9)
+NO
+
+>  <SA20> (9)
+NO
+
+>  <SA23> (9)
+NO
+
+>  <SA22> (9)
+NO
+
+>  <Any alert_> (9)
+NO
+
+$$$$
+iss2_829
+csCF1100/12191115032D
+
+ 13 12  0  0  0  0  0  0  0  0999 V2000
+    0.9738   -1.9926    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3021   -1.9926    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3021   -3.3265    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1539   -3.9907    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1539   -5.3191    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -3.3265    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.6361   -1.9926    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3003   -3.1464    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.6361   -4.3003    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6287   -3.1464    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    2.3021   -0.6642    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.1539    0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.4560    0.0000    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  2  3  1  0        0
+  2  7  1  0        0
+  2 11  1  0        0
+  3  4  1  0        0
+  4  5  2  0        0
+  4  6  1  0        0
+  7  8  1  0        0
+  8  9  2  0        0
+  8 10  1  0        0
+ 11 12  2  0        0
+ 11 13  1  0        0
+M  END
+>  <MolfileName> (10)
+iss2_829
+
+>  <Polar_Surface_Area> (10)
+132.1
+
+>  <SA11_NEW> (10)
+NO
+
+>  <SA10> (10)
+NO
+
+>  <SA11> (10)
+NO
+
+>  <SA12> (10)
+NO
+
+>  <SA21_NEW> (10)
+NO
+
+>  <SA6_NEW> (10)
+NO
+
+>  <SA20_NEW> (10)
+NO
+
+>  <Canc_iss2> (10)
+1
+
+>  <Formula_iss2> (10)
+C6H8O7
+
+>  <SA28ter> (10)
+NO
+
+>  <Alerts> (10)
+YES
+
+>  <Alerts_nongenotoxic_> (10)
+YES
+
+>  <SA18> (10)
+NO
+
+>  <SA17> (10)
+NO
+
+>  <SA19> (10)
+NO
+
+>  <SA15_NEW> (10)
+NO
+
+>  <SA14> (10)
+NO
+
+>  <SA13> (10)
+NO
+
+>  <Substance ID> (10)
+iss2_829
+
+>  <SA10_NEW> (10)
+NO
+
+>  <SA16> (10)
+NO
+
+>  <Parent_Atom_Count> (10)
+13.0
+
+>  <SA15> (10)
+NO
+
+>  <SA9_NEW> (10)
+NO
+
+>  <SA28bis> (10)
+NO
+
+>  <SA14_NEW> (10)
+NO
+
+>  <SA8_NEW> (10)
+NO
+
+>  <SA12_NEW> (10)
+NO
+
+>  <Nongenotoxic alert_> (10)
+NO
+
+>  <SA5> (10)
+NO
+
+>  <SA17_NEW> (10)
+NO
+
+>  <SA4> (10)
+NO
+
+>  <SA3> (10)
+NO
+
+>  <SA2> (10)
+NO
+
+>  <SMILES_iss2> (10)
+OC(CC(=O)O)(CC(=O)O)C(=O)O
+
+>  <SA1> (10)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (10)
+7.0
+
+>  <SA2_NEW> (10)
+YES
+
+>  <Molecular_Weight> (10)
+192.1
+
+>  <SA9> (10)
+NO
+
+>  <SA8> (10)
+NO
+
+>  <SA7> (10)
+NO
+
+>  <ChemName_iss2> (10)
+Citric acid
+
+>  <SA6> (10)
+NO
+
+>  <SA5_NEW> (10)
+NO
+
+>  <Lipinski_Score> (10)
+0.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (10)
+YES
+
+>  <Rotatable_Bonds> (10)
+5.0
+
+>  <SA13_NEW> (10)
+NO
+
+>  <SA7_NEW> (10)
+NO
+
+>  <SAL_iss2> (10)
+1
+
+>  <New Non Genotoxic_explanation> (10)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10N,Any alert?N,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWN,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWN,SA18_NEWN,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (10)
+1.0
+
+>  <CAS_iss2> (10)
+77-92-9
+
+>  <SA31a> (10)
+NO
+
+>  <SA31c> (10)
+NO
+
+>  <SA3_NEW> (10)
+NO
+
+>  <SA31b> (10)
+NO
+
+>  <SA30> (10)
+NO
+
+>  <SA4_NEW> (10)
+NO
+
+>  <SA24> (10)
+NO
+
+>  <SA25> (10)
+NO
+
+>  <SA26> (10)
+NO
+
+>  <SA27> (10)
+NO
+
+>  <SA28> (10)
+NO
+
+>  <SA29> (10)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (10)
+NO
+
+>  <ALogP> (10)
+-1.25
+
+>  <Title> (10)
+iss2_829
+
+>  <SA19_NEW> (10)
+NO
+
+>  <Parent_Molecular_Weight> (10)
+192.1
+
+>  <SA1_NEW> (10)
+NO
+
+>  <SA16_NEW> (10)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (10)
+NO
+
+>  <SA18_NEW> (10)
+NO
+
+>  <FW_iss2> (10)
+192.1
+
+>  <SA21> (10)
+NO
+
+>  <SA20> (10)
+NO
+
+>  <SA23> (10)
+NO
+
+>  <SA22> (10)
+NO
+
+>  <Any alert_> (10)
+NO
+
+$$$$
+iss2_835
+csCF1100/12191115032D
+
+ 86 86  0  0  0  0  0  0  0  0999 V2000
+    6.4977  -13.6039    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+    5.8458  -12.4739    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    5.4111  -11.2352    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2373   -9.9313    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    5.2373   -8.6057    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5633   -7.3235    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.1066   -6.1283    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    6.8672   -5.0634    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.8016   -4.1290    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.9316   -3.4118    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+   10.1269   -2.9338    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   11.4308   -2.6730    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.7347   -2.6730    0.0000 C   0  0  2  0  0  0  0  0  0  0  0  0
+   14.0386   -2.9120    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   15.2338   -3.4118    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   16.3856   -4.0638    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+   17.3200   -4.9982    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   18.1023   -6.0631    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   18.6456   -7.2583    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+   18.9716   -8.5188    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   19.0368   -9.8661    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   18.8629  -11.1483    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+   18.4501  -12.3870    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   17.7764  -13.5387    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   16.9288  -14.5384    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+   15.8857  -15.3424    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   14.7557  -15.9944    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.4735  -16.3421    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.1696  -16.4725    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   10.8658  -16.3638    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.5836  -15.9944    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    8.4101  -15.4076    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3670  -14.6036    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6498  -15.6901    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1055  -17.2331    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.9313  -18.2545    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6050  -17.6677    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   12.1696  -17.7981    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   15.2338  -17.1896    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   16.6246  -16.4508    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   17.8633  -15.4728    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   19.1237  -15.1686    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   19.4932  -13.9082    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   20.0364  -16.1030    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   18.8629  -14.2993    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   20.1451  -11.4525    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   21.0144  -10.4529    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   20.5145  -12.7129    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   20.3624   -9.8661    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   20.2755   -8.3232    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   20.2538   -6.6716    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   20.4928   -5.3894    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   19.4932   -4.5419    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   21.7315   -4.9331    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   19.2324   -5.3894    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   17.1679   -3.0424    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   15.8423   -2.2166    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   12.8433   -1.3474    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.2787   -1.3691    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    9.7574   -1.6733    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.2797   -2.2818    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0186   -1.1300    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.3666    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3225   -1.1952    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.9975   -3.1076    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.8675   -4.1942    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9548   -5.4763    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9548   -4.1724    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.0848   -3.5205    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.8247   -3.4988    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3246   -6.9106    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    3.9551   -8.4318    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.8899   -9.9965    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1511   -8.9099    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.3249  -11.1917    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.1290  -11.5394    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6505  -13.0172    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6937  -15.5815    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    4.4550  -15.9509    0.0000 C   0  0  1  0  0  0  0  0  0  0  0  0
+    3.4770  -15.0599    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    2.2166  -15.4728    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2604  -14.5818    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000  -14.9730    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.1724  -17.2331    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6281  -16.5159    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.1938  -13.6908    0.0000 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0        0
+  1 33  1  0        0
+  1 78  1  0        0
+  1 86  1  1        0
+  2  3  1  0        0
+  2 77  1  0        0
+  3  4  1  0        0
+  3 76  2  0        0
+  4  5  1  0        0
+  4 73  1  6        0
+  5  6  1  0        0
+  5 72  1  0        0
+  6  7  1  0        0
+  6 71  2  0        0
+  7  8  1  0        0
+  7 67  1  6        0
+  8  9  1  0        0
+  8 66  1  0        0
+  9 10  1  0        0
+  9 65  2  0        0
+ 10 11  1  0        0
+ 10 61  1  6        0
+ 11 12  1  0        0
+ 11 60  1  0        0
+ 12 13  1  0        0
+ 12 59  2  0        0
+ 13 14  1  0        0
+ 13 58  1  1        0
+ 14 15  1  0        0
+ 15 16  1  0        0
+ 15 57  2  0        0
+ 16 17  1  0        0
+ 16 56  1  6        0
+ 17 18  1  0        0
+ 18 19  1  0        0
+ 18 55  2  0        0
+ 19 20  1  0        0
+ 19 51  1  6        0
+ 20 21  1  0        0
+ 20 50  1  0        0
+ 21 22  1  0        0
+ 21 49  2  0        0
+ 22 23  1  0        0
+ 22 46  1  6        0
+ 23 24  1  0        0
+ 24 25  1  0        0
+ 24 45  2  0        0
+ 25 26  1  0        0
+ 25 41  1  6        0
+ 26 27  1  0        0
+ 26 40  1  0        0
+ 27 28  1  0        0
+ 27 39  2  0        0
+ 28 29  1  0        0
+ 29 30  1  0        0
+ 29 38  1  0        0
+ 30 31  1  0        0
+ 30 37  2  0        0
+ 31 32  1  0        0
+ 31 35  1  6        0
+ 32 33  1  0        0
+ 33 34  2  0        0
+ 35 36  1  0        0
+ 41 42  1  0        0
+ 42 43  1  0        0
+ 42 44  1  0        0
+ 46 47  1  0        0
+ 46 48  1  0        0
+ 51 52  1  0        0
+ 52 53  1  0        0
+ 52 54  1  0        0
+ 61 62  1  0        0
+ 62 63  1  0        0
+ 62 64  1  0        0
+ 67 68  1  0        0
+ 68 69  1  0        0
+ 68 70  1  0        0
+ 73 74  1  0        0
+ 73 75  1  0        0
+ 78 79  1  0        0
+ 78 85  1  6        0
+ 79 80  1  0        0
+ 79 84  1  6        0
+ 80 81  1  0        0
+ 81 82  2  0        0
+ 82 83  1  0        0
+M  END
+>  <MolfileName> (11)
+iss2_835
+
+>  <Polar_Surface_Area> (11)
+278.8
+
+>  <SA11_NEW> (11)
+NO
+
+>  <SA10> (11)
+NO
+
+>  <SA11> (11)
+NO
+
+>  <SA12> (11)
+NO
+
+>  <SA21_NEW> (11)
+NO
+
+>  <SA6_NEW> (11)
+NO
+
+>  <SA20_NEW> (11)
+NO
+
+>  <Canc_iss2> (11)
+1
+
+>  <Formula_iss2> (11)
+C62H111N11O12
+
+>  <SA28ter> (11)
+NO
+
+>  <Alerts> (11)
+YES
+
+>  <Alerts_nongenotoxic_> (11)
+YES
+
+>  <SA18> (11)
+NO
+
+>  <SA17> (11)
+NO
+
+>  <SA19> (11)
+NO
+
+>  <SA15_NEW> (11)
+NO
+
+>  <SA14> (11)
+NO
+
+>  <SA13> (11)
+NO
+
+>  <Substance ID> (11)
+iss2_835
+
+>  <SA10_NEW> (11)
+NO
+
+>  <SA16> (11)
+NO
+
+>  <Parent_Atom_Count> (11)
+85.0
+
+>  <SA15> (11)
+NO
+
+>  <SA9_NEW> (11)
+NO
+
+>  <SA28bis> (11)
+NO
+
+>  <SA14_NEW> (11)
+NO
+
+>  <SA8_NEW> (11)
+NO
+
+>  <SA12_NEW> (11)
+NO
+
+>  <Nongenotoxic alert_> (11)
+NO
+
+>  <SA5> (11)
+NO
+
+>  <SA17_NEW> (11)
+NO
+
+>  <SA4> (11)
+NO
+
+>  <SA3> (11)
+NO
+
+>  <SA2> (11)
+NO
+
+>  <SMILES_iss2> (11)
+[C@@]1(N(C([C@@H](N(C([C@@H](N(C([C@@H](N(C([C@H](NC([C@@H](NC([C@@H](N(C([C@@H](NC([C@@H](N(C(CN(C([C@@H](NC1=O)CC)=O)C)=O)C)CC(C)C)=O)C(C)C)=O)C)CC(C)C)=O)C)=O)C)=O)C)CC(C)C)=O)C)CC(C)C)=O)C)C(C)C)=
+
+>  <SA1> (11)
+NO
+
+>  <Hydrogen_Bond_Acceptors> (11)
+12.0
+
+>  <SA2_NEW> (11)
+YES
+
+>  <Molecular_Weight> (11)
+1203.0
+
+>  <SA9> (11)
+NO
+
+>  <SA8> (11)
+NO
+
+>  <SA7> (11)
+NO
+
+>  <ChemName_iss2> (11)
+Cyclosporin A
+
+>  <SA6> (11)
+NO
+
+>  <SA5_NEW> (11)
+NO
+
+>  <Lipinski_Score> (11)
+2.0
+
+>  <Structural Alert for nongenotoxic carcinogenicity_NEW> (11)
+YES
+
+>  <Rotatable_Bonds> (11)
+15.0
+
+>  <SA13_NEW> (11)
+NO
+
+>  <SA7_NEW> (11)
+NO
+
+>  <SAL_iss2> (11)
+ND
+
+>  <New Non Genotoxic_explanation> (11)
+AlertsY,SA1N,SA2N,SA3N,SA4N,SA5N,SA6N,SA7N,SA8N,SA9N,SA11N,SA12N,SA13N,SA14N,SA15N,SA16N,SA18N,SA19N,SA21N,SA22N,SA23N,SA24N,SA25N,SA26N,SA27N,SA28N,SA28bisN,SA28terN,SA29N,SA30N,SA10N,Any alert?N,Alerts(nongenotoxic)Y,SA17N,SA20N,SA31aN,SA31bN,SA31cN,Non
+enotoxic alert?N,Alerts(nongenotoxic)Y,SA1_NEWN,SA2_NEWY,SA3_NEWN,SA4_NEWN,SA5_NEWN,SA6_NEWN,SA7_NEWN,SA8_NEWN,SA9_NEWN,SA10_NEWN,SA11_NEWN,SA12_NEWN,SA13_NEWN,SA14_NEWN,SA15_NEWN,SA16_NEWN,SA17_NEWN,SA18_NEWN,SA19_NEWN,SA20_NEWN,SA21_NEWN,NEW Nongenotoxi
+ alert?Y
+
+>  <Hydrogen_Bond_Donors> (11)
+5.0
+
+>  <CAS_iss2> (11)
+59865-13-3
+
+>  <SA31a> (11)
+NO
+
+>  <SA31c> (11)
+NO
+
+>  <SA3_NEW> (11)
+NO
+
+>  <SA31b> (11)
+NO
+
+>  <SA30> (11)
+NO
+
+>  <SA4_NEW> (11)
+NO
+
+>  <SA24> (11)
+NO
+
+>  <SA25> (11)
+NO
+
+>  <SA26> (11)
+NO
+
+>  <SA27> (11)
+NO
+
+>  <SA28> (11)
+NO
+
+>  <SA29> (11)
+NO
+
+>  <Structural Alert for nongenotoxic carcinogenicity> (11)
+NO
+
+>  <ALogP> (11)
+3.27
+
+>  <Title> (11)
+iss2_835
+
+>  <SA19_NEW> (11)
+NO
+
+>  <Parent_Molecular_Weight> (11)
+1203.0
+
+>  <SA1_NEW> (11)
+NO
+
+>  <SA16_NEW> (11)
+NO
+
+>  <Structural Alert for genotoxic carcinogenicity> (11)
+NO
+
+>  <SA18_NEW> (11)
+NO
+
+>  <FW_iss2> (11)
+1203.0
+
+>  <SA21> (11)
+NO
+
+>  <SA20> (11)
+NO
+
+>  <SA23> (11)
+NO
+
+>  <SA22> (11)
+NO
+
+>  <Any alert_> (11)
+NO
+
+$$$$
