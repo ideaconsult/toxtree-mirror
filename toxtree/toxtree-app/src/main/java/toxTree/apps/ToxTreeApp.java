@@ -104,6 +104,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 				methods.add(Introspection.loadCreateObject("verhaar.VerhaarScheme")); //4
 				methods.add(Introspection.loadCreateObject("toxtree.plugins.verhaar2.VerhaarScheme2")); //5
 				methods.add(Introspection.loadCreateObject("mutant.BB_CarcMutRules")); //6
+				methods.add(Introspection.loadCreateObject("toxtree.plugins.ames.AmesMutagenicityRules")); //6
 				methods.add(Introspection.loadCreateObject("sicret.SicretRules")); //7
 				methods.add(Introspection.loadCreateObject("eye.EyeIrritationRules")); //8				
 				methods.add(Introspection.loadCreateObject("toxtree.plugins.skinsensitisation.SkinSensitisationPlugin"));//10

@@ -35,6 +35,12 @@
   	</dependency>
   	<dependency>
   		<groupId>toxtree</groupId>
+  		<artifactId>toxtree-ames</artifactId>
+  		<version>${project.version}</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>toxtree</groupId>
   		<artifactId>toxtree-cramer2</artifactId>
   		<version>${project.version}</version>
   		<scope>provided</scope>
