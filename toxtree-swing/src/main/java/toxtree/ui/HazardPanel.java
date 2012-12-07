@@ -30,6 +30,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -104,32 +105,36 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
      */
 	@Override
     public void update(Observable o, Object arg) {
-        methodLabel.setText("<html><b> by <u>" + 
-                getDataModule().getRules().toString() + 
-                "</u></b></html>");
-        methodLabel.setToolTipText(getDataModule().getRules().getExplanation());
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+            	  methodLabel.setText("<html><b> by <u>" + 
+                          getDataModule().getRules().toString() + 
+                          "</u></b></html>");
+                  methodLabel.setToolTipText(getDataModule().getRules().getExplanation());
 
-        tBorder.setTitle(getDataModule().getRules().toString());
-        
-        IDecisionCategories assignedCategories = getDataModule().getTreeResult().getAssignedCategories();
-        for (int i=0; i < assignedCategories.size();i++)
-        	getDataModule().getRules().getCategories().setSelected(assignedCategories.get(i));
-        
-        //model.getRules().getCategories().setSelected(model.getTreeResult().getCategory());
-                
-        cPanel.setData(getDataModule().getRules().getCategories(),getDataModule().getTreeResult());
-        
-        //setHazardClass(model.getClassID());
-        StringBuffer b = new StringBuffer();
-        try {
-            b = getDataModule().getTreeResult().explain(explainOption.isSelected());
-        } catch (DecisionResultException x) {
-            b.append(x.getMessage());
-        }
-        explainArea.setText(b.toString());
+                  tBorder.setTitle(getDataModule().getRules().toString());
+                  
+                  IDecisionCategories assignedCategories = getDataModule().getTreeResult().getAssignedCategories();
+                  for (int i=0; i < assignedCategories.size();i++)
+                  	getDataModule().getRules().getCategories().setSelected(assignedCategories.get(i));
+                  
+                  //model.getRules().getCategories().setSelected(model.getTreeResult().getCategory());
+                          
+                  cPanel.setData(getDataModule().getRules().getCategories(),getDataModule().getTreeResult());
+                  
+                  //setHazardClass(model.getClassID());
+                  StringBuffer b = new StringBuffer();
+                  try {
+                      b = getDataModule().getTreeResult().explain(explainOption.isSelected());
+                  } catch (DecisionResultException x) {
+                      b.append(x.getMessage());
+                  }
+                  explainArea.setText(b.toString());
 
-        metabolites.setVisible(false);
-        repaint();
+                  metabolites.setVisible(false);
+                  repaint();
+            }
+        });
     }
     
 	@Override
