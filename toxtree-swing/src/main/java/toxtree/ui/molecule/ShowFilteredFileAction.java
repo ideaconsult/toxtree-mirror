@@ -51,7 +51,7 @@ public class ShowFilteredFileAction extends DataModuleAction {
 	}
 
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
 		module.getActions().allActionsEnable(false);
 		try {
 			((DecisionMethodsDataModule)module).selectFilter(getFrame());
