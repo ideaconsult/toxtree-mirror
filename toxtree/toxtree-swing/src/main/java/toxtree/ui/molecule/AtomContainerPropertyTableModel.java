@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2012 
 
-Contact: nina@acad.bg
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -28,6 +28,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.table.AbstractTableModel;
@@ -46,9 +47,8 @@ import toxTree.query.MolFlags;
  */
 public class AtomContainerPropertyTableModel extends AbstractTableModel {
 	protected IAtomContainer ac;
-	protected ArrayList names;
-	//protected ArrayList values;
-	private String[] columnNames;
+	protected List<String> names = new ArrayList<String>();
+	private String[] columnNames = new String[] {"Name","Value"};
     protected static NumberFormat nf = NumberFormat.getInstance();
 	/**
 	 * Comment for <code>serialVersionUID</code>
@@ -60,34 +60,23 @@ public class AtomContainerPropertyTableModel extends AbstractTableModel {
 	 */
 	public AtomContainerPropertyTableModel() {
 		super();
-		names = new ArrayList();
-		//values = new ArrayList();
-        columnNames = new String[2];
-        columnNames[0] = "Name";
-        columnNames[1] = "Value";
         nf.setMinimumFractionDigits(4);
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getColumnCount()
-	 */
+	@Override
 	public int getColumnCount() {
-		return 2;
+		return columnNames.length;
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getRowCount()
-	 */
+	@Override
 	public int getRowCount() {
 
-		return names.size();
+		return names==null?0:names.size();
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getValueAt(int, int)
-	 */
+	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-        if ( rowIndex >= names.size() || columnIndex >= columnNames.length ) {
+        if (( rowIndex >= names.size()) || (columnIndex >= columnNames.length )) {
             return null;
         }
         
@@ -115,19 +104,16 @@ public class AtomContainerPropertyTableModel extends AbstractTableModel {
         cleanTable();
         this.ac = object;
         if (object == null) return; 
-        Map properties = object.getProperties();
+        Map<Object,Object> properties = object.getProperties();
         if (properties == null) return;
-        Iterator iter = properties.keySet().iterator();
+        Iterator<Object> iter = properties.keySet().iterator();
         while (iter.hasNext()) {
             Object key = iter.next();
-            if (key instanceof String) {
-                String keyName = (String)key;
-                Object value = properties.get(keyName);
-                if (accepts(keyName,value)) {
-	                names.add(keyName);                
-	                //values.add(value.toString());
-                }
-            }  
+            String keyName = key.toString();
+            Object value = properties.get(key);
+            if (accepts(keyName,value)) {
+            	names.add(keyName);                
+            }
         }
         Collections.sort(names);
         fireTableStructureChanged();        
