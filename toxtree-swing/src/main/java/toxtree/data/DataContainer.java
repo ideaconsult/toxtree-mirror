@@ -4,8 +4,9 @@ import java.awt.Component;
 import java.io.File;
 import java.util.List;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
@@ -17,11 +18,10 @@ import toxTree.core.IMoleculesIterator;
 import toxTree.data.CategoryFilter;
 import toxTree.exceptions.FilterException;
 import toxTree.exceptions.ToxTreeIOException;
-import toxTree.logging.TTLogger;
 import ambit2.core.data.MoleculeTools;
 
 public class DataContainer extends Observable {
-	protected static TTLogger logger = null;
+	protected static Logger logger = null;
 	protected IMoleculesIterator containers = null;
 	protected File processingFile = null;
 	protected boolean modified = false;
@@ -32,7 +32,7 @@ public class DataContainer extends Observable {
 	}
     public DataContainer(File inputFile) {
         super();
-		if (logger == null) logger = new TTLogger(DecisionMethodData.class);
+		if (logger == null) logger = Logger.getLogger(DecisionMethodData.class.getName());
         //containers = new MoleculesIterator();
 		containers = new FilteredMoleculesIterator();
         if (inputFile != null) 
@@ -150,7 +150,7 @@ public class DataContainer extends Observable {
 					return record;
 				}
 			} catch (Exception x) {
-				logger.error("Error when processing record\t",Integer.toString(record),x);
+				logger.log(Level.WARNING,"Error when processing record %s %s",new Object[] {record,x});
 				x.printStackTrace();
 			 
 			}
@@ -178,7 +178,7 @@ public class DataContainer extends Observable {
             	} catch (ToxTreeIOException x) {
 
             		containers.setDone(false);
-            		logger.error(x);
+            		logger.log(Level.SEVERE,x.getMessage(),x);
             		String msg = "";
             		if ((x.getCause() != null) && (x.getCause().getMessage() != null)) 
             			msg = x.getCause().getMessage();
@@ -219,7 +219,7 @@ public class DataContainer extends Observable {
             		ToxTreeActions.showMsg("File saved ",processingFile.getName());
             		
             	} catch (ToxTreeIOException x) {
-            		logger.error(x);
+            		logger.log(Level.SEVERE,x.getMessage(),x);
                    	containers.setDone(false);
             		
             		ToxTreeActions.showMsg(x.getMessage(),x.getFilename());
