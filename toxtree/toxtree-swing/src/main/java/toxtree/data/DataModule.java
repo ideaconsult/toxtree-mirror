@@ -24,15 +24,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.data;
 
+import java.awt.EventQueue;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IChemModel;
@@ -90,6 +93,26 @@ public abstract class DataModule extends Observable implements Serializable, Obs
 
     public void batch(BatchProcessing bp) {
     	this.batch = bp;
+    	new SwingWorker<BatchProcessing, Object>() {
+			 
+ 	       @Override
+ 	       public BatchProcessing doInBackground() {
+            	try {
+            		batch.start();
+            	} catch (BatchProcessingException x) {
+            		logger.error(x);
+            		ToxTreeActions.showMsg("Error on batch processing",x.getMessage());
+            	}               	
+                return batch;
+ 	       }
+ 	       @Override
+ 	       protected void done() {
+               setChanged();
+               notifyObservers();
+ 	       }
+ 	   }.execute(); 	 
+
+ 	   /*
         final toxtree.ui.GUIWorker worker = new toxtree.ui.GUIWorker() {
             @Override
 			public Object construct() {
@@ -109,6 +132,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
             }
         };
         worker.start(); 
+        */
     }
     public DataContainer getDataContainer() {
         return  dataContainer;

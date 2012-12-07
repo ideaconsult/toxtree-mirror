@@ -27,6 +27,7 @@ package toxtree.ui.batch;
 import java.awt.BorderLayout;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.GraphicsConfiguration;
 import java.awt.GridBagConstraints;
@@ -51,6 +52,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.SwingWorker;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.io.batch.BatchFactory;
@@ -535,6 +537,7 @@ public class BatchProcessingDialog extends AbstractJobProcessingDialog implement
 	public synchronized void setDecisionMethod(IDecisionMethod decisionMethod) {
 		this.decisionMethod = decisionMethod;
 	}
+	
 	protected void batch() {
 		try {
 			if (batch == null) {
@@ -550,36 +553,35 @@ public class BatchProcessingDialog extends AbstractJobProcessingDialog implement
 			
 			return;
 		}
-    	
-        final toxtree.ui.GUIWorker worker = new toxtree.ui.GUIWorker() {
-            @Override
-			public Object construct() {
-            	try {
-            		setErrorMessage(null);
-            		batch.start();
-            	} catch (BatchProcessingException x) {
-            		
-            		batch  = null;
-            		jobFinished(x);
-            		setErrorMessage(x);
-            		ToxTreeActions.showMsg(x.getMessage(),"Error on batch processing");
-            	}               	
-                return batch;
-            }
-            //Runs on the event-dispatching thread.
-            @Override
-			public void finished() {
-            	try {
-            		if (batch != null)
-            			batch.close();
-            		jobFinished(null);
-            	} catch (BatchProcessingException x) {
-            		ToxTreeActions.showMsg(x.getMessage(),"Error on batch processing");
-            	}
-        		    	
-            }
-        };
-        worker.start(); 	
+    	new SwingWorker<IBatchProcessing, Object>() {
+			 
+  	       @Override
+  	       public IBatchProcessing doInBackground() {
+	           	try {
+	        		setErrorMessage(null);
+	        		batch.start();
+	        	} catch (BatchProcessingException x) {
+	        		
+	        		batch  = null;
+	        		jobFinished(x);
+	        		setErrorMessage(x);
+	        		ToxTreeActions.showMsg(x.getMessage(),"Error on batch processing");
+	        	}               	
+	            return batch;
+  	       }
+  	       @Override
+  	       protected void done() {
+	           	try {
+	        		if (batch != null)
+	        			batch.close();
+	        		jobFinished(null);
+	        	} catch (BatchProcessingException x) {
+	        		ToxTreeActions.showMsg(x.getMessage(),"Error on batch processing");
+	        	}
+  	       }
+  	   }.execute(); 	
+  	   
+    		
 	}
 	protected void jobFinished(Exception x) {
 		if ((x == null) && (batch != null)) {
@@ -617,25 +619,30 @@ public class BatchProcessingDialog extends AbstractJobProcessingDialog implement
 	/* (non-Javadoc)
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
-	public void update(Observable o, Object arg) {
+	public void update(final Observable o, Object arg) {
 		if (batch == null) return;
-		if (o instanceof BatchProcessing) {
-			BatchProcessing b = (BatchProcessing) o;
-			boolean running = (b.isStatus(BatchProcessing.STATUS_RUNNING));
-            if ((b !=null) && (b instanceof ToxTreeBatchProcessing)) {
-                batchTitle.setText(((ToxTreeBatchProcessing)b).getDecisionMethod().toString());
-            }            
-			progressBar.setIndeterminate(running);
-			progressBar.setVisible(running || b.isStatus(BatchProcessing.STATUS_PAUSED));
-			stateLabel.setText(b.toString());
-			progressLabel.setToolTipText("");
-			progressLabel.setText("Records processed " + b.getWrittenRecordsCount());
-			pauseButton.setVisible(running || b.isStatus(BatchProcessing.STATUS_PAUSED));
-			if (b.getConfigFile() != null)
-			configLabel.setText("Batch configuration: " +
-					new SimpleDateFormat("M/d/y,H:m",Locale.US).format(b.getDateLastProcessed()) + 
-					" " + b.getConfigFile().getName());
-		}
+		if (o instanceof BatchProcessing) 
+	        EventQueue.invokeLater(new Runnable() {
+	            public void run() {
+	    			BatchProcessing b = (BatchProcessing) o;
+	    			boolean running = (b.isStatus(BatchProcessing.STATUS_RUNNING));
+	                if ((b !=null) && (b instanceof ToxTreeBatchProcessing)) {
+	                    batchTitle.setText(((ToxTreeBatchProcessing)b).getDecisionMethod().toString());
+	                }            
+	    			progressBar.setIndeterminate(running);
+	    			progressBar.setVisible(running || b.isStatus(BatchProcessing.STATUS_PAUSED));
+	    			stateLabel.setText(b.toString());
+	    			progressLabel.setToolTipText("");
+	    			progressLabel.setText("Records processed " + b.getWrittenRecordsCount());
+	    			pauseButton.setVisible(running || b.isStatus(BatchProcessing.STATUS_PAUSED));
+	    			if (b.getConfigFile() != null)
+	    			configLabel.setText("Batch configuration: " +
+	    					new SimpleDateFormat("M/d/y,H:m",Locale.US).format(b.getDateLastProcessed()) + 
+	    					" " + b.getConfigFile().getName());
+	            }
+	        });
+	
+
 
 	}
 	/**

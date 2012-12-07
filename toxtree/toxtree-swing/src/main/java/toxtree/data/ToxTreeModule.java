@@ -35,6 +35,7 @@ import java.io.File;
 import java.util.Observable;
 
 import javax.swing.JFrame;
+import javax.swing.SwingWorker;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -149,27 +150,28 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
     	this.batch = bp;
     	if (bp instanceof ToxTreeBatchProcessing)
     	((ToxTreeBatchProcessing) this.batch).setDecisionMethod(rules);
-        final toxtree.ui.GUIWorker worker = new toxtree.ui.GUIWorker() {
-            @Override
-			public Object construct() {
-            	try {
-            		batch.start();
-            	} catch (BatchProcessingException x) {
-            		logger.error(x);
-            		ToxTreeActions.showMsg("Error on batch processing",x.getMessage());
-            	} catch (Throwable x) {
-            		logger.error(x);
-            	}
-                return batch;
-            }
-            //Runs on the event-dispatching thread.
-            @Override
-			public void finished() {
+    	
+    	new SwingWorker<BatchProcessing, Object>() {
+			 
+  	       @Override
+  	       public BatchProcessing doInBackground() {
+	           	try {
+	        		batch.start();
+	        	} catch (BatchProcessingException x) {
+	        		logger.error(x);
+	        		ToxTreeActions.showMsg("Error on batch processing",x.getMessage());
+	        	} catch (Throwable x) {
+	        		logger.error(x);
+	        	}
+	            return batch;
+  	       }
+  	       @Override
+  	       protected void done() {
                 setChanged();
                 notifyObservers();
-            }
-        };
-        worker.start(); 
+  	       }
+  	   }.execute(); 	
+  
     }	
 
     
