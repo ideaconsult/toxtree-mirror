@@ -102,6 +102,7 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
 	/* (non-Javadoc)
      * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
      */
+	@Override
     public void update(Observable o, Object arg) {
         methodLabel.setText("<html><b> by <u>" + 
                 getDataModule().getRules().toString() + 
@@ -126,15 +127,7 @@ public class HazardPanel extends DataModulePanel<ToxTreeModule> {
             b.append(x.getMessage());
         }
         explainArea.setText(b.toString());
-        
-        /*
-        // merged with alerts clickable links
-        if (getDataModule().getRules() instanceof IMetaboliteGenerator) {
-        	metabolites.setVisible(true);
-        	metabolites.setToolTipText(((IMetaboliteGenerator)getDataModule().getRules()).getHelp(null));
-        } else
-          
-        */	
+
         metabolites.setVisible(false);
         repaint();
     }
