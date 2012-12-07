@@ -88,7 +88,7 @@ public class EditDecisionMethodAction extends DataModuleAction {
     	
 	}
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
 		if (module instanceof DecisionMethodsDataModule) { 
 			IDecisionMethod method = ((DecisionMethodsDataModule)module).getSelectedRules();
 				launchEditor(method);

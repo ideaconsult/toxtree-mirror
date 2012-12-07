@@ -35,7 +35,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
-import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IChemModel;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
@@ -48,7 +47,6 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
 import toxTree.logging.TTLogger;
-import toxTree.query.MolAnalyser;
 import ambit2.core.data.MoleculeTools;
 import ambit2.jchempaint.editor.JChemPaintDialog;
 

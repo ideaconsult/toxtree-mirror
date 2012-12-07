@@ -87,7 +87,7 @@ public class SaveFileAction extends DataModuleAction {
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
 		module.getActions().allActionsEnable(true);
         File file = ToxTreeActions.selectFile(
         		module.getActions().getFrame(),

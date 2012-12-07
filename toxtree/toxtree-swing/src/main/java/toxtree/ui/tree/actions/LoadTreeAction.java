@@ -146,7 +146,7 @@ public class LoadTreeAction extends DataModuleAction {
 
 	}
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

@@ -86,7 +86,7 @@ public class QuitAction extends DataModuleAction {
    		 	Runtime.getRuntime().exit(0);
 	}
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

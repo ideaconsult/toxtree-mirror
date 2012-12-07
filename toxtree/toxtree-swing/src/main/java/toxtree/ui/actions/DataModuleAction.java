@@ -25,10 +25,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.ui.actions;
 
 import java.awt.Component;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
+import javax.swing.SwingWorker;
+
+import org.jdesktop.swingx.auth.LoginEvent;
 
 import toxtree.data.DataModule;
 import toxtree.data.ToxTreeActions;
@@ -41,6 +45,7 @@ import toxtree.data.ToxTreeActions;
 public abstract class DataModuleAction extends AbstractAction {
 	protected DataModule module;
     protected Component frame=null;
+
 	/**
 	 * 
 	 */
@@ -68,8 +73,41 @@ public abstract class DataModuleAction extends AbstractAction {
     public synchronized void setFrame(Component frame) {
         this.frame = frame;
     }
-    public abstract void run() throws Exception;
+    public abstract void runAction() throws Exception;
     public void actionPerformed(ActionEvent arg0) {
+    	SwingWorker<DataModule, Object> worker = new SwingWorker<DataModule, Object>() {
+    			 
+    	       @Override
+    	       public DataModule doInBackground() {
+                   EventQueue.invokeLater(new Runnable() {
+                       public void run() {
+            	    	   module.getActions().allActionsEnable(false);
+                       }
+                   });
+	               	try {
+	               		runAction();
+	               	} catch (Exception x) {
+	               		x.printStackTrace();
+	               		ToxTreeActions.showMsg("Error", x.getMessage());
+	               	}
+               	//module.getActions().allActionsEnable(true);
+	               	return module;
+    	       }
+
+    	       @Override
+    	       protected void done() {
+    	           try { 
+    	        	   DataModule result = get();
+    	        	   result.getActions().allActionsEnable(true);
+    	           } catch (Exception x) {
+    	        	   x.printStackTrace();
+    	        	   module.getActions().allActionsEnable(true);
+    	           }
+    	       }
+    	   };
+    	 
+    	   worker.execute();
+    	/*
         final toxtree.ui.GUIWorker worker = new toxtree.ui.GUIWorker() {
             @Override
 			public Object construct() {
@@ -91,6 +129,7 @@ public abstract class DataModuleAction extends AbstractAction {
             }
         };
         worker.start(); 
+        */
     }
 
 }

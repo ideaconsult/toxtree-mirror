@@ -65,7 +65,7 @@ public class SaveMethodsListAction extends DataModuleAction {
 	}
 
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
 		Component parent = null;
 		Object o = getValue(AbstractTreeAction.PARENTKEY);
 		if ((o!=null) && (o  instanceof Component)) parent = (Component) o;

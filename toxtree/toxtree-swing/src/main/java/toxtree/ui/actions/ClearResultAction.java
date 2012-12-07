@@ -79,7 +79,7 @@ public class ClearResultAction extends DataModuleAction {
     	module.getActions().enable(true,ToxTreeActions._HazardAction);
 	}
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
 		// TODO Auto-generated method stub
 		
 	}

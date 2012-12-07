@@ -76,7 +76,7 @@ public class OpenFileAction extends DataModuleAction {
 
 	
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
 		//module.getActions().allActionsEnable(true);
         File file = ToxTreeActions.selectFile(module.getActions().getFrame(), 
         		MolFileFilter.supported_extensions,MolFileFilter.supported_exts_description

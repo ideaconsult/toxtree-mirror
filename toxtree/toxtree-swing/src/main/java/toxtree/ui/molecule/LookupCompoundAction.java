@@ -61,7 +61,7 @@ public class LookupCompoundAction extends DataModuleAction {
 	}
 
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
     	module.getActions().allActionsEnable(false);
     	JComboBox box = new JComboBox();
     	box.addItemListener(new ItemListener() {

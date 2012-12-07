@@ -71,7 +71,7 @@ public class EstimateAllAction extends DataModuleAction {
 	}
 
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
 		  ConfusionMatrix matrix = ((DecisionMethodsDataModule) module).classifyAll();
 		 // if (matrix != null) 
 			 // JOptionPane.showMessageDialog(module.getActions().getFrame(), matrix.toString() );

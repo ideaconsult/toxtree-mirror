@@ -31,7 +31,7 @@ public class GoToRecordAction  extends DataModuleAction {
 	}
 
 	@Override
-	public void run() throws Exception {
+	public void runAction() throws Exception {
     	module.getActions().allActionsEnable(false);
 
     	
