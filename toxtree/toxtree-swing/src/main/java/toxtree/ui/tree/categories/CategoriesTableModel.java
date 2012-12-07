@@ -75,24 +75,21 @@ public class CategoriesTableModel extends ListTableModel<IDecisionCategory> impl
      */
     public Object getValueAt(int rowIndex, int columnIndex) {
         try {
-    	IDecisionCategory c = list.get(rowIndex);
-    	if (columnsno == 1) return "<html><b>" + c.toString() + "</b></html>";
-    	else
-    		switch (columnIndex) {
-    		case 1: return c.getID();
-    		case 0: return c.getName();
-    		default: return c.getName();
-    		}
-        } catch (Exception x) {
-            return x.getMessage();
-        }
-        //String s =  categoriesCopy[rowIndex].toString();
-        //String t =  ((IDecisionCategory) categoriesCopy[rowIndex]).getThreshold();
-        
+        	if (rowIndex>=list.size()) return null;
+        	
+	    	IDecisionCategory c = list.get(rowIndex);
+	    	if (columnsno == 1) return "<html><b>" + c.toString() + "</b></html>";
+	    	else
+	    		switch (columnIndex) {
+	    		case 1: return c.getID();
+	    		case 0: return c.getName();
+	    		default: return c.getName();
+	    		}
+	        } catch (Exception x) {
+	            return x.getMessage();
+	        }
     }
-    /* (non-Javadoc)
-     * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-     */
+    @Override
     public void update(Observable o, Object arg) {
     	if (o == list)
     		fireTableStructureChanged();
@@ -100,9 +97,7 @@ public class CategoriesTableModel extends ListTableModel<IDecisionCategory> impl
     		setList((IDecisionCategories)o);
 
     }
-    /* (non-Javadoc)
-     * @see javax.swing.table.AbstractTableModel#getColumnName(int)
-     */
+
     @Override
 	public String getColumnName(int column) {
     	switch (column) {
@@ -112,9 +107,7 @@ public class CategoriesTableModel extends ListTableModel<IDecisionCategory> impl
     	}
         
     }
-    /* (non-Javadoc)
-     * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
-     */
+
     @Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
@@ -123,7 +116,7 @@ public class CategoriesTableModel extends ListTableModel<IDecisionCategory> impl
     public IDecisionCategories getData() {
         return (IDecisionCategories)list;
     }
-
+    
     public boolean isSelected(int row) {
     	
     	//return list.get(row).equals(((IDecisionCategories)list).getSelected());

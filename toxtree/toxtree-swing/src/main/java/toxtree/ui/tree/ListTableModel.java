@@ -54,6 +54,7 @@ public class ListTableModel<T> extends AbstractTableModel implements Observer {
 	/* (non-Javadoc)
 	 * @see javax.swing.table.TableModel#getRowCount()
 	 */
+	@Override
 	public int getRowCount() {
         if (list != null)
             return list.size();
@@ -63,37 +64,11 @@ public class ListTableModel<T> extends AbstractTableModel implements Observer {
 	/* (non-Javadoc)
 	 * @see javax.swing.table.TableModel#getColumnCount()
 	 */
+	@Override
 	public int getColumnCount() {
 		return 1; //rule
 	}
-
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getValueAt(int, int)
-	 */
-	/*
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		try {
-			IDecisionRule rule = tr.getRule(rowIndex);
-			switch (columnIndex) {
-			case 0: return rule;
-			case 1: return new Boolean(tr.getRuleResult(rowIndex).isResult());
-			case 2: {
-				IDecisionCategory category = tr.getCategory(rowIndex);
-				if (category == null) return "";
-				else return category;
-			}			
-			case 3: {
-				org.openscience.cdk.interfaces.AtomContainer mol = tr.getMolecule(rowIndex);
-				if (mol == null) return "";
-				else return mol.getID();
-			}
-			default: return "NA";
-			}
-		} catch (DecisionResultException x) {
-			return x.getMessage();
-		}
-	}
-	*/
+	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		try {
 			switch (columnIndex) {
@@ -127,6 +102,7 @@ public class ListTableModel<T> extends AbstractTableModel implements Observer {
 
 		return "";
 	}
+	@Override
 	public void update(Observable arg0, Object arg1) {
 		fireTableDataChanged();
 		
