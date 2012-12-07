@@ -30,6 +30,7 @@ package toxtree.ui.tree.molecule;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.GridBagLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -85,11 +86,16 @@ public class CompoundPanel extends JPanel implements   Observer, PropertyChangeL
 		initLayout(bgColor,fColor);
 		addWidgets(bgColor,fColor);
 	}
-	/* (non-Javadoc)
-     * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
-     */
+	
+	@Override
     public void update(Observable o, Object arg) {
-        display();
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+		        display();
+			}
+		});
+
     }
 	private void initLayout(Color bgColor, Color fColor) {
 		//gridbag = new GridBagLayout() ;
@@ -179,25 +185,30 @@ public class CompoundPanel extends JPanel implements   Observer, PropertyChangeL
     }
 
 */
-    public void propertyChange(PropertyChangeEvent evt) {
-        if ((evt.getNewValue() instanceof ProgressStatus) && ((ProgressStatus)evt.getNewValue()).isEstimated()) {
+    public void propertyChange(final PropertyChangeEvent evt) {
+    	EventQueue.invokeLater(new Runnable() {
+    		@Override
+    		public void run() {
 
-            display();
-        } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_selected.toString())) {
-        	picturePanel.setSelector((IProcessor<IAtomContainer,IChemObjectSelection>)evt.getNewValue());	
-        } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_molecule.toString())) {
-        	
-        	IAtomContainer mol = (IAtomContainer)evt.getNewValue();
-        	boolean showCurrentMolecule = false;
-        	//a workaround to cope with JCP crashing on null bond order
-        	if (mol != null) for (IBond bond: mol.bonds()) if (bond instanceof MyAssociationBond) {
-        		showCurrentMolecule = true; break;
-        	}
-        	if (!showCurrentMolecule)
-        		picturePanel.setAtomContainer((IAtomContainer)evt.getNewValue());	
-        	picturePanel.setSelector(null);
-        }           	
-        
-        
+    	        if ((evt.getNewValue() instanceof ProgressStatus) && ((ProgressStatus)evt.getNewValue()).isEstimated()) {
+
+    	            display();
+    	        } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_selected.toString())) {
+    	        	picturePanel.setSelector((IProcessor<IAtomContainer,IChemObjectSelection>)evt.getNewValue());	
+    	        } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_molecule.toString())) {
+    	        	
+    	        	IAtomContainer mol = (IAtomContainer)evt.getNewValue();
+    	        	boolean showCurrentMolecule = false;
+    	        	//a workaround to cope with JCP crashing on null bond order
+    	        	if (mol != null) for (IBond bond: mol.bonds()) if (bond instanceof MyAssociationBond) {
+    	        		showCurrentMolecule = true; break;
+    	        	}
+    	        	if (!showCurrentMolecule)
+    	        		picturePanel.setAtomContainer((IAtomContainer)evt.getNewValue());	
+    	        	picturePanel.setSelector(null);
+    	        }     
+    	        
+    		}
+    	});
     }
 }

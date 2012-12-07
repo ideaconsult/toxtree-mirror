@@ -27,6 +27,7 @@ package toxtree.ui.molecule;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.FontMetrics;
 import java.awt.LayoutManager;
@@ -139,11 +140,18 @@ public class NavigationPanel extends JPanel implements Observer {
         for (int i = 2; i < 4; i++) add(nav[i]);
 	}	
 	public void update(Observable arg0, Object arg1) {
-        navStat.setToolTipText(dataContainer.toString());
-		navStat.setText("<html><font color=gray><b>" +
-				(dataContainer.getCurrentNo()+1) + " / " +  
-				dataContainer.getMoleculesCount() +
-				"</b></font></html>");
+		EventQueue.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				navStat.setToolTipText(dataContainer.toString());
+				navStat.setText("<html><font color=gray><b>" +
+						(dataContainer.getCurrentNo()+1) + " / " +  
+						dataContainer.getMoleculesCount() +
+						"</b></font></html>");			
+			}
+		});
+
 	}
 
 	public DataContainer getDataContainer() {
