@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2012 
 
-Contact: nina@acad.bg
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -22,15 +22,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
-/**
- * <b>Filename</b> DecisionMethodData.java 
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Created</b> 2005-8-2
- * <b>Project</b> toxTree
- */
 package toxtree.data;
 
 import java.io.File;
+import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -43,7 +38,7 @@ import toxTree.tree.DecisionResultsList;
 import toxTree.tree.stats.ConfusionMatrix;
 
 /**
- * Contains {@link toxTree.data.MoleculesIterator} and {@link toxTree.logging.TTLogger}
+ * Contains {@link toxTree.data.MoleculesIterator} 
  * @author Nina Jeliazkova <br>
  * <b>Modified</b> 2005-8-2
  */
@@ -65,27 +60,9 @@ public class DecisionMethodData extends DataContainer {
             modified = true;
             notifyObservers();
         } catch (Exception x) {
-            logger.error(x);
+            logger.log(Level.SEVERE,x.getMessage(),x);
         }
-        /*
-		try {
-	        getMolecule().setProperty(
-	        		treeResult.getDecisionMethod().getClass().getName() + 
-	        		"#" +
-	        		treeResult.getDecisionMethod().toString()
-	        		,
-	        		treeResult.getCategory().toString());
-	        getMolecule().setProperty(
-	        		treeResult.getClass().getName() +
-	        		"#" +
-	        		treeResult.getDecisionMethod().toString(),
-	        		treeResult.explain(false).toString());
-	        modified = true;
-	        notifyObservers();
-		} catch (DecisionResultException x) {
-			logger.error(x);
-		}
-        */
+
 	}
 	public void classify(IDecisionResult treeResult)  throws DecisionResultException {
 		if (!enabled) return;
@@ -94,15 +71,15 @@ public class DecisionMethodData extends DataContainer {
             treeResult.getDecisionMethod().setParameters((IAtomContainer) containers.getMolecule());            
 		    ac = (IAtomContainer) containers.getMolecule().clone();
 		} catch (Exception x) {
-		    logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		    ac = containers.getMolecule();
 		}
-		logger.debug("Start classify");
+		logger.log(Level.FINER,"Start classify");
         treeResult.classify(ac);
-        logger.debug("End classify");
-        logger.debug(treeResult);
+        logger.log(Level.FINER,"End classify");
+        logger.log(Level.FINEST,treeResult.toString());
         setResult(treeResult,getMolecule());
-        logger.debug("Result set");
+        logger.log(Level.FINER,"Result set");
         ac = null;		
 	}
 
@@ -132,7 +109,7 @@ public class DecisionMethodData extends DataContainer {
 					cmatrix.addEntry("All", category);
 				}
 			} catch (Exception x) {
-				logger.error("Error when processing record\t",Integer.toString(record),x);
+				logger.log(Level.WARNING,String.format("Error when processing record %d",record),x);
 				x.printStackTrace();
 			 
 			}
@@ -173,7 +150,7 @@ public class DecisionMethodData extends DataContainer {
 	    				setResult(treeResult,containers.getAtomContainer(record));
 	            	
 	            	} catch (DecisionResultException x) {
-	            		logger.error(x);
+	            		logger.log(Level.SEVERE,x.getMessage(),x);
 	            		x.printStackTrace();
 	            		treeResult.clear();
 	            		containers.setDone(false);
@@ -182,7 +159,7 @@ public class DecisionMethodData extends DataContainer {
 			    }
 			    ac = null;
 			} catch (Exception x) {
-				logger.error("Error when processing record\t",Integer.toString(record),x);
+				logger.log(Level.SEVERE,String.format("Error when processing record %d",record),x);
 				x.printStackTrace();
 			 
 			}
@@ -218,7 +195,7 @@ public class DecisionMethodData extends DataContainer {
 				ac = null;
 				setResult(treeResult,containers.getAtomContainer(record));
 			} catch (Exception x) {
-				logger.error("Error when processing record\t",Integer.toString(record),x);
+				logger.log(Level.WARNING,String.format("Error when processing record %d",record),x);
 				x.printStackTrace();
 			 
 			}
