@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.apps.toxForest;
 
 import java.io.File;
+import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -77,7 +78,7 @@ public class ToxForestData extends DecisionMethodData {
 	        modified = true;
 
 		} catch (DecisionResultException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 	@Override
