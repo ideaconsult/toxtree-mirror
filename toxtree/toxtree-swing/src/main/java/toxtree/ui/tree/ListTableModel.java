@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2012 
 
-Contact: nina@acad.bg
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -34,20 +34,20 @@ import javax.swing.table.AbstractTableModel;
 /**
  * TODO add description
  * @author Nina Jeliazkova
- * <b>Modified</b> 2005-8-2
+ * <b>Modified</b> 2012-12-7
  */
-public class ListTableModel extends AbstractTableModel implements Observer {
+public class ListTableModel<T> extends AbstractTableModel implements Observer {
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = -1099894331248616748L;
-	protected List list = null;
+	protected List<T> list = null;
 	protected Class aClass = null;
 	/**
 	 * 
 	 */
 
-	public ListTableModel(List list) {
+	public ListTableModel(List<T> list) {
 		super();
 		setList(list);
 	}
@@ -104,7 +104,7 @@ public class ListTableModel extends AbstractTableModel implements Observer {
 			return "NA";
 		}
 	}
-    public void setList(List data) {
+    public void setList(List<T> data) {
     	if ((this.list != null) && (this.list instanceof Observable))
     		((Observable) this.list).deleteObserver(this);
     	
@@ -131,7 +131,7 @@ public class ListTableModel extends AbstractTableModel implements Observer {
 		fireTableDataChanged();
 		
 	}
-    public synchronized List getList() {
+    public synchronized List<T> getList() {
         return list;
     }
 }

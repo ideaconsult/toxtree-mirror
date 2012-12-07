@@ -41,7 +41,7 @@ import toxtree.ui.tree.ListTableModel;
  * @author Nina Jeliazkova <br>
  * <b>Modified</b> 2005-8-8
  */
-public class CategoriesTableModel extends ListTableModel implements Observer  {
+public class CategoriesTableModel extends ListTableModel<IDecisionCategory> implements Observer  {
     
     /**
      * Comment for <code>serialVersionUID</code>
@@ -75,7 +75,7 @@ public class CategoriesTableModel extends ListTableModel implements Observer  {
      */
     public Object getValueAt(int rowIndex, int columnIndex) {
         try {
-    	IDecisionCategory c = (IDecisionCategory)list.get(rowIndex);
+    	IDecisionCategory c = list.get(rowIndex);
     	if (columnsno == 1) return "<html><b>" + c.toString() + "</b></html>";
     	else
     		switch (columnIndex) {
