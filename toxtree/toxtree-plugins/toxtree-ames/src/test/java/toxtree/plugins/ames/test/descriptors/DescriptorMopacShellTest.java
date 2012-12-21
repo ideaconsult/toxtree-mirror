@@ -35,7 +35,6 @@ import org.openscience.cdk.qsar.result.DoubleArrayResult;
 
 import toxTree.qsar.LinearDiscriminantRule;
 import toxTree.query.FunctionalGroups;
-import toxtree.plugins.ames.rules.RuleDACancerogenicityAromaticAmines;
 import ambit2.mopac.DescriptorMopacShell;
 import ambit2.mopac.Mopac7Reader;
 
@@ -97,8 +96,8 @@ public class DescriptorMopacShellTest extends TestCase {
 		*/
 	}	
 	public void testEditor() {
-		LinearDiscriminantRule d = new RuleDACancerogenicityAromaticAmines();
+		//LinearDiscriminantRule d = new RuleDACancerogenicityAromaticAmines();
 		
-		JOptionPane.showConfirmDialog(null,d.getModel().getEditor());
+		//JOptionPane.showConfirmDialog(null,d.getModel().getEditor());
 	}		
 }

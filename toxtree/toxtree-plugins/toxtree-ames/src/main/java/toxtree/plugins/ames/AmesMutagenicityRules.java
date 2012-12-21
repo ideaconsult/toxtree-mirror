@@ -40,23 +40,20 @@ import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.CategoriesList;
 import toxTree.tree.DecisionNodesFactory;
 import toxTree.tree.UserDefinedTree;
-import toxtree.plugins.ames.categories.CategoryCarcinogen;
+
 import toxtree.plugins.ames.categories.CategoryError;
 import toxtree.plugins.ames.categories.CategoryMutagenTA100;
-import toxtree.plugins.ames.categories.CategoryNoGenotoxicAlert;
-import toxtree.plugins.ames.categories.CategoryNoNongenotoxicAlert;
 import toxtree.plugins.ames.categories.CategoryNonMutagen;
-import toxtree.plugins.ames.categories.CategoryNotCarcinogen;
-import toxtree.plugins.ames.categories.CategoryPositiveAlertGenotoxic;
-import toxtree.plugins.ames.categories.CategoryPositiveAlertNongenotoxic;
+
+import toxtree.plugins.ames.categories.CategoryPositiveAlertAmes;
+import toxtree.plugins.ames.categories.CategoryNoAlertAmes;
 import toxtree.plugins.ames.categories.QSARApplicable;
 import toxtree.plugins.ames.rules.AmesMutagenicityTreeResult;
 import toxtree.plugins.ames.rules.RuleABUnsaturatedAldehyde;
-import toxtree.plugins.ames.rules.RuleAlertsForGenotoxicCarcinogenicity;
-import toxtree.plugins.ames.rules.RuleAlertsNongenotoxicCarcinogenicity;
+import toxtree.plugins.ames.rules.RuleAlertsForAmesMutagenicity;
 import toxtree.plugins.ames.rules.RuleAromaticAmineNoSulfonicGroup;
 import toxtree.plugins.ames.rules.RuleAromaticDiazo;
-import toxtree.plugins.ames.rules.RuleDACancerogenicityAromaticAmines;
+import toxtree.plugins.ames.rules.RuleAlertsForNewAmesMutagenicity;
 import toxtree.plugins.ames.rules.RuleDAMutagenicityABUnsaturatedAldehydes;
 import toxtree.plugins.ames.rules.RuleDAMutagenicityAromaticAmines;
 import toxtree.plugins.ames.rules.RuleDerivedAromaticAmines;
@@ -67,11 +64,10 @@ import toxtree.plugins.ames.rules.SA13_gen;
 import toxtree.plugins.ames.rules.SA14_gen;
 import toxtree.plugins.ames.rules.SA15_gen;
 import toxtree.plugins.ames.rules.SA16_gen;
-import toxtree.plugins.ames.rules.SA17_nogen;
 import toxtree.plugins.ames.rules.SA18_gen;
 import toxtree.plugins.ames.rules.SA19_gen;
 import toxtree.plugins.ames.rules.SA1_gen;
-import toxtree.plugins.ames.rules.SA20_nogen;
+
 import toxtree.plugins.ames.rules.SA21_gen;
 import toxtree.plugins.ames.rules.SA22_gen;
 import toxtree.plugins.ames.rules.SA23_gen;
@@ -85,31 +81,26 @@ import toxtree.plugins.ames.rules.SA28ter_gen;
 import toxtree.plugins.ames.rules.SA29_gen;
 import toxtree.plugins.ames.rules.SA2_gen;
 import toxtree.plugins.ames.rules.SA30_gen;
-import toxtree.plugins.ames.rules.SA31a_nogen;
-import toxtree.plugins.ames.rules.SA31b_nogen;
-import toxtree.plugins.ames.rules.SA31c_nogen;
+
 import toxtree.plugins.ames.rules.SA37_gen;
 import toxtree.plugins.ames.rules.SA38_gen;
 import toxtree.plugins.ames.rules.SA39_gen_and_nogen;
 import toxtree.plugins.ames.rules.SA3_gen;
-import toxtree.plugins.ames.rules.SA40_nogen;
-import toxtree.plugins.ames.rules.SA41_nogen;
-import toxtree.plugins.ames.rules.SA42_nogen;
-import toxtree.plugins.ames.rules.SA43_nogen;
-import toxtree.plugins.ames.rules.SA44_nogen;
-import toxtree.plugins.ames.rules.SA45_nogen;
-import toxtree.plugins.ames.rules.SA46_nogen;
-import toxtree.plugins.ames.rules.SA47_nogen;
-import toxtree.plugins.ames.rules.SA48_nogen;
-import toxtree.plugins.ames.rules.SA49_nogen;
+import toxtree.plugins.ames.rules.SA57_Ames;
+import toxtree.plugins.ames.rules.SA58_Ames;
+import toxtree.plugins.ames.rules.SA59_Ames;
+import toxtree.plugins.ames.rules.SA60_Ames;
+import toxtree.plugins.ames.rules.SA61_Ames;
+import toxtree.plugins.ames.rules.SA62_Ames;
+import toxtree.plugins.ames.rules.SA63_Ames;
+import toxtree.plugins.ames.rules.SA64_Ames;
+import toxtree.plugins.ames.rules.SA65_Ames;
+import toxtree.plugins.ames.rules.SA66_Ames;
 import toxtree.plugins.ames.rules.SA4_gen;
-import toxtree.plugins.ames.rules.SA50_nogen;
-import toxtree.plugins.ames.rules.SA51_nogen;
-import toxtree.plugins.ames.rules.SA52_nogen;
-import toxtree.plugins.ames.rules.SA53_nogen;
-import toxtree.plugins.ames.rules.SA54_nogen;
-import toxtree.plugins.ames.rules.SA55_nogen;
-import toxtree.plugins.ames.rules.SA56_nogen;
+import toxtree.plugins.ames.rules.SA67_Ames;
+import toxtree.plugins.ames.rules.SA68_Ames;
+import toxtree.plugins.ames.rules.SA69_Ames;
+
 import toxtree.plugins.ames.rules.SA5_gen;
 import toxtree.plugins.ames.rules.SA6_gen;
 import toxtree.plugins.ames.rules.SA7_gen;
@@ -117,8 +108,8 @@ import toxtree.plugins.ames.rules.SA8_gen;
 import toxtree.plugins.ames.rules.SA9_gen;
 import toxtree.plugins.ames.rules.UserInputABUnsaturatedAldehyde;
 import toxtree.plugins.ames.rules.UserInputAromaticAmine;
-import toxtree.plugins.ames.rules.VerifyAlertsGenotoxic;
-import toxtree.plugins.ames.rules.VerifyAlertsNongenotoxic;
+import toxtree.plugins.ames.rules.VerifyAlertsAmes;
+import toxtree.plugins.ames.rules.VerifyAlertsNewAmes;
 
 /**
  * 
@@ -136,7 +127,7 @@ public class AmesMutagenicityRules extends UserDefinedTree implements IDecisionI
  
 
         public final static transient String[] c_rules = { 
-            RuleAlertsForGenotoxicCarcinogenicity.class.getName(), // Rule  1         
+            RuleAlertsForAmesMutagenicity.class.getName(), // Rule  1         
             SA1_gen.class.getName(), //2
             SA2_gen.class.getName(), //3
             SA3_gen.class.getName(), //4
@@ -170,7 +161,7 @@ public class AmesMutagenicityRules extends UserDefinedTree implements IDecisionI
             SA38_gen.class.getName(),    //32
             SA39_gen_and_nogen.class.getName(), //33
                                        
-            VerifyAlertsGenotoxic.class.getName(), //31//34 no go to qsar 13, no go to sa10, cat 8 neg and 1 pos
+            VerifyAlertsAmes.class.getName(), //31//34 no go to qsar 13, no go to sa10, cat 8 neg and 1 pos
             
             RuleABUnsaturatedAldehyde.class.getName(), //is a,b unsaturated aldehyde Rule 54//35 app13? no go to sa10, yes go to proceed next?
             UserInputABUnsaturatedAldehyde.class.getName(), //56//36 proceed qsar13? no go to sa 10, yes to to qsar 13, no cat 0 yes cat 7
@@ -182,39 +173,40 @@ public class AmesMutagenicityRules extends UserDefinedTree implements IDecisionI
             RuleDerivedAromaticAmines.class.getName(), //41//40
             RuleAromaticAmineNoSulfonicGroup.class.getName(), //is aromatic amine Rule  42/app 8 and 6//41 no go to nongen sa 45, yes go next
             UserInputAromaticAmine.class.getName(), //43//42  roceed qsar8 and 6? no go to sa nongen 45, yes to to next, no cat 0 yes cat 7
-            RuleDACancerogenicityAromaticAmines.class.getName(), //QSAR8  Rule 44// 43 rules next, cat. 6 neg 5 pos
+            //RuleDACancerogenicityAromaticAmines.class.getName(), //QSAR8  Rule 44// 43 rules next, cat. 6 neg 5 pos
             RuleDAMutagenicityAromaticAmines.class.getName(), //QSAR6 Rule 46// 44 rules next, cat. 4 neg 3 pos
-            //get here by No alerts for genotoxic carc. branch 
+            //get here by No alerts for genotoxic carc. branch /43
             
   
-            RuleAlertsNongenotoxicCarcinogenicity.class.getName(), //32//45
-            SA17_nogen.class.getName(), //33 nongenotoxic//46
-            SA20_nogen.class.getName(), //34 nongenotoxic//47
-            SA31a_nogen.class.getName(), //35 nongenotoxic//48
-            SA31b_nogen.class.getName(), //36 nongenotoxic//49
-            SA31c_nogen.class.getName(), //37 nongenotoxic//50
+            RuleAlertsForNewAmesMutagenicity.class.getName(), //32//45/44
+            //SA17_nogen.class.getName(), //33 nongenotoxic//46
+            //SA20_nogen.class.getName(), //34 nongenotoxic//47
+            //SA31a_nogen.class.getName(), //35 nongenotoxic//48
+            //SA31b_nogen.class.getName(), //36 nongenotoxic//49
+            //SA31c_nogen.class.getName(), //37 nongenotoxic//50
             
-            SA39_gen_and_nogen.class.getName(), //51
+            //SA39_gen_and_nogen.class.getName(), //51
             
-            SA40_nogen.class.getName(), //33 nongenotoxic//52
-            SA41_nogen.class.getName(), //33 nongenotoxic//53
-            SA42_nogen.class.getName(), //34 nongenotoxic//54
-            SA43_nogen.class.getName(), //33 nongenotoxic//55
-            SA44_nogen.class.getName(), //34 nongenotoxic//56
-            SA45_nogen.class.getName(), //33 nongenotoxic//57
-            SA46_nogen.class.getName(), //34 nongenotoxic//58
-            SA47_nogen.class.getName(), //33 nongenotoxic//59
-            SA48_nogen.class.getName(), //34 nongenotoxic//60
-            SA49_nogen.class.getName(), //33 nongenotoxic//61
-            SA50_nogen.class.getName(), //34 nongenotoxic//62
-            SA51_nogen.class.getName(), //34 nongenotoxic//63
-            SA52_nogen.class.getName(), //34 nongenotoxic//64
-            SA53_nogen.class.getName(), //34 nongenotoxic//65
-            SA54_nogen.class.getName(), //34 nongenotoxic//66
-            SA55_nogen.class.getName(), //34 nongenotoxic//67
-            SA56_nogen.class.getName(), //34 nongenotoxic//68
+            SA57_Ames.class.getName(), //33 nongenotoxic//52/45
+            SA58_Ames.class.getName(), //33 nongenotoxic//53/46
+            SA59_Ames.class.getName(), //34 nongenotoxic//54/47
+            SA60_Ames.class.getName(), //33 nongenotoxic//55/48/
+            SA61_Ames.class.getName(), //34 nongenotoxic//56/49
+            SA62_Ames.class.getName(), //33 nongenotoxic//57/50
+            SA63_Ames.class.getName(), //34 nongenotoxic//58/51
+            SA64_Ames.class.getName(), //33 nongenotoxic//59/52
+            SA65_Ames.class.getName(), //34 nongenotoxic//60/53
+            SA66_Ames.class.getName(), //33 nongenotoxic//61/54
+            SA67_Ames.class.getName(), //34 nongenotoxic//62/55/
+            SA68_Ames.class.getName(), //34 nongenotoxic//63/56
+            SA69_Ames.class.getName(), //34 nongenotoxic//64/57
             
-            VerifyAlertsNongenotoxic.class.getName(), //38//69 rules 0 0  cat neg 9 pos 2
+            //SA53_nogen.class.getName(), //34 nongenotoxic//65
+            //SA54_nogen.class.getName(), //34 nongenotoxic//66
+           // SA55_nogen.class.getName(), //34 nongenotoxic//67
+            //SA56_nogen.class.getName(), //34 nongenotoxic//68
+            
+            VerifyAlertsNewAmes.class.getName(), //38//69 rules 0 0  cat neg 9 pos 2/58
         
         
          
@@ -258,14 +250,14 @@ public class AmesMutagenicityRules extends UserDefinedTree implements IDecisionI
             {33,33,0,0}, //sa38 32
             {34,34,0,0}, //sa39mix 33
                         
-            {35,38,8,1}, //counter non gen alert senza sa10 34
+            {35,38,2,1}, //counter non gen alert senza sa10 34
             //no go to qsar 13 next, yes go to sa10 38, cat 8 neg and 1 pos
             
                         
             {38,36,0,0}, //app Q13? 35
             //no go to sa10, yes go to proceed next
             
-            {38,37,7,0}, //proceed Q13? 36
+            {38,37,5,0}, //proceed Q13? 36
             //no go to sa 10, yes to to qsar 13, no cat 0 yes cat 7
                         
             {38,38,4,3}, //Q13 37
@@ -274,50 +266,43 @@ public class AmesMutagenicityRules extends UserDefinedTree implements IDecisionI
             {39,39,0,1}, //sa110 38
             //yes no go next, cat no 0 pos 1 
             
+            
             {40,40,0,0}, // 39   aN=Na  - if yes will be split into ar amines, otherwise will work with the original compound 41
             {41,41,0,0}, //40  Rule  (ii)    
             
-            {45,42,0,0}, //41  qsar 8 and 6 app? ar amine? 
+            {44,42,0,0}, //41  qsar 8 and 6 app? ar amine? 
             //no go to nongen sa 46, yes go next
             
-            {45,43,7,0}, // 42 user input proceed?
+            {44,43,5,0}, // 42 user input proceed?
             //no go to sa nongen 46, yes to to next, no cat 0 yes cat 7?
             
-            {44,44,6,5}, //43 QSAR8 //Yes (>threshold)- carcinogen,No - not a carcinogen/next, cat. 6 neg 5 pos
+           // {44,44,6,5}, //43 QSAR8 //Yes (>threshold)- carcinogen,No - not a carcinogen/next, cat. 6 neg 5 pos
             
-            {45,45,4,3}, //44 QSAR6 //rules next, cat. 4 neg 3 pos
-            
-            
-            
-            {46,46,0,0}, //nongenotoxic alerts 45
-            {47,47,0,0}, //sa17 46
-            {48,48,0,0}, //sa20 47
-            {49,49,0,0}, //sa31a 48
+            {44,44,4,3}, //44 QSAR6 //rules next, cat. 4 neg 3 pos
             
             
-            {50,50,0,0}, //sa31b 49
-            {51,51,0,0}, //sa31c 50
-            {52,52,0,0}, //sa39mixed 51
             
-            {53,53,0,0}, //sa40 52
-            {54,54,0,0}, //sa41 53
-            {55,55,0,0}, //sa42 54
-            {56,56,0,0}, //sa43 55
-            {57,57,0,0}, //sa44 56
-            {58,58,0,0}, //sa45 57
-            {59,59,0,0}, //sa46 58
-            {60,60,0,0}, //sa47 59
-            {61,61,0,0}, //sa48 60
-            {62,62,0,0}, //sa49 61
-            {63,63,0,0}, //sa50 62
-            {64,64,0,0}, //sa51 63
-            {65,65,0,0}, //sa52 64
-            {66,66,0,0}, //sa53 65
-            {67,67,0,0}, //sa54 66
-            {68,68,0,0}, //sa55 67
-            {69,69,0,0}, //sa56 68
+            {45,45,0,0}, //nongenotoxic alerts 45/counter new Ames 44
+            {46,46,0,0}, //sa17 46/45 ames 57
+            {47,47,0,0}, //sa17 46/45 ames 58
+            {48,48,0,0}, //sa20 47/46 ames 59
+            {49,49,0,0}, //sa31a 48/47 ames 60
             
-            {0,0,9,2}, //any nongen alert? 69
+            
+            {50,50,0,0}, //sa31b 49/48 ames 61
+            {51,51,0,0}, //sa31c 50/49 ames 62
+            {52,52,0,0}, //sa39mixed 51/50 ames 63
+            
+            {53,53,0,0}, //sa40 52/51 ames 64
+            {54,54,0,0}, //sa41 53/52 ames 65
+            {55,55,0,0}, //sa42 54/53 ames 66
+            {56,56,0,0}, //sa43 55/54 ames 67
+            {57,57,0,0}, //sa44 56/55 ames 68
+            {58,58,0,0}, //sa45 57/56 ames 69
+           
+            
+            
+            {0,0,0,1}, //any new Ames alert? 69/58
             
           
 
@@ -325,17 +310,17 @@ public class AmesMutagenicityRules extends UserDefinedTree implements IDecisionI
         };	
 	
 		private final static transient String c_categories[] ={
-			CategoryPositiveAlertGenotoxic.class.getName(), //1 -1
-			CategoryPositiveAlertNongenotoxic.class.getName(), //2 -2
+			CategoryPositiveAlertAmes.class.getName(), //1 -1
+			CategoryNoAlertAmes.class.getName(), //2 -2
 			//CategoryNoAlert",		//3 
 			CategoryMutagenTA100.class.getName(),	//4 -3
 			CategoryNonMutagen.class.getName(),	//5 -4
-			CategoryCarcinogen.class.getName(),		//6  -5
-			CategoryNotCarcinogen.class.getName(), //7 -6
-			QSARApplicable.class.getName(),	//8 -7
-			CategoryNoGenotoxicAlert.class.getName(), //9 -8
-			CategoryNoNongenotoxicAlert.class.getName(), //10 -9
-			CategoryError.class.getName()//10 -10
+			//CategoryCarcinogen.class.getName(),		//6  -5
+			//CategoryNotCarcinogen.class.getName(), //7 -6
+			QSARApplicable.class.getName(),	//8 -7/5
+			//CategoryNoGenotoxicAlert.class.getName(), //9 -8
+			//CategoryNoNongenotoxicAlert.class.getName(), //10 -9
+			CategoryError.class.getName()//10 -10/6
 		};
 	/**
 	 * 
@@ -345,7 +330,7 @@ public class AmesMutagenicityRules extends UserDefinedTree implements IDecisionI
         //getRule(53).setID("SA10a");
 		setChanged();
 		notifyObservers();
-		setTitle("Ames test mutagenicity by ISS");
+		setTitle("In vitro mutagenicity (Ames test) alerts by ISS");
         setPriority(6);
         setFalseIfRuleNotImplemented(false);
         

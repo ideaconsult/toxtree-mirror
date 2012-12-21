@@ -1,5 +1,5 @@
 Manifest-version: ${project.version}
-Specification-Title: Ames mutagenicity rulebase by ISS
+Specification-Title: In vitro mutagenicity (Ames test) alerts by ISS
 Specification-Version: ${project.version}
 Specification-Vendor: Ideaconsult LTD
 Implementation-Title: Classes implementing Ames test mutagenicity by ISS

@@ -35,7 +35,7 @@ public class UserInputAromaticAmine extends UserInputRule {
 
 	public UserInputAromaticAmine() {
 		super("<html>For a better assessment of aromatic amine, QSAR calculation could be applied. Would you like to proceed?<br>Warning: the assessment could be time consuming!</html>");
-		setID("Proceed with QSAR6 and QSAR8?");
+		setID("Proceed with QSAR6?");
 		setSilentvalue(true);
 	}
 	public void removeListener() {

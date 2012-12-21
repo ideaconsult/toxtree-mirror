@@ -29,7 +29,6 @@ import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.result.BooleanResult;
 
-import toxtree.plugins.ames.rules.RuleDACancerogenicityAromaticAmines;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SmartsPatternCDK;
 

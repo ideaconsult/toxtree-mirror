@@ -102,7 +102,7 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
             /*
 [c;!$(cc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(cc[n,o,s,p]);!$(ccc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(ccc[n,o,s,p]);!$(cccc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(cccc[n,o,s,p]);!$(ccccc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(ccccc[n,o,s,p]);!$(cccccc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(cccccc[n,o,s,p]);!$(ccccccc[SX4](=[OX1])(=[OX1])([O-,OX2H1]));!$(ccccccc[n,o,s,p])][NX3v3;!$(N[CX4H2][OX2H1]);!$(N(CC[Cl,Br,F,I])(CC[Cl,Br,F,I]));!$(NN);!$(N([#1,C])N=O);!$(NN=N);!$(N[OX2H1])]
             */
-			setID("QSAR6,8 applicable?");
+			setID("QSAR6 applicable?");
 			setTitle("Aromatic amine without sulfonic group on the same ring");
 			StringBuffer e = new StringBuffer();
 			e.append(aromatic_amine);
