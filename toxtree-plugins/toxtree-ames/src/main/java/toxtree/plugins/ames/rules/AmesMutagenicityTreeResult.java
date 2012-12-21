@@ -43,14 +43,14 @@ import toxTree.tree.ProgressStatus;
 import toxTree.tree.RuleResult;
 import toxTree.tree.TreeResult;
 import toxTree.tree.rules.IAlertCounter;
-import toxtree.plugins.ames.categories.CategoryCarcinogen;
 import toxtree.plugins.ames.categories.CategoryMutagenTA100;
-import toxtree.plugins.ames.categories.CategoryNoGenotoxicAlert;
-import toxtree.plugins.ames.categories.CategoryNoNongenotoxicAlert;
+import toxtree.plugins.ames.categories.CategoryNoAlertAmes;
+import toxtree.plugins.ames.categories.CategoryPositiveAlertAmes;
+//import toxtree.plugins.ames.categories.CategoryMutagenTA100;
 import toxtree.plugins.ames.categories.CategoryNonMutagen;
-import toxtree.plugins.ames.categories.CategoryNotCarcinogen;
-import toxtree.plugins.ames.categories.CategoryPositiveAlertGenotoxic;
-import toxtree.plugins.ames.categories.CategoryPositiveAlertNongenotoxic;
+
+//import toxtree.plugins.ames.categories.CategoryNonMutagen;
+
 
 public class AmesMutagenicityTreeResult extends TreeResult {
     protected static String SUFFIX = "SUFFIX";
@@ -223,8 +223,8 @@ public class AmesMutagenicityTreeResult extends TreeResult {
 				setSilent(true);
 			else setSilent((rule instanceof DecisionNode) &&	
 					(
-				(((DecisionNode)rule).getRule() instanceof RuleAlertsForGenotoxicCarcinogenicity) ||
-				(((DecisionNode)rule).getRule() instanceof RuleAlertsNongenotoxicCarcinogenicity)
+				(((DecisionNode)rule).getRule() instanceof RuleAlertsForGenotoxicCarcinogenicity) 
+				//(((DecisionNode)rule).getRule() instanceof RuleAlertsNongenotoxicCarcinogenicity)
 
 				)
 				);
@@ -236,19 +236,19 @@ public class AmesMutagenicityTreeResult extends TreeResult {
 	protected boolean acceptCategory(IDecisionCategory category) {
 		
 		if (category == null) return false;
-		if (category instanceof CategoryPositiveAlertGenotoxic) {
-				removeCategory(new CategoryNoGenotoxicAlert());
+		if (category instanceof CategoryPositiveAlertAmes) {
+			removeCategory(new CategoryNoAlertAmes());
 				return true;
-		} else	if (category instanceof CategoryPositiveAlertNongenotoxic) {
-			removeCategory(new CategoryNoNongenotoxicAlert());
-			return true;
-		} else if (category instanceof CategoryCarcinogen) {
-			removeCategory(new CategoryNotCarcinogen());
+		//} else	if (category instanceof CategoryPositiveAlertNongenotoxic) {
+			//removeCategory(new CategoryNoNongenotoxicAlert());
+		//	return true;
+		//} else if (category instanceof CategoryCarcinogen) {
+		//	removeCategory(new CategoryNotCarcinogen());
 		} else if (category instanceof CategoryMutagenTA100) {
 			removeCategory(new CategoryNonMutagen());			
-		} else if (category instanceof CategoryNotCarcinogen) {
-			int alert = assignedCategories.indexOf(new CategoryCarcinogen());
-			if (alert > -1) return false;
+		//} else if (category instanceof CategoryNotCarcinogen) {
+		//	int alert = assignedCategories.indexOf(new CategoryCarcinogen());
+		//	if (alert > -1) return false;
 		} else if (category instanceof CategoryNonMutagen) {
 			int alert = assignedCategories.indexOf(new CategoryMutagenTA100());
 			if (alert > -1) return false;
@@ -259,7 +259,7 @@ public class AmesMutagenicityTreeResult extends TreeResult {
 	protected void removeCategory(IDecisionCategory category) {
 		int remove = assignedCategories.indexOf(category);
 		if (remove > -1)
-			assignedCategories.remove(remove);
+		assignedCategories.remove(remove);
 
 	}
     public List<CategoryFilter> getFilters() {
