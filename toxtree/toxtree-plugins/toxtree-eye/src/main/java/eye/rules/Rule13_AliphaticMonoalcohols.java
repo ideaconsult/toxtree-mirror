@@ -132,7 +132,6 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 			for (List<Integer> l : matchedAtoms) {
 				for (Integer i : l) 
 					atoms.add(newmol.getAtom(i.intValue()));
-					//System.out.println(i+" "+mol.getAtom(i.intValue()).getSymbol());
 			}
 			for (IAtom atom : atoms)
 				newmol.removeAtomAndConnectedElectronContainers(atom);

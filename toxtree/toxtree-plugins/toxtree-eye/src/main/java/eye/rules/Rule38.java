@@ -119,7 +119,6 @@ public class Rule38 extends Rule13_AliphaticMonoalcohols {
                     return false;
                 }
                 for (IBond bond : bonds) {
-                    //System.out.println(bond.getOrder());
                     if (Order.SINGLE != bond.getOrder()) {
                         logger.info("O connected with bon-single bond found");
                         return false;
@@ -139,7 +138,6 @@ public class Rule38 extends Rule13_AliphaticMonoalcohols {
             }
                 
         }
-        //System.out.println("C " + c_count+" O "+o_count+" H "+h_count + " ALL "+m.getAtomCount());
         return (c_count+o_count+h_count) == m.getAtomCount();
         
          

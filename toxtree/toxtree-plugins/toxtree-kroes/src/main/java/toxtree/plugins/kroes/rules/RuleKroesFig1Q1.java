@@ -246,7 +246,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
             return false;
         }
         logger.info("Polyhalogenated compound\t", Integer.toString(halogensFound), "\thalogens found");
-        print(mol);
+        //print(mol);
         for(int i = 0; i < query.getAtomContainerCount(); i++)
         {
             logger.info("Compare with ", query.getAtomContainer(i).getID());
@@ -258,7 +258,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
         logger.info("NOT a ", explanation.toString());
         return false;
     }
-
+    /*
     protected void print(IAtomContainer a)
     {
         logger.info(a.getID());
@@ -285,7 +285,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
 
         logger.info("");
     }
-
+	*/
     public static transient String halogens[] = {
         "F", "Cl", "Br", "I"
     };
