@@ -101,15 +101,6 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
             for (int p = 0; p < fusedrings_patterns.length;p++) {
                 int matches = ((ISmartsPattern)fusedrings_patterns[p][2]).match(a);
                 List<List<Integer>> list = ((ISmartsPattern)fusedrings_patterns[p][2]).getUniqueMatchingAtoms();
-                /*
-                System.out.print(matches);
-                System.out.print('\t');
-                System.out.print(fusedrings_patterns[p][0]);
-                System.out.print('=');
-                System.out.print(fusedrings_patterns[p][1]);
-                System.out.print('\t');
-                System.out.println(list.size());
-                */
                 for (int j=0; j < list.size();j++) {
                     List<Integer> l = list.get(j); 
                     boolean ok = true;
@@ -124,16 +115,9 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                         for (int k=0; k < l.size();k++) {
                             IAtom atom = a.getAtom(l.get(k));
                             atom.setProperty(fusedrings_patterns[p][0],fusedrings_patterns[p][1]);
-                            /*
-                                System.out.print(a.getAtom(l.get(k)).getSymbol());
-                                System.out.print('[');
-                                System.out.print(l.get(k));
-                                System.out.print(']');
-                                System.out.print('\t');
-                              */
+
                             }
                         }   
-                    //System.out.print('\n');
       
             }
             return super.calculate(a);
@@ -209,13 +193,6 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
 		    }
 		}
 
-		/*
-        for (int n=0; n < 6; n++) {
-            System.out.print(values[0][n]);
-            System.out.print('\t');
-            }
-            System.out.println();      
-          */  
 		DoubleArrayResult results = new DoubleArrayResult();		
 
 		String[] d = new String[6*getDescriptorNames().length];
@@ -241,7 +218,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         IAtom nitroAtom = ac.getAtom(natom);
         for (int j=0; j< ac.getBondCount();j++) {
             IBond b = ac.getBond(j);
-            //System.out.println("Examine bond " + b.getAtom(0).getSymbol() + " " +  b.getAtom(1).getSymbol());            
+            
             boolean addBond = true;
             for (int i=0; i< b.getAtomCount();i++) {
                 IAtom a = b.getAtom(i);
@@ -257,7 +234,6 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                     aminogroup_subst.addBond(
                     		MoleculeTools.newBond(SilentChemObjectBuilder.getInstance(),
                             otherAtom, r, b.getOrder()));
-              //      System.out.println("Adding bond " + a.getSymbol() + " " + otherAtom.getSymbol());
                     break;
                 }
             }
@@ -300,7 +276,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                 //otherwise calculate amino group order
                 IAtomContainerSet subst = substituents.get(mark);
                 double neworder[] = getAminoGroupOrder(subst,mark);
-                //System.out.println(" order "+neworder[0]+'-'+neworder[1]+ '-'+ neworder[2]+ mark);                
+               
                 if (order == null) {
                     selectedMark = mark;
                     order = neworder;
@@ -321,7 +297,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                     }
                 }
             }
-            //System.out.println("Number of aromatic amines: " + substituents.size() + " selected " + selectedMark);            
+           
             if (selectedMark == null)
                 throw new CDKException("No substituents!");
             else
@@ -329,52 +305,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         }
            
     }
-    /*
-    public boolean reverseNumbers(IAtomContainerSet substituents,String mark) throws CDKException {
-        double[] positions = new double[6];
-        for (int i=0; i < 6; i++) positions[i] = 0;
-        
-        for (int k = 0; k < substituents.getAtomContainerCount(); k++) {
-            IAtomContainer m = substituents.getAtomContainer(k);
-            if (m!=null) 
-                for (int j=0;j <m.getAtomCount();j++) {
-                    SubstituentPosition place = SubstituentExtractor.getSubstituentNumber(mark,m,j);
-                    if (place != null) {  
-                        int p = place.getPosition();
-                        if (H.equals(m.getAtom(j).getSymbol()))
-                           positions[p-1] = 0;
-                        else {
-                            Object o = m.getAtom(j).getProperty(MR);
-                            if (m.getAtom(j).getProperty(MR) != null) {//ring
-                                if (o instanceof Number)
-                                    positions[p-1]=((Number)o).doubleValue();
-                                else positions[p-1] = 1;
-                            } else {
-                                positions[p-1]=0;
-                                for (int n=0; n< m.getAtomCount();n++)
-                                    if (!H.equals(m.getAtom(n).getSymbol()))
-                                        positions[p-1]++;
-                            }                            
-                            //positions[p-1] = m.getAtomCount();
-                        }
-                        System.out.println(k+ " pos " + (p-1) + " atoms " + positions[p-1]);
-                    }
-                }
-                
-        }
-        boolean reverse = false;
-        for (int i=1; i < 3; i++) 
-            if (positions[i] > positions[6-i]) 
-                break;
-            else if (positions[i] < positions[6-i]) {
-                reverse = true;
-                break;
-            }
-        if (reverse)
-            System.out.println("Reverse numbering");
-        return reverse;
-    }
-    */
+  
     /**
      * If more than one amino group is present, the -N with lowest steric hindrance ( 1. primary amines; 2. secondary amines; 3. tertiary amines; in increasing steric hindrance order) is considered to be the functional group;
      * <br> 
@@ -388,43 +319,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
      * This number effectively orders the amino groups as explained above.
      * 
      */
-    /*
-    protected double getAminoGroupOrder(IAtomContainerSet substituents,String mark) {
-        
-        double order = 0; 
-        double ortho = 1;
-        double amino_ortho = 0;
-        for (int k = 0; k < substituents.getAtomContainerCount(); k++) {
-            IAtomContainer m = substituents.getAtomContainer(k);
-            if (m!=null) 
-                for (int j=0;j <m.getAtomCount();j++) {
-                    SubstituentPosition place = SubstituentExtractor.getSubstituentNumber(mark,m,j);
-                    if (place == null) continue;
-                    if ((place.getPosition() == 2) || (place.getPosition() == 6)) {
-                        System.out.println(mark + " ortho " + m.getAtom(j).getSymbol());
-                        if (!H.equals(m.getAtom(j).getSymbol())) ortho ++;
-                        if (N.equals(m.getAtom(j).getSymbol())) amino_ortho = place.getPosition(); 
-                    } else if (place.getPosition() == 1) {
-                        //found an amine
-                        System.out.print(m.getAtom(j).getSymbol());
-                        List<IAtom> neighbors = m.getConnectedAtomsList(m.getAtom(j));
-                        for (int i=0; i < neighbors.size(); i++) {
-                            IAtom n = neighbors.get(i); 
-                            if ((n instanceof IPseudoAtom) || (H.equals(n.getSymbol()))) continue;
-                            else order = order + 1;
-                            System.out.print('\t');                            
-                            System.out.print(neighbors.get(i).getSymbol());
-                        }
-                        System.out.println();   
-                    } else {
-                    	System.out.println(mark + '\t' + place + '\t' +  m.getAtom(j).getSymbol());
-                    }
-                }
-        }    
-        System.out.println("Amine Order "+order + " Ortho "+ortho + " Amino group at ortho position "+amino_ortho);
-        return order*10 + 1/ortho;
-    }
-    */
+    
     protected double[] getAminoGroupOrder(IAtomContainerSet substituents,String mark) {
         ISubstituentAction<Double> action = new ISubstituentAction<Double>() {
         	public Double processSubstituent(IAtomContainer m,String mark, SubstituentPosition place, int j) {
@@ -443,12 +338,8 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                         //penalty for an extended aromatic system as a substituent 
                         if ((ringsizes != null) && (ringsizes instanceof ArrayList) && (n.getFlag(CDKConstants.ISAROMATIC))) 
                             order += ((ArrayList) ringsizes).size();
-                        
-                        //System.out.println(mark + " " + ringsizes +  " N::"+ m.getAtomCount());
-                        //System.out.print('\t');                            
-                        //System.out.print(neighbors.get(i).getSymbol());
+
                     }
-                    //System.out.println();
                     return order;
                 } else        		
 	                if (H.equals(m.getAtom(j).getSymbol()))
@@ -492,7 +383,6 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                 break;
             }
         if (reverse) {
-        	//System.out.println("Reverse numbering");
         	ISubstituentAction<Double> renumberAction = new ISubstituentAction<Double>() {
         		public Double processSubstituent(IAtomContainer substituent, String mark, SubstituentPosition place, int atomIndex) {
         			if (place.getPosition() > 1) {
@@ -526,7 +416,6 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         //if (positions[1]>0) ortho ++;
         //if (positions[5]>0) ortho ++;
         double corder = positions[0]*1000 + 100.0/(ortho) + 1.0/subrule4;
-        //System.out.println(mark + "\tAmine Order "+positions[0] + " Ortho "+(ortho) + " subrule4 "+ subrule4 + " c" + corder);
         double[] order = new double[3];
         order[0] = positions[0];
         order[1] = 1.0/ortho;
