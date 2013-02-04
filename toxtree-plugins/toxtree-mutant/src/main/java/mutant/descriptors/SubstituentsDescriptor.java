@@ -3,7 +3,9 @@ package mutant.descriptors;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.exception.CDKException;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
