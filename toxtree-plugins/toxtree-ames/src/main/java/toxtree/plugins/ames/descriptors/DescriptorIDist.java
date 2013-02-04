@@ -83,17 +83,15 @@ public class DescriptorIDist implements IMolecularDescriptor {
 	        Object mol = null;
 			int ok = 0;
 			try {
-				//System.out.println();
 				for (int i=0; i < smarts.length;i++) {
 					if (mol == null)
 						mol = smarts[i].getObjectToVerify(arg0);
-					//System.out.print(smarts[i].getSmarts());
 					if (smarts[i].hasSMARTSPattern(mol)>0) {
 						ok = 1;
 						//System.out.print("\tYES");
 						break;
 					} //else System.out.print("\tNO");
-					//System.out.println();
+
 				}	
 				
 		        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
