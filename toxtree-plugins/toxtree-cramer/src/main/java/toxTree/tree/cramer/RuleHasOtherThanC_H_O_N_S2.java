@@ -128,7 +128,9 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
                     	https://sourceforge.net/tracker/?func=detail&aid=3020065&group_id=20024&atid=120024
                         order = order + a.getHydrogenCount();
                     	*/
-    					order = order + a.getImplicitHydrogenCount()==null?0:a.getImplicitHydrogenCount();
+                        if (a.getImplicitHydrogenCount()!=null)
+                        	order = order + a.getImplicitHydrogenCount();
+                        
 						if ((order-2) < 0.1)
 							c++;
 						else {
