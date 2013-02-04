@@ -2296,9 +2296,6 @@ public class FunctionalGroups {
             IAtomContainer mol = sp.parseSmiles(smiles);
             if ((mol != null) && (mol.getAtomCount()==0)) return null;
 
-            //for (IAtom atom : mol.atoms())
-            //	System.out.println(atom.getAtomTypeName());
-            
             if (addHydrogens) 
             try {
             	//logger.debug("Adding explicit hydrogens");
@@ -4029,9 +4026,6 @@ class ChargeConsumed {
 			amount.consume(minCharge);
 			consume(-minCharge);
 		}
-		
-		//System.out.println(toString());
-		//System.out.println(amount.toString());
 	}	
 	public int getCharge() {
 		return charge;

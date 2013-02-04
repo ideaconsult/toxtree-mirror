@@ -407,7 +407,7 @@ public class TreeResult implements IDecisionResult {
             try {
 	            for (int i =0; i < nr; i++)
 	                if (!getRuleResult(i).equals(r.getRuleResult(i))) {
-	                	System.out.println(getRuleResult(i)+"\tdoesn't match\t"+r.getRuleResult(i));
+	                	//System.out.println(getRuleResult(i)+"\tdoesn't match\t"+r.getRuleResult(i));
 	                	return false;
 	                }
 	            return true;    
