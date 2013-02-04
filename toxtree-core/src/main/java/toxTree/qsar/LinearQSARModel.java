@@ -168,19 +168,25 @@ public class LinearQSARModel extends AbstractQSARModel  {
 					if (getDescriptor(i) == null)
 						throw new QSARModelException("Can't calculate descriptor "+ descriptorNames.get(i));
 					
-					DescriptorValue dvalue = getDescriptor(i).calculate(ac);
-					if (dvalue.getException()!=null) {
-						throw new QSARModelException(dvalue.getException().getMessage());
+					try {
+						DescriptorValue dvalue = getDescriptor(i).calculate(ac);
+						if (dvalue.getException()!=null) {
+							throw new QSARModelException(dvalue.getException().getMessage());
+						}
+	                    String [] dnames = dvalue.getNames();
+	                    for (int n=0; n < dnames.length;n++)
+	                        setCalculated(getDescriptor(i),dnames[n], true);
+						names = dvalue.getNames();
+						if ((names != null) && logger.isDebugEnabled()) 
+							for (int j=0; j < names.length;j++)
+								logger.debug("Estimated ",names[j]);
+						logger.debug(dvalue.getValue()," by ",getDescriptor(i));
+						descriptor = dvalue.getValue();
+					} catch (QSARModelException x) {
+						throw x;
+					} catch (Exception x) {
+						throw new QSARModelException(descriptorNames.get(i),x);
 					}
-                    String [] dnames = dvalue.getNames();
-                    for (int n=0; n < dnames.length;n++)
-                        setCalculated(getDescriptor(i),dnames[n], true);
-					names = dvalue.getNames();
-					if ((names != null) && logger.isDebugEnabled()) 
-						for (int j=0; j < names.length;j++)
-							logger.debug("Estimated ",names[j]);
-					logger.debug(dvalue.getValue()," by ",getDescriptor(i));
-					descriptor = dvalue.getValue();
 					
 				} 
 				double value=Double.NaN;
