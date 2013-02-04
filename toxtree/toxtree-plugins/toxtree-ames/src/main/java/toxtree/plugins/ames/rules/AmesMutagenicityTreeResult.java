@@ -106,23 +106,7 @@ public class AmesMutagenicityTreeResult extends TreeResult {
 	protected ArrayList<IAtomContainer> getAllAssignedMolecules() {
         ArrayList<IAtomContainer> residues = new ArrayList<IAtomContainer>();
         return residues;
-        /*
-        for (int i=0;i < ruleResults.size();i++) {
-            RuleResult r = ((RuleResult)ruleResults.get(i));
-            if (r.isSilent()) continue;
-            if (r.getMolecule() != null) {
-                if (r.getRule() != null) {
-                    System.out.println(r.getRule());
-                    System.out.println(r.getMolecule().getID());
-                    if (residues.indexOf(r.getMolecule()) == -1) {
-                        residues.add(r.getMolecule());
-                        r.getMolecule().setProperty("SUFFIX", "_("+residues.size()+")");                        
-                    }
-                }
-            }            
-        }
-        return residues;
-        */
+     
     }
 
 	public Hashtable<String,String> getExplanation(IAtomContainer mol) throws DecisionResultException {

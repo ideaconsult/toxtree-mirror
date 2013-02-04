@@ -127,17 +127,17 @@ C=1C=CC3=C(C=1)CC=2C=CC=CC=23
                     IRingSet ringset = (IRingSet) ringsets.get(i);
                     
                     if (ringset.getAtomContainerCount() < 3) continue;
-                    //System.out.println("Fused rings "+ringset.getAtomContainerCount());
+                    //Fused rings "+ringset.getAtomContainerCount());
                     int heteroaromatic_ring_count = 0;
                     int aromatic_ring_count = 0;
                     for (int j=0; j < ringset.getAtomContainerCount();j++) {
                     		
                     		IRing ring = (IRing) ringset.getAtomContainer(j);
                     		int a = getNumberOfAromaticAtoms(ring);
-                    		//System.out.println("Ring with "+ring.getAtomCount()+" atoms " + a + " aromatic");
+                    		//Ring with "+ring.getAtomCount()+" atoms " + a + " aromatic
                             if (isAromaticRing(a,ring.getAtomCount())) {
                             	aromatic_ring_count++;
-                              //  System.out.println("aromatic");
+                              // aromatic
                         		if (isHeterocyclic((IRing)ringset.getAtomContainer(j))) heteroaromatic_ring_count++;
                         		
                             } 
