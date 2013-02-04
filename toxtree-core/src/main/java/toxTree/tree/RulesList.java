@@ -94,7 +94,6 @@ public class RulesList extends Observable implements IDecisionRuleList, XMLSeria
 	public void addRule(IDecisionRule rule) {
 		list.add(rule);
 		rule.setNum(size());
-		//System.out.println(rule.getNum());
 		setChanged();
 		notifyObservers();
 	}

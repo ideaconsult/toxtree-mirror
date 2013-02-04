@@ -80,7 +80,7 @@ public class MolAnalyser {
     protected MolAnalyser() {
         super();
     }
-    
+    /*
 	public static void printBuilders(IAtomContainer mol) {
 		System.out.println("mol builder "+ mol.getBuilder().getClass().getName());
 		for (IBond bond: mol.bonds()) 
@@ -91,6 +91,7 @@ public class MolAnalyser {
 
 
 	}
+	*/
     
     public static void analyse(IAtomContainer mol) throws MolAnalyseException {
     	

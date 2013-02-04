@@ -213,7 +213,6 @@ public class SimpleReactions {
 		MolAnalyser.clearVisitedFlags(mol);
 		List list = FunctionalGroups.getUniqueBondMap(mol, q, false);
 		// FunctionalGroups.markMaps(mol,q,list);
-		// System.out.println(FunctionalGroups.mapToString((IMolecule)mol));
 		if ((list == null) || (list.size() == 0)) {
 			logger.debug(
 					"Can't perform this reaction, no relevant groups found\t",
@@ -233,7 +232,7 @@ public class SimpleReactions {
 		} else
 			throw new ReactionException(reaction.getID() + " not implemented!");
 		// FunctionalGroups.markMaps(mol,q,list);
-		// System.out.println(FunctionalGroups.mapToString((IMolecule)mol));
+
 	}
 	
 	protected static IMoleculeSet hydrolize(

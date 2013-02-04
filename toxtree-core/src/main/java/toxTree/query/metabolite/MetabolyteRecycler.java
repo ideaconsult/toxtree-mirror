@@ -73,17 +73,11 @@ public class   MetabolyteRecycler implements PropertyChangeListener {
 			//	CDKHueckelAromaticityDetector.detectAromaticity(result);
 			} catch (Exception x) {}
 			
-			/*
-			for (IAtom atom : result.atoms()) {
-				System.out.println(String.format("%s %s %s",atom.getSymbol(),atom.getFormalCharge(),result.getBondOrderSum(atom)));
-			}
-			*/
-			
+
 			//quick hack for 5-valent carbon bug
 
 			for (IAtom atom : result.atoms()) {
 				if ("C".equals(atom.getSymbol()) && result.getBondOrderSum(atom)>=5){
-					//System.out.println(result.getBondOrderSum(atom));
 					List<IAtom> neighbors = result.getConnectedAtomsList(atom);
 					for (IAtom neighbor : neighbors) {
 						if ("H".equals(neighbor.getSymbol())) { 
@@ -182,7 +176,6 @@ public class   MetabolyteRecycler implements PropertyChangeListener {
 			wri.write(ac);
 			
 			wri.close();
-			//System.out.println(mol.toString());
 			IAtomContainer ac1 =  MoleculeTools.readMolfile(mol.toString());
 			if (ac1==null) return ac;
 			else return ac1;
@@ -211,7 +204,6 @@ public class   MetabolyteRecycler implements PropertyChangeListener {
 			wri.write(ac);
 			
 			wri.close();
-			//System.out.println(cml.toString());
 			IAtomContainer mol =  MoleculeTools.readCMLMolecule(cml.toString());
 			if (mol==null) return ac;
 			else return mol;

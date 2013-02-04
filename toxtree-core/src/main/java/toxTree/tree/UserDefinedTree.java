@@ -137,47 +137,7 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 		return rules;
 	}
 	
-	/*
-
-	public UserDefinedTree(IDecisionMethod tree) {
-		super();
-		IDecisionRule rule = tree.getTopRule();
-		nodes.add(createFromTree(tree,rule));
-		
-		for (int i=0; i < nodes.size();i++)
-			nodes.getNode(i).setVisited(false);
-		
-	}
 	
-	protected DecisionNode createFromTree(IDecisionMethod tree,IDecisionRule rule) {
-		System.out.println(rule.getNum());
-		IDecisionCategory categoryNo = tree.getCategory(rule,false);
-		if (categoryNo != null) categories.addCategory(categoryNo);
-		IDecisionCategory categoryYes = tree.getCategory(rule,true);
-		if (categoryYes != null) categories.addCategory(categoryYes);
-		
-		IDecisionRule newRule= null;
-		try {
-			if (rule instanceof DecisionNode) newRule = (IDecisionRule)((DecisionNode) rule).getRule().clone();
-			else newRule = (IDecisionRule)rule.clone();
-		} catch (CloneNotSupportedException x) {
-			newRule=null;
-		}
-		DecisionNode node = new DecisionNode(
-				newRule,
-				null,null,categoryNo,categoryYes);
-				
-		node.setVisited(true);
-		nodes.addNode(node);
-		IDecisionRule branch = tree.getBranch(rule,false);
-		if (branch != null) 
-			node.setBranch(false,createFromTree(tree,branch));
-		branch = tree.getBranch(rule,true);
-		if (branch != null) 
-			node.setBranch(true,createFromTree(tree,branch));
-		return node;
-	}
-	*/
 	/* (non-Javadoc)
 	 * @see toxTree.tree.AbstractTree#setTransitions(int[][])
 	 */

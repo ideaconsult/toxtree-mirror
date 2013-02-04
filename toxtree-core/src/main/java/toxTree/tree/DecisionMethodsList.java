@@ -218,7 +218,6 @@ public class DecisionMethodsList extends Observable implements	IDecisionMethodsL
 		for (int i=0;i<packageEntries.size();i++) {
 			try {
 				o = Introspection.loadCreateObject(packageEntries.get(i).toString());
-				//System.out.println(packageEntries.get(i).toString());
 				if (o instanceof IDecisionMethod) {
 					if (((IDecisionMethod) o).getRules().size() > 0) {
 						((IDecisionMethod)o).setEditable(false);
