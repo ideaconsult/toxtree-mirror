@@ -113,7 +113,7 @@ public class SA2_gen extends StructureAlertCDK {
 			addSubstructure("Alkyl ester of sulphonic acid", SA2_sulphonic	);
 			addSubstructure("Alkyl ester of phosphonic acid",SA2_phosphonic );
 			*/			
-			setID("SA2_gen");
+			setID("SA2_Ames");
 			setTitle("Alkyl (C<5) or benzyl ester of sulphonic or phosphonic acid");
 			setExplanation("Methyl, ethyl, propyl, butyl or benzyl esters of sulphonic or phosphonic acid. <br>P(=O)(O)(O)R or S(=O)(O)(O)R where R is not S or O <br> The alkyl chains can have halogen substituents.");
 			

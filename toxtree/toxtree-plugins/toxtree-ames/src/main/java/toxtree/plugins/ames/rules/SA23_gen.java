@@ -44,7 +44,7 @@ public class SA23_gen extends StructureAlertCDK {
         	addSubstructure(SA23_title, "[C!r][NH1]N(=O)O");
         	addSubstructure(SA23_title+"1", "[C!r]N(A)N(=O)O");
      	
-            setID("SA23_gen");
+            setID("SA23_Ames");
             setTitle(SA23_title);
             setExplanation(SA23_title + "<br>The possibility to have an aromatic substituent on the nitrogen should be excluded.");
             

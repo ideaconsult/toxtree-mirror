@@ -95,6 +95,7 @@ public class RuleAromaticAmineNoSulfonicGroup extends RuleSMARTSSubstructureAmbi
        
             
             b.append("]");            
+            //System.out.println(b.toString());
             setContainsAllSubstructures(true);
             addSubstructure(aromatic_amine,b.toString());
             addSubstructure("noheterocyclic", "[a;!c]", true);

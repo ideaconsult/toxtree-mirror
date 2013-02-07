@@ -45,7 +45,7 @@ public class SA4_gen extends StructureAlertCDK {
 		try {
 			addSubstructure(SA4_title,SA4_smarts);
 			
-			setID("SA4_gen");
+			setID("SA4_Ames");
 			setTitle(SA4_title);
 			setExplanation("This alert contains halogenated olefins where at least one hydrogen or alkyl group is attached to each carbon atom.");
 			

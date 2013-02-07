@@ -41,7 +41,7 @@ public class SA24_gen extends StructureAlertCDK {
         	addSubstructure(SA24_title, "[!$([#6](=O)[!O]),#1][C!H0;!R]([!$([#6](=O)[!O]),#1])!@;=[C!H0;!R]O[#6]");
         	
      	
-            setID("SA24_gen");
+            setID("SA24_Ames");
             setTitle(SA24_title);
             setExplanation(SA24_title + "<br>An aromatic substituent on the oxygen is also allowed.<br>If a partial overlap with SA10_gen is found, this alert should not fire.");
             

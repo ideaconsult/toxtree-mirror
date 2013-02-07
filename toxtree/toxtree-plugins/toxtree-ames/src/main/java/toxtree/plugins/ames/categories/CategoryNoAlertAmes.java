@@ -33,7 +33,7 @@ public class CategoryNoAlertAmes extends AmesMutagenicityCategory {
 	private static final long serialVersionUID = 1943386186604548606L;
 
 	public CategoryNoAlertAmes() {
-		super("Negative for S. typhimurium TA100 mutagenicity",2,1);
+		super("No alerts for S. typhimurium mutagenicity",2,1);
         setExplanation("Assigned when neither an <a href=\"#Alerts\">alert for genotoxic carcinogenicity</a> nor an <a href=\"#Alerts(nongenotoxic)\"> alert for nongenotoxic carcinogenicity</a> is fired.");
 	}
 }

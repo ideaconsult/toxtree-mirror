@@ -42,7 +42,7 @@ public class SA6_gen extends StructureAlert {
 		try {
 			addSubstructure("propiolactones", "[O,S]=C1[O,S]CC1");
 			addSubstructure("propiosultones", "O=S1(=O)(CCCO1)");
-			setID("SA6_gen");
+			setID("SA6_Ames");
 			setTitle("Propiolactones and propiosultones");
 			setExplanation("propiolactones and propiosultones");
 			

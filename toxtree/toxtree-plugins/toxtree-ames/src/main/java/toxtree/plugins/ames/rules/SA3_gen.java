@@ -42,7 +42,7 @@ public class SA3_gen extends StructureAlert {
 
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"N-methylol derivatives", "[CX4H2](N)([OX2H1])");
-			setID("SA3_gen");
+			setID("SA3_Ames");
 			setTitle("N-methylol derivatives");
 			setExplanation("N-methylol derivatives");
 			

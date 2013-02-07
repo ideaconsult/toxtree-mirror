@@ -39,7 +39,7 @@ public class SA37_gen extends StructureAlertCDK {
 		try {
 			addSubstructure("C12CCCN1CC=C2");
 		
-			setID("SA37_gen");
+			setID("SA37_Ames");
 			setTitle("Pyrrolizidine Alkaloids");
 			setExplanation("Genotoxic mechanism");
 			 examples[0] = "[H][C@@]12C(COC(C(O)(C(O)C)C(C)C)=O)=CCC1CC[C@H]2OC(/C(C)=C/C)=O";

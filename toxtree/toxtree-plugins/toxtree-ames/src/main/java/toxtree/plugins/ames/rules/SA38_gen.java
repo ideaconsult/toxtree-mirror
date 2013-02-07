@@ -39,7 +39,7 @@ public class SA38_gen extends StructureAlertCDK {
 		try {
 			addSubstructure("c1ccccc1C[C;!R]=C");
 		
-			setID("SA38_gen");
+			setID("SA38_Ames");
 			setTitle("Alkenylbenzenes");
 			setExplanation("Genotoxic mechanism");
 			 examples[0] = "Oc1c(OC)cc(CCC)cc1";

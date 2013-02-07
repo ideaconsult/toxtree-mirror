@@ -40,7 +40,7 @@ public class SA16_gen extends StructureAlert {
             //addSubstructure("1", "[NX3H2]C(=[O,S])[O,S]C");
             //addSubstructure("2", "[NX3H](C)C(=[O,S])[O,S]C");
             addSubstructure("3", sa16_smarts);
-            setID("SA16_gen");
+            setID("SA16_Ames");
             setTitle(sa16_title);
             setExplanation(sa16_title);
             

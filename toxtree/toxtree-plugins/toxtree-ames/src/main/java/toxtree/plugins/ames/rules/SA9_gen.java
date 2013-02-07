@@ -37,7 +37,7 @@ public class SA9_gen extends StructureAlert {
 	public SA9_gen() {
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"alkyl nitrite", "O=[NX2]OC");
-			setID("SA9_gen");
+			setID("SA9_Ames");
 			setTitle("Alkyl nitrite");
 			setExplanation("");
 			

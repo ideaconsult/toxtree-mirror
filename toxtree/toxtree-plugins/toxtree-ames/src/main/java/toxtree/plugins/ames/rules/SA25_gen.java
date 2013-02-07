@@ -66,7 +66,7 @@ public class SA25_gen extends StructureAlertCDK {
             } 
             b.append("]");
             addSubstructure(SA25_title,b.toString());             
-            setID("SA25_gen");
+            setID("SA25_Ames");
             setTitle(SA25_title);
             setExplanation(SA25_title);
 

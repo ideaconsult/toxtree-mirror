@@ -53,7 +53,7 @@ public class SA10_gen extends StructureAlertCDK {
 			setContainsAllSubstructures(true);
 			addSubstructure(AB_UNSATURATED_CARBONYLS, AB_UNSATURATED_CARBONYLS_SMARTS); //now aldehydes are included
 			
-			setID("SA10_gen");
+			setID("SA10_Ames");
 			setTitle(AB_UNSATURATED_CARBONYLS);
 			StringBuffer b = new StringBuffer();
 			b.append(AB_UNSATURATED_CARBONYLS);

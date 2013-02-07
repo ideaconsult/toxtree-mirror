@@ -47,7 +47,7 @@ OR
         super();
         try {
             addSubstructure(SA21_title, "[C,c]N[NX2;v3]=O");
-            setID("SA21_gen");
+            setID("SA21_Ames");
             setTitle(SA21_title);
             setExplanation(SA21_title);
             

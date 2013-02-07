@@ -43,7 +43,7 @@ public class SA14_gen extends StructureAlert {
             		//"C=N=N");
             addSubstructure("Aliphatic azoxy", "CN=NO");
 
-            setID("SA14_gen");
+            setID("SA14_Ames");
             setTitle("Aliphatic azo and azoxy");
             setExplanation("Aliphatic azo and azoxy. <br>Chemicals fired by alert <a href=\"#SA22_gen\">SA22_gen</a> should be excluded from this alert.");
             

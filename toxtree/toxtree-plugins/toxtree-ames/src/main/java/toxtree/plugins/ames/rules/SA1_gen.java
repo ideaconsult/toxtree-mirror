@@ -38,7 +38,7 @@ public class SA1_gen extends StructureAlertCDK {
 		super();
 		try {
 			addSubstructure("Acyl halides", "[!$([OH1,SH1])]C(=O)[Br,Cl,F,I]");
-			setID("SA1_gen");
+			setID("SA1_Ames");
 			setTitle("Acyl halides");
 			setExplanation("Acyl halide RC(=O)[Br,Cl,F,I], where R is not OH or SH.");
 			

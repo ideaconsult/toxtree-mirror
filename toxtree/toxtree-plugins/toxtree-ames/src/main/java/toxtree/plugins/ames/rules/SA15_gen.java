@@ -37,7 +37,7 @@ public class SA15_gen extends StructureAlert {
         try {
             addSubstructure(sa15_title, "[NX2]=C=[O,S]");
 
-            setID("SA15_gen");
+            setID("SA15_Ames");
             setTitle(sa15_title);
             setExplanation(sa15_title);
             
