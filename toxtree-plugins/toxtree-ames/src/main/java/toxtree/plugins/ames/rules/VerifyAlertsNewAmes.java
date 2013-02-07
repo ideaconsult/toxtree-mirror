@@ -34,7 +34,7 @@ public class VerifyAlertsNewAmes extends RuleVerifyAlertsCounter {
 
 	public VerifyAlertsNewAmes() {
 		super();
-		setID("Ames mutagenicity alert??");
+		setID("Ames mutagenicity new alert?");
 		setTitle("At least one new alert for Ames mutagenicity fired?");
 	}
 }

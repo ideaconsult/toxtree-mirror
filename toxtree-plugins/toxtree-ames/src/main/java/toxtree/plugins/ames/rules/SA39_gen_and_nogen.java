@@ -39,7 +39,7 @@ public class SA39_gen_and_nogen extends StructureAlertCDK {
 		try {
 			addSubstructure("C[C@@]12CCC3c4c(CCC3C1CC[C@H]2O)cc(O)cc4");
 			
-			setID("SA39_gen_and_nogen");
+			setID("SA39_Ames");
 			setTitle("Steroidal estrogens");
 			setExplanation("Mixed genotoxic and non genotoxic mechanism");
 			 examples[0] = "C[C@@]12CC[C@@]3([H])c4c(CC[C@]3([H])[C@@]1([H])CC[C@H]2O)cccc4";

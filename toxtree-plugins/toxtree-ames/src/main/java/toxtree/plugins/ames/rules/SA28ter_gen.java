@@ -72,7 +72,7 @@ public class SA28ter_gen extends StructureAlertCDK {
             } 
             b.append("]");
             addSubstructure(SA28ter_title,b.toString());  
-            setID("SA28ter_gen");
+            setID("SA28ter_Ames");
             setTitle(SA28ter_title);
             
             StringBuffer e = new StringBuffer();

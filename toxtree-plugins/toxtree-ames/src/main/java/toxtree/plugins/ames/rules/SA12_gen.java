@@ -51,7 +51,7 @@ public class SA12_gen extends StructureAlert {
 					addSubstructure(Quinones_Title+Integer.toString(i+1), QUINONES[i]);
 
 				
-				setID("SA12_gen");
+				setID("SA12_Ames");
 				setTitle(Quinones_Title);
 				setExplanation(Quinones_Title);
 				

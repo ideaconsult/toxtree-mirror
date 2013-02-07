@@ -93,7 +93,7 @@ public class SA27_gen extends StructureAlertCDK{
             */
         	
         	
-            setID("SA27_gen");
+            setID("SA27_Ames");
             setTitle(SA27_title);
             
             StringBuffer e = new StringBuffer();

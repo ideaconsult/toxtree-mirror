@@ -51,7 +51,7 @@ public class SA22_gen extends StructureAlertCDK {
       
       
                     	
-            setID("SA22_gen");
+            setID("SA22_Ames");
             setTitle(SA22_title);
             setExplanation(SA22_title);
             

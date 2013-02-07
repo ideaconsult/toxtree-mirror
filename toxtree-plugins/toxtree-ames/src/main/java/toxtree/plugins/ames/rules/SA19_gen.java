@@ -38,7 +38,7 @@ public class SA19_gen extends SA18_gen {
     private static final long serialVersionUID = 5024954402467318417L;
     public SA19_gen() {
         super();
-        setID("SA19_gen");
+        setID("SA19_Ames");
         setTitle("Heterocyclic Polycyclic Aromatic Hydrocarbons");
         setExplanation("Heterocyclic Polycyclic Aromatic Hydrocarbons (3 or more fused rings).");
         //examples[0] = "C=1C=C2C=CC3=CC=CC4=CC=C(C=1)C2=C34";

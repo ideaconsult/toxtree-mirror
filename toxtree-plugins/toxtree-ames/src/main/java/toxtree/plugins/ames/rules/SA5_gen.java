@@ -39,7 +39,7 @@ public class SA5_gen extends StructureAlert {
 	public SA5_gen() {
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,SA5_title,SA5_smarts );
-			setID("SA5_gen");
+			setID("SA5_Ames");
 			setTitle(SA5_title);
 			setExplanation(SA5_title);
 			

@@ -62,7 +62,7 @@ In order to avoid possible overlap with NA_10, we can perhaps use the following 
  [#6][$([CX3H1]);!$(C(=O)C=C)](=O)
 
  */			
-			setID("SA11_gen");
+			setID("SA11_Ames");
 			setTitle("Simple aldehyde");
 			setExplanation("Aliphatic and aromatic aldehydes. The \u03B1,\u03B2-unsaturated aldehydes are excluded");
 			

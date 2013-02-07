@@ -47,7 +47,7 @@ public class SA13_gen extends StructureAlertCDK {
         	addSubstructure("Hydrazine not N-N=[O,N]", HYDRAZINE_SMARTS);
         	addSubstructure(HYDRAZINE, "[N+0]([#1,*])!@;-[N+0]([#1,*])");
              
-            setID("SA13_gen");
+            setID("SA13_Ames");
             setTitle(HYDRAZINE);
             setExplanation("This applies to molecules that contain a NN group not in a ring, and not NN=O.<br>Chemicals fired by alert <a href=\"#SA22_gen\">SA22_gen</a> should be excluded from this alert.<br>Chemicals with a quaternary protonated nitrogen, should be excluded.");
             

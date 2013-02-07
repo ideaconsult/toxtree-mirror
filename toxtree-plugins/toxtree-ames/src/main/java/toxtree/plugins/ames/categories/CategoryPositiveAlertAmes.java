@@ -33,7 +33,7 @@ public class CategoryPositiveAlertAmes extends AmesMutagenicityCategory {
 	private static final long serialVersionUID = 1L;
 
 	public CategoryPositiveAlertAmes() {
-		super("Structural Alert for S. typhimurium TA100 mutagenicity",1,2);
+		super("Structural Alert for S. typhimurium  mutagenicity",1,2);
         setExplanation("Assigned when an <a href=\"#Alerts\">alert for genotoxic carcinogenicity</a> is fired.");
 	}
 

@@ -125,7 +125,7 @@ public class SA28_gen extends StructureAlertAmbit {
             addSubstructure("new 1", "aN=C=O");
             addSubstructure("new 2", "aN=[CH2]");
             
-            setID("SA28_gen");
+            setID("SA28_Ames");
             setTitle(SA28_title);
             
             StringBuffer e = new StringBuffer();

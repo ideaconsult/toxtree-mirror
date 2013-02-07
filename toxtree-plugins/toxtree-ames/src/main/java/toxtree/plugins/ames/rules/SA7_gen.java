@@ -37,7 +37,7 @@ public class SA7_gen extends StructureAlert {
 	public SA7_gen() {
 		try {
 			super.initSingleSMARTS(super.smartsPatterns,"epoxides and aziridines", "C1[O,N]C1");
-			setID("SA7_gen");
+			setID("SA7_Ames");
 			setTitle("Epoxides and aziridines");
 			setExplanation("epoxides and aziridines");
 			

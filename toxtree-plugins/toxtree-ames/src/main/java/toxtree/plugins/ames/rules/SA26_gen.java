@@ -42,7 +42,7 @@ public class SA26_gen extends StructureAlertAmbit {
 	protected IAlertCounter alertsCounter = new DefaultAlertCounter();
     public SA26_gen() {
         super();
-        setID("SA26_gen");
+        setID("SA26_Ames");
         setTitle(SA26_title);
         setExplanation(SA26_title);
             

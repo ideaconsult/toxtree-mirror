@@ -88,7 +88,7 @@ public class SA8_gen extends StructureAlert {
 			*/
 
 			
-			setID("SA8_gen");
+			setID("SA8_Ames");
 			setTitle(SA8_title);
 			b = new StringBuffer();
 			b.append("This alert contains non tertiary aliphatic halogens.");

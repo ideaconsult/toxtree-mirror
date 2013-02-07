@@ -106,7 +106,23 @@ public class AmesMutagenicityTreeResult extends TreeResult {
 	protected ArrayList<IAtomContainer> getAllAssignedMolecules() {
         ArrayList<IAtomContainer> residues = new ArrayList<IAtomContainer>();
         return residues;
-     
+        /*
+        for (int i=0;i < ruleResults.size();i++) {
+            RuleResult r = ((RuleResult)ruleResults.get(i));
+            if (r.isSilent()) continue;
+            if (r.getMolecule() != null) {
+                if (r.getRule() != null) {
+                    System.out.println(r.getRule());
+                    System.out.println(r.getMolecule().getID());
+                    if (residues.indexOf(r.getMolecule()) == -1) {
+                        residues.add(r.getMolecule());
+                        r.getMolecule().setProperty("SUFFIX", "_("+residues.size()+")");                        
+                    }
+                }
+            }            
+        }
+        return residues;
+        */
     }
 
 	public Hashtable<String,String> getExplanation(IAtomContainer mol) throws DecisionResultException {
@@ -203,15 +219,31 @@ public class AmesMutagenicityTreeResult extends TreeResult {
 	public void addRuleResult(IDecisionRule rule, boolean value, IAtomContainer molecule)
 	throws DecisionResultException {
 			super.addRuleResult(rule, value,molecule);
-			if (rule instanceof RuleAlertsForGenotoxicCarcinogenicity)
+			//if (rule instanceof RuleAlertsForGenotoxicCarcinogenicity)
+				//setSilent(true);
+			
+			if (rule instanceof RuleAlertsForAmesMutagenicity)
 				setSilent(true);
+			
+			if (rule instanceof RuleAlertsForNewAmesMutagenicity)
+				setSilent(true);
+			
+			if (rule instanceof VerifyAlertsNewAmes)
+				setSilent(true);
+			
+			if (rule instanceof VerifyAlertsAmes)
+				setSilent(true);
+			
 			else setSilent((rule instanceof DecisionNode) &&	
-					(
-				(((DecisionNode)rule).getRule() instanceof RuleAlertsForGenotoxicCarcinogenicity) 
-				//(((DecisionNode)rule).getRule() instanceof RuleAlertsNongenotoxicCarcinogenicity)
-
+				(
+			
+				
+		(((DecisionNode)rule).getRule() instanceof RuleAlertsForAmesMutagenicity)||
+		(((DecisionNode)rule).getRule() instanceof RuleAlertsForNewAmesMutagenicity)||
+		(((DecisionNode)rule).getRule() instanceof VerifyAlertsAmes)||
+		(((DecisionNode)rule).getRule() instanceof VerifyAlertsNewAmes)
 				)
-				);
+			);
 				
 					
 	}

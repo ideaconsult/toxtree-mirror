@@ -58,7 +58,7 @@ public class SA18_gen extends RuleAromatic  implements IAlertCounter {
     public SA18_gen() {
         super();
         alertsCounter = new DefaultAlertCounter();
-        setID("SA18_gen");
+        setID("SA18_Ames");
         setTitle("Polycyclic Aromatic Hydrocarbons");
         setExplanation(" Polycyclic Aromatic Hydrocarbons, with three or more fused rings. Does not include heterocyclic compounds");
         examples[0] = "CCN2C3=CC=CC=C3(C=1C=C(N)C=CC=12)"; //heterocyclic
@@ -127,17 +127,17 @@ C=1C=CC3=C(C=1)CC=2C=CC=CC=23
                     IRingSet ringset = (IRingSet) ringsets.get(i);
                     
                     if (ringset.getAtomContainerCount() < 3) continue;
-                    //Fused rings "+ringset.getAtomContainerCount());
+                    //System.out.println("Fused rings "+ringset.getAtomContainerCount());
                     int heteroaromatic_ring_count = 0;
                     int aromatic_ring_count = 0;
                     for (int j=0; j < ringset.getAtomContainerCount();j++) {
                     		
                     		IRing ring = (IRing) ringset.getAtomContainer(j);
                     		int a = getNumberOfAromaticAtoms(ring);
-                    		//Ring with "+ring.getAtomCount()+" atoms " + a + " aromatic
+                    		//System.out.println("Ring with "+ring.getAtomCount()+" atoms " + a + " aromatic");
                             if (isAromaticRing(a,ring.getAtomCount())) {
                             	aromatic_ring_count++;
-                              // aromatic
+                              //  System.out.println("aromatic");
                         		if (isHeterocyclic((IRing)ringset.getAtomContainer(j))) heteroaromatic_ring_count++;
                         		
                             } 

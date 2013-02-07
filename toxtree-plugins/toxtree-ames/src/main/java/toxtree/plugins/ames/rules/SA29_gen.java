@@ -48,7 +48,7 @@ public class SA29_gen extends StructureAlertCDK {
         	addSubstructure("aromatic diazo with sulfonic group on both  rings",SA29_noSO3H,true);
 
      	
-            setID("SA29_gen");
+            setID("SA29_Ames");
             setTitle(SA29);
             
             StringBuffer e = new StringBuffer();

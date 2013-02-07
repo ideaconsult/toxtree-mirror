@@ -77,7 +77,17 @@ public class SubstituentExtractor {
         for (int l=0; l < list.size();l++) {
             String mark=FunctionalGroups.RING_NUMBERING+"_" + Integer.toString(l+1);
             if (markAtomsInRing(mark,(List)list.get(l),a, ringQuery)) {
-            	
+            	/*
+               IAtom anchor = null;
+                for (int i=0; i < a.getAtomCount();i++) {
+                    IAtom atom = a.getAtom(i);
+                    //System.out.println(atom.getSymbol() + "\t" + atom.getProperty(FunctionalGroups.RING_NUMBERING));
+                    SubstituentPosition position = SubstituentExtractor.getSubstituentNumber(mark,a,i);
+                    if (atom_C.equals(atom.getSymbol()) &&
+                            (position != null) && (position.getPosition() == 1)) 
+                            anchor = atom;
+                }
+                */
                 IAtomContainer mc = cloneDiscardRingAtomAndBonds(a,mark);
                 IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
                 
@@ -102,7 +112,7 @@ public class SubstituentExtractor {
             Arrays.sort(next);
             //System.out.print('\n');
             if ((prev != null) && (next != null) && Arrays.equals(next,prev)) {
-                //Same
+                //System.out.println("Same");
                 list.remove(i);
             }
             
@@ -127,10 +137,11 @@ public class SubstituentExtractor {
 
 						SubstituentPosition p = SubstituentExtractor.getSubstituentNumber(FunctionalGroups.RING_NUMBERING,q,map.getId2());
 						if (p != null) {
-							//\tNumber\t"+p);
+							//System.out.println("\tNumber\t"+p);
                             SubstituentExtractor.setSubstituentNumber(property,mol,map.getId1(),p);
                             mol.getAtom(map.getId1()).setID(Integer.toString((map.getId1())));
 						} 
+						//System.out.println();
 					}
 				}
 				return true;
@@ -143,13 +154,13 @@ public class SubstituentExtractor {
         IAtomContainer result = new org.openscience.cdk.AtomContainer();
         Hashtable<IAtom,IAtom> table = new Hashtable<IAtom,IAtom>();
         List<IBond> forbiddenBonds = new ArrayList<IBond>();
-        //ring 
+        //System.out.println("ring " + ring.getAtomCount());
         for (int i =0; i < ac.getAtomCount(); i++) {
         	IAtom a = ac.getAtom(i);
             SubstituentPosition pr = getSubstituentNumber(mark,ac,i);
             if (pr != null)
                 if (pr.isRing()) {
-                    //Skipping "+pr);
+                    //System.out.println("Skipping "+pr);
                     continue;
                 } else { 
                     List<IAtom> atoms = new ArrayList<IAtom>();
@@ -170,6 +181,7 @@ public class SubstituentExtractor {
                             forbiddenBonds.add(bonds.get(j));
                         }
                     }
+                    // System.out.println();
                     
                 }
             table.put(a,a);
@@ -202,7 +214,7 @@ public class SubstituentExtractor {
             	else if (a2 != null) a = a2;
 	            	
 	            if (a != null) {
-	            	//"Substituent starting with "+a.getSymbol() + " " + a.getProperties());
+	            	//System.out.println("Substituent starting with "+a.getSymbol() + " " + a.getProperties());
 	            	//IAtom r = SilentChemObjectBuilder.getInstance().newAtom("R");
                     IAtom r = MoleculeTools.newPseudoAtom(SilentChemObjectBuilder.getInstance(),"R");
 	            	result.addAtom(r);
@@ -227,7 +239,7 @@ public class SubstituentExtractor {
                     }
                     if (!pos.isRing() && (pos.getPosition() != position)) {
                         //that is, we found a cycle connecting to another substituent
-                        //Found cycle "+position + " "+pos);
+                        //System.out.println("Found cycle "+position + " "+pos);
                         return true;
                     }
                 }

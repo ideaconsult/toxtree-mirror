@@ -35,7 +35,7 @@ public class RuleAlertsForNewAmesMutagenicity extends RuleInitAlertCounter {
 
 	public RuleAlertsForNewAmesMutagenicity() {
 		super();
-		setID("Alerts for Ames mutagenicity");
+		setID("NEW Alerts Ames mutagenicity");
 		setTitle("Verify structural alerts for potential  Ames mutagenicity");
 		setExplanation("");
 	}
