@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -309,7 +310,7 @@ public class SMARTCypTreeResult extends TreeResult {
 				try { 
 		    		l.add(new CategoryFilter(property,reaction.toString()));
 		    	} catch (Exception x) {
-		    		logger.error(x);
+		    		logger.log(Level.SEVERE,x.getMessage(),x);
 		    	}
 		}	
 
