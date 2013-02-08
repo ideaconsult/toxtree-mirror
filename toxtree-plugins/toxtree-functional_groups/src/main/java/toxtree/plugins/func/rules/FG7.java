@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.func.rules;
 
+import java.util.logging.Level;
+
 import ambit2.smarts.query.SMARTSException;
 
 public class FG7 extends FG {
@@ -40,7 +42,7 @@ public class FG7 extends FG {
            
           addSubstructure("FG7", "[$([NX3]([#6])[#6]),$([NX3H][#6]),$([NX3H2])]C(=O)[$([NX3][#6]),$([NX3H])][NX2]=[$([CX3]([#6])[#6]),$([CX3H][#6]),$([CX3H2])]");
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}	
 	}
 
