@@ -1,6 +1,8 @@
 package structurefeatures.rules;
 
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import ambit2.smarts.query.SMARTSException;
 public class RuleAromaticAldehyde extends RuleSMARTSSubstructureAmbit {
@@ -16,7 +18,7 @@ public class RuleAromaticAldehyde extends RuleSMARTSSubstructureAmbit {
 			examples[1] = "";	
 			editable = false;		
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 
 	}

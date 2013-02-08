@@ -1,5 +1,7 @@
 package toxtree.plugins.proteinbinding.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.StructureAlert;
 import toxtree.plugins.proteinbinding.categories.ProteinBindingAlerts;
 import ambit2.smarts.query.SMARTSException;
@@ -34,7 +36,7 @@ public class ProteinBindingRule extends StructureAlert {
 			examples[1] = alert.getExample(true);	
 	
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}	
 
