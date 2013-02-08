@@ -173,7 +173,7 @@ public class TreeResult implements IDecisionResult {
 	    firePropertyChangeEvent(ProgressStatus._pClassID,this.category,category);
 	    
 	    if (acceptCategory(category)) {
-	    	logger.info("Assign category\t"+category);
+	    	logger.finer("Assign category\t"+category);
 	    	this.category = category;
 		    if (!decisionMethod.getCategories().isMultilabel()) {
 		    	assignedCategories.clear();

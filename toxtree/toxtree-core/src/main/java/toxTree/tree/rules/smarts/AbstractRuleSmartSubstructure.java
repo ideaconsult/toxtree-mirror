@@ -123,7 +123,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 	public boolean  verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol,IAtomContainer selected) throws DecisionMethodException {
 		try {
 			
-			logger.info(getID());
+			logger.finer(getID());
 			T moltotest = getObjectToVerify(mol);		
 			if (!isAPossibleHit(mol,moltotest)) {
 				logger.fine("Not a possible hit due to the prescreen step.");

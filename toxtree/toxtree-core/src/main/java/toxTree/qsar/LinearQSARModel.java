@@ -164,7 +164,7 @@ public class LinearQSARModel extends AbstractQSARModel  {
 				String[] names = null;
 				if (descriptor == null)  {
 					//try to calculate value
-					logger.info("Trying to calculate " + descriptorNames.get(i));
+					logger.finer("Trying to calculate " + descriptorNames.get(i));
 					if (getDescriptor(i) == null)
 						throw new QSARModelException("Can't calculate descriptor "+ descriptorNames.get(i));
 					

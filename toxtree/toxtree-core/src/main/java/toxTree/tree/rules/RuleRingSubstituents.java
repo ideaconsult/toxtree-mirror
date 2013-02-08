@@ -121,7 +121,7 @@ public abstract class RuleRingSubstituents extends RuleRings {
 		return verifyRule(mol,null);
 	};
 	public boolean verifyRule(IAtomContainer  mol, IAtomContainer selected) throws DecisionMethodException {
-		logger.info(toString());
+		logger.fine(toString());
 		IRingSet rs = hasRingsToProcess(mol);
 		if (rs == null) return false;
 		

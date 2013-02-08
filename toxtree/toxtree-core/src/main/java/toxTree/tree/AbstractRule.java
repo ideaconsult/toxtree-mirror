@@ -283,13 +283,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 		}		
 			
 	}
-	/*
-	public boolean verifyRule(org.openscience.cdk.interfaces.AtomContainer  mol) throws DecisionMethodException {
-		logger.info(toString());
-		initialize(mol);
-		return false;
-	}
-	*/
+
 	public void hideResiduesID(boolean hide) {
 		residueIDHidden = hide;
 	}

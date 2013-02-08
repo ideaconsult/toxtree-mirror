@@ -29,6 +29,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package toxTree.tree.demo;
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -76,7 +78,7 @@ public class SubstructureTree extends UserDefinedTree {
         	AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
         	CDKHueckelAromaticityDetector.detectAromaticity(m);
         } catch (Exception x) {
-        	logger.error(x);
+        	logger.log(Level.SEVERE,x.getMessage(),x);
         }
         m.setID("benzene");
         

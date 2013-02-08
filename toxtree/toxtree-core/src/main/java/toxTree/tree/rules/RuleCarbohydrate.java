@@ -98,7 +98,7 @@ public class RuleCarbohydrate extends RuleSubstructures {
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
 			throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		try {
 			MolAnalyser.analyse(mol);
 			boolean ok = verifyRule(mol);
@@ -125,7 +125,7 @@ public class RuleCarbohydrate extends RuleSubstructures {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.fine(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    
@@ -202,15 +202,15 @@ public class RuleCarbohydrate extends RuleSubstructures {
 				} else FunctionalGroups.markMaps(mol,getSubstructure(index_ketone),list);
 				
 				if (FunctionalGroups.hasMarkedOnlyTheseGroups(mol,idsAcyclic)) {
-					logger.info(MSG_COMMONCARBOHYDRATE+MSG_YES);
+					logger.finer(MSG_COMMONCARBOHYDRATE+MSG_YES);
 					return true;
 				} else {
-					logger.fine(MSG_COMMONCARBOHYDRATE+MSG_NO);
+					logger.finer(MSG_COMMONCARBOHYDRATE+MSG_NO);
 					return false;
 				}
 			}
 	    } else {
-	    	logger.info(MSG_NOTACOMMONCARBOHYDRATE);
+	    	logger.finer(MSG_NOTACOMMONCARBOHYDRATE);
 	    	return false;
 	    }
 	}

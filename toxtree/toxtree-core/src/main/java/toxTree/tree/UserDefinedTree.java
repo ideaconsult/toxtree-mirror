@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Iterator;
 import java.util.Observable;
+import java.util.logging.Level;
 
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -286,11 +287,11 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 				
 				
 			} catch (DRuleNotImplemented x) {
-				logger.error(x);
+				logger.log(Level.SEVERE,x.getMessage(),x);
 				if (falseIfRuleNotImplemented) answer = false;
 				else throw new DecisionMethodException(x);
             } catch (DRuleException x) {
-                logger.error(x);
+                logger.log(Level.SEVERE,x.getMessage(),x);
                 category_on_error =x.getCategory2assign();
                 answer = x.isAnswer();
             }

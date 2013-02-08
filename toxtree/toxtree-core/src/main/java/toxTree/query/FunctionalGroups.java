@@ -3414,6 +3414,7 @@ public class FunctionalGroups {
 		return hasGroup(mol, q,preprocess, null);
 	}
 	public static boolean hasGroup(IAtomContainer mol, IAtomContainer q, boolean preprocess, IAtomContainer selected) {
+		if (q==null || mol==null) return false;
 		if (q.getAtomCount() > mol.getAtomCount()) {
 			logger.fine("A query with more atoms than a molecule!");
 			return false;

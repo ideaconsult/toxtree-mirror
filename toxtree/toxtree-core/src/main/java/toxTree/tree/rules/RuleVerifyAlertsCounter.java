@@ -41,7 +41,7 @@ public class RuleVerifyAlertsCounter extends RuleInitAlertCounter {
 	}
 	@Override
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.fine(toString());
         try {
         	Object value = mol.getProperty(this.propertyName);
 

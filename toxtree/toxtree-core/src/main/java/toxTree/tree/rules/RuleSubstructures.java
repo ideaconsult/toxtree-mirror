@@ -166,7 +166,7 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
 			throws DecisionMethodException {
-		logger.info(toString());
+		logger.fine(toString());
 		try {
 			MolAnalyser.analyse(mol);
 			boolean ok = verifyRule(mol);

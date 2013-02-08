@@ -241,7 +241,11 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 						cas?"CAS":einecs?"EINECS":"Unknown query",input);
 			}
 		} else {
-	    	a = FunctionalGroups.createAtomContainer(input,false);
+			try {
+				a = FunctionalGroups.createAtomContainer(input,false);
+			} catch (Exception x) {
+				errormsg = x.getMessage();
+			}
 	    	if (a != null) { 
 		    	a.setProperty(CDKConstants.COMMENT,labels.getString(_labels.createdBySMILES.name()));
 		    	a.setProperty(AmbitCONSTANTS.SMILES,input);

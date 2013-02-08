@@ -128,7 +128,7 @@ public class RuleElements extends AbstractRule {
 		return verifyRule(mol,null);
 	}
 	public boolean  verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol,IAtomContainer selected) throws DecisionMethodException {		
-		logger.info(toString());
+		logger.finer(toString());
 		IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
 		//int c = MolecularFormulaManipulator.getElementCount(formula,formula.getBuilder().newElement("C"));
 

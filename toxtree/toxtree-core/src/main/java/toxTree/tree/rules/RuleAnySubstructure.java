@@ -63,7 +63,7 @@ public class RuleAnySubstructure extends RuleSubstructures {
 		return verifyRule(mol,null);
 	};
 	public boolean verifyRule(IAtomContainer  mol,IAtomContainer selected) throws DecisionMethodException {
-		logger.info(getID());
+		logger.finer(getID());
 		try {
 			return FunctionalGroups.hasAnySubstructure(mol,query,selected);
 		} catch (CDKException x) {

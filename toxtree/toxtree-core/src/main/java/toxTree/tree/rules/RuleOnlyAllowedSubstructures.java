@@ -54,7 +54,7 @@ public class RuleOnlyAllowedSubstructures extends RuleSubstructures {
 		return verifyRule(mol,null);
 	}
 	public boolean verifyRule(IAtomContainer  mol,IAtomContainer selected) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 	    FunctionalGroups.markCHn(mol);	    
 	    //if entire structure has only allowed groups, return true 
 	    return (FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,true,selected)) ;
