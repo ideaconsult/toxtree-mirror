@@ -27,6 +27,8 @@
 
 package com.molecularnetworks.start.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
 import ambit2.smarts.query.SMARTSException;
 
@@ -67,7 +69,7 @@ public class RuleAliphaticFusedRingsNonBranched extends RuleSMARTSubstructure
         } 
         catch ( SMARTSException x ) 
         {
-            logger.error( x );
+        	logger.log(Level.SEVERE,x.getMessage(),x);
         }
     }
 

@@ -28,6 +28,7 @@
 package com.molecularnetworks.start.rules;
 
 import java.util.Enumeration;
+import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -68,7 +69,7 @@ public class RuleMoreThanTwoHydroxyOnAromaticRing extends RuleSMARTSubstructure 
         } 
         catch ( SMARTSException x ) 
         {
-            logger.error( x );
+            logger.log(Level.SEVERE,x.getMessage(), x );
         }
     }
 
@@ -90,7 +91,7 @@ public class RuleMoreThanTwoHydroxyOnAromaticRing extends RuleSMARTSubstructure 
         IAtomContainer moltotest = getObjectToVerify( mol );
         if ( ! isAPossibleHit( mol, moltotest ) ) 
         {
-            logger.debug("Not a possible hit due to the prescreen step.");
+            logger.fine("Not a possible hit due to the prescreen step.");
             return false;
         }
         Enumeration e  = smartsPatterns.keys();
@@ -117,11 +118,11 @@ public class RuleMoreThanTwoHydroxyOnAromaticRing extends RuleSMARTSubstructure 
 	            {
 	                is_true = matchCount > 0;
 	            }
-	            logger.debug(
-	                "SMARTS " + temp_id + "\t" + pattern.toString(),
-	                "\tmatches ",
-	                matchCount, 
-	                "times\tresult is ",
+	            logger.fine(
+	                "SMARTS " + temp_id + "\t" + pattern.toString()+
+	                "\tmatches "+
+	                matchCount+
+	                "times\tresult is "+
 	                is_true 
 	            );
             
