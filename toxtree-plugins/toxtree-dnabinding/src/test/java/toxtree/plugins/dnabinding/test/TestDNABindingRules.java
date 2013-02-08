@@ -33,6 +33,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
@@ -56,7 +57,6 @@ import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IImplementationDetails;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
@@ -64,7 +64,7 @@ import ambit2.core.io.MDLWriter;
 import ambit2.smarts.query.ISmartsPattern;
 
 public abstract class TestDNABindingRules extends TestCase {
-	protected static TTLogger logger = new TTLogger(TestDNABindingRules.class);
+	protected static Logger logger = Logger.getLogger(TestDNABindingRules.class.getName());
 	protected IDecisionRule ruleToTest = null;
 	
 	public abstract String getHitsFile();
@@ -73,7 +73,6 @@ public abstract class TestDNABindingRules extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		ruleToTest = createRuleToTest();
-		TTLogger.configureLog4j(true);
 	}
 	@Override
 	protected void tearDown() throws Exception {
