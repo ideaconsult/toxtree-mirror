@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package sicret.rules;
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -55,7 +57,7 @@ public class RuleQuaternaryOrganicAmmoniumAndPhosphoniumSalts extends RuleAnySub
 			examples[1] = "ClC=CC[N+]23(CN1CN(CN(C1)C2)C3)";	
 			editable = false;
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 	/**

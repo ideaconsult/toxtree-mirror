@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package sicret.rules;
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
@@ -50,7 +52,7 @@ public class RuleAcrylicAndMethacrylicEsters extends RuleSMARTSubstructure {
 			examples[1] = "O=C(OCC)C(=C)C";	
 			editable = false;
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 	/**

@@ -29,6 +29,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mic.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.StructureAlert;
 import ambit2.smarts.query.SMARTSException;
 
@@ -58,7 +60,7 @@ public class SA21 extends StructureAlert {
 			examples[1] = "O=NNCCC";
 			editable = false;
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 }

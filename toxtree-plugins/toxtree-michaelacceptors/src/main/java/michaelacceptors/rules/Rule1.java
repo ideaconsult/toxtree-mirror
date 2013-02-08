@@ -1,5 +1,7 @@
 package michaelacceptors.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.StructureAlertAmbit;
 import ambit2.smarts.query.SMARTSException;
 
@@ -32,7 +34,7 @@ CCC#CC(=O)C
 			examples[1] = "C#CC(=O)OC";	
 			editable = false;		
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 
 	}

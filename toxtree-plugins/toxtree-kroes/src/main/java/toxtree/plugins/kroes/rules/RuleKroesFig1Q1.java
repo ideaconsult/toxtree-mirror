@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.exception.CDKException;
@@ -59,7 +60,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
     public RuleKroesFig1Q1(File file)
     {
         init();
-        logger.debug("Will be using file\t", file.getAbsoluteFile());
+        logger.fine("Will be using file\t"+ file.getAbsoluteFile());
         String f = file.getPath().toLowerCase();
         if(file.exists() && (f.endsWith(".sdf") || f.endsWith(".smi") || f.endsWith(".csv")))
             try
@@ -69,10 +70,10 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
             }
             catch(FileNotFoundException x)
             {
-                logger.error(x);
+                logger.log(Level.SEVERE,x.getMessage(),x);
             }
         else
-            logger.debug("File does not exists or unsupported format\t", file.getAbsoluteFile());
+            logger.fine("File does not exists or unsupported format\t"+ file.getAbsoluteFile());
     }
 
     protected void init()
@@ -120,7 +121,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
                 reader = new IteratingSMILESReader(fStream);
             } else
             {
-                logger.error("Unsupported format");
+                logger.severe("Unsupported format");
                 fStream.close();
                 return;
             }
@@ -148,10 +149,10 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
             reader = null;
         }
         catch(IOException x)  {
-            logger.error(x);
+            logger.log(Level.SEVERE,x.getMessage(),x);
         }
         catch(CDKException x)  {
-            logger.error(x);
+            logger.log(Level.SEVERE,x.getMessage(),x);
         }
         
     }
@@ -220,21 +221,21 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
             for(int m = 0; m < me_essential.length; m++)
                 if(element.equals(me_essential[m]))
                 {
-                    logger.info("Essential metal\t", me_essential[m], "\tfound.");
+                    logger.info("Essential metal\t"+ me_essential[m]+ "\tfound.");
                     return true;
                 }
 
             for(int m = 0; m < me_nonessential.length; m++)
                 if(element.equals(me_nonessential[m]))
                 {
-                    logger.info("Non-essential metal\t", me_nonessential[m], "\tfound.");
+                    logger.info("Non-essential metal\t"+ me_nonessential[m]+ "\tfound.");
                     return true;
                 }
 
             for(int m = 0; m < halogens.length; m++)
                 if(element.equals(halogens[m]))
                 {
-                    logger.info("Halogen \t", halogens[m], "\tfound.");
+                    logger.info("Halogen \t" + halogens[m]+ "\tfound.");
                     halogensFound += MolecularFormulaManipulator.getElementCount(formula,elements.get(i));
                 }
 
@@ -245,17 +246,17 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
             logger.info("Not a polyhalogenated compound");
             return false;
         }
-        logger.info("Polyhalogenated compound\t", Integer.toString(halogensFound), "\thalogens found");
+        logger.fine("Polyhalogenated compound\t"+ Integer.toString(halogensFound)+ "\thalogens found");
         //print(mol);
         for(int i = 0; i < query.getAtomContainerCount(); i++)
         {
-            logger.info("Compare with ", query.getAtomContainer(i).getID());
+            logger.fine("Compare with "+ query.getAtomContainer(i).getID());
             if(FunctionalGroups.isSubstance(mol, query.getAtomContainer(i)))
                 return true;
         }
 
-        logger.info("Compared with ", Integer.toString(query.getAtomContainerCount()), " structures");
-        logger.info("NOT a ", explanation.toString());
+        logger.fine("Compared with "+ Integer.toString(query.getAtomContainerCount())+ " structures");
+        logger.fine("NOT a "+ explanation.toString());
         return false;
     }
     /*

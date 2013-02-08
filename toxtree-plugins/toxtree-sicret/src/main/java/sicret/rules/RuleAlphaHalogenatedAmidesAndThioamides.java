@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package sicret.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
 import ambit2.smarts.query.SMARTSException;
 
@@ -48,7 +50,7 @@ public class RuleAlphaHalogenatedAmidesAndThioamides extends  RuleSMARTSubstruct
 			examples[1] = "O=C(N)CCl";	
 			editable = false;
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 }
