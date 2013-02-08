@@ -32,7 +32,6 @@ import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
 import org.openscience.cdk.templates.MoleculeFactory;
 
-import toxTree.logging.TTLogger;
 import toxTree.qsar.LinearQSARModel;
 import toxTree.query.MolAnalyser;
 import ambit2.base.exceptions.QSARModelException;
@@ -42,7 +41,7 @@ public class LinearQSARModelTest extends TestCase {
 	protected void setUp() throws Exception {
 		// TODO Auto-generated method stub
 		super.setUp();
-		TTLogger.configureLog4j(true);
+
 	}
 	public void testPredictIAtomContainer() {
 		List<String> names = new ArrayList<String>();

@@ -47,6 +47,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JComponent;
 
+import org.apache.log4j.Logger;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
@@ -67,7 +68,6 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.exceptions.XMLDecisionMethodException;
-import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 import toxTree.ui.EditorFactory;
 import toxTree.ui.tree.categories.CategoriesRenderer;
@@ -84,7 +84,7 @@ import ambit2.rendering.CompoundImageTools;
  * <b>Modified</b> 2005-4-30
  */
 public abstract class AbstractTree extends Observable implements IDecisionMethod, Observer, XMLSerializable {
-	protected static transient TTLogger logger =  new TTLogger(AbstractTree.class);
+	protected static transient Logger logger = Logger.getLogger(AbstractTree.class);
 	protected Dimension imageSize = new Dimension(150,150);
 	protected boolean web = false;
     public Dimension getImageSize() {
@@ -204,11 +204,11 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 	
 
 	protected boolean verifyResidues(IAtomContainerSet mols,IDecisionResult result,IDecisionRule rule) throws DecisionMethodException {		
-		logger.info("Start processing residues\t",mols.getAtomContainerCount());
+		logger.info("Start processing residues\t"+mols.getAtomContainerCount());
 		boolean r = true;
 		
 		for (int i=0; i < mols.getAtomContainerCount();i++) {
-			logger.info("Residue\t",Integer.toString(i+1));
+			logger.info("Residue\t"+Integer.toString(i+1));
 			try {
 				MolAnalyser.analyse(mols.getAtomContainer(i));
 				

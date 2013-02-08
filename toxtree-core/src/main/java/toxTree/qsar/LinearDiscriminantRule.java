@@ -78,7 +78,7 @@ public abstract class LinearDiscriminantRule extends AbstractRule implements IIm
 			model.verify();
 			double value = model.predict(mol);
             mol.setProperty(getModel().getPredictedproperty(), new Double(value));
-			logger.debug("Compare ",value," with threshold=",threshold);
+			logger.fine("Compare "+value+" with threshold="+threshold);
 			return compare(value, threshold);
 		} catch (QSARModelException x) {
 			throw createException(x);

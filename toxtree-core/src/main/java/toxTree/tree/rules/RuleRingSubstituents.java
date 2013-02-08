@@ -129,11 +129,11 @@ public abstract class RuleRingSubstituents extends RuleRings {
 	    for (int i=0; i < rs.getAtomContainerCount(); i++) {
 	        r = (IRing) rs.getAtomContainer(i);
 	        if (!analyze(r)) continue;
-	        logger.debug("Ring\t",(i+1));
+	        logger.finer("Ring\t"+(i+1));
 	        
 	        //new atomcontainer with ring atoms/bonds deleted
 	        IAtomContainer mc = FunctionalGroups.cloneDiscardRingAtomAndBonds(mol,r);	        
-			logger.debug("\tmol atoms\t",mc.getAtomCount());
+			logger.finer("\tmol atoms\t"+mc.getAtomCount());
 		    
 			IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
 			//logger.debug("partitions\t",s.getMoleculeCount());
@@ -141,9 +141,9 @@ public abstract class RuleRingSubstituents extends RuleRings {
 				IMolecule m = s.getMolecule(k);
 			    if (m!=null) {
 				    if ((m.getAtomCount() == 1) && (m.getAtom(0).getSymbol().equals("H"))) continue;
-				    logger.debug("Ring substituent\t",(k+1));
+				    logger.finer("Ring substituent\t"+(k+1));
 				    if (!substituentIsAllowed(m,null)) {
-				    	logger.debug(ERR_PRECONDITION_FAILED);
+				    	logger.finer(ERR_PRECONDITION_FAILED);
 				    	return false;
 				    }
 			    }

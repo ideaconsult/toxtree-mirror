@@ -39,8 +39,6 @@ import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
-import toxTree.logging.TTLogger;
-
 public class EmptySDFEntryTest {
 	@Test
 	public void testEmptyEntry() throws Exception {
@@ -78,7 +76,6 @@ public class EmptySDFEntryTest {
 	*/
 	@Test
 	public void testEmptyEntryIteratingReader() throws Exception {
-		TTLogger.configureLog4j(true);
 
 			IteratingMDLReader reader = new IteratingMDLReader(
 					this.getClass().getClassLoader().getResourceAsStream("data/Misc/emptyStructure.sdf"),

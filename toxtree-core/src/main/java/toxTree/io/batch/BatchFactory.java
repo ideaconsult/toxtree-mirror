@@ -27,10 +27,10 @@ package toxTree.io.batch;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import toxTree.core.Introspection;
 import toxTree.core.ToxTreeObjectInputStream;
-import toxTree.logging.TTLogger;
 
 /**
  * Provides a static function to create an {@link toxTree.io.batch.IBatchProcessing} object by a config file.
@@ -39,7 +39,8 @@ import toxTree.logging.TTLogger;
  * <b>Modified</b> 2005-9-4
  */
 public class BatchFactory {
-	protected static TTLogger logger = new TTLogger(BatchFactory.class); 
+
+	protected transient static Logger logger = Logger.getLogger(BatchFactory.class.getName());
 	/**
 	 * 
 	 */

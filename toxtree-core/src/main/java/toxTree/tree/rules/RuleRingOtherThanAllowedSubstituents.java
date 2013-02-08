@@ -25,6 +25,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.tree.rules;
 
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
@@ -81,7 +83,7 @@ public abstract class RuleRingOtherThanAllowedSubstituents extends RuleRingSubst
 	    for (int i=0; i < rs.getAtomContainerCount(); i++) {
 	        r = (IRing) rs.getAtomContainer(i);
 	        if (!analyze(r)) continue;
-	        logger.debug("Ring\t",(i+1));
+	        logger.finer("Ring\t"+(i+1));
 	        
 	        //new atomcontainer with ring atoms/bonds deleted
 	        IAtomContainer mc = FunctionalGroups.cloneDiscardRingAtomAndBonds(mol,r);	        
@@ -89,26 +91,26 @@ public abstract class RuleRingOtherThanAllowedSubstituents extends RuleRingSubst
 		    SmilesGenerator gen = new SmilesGenerator(true);
 		    
 		    IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
-			logger.debug("Substituents\t",s.getMoleculeCount());
+			logger.finer("Substituents\t"+s.getMoleculeCount());
 			for (int k = 0; k < s.getMoleculeCount(); k++) {
 				IMolecule m = s.getMolecule(k);
 			    if (m!=null) {
 				    if ((m.getAtomCount() == 1) && (m.getAtom(0).getSymbol().equals("H"))) continue;
-				    if (logger.isDebugEnabled()) {
-				    	logger.debug("Ring substituent\t",(k+1));
-				    	logger.debug(gen.createSMILES(m));
+				    if (logger.isLoggable(Level.FINER)) {
+				    	logger.finer("Ring substituent\t"+(k+1));
+				    	logger.finer(gen.createSMILES(m));
 				    }
 				    if (!substituentIsAllowed(m,null)) {
-				    	logger.debug(ERR_PRECONDITION_FAILED);
+				    	logger.finer(ERR_PRECONDITION_FAILED);
 				    	return true;				    	
 				    }
 	
-				    logger.debug(FunctionalGroups.mapToString(m));
+				    logger.finer(FunctionalGroups.mapToString(m).toString());
 					if (!FunctionalGroups.hasMarkedOnlyTheseGroups(m,ids,null,selected)) {
 				    //if (FunctionalGroups.hasOtherThanMarkedGroups(m,ids,selected)) {
-				    	logger.debug(allowedSubstituents());
-				    	logger.debug(CONDITION_FAILED);
-				    	logger.debug(FunctionalGroups.mapToString(m).toString());
+				    	logger.finer(allowedSubstituents());
+				    	logger.finer(CONDITION_FAILED);
+				    	logger.finer(FunctionalGroups.mapToString(m).toString());
 				    	return true;
 				    }
 			    }

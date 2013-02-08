@@ -31,6 +31,7 @@ import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.openscience.cdk.ChemObject;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
@@ -44,11 +45,11 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.listener.IReaderListener;
 import org.openscience.cdk.io.random.RandomAccessReader;
 import org.openscience.cdk.io.random.RandomAccessSDFReader;
+import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.io.Tools;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 
 public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChemObjectListener {
@@ -61,6 +62,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
     protected static String NA = "";
 	private static final long serialVersionUID = 4566523260890189354L;
 	protected RandomAccessReader reader;
+	protected FixBondOrdersTool fbt = new FixBondOrdersTool();
 	protected final Hashtable[] updatedProperties;
 	private IAtomContainer recordLoaded = null;
 	private int recordLoadedIndex = -1;
@@ -68,7 +70,8 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
 	protected boolean bufferProperties = true;
     protected PropertyChangeSupport propertyChangeSupport ;
     protected int foundIndex = -1;
-    protected TTLogger logger = new TTLogger(MoleculesFile.class);
+
+    protected transient static Logger logger  = Logger.getLogger(MoleculesFile.class.getName());
     /*
     protected Hashtable<String,String> propertyTranslator;
     protected PropertyTranslator availableProperties;
@@ -149,6 +152,11 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
 				}
 				
 				recordLoaded = (IAtomContainer) reader.readRecord(index);
+				try {
+					recordLoaded = fbt.kekuliseAromaticRings((IMolecule)recordLoaded);
+				} catch (Exception x) {
+					
+				}
 				//recordLoaded.addListener(this);
 				recordLoadedIndex = index;
 			}
@@ -437,7 +445,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
 //        MolAnalyser.analyse(mol);
         BitSet bs = getFingerprint(mol);
         
-        logger.debug("<lookup fingerprint=\"",bs,"\">");
+        logger.finer("<lookup fingerprint=\""+bs+"\">");
         prepareProperty(propertyFingerprint);
         int first_index = sortedProperties.indexOf(bs);
         int index = -1;
@@ -446,25 +454,24 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
         	for (int i=first_index; i <= last_index; i++) {
         		int original_index = sortedProperties.getOriginalIndexOf(i);
 
-        		logger.debug(original_index);
-        		
+       		
         		IAtomContainer c = getAtomContainer(original_index);
                 AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(c);
                 CDKHueckelAromaticityDetector.detectAromaticity(c);
                 if (FunctionalGroups.isSubstance(c,mol)) {
                 	index = original_index;
                 	foundIndex = index;
-                    logger.debug(getProperty(index,"Group"));                	
+                    logger.finer(getProperty(index,"Group").toString());                	
 
                 	break;
                 } else {
                 }
         	}
         	if (index == -1) {
-        		logger.debug("Not found " + smigen.createSMILES((IMolecule)mol));
+        		logger.fine("Not found " + smigen.createSMILES((IMolecule)mol));
         	}
         }
-        logger.debug("</lookup>");
+        logger.fine("</lookup>");
 
         return index;
     }

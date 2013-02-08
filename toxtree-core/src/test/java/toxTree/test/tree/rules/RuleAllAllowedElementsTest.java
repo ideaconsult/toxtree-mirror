@@ -29,7 +29,6 @@ import junit.framework.TestCase;
 import org.openscience.cdk.Molecule;
 import org.openscience.cdk.templates.MoleculeFactory;
 
-import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.RuleAllAllowedElements;
 import toxTree.tree.rules.RuleElements;
@@ -38,12 +37,6 @@ public class RuleAllAllowedElementsTest extends TestCase {
 
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(RuleAllAllowedElementsTest.class);
-	}
-	@Override
-	protected void setUp() throws Exception {
-		
-		super.setUp();
-		TTLogger.configureLog4j(true);
 	}
 
 	/*

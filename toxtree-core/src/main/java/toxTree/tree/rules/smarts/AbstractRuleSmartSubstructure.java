@@ -126,7 +126,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 			logger.info(getID());
 			T moltotest = getObjectToVerify(mol);		
 			if (!isAPossibleHit(mol,moltotest)) {
-				logger.debug("Not a possible hit due to the prescreen step.");
+				logger.fine("Not a possible hit due to the prescreen step.");
 				return false;
 			}
 	
@@ -145,7 +145,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 	            
 	    		is_true = pattern.hasSMARTSPattern(moltotest)>0;
 	  
-	    		logger.debug("SMARTS " + temp_id,'\t',pattern.toString(),'\t',is_true);
+	    		logger.fine("SMARTS " + temp_id+'\t'+pattern.toString()+'\t'+is_true);
 	    		
 	    		if (pattern.isNegate()) is_true = ! is_true;
 	    		

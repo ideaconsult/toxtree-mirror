@@ -44,9 +44,10 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import toxTree.exceptions.IntrospectionException;
-import toxTree.logging.TTLogger;
 import toxTree.tree.ProgressStatus;
 
 /**
@@ -65,8 +66,9 @@ public class Introspection {
     public static final String TOXTREE_HOME="TOXTREE";
 	protected static String[] defaultLocation = { "dist","ext","toxTree/dist" };
 
-	protected static TTLogger logger = new TTLogger(Introspection.class);
+	protected transient static Logger logger = Logger.getLogger(Introspection.class.getName());
 
+	
 	protected static ToxTreeClassLoader loader;
 
 	protected Introspection() {
@@ -182,8 +184,7 @@ public class Introspection {
 	}
 	public static File[] enumerateJars(File directory) throws toxTree.exceptions.IntrospectionException {
 		try {
-			logger.info("Looking for .jar files in\t", directory
-							.getAbsolutePath());
+			logger.info("Looking for .jar files in\t"+ directory.getAbsolutePath());
 			return directory.listFiles(new FileFilter() {
 				public boolean accept(File arg0) {
 					//return arg0.getName().toLowerCase().endsWith(".jar");
@@ -224,7 +225,7 @@ public class Introspection {
 			try {
 				loader.addURL(jars[i].toURL());
 			} catch (MalformedURLException x) {
-				logger.error(x);
+				logger.log(Level.SEVERE,x.getMessage(),x);
 			}
 	}	
 	/**
@@ -238,7 +239,7 @@ public class Introspection {
 			try {
 				loader.addURL(jars[i].toURL());
 			} catch (MalformedURLException x) {
-				logger.error(x);
+				logger.log(Level.SEVERE,x.getMessage(),x);
 			}
 	}
 	/**
@@ -263,8 +264,7 @@ public class Introspection {
 		for (int i = 0; i < files.length; i++)
 
 			try {
-				logger.info("Inspecting jar file\t", files[i], "\t", files[i]
-						.toURL());
+				logger.info("Inspecting jar file\t"+files[i]+ "\t"+files[i].toURL());
 				JarFile jar = new JarFile(files[i]);
 				Enumeration entries = jar.entries();
 				if (loader != null)
@@ -291,23 +291,21 @@ public class Introspection {
 					
 
 					if (rule != null) {
-						logger.debug("Class\t", name, "\timplements\t",
-								interfaceName, "\tYES");
+						logger.fine("Class\t"+ name+ "\timplements\t" +interfaceName+"\tYES");
 						try {
                             
                             if (!name.endsWith("BatchDecisionResultsList"))
 							rules.add(new ToxTreePackageEntry(name,files[i].getAbsolutePath(),""));
 						} catch (Exception x) {
-							logger.error(x);							
+							logger.log(Level.SEVERE,x.getMessage(),x);				
 						}
 					} else
-						logger.debug("Class\t", name, "\timplements\t",
-								interfaceName, "\tNO");
+						logger.fine("Class\t"+ name+ "\timplements\t"+	interfaceName + "\tNO");
 
 				}
 
 			} catch (IOException x) {
-				logger.error(x);
+				logger.log(Level.SEVERE,x.getMessage(),x);
 			}
 		return rules;
 
@@ -386,12 +384,12 @@ public class Introspection {
 		try {
 			Class classDefinition = Class.forName(className);
 			object = classDefinition.newInstance();
-		} catch (InstantiationException e) {
-			logger.error(e);
-		} catch (IllegalAccessException e) {
-			logger.error(e);
-		} catch (ClassNotFoundException e) {
-			logger.error(e);
+		} catch (InstantiationException x) {
+			logger.log(Level.SEVERE,x.getMessage(),x);
+		} catch (IllegalAccessException x) {
+			logger.log(Level.SEVERE,x.getMessage(),x);
+		} catch (ClassNotFoundException x) {
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 		return object;
 	}

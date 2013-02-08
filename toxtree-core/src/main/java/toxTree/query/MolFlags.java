@@ -31,12 +31,13 @@ package toxTree.query;
 
 
 
+import java.util.logging.Logger;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
-import toxTree.logging.TTLogger;
 import ambit2.core.data.MoleculeTools;
 
 /**
@@ -45,7 +46,7 @@ import ambit2.core.data.MoleculeTools;
  * <b>Modified</b> 2005-8-3
  */
 public class MolFlags {
-	protected static TTLogger logger  = null;
+	protected transient static Logger logger  = Logger.getLogger(MolFlags.class.getName());
     public final static String MOLFLAGS = "CRAMERFLAGS";
     public final static String PARENT = "PARENT";
     protected boolean analysed = false;
@@ -67,7 +68,6 @@ public class MolFlags {
      */
     public MolFlags() {
         super();
-        if (logger ==null) logger = new TTLogger();
     }
     public void clear() {
     	openChain = false;
@@ -159,9 +159,9 @@ public class MolFlags {
 	 * @param hydrolysisProducts The hydrolysisProducts to set.
 	 */
 	public void setHydrolysisProducts(IAtomContainerSet hydrolysisProducts) {
-		if (hydrolysisProducts != null) logger.debug("Hydrolysis products already exists");
+		if (hydrolysisProducts != null) logger.fine("Hydrolysis products already exists");
 		this.hydrolysisProducts = hydrolysisProducts;
-		logger.debug("Hydrolysis products set");		
+		logger.fine("Hydrolysis products set");		
 	}
 	/**
 	 * @return Returns the residues.

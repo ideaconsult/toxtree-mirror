@@ -29,6 +29,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -36,8 +38,6 @@ import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IChemObjectChangeEvent;
 import org.openscience.cdk.interfaces.IChemObjectListener;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
-
-import toxTree.logging.TTLogger;
 /**
  * An attempt to implement {@link org.openscience.cdk.interfaces.SetOfAtomContainers} interface 
  * as a {@link java.util.List} 
@@ -45,7 +45,8 @@ import toxTree.logging.TTLogger;
  *
  */
 public class ListOfAtomContainers extends ArrayList<IAtomContainer> implements	IAtomContainerSet {
-	protected transient TTLogger logger = new TTLogger(ListOfAtomContainers.class);
+	protected transient static Logger logger = Logger.getLogger(ListOfAtomContainers.class.getName());
+
 	protected String id = "";
 	protected Map properties = null;
 	/**
@@ -114,7 +115,7 @@ public class ListOfAtomContainers extends ArrayList<IAtomContainer> implements	I
 				m[i] = (IAtomContainer) get(i);
 			return m;
 		} catch (Exception x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			return null;
 		}
 	}

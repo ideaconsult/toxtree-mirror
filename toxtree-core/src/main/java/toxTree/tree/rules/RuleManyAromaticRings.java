@@ -27,7 +27,6 @@ package toxTree.tree.rules;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
-import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleRange;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;

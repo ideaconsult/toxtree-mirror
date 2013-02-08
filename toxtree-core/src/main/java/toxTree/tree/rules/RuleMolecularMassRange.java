@@ -26,8 +26,6 @@ package toxTree.tree.rules;
 
 import org.openscience.cdk.qsar.descriptors.molecular.WeightDescriptor;
 
-import toxTree.core.IDecisionRuleEditor;
-
 /**
  * Molecular mass in [{@link #getMinValue()},{@link #getMaxValue()}]
  * TODO add description

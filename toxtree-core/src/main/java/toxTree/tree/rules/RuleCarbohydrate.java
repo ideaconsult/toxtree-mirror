@@ -139,38 +139,38 @@ public class RuleCarbohydrate extends RuleSubstructures {
 			IRingSet rings = mf.getRingset();
 			if ((rings !=null) && (rings.getAtomContainerCount() > 0)) { 
 			    if (mf.isAromatic()) {
-			    	logger.debug("Aromatic, can't be\t",MSG_COMMONCARBOHYDRATE);
+			    	logger.fine("Aromatic, can't be\t"+MSG_COMMONCARBOHYDRATE);
 			    	return false;
 			    } else for (int i=0;i<rings.getAtomContainerCount();i++) {
 			    	IRing ring = (IRing)rings.getAtomContainer(i);
 			    	if ((ring.getAtomCount() < 5) || (ring.getAtomCount() > 6)) {
-				    	logger.debug("Ring but not 5 or 6 membered\t",MSG_NOTACOMMONCARBOHYDRATE);
+				    	logger.fine("Ring but not 5 or 6 membered\t"+MSG_NOTACOMMONCARBOHYDRATE);
 				    	return false;			    		
 			    	}
 			    }
 			    //cyclic, should have only alcohol or ether groups
 			    list = FunctionalGroups.getUniqueBondMap(mol,getSubstructure(index_alcohol),true);
 				if ((list == null) || (list.size()==0)) {
-			    	logger.debug(MSG_HASGROUP,getSubstructure(index_alcohol).getID(),MSG_NO,MSG_NOTACOMMONCARBOHYDRATE);					
+			    	logger.fine(MSG_HASGROUP+getSubstructure(index_alcohol).getID()+MSG_NO+MSG_NOTACOMMONCARBOHYDRATE);					
 					return false;
 				} else if ((list.size()<3)) {
-			    	logger.debug(MSG_HASGROUP,getSubstructure(index_alcohol).getID(),MSG_NO,MSG_NOTACOMMONCARBOHYDRATE);					
+			    	logger.fine(MSG_HASGROUP+getSubstructure(index_alcohol).getID()+MSG_NO+MSG_NOTACOMMONCARBOHYDRATE);					
 					return false;					
 				} else FunctionalGroups.markMaps(mol,getSubstructure(index_alcohol),list);
 				//ether
 			    list = FunctionalGroups.getUniqueBondMap(mol,getSubstructure(index_ether),true);
 				if ((list == null) || (list.size()==0)) {
-			    	logger.debug(MSG_HASGROUP,getSubstructure(index_ether).getID(),MSG_NO,MSG_NOTACOMMONCARBOHYDRATE);					
+			    	logger.fine(MSG_HASGROUP +getSubstructure(index_ether).getID()+MSG_NO+MSG_NOTACOMMONCARBOHYDRATE);					
 					return false;
 				} else {
 					FunctionalGroups.markMaps(mol,getSubstructure(index_ether),list);
 				}
 				//and nothing else
 				if (FunctionalGroups.hasMarkedOnlyTheseGroups(mol,idsCyclic)) {
-					logger.info(MSG_COMMONCARBOHYDRATE,MSG_YES);
+					logger.fine(MSG_COMMONCARBOHYDRATE+MSG_YES);
 					return true;
 				} else {
-					logger.info(MSG_COMMONCARBOHYDRATE,MSG_NO);
+					logger.fine(MSG_COMMONCARBOHYDRATE+MSG_NO);
 					return false;
 				}
 			    
@@ -178,34 +178,34 @@ public class RuleCarbohydrate extends RuleSubstructures {
 				//checking for alcohol groups
 				list = FunctionalGroups.getUniqueBondMap(mol,getSubstructure(index_alcohol),true);
 				if ((list == null) || (list.size()==0)) {
-			    	logger.debug(MSG_HASGROUP,getSubstructure(index_alcohol).getID(),MSG_NO,MSG_NOTACOMMONCARBOHYDRATE);					
+			    	logger.fine(MSG_HASGROUP+getSubstructure(index_alcohol).getID()+MSG_NO+MSG_NOTACOMMONCARBOHYDRATE);					
 					return false;
 				} else if ((list.size()<3)) {
-			    	logger.debug(MSG_HASGROUP,getSubstructure(index_alcohol).getID(),MSG_NO,MSG_NOTACOMMONCARBOHYDRATE);					
+			    	logger.fine(MSG_HASGROUP+getSubstructure(index_alcohol).getID()+MSG_NO+MSG_NOTACOMMONCARBOHYDRATE);					
 					return false;					
 				} else FunctionalGroups.markMaps(mol,getSubstructure(index_alcohol),list);
 				//one aldehyde group
 				list = FunctionalGroups.getUniqueBondMap(mol,getSubstructure(index_aldehyde),true);
 				if ((list == null) || (list.size()==0)) {
-			    	logger.debug(MSG_HASGROUP,getSubstructure(index_aldehyde).getID(),MSG_NO);					
+			    	logger.fine(MSG_HASGROUP+getSubstructure(index_aldehyde).getID()+MSG_NO);					
 				} else if (list.size() > 1) {
-			    	logger.debug(MSG_MANYGROUPSOFAKIND,getSubstructure(index_aldehyde).getID(), MSG_NOTACOMMONCARBOHYDRATE);
+			    	logger.fine(MSG_MANYGROUPSOFAKIND+getSubstructure(index_aldehyde).getID()+ MSG_NOTACOMMONCARBOHYDRATE);
 			    	return false;
 				} else FunctionalGroups.markMaps(mol,getSubstructure(index_aldehyde),list);
 				//or one ketone group
 				list = FunctionalGroups.getUniqueBondMap(mol,getSubstructure(index_ketone),true);
 				if ((list == null) || (list.size()==0)) {
-			    	logger.debug(MSG_HASGROUP,getSubstructure(index_ketone),MSG_NO);					
+			    	logger.fine(MSG_HASGROUP+getSubstructure(index_ketone)+MSG_NO);					
 				} else if (list.size() > 1) {
-			    	logger.debug(MSG_MANYGROUPSOFAKIND,getSubstructure(index_ketone).getID(), MSG_NOTACOMMONCARBOHYDRATE);
+			    	logger.fine(MSG_MANYGROUPSOFAKIND+getSubstructure(index_ketone).getID()+ MSG_NOTACOMMONCARBOHYDRATE);
 			    	return false;
 				} else FunctionalGroups.markMaps(mol,getSubstructure(index_ketone),list);
 				
 				if (FunctionalGroups.hasMarkedOnlyTheseGroups(mol,idsAcyclic)) {
-					logger.info(MSG_COMMONCARBOHYDRATE,MSG_YES);
+					logger.info(MSG_COMMONCARBOHYDRATE+MSG_YES);
 					return true;
 				} else {
-					logger.info(MSG_COMMONCARBOHYDRATE,MSG_NO);
+					logger.fine(MSG_COMMONCARBOHYDRATE+MSG_NO);
 					return false;
 				}
 			}

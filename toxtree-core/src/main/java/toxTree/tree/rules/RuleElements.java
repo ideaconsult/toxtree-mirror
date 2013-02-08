@@ -143,14 +143,14 @@ public class RuleElements extends AbstractRule {
 			ok = elements.containsAll(list);
 			select(mol, selected);
 				
-			logger.debug("Has only elements: ",elements,"\t",list,"\t"+ok);
+			logger.finer("Has only elements: "+elements+"\t"+list+"\t"+ok);
 			return ok;
 		}
 		case modeAllSpecifiedElements: {
 			ok = list.equals(elements);
 			select(mol, selected);
 			
-			logger.debug("Has all of elements: ",elements,"\t",list,"\t"+ok);
+			logger.finer("Has all of elements: "+elements+"\t"+list+"\t"+ok);
 			return ok;
 		}
 		case modeAnySpecifiedElements: {
@@ -159,7 +159,7 @@ public class RuleElements extends AbstractRule {
 			ok = list.size() > 0;
 			select(mol, selected);
 			
-			logger.debug("Has any of elements: ",elements,"\t",list,"\t"+ok);
+			logger.finer("Has any of elements: "+elements+"\t"+list+"\t"+ok);
 			return ok;
 		}		
 		default: throw new DecisionMethodException("Undefined comparison mode!"+mode);
