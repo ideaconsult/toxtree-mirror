@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
@@ -88,7 +90,7 @@ public class SA25_gen extends StructureAlertCDK {
             examples[1] = "O=Nc1=cc=cc=c1";   
             editable = false;
         } catch (SMARTSException x) {
-            logger.error(x);
+        	logger.log(Level.SEVERE,x.getMessage(),x);
         }
     }
 	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {

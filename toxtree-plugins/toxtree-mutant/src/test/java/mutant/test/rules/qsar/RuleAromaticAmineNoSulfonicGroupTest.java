@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package mutant.test.rules.qsar;
 
 import java.io.InputStream;
+import java.util.logging.Level;
 
 import mutant.rules.RuleAromaticAmineNoSulfonicGroup;
 import mutant.test.TestMutantRules;
@@ -135,7 +136,7 @@ public class RuleAromaticAmineNoSulfonicGroupTest extends TestMutantRules {
     	try {
     		return  new IteratingDelimitedFileReader(stream);
     	} catch (Exception x) {
-    		logger.error(x);
+    		logger.log(Level.SEVERE,x.getMessage(),x);
     		return null;
     	}
     }

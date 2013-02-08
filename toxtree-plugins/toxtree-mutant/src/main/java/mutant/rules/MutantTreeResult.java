@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.logging.Level;
 
 import mutant.categories.CategoryCarcinogen;
 import mutant.categories.CategoryMutagenTA100;
@@ -272,7 +273,7 @@ public class MutantTreeResult extends TreeResult {
     		l.add(new CategoryFilter(c.get(i).toString(),Answers.toString(Answers.YES)));
     		l.add(new CategoryFilter(c.get(i).toString(),Answers.toString(Answers.NO)));
     	} catch (Exception x) {
-    		logger.error(x);
+    		logger.log(Level.SEVERE,x.getMessage(),x);
     	}
     	return l;
     }

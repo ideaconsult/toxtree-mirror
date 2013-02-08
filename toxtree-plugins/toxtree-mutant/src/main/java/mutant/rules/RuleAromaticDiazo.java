@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -61,7 +63,7 @@ public class RuleAromaticDiazo extends RuleSMARTSubstructureCDK {
 			
 			
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 	

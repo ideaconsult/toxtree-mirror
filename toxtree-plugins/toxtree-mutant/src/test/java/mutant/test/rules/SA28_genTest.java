@@ -3,7 +3,6 @@ package mutant.test.rules;
 import mutant.rules.SA28_gen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionRule;
-import toxTree.logging.TTLogger;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
 
 public class SA28_genTest extends TestMutantRules {
@@ -22,7 +21,6 @@ public class SA28_genTest extends TestMutantRules {
 	}
 	
 	public void testNnotinring() throws Exception  {
-            TTLogger.configureLog4j(true);
 			assertFalse(verifyRule(ruleToTest,"ON2CCC=1C=CC=CC=12"));
 
 	}

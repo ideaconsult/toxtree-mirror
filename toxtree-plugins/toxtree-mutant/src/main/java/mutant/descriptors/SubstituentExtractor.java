@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.config.Elements;
@@ -19,7 +20,6 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.mcss.RMap;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import ambit2.core.data.MoleculeTools;
 
@@ -28,7 +28,8 @@ public class SubstituentExtractor {
     protected static Boolean yes = new Boolean(true);
     protected static String atom_C = "C";
 	protected QueryAtomContainer ringQuery;
-	protected static TTLogger logger = new TTLogger(SubstituentExtractor.class);
+	protected static Logger logger = Logger.getLogger(SubstituentExtractor.class.getName());
+
 	public SubstituentExtractor() {
 		this(null);
 	}
@@ -44,7 +45,7 @@ public class SubstituentExtractor {
 	 */
 	public Hashtable<String,IAtomContainerSet> extractSubstituents(IAtomContainer a) throws CDKException {
 
-		logger.debug("extract substituents");
+		logger.finer("extract substituents");
 		if (ringQuery == null) throw new CDKException("Query not assigned");
         List list = UniversalIsomorphismTester.getSubgraphAtomsMaps(a,ringQuery);
         list = getUniqueAtomMaps(list);
@@ -219,7 +220,7 @@ public class SubstituentExtractor {
         if (o == null) return null;
         else if (o instanceof SubstituentPosition) return (SubstituentPosition) o;
         else {
-            logger.error("Expected Integer type instead of "+o.getClass().getName());
+            logger.severe("Expected Integer type instead of "+o.getClass().getName());
             return null;
         }
     }

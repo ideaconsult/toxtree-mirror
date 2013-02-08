@@ -76,7 +76,7 @@ public class SA20_nogen extends RuleRingSubstituents implements IAlertCounter {
         		halogen_count = ring_halogen_count;
 
     		if (halogen_count > 2) {
-    			logger.info(getID()+"\tHalogens on a single ring\t",halogen_count);
+    			logger.finer(getID()+"\tHalogens on a single ring\t"+halogen_count);
 	    		incrementCounter(mol);
 	    		return true;
     		}
@@ -88,7 +88,7 @@ public class SA20_nogen extends RuleRingSubstituents implements IAlertCounter {
      */
     @Override
     protected boolean analyze(IRing r) {
-    	logger.debug("halogens on a ring\t"+ring_halogen_count);
+    	logger.finer("halogens on a ring\t"+ring_halogen_count);
     	if (halogen_count < ring_halogen_count)
     		halogen_count = ring_halogen_count;
     	ring_halogen_count = 0;
@@ -106,7 +106,7 @@ public class SA20_nogen extends RuleRingSubstituents implements IAlertCounter {
 		
 		if (a.getAtomCount() == 1)
 			for (int i=0; i < halogens.length; i++) {
-				logger.debug("substituent with atoms\t"+a.getAtom(0).getSymbol());
+				logger.finer("substituent with atoms\t"+a.getAtom(0).getSymbol());
 				if (halogens[i].equals(a.getAtom(0).getSymbol())) 
 					ring_halogen_count++;
 			}

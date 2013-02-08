@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.descriptors;
 
+import java.util.logging.Logger;
+
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
@@ -33,12 +35,14 @@ import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.BooleanResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 
-import toxTree.logging.TTLogger;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
 
 public abstract class DescriptorStructurePresence<T> implements IMolecularDescriptor {
-	protected static  TTLogger logger = new TTLogger(DescriptorStructurePresence.class);
+
+	protected transient static Logger logger = Logger.getLogger(DescriptorStructurePresence.class.getName());
+
+	
 	protected String[] paramNames = {"fragment","resultName"};
 	
 	protected ISmartsPattern<T> fragment = null;

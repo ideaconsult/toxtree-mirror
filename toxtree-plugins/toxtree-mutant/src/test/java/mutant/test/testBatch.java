@@ -24,20 +24,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test;
 
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.swing.JDialog;
-
-import mutant.BB_CarcMutRules;
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.io.batch.BatchProcessing;
-import toxTree.io.batch.BatchProcessingException;
-import toxTree.io.batch.ToxTreeBatchProcessing;
-import toxtree.ui.batch.BatchProcessingDialog;
 
 public class testBatch  {
 	public void run() {
+		/*
 		try {
 			ToxTreeBatchProcessing bp = new ToxTreeBatchProcessing(
 					"/data/iss2_rid.sdf",
@@ -57,18 +47,14 @@ public class testBatch  {
 			d.show();
 
 //			bp.start();
-			/*
-			assertFalse(bp.getConfigFile().exists()); //tmp files deleted on success
-			assertTrue(bp.isStatus(BatchProcessing.STATUS_FINISHED));
-			assertEquals(bp.getReadRecordsCount(),29);
-			assertEquals(bp.getWrittenRecordsCount(),29);
-			*/
+	
 		} catch (DecisionMethodException x) {
 			//fail();
 		} catch (BatchProcessingException x) {
 			x.printStackTrace();
 			//fail();
 		}
+		*/
 	}
 	public static void main(String[] args) {
 		testBatch v = new testBatch();

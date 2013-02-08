@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.DefaultChemObjectBuilder;
@@ -82,7 +83,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                  
             };            
 		} catch (Exception x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			lookup = null;
 		}
 		
@@ -136,7 +137,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         //boolean reverse = reverseNumbers(substituents,mark);
         boolean reverse = false;
 		for (int k = 0; k < substituents.getAtomContainerCount(); k++) {
-            logger.debug("Substituent "+k);
+            logger.fine("Substituent "+k);
 			IAtomContainer m = substituents.getAtomContainer(k);
 		    if (m!=null) {
                 SubstituentPosition place = null;
@@ -156,7 +157,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                             Object mr = m.getAtom(j).getProperty(MR);
                             if ((mr != null) && (mr instanceof Double)) {
                                 values[0][p-1]= ((Number)mr).doubleValue();
-                                logger.debug("Fused rings at position "+p + " atom "+ j + " MR=" + ((Number)mr).doubleValue());
+                                logger.fine("Fused rings at position "+p + " atom "+ j + " MR=" + ((Number)mr).doubleValue());
                                 continue;
                             }
                         }
@@ -185,8 +186,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
 
                         
 			    	} catch (Exception x) {
-                        x.printStackTrace();
-			    		logger.error(x);
+			    		logger.log(Level.SEVERE,x.getMessage(),x);
 			    	}
               
 			    } 
