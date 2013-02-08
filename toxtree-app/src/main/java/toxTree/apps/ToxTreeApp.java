@@ -28,6 +28,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.io.File;
 import java.net.URL;
+import java.util.logging.Level;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -35,12 +36,10 @@ import javax.swing.JFrame;
 import toxTree.core.Introspection;
 import toxTree.tree.DecisionMethodsList;
 import toxTree.tree.demo.SubstructureTree;
-import toxTree.ui.EditorFactory;
 import toxtree.data.DataModule;
 import toxtree.data.ToxTreeModule;
 import toxtree.ui.DataModulePanel;
 import toxtree.ui.HazardPanel;
-import toxtree.ui.editors.SwingEditorFactory;
 
 /**
  * ToxTreeApp is a full-featured and flexible user-friendly open source
@@ -92,9 +91,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 				//TODO for test only, make it as plugin
 
 		} catch (Exception x) {
-			x.printStackTrace();
-			logger.error("Skipping Cramer  rules");
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 		if (methods.size() == 0) {
 			try {
@@ -122,7 +119,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 				x.printStackTrace();
 				try {methods.add( new SubstructureTree()); } catch (Exception e) {}
 			}
-			logger.warn("No decision trees found! Have you installed the application correctly?");
+			logger.warning("No decision trees found! Have you installed the application correctly?");
 		}
 		return new ToxTreeModule(mainFrame, fileToOpen,methods);
 	}
@@ -177,8 +174,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 					break;
 				fileToOpen = new File(args[p]);
 				if (!fileToOpen.exists()) {
-					logger.error("File do not exists!\t", fileToOpen
-							.getAbsolutePath());
+					logger.severe("File do not exists!\t" + fileToOpen.getAbsolutePath());
 					fileToOpen = null;
 				}
 				break;
@@ -189,8 +185,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 					break;
 				file4Batch = new File(args[p]);
 				if (!file4Batch.exists()) {
-					logger.error("File do not exists!\t", file4Batch
-							.getAbsolutePath());
+					logger.severe("File do not exists!\t" + file4Batch.getAbsolutePath());
 					file4Batch = null;
 				}
 				break;
