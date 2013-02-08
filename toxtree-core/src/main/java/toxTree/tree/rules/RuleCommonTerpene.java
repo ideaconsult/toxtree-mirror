@@ -84,7 +84,7 @@ public class RuleCommonTerpene extends AbstractRuleHilightHits {
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
 			throws DecisionMethodException {
 		try {
-			logger.info(getID());
+			logger.finer(getID());
 		    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 		    if (mf == null) {
 		    	MolAnalyser.analyse(mol);

@@ -36,6 +36,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Observable;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
@@ -246,13 +247,13 @@ public class DecisionMethodsList extends Observable implements	IDecisionMethodsL
 					in =  new FileInputStream(tree);
 					Introspection.loadRulesXML(in, tree.getAbsolutePath());
 				} catch (Exception x) {
-					logger.info(x.getMessage());
+					logger.log(Level.SEVERE,x.getMessage(),x);
 				} finally {
 					try { in.close();} catch (Exception x) {}
 				}
 			}
 		} catch (Exception x) {
-			logger.info(x.getMessage());
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
         Collections.sort(list,new PriorityComparator());
 	}

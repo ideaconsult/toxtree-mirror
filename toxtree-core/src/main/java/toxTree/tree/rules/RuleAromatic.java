@@ -59,7 +59,7 @@ public class RuleAromatic extends RuleSMARTSSubstructureAmbit {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	*/
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(getID());
+		logger.finer(getID());
 	    //should be set via MolAnalyser
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);

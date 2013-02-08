@@ -80,7 +80,7 @@ public class RuleRingAllowedSubstituents extends RuleRingSubstituents {
 	 */
 	@Override
 	public boolean verifyRule(IAtomContainer  mol, IAtomContainer selected) throws DecisionMethodException {
-		logger.info(toString());		
+		logger.finer(toString());		
 		IRingSet rs = hasRingsToProcess(mol);
 		if (rs == null) return false;
 		

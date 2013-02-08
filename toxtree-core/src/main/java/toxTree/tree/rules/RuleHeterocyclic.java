@@ -60,7 +60,7 @@ public class RuleHeterocyclic extends AbstractRule {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-			logger.info(toString());
+			logger.finer(toString());
 		    //should be set via MolAnalyser
 		    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 		    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);

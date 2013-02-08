@@ -65,7 +65,7 @@ public class RuleAnySubstituents extends AbstractRule {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(getID());
+		logger.finer(getID());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf == null) throw new DecisionMethodException("Structure should be preprocessed!");
 

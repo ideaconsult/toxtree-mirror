@@ -67,7 +67,7 @@ public class RuleReadilyHydrolised extends AbstractRuleHilightHits {
 	 * (to be used further )
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf == null) {
 	    	try { MolAnalyser.analyse(mol); } catch (Exception x) {}

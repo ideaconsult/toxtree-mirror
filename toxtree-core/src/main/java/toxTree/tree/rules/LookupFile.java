@@ -146,7 +146,7 @@ public class LookupFile implements ILookupFile, Serializable  {
 						logger.log(Level.SEVERE,x.getMessage(),x);
 					}					
 					if (FunctionalGroups.isSubstance(m,mol)) {
-						logger.info("Found");
+						logger.finer("Found");
 						mol_found = m;
 						FOUND = true;
 						
@@ -158,7 +158,7 @@ public class LookupFile implements ILookupFile, Serializable  {
 					}
 				}
 			}
-			if (!FOUND) logger.info("Not found");
+			if (!FOUND) logger.finer("Not found");
 			reader.close();
 			useCache = fileCache.size() > 0;
 		

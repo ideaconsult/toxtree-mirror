@@ -53,7 +53,7 @@ public class RuleAllSubstructures extends RuleSubstructures {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(getID());
+		logger.fine(getID());
 		try {
 			return FunctionalGroups.hasAllSubstructure(mol,query,false);
 		} catch (CDKException x) {
