@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package cramer2.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
 import ambit2.smarts.query.SMARTSException;
 
@@ -48,8 +50,8 @@ public class RuleDivalentSulphur extends RuleSMARTSubstructure{//jeroen
 			super.initSingleSMARTS(super.smartsPatterns,"1",smarts);
 			editable = false;
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,smarts,x);
 		}
-        logger.debug("43 finished");
+        logger.finer("43 finished");
 	}
 }

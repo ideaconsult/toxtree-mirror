@@ -65,7 +65,7 @@ public class RuleReadilyHydrolysedPO4 extends RuleReadilyHydrolised {
 		examples[0] = "COPOC";
 		examples[1] = "COP(=O)(O)OC";
 		editable = false;
-        logger.debug("41 CHOPPING");
+        logger.finer("41 CHOPPING");
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class RuleReadilyHydrolysedPO4 extends RuleReadilyHydrolised {
 		}
         //MFAnalyser mfatemp = null;
         if (sc == null) {//sc can be null if the Q40 SMARTS matches, but not the reaction pattern.
-            logger.debug("no chopping to perform");
+            logger.finer("no chopping to perform");
             return false;
         }
         for (int i=0;i<sc.getAtomContainerCount();i++) {

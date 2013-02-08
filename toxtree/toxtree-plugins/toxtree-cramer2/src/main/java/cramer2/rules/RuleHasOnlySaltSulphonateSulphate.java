@@ -155,7 +155,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 					order = order + a.getImplicitHydrogenCount();
 
                     if ((order-2) < 0.1) a.setProperty("S2",new Integer(i));
-					else logger.info("Found S valency ",Double.toString(order));
+					else logger.finer("Found S valency "+Double.toString(order));
 			}
 		}		
 		if (super.verifyRule(mol,null)) {
@@ -245,14 +245,14 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 								) {
 
 						} else {
-							logger.debug("Skipping residue\t",FunctionalGroups.mapToString(a));
+							logger.finer("Skipping residue\t"+FunctionalGroups.mapToString(a));
 							continue;							
 						}
 					else 
 						if (detached.equals(FunctionalGroups.CARBOXYLIC_ACID_SALT) ||
 							detached.equals(FunctionalGroups.HYDROCHLORIDE_OF_AMINE)								
 								) {
-							logger.debug("Skipping residue\t",FunctionalGroups.mapToString(a));
+							logger.finer("Skipping residue\t"+FunctionalGroups.mapToString(a));
 							continue;							
 						}
 					
@@ -264,7 +264,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 						*/ 
 					 
 					} else a.setID(mol.getID());
-					logger.info("Subsequent rules will proceed on\t",residues.getID()," part of the compound.");
+					logger.finer("Subsequent rules will proceed on\t"+residues.getID()+" part of the compound.");
 			
 					FunctionalGroups.clearMarks(a);
 					a.setProperty(MolFlags.PARENT,mol); //very important for the rules to be able to get the original structure if needed
