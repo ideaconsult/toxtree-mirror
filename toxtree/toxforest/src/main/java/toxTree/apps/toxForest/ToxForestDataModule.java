@@ -22,6 +22,7 @@ package toxTree.apps.toxForest;
 import java.awt.Component;
 import java.io.File;
 import java.util.Observable;
+import java.util.logging.Level;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -147,7 +148,7 @@ public class ToxForestDataModule extends DecisionMethodsDataModule {
                 notifyObservers();
                 return;
         	}
-        logger.error("Not found\t",rules.toString());	
+        logger.severe("Not found\t"+rules.toString());	
 
     }
 
@@ -191,7 +192,7 @@ public class ToxForestDataModule extends DecisionMethodsDataModule {
                 		((DecisionMethodData) dataContainer).classify(treeResult);
                 	
                 	} catch (DecisionResultException x) {
-                		logger.error(x);
+                		logger.log(Level.SEVERE,x.getMessage(),x);
                 		treeResult.clear();
                 	}
                 }	

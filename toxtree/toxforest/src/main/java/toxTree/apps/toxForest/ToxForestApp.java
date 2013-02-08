@@ -22,6 +22,7 @@ package toxTree.apps.toxForest;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.net.URL;
+import java.util.logging.Level;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -31,11 +32,9 @@ import toxTree.apps.CompoundMethodApplication;
 import toxTree.core.Introspection;
 import toxTree.tree.BatchDecisionResultsList;
 import toxTree.tree.DecisionResultsList;
-import toxTree.ui.EditorFactory;
 import toxtree.data.DataContainer;
 import toxtree.data.DataModule;
 import toxtree.ui.DataModulePanel;
-import toxtree.ui.editors.SwingEditorFactory;
 import toxtree.ui.tree.molecule.CompoundPanel;
 
 /**
@@ -80,8 +79,7 @@ public class ToxForestApp extends CompoundMethodApplication {
 
 
 		} catch (Exception x) {
-			x.printStackTrace();
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getLocalizedMessage(),x);
 		}		
 		if (methods.size() == 0) {
 			try {
@@ -100,7 +98,7 @@ public class ToxForestApp extends CompoundMethodApplication {
 				
 				try {methods.add(methods.add(Introspection.loadCreateObject("toxTree.tree.demo.SMARTSTree"))); } catch (Exception e) {}
 			}
-			logger.warn("No decision trees found! Have you installed the application correctly?");
+			logger.warning("No decision trees found! Have you installed the application correctly?");
 		}		
 		return new ToxForestDataModule(mainFrame,null,methods);
 	}
