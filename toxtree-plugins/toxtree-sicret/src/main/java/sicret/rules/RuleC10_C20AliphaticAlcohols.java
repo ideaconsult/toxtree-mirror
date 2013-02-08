@@ -67,7 +67,7 @@ public class RuleC10_C20AliphaticAlcohols extends RuleAnySubstructure{
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		RuleSMARTSubstructure rule = new RuleSMARTSubstructure();
 		String C10_C20_Aliphatic_alcohols = "[C][OX2H]";
 		try {

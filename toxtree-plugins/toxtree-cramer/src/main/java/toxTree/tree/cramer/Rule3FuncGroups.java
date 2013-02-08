@@ -74,7 +74,7 @@ public class Rule3FuncGroups extends AbstractRuleHilightHits {
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
 			throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		try {
 			boolean ok = FunctionalGroups.hasManyDifferentFunctionalGroups(mol,3);
 			if (selected != null) {

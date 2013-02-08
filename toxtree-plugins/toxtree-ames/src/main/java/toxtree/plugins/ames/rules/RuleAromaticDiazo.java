@@ -69,7 +69,7 @@ public class RuleAromaticDiazo extends RuleSMARTSubstructureCDK {
 	
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
 		if (super.verifyRule(mol)) {
-			logger.info(toString());
+			logger.finer(toString());
 		    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 		    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 		    

@@ -93,7 +93,7 @@ public class RuleMonocarbocyclic extends RuleRingAllowedSubstituents {
 	}
 	@Override
 	protected IRingSet hasRingsToProcess(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    
@@ -107,11 +107,11 @@ public class RuleMonocarbocyclic extends RuleRingAllowedSubstituents {
 	    if (r.getAtomCount() < 5 ) return null;
 	    Object o = r.getProperty(MolAnalyser.HETEROCYCLIC);
 	    if ((o!=null) && ((Boolean) o).booleanValue()) {
-	    	logger.info("Heteroring found");
+	    	logger.finer("Heteroring found");
 	    	return null;
 	    }
 		else {
-			logger.info("Monocarbocyclic ring found");
+			logger.finer("Monocarbocyclic ring found");
 			return rings;
 		}
 	    

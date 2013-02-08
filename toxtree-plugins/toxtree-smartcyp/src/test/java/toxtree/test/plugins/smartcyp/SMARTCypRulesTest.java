@@ -26,13 +26,19 @@ import java.io.InputStream;
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.exception.InvalidSmilesException;
-import org.openscience.cdk.graph.invariant.EquivalentClassPartitioner;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
+import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
+import org.openscience.cdk.smiles.FixBondOrdersTool;
+import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionResultException;
 import toxTree.exceptions.MolAnalyseException;
@@ -118,6 +124,9 @@ public class SMARTCypRulesTest extends RulesTestCase {
 		while (reader.hasNext()) {
 			IAtomContainer mol = (IAtomContainer)reader.next();
 			try {
+				for (IAtom atom : mol.atoms())
+					System.out.println(atom.getClass().getName());
+				//EquivalentClassPartitioner partitioner = new EquivalentClassPartitioner(mol);
 				classify(mol, rules,rules.getCategories().size());
 			} catch (DecisionResultException x) {
 				Assert.assertEquals("PseudoAtoms are not supported! R",x.getCause().getMessage());
@@ -128,4 +137,110 @@ public class SMARTCypRulesTest extends RulesTestCase {
 		
 
 	}
+	
+	protected void printAtom(IAtom atom) {
+		System.out.println(String.format("AtomTypeName=%10s\tAtomicNum=%d\tBondOrderSum=%f\tHybridisation=%s\tImplicitH=%d\tIsAromatic=%s",
+				atom.getAtomTypeName(),
+				atom.getAtomicNumber(),
+				atom.getBondOrderSum(),
+				atom.getHybridization(),
+				atom.getImplicitHydrogenCount(),
+				atom.getFlag(CDKConstants.ISAROMATIC)
+				));
+	}
+	/**
+	 * http://sourceforge.net/tracker/?func=detail&aid=3426327&group_id=152702&atid=785126
+	 * @throws Exception
+	 */
+	@Test
+	public void test_3426327() throws Exception {
+		//rules = new SMARTCYPPlugin();
+		FixBondOrdersTool fbt = new FixBondOrdersTool();
+		InputStream in = getClass().getClassLoader().getResourceAsStream("toxtree/test/plugins/smartcyp/bad.sdf");
+		IIteratingChemObjectReader reader = new IteratingMDLReader(in,SilentChemObjectBuilder.getInstance());
+		SmilesGenerator g = new SmilesGenerator();
+		g.setUseAromaticityFlag(false);
+		try {
+			while (reader.hasNext()) {
+				IMolecule mol = (IMolecule)reader.next();
+				int aromaticAtoms = 0;
+				int doubleBonds = 0;
+				for (IAtom atom : mol.atoms()) { 
+					if(atom.getFlag(CDKConstants.ISAROMATIC)) aromaticAtoms++;
+				
+				}
+				for (IBond bond: mol.bonds()) {
+					switch (bond.getOrder()) {
+					case DOUBLE: {doubleBonds++; break;} 
+					}
+				}
+				Assert.assertEquals(3,doubleBonds);	
+				Assert.assertEquals(9,aromaticAtoms);
+				//kekulise
+				//CDKHydrogenAdder hadder = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
+
+				AtomContainerManipulator.percieveAtomTypesAndConfigureUnsetProperties(mol);
+				mol = fbt.kekuliseAromaticRings(mol);
+				for (IAtom atom : mol.atoms()) { 
+					printAtom(atom);
+				}
+				aromaticAtoms = 0;
+				doubleBonds = 0;
+				for (IAtom atom : mol.atoms()) 
+					if(atom.getFlag(CDKConstants.ISAROMATIC)) aromaticAtoms++;
+				for (IBond bond: mol.bonds()) {
+					switch (bond.getOrder()) {
+					case DOUBLE: {doubleBonds++; break;} 
+					}
+				}
+
+				System.out.println(g.createSMILES(mol));
+				System.out.println(doubleBonds);
+				Assert.assertTrue(doubleBonds>6);	
+
+			}
+		} finally {
+			reader.close();
+		}
+	}
+	
+	@Test
+	public void test_3426327_SMILES() throws Exception {
+		rules = new SMARTCYPPlugin();
+		FixBondOrdersTool fbt = new FixBondOrdersTool();
+		
+		String smiles = "c1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)CO[P@@](=O)(O)O[P@@](=O)(O)OP(=O)(O)O)O)O)N";
+		SmilesParser parser = new SmilesParser(SilentChemObjectBuilder.getInstance());
+		
+				IMolecule mol = parser.parseSmiles(smiles);
+				int aromaticAtoms = 0;
+				int doubleBonds = 0;
+				for (IAtom atom : mol.atoms()) {
+					if(atom.getFlag(CDKConstants.ISAROMATIC)) aromaticAtoms++;
+					printAtom(atom);
+				}
+				for (IBond bond: mol.bonds()) {
+					switch (bond.getOrder()) {
+					case DOUBLE: {doubleBonds++; break;} 
+					}
+				}
+				Assert.assertEquals(3,doubleBonds);	
+				Assert.assertEquals(9,aromaticAtoms);
+				//kekulise
+				AtomContainerManipulator.percieveAtomTypesAndConfigureUnsetProperties(mol);
+				mol = fbt.kekuliseAromaticRings(mol);
+				aromaticAtoms = 0;
+				doubleBonds = 0;
+				for (IAtom atom : mol.atoms()) 
+					if(atom.getFlag(CDKConstants.ISAROMATIC)) aromaticAtoms++;
+				for (IBond bond: mol.bonds()) {
+					switch (bond.getOrder()) {
+					case DOUBLE: {doubleBonds++; break;} 
+					}
+				}
+
+				System.out.println(doubleBonds);
+				Assert.assertTrue(doubleBonds>6);	
+
+	}	
 }

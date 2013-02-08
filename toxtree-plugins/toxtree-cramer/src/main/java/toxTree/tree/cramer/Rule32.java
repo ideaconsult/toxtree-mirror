@@ -116,9 +116,9 @@ public class Rule32 extends RuleOnlyAllowedSubstructures {
 	 */
 	@Override
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		if (super.verifyRule(mol)) {
-			logger.info(toString());
+			logger.finer(toString());
 		    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 		    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 		    IRingSet rings = mf.getRingset();		

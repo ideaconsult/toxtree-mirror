@@ -149,11 +149,11 @@ C=1C=CC3=C(C=1)CC=2C=CC=CC=23
                 }
             }
             
-            logger.fine("Aromatic fused (>=3) rings not found ");
+            logger.finer("Aromatic fused (>=3) rings not found ");
             return false;
             
         } else {
-            logger.info("Not an aromatic chemical");
+            logger.finer("Not an aromatic chemical");
             return false;
         }
     }

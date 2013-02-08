@@ -89,7 +89,7 @@ public class RuleLactoneOrCyclicDiester extends RuleSubstructures {
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
 		//TODO verify if it is 5 or 6 membered ring
-		logger.info(toString());
+		logger.finer(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf == null) throw new DecisionMethodException("Structure should be preprocessed!");
 		

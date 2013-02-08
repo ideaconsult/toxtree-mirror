@@ -89,7 +89,7 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 	 */
 	@Override
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		List list = FunctionalGroups.getBondMap(mol,(QueryAtomContainer)getSubstructure(0),false);
 		if  (list.size() > 0) {
 			boolean FusedOrUnsaturated = false;

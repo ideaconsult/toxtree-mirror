@@ -104,7 +104,7 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 	}
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 	
-		logger.info(toString());
+		logger.finer(toString());
 	    //should be set via MolAnalyser
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);

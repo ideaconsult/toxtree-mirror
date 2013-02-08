@@ -95,7 +95,7 @@ public class Rule143 extends RuleRingAllowedSubstituents  implements IAlertCount
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
 		logger.info(toString());
 		if (FunctionalGroups.hasGroup(mol,x)) {
-			logger.info("Do not comply with rule 1.4.1");
+			logger.finer("Do not comply with rule 1.4.1");
 			return false;
 		} else {
 			FunctionalGroups.markCHn(mol);

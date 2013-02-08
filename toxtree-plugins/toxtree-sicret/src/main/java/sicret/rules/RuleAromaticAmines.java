@@ -54,7 +54,7 @@ public class RuleAromaticAmines extends RuleAnySubstructure {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(getID());
+		logger.finer(getID());
 	    
 		String Amine = "[NX3,NX4+;!$([N]~[!#6]);!$([N]*~[#7,#8,#15,#16])]";
 		RuleSMARTSubstructure ruleAmine = new RuleSMARTSubstructure();

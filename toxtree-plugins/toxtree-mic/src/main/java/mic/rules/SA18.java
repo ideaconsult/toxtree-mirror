@@ -170,7 +170,7 @@ public class SA18 extends RuleAromatic implements IAlertCounter {
 			return false;
 
 		} else {
-			logger.info("Not an aromatic chemical");
+			logger.finer("Not an aromatic chemical");
 			return false;
 		}
 	}

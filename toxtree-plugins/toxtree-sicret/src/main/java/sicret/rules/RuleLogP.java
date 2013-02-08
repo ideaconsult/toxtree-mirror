@@ -63,7 +63,7 @@ public class RuleLogP extends RuleVerifyProperty
 		
 		XLogPDescriptor descriptor = new XLogPDescriptor();
 		try {descriptor.setParameters(new Object[] {Boolean.TRUE});} catch (Exception x) {}
-		logger.info("Calculating "+ descriptor.getClass().getName());
+		logger.finer("Calculating "+ descriptor.getClass().getName());
 		try {
 			DescriptorValue value = descriptor.calculate(mol);
 			if (value.getException()!=null) {

@@ -89,7 +89,7 @@ public class RuleTwoTerminalDoubleBondsOnUnbranched extends RuleSMARTSubstructur
      public boolean verifyRule( org.openscience.cdk.interfaces.IAtomContainer mol )
             throws DecisionMethodException 
      {
-        logger.info( getID() );
+        logger.finer( getID() );
         IAtomContainer moltotest = getObjectToVerify( mol );
         if ( ! isAPossibleHit( mol, moltotest ) ) 
         {

@@ -75,7 +75,7 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		return super.verifyRule(mol);
 	}	
 	public boolean isImplemented() {
