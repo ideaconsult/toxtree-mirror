@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -45,9 +46,8 @@ import toxTree.tree.TreeResult;
 import toxTree.tree.rules.IAlertCounter;
 import toxtree.plugins.ames.categories.CategoryMutagenTA100;
 import toxtree.plugins.ames.categories.CategoryNoAlertAmes;
-import toxtree.plugins.ames.categories.CategoryPositiveAlertAmes;
-//import toxtree.plugins.ames.categories.CategoryMutagenTA100;
 import toxtree.plugins.ames.categories.CategoryNonMutagen;
+import toxtree.plugins.ames.categories.CategoryPositiveAlertAmes;
 
 //import toxtree.plugins.ames.categories.CategoryNonMutagen;
 
@@ -287,7 +287,7 @@ public class AmesMutagenicityTreeResult extends TreeResult {
     		l.add(new CategoryFilter(c.get(i).toString(),Answers.toString(Answers.YES)));
     		l.add(new CategoryFilter(c.get(i).toString(),Answers.toString(Answers.NO)));
     	} catch (Exception x) {
-    		logger.error(x);
+    		logger.log(Level.SEVERE,x.getMessage(),x);
     	}
     	return l;
     }

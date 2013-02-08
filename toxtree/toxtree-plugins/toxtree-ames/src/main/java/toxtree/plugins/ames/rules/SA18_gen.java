@@ -118,7 +118,7 @@ C=1C=CC3=C(C=1)CC=2C=CC=CC=23
 
         	int nr = sssrings.getAtomContainerCount(); 
             if (nr < 3) {
-                logger.debug("Less than 3 rings");
+                logger.fine("Less than 3 rings");
                 return false;
             } else {
                List ringsets = RingPartitioner.partitionRings(sssrings);
@@ -149,7 +149,7 @@ C=1C=CC3=C(C=1)CC=2C=CC=CC=23
                 }
             }
             
-            logger.debug("Aromatic fused (>=3) rings not found ");
+            logger.fine("Aromatic fused (>=3) rings not found ");
             return false;
             
         } else {
@@ -161,7 +161,7 @@ C=1C=CC3=C(C=1)CC=2C=CC=CC=23
     	return (allAtoms - aromaticAtoms) < 2;
     }
     protected boolean acceptRingSet(IRingSet ringset, int heteroaromaticrings, int aromaticrings) {
-    	logger.debug("Heteroaromatic "+ heteroaromaticrings +" aromatic" + aromaticrings);
+    	logger.fine("Heteroaromatic "+ heteroaromaticrings +" aromatic" + aromaticrings);
         return ( heteroaromaticrings==0) && (aromaticrings>2);
     }
     protected int getNumberOfAromaticAtoms(IRing ring) {

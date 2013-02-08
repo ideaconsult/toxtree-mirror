@@ -24,8 +24,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.ames.test.descriptors;
 
-import javax.swing.JOptionPane;
-
 import junit.framework.TestCase;
 
 import org.junit.Assert;
@@ -33,7 +31,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.result.DoubleArrayResult;
 
-import toxTree.qsar.LinearDiscriminantRule;
 import toxTree.query.FunctionalGroups;
 import ambit2.mopac.DescriptorMopacShell;
 import ambit2.mopac.Mopac7Reader;

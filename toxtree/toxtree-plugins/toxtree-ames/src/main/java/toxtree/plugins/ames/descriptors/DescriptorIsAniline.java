@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.ames.descriptors;
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
@@ -62,7 +64,7 @@ public class DescriptorIsAniline extends DescriptorStructurePresence<IAtomContai
 				);
 		} catch (Exception x) {
 			setResultName(Aniline);
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 	

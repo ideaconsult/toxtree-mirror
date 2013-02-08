@@ -25,7 +25,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.plugins.ames.test.rules;
 
 import toxTree.core.IDecisionRule;
-import toxTree.logging.TTLogger;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
 import toxtree.plugins.ames.rules.SA28_gen;
 import toxtree.plugins.ames.test.TestAmesMutagenicityRules;
@@ -46,7 +45,6 @@ public class SA28_genTest extends TestAmesMutagenicityRules {
 	}
 	
 	public void testNnotinring() throws Exception  {
-            TTLogger.configureLog4j(true);
 			assertFalse(verifyRule(ruleToTest,"ON2CCC=1C=CC=CC=12"));
 
 	}
