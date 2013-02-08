@@ -27,6 +27,7 @@ package toxtree.plugins.proteinbinding.rules;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -153,7 +154,7 @@ public class ProteinBindingTreeResult extends TreeResult {
     		l.add(new CategoryFilter(c.get(i).toString(),Answers.toString(Answers.YES)));
     		l.add(new CategoryFilter(c.get(i).toString(),Answers.toString(Answers.NO)));
     	} catch (Exception x) {
-    		logger.error(x);
+    		logger.log(Level.SEVERE,x.getMessage(),x);
     	}
     	return l;
     }
