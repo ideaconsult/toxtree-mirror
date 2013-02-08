@@ -1,5 +1,7 @@
 package toxtree.plugins.dnabinding.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.StructureAlert;
 import toxtree.plugins.dnabinding.categories.DNABindingAlerts;
 import ambit2.smarts.query.SMARTSException;
@@ -34,7 +36,7 @@ public class DNABindingRule extends StructureAlert {
 			examples[1] = alert.getExample(true);	
 	
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}	
 
