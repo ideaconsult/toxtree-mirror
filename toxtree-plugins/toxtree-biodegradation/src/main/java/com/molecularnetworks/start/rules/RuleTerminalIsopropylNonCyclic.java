@@ -28,6 +28,7 @@
 package com.molecularnetworks.start.rules;
 
 import java.util.Enumeration;
+import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -71,7 +72,7 @@ public class RuleTerminalIsopropylNonCyclic extends RuleSMARTSubstructure
         } 
         catch ( SMARTSException x ) 
         {
-            logger.error( x );
+        	logger.log(Level.SEVERE,x.getMessage(),x);
         }
     }
     
@@ -93,7 +94,7 @@ public class RuleTerminalIsopropylNonCyclic extends RuleSMARTSubstructure
         IAtomContainer moltotest = getObjectToVerify( mol );
         if ( ! isAPossibleHit( mol, moltotest ) ) 
         {
-            logger.debug("Not a possible hit due to the prescreen step.");
+            logger.finer("Not a possible hit due to the prescreen step.");
             return false;
         }
         Enumeration e  = smartsPatterns.keys();
@@ -119,11 +120,11 @@ public class RuleTerminalIsopropylNonCyclic extends RuleSMARTSubstructure
 	            {
 	                is_true = matchCount > 0;
 	            }
-	            logger.debug(
-	                "SMARTS " + temp_id + "\t" + pattern.toString(),
-	                "\tmatches ",
-	                matchCount, 
-	                "times\tresult is ",
+	            logger.finer(
+	                "SMARTS " + temp_id + "\t" + pattern.toString()+
+	                "\tmatches "+
+	                matchCount+ 
+	                "times\tresult is "+
 	                is_true 
 	            );
             } catch (Exception x) {
