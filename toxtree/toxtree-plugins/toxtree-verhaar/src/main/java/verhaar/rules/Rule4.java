@@ -20,6 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.rules;
 
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.StructureAlert;
 
 /**
@@ -80,7 +82,7 @@ the weak acid respiratory uncouplers.
 
             
         } catch (Exception x) {
-            logger.error(x);
+        	logger.log(Level.SEVERE,x.getMessage(),x);
         }
         setExamples(new String[] {"NCS","Clc1ccc(cc1)C(c2ccc(Cl)cc2)C(Cl)(Cl)Cl"});
 	}

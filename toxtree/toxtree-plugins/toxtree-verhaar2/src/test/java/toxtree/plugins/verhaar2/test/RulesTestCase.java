@@ -30,6 +30,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -47,17 +48,16 @@ import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 
 public abstract class RulesTestCase  {
-	public static TTLogger logger = new TTLogger(RulesTestCase.class);
+	public static Logger logger = Logger.getLogger(RulesTestCase.class.getName());
 	protected IDecisionMethod rules = null;
 	
 	
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		TTLogger.configureLog4j(false);
+
 	}
 	
 	@Before

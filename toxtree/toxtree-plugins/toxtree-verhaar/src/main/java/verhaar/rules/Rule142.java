@@ -69,13 +69,13 @@ public class Rule142 extends RuleOnlyAllowedSubstructuresCounter {
 	    
 	    IRingSet rings = mf.getRingset();
 		if ((rings == null)) {
-			logger.debug("Acyclic structure");
+			logger.fine("Acyclic structure");
 			return null;
 		} else if (rings.getAtomContainerCount() == 1) {
-			logger.debug("Monocyclic\tYES");
+			logger.fine("Monocyclic\tYES");
 			return rings;
 		} else {
-			logger.debug("More than one ring\t",rings.getAtomContainerCount());
+			logger.fine("More than one ring\t"+rings.getAtomContainerCount());
 			return null;
 		}
 	}

@@ -71,7 +71,7 @@ public class Rule23 extends Rule21 {
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 
 		if (super.verifyRule(mol,selected)) {
-			logger.debug("Nitrogroups\t",Integer.toString(nitroGroupsCount));
+			logger.finer("Nitrogroups\t"+Integer.toString(nitroGroupsCount));
 			return (nitroGroupsCount == 1);
 		} else return false;
 	}

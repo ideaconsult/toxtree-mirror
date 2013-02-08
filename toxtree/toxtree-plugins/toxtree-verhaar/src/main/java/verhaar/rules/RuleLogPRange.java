@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.rules;
 
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
@@ -57,7 +59,7 @@ public class RuleLogPRange extends RuleDescriptorRange implements IAlertCounter 
 		try {
 			getDescriptor().setParameters(params);
 		} catch (CDKException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 		setTitle("Have a logKow between 0 and 6");
 		explanation = new StringBuffer();

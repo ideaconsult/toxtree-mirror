@@ -25,15 +25,14 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.isomorphism.matchers.IQueryBond;
 
-import toxTree.logging.TTLogger;
-
 /**
  * Verifies if a bond is unsaturated (double, triple, aromatic)
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-10-30
  */
 public class QueryUnsaturatedBond extends Bond implements IQueryBond {
-	protected static TTLogger logger = new TTLogger(QueryUnsaturatedBond.class);
+	
+
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
@@ -80,15 +79,12 @@ public class QueryUnsaturatedBond extends Bond implements IQueryBond {
 	 */
 	public boolean matches(IBond arg0) {
 		if (arg0.getFlag(CDKConstants.ISAROMATIC)) {
-			logger.debug("Aromatic bond found");
 			return true;
 		}
 		else 
 			if (arg0.getOrder() == CDKConstants.BONDORDER_DOUBLE) {
-				logger.debug("Double bond found");
 				return true;
 			} else if (arg0.getOrder() == CDKConstants.BONDORDER_TRIPLE) {
-				logger.debug("Triple bond found");
 				return true;
 				/*
 			} else if (arg0.getOrder() == CDKConstants.BONDORDER_AROMATIC) {

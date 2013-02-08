@@ -76,21 +76,21 @@ public class Rule152 extends RuleSMARTSSubstructureAmbit {
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    try {
 		    if (mf.isAliphatic())  {
-		    	logger.debug("Aliphatic\tYES");
+		    	logger.finer("Aliphatic\tYES");
 				if (super.verifyRule(mol,selected)) {
 					if (mf.isAcetylenic()) {
-						logger.debug("Propargylic alcohol\tYES");
+						logger.finer("Propargylic alcohol\tYES");
 						return false;
 					} else if (isAllyl(mol)) {
-						logger.debug("Allylic alcohol\tYES");
+						logger.finer("Allylic alcohol\tYES");
 						return false;
 					} else return true;
 				} else {
-					logger.debug("Alcohol\tNO");
+					logger.finer("Alcohol\tNO");
 					return false;
 				}
 		    } else {
-				logger.debug("Aliphatic\tNO");
+				logger.finer("Aliphatic\tNO");
 		    	return false; 
 		    }
 	    } catch (DecisionMethodException x) {

@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.plugins.verhaar2.test;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -29,7 +30,6 @@ import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
-import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 import toxTree.query.QueryAtomContainers;
 import verhaar.query.FunctionalGroups;
@@ -40,12 +40,13 @@ import verhaar.query.FunctionalGroups;
  * <b>Modified</b> 2005-10-31
  */
 public class FunctionalGroupstest  {
-	protected static TTLogger logger = new TTLogger(FunctionalGroupstest.class);
+
+	protected transient static Logger logger = Logger.getLogger(FunctionalGroupstest.class.getName());
 
 
 	@Before
 	public void setUp() throws Exception {
-		TTLogger.configureLog4j(false);
+
 	}
 
 	@After
@@ -73,7 +74,7 @@ public class FunctionalGroupstest  {
 				boolean b = FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,false);
 				
 				Assert.assertEquals(answers[i],b);
-				logger.debug(smiles[i],"\tOK");
+				logger.fine(smiles[i]+"\tOK");
 
 		}
 	}	

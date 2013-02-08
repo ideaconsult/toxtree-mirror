@@ -26,6 +26,7 @@ package toxtree.plugins.verhaar2.test.rules;
 
 import junit.framework.TestCase;
 
+import org.apache.log4j.Logger;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 
@@ -35,7 +36,7 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 
 public abstract class AbstractRuleTest extends TestCase {
-	protected static TTLogger logger = new TTLogger(AbstractRuleTest.class);
+	protected static Logger logger = Logger.getLogger(AbstractRuleTest.class);
 	protected IDecisionRule rule2test = null;
 	@Override
 	protected void setUp() throws Exception {
@@ -67,9 +68,9 @@ public abstract class AbstractRuleTest extends TestCase {
 	                
 	                if (b.booleanValue() == r) {
 	                	success++;
-	                    logger.info(smiles_and_answer[i][0],"\tOK");
+	                    logger.info(smiles_and_answer[i][0]+"\tOK");
 	                } else {
-	                	logger.error(smiles_and_answer[i][0],"\tFAILED");
+	                	logger.error(smiles_and_answer[i][0]+"\tFAILED");
 	                	System.out.println(smiles_and_answer[i][0] + " expected "+b);
 	                }
 	        } else throw new Exception("Null molecule "+smiles_and_answer[i][0]);        

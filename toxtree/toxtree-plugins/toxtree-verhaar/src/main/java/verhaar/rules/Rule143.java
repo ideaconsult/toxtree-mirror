@@ -73,10 +73,10 @@ public class Rule143 extends RuleRingAllowedSubstituents  implements IAlertCount
 	    IRingSet rings = mf.getRingset();
 	    if (rings == null) return null;
 	    if (rings.getAtomContainerCount() > 1) {
-	    	logger.info("Monocyclic\tNO\t",rings.getAtomContainerCount());
+	    	logger.fine("Monocyclic\tNO\t"+rings.getAtomContainerCount());
 	    	return null; //monocyclic
 	    } else {
-	    	logger.info("Monocyclic\tYES");
+	    	logger.fine("Monocyclic\tYES");
 	    	return rings;
 	    }
 	    
