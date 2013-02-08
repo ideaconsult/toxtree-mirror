@@ -83,7 +83,7 @@ public class RuleReadilyHydrolysedMononuclear extends RuleReadilyHydrolised {
 	    	sf = new SSSRFinder(sc.getAtomContainer(i));
 	    	rs = sf.findSSSR();
 	    	if (rs.getAtomContainerCount() > 1) {
-	    		logger.debug("Residue not mononuclear");
+	    		logger.finer("Residue not mononuclear");
 	    		result = false; break;
 	    	} 
 	    }

@@ -24,18 +24,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.cramer;
 
-import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.interfaces.IAtom;
-import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.cramer.RuleAliphaticWithSomeFuncGroups;
-import ambit2.base.config.Preferences;
 
 /**
  * Test for {@link RuleAliphaticWithSomeFuncGroups} rule.

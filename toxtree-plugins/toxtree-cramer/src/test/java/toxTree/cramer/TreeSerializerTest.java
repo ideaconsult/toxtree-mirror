@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -16,7 +17,6 @@ import org.openscience.cdk.templates.MoleculeFactory;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRuleList;
-import toxTree.logging.TTLogger;
 import toxTree.tree.DecisionNodesList;
 import toxTree.tree.RulesList;
 import toxTree.tree.UserDefinedTree;
@@ -28,8 +28,8 @@ import toxTree.tree.cramer.RuleRingComplexSubstituents30;
 import toxTree.tree.rules.RuleLipinski5;
 
 public class TreeSerializerTest  {
-	protected static TTLogger logger = new TTLogger(TreeSerializerTest.class);
-	
+
+	protected static Logger logger = Logger.getLogger(TreeSerializerTest.class.getName());
 	protected Object objectRoundTrip(Object rule,String filename) throws Exception  {		
 			//writing
 			File f = File.createTempFile(filename,"test");
@@ -42,7 +42,7 @@ public class TreeSerializerTest  {
 			Object rule2 =is.readObject();
 			is.close();
 			f.delete();
-			logger.debug(rule.toString());
+			logger.finer(rule.toString());
 			Assert.assertEquals(rule,rule2);
 			return rule2;
 
@@ -106,7 +106,7 @@ public class TreeSerializerTest  {
 		Object rule2 = decoder.readObject();
 		decoder.close();	
 		
-		logger.debug(rule.toString());
+		logger.finer(rule.toString());
 		Assert.assertEquals(rule,rule2);
 		return rule2;
 

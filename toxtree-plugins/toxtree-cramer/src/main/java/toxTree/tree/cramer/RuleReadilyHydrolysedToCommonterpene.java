@@ -71,7 +71,7 @@ public class RuleReadilyHydrolysedToCommonterpene extends RuleReadilyHydrolised 
 	@Override
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
 		if (!super.verifyRule(mol))  {
-			logger.debug("not readily hydrolysed");
+			logger.finer("not readily hydrolysed");
 			return false; //not readily hydrolysed at all
 		}
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
@@ -82,7 +82,7 @@ public class RuleReadilyHydrolysedToCommonterpene extends RuleReadilyHydrolised 
 	    		mf.setResidues(sc);
 	    		return true;
 	    	}
-	    	logger.debug(new Integer((i+1))," Residue not a common terpene");
+	    	logger.fine(new Integer((i+1))+" Residue not a common terpene");
 	    }
 	    sc = null;
 	    return false;

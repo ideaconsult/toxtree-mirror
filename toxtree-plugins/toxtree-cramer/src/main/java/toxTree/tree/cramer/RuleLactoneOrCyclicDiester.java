@@ -112,25 +112,25 @@ public class RuleLactoneOrCyclicDiester extends RuleSubstructures {
 					//can be lactone ring
 					for (int j=0; j < ring.getBondCount(); j++) {
 						if (ring.getBond(j).getProperty(FunctionalGroups.LACTONE) != null) {
-							logger.debug("ring found.");
+							logger.fine("ring found.");
 							for (int a=0; a < ring.getAtomCount(); a++) {
 								if (ring.getAtom(a).getSymbol().equals("C")) continue;
 								if (ring.getAtom(a).getSymbol().equals("O") &&
 			        				(ring.getAtom(a).getProperty(FunctionalGroups.LACTONE) != null)) continue;									
-	        					logger.debug("Heteroring\tYES");
+	        					logger.fine("Heteroring\tYES");
 	        					return false;
 							}							
-							logger.debug("Lactone \tYES");
+							logger.fine("Lactone \tYES");
 							return true;
 						}
 						
 					}
 				}
 			}
-			logger.debug("5/6 membered lactone ring NOT found.");
+			logger.fine("5/6 membered lactone ring NOT found.");
 			return false;
 		} else {
-			logger.debug("Lactone\tNO");
+			logger.fine("Lactone\tNO");
 			return false;
 		}
 	}

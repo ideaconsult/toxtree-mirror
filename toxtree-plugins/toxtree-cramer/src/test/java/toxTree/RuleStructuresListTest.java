@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -59,8 +60,7 @@ import ambit2.core.io.MDLWriter;
  * <b>Modified</b> 2009-6-17
  */
 public class RuleStructuresListTest  {
-	protected static TTLogger logger = new TTLogger(RuleStructuresListTest.class);
-
+	public static Logger logger = Logger.getLogger(RuleStructuresListTest.class.getName());
 	@Before
 	public void setUp() throws Exception {
 		TTLogger.configureLog4j(true);

@@ -27,6 +27,8 @@ package toxTree.cramer;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import junit.framework.TestCase;
 
@@ -35,7 +37,6 @@ import org.openscience.cdk.interfaces.IMolecule;
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.tree.cramer.CramerRules;
 import ambit2.core.smiles.SmilesParserWrapper;
@@ -49,7 +50,9 @@ import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
  */
 public class CramerDataTest extends TestCase {
 	protected CramerRules cr = null;
-	static protected TTLogger logger = new TTLogger(CramerDataTest.class);
+
+	protected transient static Logger logger = Logger.getLogger(CramerDataTest.class.getName());
+
 	//smiles,class,name,tree path
 	public static String[][] compoundsClass1 ={
 		{"O=C(OCC(OC(=O)c1ccccc1)C)c2ccccc2","1","PGDB","1N,2N,3N,5N,6N,7N,16N,17N,19N,23Y,27Y,28Y,29Y(30N,18N)(19Y,20Y,21N,18N)"},
@@ -169,7 +172,7 @@ public class CramerDataTest extends TestCase {
 		try {
 			cr = new CramerRules();
 			cr.setResiduesIDVisible(false);
-			TTLogger.configureLog4j(false);
+
 		} catch (DecisionMethodException x) {
 			fail();
 		}	
@@ -183,21 +186,18 @@ public class CramerDataTest extends TestCase {
 		try {
 			result.classify(mol);
 		} catch (DecisionResultException x) {
-			x.printStackTrace();
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			result = null;
 		}
 		return result;		
 	}
 	protected int classify(String[][] molecules, int classID) {
 		int success = 0;
-		logger.error("These compounds should be of class\t",classID);
-		System.err.println("\nThese compounds should be of class\t"+classID);
+		logger.severe("These compounds should be of class\t"+classID);
 		for (int i=0; i < molecules.length; i++ ) {
 			IDecisionResult result = classify(molecules[i][0],molecules[i][2],cr);
 			if (result == null) {
-				logger.error("Error on processing molecule\t",molecules[i][2]);
-				System.err.println("Error on processing molecule\t"+molecules[i][2]);
+				logger.log(Level.SEVERE,"Error on processing molecule\t"+molecules[i][2]);
 			} else {
 				boolean ok = (result.getCategory().getID() == classID);
 				if (ok) success++;
@@ -206,16 +206,16 @@ public class CramerDataTest extends TestCase {
 				try {
 					    explanation = cr.explainRules(result,false).toString();
 				} catch (DecisionMethodException x) {
-						logger.error(x);
+						logger.log(Level.SEVERE,x.getMessage(),x);
 				}
 				if (ok) {
 					if (!explanation.equals(molecules[i][3])) {
-						logger.warn(molecules[i][0],"\t",molecules[i][2],"\t",result.getCategory()+"\t"+explanation);
+						logger.warning(molecules[i][0]+"\t"+molecules[i][2]+"\t"+result.getCategory()+"\t"+explanation);
 						System.out.println(result.getCategory()+"\t" + molecules[i][2]+"\t"+explanation+"\t"+molecules[i][0]);
 						System.out.println("Should be\t" + molecules[i][3]);
 					}
 				} else {
-					logger.error(molecules[i][0],"\t",molecules[i][2],"\t",result.getCategory()+"\t"+explanation);
+					logger.severe(molecules[i][0]+"\t"+molecules[i][2]+"\t"+result.getCategory()+"\t"+explanation);
 					System.err.println(result.getCategory()+"\t" + molecules[i][2]+"\t"+explanation+"\t"+molecules[i][0]);
 					System.err.println("Should be\t" + molecules[i][3]);
 				}

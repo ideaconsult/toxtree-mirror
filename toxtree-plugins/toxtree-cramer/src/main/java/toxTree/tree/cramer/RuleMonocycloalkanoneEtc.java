@@ -90,8 +90,8 @@ public class RuleMonocycloalkanoneEtc extends RuleOnlyAllowedSubstructures {
 	@Override
 	public boolean verifyRule(IAtomContainer  mol,IAtomContainer selector) throws DecisionMethodException {
 		if (! super.verifyRule(mol,selector)) {
-			logger.debug(ids.toString());
-			logger.debug("Contains forbidden groups");
+			logger.fine(ids.toString());
+			logger.fine("Contains forbidden groups");
 			
 			return false; 
 		}
@@ -99,20 +99,20 @@ public class RuleMonocycloalkanoneEtc extends RuleOnlyAllowedSubstructures {
 	    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    IRingSet rings = mf.getRingset();
 	    if ((rings == null) || (rings.getAtomContainerCount() ==0)) {
-	    	logger.debug("Acyclic structure");
+	    	logger.fine("Acyclic structure");
 	    	return false;
 	    }
 	    if (rings.getAtomContainerCount() == 1) {
 	    	//monocycloalkanone
 	    	if (selector!=null) selectRings(rings, selector);
 	    	if (mf.isHeterocyclic()) {
-				logger.debug("Heterocyclic ring found");
+				logger.fine("Heterocyclic ring found");
 	    		return false;
 	    	}
 	    	return ((FunctionalGroups.hasGroup(mol,FunctionalGroups.ketone_ring())));
 	    } if (rings.getAtomContainerCount() ==2) {
 	    	if (selector!=null) selectRings(rings, selector);
-	    	logger.debug("Bicyclic structure");
+	    	logger.fine("Bicyclic structure");
 	    	return true;
 	    }
 	    else return false;

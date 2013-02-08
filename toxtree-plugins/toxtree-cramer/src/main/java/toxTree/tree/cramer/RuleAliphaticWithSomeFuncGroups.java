@@ -117,7 +117,7 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 		        List list = FunctionalGroups.getUniqueBondMap(mol,q,true);
 			    ids.add(q.getID());
 		        if ((list != null) && (list.size() > 4)) {
-		        	logger.debug("More than 4 groups\t",q.getID());
+		        	logger.finer("More than 4 groups\t"+q.getID());
 		        	return false;
 		        }
 		        FunctionalGroups.markMaps(mol,q,list);		    	
@@ -129,9 +129,9 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 		        List list = FunctionalGroups.getUniqueBondMap(mol,q,true);
 		        if (list != null) {
 		        	if (list.size() > 0) {
-			        	logger.debug("Found group\t",q.getID());
+			        	logger.finer("Found group\t"+q.getID());
 		        		if (list.size() > 1) {
-				        	logger.debug("More than 1 group\t",q.getID());	
+				        	logger.finer("More than 1 group\t"+q.getID());	
 				        	return false;
 		        		}
 		        	}
@@ -143,10 +143,10 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 	        
 	        for (int i=4; i > 0; i--) {
 			    QueryAtomContainer q = FunctionalGroups.polyoxyethylene(i);
-	        	logger.debug(q.getID() , Integer.toString(i));
+	        	logger.finer(q.getID() + Integer.toString(i));
 		        List list = FunctionalGroups.getUniqueBondMap(mol,q,true);
 		        if (list != null) {
-			        	logger.debug("Found " , Integer.toString(list.size()));
+			        	logger.finer("Found " + Integer.toString(list.size()));
 					    ids.add(q.getID());
 				    	if (list.size() > 4) {
 				    		return false;

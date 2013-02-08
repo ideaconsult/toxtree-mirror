@@ -33,6 +33,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.tree.cramer;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -93,9 +94,9 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 		if  (list.size() > 0) {
 			boolean FusedOrUnsaturated = false;
 			FunctionalGroups.markMaps(mol,(QueryAtomContainer)getSubstructure(0),list);
-			if (logger.isDebugEnabled()) {
-				logger.debug("Lactone found");
-				logger.debug(FunctionalGroups.mapToString(mol));
+			if (logger.isLoggable(Level.FINE)) {
+				logger.fine("Lactone found");
+				logger.fine(FunctionalGroups.mapToString(mol).toString());
 			}
 		    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 		    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
@@ -104,24 +105,24 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 		    	IRing ring = (IRing)rings.getAtomContainer(0);
 		    	int ac = ring.getAtomCount();
 		    	if ((ac >= 5) && (ac<=6)) {
-		    		logger.debug("Single ring found, 5- or 6- membered");
+		    		logger.fine("Single ring found, 5- or 6- membered");
 		    		for (int i=0; i<ring.getBondCount(); i++) 
 		    			if ((ring.getBond(i).getOrder() == CDKConstants.BONDORDER_DOUBLE) ||
 		    				(ring.getBond(i).getOrder() == CDKConstants.BONDORDER_TRIPLE)) {
-		    				logger.debug("Unsaturated ring found");
+		    				logger.fine("Unsaturated ring found");
 		    				
 		    				if (FunctionalGroups.hasGroup(mol,lactoneUnsaturated)) {
-		    					logger.debug("alpha beta unsaturated lactone\t","YES");
+		    					logger.fine("alpha beta unsaturated lactone\tYES");
 		    					FusedOrUnsaturated = true;
 		    					break;
-		    				} else logger.debug("alpha beta unsaturated lactone\t","NO");
+		    				} else logger.fine("alpha beta unsaturated lactone\tNO");
 		    			}
-		    		logger.debug("Unsaturated ring NOT found");
+		    		logger.fine("Unsaturated ring NOT found");
 		    	} else {
-		    		logger.debug("Single ring found, but NOT 5- or 6- membered");
+		    		logger.fine("Single ring found, but NOT 5- or 6- membered");
 		    	}
 		    } else { 
-		    	logger.debug("More than one ring, will check if fused");
+		    	logger.fine("More than one ring, will check if fused");
 		    	//find lactone ring bond, it should has property FunctionalGroups.LACTONE set
 
 		    	IRing lactoneRing = null;
@@ -140,11 +141,11 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 		    	IRingSet fusedRings = rings.getConnectedRings(lactoneRing); 
 		    	//hmm, actually may not be fused, but just have a single atom in common ... will skip that for now
 		    	if (fusedRings.getAtomContainerCount()==0) {
-		    		logger.debug("No ring is fused to the lactone ring.");
+		    		logger.fine("No ring is fused to the lactone ring.");
 		    		fusedRings = null;
 		    		return false;
 		    	} else {
-		    		logger.debug("A ring fused to the lactone ring FOUND.");
+		    		logger.fine("A ring fused to the lactone ring FOUND.");
 		    		fusedRings = null;
     				FusedOrUnsaturated = true;
 		    	}
@@ -166,7 +167,7 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 		    return FusedOrUnsaturated;
 		    //will 
 		} else {
-			logger.debug("Not a lactone");
+			logger.fine("Not a lactone");
 			return false;
 		}
 	}

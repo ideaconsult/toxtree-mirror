@@ -100,12 +100,12 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 			for (int i = 0; i < rings.getAtomContainerCount(); i++) {
 				IRing ring = (IRing) rings.getAtomContainer(i);
 				if (ring.getFlag(CDKConstants.ISAROMATIC)) {
-					logger.debug("Aromatic ring found");
+					logger.fine("Aromatic ring found");
 					return false;
 				}
 				for (int j = 0; j < ring.getAtomCount(); j++) 
 					if (!ring.getAtom(j).getSymbol().equals(c)) {
-						logger.debug("Heteroring found\t",ring.getAtom(j).getSymbol());								
+						logger.fine("Heteroring found\t"+ring.getAtom(j).getSymbol());								
 						return false;
 					}
 			}
@@ -124,14 +124,14 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 		IRingSet rs = ssrf.findSSSR();
 		boolean b =false;
 		if (rs.getAtomContainerCount() > 0) {
-			logger.debug(CYCLIC_SUBSTITUENT);
+			logger.finer(CYCLIC_SUBSTITUENT);
 			b = false;
 		} else {
 			IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(a);
 			int c = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"C"));
 
 			if (c>5) {
-				logger.debug(LONGCHAIN_SUBSTITUENT,c);
+				logger.finer(LONGCHAIN_SUBSTITUENT+c);
 				b = true;
 			}
 		}
@@ -139,7 +139,7 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 			List list = FunctionalGroups.getUniqueBondMap(a,getSubstructure(index_polyoxyethylene),false);
 			if (list != null) { 
 				if ((list.size() > 0) && (list.get(0) != null)) 
-				logger.debug(getSubstructure(index_polyoxyethylene).getID(),"\t",Integer.toString(list.size()));
+				logger.finer(getSubstructure(index_polyoxyethylene).getID()+"\t"+Integer.toString(list.size()));
 			
 				if (list.size() > 4) b = false;
 				else if (list.size()> 0) b = true;
@@ -164,7 +164,7 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 	    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    IRingSet rings = mf.getRingset();		
 		if (singleFusedNonAromaticCarbocyclicRing(mol, rings)) {
-			logger.info("Single Fused NonAromatic CarbocyclicRing\t","YES");
+			logger.finer("Single Fused NonAromatic CarbocyclicRing\tYES");
 			return true;
 		}
 		return super.verifyRule(mol,selected);

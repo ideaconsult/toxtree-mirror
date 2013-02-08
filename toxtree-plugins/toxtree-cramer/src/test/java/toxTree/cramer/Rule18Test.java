@@ -64,7 +64,7 @@ public class Rule18Test extends AbstractRuleTest {
 
 	    q = FunctionalGroups.ketoneAttachedToTerminalVinyl();
 	    for (int i=3; i < 5; i++) {
-		    logger.debug(q.getID()," ",answer[i][0]);	    	
+		    logger.fine(q.getID()+" "+answer[i][0]);	    	
 		    assertEquals(FunctionalGroups.hasGroup(
 		    		FunctionalGroups.createAtomContainer((String)answer[i][0],true),q),
 					((Boolean)answer[i][1]).booleanValue());
@@ -73,7 +73,7 @@ public class Rule18Test extends AbstractRuleTest {
 	    
 	    q = FunctionalGroups.ketalAttachedToTerminalVinyl();
 	    for (int i=5; i < 8; i++) {
-	        logger.debug(q.getID()," ",answer[i][0]);
+	        logger.finer(q.getID()+answer[i][0]);
 		    assertEquals(FunctionalGroups.hasGroup(
 		    		FunctionalGroups.createAtomContainer((String)answer[i][0],true),q),
 					((Boolean)answer[i][1]).booleanValue());
@@ -320,7 +320,7 @@ public class Rule18Test extends AbstractRuleTest {
 		    QueryAtomContainer q = FunctionalGroups.stericallyHindered();
 		    
 		    for (int i=0; i < answer.length; i++) {
-		    	logger.debug(q.getID()," ",answer[i][0]);	    			    	
+		    	logger.finer(q.getID()+answer[i][0]);	    			    	
 			    assertEquals(FunctionalGroups.hasGroup(
 			    		FunctionalGroups.createAtomContainer((String)answer[i][0],true),q),
 						((Boolean)answer[i][1]).booleanValue());
