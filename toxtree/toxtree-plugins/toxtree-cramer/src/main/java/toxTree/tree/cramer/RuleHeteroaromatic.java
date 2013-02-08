@@ -71,10 +71,10 @@ public class RuleHeteroaromatic extends RuleSMARTSSubstructureAmbit {
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    if (mf.isHeteroaromatic()) {
-	    	logger.debug("Heteroaromatic\t",MSG_YES);
+	    	logger.finer("Heteroaromatic\t"+MSG_YES);
 	    	return true;
 	    } else {
-	    	logger.debug("Heteroaromatic\t",MSG_NO);
+	    	logger.finer("Heteroaromatic\t"+MSG_NO);
 	    	return false;
 	    }
 	    

@@ -38,7 +38,6 @@ import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.RuleElements;
@@ -134,7 +133,7 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
 						if ((order-2) < 0.1)
 							c++;
 						else {
-							logger.info("Found S valency ",Double.toString(order));
+							logger.finer("Found S valency "+Double.toString(order));
 							if ((selected!=null) && !a.getSymbol().equals("H")) selected.addAtom(a);
 						}
 					} else {

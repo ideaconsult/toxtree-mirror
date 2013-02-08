@@ -27,6 +27,7 @@ package toxTree.cramer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -38,7 +39,6 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.tree.DefaultCategory;
 import toxTree.tree.cramer.CramerRules;
@@ -46,19 +46,18 @@ import ambit2.core.io.IteratingDelimitedFileReader;
 
 public class MunroTest {
 	protected CramerRules rules;
-	protected static TTLogger logger = new TTLogger(MunroTest.class); 
+	protected static Logger logger = Logger.getLogger(MunroTest.class.getName()); 
 
 	
 
 	@Before
 	public void setUp() throws Exception {
-		TTLogger.configureLog4j(true);
 		rules = new CramerRules();
 	}
 
 
 	protected void testFile(String filename, IDecisionCategory category) throws Exception {
-		logger.error("Should be\t",category);
+		logger.severe("Should be\t"+category);
 		
 			IteratingDelimitedFileReader reader = new IteratingDelimitedFileReader(
 					new FileInputStream(new File(filename)));
@@ -81,7 +80,7 @@ public class MunroTest {
 							if ((category.getID() == 3) && (FunctionalGroups.hasGroup(a,sulphonate))) {
 								ok++;
 							} else
-								logger.error("\""+a.getProperty("NAME"),"\"\t",result.getCategory(),"\t",result.explain(false));
+								logger.severe("\""+a.getProperty("NAME")+"\"\t"+result.getCategory()+"\t"+result.explain(false));
 						} else 
 							ok++;
 
@@ -93,12 +92,12 @@ public class MunroTest {
 				}
 				records++;
 			}
-			logger.error(category);
-			logger.error("Processed\t",records);
-			logger.error("Successfull\t",ok);
-			logger.error("Empty\t",emptyMolecules);
-			logger.error("Error when applying rules\t",applyError);
-			logger.error("");			
+			logger.severe(category.toString());
+			logger.severe("Processed\t"+records);
+			logger.severe("Successfull\t"+ok);
+			logger.severe("Empty\t"+emptyMolecules);
+			logger.severe("Error when applying rules\t"+applyError);
+		
 			Assert.assertTrue(records > 0);
 			Assert.assertEquals(records-applyError,ok);
 			Assert.assertEquals(emptyMolecules,0);

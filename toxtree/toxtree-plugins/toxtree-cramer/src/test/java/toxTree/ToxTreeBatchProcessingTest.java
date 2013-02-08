@@ -28,6 +28,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -40,7 +41,6 @@ import toxTree.io.batch.BatchFactory;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
 import toxTree.io.batch.ToxTreeBatchProcessing;
-import toxTree.logging.TTLogger;
 import toxTree.tree.cramer.CramerRules;
 
 /**
@@ -49,7 +49,8 @@ import toxTree.tree.cramer.CramerRules;
  * <b>Modified</b> 2005-9-4
  */
 public class ToxTreeBatchProcessingTest {
-	static TTLogger logger = new TTLogger(ToxTreeBatchProcessing.class); 
+
+	protected static Logger logger = Logger.getLogger(ToxTreeBatchProcessing.class.getName());
 	protected ToxTreeBatchProcessing batch = null;
 	protected String config = "data/Misc/batch.cfg";
 	protected String configInterrupted = "data/Misc/batchInterrupted.cfg";
@@ -75,7 +76,7 @@ public class ToxTreeBatchProcessingTest {
         } catch (BatchProcessingException x) {
             x.printStackTrace();
         }
-        TTLogger.configureLog4j(true);        
+     
 	}
 	@Test
 	public void testSuccessfullBatch() throws Exception  {

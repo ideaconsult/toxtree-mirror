@@ -97,12 +97,12 @@ public class Rule32 extends RuleOnlyAllowedSubstructures {
 			for (int i = 0; i < rings.getAtomContainerCount(); i++) {
 				IRing ring = (IRing) rings.getAtomContainer(i);
 				if (ring.getFlag(CDKConstants.ISAROMATIC)) {
-					logger.debug("Aromatic ring found");
+					logger.finer("Aromatic ring found");
 					return false;
 				}
 				for (int j = 0; j < ring.getAtomCount(); j++) 
 					if (!ring.getAtom(j).getSymbol().equals(c)) {
-						logger.debug("Heteroring found\t",ring.getAtom(j).getSymbol());								
+						logger.finer("Heteroring found\t"+ring.getAtom(j).getSymbol());								
 						return false;
 					}
 			}
@@ -123,11 +123,11 @@ public class Rule32 extends RuleOnlyAllowedSubstructures {
 		    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 		    IRingSet rings = mf.getRingset();		
 			if (singleFusedNonAromaticCarbocyclicRing(mol, rings)) {
-				logger.info("Single Fused NonAromatic CarbocyclicRing\t","YES");
+				logger.finer("Single Fused NonAromatic CarbocyclicRing\tYES");
 				return true;
 			}			
 			if (FunctionalGroups.hasGroup(mol,polyoxyethylene5)) {
-				logger.info("Polyoxyethylene (-OCH2CH2-)x, x>4");
+				logger.finer("Polyoxyethylene (-OCH2CH2-)x, x>4");
 				return false;
 			} else return true;
 		} else return false;

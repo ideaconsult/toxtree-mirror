@@ -33,6 +33,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.tree.cramer;
 
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
@@ -109,7 +111,7 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 			//int c = mf.getAtomCount(cAtom);
 			int c = FunctionalGroups.getLongestCarbonChainLength(a);  //to verify if the chain is of C atoms 
 			if (c>5) {
-				logger.info(LONGCHAIN_SUBSTITUENT,c);
+				logger.fine(LONGCHAIN_SUBSTITUENT+c);
 				/*
 				if (FunctionalGroups.hasGroup(a,ester,false)) {
 					SimpleReactions sr = new SimpleReactions();
@@ -169,7 +171,7 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 				 
 				canBeHydrolized = (residues != null); 
 				if (!canBeHydrolized) {
-					logger.debug("Can't be hydrolized!");
+					logger.fine("Can't be hydrolized!");
 				}
 				else {
 					if (residueIDHidden)
@@ -183,13 +185,13 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 						    MolFlags mf = (MolFlags) residue.getProperty(MolFlags.MOLFLAGS);
 						    if (mf == null) throw new DecisionMethodException("Structure should be preprocessed!");						
 							if (mf.isAromatic()) {
-								logger.debug("Aromatic residue found, proceed with analysis of the residue.");
+								logger.finer("Aromatic residue found, proceed with analysis of the residue.");
 								//since here we have a single ring, this is the part we are interested in
 								newMol = residue;
 								break;
 							}
 						} catch (MolAnalyseException x) {
-							logger.error(x);
+							logger.log(Level.SEVERE,x.getMessage(),x);
 							throw new DecisionMethodException("Error when preprocessing residues!",x);
 						}
 					
@@ -199,7 +201,7 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 			}
 			
 		} else {
-			logger.debug("Ring substituent:\tNo ester group found, will not try hydrolysis.");
+			logger.fine("Ring substituent:\tNo ester group found, will not try hydrolysis.");
 		}		
 
 		boolean result = super.verifyRule(newMol,selected);

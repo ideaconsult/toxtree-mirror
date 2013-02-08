@@ -33,6 +33,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.tree.cramer;
 
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IMolecularFormula;
@@ -96,7 +98,7 @@ public class RuleSufficientSulphonateGroups extends AbstractRule {
 		Object o = molecule.getProperty(MolFlags.PARENT);
 		IAtomContainer mol = molecule;
 		if ((o != null) && (o instanceof IAtomContainer)) {
-			logger.debug("Parent compound found, will continue analyzing the parent");
+			logger.fine("Parent compound found, will continue analyzing the parent");
 			mol = (IAtomContainer) o;
 		}
 		/*
@@ -118,15 +120,15 @@ public class RuleSufficientSulphonateGroups extends AbstractRule {
 		boolean hasSulponate = FunctionalGroups.hasGroup(mol,sulphonate[0]) || 
 							   FunctionalGroups.hasGroup(mol,sulphonate[1]);
 		if (!hasSulponate) {
-			logger.debug("NO sulphonate group found");
+			logger.fine("NO sulphonate group found");
 			if (FunctionalGroups.hasGroup(mol,sulphamate)) {
-				logger.debug("Has at least one sulphamate group");
+				logger.fine("Has at least one sulphamate group");
 			} else {
-				logger.debug("NO sulphamate group found");
+				logger.fine("NO sulphamate group found");
 				return false;
 			}
 			
-		} else logger.debug("Has at least one sulphonate group");
+		} else logger.fine("Has at least one sulphonate group");
 		
 		//else try to metabolize
 		if (metabolicReactions == null) metabolicReactions = new SimpleReactions();
@@ -139,12 +141,12 @@ public class RuleSufficientSulphonateGroups extends AbstractRule {
 				//check for primary amines 
 			}
 			
-			logger.info("Major structural components\t",results.getAtomContainerCount());
-			if (logger.isDebugEnabled()) {
-				logger.info("Original compound\tAtoms",mol.getAtomCount());
+			logger.fine("Major structural components\t"+results.getAtomContainerCount());
+			if (logger.isLoggable(Level.FINE)) {
+				logger.fine("Original compound\tAtoms"+mol.getAtomCount());
 				for (int i=0; i < results.getAtomContainerCount(); i++) { 
-					logger.debug("Component "+(i+1)+"\tAtoms\t",results.getAtomContainer(i).getAtomCount());
-					logger.debug("\t",results.getAtomContainer(i).getID());
+					logger.fine("Component "+(i+1)+"\tAtoms\t"+results.getAtomContainer(i).getAtomCount());
+					logger.fine("\t"+results.getAtomContainer(i).getID());
 				}
 			}
 			for (int i=0; i < results.getAtomContainerCount(); i++) {
@@ -152,26 +154,26 @@ public class RuleSufficientSulphonateGroups extends AbstractRule {
 			    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(residue);
 				int s = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"S"));				
 				if (s  == 0) {
-					logger.debug("No sulphonate or sulphamate group");
+					logger.fine("No sulphonate or sulphamate group");
 					return false;
 				}
 				
 				if (!FunctionalGroups.hasGroup(residue,sulphonate[0]) &&
 						!FunctionalGroups.hasGroup(residue,sulphonate[1])
 						) {
-					logger.debug("No sulphonate group");
+					logger.fine("No sulphonate group");
 					if (!FunctionalGroups.hasGroup(residue,sulphamate)) {
-						logger.debug("No sulphamate group");
+						logger.fine("No sulphamate group");
 						return false;
 					}				
 				}
 				int c = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"C"));	
 				if (c > 20) {
-					logger.debug("More than 20 C atoms per sulphonate or sulphamate group");
+					logger.fine("More than 20 C atoms per sulphonate or sulphamate group");
 					return false;				
 				}
 			}
-			logger.debug("Sufficient number of sulphonate/sulphamate groups.");
+			logger.fine("Sufficient number of sulphonate/sulphamate groups.");
 			return true;
 		} catch (ReactionException x) {
 			throw new DecisionMethodException(x);

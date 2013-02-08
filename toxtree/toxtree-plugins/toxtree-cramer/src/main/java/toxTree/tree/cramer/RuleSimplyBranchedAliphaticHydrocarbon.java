@@ -84,13 +84,13 @@ public class RuleSimplyBranchedAliphaticHydrocarbon extends RuleCarbohydrate {
 		int h = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"H"));
 
 	    if ((mol.getAtomCount() == (c+h))) {  //hydrocarbon
-	    	logger.info("Hydrocarbon ",MSG_YES);
+	    	logger.fine("Hydrocarbon "+MSG_YES);
 		    if (mf.isAliphatic()) {
-		    	logger.info(MSG_ALIPHATIC,MSG_YES);
-		    	logger.warn(MSG_SIMPLYBRANCHED,"Not implemented");
+		    	logger.fine(MSG_ALIPHATIC+MSG_YES);
+		    	logger.warning(MSG_SIMPLYBRANCHED+"Not implemented");
 		    	return !mf.isAcetylenic();
 		    } else {
-		    	logger.debug(MSG_ALIPHATIC,MSG_NO);
+		    	logger.fine(MSG_ALIPHATIC+MSG_NO);
 		    	return false;
 		    } 
 	    } else return super.verifyRule(mol);

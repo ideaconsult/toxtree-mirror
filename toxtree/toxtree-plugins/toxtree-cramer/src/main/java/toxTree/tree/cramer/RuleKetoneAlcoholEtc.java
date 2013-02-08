@@ -34,6 +34,7 @@ package toxTree.tree.cramer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
@@ -87,9 +88,9 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
 		logger.info(toString());
-		logger.debug("Molecule\t",mol.getID());
+		logger.finer("Molecule\t"+mol.getID());
 		//a)
-		logger.debug("Q18 a)");
+		logger.finer("Q18 a)");
 		QueryAtomContainer q = FunctionalGroups.vicinalDiKetone();
 		if (FunctionalGroups.hasGroup(mol,q)) return true;
 		
@@ -100,7 +101,7 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 		if (FunctionalGroups.hasGroup(mol,q)) return true;
 		
 		//b)
-		logger.debug("Q18 b)");
+		logger.fine("Q18 b)");
 		q = FunctionalGroups.alcoholSecondaryAttachedToTerminalVinyl();
 		if (FunctionalGroups.hasGroup(mol,q)) return true;
 		
@@ -108,7 +109,7 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 		if (FunctionalGroups.hasGroup(mol,q)) return true;
 		
 		//c)
-		logger.debug("Q18 c)");
+		logger.fine("Q18 c)");
 		IAtomContainer a = FunctionalGroups.allylAlcohol();
 		if (FunctionalGroups.isSubstance(mol,a)) return true;
 
@@ -119,7 +120,7 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 		if (FunctionalGroups.hasGroup(mol,q)) return true;
 		
 		//cellbox)
-		logger.debug("Q18 cellbox)");
+		logger.finer("Q18 cellbox)");
 		a = FunctionalGroups.allylMercaptan();
 		if (FunctionalGroups.isSubstance(mol,a)) return true;
 
@@ -132,7 +133,7 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 		a = FunctionalGroups.allylThioester();
 		if (FunctionalGroups.isSubstance(mol,a)) return true;
 		//e)
-		logger.debug("Q18 e)");
+		logger.finer("Q18 e)");
 		a = FunctionalGroups.acrolein();
 		if (FunctionalGroups.isSubstance(mol,a)) return true;
 
@@ -142,21 +143,21 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 		a = FunctionalGroups.methacroleinAcetal();
 		if (FunctionalGroups.isSubstance(mol,a)) return true;
 		
-		logger.debug("is acrolein acetal - not implemented, assuming NO");
+		logger.finer("is acrolein acetal - not implemented, assuming NO");
 		//f)
-		logger.debug("Q18 f)");
+		logger.finer("Q18 f)");
 		a = FunctionalGroups.acrylicAcid();
 		if (FunctionalGroups.isSubstance(mol,a)) return true;
 
 		a = FunctionalGroups.methacrylicAcid();
 		if (FunctionalGroups.isSubstance(mol,a)) return true;
 		//g)
-		logger.debug("Q18 g)");
+		logger.finer("Q18 g)");
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf == null) throw new DecisionMethodException(AbstractRule.ERR_STRUCTURENOTPREPROCESSED);
 	    if (mf.isAcetylenic()) return true;;
 		//h)
-	    logger.debug("Q18 h)");
+	    logger.finer("Q18 h)");
 		if (mf.isAliphatic() && !mf.isAlicyclic()) {
 			//ketone, ketal, ketoalcohol as in h)
 			
@@ -176,18 +177,18 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 			
 			if (FunctionalGroups.hasGroup(mol,qKetone4) &&
 				FunctionalGroups.hasOnlyTheseGroups(mol,qs,ids,true)) {
-				logger.info(qKetone4.getID(),"\tYES");
+				logger.finer(qKetone4.getID()+"\tYES");
 				return true;
-			} else logger.debug(qKetone4.getID(),"\tNO");
+			} else logger.finer(qKetone4.getID()+"\tNO");
 			
 			qs.add(qAlcohol);
 			ids.add(qAlcohol.getID());
 			if (FunctionalGroups.hasGroup(mol,qKetone4) &&
 			    FunctionalGroups.hasGroup(mol,qAlcohol) &&	
 				FunctionalGroups.hasOnlyTheseGroups(mol,qs,ids,true)) {
-				logger.info("Ketoalcohol ...","\tYES");
+				logger.finer("Ketoalcohol ...\tYES");
 				return true;
-			} else logger.debug("Ketoalcohol ...","\tNO");
+			} else logger.finer("Ketoalcohol ...\tNO");
 			
 			qs.clear();
 			qs.add(qKetal4);
@@ -199,24 +200,24 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 			ids.add(FunctionalGroups.CH3);
 			if (FunctionalGroups.hasGroup(mol,qKetal4) &&
 				FunctionalGroups.hasOnlyTheseGroups(mol,qs,ids,true)) {
-				logger.info(qKetal4.getID(),"\tYES");
+				logger.finer(qKetal4.getID()+"\tYES");
 				return true;
-			} else logger.debug(qKetal4.getID(),"\tNO");			
+			} else logger.finer(qKetal4.getID()+"\tNO");			
 
 		}
 		
 		//i)
-		if (logger.isDebugEnabled()) {
-			logger.debug("Q18 i)");
+		if (logger.isLoggable(Level.FINER)) {
+			logger.finer("Q18 i)");
 			q = FunctionalGroups.stericallyHindered();
 			List list = FunctionalGroups.getUniqueBondMap(mol,q,false);
 			FunctionalGroups.markMaps(mol,q,list);
-			logger.debug(FunctionalGroups.mapToString(mol));
+			logger.finer(FunctionalGroups.mapToString(mol).toString());
 
 		}
 		if (FunctionalGroups.hasGroup(mol,FunctionalGroups.stericallyHindered())) {
 			return true;
-		} else logger.info("Q18\tNO");
+		} else logger.finer("Q18\tNO");
 		return false;
 		
 	}

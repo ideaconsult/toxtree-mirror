@@ -120,7 +120,7 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 	    
 	    IRingSet rings = mf.getRingset();
 	    if (rings == null) {
-	    	logger.debug("Acyclic structure");
+	    	logger.fine("Acyclic structure");
 	    	return null;
 	    }
 	    int benzene = 0;
@@ -133,11 +133,11 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 		    benzene ++;
 	    }
 	    if (benzene == 1) {
-	    	logger.debug("Benzene ring found.");
+	    	logger.fine("Benzene ring found.");
 	    	return rings; 
 	    } else {
-	    	if (benzene > 1) logger.debug("Too many benzene rings found.");
-	    	else logger.debug("No benzene rings found.");
+	    	if (benzene > 1) logger.fine("Too many benzene rings found.");
+	    	else logger.fine("No benzene rings found.");
 	    	return null;
 	    }
 	}	
@@ -149,11 +149,11 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 			throws DecisionMethodException {
 		//(a)hydrocarbon chain
 		//FunctionalGroups.markCHn(a);
-		//logger.debug(FunctionalGroups.mapToString(a));
+		//logger.fine(FunctionalGroups.mapToString(a));
 		if (FunctionalGroups.hasMarkedOnlyTheseGroups(a,chIDs)) {
 			for (int j=0;j<place.length;j++)
 				if (place[j] >=0) places[place[j]] = index_hydrocarbon;
-			logger.debug(MSG_BENZENESUBSTITUENT,"hydrocarbon chain\tat place\t"+place);
+			logger.fine(MSG_BENZENESUBSTITUENT+"hydrocarbon chain\tat place\t"+place);
 			return true;
 		} 
 		QueryAtomContainer q = (QueryAtomContainer)getSubstructure(index_hydroxy1);
@@ -163,7 +163,7 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 			if (FunctionalGroups.hasMarkedOnlyTheseGroups(a,hydroxyIDs)) {
 				for (int j=0;j<place.length;j++)
 					if (place[j] >=0) places[place[j]] = index_hydroxy1;
-				logger.debug(MSG_BENZENESUBSTITUENT,"1'-hydroxy hydrocarbon chain");
+				logger.fine(MSG_BENZENESUBSTITUENT+"1'-hydroxy hydrocarbon chain");
 				return true;
 			}
 		}//clear hydroxy mark ?
@@ -175,7 +175,7 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 			if (FunctionalGroups.hasMarkedOnlyTheseGroups(a,hydroxyIDs)) {
 				for (int j=0;j<place.length;j++)
 					if (place[j] >=0) places[place[j]] = index_hydroxyEsterSubstituted;
-				logger.debug(MSG_BENZENESUBSTITUENT,"hydroxy ester substituted hydrocarbon chain");
+				logger.fine(MSG_BENZENESUBSTITUENT,"hydroxy ester substituted hydrocarbon chain");
 				return true;
 			}
 		}
@@ -190,7 +190,7 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 		if (FunctionalGroups.hasMarkedOnlyTheseGroups(a,hydroxyIDs)) {
 			for (int j=0;j<place.length;j++)
 					if (place[j] >=0) places[place[j]] = index_ester;
-			logger.debug(MSG_BENZENESUBSTITUENT,"hydroxy ester substituted hydrocarbon chain");
+			logger.fine(MSG_BENZENESUBSTITUENT+"hydroxy ester substituted hydrocarbon chain");
 			return true;
 		}		
 		q = (QueryAtomContainer)getSubstructure(index_alkoxy);
@@ -201,11 +201,11 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 				for (int j=0;j<place.length;j++)
 					if (place[j] >=0) places[place[j]] = index_alkoxy;
 					
-				logger.debug(MSG_BENZENESUBSTITUENT,"alkoxy group at place\t"+place);
+				logger.fine(MSG_BENZENESUBSTITUENT+"alkoxy group at place\t"+place);
 				return true;
 			}
 		}		
-		logger.debug("Forbiden benzene substituent found");
+		logger.fine("Forbiden benzene substituent found");
 		return false;
 		
 	}
@@ -226,23 +226,23 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 	    FunctionalGroups.markCHn(mol);	    
 	    //if entire structure has only allowed groups, return true (can't have other groups as substituents)
 	    FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,false);
-	   // logger.debug(FunctionalGroups.mapToString(mol));
+	   // logger.fine(FunctionalGroups.mapToString(mol));
 	    //otherwise some of the forbidden groups can be in-ring, so substituents can be fine	
 	    //iterating over all rings in the ringset
 	    IRing r =null;
 	    for (int i=0; i < rs.getAtomContainerCount(); i++) {
 	        r = (IRing) rs.getAtomContainer(i);
 	        if (!analyze(r)) continue;
-	        logger.debug("Ring\t",(i+1));
+	        logger.fine("Ring\t"+(i+1));
 	        
 	        //new atomcontainer with ring atoms/bonds deleted
 	        IAtomContainer mc = FunctionalGroups.cloneDiscardRingAtomAndBonds(mol,r);	        
-			logger.debug("\tmol atoms\t",mc.getAtomCount());
+			logger.fine("\tmol atoms\t"+mc.getAtomCount());
 		    
 			FunctionalGroups.markAtomsInRing(mol,ring6);
 			
 			IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
-			//logger.debug("Ring substituents\t",s.getMoleculeCount());
+			//logger.fine("Ring substituents\t",s.getMoleculeCount());
 			int substituents = 0;
 			
 			
@@ -258,7 +258,7 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 				    	place = m.getAtom(j).getProperty(FunctionalGroups.RING_NUMBERING);
 				    	if (place != null) {
 				    		p[j] = ((Integer) place).intValue();
-				    		logger.debug("Ring substituent at place\t",p[j]);
+				    		logger.fine("Ring substituent at place\t"+p[j]);
 				    	}
 				    } 
 				    	
@@ -266,20 +266,20 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 				    
 				    substituents++;
 				    if (!substituentIsAllowed(m,p)) {
-				    	logger.debug(ERR_PRECONDITION_FAILED);
+				    	logger.fine(ERR_PRECONDITION_FAILED);
 				    	return false;
 				    }
 				    if (!FunctionalGroups.hasMarkedOnlyTheseGroups(m,ids)) {
-				    	logger.debug(allowedSubstituents());
-				    	logger.debug(CONDITION_FAILED);
-				    	logger.debug(FunctionalGroups.mapToString(m).toString());
+				    	logger.fine(allowedSubstituents());
+				    	logger.fine(CONDITION_FAILED);
+				    	logger.fine(FunctionalGroups.mapToString(m).toString());
 				    	return false;
 				    }
 			    }
 			}
 			
 			if (substituents == 0) {
-				logger.debug("Ring substituents\t",MSG_NO);
+				logger.fine("Ring substituents\t"+MSG_NO);
 				return false;
 			}
 	    }
@@ -288,14 +288,14 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 	    	if (places[i] == index_alkoxy) {
 	    		int para = (i+3) % 6;
 	    		if (places[para] == index_hydrocarbon) {
-	    			logger.info(MSG_ALKOXYPARACH,"YES");
+	    			logger.fine(MSG_ALKOXYPARACH+"YES");
 	    			return true;
 	    		} else if (places[para] == index_ester) {
-	    			logger.info(MSG_ALKOXYPARACH,"YES");
+	    			logger.fine(MSG_ALKOXYPARACH+"YES");
 	    			return true;
 	    		}
 	    	}
-	    logger.info(MSG_ALKOXYPARACH,"NO");
+	    logger.fine(MSG_ALKOXYPARACH+"NO");
 	    return false;
 		
 	}

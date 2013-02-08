@@ -100,7 +100,7 @@ public class RuleMonocarbocyclic extends RuleRingAllowedSubstituents {
 	    IRingSet rings = mf.getRingset();
 	    if (rings == null) return null;
 	    if (rings.getAtomContainerCount() > 1) {
-	    	logger.info("Not monocarbocyclic, >1 rings found",rings.getAtomContainerCount());
+	    	logger.finer("Not monocarbocyclic, >1 rings found"+rings.getAtomContainerCount());
 	    	return null; //monocarbocyclic
 	    }
 	    IRing r = (IRing) rings.getAtomContainer(0);
@@ -130,7 +130,7 @@ public class RuleMonocarbocyclic extends RuleRingAllowedSubstituents {
 		Object o = molecule.getProperty(MolFlags.PARENT);
 		IAtomContainer mol = molecule;
 		if ((o != null) && (molecule instanceof IAtomContainer)) {
-			logger.debug("Parent compound found, will continue analyzing the parent");
+			logger.finer("Parent compound found, will continue analyzing the parent");
 			mol = (IAtomContainer) o;
 		}
 		return super.verifyRule(mol,selected);
