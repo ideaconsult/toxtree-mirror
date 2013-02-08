@@ -34,6 +34,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
@@ -55,7 +57,6 @@ import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.Tools;
-import toxTree.logging.TTLogger;
 import toxTree.tree.AbstractTree;
 import toxTree.tree.DecisionNode;
 import toxtree.ui.tree.categories.CategoriesTableModel;
@@ -71,7 +72,8 @@ import com.l2fprod.common.swing.JTaskPaneGroup;
  * <b>Modified</b> Dec 17, 2006
  */
 public class TreeEditorPanel extends JPanel implements IDecisionMethodEditor {
-    protected static TTLogger logger = new TTLogger(TreeEditorPanel.class);
+
+    protected static Logger logger = Logger.getLogger(TreeEditorPanel.class.getName());
     protected JTaskPane taskPane;
     protected ListPanel rulesPanel;
     protected ListPanel categoriesPanel;    
@@ -161,7 +163,7 @@ public class TreeEditorPanel extends JPanel implements IDecisionMethodEditor {
                             editTreeActions.setCategory((IDecisionCategory) category);
 
                     } catch (Exception x) {
-                        logger.error(x);
+                    	logger.log(Level.SEVERE,x.getMessage(),x);
                     }
             }
         });
@@ -195,7 +197,7 @@ public class TreeEditorPanel extends JPanel implements IDecisionMethodEditor {
                         }
 
                     } catch (Exception x) {
-                        logger.error(x);
+                    	logger.log(Level.SEVERE,x.getMessage(),x);
                     }
             }
         });

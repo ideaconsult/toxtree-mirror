@@ -24,14 +24,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.data;
 
-import java.awt.EventQueue;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -49,12 +49,12 @@ import toxTree.core.IDecisionMethod;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
-import toxTree.logging.TTLogger;
 import ambit2.core.data.MoleculeTools;
 import ambit2.jchempaint.editor.JChemPaintDialog;
 
 public abstract class DataModule extends Observable implements Serializable, Observer {
-	protected static TTLogger logger = new TTLogger(DataModule.class);
+	protected transient static Logger logger = Logger.getLogger(DataModule.class.getName());
+
 	//data
 	protected DataContainer dataContainer = null;
 	protected int useDatabase = 0; //-1 : not available; 0 - unknown, have to check; 1 : available
@@ -100,7 +100,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
             	try {
             		batch.start();
             	} catch (BatchProcessingException x) {
-            		logger.error(x);
+            		logger.log(Level.SEVERE,x.getMessage(),x);
             		ToxTreeActions.showMsg("Error on batch processing",x.getMessage());
             	}               	
                 return batch;

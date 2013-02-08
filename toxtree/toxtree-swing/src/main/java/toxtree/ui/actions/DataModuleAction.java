@@ -32,8 +32,6 @@ import javax.swing.AbstractAction;
 import javax.swing.Icon;
 import javax.swing.SwingWorker;
 
-import org.jdesktop.swingx.auth.LoginEvent;
-
 import toxtree.data.DataModule;
 import toxtree.data.ToxTreeActions;
 

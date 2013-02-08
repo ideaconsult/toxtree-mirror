@@ -31,6 +31,7 @@ import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.Observable;
+import java.util.logging.Level;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -161,7 +162,7 @@ public class DecisionMethodsDataModule extends DataModule {
     		if (value==null) return -1;
     		return ((DecisionMethodData) dataContainer).lookup(field, value.toString().toLowerCase().trim());
         } catch (Exception x) {
-        	logger.error(x);
+        	logger.log(Level.SEVERE,x.getMessage(),x);
             return -1;
         }
     }
@@ -174,7 +175,7 @@ public class DecisionMethodsDataModule extends DataModule {
             	try {
             		matrix = ((DecisionMethodData) dataContainer).classifyAll(treeResult);
                 } catch (DecisionResultException x) {
-                	logger.error(x);
+                	logger.log(Level.SEVERE,x.getMessage(),x);
                     treeResult.clear();
                 }
                 setChanged();
@@ -186,7 +187,7 @@ public class DecisionMethodsDataModule extends DataModule {
                 try {
                 	((DecisionMethodData) dataContainer).classify(treeResult);
                 } catch (DecisionResultException x) {
-                	logger.error(x);
+                	logger.log(Level.SEVERE,x.getMessage(),x);
                     treeResult.clear();
                     treeResult.setError(x.getMessage());
                 }
