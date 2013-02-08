@@ -42,7 +42,7 @@ public class SA68_Ames extends StructureAlertCDK {
 		
 			addSubstructure("1", "c1c2c3ccccc3CCc2ccc1");
 			setID("SA68_Ames");
-			setTitle("9,10 – dihydrophenanthrenes");
+			setTitle("9,10 - dihydrophenanthrenes");
 			setExplanation("DNA intercalating agents are defined as those compounds that are able to insert partially or completely between adjacent DNA base pairs. ");
 			 examples[0] = "c1c2c3ccccc3COc2ccc1";
 	            examples[1] = "c1c2c3ccccc3CCc2ccc1";   
