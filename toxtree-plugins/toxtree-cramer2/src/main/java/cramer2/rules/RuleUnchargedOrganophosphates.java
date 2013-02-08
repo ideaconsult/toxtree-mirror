@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package cramer2.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import ambit2.smarts.query.SMARTSException;
 
@@ -44,8 +46,8 @@ public class RuleUnchargedOrganophosphates extends  RuleSMARTSSubstructureAmbit{
                     //"[$([P;R0]O)!$(P([O-,OH])(=O)([$([O-,OH]),$(O(P)[C,P])])[$([O-,OH]),$(O(P)[C,P])])]");
 			editable = false;
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,getClass().getName(),x);
 		}
-        logger.debug("40 finished");
+        logger.finer("40 finished");
 	}
 }
