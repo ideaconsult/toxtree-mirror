@@ -15,7 +15,6 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRuleList;
-import toxTree.logging.TTLogger;
 
 public class MichaelAcceptorDataTest  {
 	
@@ -26,7 +25,6 @@ public class MichaelAcceptorDataTest  {
 	public void setup() throws Exception {
 		cr = new MichaelAcceptorRules();
 		cr.setResiduesIDVisible(false);
-		TTLogger.configureLog4j(false);		
 	}
 
 	@Test

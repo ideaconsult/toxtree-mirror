@@ -41,7 +41,6 @@ import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionRule;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.AbstractRule;
@@ -70,7 +69,7 @@ public class TreeSerializerTest {
 	protected static Logger logger = Logger.getLogger(TreeSerializerTest.class.getName()); 
 	@Before
 	public void setUp() throws Exception {
-		TTLogger.configureLog4j(true);
+
 	}
 
 	@Test

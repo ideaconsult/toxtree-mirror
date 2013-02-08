@@ -37,7 +37,6 @@ import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxtree.ui.tree.actions.SaveTreeAction;
 import ambit2.core.io.IteratingDelimitedFileReader;
@@ -54,7 +53,6 @@ public class MutantDataTest  {
 	public static void setUp() throws Exception {
 		cr = new BB_CarcMutRules();
 		cr.setResiduesIDVisible(false);
-		TTLogger.configureLog4j(false);
 	}
 
 

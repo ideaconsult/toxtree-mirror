@@ -13,6 +13,7 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
+import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IMetaboliteGenerator;
@@ -95,8 +96,9 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 			//if (smrkMan.applyTransformation(product, this, smr)) {
 				
 				if (products == null)
-					products = SilentChemObjectBuilder.getInstance()
-							.newInstance(IAtomContainerSet.class);
+					products = SilentChemObjectBuilder.getInstance().newInstance(IAtomContainerSet.class);
+				
+				FixBondOrdersTool fbt = new FixBondOrdersTool();
 				for (IAtomContainer ac : rproducts.atomContainers()) {
 					ac.setID(reaction.toString());
 					
@@ -135,6 +137,8 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 					}
 					//AtomContainerManipulator.clearAtomConfigurations(ac); //not all!
 					AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
+					//if (ac instanceof IMolecule)
+					//	ac = fbt.kekuliseAromaticRings((IMolecule)ac);
 					//AtomContainerManipulator.percieveAtomTypesAndConfigureUnsetProperties(ac);
 					//CDKHueckelAromaticityDetector.detectAromaticity(ac);
 					
@@ -153,10 +157,6 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 						reaction.getSMIRKS(),
 						smrkMan.getErrors()));
 				products.addAtomContainer(product);
-				/*
-				System.err.println(String.format("%s %s", reactant.getID(),
-						reaction.name()));
-				*/
 			}
 		}
 
@@ -171,7 +171,6 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 			Number atom_rank = SMARTCYP_PROPERTY.Ranking.getNumber(atom);
 			if (atom_rank == null)
 				continue;
-			// System.out.println(String.format("%s %s %d",atom.getID(),atom.getSymbol(),atom_rank));
 			if (atom_rank.intValue() == getRank())
 				ok = true; // any atom with rank 1 within this mapping
 		}

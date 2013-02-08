@@ -64,7 +64,6 @@ import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 import toxTree.core.IMoleculesIterator;
 import toxTree.exceptions.ToxTreeIOException;
 import toxTree.io.PDFWriter;
-import toxTree.logging.TTLogger;
 import ambit2.core.config.AmbitCONSTANTS;
 import ambit2.core.data.MoleculeTools;
 import ambit2.core.io.DelimitedFileFormat;
