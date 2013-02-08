@@ -94,7 +94,7 @@ public class RuleSufficientSulphonateGroups extends AbstractRule {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  molecule) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		Object o = molecule.getProperty(MolFlags.PARENT);
 		IAtomContainer mol = molecule;
 		if ((o != null) && (o instanceof IAtomContainer)) {

@@ -73,7 +73,7 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
 		try {
-			logger.info(getID());
+			logger.finer(getID());
 			int r = smartsPattern.hasSMARTSPattern(mol);
 			if (r == 0) return false;
 			IMoleculeSet chains = extractChains(mol, smartsPattern.getUniqueMatchingAtoms(mol));

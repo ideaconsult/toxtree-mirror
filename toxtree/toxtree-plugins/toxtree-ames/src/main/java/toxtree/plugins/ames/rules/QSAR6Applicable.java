@@ -130,7 +130,7 @@ public class QSAR6Applicable extends RuleSMARTSubstructureCDK implements IDecisi
 
         } 
 		if (isSkipRule()) {
-			logger.info("Skip the rule");
+			logger.finer("Skip the rule");
 			return true;			
 		} else return super.verifyRule(mol);
         /*

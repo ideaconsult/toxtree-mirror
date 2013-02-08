@@ -104,11 +104,11 @@ public class Rule38 extends Rule13_AliphaticMonoalcohols {
         int h_count = 0;
         for (int j=0; j < m.getAtomCount();j++) {
             if (m.getAtom(j).getFlag(CDKConstants.ISAROMATIC)) {
-                logger.info("Aromatic atom found");
+                logger.finer("Aromatic atom found");
                 return false;
             } 
             if (m.getAtom(j).getFlag(CDKConstants.ISINRING)) {
-                logger.info("Ring atom found");
+                logger.finer("Ring atom found");
                 return false;
             }                
             if ("C".equals(m.getAtom(j).getSymbol())) {
@@ -116,16 +116,16 @@ public class Rule38 extends Rule13_AliphaticMonoalcohols {
             } else if ("O".equals(m.getAtom(j).getSymbol())) {
                 List<IBond> bonds = m.getConnectedBondsList(m.getAtom(j));
                 if (bonds.size()==0) {
-                    logger.info("non ether group found");
+                    logger.finer("non ether group found");
                     return false;
                 }
                 for (IBond bond : bonds) {
                     if (Order.SINGLE != bond.getOrder()) {
-                        logger.info("O connected with bon-single bond found");
+                        logger.finer("O connected with bon-single bond found");
                         return false;
                     }
                     if (!"C".equals(bond.getConnectedAtom(m.getAtom(j)).getSymbol())) {
-                        logger.info("O connected to non-C atom found");
+                        logger.finer("O connected to non-C atom found");
                         return false;
                     }
                 }
@@ -134,7 +134,7 @@ public class Rule38 extends Rule13_AliphaticMonoalcohols {
                 h_count++;
             }
             else {
-                logger.info("Non C or O atom found");
+                logger.finer("Non C or O atom found");
                 return false;
             }
                 

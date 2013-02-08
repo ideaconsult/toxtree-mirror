@@ -87,7 +87,7 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		logger.finer("Molecule\t"+mol.getID());
 		//a)
 		logger.finer("Q18 a)");

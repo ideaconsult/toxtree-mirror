@@ -218,7 +218,7 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 	}
 	@Override
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(toString());		
+		logger.finer(toString());		
 		IRingSet rs = hasRingsToProcess(mol);
 		if (rs == null) return false;
 		

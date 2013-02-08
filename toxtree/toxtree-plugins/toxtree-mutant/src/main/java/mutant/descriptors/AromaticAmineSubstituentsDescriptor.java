@@ -179,7 +179,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                                         } catch (NumberFormatException x) {
                                             v = Double.NaN;    
                                         }
-		    							logger.info((mol.getProperty("Group") +" "+mol.getProperty("Position") +" "+getDescriptorNames()[i] + "_" + Integer.toString(p)+ " = " +v));
+		    							logger.finer((mol.getProperty("Group") +" "+mol.getProperty("Position") +" "+getDescriptorNames()[i] + "_" + Integer.toString(p)+ " = " +v));
 			    					}
 			    			}
                         }

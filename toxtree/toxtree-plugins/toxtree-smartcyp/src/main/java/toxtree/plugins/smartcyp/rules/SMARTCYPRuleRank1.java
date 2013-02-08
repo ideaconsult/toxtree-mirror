@@ -108,13 +108,13 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 
 			MoleculeKU moleculeKU = new MoleculeKU(iAtomContainer, SMARTSnEnergiesTable.getSMARTSnEnergiesTable());
 			//MoleculeKU moleculeKU = new MoleculeKU(iAtomContainerTmp, SMARTSnEnergiesTable.getSMARTSnEnergiesTable());
-			logger.info("************** Matching SMARTS to assign Energies **************");
+			logger.finer("************** Matching SMARTS to assign Energies **************");
 			moleculeKU.assignAtomEnergies(SMARTSnEnergiesTable.getSMARTSnEnergiesTable());	
 			
-			logger.info("************** Calculating Accessabilities and Atom Scores**************");
+			logger.finer("************** Calculating Accessabilities and Atom Scores**************");
 			moleculeKU.calculateAtomAccessabilities();
 
-			logger.info("************** Identifying, sorting and ranking C, N, P and S atoms **************");
+			logger.finer("************** Identifying, sorting and ranking C, N, P and S atoms **************");
 			moleculeKU.sortAtoms();
 			moleculeKU.rankAtoms();
 			

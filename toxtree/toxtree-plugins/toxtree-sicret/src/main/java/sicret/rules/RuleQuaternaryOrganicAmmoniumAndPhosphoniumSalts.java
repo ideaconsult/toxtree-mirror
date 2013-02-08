@@ -64,7 +64,7 @@ public class RuleQuaternaryOrganicAmmoniumAndPhosphoniumSalts extends RuleAnySub
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		int c = 0;		
 		for (int i=0; i < mol.getAtomCount();i++) {
 			IAtom a = mol.getAtom(i);				

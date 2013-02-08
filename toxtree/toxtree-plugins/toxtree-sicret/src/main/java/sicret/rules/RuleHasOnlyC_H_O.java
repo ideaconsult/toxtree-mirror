@@ -50,7 +50,7 @@ public class RuleHasOnlyC_H_O extends RuleAllAllowedElements {
 	editable = false;
 	}
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		return super.verifyRule(mol);
 
 	}

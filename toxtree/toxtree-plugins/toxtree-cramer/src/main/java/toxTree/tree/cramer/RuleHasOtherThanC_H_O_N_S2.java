@@ -103,7 +103,7 @@ public class RuleHasOtherThanC_H_O_N_S2 extends RuleElements {
 		}
 	}
 	public boolean oldVerifyRule(IAtomContainer  mol,IAtomContainer selected) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		int c = 0;
 		double order;
 		for (int i=0; i < mol.getAtomCount();i++) {

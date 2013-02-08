@@ -101,7 +101,7 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements IAlertCount
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 
-		logger.info(toString());
+		logger.finer(toString());
 		if ((mainStructure != null) && (!FunctionalGroups.hasGroup(mol,mainStructure,selected))) {
 			logger.finer(mainStructure.getID()+"\tNO");
 			return false;

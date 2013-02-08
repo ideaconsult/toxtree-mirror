@@ -63,7 +63,7 @@ public class Rule3MemberedHeterocycle extends AbstractRule {
 	 */
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
 	    //should be set via MolAnalyser
-		logger.info(toString());
+		logger.finer(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    return  mf.isHeterocyclic3();
 	}

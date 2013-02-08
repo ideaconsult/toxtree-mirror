@@ -104,7 +104,7 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 		IRingSet rs = ssrf.findSSSR();
 		boolean b =false;
 		if (rs.getAtomContainerCount() > 0) {
-			logger.info(CYCLIC_SUBSTITUENT);
+			logger.finer(CYCLIC_SUBSTITUENT);
 			b = false;
 		} else {
 			//MFAnalyser mf = new MFAnalyser(a);
@@ -158,7 +158,7 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 	}
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		boolean canBeHydrolized = false;
 		IMoleculeSet residues = null;
 		IAtomContainer  newMol = mol;

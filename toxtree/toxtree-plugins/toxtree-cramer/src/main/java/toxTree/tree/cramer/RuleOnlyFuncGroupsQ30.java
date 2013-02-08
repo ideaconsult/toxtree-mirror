@@ -159,7 +159,7 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 	};
 	@Override
 	public boolean verifyRule(IAtomContainer  mol, IAtomContainer selected) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    IRingSet rings = mf.getRingset();		

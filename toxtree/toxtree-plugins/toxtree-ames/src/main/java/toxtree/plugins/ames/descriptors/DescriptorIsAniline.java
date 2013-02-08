@@ -94,7 +94,7 @@ public class DescriptorIsAniline extends DescriptorStructurePresence<IAtomContai
                     new BooleanResult(false), getDescriptorNames(),x);    		
     	}
     	if (biphenyl) {
-    		logger.info("Diphenyl");
+    		logger.finer("Diphenyl");
             return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
                     new BooleanResult(false), getDescriptorNames());
     	} else

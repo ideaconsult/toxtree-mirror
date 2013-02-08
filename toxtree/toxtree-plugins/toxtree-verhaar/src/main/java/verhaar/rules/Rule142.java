@@ -87,7 +87,7 @@ public class Rule142 extends RuleOnlyAllowedSubstructuresCounter {
 	 * @see toxTree.tree.rules.RuleOnlyAllowedSubstructures#verifyRule(org.openscience.cdk.interfaces.AtomContainer)
 	 */
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		if (hasRingsToProcess(mol) != null) 
 			return super.verifyRule(mol);
 		else return false;

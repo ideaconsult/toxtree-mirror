@@ -144,7 +144,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
                         catch(Exception exception) { }
                 }
             }
-            logger.info(r + " structures read from " + format);
+            logger.finer(r + " structures read from " + format);
             reader.close();
             reader = null;
         }
@@ -221,21 +221,21 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
             for(int m = 0; m < me_essential.length; m++)
                 if(element.equals(me_essential[m]))
                 {
-                    logger.info("Essential metal\t"+ me_essential[m]+ "\tfound.");
+                    logger.finer("Essential metal\t"+ me_essential[m]+ "\tfound.");
                     return true;
                 }
 
             for(int m = 0; m < me_nonessential.length; m++)
                 if(element.equals(me_nonessential[m]))
                 {
-                    logger.info("Non-essential metal\t"+ me_nonessential[m]+ "\tfound.");
+                    logger.finer("Non-essential metal\t"+ me_nonessential[m]+ "\tfound.");
                     return true;
                 }
 
             for(int m = 0; m < halogens.length; m++)
                 if(element.equals(halogens[m]))
                 {
-                    logger.info("Halogen \t" + halogens[m]+ "\tfound.");
+                    logger.finer("Halogen \t" + halogens[m]+ "\tfound.");
                     halogensFound += MolecularFormulaManipulator.getElementCount(formula,elements.get(i));
                 }
 
@@ -243,14 +243,14 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
 
         if(halogensFound < 2)
         {
-            logger.info("Not a polyhalogenated compound");
+            logger.finer("Not a polyhalogenated compound");
             return false;
         }
-        logger.fine("Polyhalogenated compound\t"+ Integer.toString(halogensFound)+ "\thalogens found");
+        logger.finer("Polyhalogenated compound\t"+ Integer.toString(halogensFound)+ "\thalogens found");
         //print(mol);
         for(int i = 0; i < query.getAtomContainerCount(); i++)
         {
-            logger.fine("Compare with "+ query.getAtomContainer(i).getID());
+            logger.finer("Compare with "+ query.getAtomContainer(i).getID());
             if(FunctionalGroups.isSubstance(mol, query.getAtomContainer(i)))
                 return true;
         }

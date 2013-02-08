@@ -59,7 +59,7 @@ public class Rule141 extends RuleIsOpenChain implements IAlertCounter {
 	 * @see toxTree.tree.rules.RuleOpenChain#verifyRule(org.openscience.cdk.interfaces.AtomContainer)
 	 */
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		if (super.verifyRule(mol)) {  //acyclic
 			boolean ok = !FunctionalGroups.hasGroup(mol,x);
 			if (ok) incrementCounter(mol);
