@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package eye.rules;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -67,7 +68,7 @@ public class Rule38 extends Rule13_AliphaticMonoalcohols {
 			examples[1] = "N(CCOCC)C=C";					
 			
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 
@@ -86,7 +87,7 @@ public class Rule38 extends Rule13_AliphaticMonoalcohols {
 	                    okchains++;
 	                }
 	            } catch (DecisionMethodException x) {
-	                logger.debug(x);
+	            	logger.log(Level.WARNING,x.getMessage(),x);
 	                return false;
 	            }
 	        return okchains==allchains;
