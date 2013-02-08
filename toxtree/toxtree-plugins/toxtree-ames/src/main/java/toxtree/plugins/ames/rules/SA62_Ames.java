@@ -40,7 +40,7 @@ public class SA62_Ames extends StructureAlertCDK {
 		try {
 			addSubstructure("1", "c1ccccc1C(=O)[N;H1,$(NOC(=O)C)][O;H1,$(O[CX4])]");
 			setID("SA62_Ames");
-			setTitle("N-acyloxy-N –alkoxybenzamides");
+			setTitle("N-acyloxy-N -alkoxybenzamides");
 			setExplanation("N-Acyloxy-N-alkoxybenzamides have been shown to be mutagenic in Salmonella typhimurium without the need of metabolic activation ");
 			
 			 examples[0] = "c1ccccc1C(=O)NOC=C";
