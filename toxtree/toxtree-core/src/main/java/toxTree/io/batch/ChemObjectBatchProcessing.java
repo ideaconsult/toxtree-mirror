@@ -30,6 +30,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
 
 import javax.swing.ProgressMonitorInputStream;
 
@@ -116,13 +117,13 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 						new DelimitedFileFormat(" \t",'"'));			
 			else throw new BatchProcessingException(MSG_UNSUPPORTEDFORMAT+file.filename,this);
 		} catch (CDKException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			throw new BatchProcessingException(x,this);			
 		} catch (UnsupportedEncodingException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			throw new BatchProcessingException(x,this);
 		} catch (FileNotFoundException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			throw new BatchProcessingException(x,this);
 		}
 	}
@@ -134,17 +135,17 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 		super.openInputFile();
 		reader = null;
 		try {
-			logger.info(MSG_OPEN,inputFile.filename);
+			logger.fine(MSG_OPEN+inputFile.filename);
 			reader = getReader(inputFile,false);
 			if ((reader != null) && (inputFile.currentRecord>0)) {
-				logger.info("Have to skip\t",Long.toString(inputFile.currentRecord),"\trecords");
+				logger.fine("Have to skip\t"+Long.toString(inputFile.currentRecord)+"\trecords");
 				int count = 0;
 				while (reader.hasNext() && (count < inputFile.currentRecord)) {
 					reader.next();
 					count++;
 				}
 				if (count == inputFile.currentRecord)
-					logger.info(Long.toString(inputFile.currentRecord),"\trecords skipped.");
+					logger.info(Long.toString(inputFile.currentRecord)+"\trecords skipped.");
 				else { 
 					/*
 					logger.error("Input file is expected to have at least\t",Long.toString(inputFile.currentRecord),
@@ -156,7 +157,7 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 				}
 			}
 		} catch (Exception x) {
-				logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 				throw new BatchProcessingException(x);
 		}
 	}
@@ -179,7 +180,7 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 						new DelimitedFileFormat(" \t",'"'));
 			else throw new BatchProcessingException(MSG_UNSUPPORTEDFORMAT+outputFile.filename,this);
 		} catch (Exception x) {
-			logger.error(MSG_ERRORSAVE,outputFile.filename);
+			logger.log(Level.SEVERE,MSG_ERRORSAVE+outputFile.filename,x);
 			throw new BatchProcessingException(x);
 	}			
 			if ((writer != null) && append) {

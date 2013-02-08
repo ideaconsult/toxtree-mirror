@@ -32,7 +32,6 @@ import org.openscience.cdk.qsar.result.DoubleResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 import org.openscience.cdk.qsar.result.IntegerResult;
 
-import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IRuleRange;
 import toxTree.exceptions.DecisionMethodException;
 
@@ -65,13 +64,11 @@ public class RuleDescriptorRange extends RuleDescriptor implements IRuleRange {
 				IDescriptorResult result = value.getValue();
 				if (result instanceof DoubleResult) {
 					double d = ((DoubleResult) result).doubleValue();
-					logger.info(descriptor.getSpecification().getImplementationTitle(),"\t",
-							Double.toString(d));
+					logger.finer(descriptor.getSpecification().getImplementationTitle()+"\t"+Double.toString(d));
 					return (d>=minValue) && (d<=maxValue);
 				} else if (result instanceof IntegerResult) {
 					int i = ((IntegerResult) result).intValue();
-					logger.info(descriptor.getSpecification().getImplementationTitle(),"\t",
-							Integer.toString(i));
+					logger.finer(descriptor.getSpecification().getImplementationTitle()+"\t"+Integer.toString(i));
 					return (i>=minValue) && (i<=maxValue);					
 				}  else 
 					throw new DecisionMethodException("UNSUPPORTED descriptor result " + result.getClass().getName());

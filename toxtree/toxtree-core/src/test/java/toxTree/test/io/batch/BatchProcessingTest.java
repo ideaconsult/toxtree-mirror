@@ -28,6 +28,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -39,7 +41,6 @@ import toxTree.io.batch.BatchFactory;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
 import toxTree.io.batch.ChemObjectBatchProcessing;
-import toxTree.logging.TTLogger;
 
 /**
  * TODO add description
@@ -47,8 +48,9 @@ import toxTree.logging.TTLogger;
  * <b>Modified</b> 2005-9-4
  */
 public class BatchProcessingTest  {
-	static TTLogger logger = new TTLogger(BatchProcessingTest.class);
-	
+
+	protected transient static Logger logger = Logger.getLogger(BatchProcessingTest.class.getName());
+
 
 	@Before
 	public void setUp() throws Exception {
@@ -76,7 +78,7 @@ public class BatchProcessingTest  {
 				bp.saveConfig();
 				bp.close();
 				String filename = fwrite.getAbsolutePath();
-				logger.debug("Temporary file created\t",filename);
+				logger.fine("Temporary file created\t"+filename);
 				
 				//reading
 				File fread = new File(filename);
@@ -116,7 +118,7 @@ public class BatchProcessingTest  {
 								try {
 									BatchFactory.createFromConfig(configFile);
 								} catch (BatchProcessingException x) {
-									logger.error(x);
+									logger.log(Level.SEVERE,x.getMessage(),x);
 									Assert.assertTrue(true);
 								}	
 																

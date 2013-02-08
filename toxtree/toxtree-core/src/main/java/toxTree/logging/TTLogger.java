@@ -107,7 +107,7 @@ public class TTLogger {
             logger.debug("Properties file not found!");
         } catch (Exception e) {
             tostdout = true;
-            logger.debug("Unknown error occured: ", e.getMessage());
+            logger.fine("Unknown error occured: ", e.getMessage());
         }
         /****************************************************************
          * but some JVMs (i.e. MSFT) won't pass the SecurityException to
@@ -205,7 +205,7 @@ public class TTLogger {
      * @param object  Object to apply toString() too and output
      * @param object2 Object to apply toString() too and output
      */
-    public void debug(Object object, Object object2) {
+    public void fine(Object object, Object object2) {
         if (debug) {
             debugString("" + object + object2);
         }
@@ -583,7 +583,7 @@ public class TTLogger {
      *
      * @param object Object to apply toString() too and output
      */
-    public void warn(Object object) {
+    public void warning(Object object) {
         if (debug) {
             warnString("" + object);
         }

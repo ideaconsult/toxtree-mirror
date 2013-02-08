@@ -57,7 +57,6 @@ import toxTree.core.Introspection;
 import toxTree.core.XMLSerializable;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.XMLDecisionMethodException;
-import toxTree.logging.TTLogger;
 import toxTree.ui.EditorFactory;
 import ambit2.base.interfaces.IProcessor;
 
@@ -72,7 +71,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	public static transient String  ERR_STRUCTURENOTPREPROCESSED = "Structure should be preprocessed!";
 	public static transient String MSG_YES="YES";
 	public static transient String MSG_NO="NO";
-    protected static transient TTLogger logger =  new TTLogger(AbstractRule.class);
+    protected static transient Logger logger = Logger.getLogger(AbstractRule.class.getName());
     protected transient PropertyChangeSupport changes = null;
 	protected String title = "";
 	protected StringBuffer explanation = new StringBuffer();

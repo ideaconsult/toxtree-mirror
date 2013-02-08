@@ -32,6 +32,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.vecmath.Point2d;
 import javax.vecmath.Vector2d;
@@ -46,13 +48,17 @@ import org.openscience.cdk.interfaces.IChemFile;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IPseudoAtom;
 import org.openscience.cdk.io.DefaultChemObjectWriter;
 import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.SMILESReader;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
+import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.templates.MoleculeFactory;
+import org.openscience.cdk.tools.CDKHydrogenAdder;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
 import toxTree.core.IMoleculesIterator;
@@ -83,7 +89,7 @@ public class MoleculesIterator implements IMoleculesIterator {
 	private static transient StructureDiagramGenerator sdg = null;
 	protected ListOfAtomContainers containers = null;
 	protected int currentNo = 0;	
-    protected static TTLogger logger = null;
+	protected transient static Logger logger  = Logger.getLogger(MoleculesIterator.class.getName());
     protected int status = 0; //0-OK 1-reading  2-writing 
     protected String filename = "";
 	/**
@@ -103,7 +109,6 @@ public class MoleculesIterator implements IMoleculesIterator {
         molecule.setProperty(AmbitCONSTANTS.SMILES,"CCCCCC");
         containers.addAtomContainer(molecule);
         currentNo = 0;        
-        if (logger == null) logger = new TTLogger(); 
 	}
 
 	/* (non-Javadoc)
@@ -207,12 +212,28 @@ public class MoleculesIterator implements IMoleculesIterator {
 	}
     protected void useIterativeReader(InputStream in) {
         containers.clear();
-        MyIteratingMDLReader reader = new MyIteratingMDLReader(in, SilentChemObjectBuilder.getInstance());
+        FixBondOrdersTool fbt = new FixBondOrdersTool();
+        IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        MyIteratingMDLReader reader = new MyIteratingMDLReader(in, builder);
         int r = 0;
+        CDKHydrogenAdder hadder = CDKHydrogenAdder.getInstance(builder);
         while (reader.hasNext()) {
             Object o = reader.next();
             if (o instanceof IAtomContainer) {
-                containers.add((IAtomContainer)o);
+            	IAtomContainer mol = (IAtomContainer)o;
+            	try {
+            		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
+           	       for (IAtom atom : mol.atoms()) 
+            	            if ( !(atom instanceof IPseudoAtom) && (atom.getAtomTypeName() != null)) 
+            	               hadder.addImplicitHydrogens(mol, atom);
+               	   //mol = fbt.kekuliseAromaticRings((IMolecule)mol);
+           	       //CDKHueckelAromaticityDetector.detectAromaticity(mol);
+            	} catch (Exception x) {
+            		x.printStackTrace();
+            	}
+            	
+            	containers.add(mol);
+                
                 r++;
             }    
         }
@@ -224,27 +245,27 @@ public class MoleculesIterator implements IMoleculesIterator {
         try {
         if (!input.isDirectory()) {
         	ISimpleChemObjectReader reader=null;
-        	logger.info("Trying to read\t",input);
+        	logger.fine("Trying to read\t"+input);
         	String fe = input.toString().toLowerCase(); 
             if (fe.endsWith(".csv")) {  
       	      reader = new DelimitedFileReader(new FileReader(input));
-              logger.info("Expecting SMILES format...");
+              logger.fine("Expecting SMILES format...");
             } else if (fe.endsWith(".txt")) {  
       	      reader = new DelimitedFileReader(new FileReader(input),new DelimitedFileFormat("\t ",'"'));
-              logger.info("Expecting TXT format...");              
+              logger.fine("Expecting TXT format...");              
             } else if (fe.endsWith(".smi")) {  
         	      reader = new SMILESReader(new FileReader(input));
-                logger.info("Expecting SMILES format...");
+                logger.fine("Expecting SMILES format...");
             } else if (fe.endsWith(".sdf")) {  
                 
               //reader = new MDLReader(new FileReader(input));
-              logger.info("Expecting SDF format...");
+              logger.fine("Expecting SDF format...");
               useIterativeReader(new FileInputStream(input));
               return null;
             } else if (fe.endsWith(".mol")) {  
                 
                 //reader = new MDLReader(new FileReader(input));
-                logger.info("Expecting MOL format...");
+                logger.fine("Expecting MOL format...");
                 reader = new MDLV2000Reader(new FileReader(input));
             
           } else
@@ -269,7 +290,7 @@ public class MoleculesIterator implements IMoleculesIterator {
 	                if (!(c.get(0) instanceof IAtomContainer)) {
 	                	throw new ToxTreeIOException(MSG_EMPTYFILE + " found " + c.get(0).getClass().getName(),filename);
 	                }
-	                logger.info(MSG_OPENSUCCESS,filename,"\tMolecules read from file\t"+c.size());
+	                logger.fine(MSG_OPENSUCCESS+filename+"\tMolecules read from file\t"+c.size());
 	                return c;
                 } catch (CDKException x) {
                 	throw new ToxTreeIOException(MSG_ERRORONOPEN,x,filename);
@@ -314,19 +335,19 @@ public class MoleculesIterator implements IMoleculesIterator {
 	    			IAtomContainer ac = getContainers().getAtomContainer(record);
 	    			if (ac !=null) {
 	    				c++;
-	    				logger.debug("Writing compound \t",Integer.toString(record), "...");
+	    				logger.finer("Writing compound \t"+Integer.toString(record));
 	    				if (mdlWriter != null) {
 	    					mdlWriter.setSdFields(ac.getProperties());
 	    				}
 	    				try {
 	    					writer.write(ac);
 	    				} catch (Exception x) {
-	    					logger.error(ac);
+	    					logger.log(Level.SEVERE,ac.toString(),x);
 	    				}
 	    			}
 	    		}
 				writer.close();
-				logger.info(MSG_SAVESUCCESS,filename,"\tCompounds written\t",Integer.toString(c));
+				logger.fine(MSG_SAVESUCCESS+filename+"\tCompounds written\t"+Integer.toString(c));
 	    	} else {
 	    		throw new ToxTreeIOException(MSG_UNSUPPORTEDFORMAT,filename);
 	    	}

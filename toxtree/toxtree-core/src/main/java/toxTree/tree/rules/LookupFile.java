@@ -26,6 +26,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.exception.CDKException;
@@ -38,7 +40,6 @@ import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import ambit2.core.io.IteratingDelimitedFileReader;
@@ -53,7 +54,7 @@ public class LookupFile implements ILookupFile, Serializable  {
 	protected boolean useCache = false; //will be true if fixed
 	protected boolean checkAromaticity = true;
 	protected transient FileInputStream fStream = null;
-	protected transient TTLogger logger;
+	protected transient static Logger logger = Logger.getLogger(LookupFile.class.getName());
 	public LookupFile(String filename) throws IOException {
 		this(new File(filename));
 	}
@@ -77,11 +78,10 @@ public class LookupFile implements ILookupFile, Serializable  {
 	public IAtomContainer lookup(IAtomContainer mol ) throws DecisionMethodException, CDKException {
 		if (file == null) return null;
 		
-		if (logger == null) setLogger(new TTLogger(getClass()));
 		String molFormula = MolecularFormulaManipulator.getString(MolecularFormulaManipulator.getMolecularFormula(mol));
 		
 		if (useCache && (fileCache != null) && (fileCache.indexOf(molFormula) == -1)) {
-			logger.info("Using cached information of file\t",file.getAbsoluteFile(),"\tCompound\t",molFormula,"\tNOT FOUND");
+			logger.fine("Using cached information of file\t"+file.getAbsoluteFile()+"\tCompound\t"+molFormula+"\tNOT FOUND");
 			return null;  
 		}		
 		IIteratingChemObjectReader reader;
@@ -137,13 +137,13 @@ public class LookupFile implements ILookupFile, Serializable  {
 						}
 
 						if (checkAromaticity && (m.getFlag(CDKConstants.ISAROMATIC) != mol.getFlag(CDKConstants.ISAROMATIC))) {
-							logger.debug("Aromaticity does not match");
+							logger.fine("Aromaticity does not match");
 							continue;							
 						}
 					
 					} catch (MolAnalyseException x) {
 						//hmm
-						logger.error(x);
+						logger.log(Level.SEVERE,x.getMessage(),x);
 					}					
 					if (FunctionalGroups.isSubstance(m,mol)) {
 						logger.info("Found");
@@ -166,7 +166,7 @@ public class LookupFile implements ILookupFile, Serializable  {
 			else return null;
 
 		} catch (IOException x) {
-			logger.error(x.getMessage());
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			throw new DecisionMethodException(x);
 		}
 
@@ -187,12 +187,7 @@ public class LookupFile implements ILookupFile, Serializable  {
 	public void setUseCache(boolean useCache) {
 		this.useCache = useCache;
 	}
-	public TTLogger getLogger() {
-		return logger;
-	}
-	public void setLogger(TTLogger logger) {
-		this.logger = logger;
-	}
+
 	public boolean isCheckAromaticity() {
 		return checkAromaticity;
 	}

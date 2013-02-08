@@ -32,14 +32,13 @@ import junit.framework.TestCase;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 
 
 public class TestOverlapingGroups extends TestCase {
 	public  TestOverlapingGroups() {
-		TTLogger.configureLog4j(true);
+		
 	}
 	
 	

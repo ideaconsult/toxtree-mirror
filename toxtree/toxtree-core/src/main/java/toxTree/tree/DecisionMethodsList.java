@@ -36,6 +36,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Observable;
+import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -46,7 +47,6 @@ import toxTree.core.IDecisionMethodsList;
 import toxTree.core.Introspection;
 import toxTree.core.XMLSerializable;
 import toxTree.exceptions.XMLDecisionMethodException;
-import toxTree.logging.TTLogger;
 
 /**
  * 
@@ -55,7 +55,9 @@ import toxTree.logging.TTLogger;
  * <b>Modified</b> 2005-10-18
  */
 public class DecisionMethodsList extends Observable implements	IDecisionMethodsList, XMLSerializable {
-	static TTLogger logger = new TTLogger(DecisionMethodsList.class); 
+
+	protected transient static Logger logger = Logger.getLogger(DecisionMethodsList.class.getName());
+
 	protected ArrayList list;
 	/**
 	 * 

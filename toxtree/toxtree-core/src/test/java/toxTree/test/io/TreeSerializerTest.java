@@ -29,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -65,8 +66,8 @@ import toxTree.tree.rules.RuleStructuresList;
  * <b>Modified</b> 2005-9-5
  */
 public class TreeSerializerTest {
-	protected static TTLogger logger = new TTLogger(TreeSerializerTest.class);
-
+	
+	protected static Logger logger = Logger.getLogger(TreeSerializerTest.class.getName()); 
 	@Before
 	public void setUp() throws Exception {
 		TTLogger.configureLog4j(true);
@@ -141,7 +142,7 @@ public class TreeSerializerTest {
 			Object rule2 =is.readObject();
 			is.close();
 			f.delete();
-			logger.debug(rule.toString());
+			logger.finer(rule.toString());
 			Assert.assertEquals(rule,rule2);
 			return rule2;
 	}	

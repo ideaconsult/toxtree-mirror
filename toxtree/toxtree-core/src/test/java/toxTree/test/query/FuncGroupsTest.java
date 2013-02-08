@@ -36,6 +36,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import org.apache.log4j.Logger;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.config.Elements;
@@ -63,10 +64,8 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
-import org.openscience.cdk.tools.LoggingTool;
 
 import toxTree.exceptions.MolAnalyseException;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.query.MolFlags;
@@ -79,7 +78,7 @@ import ambit2.core.data.MoleculeTools;
  */
 public class FuncGroupsTest extends TestCase {
     protected SmilesParser gen = null;
-    protected TTLogger logger;
+    protected Logger logger = Logger.getLogger(FuncGroupsTest.class);
     
 
     public static void main(String[] args) {
@@ -112,9 +111,6 @@ public class FuncGroupsTest extends TestCase {
     public FuncGroupsTest(String arg0) {
         super(arg0);
         gen = new SmilesParser(SilentChemObjectBuilder.getInstance());
-        logger = new TTLogger(this);
-        TTLogger.configureLog4j(true);
-        LoggingTool.configureLog4j();
         
     }
     /*

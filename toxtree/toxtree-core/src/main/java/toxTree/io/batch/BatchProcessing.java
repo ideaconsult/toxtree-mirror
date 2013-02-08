@@ -34,8 +34,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Observable;
 import java.util.TimeZone;
-
-import toxTree.logging.TTLogger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Accessing & serializing Array: Throwing exception in jre6 while it works in jre5
@@ -80,8 +80,7 @@ public abstract class BatchProcessing extends Observable implements
 
 	protected static transient String MSG_ERRORCOUNTING = "Error when counting records in\t";
 
-	protected static transient TTLogger logger = new TTLogger(
-			BatchProcessing.class);
+	protected transient static Logger logger = Logger.getLogger(BatchProcessing.class.getName());
 
 	protected static transient String[] statusMsg = {
 			"Batch processing not started", "Batch running",
@@ -162,7 +161,7 @@ public abstract class BatchProcessing extends Observable implements
 		if (inputFile.getFile() == null)
 			inputFile.setFile(inputFile.createFile());
 		if (!inputFile.getFile().exists()) {
-			logger.debug(MSG_FILEDONOTEXISTS, inputFile.getFilename());
+			logger.fine(MSG_FILEDONOTEXISTS+ inputFile.getFilename());
 			throw new BatchProcessingException(MSG_FILEDONOTEXISTS
 					+ inputFile.getFilename());
 		}
@@ -171,7 +170,7 @@ public abstract class BatchProcessing extends Observable implements
 	public void createOutputFile() throws BatchProcessingException {
 		if (inputFile.filename.equals(outputFile.filename)) 
 			throw new BatchProcessingException("Input and Output files are the same!");
-		logger.debug("Creating output file\t", outputFile.filename);
+		logger.fine("Creating output file\t"+ outputFile.filename);
 		if (outputFile.getFile() == null)
 			outputFile.setFile(outputFile.createFile());
 		/*
@@ -213,7 +212,7 @@ public abstract class BatchProcessing extends Observable implements
 				try {
 					processRecord();
 				} catch (BatchProcessingException x) {
-					logger.error(x);
+					logger.log(Level.SEVERE,x.getMessage(),x);
 				}
 				inputFile.setCurrentRecord(inputFile.getCurrentRecord() + 1);
 				writeRecord();
@@ -284,10 +283,10 @@ public abstract class BatchProcessing extends Observable implements
 			configStream.close();
 		} catch (FileNotFoundException x) {
 			configStream = null;
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		} catch (IOException x) {
 			configStream = null;
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 		setChanged();
 		notifyObservers();
@@ -303,7 +302,7 @@ public abstract class BatchProcessing extends Observable implements
 		if (out == null)
 			throw new BatchProcessingException("Can't save batch state!");
 		try {
-			logger.debug("Save state\t", configFile.toString());
+			logger.fine("Save state\t"+ configFile.toString());
 			ObjectOutputStream os = new ObjectOutputStream(out);
 			os.writeObject(this);
 			os.close();
@@ -384,7 +383,7 @@ public abstract class BatchProcessing extends Observable implements
 			deleteConfigOnSuccess = true;
 			return File.createTempFile(BatchProcessing.class.getName(), ".tmp");
 		} catch (IOException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			return null;
 		}
 		// return new File(new

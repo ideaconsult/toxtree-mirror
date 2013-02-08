@@ -31,6 +31,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.query;
 
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
@@ -47,14 +49,12 @@ import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.AllRingsFinder;
 import org.openscience.cdk.ringsearch.SSSRFinder;
-import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 import org.openscience.cdk.tools.periodictable.PeriodicTable;
 
 import toxTree.exceptions.MolAnalyseException;
-import toxTree.logging.TTLogger;
 import ambit2.base.config.Preferences;
 import ambit2.core.data.MoleculeTools;
 
@@ -65,7 +65,7 @@ import ambit2.core.data.MoleculeTools;
  * <b>Modified</b> 2005-8-2
  */
 public class MolAnalyser {
-	protected static TTLogger logger  = new TTLogger(MolAnalyser.class);
+	protected static Logger logger  = Logger.getLogger(MolAnalyser.class.getName());
     //protected Molecule mol = null;
     //protected RingSet ringSet = null;
    
@@ -100,7 +100,7 @@ public class MolAnalyser {
         
     	try {
     		//New - 16 Jan 2008 - configure atom types
-    		logger.debug("Configuring atom types ...");
+    		logger.fine("Configuring atom types ...");
 	        CDKAtomTypeMatcher matcher = CDKAtomTypeMatcher.getInstance(mol.getBuilder());
 	        Iterator<IAtom> atoms = mol.atoms().iterator();
 	        while (atoms.hasNext()) {
@@ -108,9 +108,9 @@ public class MolAnalyser {
 	           IAtomType type = matcher.findMatchingAtomType(mol, atom);
 	           try {
 	        	   AtomTypeManipulator.configure(atom, type);
-                   logger.debug("Found " + atom.getSymbol() + " of type " + type.getAtomTypeName());                   
+                   logger.fine("Found " + atom.getSymbol() + " of type " + type.getAtomTypeName());                   
 	           } catch (Exception x) {
-	        	   logger.debug(x.getMessage() + " " + atom.getSymbol(),x);
+	        	   logger.fine(x.getMessage() + " " + atom.getSymbol()+x);
                    
                    if ("true".equals(Preferences.getProperty(Preferences.STOP_AT_UNKNOWNATOMTYPES))) {
                        throw new MolAnalyseException(atom.getSymbol(),x);
@@ -124,11 +124,11 @@ public class MolAnalyser {
         	if (mol instanceof IAtomContainer) {
                 try {
     	            h.addImplicitHydrogens(mol);
-    	            logger.debug("Adding implicit hydrogens; atom count "+mol.getAtomCount());
+    	            logger.fine("Adding implicit hydrogens; atom count "+mol.getAtomCount());
     	            AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
-    	            logger.debug("Convert explicit hydrogens; atom count "+mol.getAtomCount());
+    	            logger.fine("Convert explicit hydrogens; atom count "+mol.getAtomCount());
                 } catch (Exception x) {
-                    logger.error(x);
+                	logger.log(Level.SEVERE,x.getMessage(),x);
                     if ("true".equals(Preferences.getProperty(Preferences.STOP_AT_UNKNOWNATOMTYPES))) {
                         throw new MolAnalyseException(x);
                     }
@@ -139,9 +139,9 @@ public class MolAnalyser {
         	      for (int k = 0; k < moleculeSet.getMoleculeCount(); k++) {
         	    	  IMolecule molPart = moleculeSet.getMolecule(k);
       		          h.addImplicitHydrogens(molPart);
-      		          logger.debug("Adding implicit hydrogens; atom count "+molPart.getAtomCount());
+      		          logger.fine("Adding implicit hydrogens; atom count "+molPart.getAtomCount());
     		          AtomContainerManipulator.convertImplicitToExplicitHydrogens(molPart);
-    		          logger.debug("Convert explicit hydrogens; atom count "+molPart.getAtomCount());
+    		          logger.fine("Convert explicit hydrogens; atom count "+molPart.getAtomCount());
     		          m.add(molPart);
         	      }
         	      mol = m;
@@ -169,7 +169,7 @@ public class MolAnalyser {
 	        	ringSet = arf.findAllRings(mol);
 	        } catch (CDKException x) {
 	        	//timeout on AllRingsFinder, will try SSSR
-	        	logger.warn(x.getMessage());
+	        	logger.warning(x.getMessage());
 	        	SSSRFinder ssrf = new SSSRFinder(mol);
 	        	ringSet = ssrf.findEssentialRings();
 	        }
@@ -189,8 +189,8 @@ public class MolAnalyser {
 	        	
 	        	
 		        if (CDKHueckelAromaticityDetector.detectAromaticity(mol)) 
-		        	logger.debug("Aromatic\t","YES");
-		        else logger.debug("Aromatic\t","NO");
+		        	logger.fine("Aromatic\tYES");
+		        else logger.fine("Aromatic\tNO");
 		        
 		        IRing ring = null;
 		        IAtom a;
@@ -278,7 +278,7 @@ public class MolAnalyser {
 	        	FunctionalGroups.associateIonic(mol);
 	        } catch (CDKException x) {
 	        	
-	        	logger.warn(x);
+	        	logger.log(Level.WARNING,x.getMessage(),x);
 	        }        
 	        clearVisitedFlags(mol);
     	} catch (Exception x) {

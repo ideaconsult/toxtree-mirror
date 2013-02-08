@@ -28,10 +28,10 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
@@ -40,7 +40,6 @@ import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRule;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.AbstractRule;
@@ -67,12 +66,9 @@ import toxTree.tree.rules.RuleStructuresList;
  * <b>Modified</b> 2005-9-5
  */
 public class TreeSerializerTest {
-	protected static TTLogger logger = new TTLogger(TreeSerializerTest.class);
 
-	@Before
-	public void setUp() throws Exception {
-		TTLogger.configureLog4j(true);
-	}
+	protected static Logger logger = Logger.getLogger(TreeSerializerTest.class.getName());
+
 
 	@Test
 	public void testAbstractRule() throws Exception  {
@@ -148,7 +144,7 @@ public class TreeSerializerTest {
 			Object rule2 = decoder.readObject();
 			decoder.close();	
 			
-			logger.debug(rule.toString());
+			logger.finer(rule.toString());
 			Assert.assertEquals(rule,rule2);
 			return rule2;
 

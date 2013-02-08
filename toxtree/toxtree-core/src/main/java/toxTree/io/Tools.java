@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 import toxTree.core.Introspection;
 import ambit2.base.io.DownloadTool;

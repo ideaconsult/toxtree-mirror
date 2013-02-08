@@ -37,6 +37,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.config.Elements;
@@ -75,7 +77,6 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.core.ConnectionMatrix;
-import toxTree.logging.TTLogger;
 import toxTree.tree.AbstractRule;
 import ambit2.core.data.MoleculeTools;
 import ambit2.core.smiles.SmilesParserWrapper;
@@ -88,7 +89,7 @@ import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
  * <b>Modified</b> 2005-8-8
  */
 public class FunctionalGroups {
-	public static TTLogger logger = new TTLogger(FunctionalGroups.class);
+	public static Logger logger = Logger.getLogger(FunctionalGroups.class.getName());
 	/**
 	 * Messages
 	 */
@@ -609,7 +610,7 @@ public class FunctionalGroups {
 			
 			if ((n !=null) && (o !=null)) { //this is the bond
 				n.setProperty(FunctionalGroups.DONTMARK,aminoSulphate.getID());
-				logger.debug("Ma");
+				logger.fine("Ma");
 				break;
 			}
 		}
@@ -1154,27 +1155,27 @@ public class FunctionalGroups {
         			else if (!esterGroups.contains(o)) esterGroups.add(o);
         		}
         		if (esterGroups.size() == 2) {
-        			logger.debug("Ring with two ester groups\tNO");
+        			logger.fine("Ring with two ester groups\tNO");
         			for (int a=0;a<ring.getAtomCount();a++) 
         				if (ring.getAtom(a).getSymbol().equals("C")) continue;
         				else if (ring.getAtom(a).getSymbol().equals("O")) {
         					if (ring.getAtom(a).getProperty(query.getID()) == null) {
         						// O atom only allowed if from ester group
-	        					logger.debug("Heteroring\tYES");
+	        					logger.fine("Heteroring\tYES");
 	        					return false;
         					}
         				} else {
-        					logger.debug("Heteroring\tYES");
+        					logger.fine("Heteroring\tYES");
         					return false;        					
         				}
-        			logger.info("Cyclic diester\tYES");        				
+        			logger.fine("Cyclic diester\tYES");        				
         			return true;
         		}
         	} 
-        	logger.debug("Ring with two ester groups\tNO");
+        	logger.fine("Ring with two ester groups\tNO");
         	return false;
     	} else {
-    		logger.debug("Less than 2 ester groups ");
+    		logger.fine("Less than 2 ester groups ");
     		return false;
     	}
     }    
@@ -1666,7 +1667,7 @@ public class FunctionalGroups {
      * @return List {@link List}
      */
     public static List getBondMap(IAtomContainer mol, IAtomContainer q,boolean isPreprocessed) {
-    		logger.debug("getBondMap\t",q.getID());
+    		logger.fine("getBondMap\t"+q.getID());
         	List list = null;
 			if (!isPreprocessed && needsPreprocessing(q)) {
 				preProcess(mol);
@@ -1677,7 +1678,7 @@ public class FunctionalGroups {
 		    	markMaps(mol,q,list);
 	    		
         	} catch (Exception x) {
-        	    logger.error(x);
+        	    logger.log(Level.SEVERE,x.getMessage(),x);
         	    list = null;
         	}
         	
@@ -1702,7 +1703,7 @@ public class FunctionalGroups {
 				
 			o = b1.getProperty(ALLOCATED);
 			if ((o != null) && (!o.equals(id))) {
-				logger.debug("Possible overlap of group\t",id,"\tand\t",o.toString(),"\t");
+				logger.fine("Possible overlap of group\t"+id+"\tand\t"+o.toString()+"\t");
 				overlaped = true;
 				break;
 			}
@@ -1713,7 +1714,7 @@ public class FunctionalGroups {
     
     public static List getUniqueBondMap(IAtomContainer mol, IAtomContainer q, boolean isPreprocessed) {
     	if (q.getAtomCount() > mol.getAtomCount()) {
-    		logger.debug("A query with more atoms than a molecule!");
+    		logger.fine("A query with more atoms than a molecule!");
     		return null;
     	}
     	List list = null;
@@ -1727,12 +1728,12 @@ public class FunctionalGroups {
 				list = UniversalIsomorphismTester.getSubgraphMaps(mol,q);
 			} catch (CDKException x) {
 				list = null;
-				logger.error(x);
+				logger.log(Level.SEVERE,x.getMessage(),x);
 			}
             if ((list == null) || (list.size()==0))
-            	logger.debug("getUniqueBondMap\t",q.getID(),"\t",AbstractRule.MSG_NO);
+            	logger.fine("getUniqueBondMap\t"+q.getID()+"\t"+AbstractRule.MSG_NO);
             else
-            	logger.debug("getUniqueBondMap\t",q.getID(),"\t",AbstractRule.MSG_YES);
+            	logger.fine("getUniqueBondMap\t"+q.getID()+"\t"+AbstractRule.MSG_YES);
             if (list.size() < 2) return list;
             //else delete redundant solutions
             TreeMap all = new TreeMap(); //to contain all redundant solutions
@@ -1744,11 +1745,11 @@ public class FunctionalGroups {
             for (int j=0; j < mappedBonds.length; j++) mappedBonds[j] = -1;
             
             //TODO have to take care if ArrayList of RMap is returned instead of  ArrayList of ArrayList of RMap
-            //logger.debug(FunctionalGroups.mapToString(mol));
+            //logger.fine(FunctionalGroups.mapToString(mol));
             
     		for (int j = list.size()-1; j >=0 ; j--) 
     			if (isOverlapped(mol, q,(List)list.get(j))) {
-    				logger.debug("Remove overlaped group ",q.getID(),"");
+    				logger.fine("Remove overlaped group "+q.getID());
     				list.remove(j);
     			}            
             
@@ -1795,7 +1796,7 @@ public class FunctionalGroups {
     			} else {
 	    			String bondMap = aMap.keySet().toString();
 	    			
-	    			//logger.debug(bondMap);
+	    			//logger.fine(bondMap);
 	    			if 	(all.containsKey(bondMap))
 	    				keep[j] = false;
 	    			else {
@@ -1983,8 +1984,8 @@ public class FunctionalGroups {
         return b;
     }
     
-    public static StringBuffer mapToString(IAtomContainer mol) {
-        StringBuffer b = new StringBuffer();
+    public static StringBuilder mapToString(IAtomContainer mol) {
+    	StringBuilder b = new StringBuilder();
         boolean[] f = null;
         for (int i =0; i < mol.getAtomCount(); i++) {
         	
@@ -2047,12 +2048,12 @@ public class FunctionalGroups {
             
     /*
     public static boolean isSubstructure(AtomContainer mol, AtomContainer query ) throws CDKException {
-		logger.debug("Checking if has substructure \t",query.getID());
+		logger.fine("Checking if has substructure \t",query.getID());
 		if (UniversalIsomorphismTester.isSubgraph(mol,query)) {
-			logger.debug("Substructure FOUND \t",query.getID());
+			logger.fine("Substructure FOUND \t",query.getID());
 			return true;
 		} else {
-			logger.debug("Substructure NOT found \t",query.getID());
+			logger.fine("Substructure NOT found \t",query.getID());
 			return false;		 
 		}    	
     }
@@ -2130,7 +2131,7 @@ public class FunctionalGroups {
     	final String MSG = "Has only these groups\t";
 	    if ((query == null) || (query.size() == 0)) return false;
 	    else {
-	    	logger.debug("Checking if it has only these groups\t",ids);
+	    	logger.fine("Checking if it has only these groups\t"+ids);
 	    	List list = null;
 	    	int found = 0;
 	  	    for (int i=0; i < query.size(); i++) {
@@ -2138,21 +2139,21 @@ public class FunctionalGroups {
 	    		list = FunctionalGroups.getUniqueBondMap(mol, q,isPreprocessed);
 	    		if ((list == null) || (list.size() == 0)) continue;
 	    		FunctionalGroups.markMaps(mol, q, list);
-	    		logger.debug(mapToString(mol));
+	    		logger.fine(mapToString(mol).toString());
 	    		if (hasMarkedOnlyTheseGroups(mol,ids,selected,null)) {
-	    			logger.info(MSG,ids,"\tYES");
+	    			logger.fine(MSG+ids+"\tYES");
 	  				return true;
 	    		}
 	    		else found ++;
 	    	}
-	  	    if (logger.isDebugEnabled()) {
-	  	    	logger.debug(mapToString(mol,ids));
+	  	    if (logger.isLoggable(Level.FINE)) {
+	  	    	logger.fine(mapToString(mol,ids).toString());
 	  	    }
   			if (hasMarkedOnlyTheseGroups(mol,ids,selected,null)) {
-  				logger.info(MSG,ids,"\tYES");
+  				logger.fine(MSG+ids+"\tYES");
   				return true;
   			} else {
-  				logger.info("Has only these groups\t",ids,"\tNO");
+  				logger.fine("Has only these groups\t"+ids+"\tNO");
   				return false;
   			}
 	    }
@@ -2191,12 +2192,12 @@ public class FunctionalGroups {
             }
             if (!ok)  {
             	if (selectionOther != null) selectionOther.addAtom(a);
-            	logger.debug("Atom "+ a.getSymbol() + " belongs to a forbidden group");
-            	logger.debug(mapToString(mol,id));
+            	logger.fine("Atom "+ a.getSymbol() + " belongs to a forbidden group");
+            	logger.fine(mapToString(mol,id).toString());
             	return false; //at least one atom is unmarked
             } else if (selection!=null) selection.addAtom(a);
         }
-        logger.debug("No forbidden groups found");
+        logger.fine("No forbidden groups found");
         return true;
     }
     /*
@@ -2218,13 +2219,13 @@ public class FunctionalGroups {
             
             
             if (otherAtom)  {
-            	logger.debug("Atom "+ a.getSymbol() + " belongs to a forbidden group");
-            	logger.debug(mapToString(mol,id));
+            	logger.fine("Atom "+ a.getSymbol() + " belongs to a forbidden group");
+            	logger.fine(mapToString(mol,id));
             	if (selection != null) selection.addAtom(a);
             	else return true; //at least one atom is unmarked
             }
         }
-        logger.debug("No forbidden groups found");
+        logger.fine("No forbidden groups found");
         return selection==null?false:selection.getAtomCount()>0;
     }    
     */
@@ -2262,12 +2263,12 @@ public class FunctionalGroups {
             
             if (!ok)  {
             	
-            	logger.debug("Atom "+ a.toString() + " belongs to a forbidden group");
+            	logger.fine("Atom "+ a.toString() + " belongs to a forbidden group");
             	
             	return false; //at least one atom is unmarked
             }
         }
-        logger.debug("No forbidden groups found");
+        logger.fine("No forbidden groups found");
         return true;
     }
     public static IAtomContainer createAtomContainer(String smiles, String id) {
@@ -2290,7 +2291,7 @@ public class FunctionalGroups {
     }
     public static IAtomContainer createAtomContainer(String smiles,boolean addHydrogens,String id,SMILES_PARSER mode) {
         try {
-        	//logger.debug("Creating molecule from SMILES\t",smiles);
+        	//logger.fine("Creating molecule from SMILES\t",smiles);
         	SmilesParserWrapper sp = mode==null?SmilesParserWrapper.getInstance():SmilesParserWrapper.getInstance(mode);
         	
             IAtomContainer mol = sp.parseSmiles(smiles);
@@ -2298,17 +2299,17 @@ public class FunctionalGroups {
 
             if (addHydrogens) 
             try {
-            	//logger.debug("Adding explicit hydrogens");
+            	//logger.fine("Adding explicit hydrogens");
             	AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
                 h.addImplicitHydrogens(mol);
                 AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
       
                 //h.addExplicitHydrogensToSatisfyValency((IMolecule)mol);
             } catch (InvalidSmilesException x ) {
-                logger.error(x);
+            	logger.log(Level.SEVERE,x.getMessage(),x);
                 return null;
             } catch (CDKException x) {
-            	logger.error(x);
+            	logger.log(Level.SEVERE,x.getMessage(),x);
                 return null;
             }
 
@@ -2316,7 +2317,7 @@ public class FunctionalGroups {
 			sp = null;
 			return mol;
         } catch (InvalidSmilesException x ) {
-            logger.error(x);
+            logger.log(Level.SEVERE,x.getMessage(),x);
             return null;
         }
     }         
@@ -3231,7 +3232,7 @@ public class FunctionalGroups {
     			 (b.getAtom(0).getSymbol().equals("C")) &&
 				 (b.getAtom(1).getSymbol().equals("C")) 
     		   ) {
-    			logger.info("Acetylenic group found");
+    			logger.fine("Acetylenic group found");
     			return true;		
     		}
     	}
@@ -3307,14 +3308,14 @@ public class FunctionalGroups {
 	        		if (!nb.getFlag(CDKConstants.ISINRING)) return true;
 	        		/*
 	        		if (!r.contains(neighbors[n])) {
-	        			logger.debug("Ring has substituent(s)\t","YES\t",neighbors[n].getSymbol());
+	        			logger.fine("Ring has substituent(s)\t","YES\t",neighbors[n].getSymbol());
 	        			return true; 
 	        		}
 	        		*/
 	        	}
 	        }
 	    }
-	    logger.debug("Ring with substituent(s)\t","NO");
+	    logger.fine("Ring with substituent(s)\tNO");
 	    return false;
     }
     public static boolean isCommonTerpene(IAtomContainer  mol) {
@@ -3333,7 +3334,7 @@ public class FunctionalGroups {
 
     	
     	if (h/8  != n)  {
-    		logger.debug(MolecularFormulaManipulator.getHillString(formula));
+    		logger.fine(MolecularFormulaManipulator.getHillString(formula));
     		return false;
     	}
     	int o = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"O"));
@@ -3342,7 +3343,7 @@ public class FunctionalGroups {
     	QueryAtomContainer q = isopreneUnit();
 		List list = FunctionalGroups.getBondMap(mol, q,false);
 		if ((list == null) || (list.size() == 0)) {
-			logger.debug("NO isoprene unit found");
+			logger.fine("NO isoprene unit found");
 			return false;
 		}
 		FunctionalGroups.markMaps(mol, q, list);
@@ -3358,14 +3359,14 @@ public class FunctionalGroups {
 			for (int i=0; i< mol.getBondCount(); i++)
 				if (mol.getBond(i).getOrder() == CDKConstants.BONDORDER_DOUBLE) db++;
 			if ((size == 1) && (db != 2)) {
-				logger.debug("Single ring , double bonds ",db);
+				logger.fine("Single ring , double bonds "+db);
 				return false;
 			}
 			if ((size == 2) && (db != 1)) {
-				logger.debug("Two rings , double bonds ",db);
+				logger.fine("Two rings , double bonds "+db);
 				return false;
 			}
-			logger.debug("May be terpene");
+			logger.fine("May be terpene");
 			//za ostanalite neznam
 		} 
 		
@@ -3383,10 +3384,10 @@ public class FunctionalGroups {
 		}
 		
 		boolean b = hasMarkedOnlyTheseGroups(mol,ids);
-		if (logger.isDebugEnabled()) {
-			logger.debug(mapToString(mol));
-			if (b) logger.debug("This compound is a terpene (terpenoid)");
-			else  logger.debug("This compound is NOT a terpene");
+		if (logger.isLoggable(Level.FINE)) {
+			logger.fine(mapToString(mol).toString());
+			if (b) logger.fine("This compound is a terpene (terpenoid)");
+			else  logger.fine("This compound is NOT a terpene");
 		}
 		return b;
 
@@ -3398,7 +3399,7 @@ public class FunctionalGroups {
 		if (size==1) return true;
 		IRingSet allRings = rings.getConnectedRings((IRing)rings.getAtomContainer(0));
 		boolean b = (allRings.getAtomContainerCount() == size);
-		if (b) logger.debug("Single fused ring found");
+		if (b) logger.fine("Single fused ring found");
 		allRings = null;
 		return b;
 	}
@@ -3414,27 +3415,27 @@ public class FunctionalGroups {
 	}
 	public static boolean hasGroup(IAtomContainer mol, IAtomContainer q, boolean preprocess, IAtomContainer selected) {
 		if (q.getAtomCount() > mol.getAtomCount()) {
-			logger.debug("A query with more atoms than a molecule!");
+			logger.fine("A query with more atoms than a molecule!");
 			return false;
 		}
 		if (preprocess) {
-			logger.debug("Marking CHn groups");
+			logger.fine("Marking CHn groups");
 			preProcess(mol);
 		}
 		if (selected==null)
 			try {
 				
 				if (UniversalIsomorphismTester.isSubgraph(mol,q)) {
-					//logger.debug(mapToString(mol));
-					logger.info("Molecule \t",mol.getID(),MSG_HASGROUP,q.getID(),"\tYES");
+					//logger.fine(mapToString(mol));
+					logger.fine("Molecule \t"+mol.getID()+MSG_HASGROUP+q.getID()+"\tYES");
 					return true;
 				} else {
-					//logger.debug(mapToString(mol));
-					logger.debug("Molecule \t",mol.getID(),MSG_HASGROUP,q.getID(),"\tNO");
+					//logger.fine(mapToString(mol));
+					logger.fine("Molecule \t"+mol.getID()+MSG_HASGROUP+q.getID()+"\tNO");
 					return false;		 
 				}
 			} catch (Exception x) {
-				logger.error(x);
+				logger.log(Level.SEVERE,x.getMessage(),x);
 				return false;
 			} 
 		else
@@ -3448,7 +3449,7 @@ public class FunctionalGroups {
 				return (list != null) && (list.size()>0);
 				
 			} catch (CDKException x) {
-				logger.debug(x);
+				logger.log(Level.SEVERE,x.getMessage(),x);
 				return false;
 			}			
 	}
@@ -3458,12 +3459,12 @@ public class FunctionalGroups {
 		if (mol.getBondCount() != q.getBondCount()) return false; // no need to spend time on isomorphism ...
 		boolean b= (UniversalIsomorphismTester.isIsomorph(mol,q));
 		
-		if (logger.isDebugEnabled())
-			if (b) logger.info(MSG_MOLECULEIS,q.getID(),"\tYES");
-			else logger.info(MSG_MOLECULEIS,q.getID(),"\tNO");
+		if (logger.isLoggable(Level.FINE))
+			if (b) logger.fine(MSG_MOLECULEIS+q.getID()+"\tYES");
+			else logger.fine(MSG_MOLECULEIS+q.getID()+"\tNO");
 		return b;		
 		} catch (CDKException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			return false;
 		}		
 
@@ -3484,7 +3485,7 @@ public class FunctionalGroups {
 	    IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(mol);
 		markCHn(mol);
 		List<IElement> elements = MolecularFormulaManipulator.elements(formula);
-		logger.debug("Checking for more than " + threshold ," groups");
+		logger.fine("Checking for more than " + threshold +" groups");
 		for (int i=0; i< elements.size(); i++) {
 			String element = elements.get(i).getSymbol();
 			if (element.equals("H")) continue; 
@@ -3498,7 +3499,7 @@ public class FunctionalGroups {
 				FunctionalGroups.hasGroup(mol,primaryAmine(false));
 				if (group) {
 					groups++;
-					logger.debug("amino group found");
+					logger.fine("amino group found");
 				}
 				groups += countGroups(mol,cyano());
 				groups += countGroups(mol,nitro1double());
@@ -3513,7 +3514,7 @@ public class FunctionalGroups {
 				int g = countGroups(mol,carboxylicAcid())  + countGroups(mol,FunctionalGroups.ester());
 				if (g > 0 ) {
 					groups ++; //count once
-					logger.debug("acid or ester group found");
+					logger.fine("acid or ester group found");
 				}
 				groups += countGroups(mol,saltOfCarboxylicAcid(metals));
 				groups += countGroups(mol,acetal());
@@ -3541,7 +3542,7 @@ public class FunctionalGroups {
 			}
 			
 		}
-		logger.info("Different groups found\t",groups);
+		logger.fine("Different groups found\t"+groups);
 		return (groups >= threshold);
 	}	
 	/*
@@ -3552,7 +3553,7 @@ public class FunctionalGroups {
 		MFAnalyser mf= new MFAnalyser(mol);
 		markCHn(mol);
 		Vector elements = mf.getElements();
-		logger.debug("Checking for more than " + threshold ," groups");
+		logger.fine("Checking for more than " + threshold ," groups");
 		for (int i=0; i< elements.size(); i++) {
 			String element = (String) elements.get(i);
 			if (element.equals("H")) continue; 
@@ -3566,7 +3567,7 @@ public class FunctionalGroups {
 				FunctionalGroups.hasGroup(mol,primaryAmine(false));
 				if (group) {
 					groups++;
-					logger.debug("amino group found");
+					logger.fine("amino group found");
 				}
 				groups += countGroups(mol,cyano());
 				groups += countGroups(mol,nitro1double());
@@ -3583,7 +3584,7 @@ public class FunctionalGroups {
 					FunctionalGroups.hasGroup(mol,ester());
 				if (group) {
 					groups++;
-					logger.debug("acid or ester group found");
+					logger.fine("acid or ester group found");
 				}
 				groups += countGroups(mol,saltOfCarboxylicAcid(metals));
 				groups += countGroups(mol,acetal());
@@ -3610,7 +3611,7 @@ public class FunctionalGroups {
 			}
 			
 		}
-		logger.info("Different groups found\t",groups);
+		logger.fine("Different groups found\t",groups);
 		return (groups >= threshold);
 	}
 	*/
@@ -3622,14 +3623,14 @@ public class FunctionalGroups {
 		
 		int n = c.getAtomContainerCount();
 		if (n == 1) return 0;
-		logger.debug("Trying to find ionic bonds (if any)");
+		logger.fine("Trying to find ionic bonds (if any)");
 		IAtomContainer ac = null;
 		ArrayList match = new ArrayList();
 		StringBuffer notMatched = new StringBuffer();
 		int ionicBonds = 0;
 		for (int i=0; i<n; i++) {
 			ac = c.getAtomContainer(i);
-			logger.debug("AtomContainer \t",Integer.toString(i+1)," atom\t",Integer.toString(ac.getAtomCount()));
+			logger.fine("AtomContainer \t"+Integer.toString(i+1)+" atom\t"+Integer.toString(ac.getAtomCount()));
 			//if there are atoms with formal charge != 0
 			for (int k=0; k<ac.getAtomCount(); k++) {
 				IAtom atom = ac.getAtom(k);
@@ -3668,11 +3669,11 @@ public class FunctionalGroups {
 									*/
 									//Association ionicBond = new Association(atom,mAtom);
 									MyAssociationBond ionicBond = new MyAssociationBond(atom,mAtom);
-									logger.debug("Association between atom\t",atom.getSymbol(),"\tand\t",mAtom.getSymbol());
+									logger.fine("Association between atom\t"+atom.getSymbol()+"\tand\t"+mAtom.getSymbol());
 								
 									a.addElectronContainer(ionicBond);
 									ionicBonds ++;
-								} else 	logger.debug("Bond already exists : atom\t",atom.getSymbol(),"\tand\t",mAtom.getSymbol());
+								} else 	logger.fine("Bond already exists : atom\t"+atom.getSymbol()+"\tand\t"+mAtom.getSymbol());
 								break;
 							}	
 						}
@@ -3695,7 +3696,7 @@ public class FunctionalGroups {
 		if (notMatched.toString().length()>0)
 			throw new CDKException("Can't find an ionic bond for atom(s)\t"+notMatched.toString());
 		
-		logger.info("Ionic bonds found\t",ionicBonds);
+		logger.fine("Ionic bonds found\t"+ionicBonds);
 		return ionicBonds;
 	}
 	/**
@@ -3745,10 +3746,10 @@ public class FunctionalGroups {
 			}
 		
 		}	
-		if (logger.isDebugEnabled()) 
+		if (logger.isLoggable(Level.FINE)) 
 			for (int i=0; i< bondsToBreak.size();i++) {
 				IBond b = (IBond)bondsToBreak.get(i);
-				logger.debug("Break bond between\t",b.getAtom(0).getSymbol(),"\t",b.getAtom(1).getSymbol());
+				logger.fine("Break bond between\t"+b.getAtom(0).getSymbol()+"\t"+b.getAtom(1).getSymbol());
 			}
 		for (int i=0; i< bondsToBreak.size();i++) {
 			IBond b = bondsToBreak.get(i);
@@ -3778,7 +3779,7 @@ public class FunctionalGroups {
 						for (int ih=0;ih<neighbors.size();ih++) {
 							IAtom nh = (IAtom)neighbors.get(ih); 
 							if (nh.getSymbol().equals("H")) {
-								logger.debug("a H atom connected to N will be moved to Cl");
+								logger.fine("a H atom connected to N will be moved to Cl");
 								a.removeBond(a1,nh);
 								cl = b.getAtom((k+1)%2);
 								//cl = a1[(k+1)%2]; //TODO this assumes two atoms in the bond
@@ -3786,7 +3787,7 @@ public class FunctionalGroups {
 									cl.setFormalCharge(0);
 									a.addBond(MoleculeTools.newBond(builder,cl,nh));
 									nh.removeProperty(q.getID());
-								} else logger.error("Expected Cl atom but found\t",cl);
+								} else logger.fine("Expected Cl atom but found\t"+cl);
 								break;
 							}
 						}	
@@ -3895,7 +3896,7 @@ public class FunctionalGroups {
 				}
 			
 		} catch (CDKException x) {
-			logger.debug(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 		
 	}
@@ -3947,7 +3948,7 @@ public class FunctionalGroups {
 		}
 		for (int i=0;i< mol.getAtomCount();i++)
 			mol.getAtom(i).setFlag(CDKConstants.VISITED,false);
-		logger.debug("Longest chaing in molecule is of length " + maxPathLength + " between atoms " + (bestStartAtom+1) +  " and " + (bestEndAtom+1) );
+		logger.fine("Longest chaing in molecule is of length " + maxPathLength + " between atoms " + (bestStartAtom+1) +  " and " + (bestEndAtom+1) );
 		
 		return maxPathLength;
 	}

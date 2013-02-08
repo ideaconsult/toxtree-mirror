@@ -27,6 +27,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
@@ -34,13 +35,12 @@ import org.openscience.cdk.qsar.IMolecularDescriptor;
 import toxTree.core.IDescriptorBased;
 import toxTree.core.IToxTreeEditor;
 import toxTree.core.Introspection;
-import toxTree.logging.TTLogger;
 import toxTree.ui.EditorFactory;
 import ambit2.base.data.IModel;
 import ambit2.base.exceptions.QSARModelException;
 
 public abstract class AbstractQSARModel implements IModel,  Serializable, IDescriptorBased {
-	protected static transient TTLogger logger = new TTLogger(AbstractQSARModel.class);
+	protected static transient Logger logger = Logger.getLogger(AbstractQSARModel.class.getName());
 	protected List<String> descriptorNames;
     protected Hashtable<String,Boolean> flag_calculated; 
 	private transient List<IMolecularDescriptor> descriptors = new ArrayList<IMolecularDescriptor>();

@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.test.query;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -37,10 +38,8 @@ import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IReaction;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.templates.MoleculeFactory;
 
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.SimpleReactions;
 
@@ -50,7 +49,9 @@ import toxTree.query.SimpleReactions;
  * <b>Modified</b> 2005-8-18
  */
 public class SimpleReactionsTest {
-	public static TTLogger logger=new TTLogger(SimpleReactionsTest.class); 
+ 
+	protected static Logger logger = Logger.getLogger(SimpleReactionsTest.class.getName());
+
 	protected SimpleReactions sr = null;
 	@Before
 	public void setUp() throws Exception {
@@ -59,7 +60,7 @@ public class SimpleReactionsTest {
 	}
 	@Test
 	public void testSimpleReactions() {
-		TTLogger.configureLog4j(false);
+		
 	}
 	@Test
 	public void testLoadHydrolysisReaction() throws Exception{
@@ -233,7 +234,7 @@ public class SimpleReactionsTest {
 						products.getAtomContainer(p),q);
 				if ((list != null) && (list.size()>0)) {
 					match ++;
-					logger.debug("Product "+(p+1)+ " match");
+					logger.finer("Product "+(p+1)+ " match");
 				}
 			}
 
@@ -255,7 +256,7 @@ public class SimpleReactionsTest {
 	}
 	@Test
 	public void testcanMetabolize() throws Exception {
-		logger.debug("testcanMetabolize");
+		logger.finer("testcanMetabolize");
 		Object[][] answers = {
 				{"CCCCCCCCCC",new Boolean(false)},
 				{"CN(=NC(C)C(C)C(C)(C)C)c1ccc(c(c1)C)C",new Boolean(true)},
@@ -281,15 +282,15 @@ public class SimpleReactionsTest {
 					if (((Boolean) answers[r][1]).booleanValue()) {
 						if (canM) {
 							success++;
-							logger.debug("Reactant\t" , (String)answers[r][0],"\tOK");
+							logger.info("Reactant\t"+ (String)answers[r][0]+"\tOK");
 						} else
-							logger.error("Reactant\t" , (String)answers[r][0],"\tERROR");
+							logger.severe("Reactant\t" + (String)answers[r][0]+"\tERROR");
 					} else {
 						if (canM) {
-							logger.error("Reactant\t" , (String)answers[r][0],"\tERROR");
+							logger.severe("Reactant\t" + (String)answers[r][0]+"\tERROR");
 						} else {
 							success++;
-							logger.debug("Reactant\t" , (String)answers[r][0],"\tOK");
+							logger.finer("Reactant\t" +(String)answers[r][0]+"\tOK");
 						}
 
 					}
@@ -299,7 +300,7 @@ public class SimpleReactionsTest {
 	}		
 	@Test
 	public void testMetabolic() throws Exception {
-		logger.debug("testMetabolic");
+		logger.finer("testMetabolic");
 		Object[][] answers = {
 				{"CCCCCCCCCC",new Boolean(false),new Boolean(false),new Boolean(false),new Boolean(false)},
 				{"CN(=NC(C)C(C)C(C)(C)C)c1ccc(c(c1)C)C",new Boolean(true),new Boolean(false),new Boolean(false),new Boolean(false)},
@@ -314,14 +315,14 @@ public class SimpleReactionsTest {
 				IAtomContainer mol;
 				IReaction mr = sr.getMetabolicReaction(index);
 				
-				logger.debug(mr.getID());
+				logger.finer(mr.getID());
 				for (int r=0; r < answers.length; r++) { 
 	
 					mol = FunctionalGroups.createAtomContainer((String)answers[r][0]);
 					IAtomContainerSet results = SimpleReactions.process(mol,mr);
 					if (((Boolean) answers[r][index+1]).booleanValue()) {
 						verifyProducts(results,mr);
-						logger.debug(Integer.toString(r+1),"\tReactant\t" + (String)answers[r][0]);
+						logger.finer(Integer.toString(r+1)+"\tReactant\t" + (String)answers[r][0]);
 						Assert.assertNotNull(results)	;						
 						Assert.assertEquals(2,results.getAtomContainerCount());
 					} else {
@@ -335,7 +336,7 @@ public class SimpleReactionsTest {
 	}
 	@Test
 	public void testMultipleReactions() throws Exception  {
-		logger.debug("MultipleReactions");
+		logger.finer("MultipleReactions");
 		IMolecule Gr3 = (IMolecule) FunctionalGroups.createAtomContainer(
 				"CCN(Cc1cccc(c1)S(=O)(=O)O[Na])c2cccc(c2)C(=C3C=CC(C=C3)=[N+](CC)Cc4cccc(c4)S(=O)(=O)O[Na])c5ccc(O)cc5S6(=O)(=O)([O-]6)"
 				,true);

@@ -89,7 +89,7 @@ public class ToxTreeBatchProcessing extends ChemObjectBatchProcessing {
 	 */
 	@Override
 	public void processRecord() throws BatchProcessingException {
-		logger.debug("Process record");
+		logger.finer("Process record");
 		if (decisionMethod == null) throw new BatchProcessingException("Decision method not assigned");
 		if (decisionResult == null) decisionResult = decisionMethod.createDecisionResult(); 
 		if (chemObject instanceof IAtomContainer) {
@@ -113,7 +113,7 @@ public class ToxTreeBatchProcessing extends ChemObjectBatchProcessing {
 	 */
 	@Override
 	public void writeRecord() throws BatchProcessingException {
-		logger.debug("Write record");
+		logger.finer("Write record");
 		if (writer instanceof MDLWriter) {
 			((MDLWriter) writer).setSdFields(chemObject.getProperties());
 		}
@@ -180,7 +180,7 @@ public class ToxTreeBatchProcessing extends ChemObjectBatchProcessing {
 	public void saveConfig(OutputStream out) throws BatchProcessingException {
 		if (out == null) throw new BatchProcessingException("Can't save batch state!"); 
 		try {
-			logger.debug("Save state\t",configFile.toString());
+			logger.finer("Save state\t"+configFile.toString());
 			ObjectOutputStream os = new ObjectOutputStream(out);
 			os.writeObject(this);
 			os.close();

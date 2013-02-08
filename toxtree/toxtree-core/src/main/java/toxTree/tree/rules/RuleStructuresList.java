@@ -27,6 +27,7 @@ package toxTree.tree.rules;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.logging.Level;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -74,7 +75,7 @@ public class RuleStructuresList extends AbstractRule {
 			
 		} catch (Exception x) {
 			try {setFile(Tools.getFileFromResource(file.getName()));} catch (Exception xx) { lookupFile = null;}
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 		setExplanation("Returns true if the query is isomorphic to one of the structures loaded from a preconfigured file of a type SDF, SMI, CSV ");
 		setTitle("Exact search");
@@ -111,7 +112,7 @@ public class RuleStructuresList extends AbstractRule {
 		lookupFile = new LookupFile(file);
         setFilename(file.getAbsolutePath());
 
-		logger.debug("Will be using file\t",file.getAbsoluteFile());		
+		logger.fine("Will be using file\t"+file.getAbsoluteFile());		
 		
 	}
 	/**
@@ -132,7 +133,7 @@ public class RuleStructuresList extends AbstractRule {
             try {
                 lookupFile = new LookupFile(getFilename());
             } catch (Exception x) {
-                logger.error(x);
+            	logger.log(Level.SEVERE,x.getMessage(),x);
                 lookupFile = null;
             }
     }

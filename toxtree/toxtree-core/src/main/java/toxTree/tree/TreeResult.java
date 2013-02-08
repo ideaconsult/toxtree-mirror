@@ -29,6 +29,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -41,14 +43,13 @@ import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DMethodNotAssigned;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.logging.TTLogger;
 /**
  * A default class implementing {@link toxTree.core.IDecisionResult}
  * @author Nina Jeliazkova nina@acad.bg<br>
  * @version 0.1, 2005-4-30
  */
 public class TreeResult implements IDecisionResult {
-    protected static transient TTLogger logger = null;
+    protected static transient Logger logger = Logger.getLogger(TreeResult.class.getName());
     /**
      * Comment for <code>serialVersionUID</code>
      */
@@ -81,7 +82,6 @@ public class TreeResult implements IDecisionResult {
 		status = new ProgressStatus();
 		ruleResults = new ArrayList<RuleResult>();
 		assignedCategories = new CategoriesList();
-		if (logger ==null) logger = new TTLogger(TreeResult.class);
 	}
 	public void clear() {
 
@@ -173,7 +173,7 @@ public class TreeResult implements IDecisionResult {
 	    firePropertyChangeEvent(ProgressStatus._pClassID,this.category,category);
 	    
 	    if (acceptCategory(category)) {
-	    	logger.info("Assign category\t",category);
+	    	logger.info("Assign category\t"+category);
 	    	this.category = category;
 		    if (!decisionMethod.getCategories().isMultilabel()) {
 		    	assignedCategories.clear();
@@ -520,7 +520,7 @@ public class TreeResult implements IDecisionResult {
 		try { 
     		l.add(new CategoryFilter(getResultPropertyNames()[0] , c.get(i)));
     	} catch (Exception x) {
-    		logger.error(x);
+    		logger.log(Level.SEVERE,x.getMessage(),x);
     	}
     	return l;
     }

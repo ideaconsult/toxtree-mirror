@@ -177,10 +177,10 @@ public class LinearQSARModel extends AbstractQSARModel  {
 	                    for (int n=0; n < dnames.length;n++)
 	                        setCalculated(getDescriptor(i),dnames[n], true);
 						names = dvalue.getNames();
-						if ((names != null) && logger.isDebugEnabled()) 
+						if (names != null)  
 							for (int j=0; j < names.length;j++)
-								logger.debug("Estimated ",names[j]);
-						logger.debug(dvalue.getValue()," by ",getDescriptor(i));
+								logger.fine("Estimated "+names[j]);
+						logger.fine(dvalue.getValue()+" by "+getDescriptor(i));
 						descriptor = dvalue.getValue();
 					} catch (QSARModelException x) {
 						throw x;
@@ -226,7 +226,7 @@ public class LinearQSARModel extends AbstractQSARModel  {
 						throw new QSARModelException(String.format("%s=%s %s",descriptorNames.get(i),descriptor,x.getMessage())); 
 					}
 				
-				logger.debug("Using "+descriptorNames.get(i) + "=" + value);
+				logger.fine("Using "+descriptorNames.get(i) + "=" + value);
 				
 				if (Double.isNaN(value))
 					processNaNDescriptors(descriptorNames.get(i));
@@ -264,7 +264,7 @@ public class LinearQSARModel extends AbstractQSARModel  {
 		prediction += weights[descriptorNames.size()];
 		ac.setProperty(getPredictedproperty(), prediction);
         setCalculated(null,getPredictedproperty(), true);
-		logger.info("Predicted value ",prediction);
+		logger.fine("Predicted value "+prediction);
 		if (Double.isNaN(prediction))
 			throw new QSARModelException("Predicted value is NaN");
 		return prediction;		
