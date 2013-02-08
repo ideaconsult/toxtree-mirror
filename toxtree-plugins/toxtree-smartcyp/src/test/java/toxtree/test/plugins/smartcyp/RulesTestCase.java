@@ -29,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -50,14 +51,14 @@ import toxTree.query.MolAnalyser;
 import toxTree.tree.MultiLabelDecisionNodesList;
 
 public abstract class RulesTestCase  {
-	public static TTLogger logger = new TTLogger(RulesTestCase.class);
+	public static Logger logger = Logger.getLogger(RulesTestCase.class.getName());
 	protected IDecisionMethod rules = null;
 
 
 
 	public RulesTestCase() {
 		super();
-		TTLogger.configureLog4j(false);
+
 	}
 
 	@Before
