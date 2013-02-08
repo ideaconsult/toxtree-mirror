@@ -36,7 +36,6 @@ import sicret.rules.RuleMeltingPoint;
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import ambit2.core.io.IteratingDelimitedFileReader;
 
@@ -94,7 +93,6 @@ public class SicretDataTest extends TestCase {
 		try {
 			cr = new SicretRules();
 			cr.setResiduesIDVisible(false);
-			TTLogger.configureLog4j(false);
 		} catch (DecisionMethodException x) {
 			fail();
 		}	

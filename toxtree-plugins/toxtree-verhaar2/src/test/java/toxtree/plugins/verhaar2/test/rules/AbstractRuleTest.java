@@ -31,7 +31,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionRule;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 
@@ -42,7 +41,6 @@ public abstract class AbstractRuleTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		rule2test = createRule();
-		TTLogger.configureLog4j(true);
 	}
 	@Override
 	protected void tearDown() throws Exception {

@@ -44,7 +44,6 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.io.Tools;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.cramer.RuleCommonComponentOfFood;
@@ -63,7 +62,7 @@ public class RuleStructuresListTest  {
 	public static Logger logger = Logger.getLogger(RuleStructuresListTest.class.getName());
 	@Before
 	public void setUp() throws Exception {
-		TTLogger.configureLog4j(true);
+
 	}
 
 

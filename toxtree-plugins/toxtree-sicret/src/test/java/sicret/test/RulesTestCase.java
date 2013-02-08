@@ -44,7 +44,6 @@ import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 
 public abstract class RulesTestCase extends TestCase {
