@@ -23,6 +23,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -30,7 +31,6 @@ import javax.swing.JMenuBar;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import toxTree.logging.TTLogger;
 import toxTree.ui.EditorFactory;
 import toxtree.data.DataModule;
 import toxtree.ui.editors.SwingEditorFactory;
@@ -42,7 +42,7 @@ public abstract class AbstractApplication {
 	final static String LOOKANDFEEL = "System";
 	
 	protected static String[] cmdArgs;
-	protected static TTLogger logger = new TTLogger(ToxTreeApp.class);
+	protected static Logger logger = Logger.getLogger(ToxTreeApp.class.getName());
 
 	protected DataModule dataModule = null;
 	protected JFrame mainFrame;
@@ -50,8 +50,6 @@ public abstract class AbstractApplication {
 	
 	public AbstractApplication(String title) {
 		super();
-		// Create and set up the window.
-		TTLogger.configureLog4j(true);
 		parseCmdArgs(cmdArgs);
 
 		mainFrame = new JFrame(title);
@@ -100,28 +98,24 @@ public abstract class AbstractApplication {
 			} else if (LOOKANDFEEL.equals("GTK+")) { // new in 1.4.2
 				lookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
 			} else {
-				logger.error("Unexpected value of LOOKANDFEEL specified: ",
-						LOOKANDFEEL);
+				logger.warning("Unexpected value of LOOKANDFEEL specified: "+	LOOKANDFEEL);
 				lookAndFeel = UIManager.getCrossPlatformLookAndFeelClassName();
 			}
 
 			try {
 				UIManager.setLookAndFeel(lookAndFeel);
 			} catch (ClassNotFoundException e) {
-				logger.error(
-						"Couldn't find class for specified look and feel:",
-						lookAndFeel);
+				logger.warning(
+						"Couldn't find class for specified look and feel:"+	lookAndFeel);
 				logger
-						.error("Did you include the L&F library in the class path?");
-				logger.error("Using the default look and feel.");
+						.warning("Did you include the L&F library in the class path?");
+				logger.warning("Using the default look and feel.");
 			} catch (UnsupportedLookAndFeelException e) {
-				logger.error("Can't use the specified look and feel (",
-						lookAndFeel, ") on this platform.");
-				logger.error("Using the default look and feel.");
+				logger.warning("Can't use the specified look and feel ("+lookAndFeel+ ") on this platform.");
+				logger.warning("Using the default look and feel.");
 			} catch (Exception e) {
-				logger.error("Couldn't get specified look and feel (",
-						lookAndFeel, "), for some reason.");
-				logger.error("Using the default look and feel.");
+				logger.warning("Couldn't get specified look and feel ("+lookAndFeel+ "), for some reason.");
+				logger.warning("Using the default look and feel.");
 				e.printStackTrace();
 			}
 		}

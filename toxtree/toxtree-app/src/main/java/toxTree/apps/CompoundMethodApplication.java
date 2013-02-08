@@ -30,13 +30,11 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.EtchedBorder;
 
-import toxTree.ui.EditorFactory;
 import toxtree.data.DataContainer;
 import toxtree.data.DataModule;
 import toxtree.data.DecisionMethodsDataModule;
 import toxtree.ui.DataModulePanel;
 import toxtree.ui.StatusBar;
-import toxtree.ui.editors.SwingEditorFactory;
 import toxtree.ui.molecule.TopPanel;
 import toxtree.ui.tree.molecule.CompoundPanel;
 
@@ -125,7 +123,7 @@ public abstract class CompoundMethodApplication extends AbstractApplication {
 					break;
 				fileToOpen = new File(args[p]);
 				if (!fileToOpen.exists()) {
-					logger.error("File do not exists!\t", fileToOpen
+					logger.severe("File do not exists!\t" + fileToOpen
 							.getAbsolutePath());
 					fileToOpen = null;
 				}
