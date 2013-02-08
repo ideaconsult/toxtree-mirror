@@ -64,7 +64,7 @@ public class Rule161 extends RuleOnlyAllowedSubstructuresCounter {
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 	    if (mf.isAliphatic()) {
-	    	logger.info("Aliphatic\t",MSG_YES);
+	    	logger.finer("Aliphatic\t"+MSG_YES);
 			return super.verifyRule(mol,selected);
 	    } else return false;
 

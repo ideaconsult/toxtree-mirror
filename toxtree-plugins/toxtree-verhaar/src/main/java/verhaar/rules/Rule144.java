@@ -65,13 +65,13 @@ public class Rule144 extends Rule143 {
 	    
 	    IRingSet rings = mf.getRingset();
 	    if (rings == null) {
-	    	logger.info("Polycyclic\tNO");
+	    	logger.finer("Polycyclic\tNO");
 	    	return null;
 	    } else if (rings.getAtomContainerCount() > 1) {
-	    	logger.info("Polycyclic\tYES\t",rings.getAtomContainerCount());
+	    	logger.finer("Polycyclic\tYES\t"+rings.getAtomContainerCount());
 	    	return rings; //monocarbocyclic
 	    } else {
-	    	logger.info("Polycyclic\tNO");
+	    	logger.finer("Polycyclic\tNO");
 	    	return null;
 	    }
 

@@ -2,6 +2,7 @@ package toxtree.plugins.verhaar2.test.validate;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -12,7 +13,6 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.logging.TTLogger;
 import toxTree.tree.stats.ConfusionMatrix;
 import toxtree.plugins.verhaar2.VerhaarScheme2;
 import verhaar.VerhaarScheme;
@@ -20,8 +20,9 @@ import ambit2.core.io.MyIteratingMDLReader;
 
 public class ConfusionMatrixTest {
 	protected IDecisionMethod rules ;
-	protected static TTLogger logger = new TTLogger(ConfusionMatrixTest.class); 
-	
+
+	protected transient static Logger logger = Logger.getLogger(ConfusionMatrixTest.class.getName());
+
 /**
 <pre>
 Expected	1.0	Predicted	Class 1 (narcosis or baseline toxicity)	[39]  <<<<<<<<
@@ -140,11 +141,11 @@ Expected	4.0	Predicted	Class 5 (Not possible to classify according to these rule
 			System.out.println(cmatrix.toString());
 			System.out.println(cmatrix.printMatrix());
 			//logger.error(category);
-			logger.error("Processed\t",records);
-			logger.error("Successfull\t",ok);
-			logger.error("Empty\t",emptyMolecules);
-			logger.error("Error when applying rules\t",applyError);
-			logger.error("");			
+			logger.severe("Processed\t"+records);
+			logger.severe("Successfull\t"+ok);
+			logger.severe("Empty\t"+emptyMolecules);
+			logger.severe("Error when applying rules\t"+applyError);
+	
 			Assert.assertTrue(records > 0);
 			Assert.assertEquals(records-applyError,ok);
 			Assert.assertEquals(0,emptyMolecules);

@@ -20,6 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.test;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import junit.framework.TestCase;
 
@@ -27,7 +29,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.MolAnalyseException;
-import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 import toxTree.query.QueryAtomContainers;
 import verhaar.query.FunctionalGroups;
@@ -38,7 +39,8 @@ import verhaar.query.FunctionalGroups;
  * <b>Modified</b> 2005-10-31
  */
 public class FunctionalGroupstest extends TestCase {
-	protected static TTLogger logger ;
+	protected transient static Logger logger = Logger.getLogger(FunctionalGroupstest.class.getName());
+
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(FunctionalGroupstest.class);
 	}
@@ -63,8 +65,6 @@ public class FunctionalGroupstest extends TestCase {
 	 */
 	public FunctionalGroupstest(String arg0) {
 		super(arg0);
-		logger = new TTLogger(this.getClass());
-		TTLogger.configureLog4j(false);
 	}
 
 	public void groupTest(QueryAtomContainer query, String[] smiles, boolean[] answers) {
@@ -77,7 +77,7 @@ public class FunctionalGroupstest extends TestCase {
 				
 				assertEquals(answers[i],b);
 			} catch (MolAnalyseException x) {
-				logger.error(x);
+				logger.log(Level.SEVERE,x.getMessage(),x);
 				fail();
 			}
 		}
@@ -92,9 +92,9 @@ public class FunctionalGroupstest extends TestCase {
 				boolean b = FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,false);
 				
 				assertEquals(answers[i],b);
-				logger.debug(smiles[i],"\tOK");
+				logger.fine(smiles[i]+"\tOK");
 			} catch (MolAnalyseException x) {
-				logger.error(x);
+				logger.log(Level.SEVERE,x.getMessage(),x);
 				fail();
 			}
 		}

@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package verhaar.test;
 
+import java.util.logging.Logger;
+
 import junit.framework.TestCase;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -26,7 +28,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
-import toxTree.logging.TTLogger;
 import toxTree.query.MolAnalyser;
 import verhaar.query.FunctionalGroups;
 import verhaar.rules.Rule01;
@@ -47,7 +48,7 @@ import verhaar.rules.RuleLogPRange;
  * <b>Modified</b> 2005-10-30
  */
 public class RulesTest extends TestCase {
-	protected static TTLogger logger ;
+	public static Logger logger = Logger.getLogger(RulesTest.class.getName());
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(RulesTest.class);
 	}
@@ -72,25 +73,21 @@ public class RulesTest extends TestCase {
 	 */
 	public RulesTest(String arg0) {
 		super(arg0);
-		logger = new TTLogger(this.getClass());
-		TTLogger.configureLog4j(true);		
 	}
-	public void ruleTest(IDecisionRule rule, String[] smiles, boolean[] answers) {
+	public void ruleTest(IDecisionRule rule, String[] smiles, boolean[] answers) throws Exception {
 		for (int i=0;i< smiles.length;i++) {
 			IAtomContainer mol = FunctionalGroups.createAtomContainer(smiles[i]);
 			try {
 				MolAnalyser.analyse(mol);
 				boolean b = rule.verifyRule(mol);
-				logger.debug(smiles[i],"\tobserved\t",Boolean.toString(b),"\texpected\t",Boolean.toString(answers[i]));
+				logger.fine(smiles[i]+"\tobserved\t"+Boolean.toString(b)+"\texpected\t"+Boolean.toString(answers[i]));
 				
 				assertEquals(answers[i],b);
 				System.out.println(smiles[i] + "\tOK");
 			} catch (MolAnalyseException x) {
-				logger.error(x);
-				fail();
+				throw x;
 			} catch (DecisionMethodException x) {
-				logger.error(x);
-				fail();
+				throw x;
 			}
 		}
 	}
@@ -98,7 +95,7 @@ public class RulesTest extends TestCase {
 	 * test for  {@link Rule141}
 	 *
 	 */
-	public void testRule141() {
+	public void testRule141() throws Exception{
 		//String[] smiles = {"c1ccccc1CCl","CCCCC=C(Cl)CCC"};
 		//boolean[] answers = {true,false};
 		String[] smiles = {"CCC=CCCl","c1ccccc1CCl","CCC=CCl"};
@@ -106,7 +103,7 @@ public class RulesTest extends TestCase {
 		ruleTest(new Rule141(),smiles,answers);		
 		
 	}
-	public void testRule14() {
+	public void testRule14() throws Exception {
 		String[] smiles = {"ClC(Cl)(Cl)CCCCC(N)","CCCCC(N)","CCC(Cl)CC(Br)","CCC"};
 		boolean[] answers = {false,false,true,false};		
 		ruleTest(new Rule14(),smiles,answers);
@@ -116,7 +113,7 @@ public class RulesTest extends TestCase {
 	 * test for  {@link Rule142}
 	 *
 	 */
-	public void testRule142() {
+	public void testRule142()   throws Exception{
 		String[] smiles = {"c1ccccc1Cl"};
 		boolean[] answers = {true};
 		ruleTest(new Rule142(),smiles,answers);
@@ -126,7 +123,7 @@ public class RulesTest extends TestCase {
 	 * test for  {@link Rule143}
 	 *
 	 */
-	public void testRule143() {
+	public void testRule143()  throws Exception {
 		String[] smiles = {"c1cc(CCCCCCCC)ccc1CCl","c1(CCCCCCCC)ccccc1CCCl"};
 		boolean[] answers = {false,true};
 		ruleTest(new Rule143(),smiles,answers);
@@ -136,7 +133,7 @@ public class RulesTest extends TestCase {
 	 * test for  {@link verhaar.rules.Rule21}
 	 *
 	 */
-	public void testRule21() {
+	public void testRule21()  throws Exception {
 		String[] smiles = {"c1ccccc1(O)","c1ccc(Cl)cc1(O)","Clc1cc(O)c(Cl)c(Cl)c1(Cl)","O=[N+]([O-])c1cc(O)cc(c1)[N+](=O)[O-]"};
 		boolean[] answers = {true,true,false,false};
 		ruleTest(new Rule21(),smiles,answers);
@@ -148,7 +145,7 @@ public class RulesTest extends TestCase {
 	 * test for {@link verhaar.rules.Rule171}
 	 *
 	 */
-	public void testRule171() {
+	public void testRule171()  throws Exception {
 		String[] smiles = {"ClCC=C"};
 		boolean[] answers = {false};
 		ruleTest(new Rule171(),smiles,answers);
@@ -160,7 +157,7 @@ public class RulesTest extends TestCase {
 	 * test for {@link RuleLogPRange}
 	 *
 	 */
-	public void testRuleLogPRange() {
+	public void testRuleLogPRange()  throws Exception {
 		String[] smiles = {"[O-][N+](=O)OCCOCCO[N+]([O-])=O"};
 		boolean[] answers = {true};
 		ruleTest(new RuleLogPRange(),smiles,answers);
@@ -182,23 +179,23 @@ public class RulesTest extends TestCase {
 		}
 	}
 	
-	public void testRule01() {
+	public void testRule01()  throws Exception{
 		String[] smiles = {"c1ccccc1Cl","c1ccccc1O","c1ccccc1I","OP(O)(O)=O.CCOC(=O)C=1CC(N)C(NC(C)=O)C(OC(CC)CC)C=1"};
 		boolean[] answers = {true,true,false,false};
 		ruleTest(new Rule01(),smiles,answers);
 	}
-	public void testRule11() {
+	public void testRule11()   throws Exception{
 		String[] smiles = {"c1ccccc1Cl","c1ccccc1O","c1ccccc1I"};
 		boolean[] answers = {true,true,false};
 		ruleTest(new Rule11(),smiles,answers);
 	}
-	public void testRule13() {
+	public void testRule13()  throws Exception{
 		String[] smiles = {"c1ccccc1","c1ccccc1O","c1ccccc1I"};
 		boolean[] answers = {true,false,false};
 		ruleTest(new Rule13(),smiles,answers);
 	}		
 
-	public void testIonic() {
+	public void testIonic() throws Exception {
 		String[] smiles = {"[NH3+]CCC1=CC=C([NH3+])C=C1.[S-]C(=S)N(CC1=CC=CC=C1)CC1=CC=CC=C1.[S-]C(=S)N(CC1=CC=CC=C1)CC1=CC=CC=C1"};
 		boolean[] answers = {true};
 		ruleTest(new RuleIonicGroups(),smiles,answers);

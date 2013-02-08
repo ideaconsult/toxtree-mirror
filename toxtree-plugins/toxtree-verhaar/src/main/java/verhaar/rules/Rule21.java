@@ -103,7 +103,7 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements IAlertCount
 
 		logger.info(toString());
 		if ((mainStructure != null) && (!FunctionalGroups.hasGroup(mol,mainStructure,selected))) {
-			logger.debug(mainStructure.getID(),"\tNO");
+			logger.finer(mainStructure.getID()+"\tNO");
 			return false;
 		}
 		nitroGroupsCount = 0;
@@ -114,7 +114,7 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements IAlertCount
 	    FunctionalGroups.markCHn(mol);	    
 	    //if entire structure has only allowed groups, return true (can't have other groups as substituents)
 	    if (FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,true)) {
-	    	logger.debug("The entire structure consists only of allowed groups");
+	    	logger.finer("The entire structure consists only of allowed groups");
 	    	//return true; 
 	    }
 	    //otherwise some of the forbidden groups can be in-ring, so substituents can be fine	
@@ -123,27 +123,27 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements IAlertCount
 	    for (int i=0; i < rs.getAtomContainerCount(); i++) {
 	        r = (IRing) rs.getAtomContainer(i);
 	        if (!analyze(r)) continue;
-	        logger.debug("Ring\t",(i+1));
+	        logger.finer("Ring\t"+i+1);
 	        
 	        //new atomcontainer with ring atoms/bonds deleted
 	        IAtomContainer mc = FunctionalGroups.cloneDiscardRingAtomAndBonds(mol,r);	        
-			logger.debug("\tmol atoms\t",mc.getAtomCount());
+			logger.finer("\tmol atoms\t"+mc.getAtomCount());
 		    
 			IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
-			logger.debug("partitions\t",s.getMoleculeCount());
+			logger.finer("partitions\t"+s.getMoleculeCount());
 			for (int k = 0; k < s.getMoleculeCount(); k++) {
 				IMolecule m = s.getMolecule(k);
 			    if (m!=null) {
 				    if ((m.getAtomCount() == 1) && (m.getAtom(0).getSymbol().equals("H"))) continue;
-				    logger.debug("Partition\t",(k+1));
+				    logger.finer("Partition\t"+(k+1));
 				    if (!substituentIsAllowed(m,null)) {
-				    	logger.debug(ERR_PRECONDITION_FAILED);
+				    	logger.finer(ERR_PRECONDITION_FAILED);
 				    	return false;
 				    }
 				    if (!FunctionalGroups.hasMarkedOnlyTheseGroups(m,ids)) {
-				    	logger.debug(allowedSubstituents());
-				    	logger.debug(CONDITION_FAILED);
-				    	logger.debug(FunctionalGroups.mapToString(m).toString());
+				    	logger.finer(allowedSubstituents());
+				    	logger.finer(CONDITION_FAILED);
+				    	logger.finer(FunctionalGroups.mapToString(m).toString());
 				    	return false;
 				    }
 			    }
@@ -156,14 +156,14 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements IAlertCount
 	public boolean substituentIsAllowed(IAtomContainer a, int[] place) throws DecisionMethodException {
 		if (FunctionalGroups.hasMarkedOnlyTheseGroups(a,phenolIDs)) return true;
 		else if (FunctionalGroups.hasMarkedOnlyTheseGroups(a,nitroIDs)) {
-			logger.debug("Nitro substituent\tYES");
+			logger.finer("Nitro substituent\tYES");
 			nitroGroupsCount++;
 			return nitroGroupsCount <= maxNitroGroups;
 		} if (FunctionalGroups.hasMarkedOnlyTheseGroups(a,halogenIDs)) {
 			halogensCount++;
-			logger.debug("Halogen substituents\t","YES");
+			logger.finer("Halogen substituents\tYES");
 			if (halogensCount > maxHalogens) {
-				logger.debug("Too many halogen substituents\t",Integer.toString(halogensCount));
+				logger.finer("Too many halogen substituents\t"+Integer.toString(halogensCount));
 				return false;
 			} else return true;
 		} else {
@@ -171,10 +171,10 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements IAlertCount
 				if (a.getAtom(i).getSymbol().equals("C")) continue;
 				else if (a.getAtom(i).getSymbol().equals("H")) continue;
 				else {
-					logger.debug("Forbidden group found\t",a.getAtom(i).getSymbol());
+					logger.finer("Forbidden group found\t"+a.getAtom(i).getSymbol());
 					return false;
 				}
-			logger.debug("Alkyl substituent\tYES");
+			logger.finer("Alkyl substituent\tYES");
 			return true;
 		}
 			
