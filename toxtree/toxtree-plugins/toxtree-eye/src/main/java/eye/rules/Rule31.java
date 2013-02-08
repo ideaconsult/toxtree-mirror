@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package eye.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
 import ambit2.smarts.query.SMARTSException;
 
@@ -47,7 +49,7 @@ public class Rule31 extends RuleSMARTSubstructureCDK {
 			examples[1] = "CCC(C(=O)OCC)O";					
 			
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 }

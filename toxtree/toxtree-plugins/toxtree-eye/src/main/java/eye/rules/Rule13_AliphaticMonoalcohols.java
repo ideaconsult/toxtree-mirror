@@ -22,6 +22,7 @@ package eye.rules;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.graph.ConnectivityChecker;
@@ -65,7 +66,7 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 			examples[1] = "C(O)(CCC)(CCCCC)";	
 			editable = false;		
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 
 	}
@@ -87,7 +88,7 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 					if ((count >=getMinChainLength()) && (count <=getMaxChainLength()))
 						longchains++;
 				} catch (DecisionMethodException x) {
-					logger.debug(x);
+					logger.log(Level.WARNING,x.getMessage(),x);
 					return false;
 				}
 			return longchains==allchains;
@@ -111,7 +112,7 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 		}
 		//TODO check if 2 atoms only
 		if (count > 0) {
-			logger.debug("Chain length "+(count+2));
+			logger.fine("Chain length "+(count+2));
 			count = count+2; //3-11 chain length, but the first C atom is removed since it is marked by SMARTS matching
 			return count;
 

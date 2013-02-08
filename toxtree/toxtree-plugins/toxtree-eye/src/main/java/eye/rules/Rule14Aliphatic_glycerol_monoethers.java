@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package eye.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
 import ambit2.smarts.query.SMARTSException;
 
@@ -38,7 +40,7 @@ public class Rule14Aliphatic_glycerol_monoethers extends RuleSMARTSubstructureCD
 		try {
 			addSubstructure("[C][OX2][CH2]C(O)[CH2][OH]"); //[AR0][OX2]CC(O)CO");
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 		setID("14");
 		examples[0] = "C=CCCC(C)CC";

@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package eye.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
 import ambit2.smarts.query.SMARTSException;
 
@@ -120,7 +122,7 @@ public class Rule24 extends  RuleSMARTSubstructureCDK{
 			examples[1] = "c1(cc(cc(c1)Br)C(Cl)(Cl)[N+](C)(C)Br)Br";			
 			
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}	
 }
