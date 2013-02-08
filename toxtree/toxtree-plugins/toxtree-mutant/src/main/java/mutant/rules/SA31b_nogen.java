@@ -1,5 +1,7 @@
 package mutant.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.StructureAlert;
 import ambit2.smarts.query.SMARTSException;
 
@@ -56,7 +58,7 @@ public class SA31b_nogen extends StructureAlert {
             examples[1] = "C=1C=C(C=CC=1C2=CC=C(C=C2)Cl)Cl";   
             editable = false;
         } catch (SMARTSException x) {
-            logger.error(x);
+        	logger.log(Level.SEVERE,x.getMessage(),x);
         }
     }
 }

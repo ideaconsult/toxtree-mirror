@@ -8,8 +8,6 @@ import mutant.rules.RuleDACancerogenicityAromaticAmines;
 import org.junit.Assert;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorValue;
-import org.openscience.cdk.qsar.IDescriptor;
-import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
 import org.openscience.cdk.qsar.result.DoubleArrayResult;
 
 import toxTree.qsar.LinearDiscriminantRule;

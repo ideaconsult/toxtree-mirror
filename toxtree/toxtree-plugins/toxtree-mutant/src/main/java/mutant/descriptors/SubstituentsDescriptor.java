@@ -2,10 +2,9 @@ package mutant.descriptors;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.logging.Logger;
 
-import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.exception.CDKException;
-import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
@@ -15,10 +14,8 @@ import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.DoubleArrayResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 
-import toxTree.logging.TTLogger;
-
 public abstract class SubstituentsDescriptor implements IMolecularDescriptor {
-	protected static TTLogger logger = new TTLogger(SubstituentsDescriptor.class); 
+	protected transient static Logger logger = Logger.getLogger(SubstituentsDescriptor.class.getName()); 
 	protected String[] paramNames = {"ring","descriptor_names"};
 	protected String[] descriptorNames = null;
 	protected SubstituentExtractor extractor;

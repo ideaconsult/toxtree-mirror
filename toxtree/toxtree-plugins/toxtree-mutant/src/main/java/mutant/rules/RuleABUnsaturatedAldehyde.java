@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.smarts.RuleSMARTSubstructureCDK;
 import ambit2.smarts.query.SMARTSException;
 
@@ -56,7 +58,7 @@ public class RuleABUnsaturatedAldehyde extends RuleSMARTSubstructureCDK {
 				examples[0] = "O=CC=1CCCCC=1";
 				examples[1] = "CCC=CC=O";	
 			} catch (SMARTSException x) {
-				logger.error(x);
+				logger.log(Level.SEVERE,x.getMessage(),x);
 			}
 	}
 

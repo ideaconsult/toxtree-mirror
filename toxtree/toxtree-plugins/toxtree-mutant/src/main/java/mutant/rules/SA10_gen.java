@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package mutant.rules;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -107,7 +108,7 @@ public class SA10_gen extends StructureAlertCDK {
 						IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(sc.getAtomContainer(i));
 						int catoms = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"C"));
 						if (catoms >=6) {
-							logger.debug("Substituent at beta carbon with >=6 C atoms\t",catoms);
+							logger.fine("Substituent at beta carbon with >=6 C atoms\t"+catoms);
 							return true;
 						}
 					}	
@@ -115,7 +116,7 @@ public class SA10_gen extends StructureAlertCDK {
 			}	
 			return false;
 		} catch (Exception x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			return false;
 		}
 	}

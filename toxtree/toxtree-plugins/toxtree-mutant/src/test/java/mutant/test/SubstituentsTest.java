@@ -51,17 +51,12 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.data.MoleculesFile;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import ambit2.core.data.MoleculeTools;
 
 public class SubstituentsTest  {
-	@Before
-	public void setUp() throws Exception {
-		// TODO Auto-generated method stub
-		TTLogger.configureLog4j(true);
-	}
+
 	@Test
 	public void testFingerprint() throws Exception {
 		// IMolecule a =
@@ -418,7 +413,11 @@ public class SubstituentsTest  {
 		// "NC1=CC=CC2=CC=CC=C12");
 		// "NC=1C=CC2=CC=CC=C2(C=1)");
 	}
-
+	/**
+	 * TODO it looks for FunctionalGroups.RING_NUMBERING, while atoms are marked with FunctionalGroups.RING_NUMBERING_number
+	 * @param smiles
+	 * @throws Exception
+	 */
 	public void substituentExtractor(String smiles) throws Exception {
 		SubstituentExtractor extractor = new SubstituentExtractor(
 				AromaticAmineSubstituentsDescriptor

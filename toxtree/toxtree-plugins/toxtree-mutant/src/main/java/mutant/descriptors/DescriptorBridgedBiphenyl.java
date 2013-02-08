@@ -1,5 +1,7 @@
 package mutant.descriptors;
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
@@ -24,7 +26,7 @@ public class DescriptorBridgedBiphenyl extends DescriptorStructurePresence<IAtom
 		} catch (CDKException x) {
 
 			setResultName(BiBr);
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 	

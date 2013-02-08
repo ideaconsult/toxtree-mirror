@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.descriptors;
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
@@ -43,7 +45,7 @@ public class DescriptorHasNO2Group extends DescriptorStructurePresence<IAtomCont
 		} catch (CDKException x) {
 		    
 			setResultName(NO2);
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 	

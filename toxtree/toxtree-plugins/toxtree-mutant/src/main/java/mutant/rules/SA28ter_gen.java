@@ -1,5 +1,7 @@
 package mutant.rules;
 
+import java.util.logging.Level;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
@@ -75,7 +77,7 @@ public class SA28ter_gen extends StructureAlertCDK {
             examples[1] = "CCOC=1C=CC(=CC=1(N))NC(C)=O";   
             editable = false;
         } catch (SMARTSException x) {
-            logger.error(x);
+        	logger.log(Level.SEVERE,x.getMessage(),x);
         }
     }	
 	protected boolean isAPossibleHit(IAtomContainer mol, IAtomContainer processedObject) throws DecisionMethodException  {

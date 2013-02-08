@@ -30,7 +30,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 import junit.framework.Assert;
-
 import mutant.rules.SA2_gen;
 import mutant.test.TestMutantRules;
 import toxTree.core.IDecisionMethod;
