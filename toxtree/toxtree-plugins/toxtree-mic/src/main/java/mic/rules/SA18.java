@@ -134,7 +134,7 @@ public class SA18 extends RuleAromatic implements IAlertCounter {
 
 			int nr = sssrings.getAtomContainerCount();
 			if (nr < 3) {
-				logger.debug("Less than 3 rings");
+				logger.fine("Less than 3 rings");
 				return false;
 			} else {
 				List<?> ringsets = RingPartitioner.partitionRings(sssrings);
@@ -166,7 +166,7 @@ public class SA18 extends RuleAromatic implements IAlertCounter {
 				}
 			}
 
-			logger.debug("Aromatic fused (>=3) rings not found ");
+			logger.fine("Aromatic fused (>=3) rings not found ");
 			return false;
 
 		} else {
@@ -181,7 +181,7 @@ public class SA18 extends RuleAromatic implements IAlertCounter {
 
 	protected boolean acceptRingSet(IRingSet ringset, int heteroaromaticrings,
 			int aromaticrings) {
-		logger.debug("Heteroaromatic " + heteroaromaticrings + " aromatic"
+		logger.fine("Heteroaromatic " + heteroaromaticrings + " aromatic"
 				+ aromaticrings);
 		return (heteroaromaticrings == 0) && (aromaticrings > 2);
 	}

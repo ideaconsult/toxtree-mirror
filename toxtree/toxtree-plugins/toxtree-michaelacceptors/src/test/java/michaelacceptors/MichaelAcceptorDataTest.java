@@ -1,6 +1,7 @@
 package michaelacceptors;
 
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 import michaelacceptors.categories.CategoryMichaelAcceptor;
@@ -19,7 +20,7 @@ import toxTree.logging.TTLogger;
 public class MichaelAcceptorDataTest  {
 	
 	protected MichaelAcceptorRules cr = null;
-	static protected TTLogger logger = new TTLogger(MichaelAcceptorDataTest.class);
+	static protected Logger logger = Logger.getLogger(MichaelAcceptorDataTest.class.getName());
 
 	@Before
 	public void setup() throws Exception {

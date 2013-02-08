@@ -21,6 +21,8 @@ package sicret.rules;
 
 
 
+import java.util.logging.Level;
+
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
 import ambit2.smarts.query.SMARTSException;
 
@@ -47,7 +49,7 @@ public class RuleKetones extends  RuleSMARTSubstructure{
 			examples[1] = "C=CC(=O)C";	
 			editable = false;
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 	}
 }

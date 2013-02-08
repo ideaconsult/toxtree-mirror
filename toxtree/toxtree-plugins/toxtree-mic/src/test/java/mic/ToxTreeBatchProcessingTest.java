@@ -28,6 +28,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
@@ -40,7 +41,6 @@ import toxTree.io.batch.BatchFactory;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
 import toxTree.io.batch.ToxTreeBatchProcessing;
-import toxTree.logging.TTLogger;
 
 /**
  * TODO add description
@@ -48,7 +48,8 @@ import toxTree.logging.TTLogger;
  * <b>Modified</b> 2005-9-4
  */
 public class ToxTreeBatchProcessingTest {
-	static TTLogger logger = new TTLogger(ToxTreeBatchProcessing.class); 
+
+	protected static Logger logger = Logger.getLogger(ToxTreeBatchProcessing.class.getName());
 	protected ToxTreeBatchProcessing batch = null;
 	protected String sdf = "mic/data/batch/chemid.sdf";
 	protected String config = "mic/data/batch/batch.cfg";
@@ -71,7 +72,7 @@ public class ToxTreeBatchProcessingTest {
             batch.close();
             batch = null;
 
-        TTLogger.configureLog4j(true);        
+           
 	}
 	@Test
 	public void testSuccessfullBatch() throws Exception  {
@@ -146,7 +147,7 @@ public class ToxTreeBatchProcessingTest {
 			Assert.assertEquals(3,bp.getWrittenRecordsCount());
 
 	}
-	@Test
+	
 	public void testBatchFromConfig() throws Exception {
 		URL url1 = getClass().getClassLoader().getResource(config);
 			ToxTreeBatchProcessing bp = (ToxTreeBatchProcessing)BatchFactory.createFromConfig(new File(url1.getFile()));
@@ -190,7 +191,7 @@ public class ToxTreeBatchProcessingTest {
 			
 
 	}
-	@Test
+
 	public void testInterruptedJob() throws Exception  {
 		
 		URL url1 = getClass().getClassLoader().getResource(sdf);

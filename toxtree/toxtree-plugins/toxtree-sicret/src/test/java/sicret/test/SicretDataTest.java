@@ -22,6 +22,8 @@ import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import junit.framework.TestCase;
 
@@ -41,7 +43,8 @@ import ambit2.core.io.IteratingDelimitedFileReader;
 
 public class SicretDataTest extends TestCase {
 	protected SicretRules cr = null;
-	static protected TTLogger logger = new TTLogger(SicretDataTest.class);
+	protected static Logger logger = Logger.getLogger(SicretDataTest.class.getName());
+
 	//smiles,class,name,tree path
 	/*public static String[][] compoundsClass1 ={
 		{"CC1(C(CC=C1C)C=CC(C)(C)C(O)C)C","1","R38-I",""},
@@ -105,8 +108,7 @@ public class SicretDataTest extends TestCase {
 		try {
 			result.classify(mol);
 		} catch (DecisionResultException x) {
-			x.printStackTrace();
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			result = null;
 		}
 		return result;		
@@ -126,22 +128,19 @@ public class SicretDataTest extends TestCase {
 		try {
 			result.classify(mol);
 		} catch (DecisionResultException x) {
-			x.printStackTrace();
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			result = null;
 		}
 		return result;		
 	}
 	protected int classify(String[][] molecules, int classID) {
 		int success = 0;
-		logger.error("These compounds should be of class\t",classID);
-		System.err.println("\nThese compounds should be of class\t"+classID);
+		logger.log(Level.SEVERE,"These compounds should be of class\t"+classID);
 		
 		for (int i=0; i < molecules.length; i++ ) {
 			IDecisionResult result = classify(molecules[i][0],molecules[i][2],cr,molecules[i][4],molecules[i][5],molecules[i][6],molecules[i][7],molecules[i][8],molecules[i][9],molecules[i][10]);
 			if (result == null) {
-				logger.error("Error on processing molecule\t",molecules[i][2]);
-				System.err.println("Error on processing molecule\t"+molecules[i][2]);
+				logger.log(Level.SEVERE,"Error on processing molecule\t"+molecules[i][2]);
 			} else {
 				boolean ok = (result.getCategory().getID() == classID);
 				if (ok) success++;
@@ -150,18 +149,16 @@ public class SicretDataTest extends TestCase {
 				try {
 					    explanation = cr.explainRules(result,false).toString();
 				} catch (DecisionMethodException x) {
-						logger.error(x);
+					logger.log(Level.SEVERE,x.getMessage(),x);
 				}
 				if (ok) {
 					if (!explanation.equals(molecules[i][3])) {
-						logger.warn(molecules[i][0],"\t",molecules[i][2],"\t",result.getCategory()+"\t"+explanation);
-						System.out.println(result.getCategory()+"\t" + molecules[i][2]+"\t"+explanation+"\t"+molecules[i][0]);
-						System.out.println("Should be\t" + molecules[i][3]);
+						logger.warning(molecules[i][0]+"\t"+molecules[i][2]+"\t"+result.getCategory()+"\t"+explanation);
+						logger.warning("Should be\t" + molecules[i][3]);
 					}
 				} else {
-					logger.error(molecules[i][0],"\t",molecules[i][2],"\t",result.getCategory()+"\t"+explanation);
-					System.err.println(result.getCategory()+"\t" + molecules[i][2]+"\t"+explanation+"\t"+molecules[i][0]);
-					System.err.println("Should be\t" + molecules[i][3]);
+					logger.severe(molecules[i][0]+"\t"+molecules[i][2]+"\t"+result.getCategory()+"\t"+explanation);
+					logger.severe("Should be\t" + molecules[i][3]);
 				}
 				
 			}
@@ -368,8 +365,7 @@ public class SicretDataTest extends TestCase {
 				//System.out.println("Number:"+i+" "+molecules[i][0]+"/"+molecules[i][2]+"/"+molecules[i][4]+"/"+molecules[i][5]+"/"+molecules[i][6]+"/"+molecules[i][7]+"/"+molecules[i][8]+"/"+molecules[i][9]+"/"+molecules[i][10]);
 				IDecisionResult result = classify(molecules[i][0],molecules[i][2],cr,molecules[i][4],molecules[i][5],molecules[i][6],molecules[i][7],molecules[i][8],molecules[i][9],molecules[i][10]);
 				if (result == null) {
-					logger.error("Error on processing molecule\t",molecules[i][2]);
-					System.err.println("Error on processing molecule\t"+molecules[i][2]);
+					logger.log(Level.SEVERE,"Error on processing molecule\t",molecules[i][2]);
 				} else {
 					//boolean ok = (result.getCategory().getID() == classID);
 					//if (ok) success++;
@@ -378,8 +374,7 @@ public class SicretDataTest extends TestCase {
 					try {
 						    explanation = cr.explainRules(result,false).toString();
 					} catch (DecisionMethodException x) {
-						System.out.println(x);
-							logger.error(x);
+							logger.log(Level.SEVERE,x.getMessage(),x);
 					}
 					//logger.warn(molecules[i][0],"\t",molecules[i][2],"\t",result.getCategory()+"\t"+explanation);
 					System.out.println("Number:"+i+" "+result.getCategory()+"\t" + molecules[i][2]+"\t"+explanation+"\t"+molecules[i][0]);

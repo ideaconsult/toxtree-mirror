@@ -24,24 +24,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mic.rules.test;
 
+import java.util.logging.Logger;
+
 import junit.framework.TestCase;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionRule;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 
 public abstract class AbstractRuleTest extends TestCase {
-	protected static TTLogger logger = new TTLogger(AbstractRuleTest.class);
+	protected static transient Logger logger = Logger.getLogger(AbstractRuleTest.class.getName());
 	protected IDecisionRule rule2test = null;
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		rule2test = createRule();
-		TTLogger.configureLog4j(true);
 	}
 	@Override
 	protected void tearDown() throws Exception {
@@ -67,9 +67,9 @@ public abstract class AbstractRuleTest extends TestCase {
 	                
 	                if (b.booleanValue() == r) {
 	                	success++;
-	                    logger.info(smiles_and_answer[i][0],"\tOK");
+	                    logger.info(smiles_and_answer[i][0]+"\tOK");
 	                } else 
-	                	logger.error(smiles_and_answer[i][0],"\tFAILED");
+	                	logger.severe(smiles_and_answer[i][0]+"\tFAILED");
 	        } else throw new Exception("Null molecule "+smiles_and_answer[i][0]);        
 	            
 	            

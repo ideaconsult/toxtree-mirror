@@ -1,4 +1,6 @@
 package michaelacceptors.rules;
+import java.util.logging.Level;
+
 import toxTree.tree.rules.StructureAlertAmbit;
 import ambit2.smarts.query.SMARTSException;
 
@@ -17,7 +19,7 @@ public class Rule13B extends StructureAlertAmbit {
 			examples[1] = "O=C1C=CC(=O)C=2C=CC=CC1=2";	
 			editable = false;		
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 
 	}
