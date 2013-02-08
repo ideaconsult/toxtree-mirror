@@ -26,7 +26,6 @@ package toxtree.ui.actions;
 
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
-import javax.swing.JOptionPane;
 
 import toxTree.io.Tools;
 import toxTree.tree.stats.ConfusionMatrix;

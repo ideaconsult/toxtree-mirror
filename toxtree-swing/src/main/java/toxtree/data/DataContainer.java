@@ -204,10 +204,7 @@ public class DataContainer extends Observable {
     public void saveFile(File output) {
     	if (!enabled) return;
     	this.processingFile = output;
-    	/*
-        final toxTree.ui.GUIWorker worker = new toxTree.ui.GUIWorker() {
-            public Object construct() {
-            */
+
             	containers.setWriting();
             	setChanged();
             	notifyObservers();

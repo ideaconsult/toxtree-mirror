@@ -33,6 +33,7 @@ package toxtree.data;
 import java.awt.Frame;
 import java.io.File;
 import java.util.Observable;
+import java.util.logging.Level;
 
 import javax.swing.JFrame;
 import javax.swing.SwingWorker;
@@ -158,10 +159,10 @@ public class ToxTreeModule extends DecisionMethodsDataModule {
 	           	try {
 	        		batch.start();
 	        	} catch (BatchProcessingException x) {
-	        		logger.error(x);
+	        		logger.log(Level.SEVERE,x.getMessage(),x);
 	        		ToxTreeActions.showMsg("Error on batch processing",x.getMessage());
 	        	} catch (Throwable x) {
-	        		logger.error(x);
+	        		logger.log(Level.SEVERE,x.getMessage(),x);
 	        	}
 	            return batch;
   	       }
