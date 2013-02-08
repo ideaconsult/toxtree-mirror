@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.plugins.ames.rules;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.MoleculeSet;
@@ -66,7 +67,7 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 			addSubstructure("ar-N=CH2", "a[NX2;v3]=[CX3H2]");
 			addSubstructure("ar-N=C=O","a[NX2;v3]=[CX2H0]=O");
 		} catch (SMARTSException x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 		setID("ar-N=CH2");
 		setTitle("Derived aromatic amines");

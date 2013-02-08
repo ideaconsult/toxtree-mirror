@@ -26,6 +26,7 @@ package toxtree.plugins.ames.rules;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
@@ -151,7 +152,7 @@ mr_s =   0.87180 * mr_tt_   - 2.3452 ;
 					);
 			((LinearPreprocessor)p).setExplanation("The following are the correction factors to be applied to the Toxtree variables, before they are entered into the final equation for the calculation of W.");
 		} catch (Exception x) {
-			logger.error(x);
+			logger.log(Level.SEVERE,x.getMessage(),x);
 			p = null;
 		}
 		model.setPreprocessor(p);

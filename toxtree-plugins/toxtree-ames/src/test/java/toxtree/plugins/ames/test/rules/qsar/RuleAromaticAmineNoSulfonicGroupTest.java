@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.plugins.ames.test.rules.qsar;
 
 import java.io.InputStream;
+import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
@@ -134,7 +135,7 @@ public class RuleAromaticAmineNoSulfonicGroupTest extends TestAmesMutagenicityRu
     	try {
     		return  new IteratingDelimitedFileReader(stream);
     	} catch (Exception x) {
-    		logger.error(x);
+    		logger.log(Level.SEVERE,x.getMessage(),x);
     		return null;
     	}
     }

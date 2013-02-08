@@ -49,7 +49,6 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.data.MoleculesFile;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxtree.plugins.ames.descriptors.AromaticAmineSubstituentsDescriptor;
@@ -57,11 +56,7 @@ import toxtree.plugins.ames.descriptors.SubstituentExtractor;
 import ambit2.core.data.MoleculeTools;
 
 public class SubstituentsTest  {
-	@Before
-	public void setUp() throws Exception {
-		// TODO Auto-generated method stub
-		TTLogger.configureLog4j(true);
-	}
+	
 	@Test
 	public void testFingerprint() throws Exception {
 		// IMolecule a =

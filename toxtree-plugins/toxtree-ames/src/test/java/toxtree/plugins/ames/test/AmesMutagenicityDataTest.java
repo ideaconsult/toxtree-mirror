@@ -31,6 +31,7 @@ import java.io.InputStream;
 
 import junit.framework.Assert;
 
+import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openscience.cdk.Molecule;
@@ -40,7 +41,6 @@ import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
-import toxTree.logging.TTLogger;
 import toxTree.query.FunctionalGroups;
 import toxtree.plugins.ames.AmesMutagenicityRules;
 import toxtree.ui.tree.actions.SaveTreeAction;
@@ -49,7 +49,7 @@ import ambit2.core.io.IteratingDelimitedFileReader;
 
 public class AmesMutagenicityDataTest  {
 	protected static AmesMutagenicityRules cr = null;
-	static protected TTLogger logger = new TTLogger(AmesMutagenicityDataTest.class);
+	static protected Logger logger = Logger.getLogger(AmesMutagenicityDataTest.class);
 	
 	public static String[][] compoundsClass =new String[100][11];
 	public static String[][] compoundsClass_1 =new String[9][11];
@@ -58,7 +58,6 @@ public class AmesMutagenicityDataTest  {
 	public static void setUp() throws Exception {
 		cr = new AmesMutagenicityRules();
 		cr.setResiduesIDVisible(false);
-		TTLogger.configureLog4j(false);
 	}
 
 
@@ -79,14 +78,12 @@ public class AmesMutagenicityDataTest  {
 
 	protected int classify(String[][] molecules, int classID) {
 		int success = 0;
-		logger.error("These compounds should be of class\t",classID);
-		System.err.println("\nThese compounds should be of class\t"+classID);
+		logger.error("These compounds should be of class\t"+classID);
 		
 		for (int i=0; i < molecules.length; i++ ) {
 			IDecisionResult result = classify(molecules[i][0],molecules[i][2],cr);
 			if (result == null) {
-				logger.error("Error on processing molecule\t",molecules[i][2]);
-				System.err.println("Error on processing molecule\t"+molecules[i][2]);
+				logger.error("Error on processing molecule\t"+molecules[i][2]);
 			} else {
 				boolean ok = (result.getCategory().getID() == classID);
 				if (ok) success++;
@@ -99,12 +96,12 @@ public class AmesMutagenicityDataTest  {
 				}
 				if (ok) {
 					if (!explanation.equals(molecules[i][3])) {
-						logger.warn(molecules[i][0],"\t",molecules[i][2],"\t",result.getCategory()+"\t"+explanation);
+						logger.warn(molecules[i][0]+"\t"+molecules[i][2]+"\t"+result.getCategory()+"\t"+explanation);
 						System.out.println(result.getCategory()+"\t" + molecules[i][2]+"\t"+explanation+"\t"+molecules[i][0]);
 						System.out.println("Should be\t" + molecules[i][3]);
 					}
 				} else {
-					logger.error(molecules[i][0],"\t",molecules[i][2],"\t",result.getCategory()+"\t"+explanation);
+					logger.error(molecules[i][0]+"\t"+molecules[i][2]+"\t"+result.getCategory()+"\t"+explanation);
 					System.err.println(result.getCategory()+"\t" + molecules[i][2]+"\t"+explanation+"\t"+molecules[i][0]);
 					System.err.println("Should be\t" + molecules[i][3]);
 				}
@@ -309,7 +306,7 @@ public class AmesMutagenicityDataTest  {
 				//System.out.println("Number:"+i+" "+molecules[i][0]+"/"+molecules[i][2]+"/"+molecules[i][4]+"/"+molecules[i][5]+"/"+molecules[i][6]+"/"+molecules[i][7]+"/"+molecules[i][8]+"/"+molecules[i][9]+"/"+molecules[i][10]);
 				IDecisionResult result = classify(molecules[i][0],molecules[i][2],cr);
 				if (result == null) {
-					logger.error("Error on processing molecule\t",molecules[i][2]);
+					logger.error("Error on processing molecule\t"+molecules[i][2]);
 					System.err.println("Error on processing molecule\t"+molecules[i][2]);
 				} else {
 					//boolean ok = (result.getCategory().getID() == classID);

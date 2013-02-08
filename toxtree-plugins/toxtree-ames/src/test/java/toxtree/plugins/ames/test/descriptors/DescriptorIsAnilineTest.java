@@ -26,7 +26,6 @@ package toxtree.plugins.ames.test.descriptors;
 
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
-import toxTree.logging.TTLogger;
 import toxtree.plugins.ames.descriptors.DescriptorIsAniline;
 import ambit2.core.smiles.SmilesParserWrapper;
 
@@ -35,7 +34,7 @@ public class DescriptorIsAnilineTest extends DescriptorsTest {
     protected void setUp() throws Exception {
         super.setUp();
         addPropertiesToTest("I(Aniline)","I(An)");
-        TTLogger.configureLog4j(true);
+
         SmilesParserWrapper.getInstance().setParser(SmilesParserWrapper.SMILES_PARSER.OPENBABEL);
     }
 
