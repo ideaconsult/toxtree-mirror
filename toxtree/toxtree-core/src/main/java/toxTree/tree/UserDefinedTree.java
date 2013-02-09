@@ -271,28 +271,19 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 					
 					rule.clearFlags(molToAnalyze);
 					answer = rule.verifyRule(molToAnalyze);
-				
-			    
-					/*
-					 * 10.11.2005 - moved after addRuleResult 
-					MolFlags mf = (MolFlags) molToAnalyze.getProperty(MolFlags.MOLFLAGS);
-					if (mf == null) throw new DecisionMethodException(AbstractRule.ERR_STRUCTURENOTPREPROCESSED);
-					molsToAnalyze = mf.getResidues();
-					mf.setResidues(null); //clear that ; the next rule will set up them if necessary
-					*/ 
 				} else {
-					//return verifyRules(molsToAnalyze,result,ruleIndex);	
 					return verifyResidues(molsToAnalyze,result,rule);
 				}
 				
 				
 			} catch (DRuleNotImplemented x) {
-				logger.log(Level.SEVERE,x.getMessage(),x);
-				if (falseIfRuleNotImplemented) answer = false;
-				else throw new DecisionMethodException(x);
+				if (falseIfRuleNotImplemented) {
+					logger.log(Level.WARNING,x.getMessage(),x);
+					answer = false;
+				} else throw new DecisionMethodException(x);
             } catch (DRuleException x) {
-                logger.log(Level.SEVERE,x.getMessage(),x);
-                category_on_error =x.getCategory2assign();
+                logger.log(Level.FINE,x.getMessage(),x);
+                category_on_error = x.getCategory2assign();
                 answer = x.isAnswer();
             }
 			try {
