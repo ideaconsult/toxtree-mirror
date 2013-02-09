@@ -348,7 +348,6 @@ public class TreeResult implements IDecisionResult {
 			throw new DecisionResultException(x);
 		} catch (NullPointerException x) {
             setOriginalMolecule(null);
-			x.printStackTrace();
 			setEstimated(false);
             firePropertyChangeEvent(ProgressStatus._pRuleResult, null, x.getMessage());            
 			if (decisionMethod == null)
