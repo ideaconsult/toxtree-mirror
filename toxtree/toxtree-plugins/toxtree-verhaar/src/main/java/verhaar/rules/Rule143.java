@@ -93,7 +93,7 @@ public class Rule143 extends RuleRingAllowedSubstituents  implements IAlertCount
 	 * @see toxTree.tree.rules.RuleRingAllowedSubstituents#verifyRule(org.openscience.cdk.interfaces.AtomContainer)
 	 */
 	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		logger.info(toString());
+		logger.finer(toString());
 		if (FunctionalGroups.hasGroup(mol,x)) {
 			logger.finer("Do not comply with rule 1.4.1");
 			return false;
