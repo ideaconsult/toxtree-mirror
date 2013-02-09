@@ -62,7 +62,6 @@ public class RuleLogP extends RuleVerifyProperty
 	public String inputProperty(IAtomContainer mol) throws DecisionMethodException  {
 		
 		XLogPDescriptor descriptor = new XLogPDescriptor();
-		try {descriptor.setParameters(new Object[] {Boolean.TRUE});} catch (Exception x) {}
 		logger.finer("Calculating "+ descriptor.getClass().getName());
 		try {
 			DescriptorValue value = descriptor.calculate(mol);
@@ -88,7 +87,7 @@ public class RuleLogP extends RuleVerifyProperty
     @Override
     public String getImplementationDetails() {
     	XLogPDescriptor descriptor = new XLogPDescriptor();
-    	try {descriptor.setParameters(new Object[] {Boolean.TRUE});} catch (Exception x) {}
+    	try {descriptor.setParameters(new Object[] {Boolean.TRUE, Boolean.TRUE});} catch (Exception x) {}
     	StringBuffer b = new StringBuffer();
     	b.append("This rule automatically creates descriptor by using "+descriptor.getClass().getName());
     	b.append("\n");
