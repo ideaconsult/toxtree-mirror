@@ -338,10 +338,9 @@ public class TreeResult implements IDecisionResult {
 		    boolean r  = decisionMethod.classify(mol,this);
 		    setEstimated(true);
             firePropertyChangeEvent(ProgressStatus._pRuleResult, null, "Completed.");
-			//Toolkit.getDefaultToolkit().beep();
 			return r;
 		} catch (DecisionMethodException x) {
-			//x.printStackTrace();
+			logger.log(Level.SEVERE,x.getMessage(),x);
             setOriginalMolecule(null);
 			setEstimated(false);
             firePropertyChangeEvent(ProgressStatus._pRuleResult, null, x.getMessage());
