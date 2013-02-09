@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IMoleculeSet;
@@ -105,8 +106,14 @@ public class SA10_gen extends StructureAlertCDK {
 					if (FunctionalGroups.hasGroupMarked(sc.getAtomContainer(i),query.getID())) 
 						continue; 
 					else {
-						IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(sc.getAtomContainer(i));
-						int catoms = MolecularFormulaManipulator.getElementCount(formula,MoleculeTools.newElement(formula.getBuilder(),"C"));
+						int catoms = 0;
+						for (IAtom atom : sc.getAtomContainer(i).atoms()) {
+							if ("C".equals(atom.getSymbol())) catoms++;
+							if (catoms >=6) {
+								logger.fine("Substituent at beta carbon with >=6 C atoms\t"+catoms);
+								return true;
+							}
+						}
 						if (catoms >=6) {
 							logger.fine("Substituent at beta carbon with >=6 C atoms\t"+catoms);
 							return true;
