@@ -50,13 +50,13 @@ import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.AllRingsFinder;
 import org.openscience.cdk.ringsearch.SSSRFinder;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
-import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 import org.openscience.cdk.tools.periodictable.PeriodicTable;
 
 import toxTree.exceptions.MolAnalyseException;
 import ambit2.base.config.Preferences;
 import ambit2.core.data.MoleculeTools;
+import ambit2.core.processors.structure.HydrogenAdderProcessor;
 
 
 /**
@@ -111,7 +111,7 @@ public class MolAnalyser {
                    logger.fine("Found " + atom.getSymbol() + " of type " + type.getAtomTypeName());
 	           } catch (Exception x) {
                    if ("true".equals(Preferences.getProperty(Preferences.STOP_AT_UNKNOWNATOMTYPES))) {
-                       throw new MolAnalyseException("Unknown atom type "+atom.getSymbol(),x);
+                       throw new MolAnalyseException("Unknown atom type "+atom.getSymbol());
                    } else {
                 	   logger.log(Level.WARNING,"Unknown atom type "+atom.getSymbol());
                    }
@@ -125,7 +125,7 @@ public class MolAnalyser {
                 try {
     	            h.addImplicitHydrogens(mol);
     	            logger.fine("Adding implicit hydrogens; atom count "+mol.getAtomCount());
-    	            AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
+    	            HydrogenAdderProcessor.convertImplicitToExplicitHydrogens(mol);
     	            logger.fine("Convert explicit hydrogens; atom count "+mol.getAtomCount());
                 } catch (Exception x) {
                     if ("true".equals(Preferences.getProperty(Preferences.STOP_AT_UNKNOWNATOMTYPES))) {
@@ -141,7 +141,7 @@ public class MolAnalyser {
         	    	  IMolecule molPart = moleculeSet.getMolecule(k);
       		          h.addImplicitHydrogens(molPart);
       		          logger.fine("Adding implicit hydrogens; atom count "+molPart.getAtomCount());
-    		          AtomContainerManipulator.convertImplicitToExplicitHydrogens(molPart);
+      		        HydrogenAdderProcessor.convertImplicitToExplicitHydrogens(molPart);
     		          logger.fine("Convert explicit hydrogens; atom count "+molPart.getAtomCount());
     		          m.add(molPart);
         	      }
@@ -278,8 +278,9 @@ public class MolAnalyser {
 	        try {
 	        	FunctionalGroups.associateIonic(mol);
 	        } catch (CDKException x) {
-	        	
-	        	logger.log(Level.WARNING,x.getMessage(),x);
+	        	if (logger.isLoggable(Level.FINE))
+	        		logger.log(Level.WARNING,x.getMessage(),x);
+	        	else logger.log(Level.WARNING,x.getMessage());
 	        }        
 	        clearVisitedFlags(mol);
     	} catch (Exception x) {

@@ -79,6 +79,7 @@ import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 import toxTree.core.ConnectionMatrix;
 import toxTree.tree.AbstractRule;
 import ambit2.core.data.MoleculeTools;
+import ambit2.core.processors.structure.HydrogenAdderProcessor;
 import ambit2.core.smiles.SmilesParserWrapper;
 import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
 
@@ -2302,7 +2303,7 @@ public class FunctionalGroups {
             	//logger.fine("Adding explicit hydrogens");
             	AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
                 h.addImplicitHydrogens(mol);
-                AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
+                HydrogenAdderProcessor.convertImplicitToExplicitHydrogens(mol);
       
                 //h.addExplicitHydrogensToSatisfyValency((IMolecule)mol);
             } catch (InvalidSmilesException x ) {
