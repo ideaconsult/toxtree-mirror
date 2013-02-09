@@ -440,6 +440,7 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 						);				
 
 		} catch (DecisionResultException x) {
+			descriptorNames = result.getResultPropertyNames();
 			return new DescriptorValue(
 					getSpecification(),
 					getParameterNames(),
