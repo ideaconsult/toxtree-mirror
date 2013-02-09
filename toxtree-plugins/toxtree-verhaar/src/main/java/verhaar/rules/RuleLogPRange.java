@@ -40,7 +40,7 @@ import toxTree.tree.rules.RuleDescriptorRange;
  */
 public class RuleLogPRange extends RuleDescriptorRange implements IAlertCounter {
 	protected IAlertCounter alertsCounter;
-	protected Object[] params = {new Boolean(true)};
+	protected Object[] params = {Boolean.TRUE,Boolean.TRUE};
 	/**
 	 * 
 	 */
@@ -51,16 +51,10 @@ public class RuleLogPRange extends RuleDescriptorRange implements IAlertCounter 
 		alertsCounter = new DefaultAlertCounter();
 		id = "0.2";
 		XLogPDescriptor d = new XLogPDescriptor();
-		try {d.setParameters(new Object[] {Boolean.TRUE});} catch (Exception x) {}
 		setDescriptor(d);
 		//a bit loose range, to allow for calculation errors ...
 		setMaxValue(6.75);
 		setMinValue(-.75);
-		try {
-			getDescriptor().setParameters(params);
-		} catch (CDKException x) {
-			logger.log(Level.SEVERE,x.getMessage(),x);
-		}
 		setTitle("Have a logKow between 0 and 6");
 		explanation = new StringBuffer();
 		explanation.append(
