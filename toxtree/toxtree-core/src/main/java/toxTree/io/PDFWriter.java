@@ -38,6 +38,7 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.logging.Level;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IChemFile;
@@ -204,7 +205,7 @@ public class PDFWriter extends FilesWithHeaderWriter {
             i++;
         }
         if (smilesIndex == -1) { header.add(0,defaultSMILESHeader); smilesIndex = 0; }
-        logger.info("Header created from hashtable\t",header);
+        logger.finer("Header created from hashtable\t"+header);
     }     
     public void writeMolecule(IMolecule molecule) {
         Object value;       
@@ -232,7 +233,7 @@ public class PDFWriter extends FilesWithHeaderWriter {
                     try {
                         value = ""; //sg.createSMILES(molecule);
                     } catch (Exception x) {
-                        logger.error("Error while createSMILES\t",x.getMessage());
+                        logger.log(Level.WARNING,"Error while createSMILES\t",x);
                         value = "";
                     }
                 } 
@@ -266,9 +267,7 @@ public class PDFWriter extends FilesWithHeaderWriter {
             table.addCell(cell);            
 
         } catch(Exception x) {
-            logger.error("ERROR while writing Molecule: ", x.getMessage());
-            logger.debug(x);
-            x.printStackTrace();
+			logger.log(Level.SEVERE,"ERROR while writing Molecule: ",x);
         }
         
     }    
