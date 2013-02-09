@@ -108,12 +108,12 @@ public class MolAnalyser {
 	           IAtomType type = matcher.findMatchingAtomType(mol, atom);
 	           try {
 	        	   AtomTypeManipulator.configure(atom, type);
-                   logger.fine("Found " + atom.getSymbol() + " of type " + type.getAtomTypeName());                   
+                   logger.fine("Found " + atom.getSymbol() + " of type " + type.getAtomTypeName());
 	           } catch (Exception x) {
-	        	   logger.fine(x.getMessage() + " " + atom.getSymbol()+x);
-                   
                    if ("true".equals(Preferences.getProperty(Preferences.STOP_AT_UNKNOWNATOMTYPES))) {
-                       throw new MolAnalyseException(atom.getSymbol(),x);
+                       throw new MolAnalyseException("Unknown atom type "+atom.getSymbol(),x);
+                   } else {
+                	   logger.log(Level.WARNING,"Unknown atom type "+atom.getSymbol());
                    }
                    
 	           }
@@ -128,9 +128,10 @@ public class MolAnalyser {
     	            AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
     	            logger.fine("Convert explicit hydrogens; atom count "+mol.getAtomCount());
                 } catch (Exception x) {
-                	logger.log(Level.SEVERE,x.getMessage(),x);
                     if ("true".equals(Preferences.getProperty(Preferences.STOP_AT_UNKNOWNATOMTYPES))) {
                         throw new MolAnalyseException(x);
+                    } else {
+                    	logger.log(Level.WARNING,x.getMessage());
                     }
                 }
         	} else {
