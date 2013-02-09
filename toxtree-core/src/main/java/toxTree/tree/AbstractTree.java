@@ -249,7 +249,10 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 		try {
 			MolAnalyser.analyse(mol);
 		} catch (MolAnalyseException x) {
-		    logger.log(Level.SEVERE,x.getMessage(),x);
+			if (logger.isLoggable(Level.FINE))
+				logger.log(Level.SEVERE,x.getMessage(),x);
+			else
+				logger.log(Level.SEVERE,x.getMessage());
 		    throw new DecisionMethodException(x);
 		}
 		categories.selectAll(false);

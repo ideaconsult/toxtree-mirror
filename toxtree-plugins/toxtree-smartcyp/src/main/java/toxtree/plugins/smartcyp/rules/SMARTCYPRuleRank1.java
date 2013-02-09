@@ -18,6 +18,7 @@ import toxTree.ui.tree.categories.CategoriesRenderer;
 import ambit2.base.exceptions.AmbitException;
 import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.MoleculeTools;
+import ambit2.core.processors.structure.HydrogenAdderProcessor;
 import ambit2.rendering.CompoundImageTools;
 import dk.smartcyp.core.MoleculeKU;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
@@ -191,7 +192,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 			RuleResult ruleResult) throws Exception {
 		MoleculeKU mol = (reactant instanceof MoleculeKU)?(MoleculeKU)reactant:calculate(reactant);
 		//This is a workaround. CDK smarts matching needs implicit hydrogens, while ambit smarts/smirks matching needs explicit hydrogens...
-		AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
+		HydrogenAdderProcessor.convertImplicitToExplicitHydrogens(mol);
 		return super.getProducts(mol,ruleResult);
 	}
 	@Override
