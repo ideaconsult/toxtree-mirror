@@ -39,12 +39,12 @@ public class SA57_Ames extends StructureAlertCDK {
 	public SA57_Ames() {
 		super();
 		try {
-			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R][CX4;!R]c1c2aaaac2aaa1");
-			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R][CX4;!R]c1c2A=AAc2aaa1");
-			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R][CX4;!R]c1c2AA=AAc2aaa1");
-			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R][CX4;!R]c1c2AA=Ac2aaa1");
-			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R][CX4;!R]c1c2Cc3aaaac3c2aaa1");
-			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R][CX4;!R]c1c2c3aaaac3Cc2aaa1");
+			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R]Cc1c2aaaac2aaa1");
+			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R]Cc1c2A=AAc2aaa1");
+			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R]Cc1c2AA=AAc2aaa1");
+			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R]Cc1c2AA=Ac2aaa1");
+			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R]Cc1c2Cc3aaaac3c2aaa1");
+			addSubstructure("[NX3;!R][CX4;!R][CX4;!R][NX3;!R]Cc1c2c3aaaac3Cc2aaa1");
 			
 			setID("SA57_Ames");
 			setTitle("DNA Intercalating Agents with a basic side chain");

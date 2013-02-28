@@ -40,7 +40,8 @@ public class SA67_Ames extends StructureAlertCDK {
 		super();
 		try {
 		
-			addSubstructure("1", "c2ccccc2C1NC(c3ccccc3)=C(c4ccccc4)[S,N,O]=1");
+			addSubstructure("1", "c2ccccc2C1[N;H1]C(c3ccccc3)=C(c4ccccc4)[S,O]=1");
+			addSubstructure("2", "c1(C2=C(c3ccccc3)N=C(c3ccccc3)N2)ccccc1");
 			
 			setID("SA67_Ames");
 			setTitle("Triphenylimidazole and related");

@@ -40,7 +40,7 @@ public class SA65_Ames extends StructureAlertCDK {
 		super();
 		try {
 		
-			addSubstructure("1", "[F,Cl,I,Cl]C1=CCOC1=O");
+			addSubstructure("1", "[F,Br,I,Cl]C1=CCOC1=O");
 			
 			setID("SA65_Ames");
 			setTitle("Halofuranones");
