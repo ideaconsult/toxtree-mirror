@@ -2,6 +2,7 @@ mkdir dist
 copy toxtree-app\target\Toxtree-2.5.8-SNAPSHOT.jar dist
 mkdir dist\ext
 del dist\ext\*
+copy toxtree-plugins\toxtree-ames\target\*2.5.8-SNAPSHOT.jar dist\ext
 copy toxtree-plugins\toxtree-cramer\target\*2.5.8-SNAPSHOT.jar dist\ext
 copy toxtree-plugins\toxtree-cramer2\target\*2.5.8-SNAPSHOT.jar dist\ext
 copy toxtree-plugins\toxtree-eye\target\*2.5.8-SNAPSHOT.jar dist\ext
