@@ -340,12 +340,17 @@ public class TreeResult implements IDecisionResult {
             firePropertyChangeEvent(ProgressStatus._pRuleResult, null, "Completed.");
 			return r;
 		} catch (DecisionMethodException x) {
-			logger.log(Level.SEVERE,x.getMessage(),x);
+			if (logger.isLoggable(Level.FINE))
+				logger.log(Level.SEVERE,x.getMessage(),x);
+			else logger.log(Level.SEVERE,x.getMessage());
             setOriginalMolecule(null);
 			setEstimated(false);
             firePropertyChangeEvent(ProgressStatus._pRuleResult, null, x.getMessage());
 			throw new DecisionResultException(x);
 		} catch (NullPointerException x) {
+			if (logger.isLoggable(Level.FINE))
+				logger.log(Level.SEVERE,x.getMessage(),x);
+			else logger.log(Level.SEVERE,x.getMessage());
             setOriginalMolecule(null);
 			setEstimated(false);
             firePropertyChangeEvent(ProgressStatus._pRuleResult, null, x.getMessage());            
