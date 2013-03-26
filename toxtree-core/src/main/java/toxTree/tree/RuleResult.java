@@ -122,7 +122,7 @@ public class RuleResult implements Serializable {
 	public StringBuffer explain(boolean verbose) {
 		return explain(verbose,-1);
 	}
-	protected static final String wwwAlertFormat = "<a href='#' onClick=\"changeImage('compound_uri','%s/hilight?parameters=%s')\">%s.%s</a>";
+	protected static final String wwwAlertFormat = "%s.%s";
 	public StringBuffer explain(boolean verbose,int ruleIndex) {
 		StringBuffer b = new StringBuffer();
 		String space = web?" ":"&nbsp;";
@@ -130,7 +130,7 @@ public class RuleResult implements Serializable {
 			if (verbose) {
 				if (web)  {
 					if (result && (rule.isImplemented()) && (rule.getSelector()!=null))
-						b.append(String.format(wwwAlertFormat,"",rule.getID(),rule.getID(),rule.getTitle()));
+						b.append(String.format(wwwAlertFormat,rule.getID(),rule.getTitle()));
 					else
 						b.append(rule.toString());
 					b.append(space);
