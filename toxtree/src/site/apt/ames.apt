@@ -1,0 +1,59 @@
+ -----
+ In vitro mutagenicity (Ames test) alerts by ISS
+ -----
+ Nina Jeliazkova
+ -----
+ 2013/03/31
+ -----
+ 
+ 
+In vitro mutagenicity (Ames test) alerts by ISS 
+
+ A decision tree for estimating in vitro mutagenicity (Ames test).
+ 
+ Available since {{{./previous.html#Toxtree-2.5.8}ToxTree 2.5.8}}
+ 
+ Developed by {{{http://www.iss.it}Istituto Superiore di Sanita}} for {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}JRC IHCP Computational Toxicology and Modelling}} and {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria)
+   
+ Screenshots: {{{./images/ames/screen.jpg}Main screen}}
+   
+[images/ames/thumb.jpg] 
+  
+* Reference
+
+ [Benigni 2011] Benigni, R. & Bossa, C. (2011). Mechanisms of chemical carcinogenicity and mutagenicity: a review with implications for predictive toxicology. Chem. Revs. 111, 2507-2536. 
+
+ [Benigni 2013] Benigni, R., Bossa C., Tcheremenskaia O. (2013) In vitro cell transformation assays for an integrated, alternative assessment of carcinogenicity: a data-based analysis. Mutagenesis 2013;28(1):107-16.
+
+
+* Forum
+
+  {{{http://sourceforge.net/forum/forum.php?forum_id=867722}Benigni/Bossa rulebase forum}}
+  
+* For developers
+  
+	* Source 
+
+ 	{{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-ames}source code}}
+ 
+	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-ames</artifactId>
+  <version>2.5.8</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++---------------------------------
+

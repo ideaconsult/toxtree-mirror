@@ -45,7 +45,7 @@ A decision tree for  estimating skin irritation and corrosion  potential
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-sicret</artifactId>
-  <version>2.5.0</version>
+  <version>2.5.8</version>
 </dependency>
 +---------------------------------
 
