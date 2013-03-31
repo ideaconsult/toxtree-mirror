@@ -9,7 +9,7 @@
 {Toxtree-2.5.1} 
 
   <Toxtree is distributed with Java 6 installer. Please use Java 6 even if you have Java 7 already installed. There is a known problem, causing instability, when using Java 7.
-  This will be fixed with version 2.5.8.> 
+  This will be fixed starting with {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/2.5.8}Toxtree 2.5.8}}> 
 
  <<Toxtree-v2.5.1 is a bug fix release>>
  
@@ -32,6 +32,10 @@
     * included jre-6u30-windows-i586.exe in Windows installer;
 
     * updated manuals and README;    
+    
+    * {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/2.5.1}Source code}}  
+      
+    * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~2.5.1~~}Maven repository}}    
     
 {Toxtree-2.5.0} 
 
@@ -89,7 +93,7 @@
       
       * {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/2.5.0}Source code}}  
       
-      * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;quick~toxtree}Maven repository}}
+      * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~2.5.0~~}Maven repository}}
       
       
 {Toxtree-2.2.0} 
