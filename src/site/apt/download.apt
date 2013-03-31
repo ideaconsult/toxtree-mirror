@@ -3,10 +3,13 @@
  -----
  Nina Jeliazkova
  -----
- 2011/08/05
+ 2013/03/31
  -----
 
 {Toxtree-2.5.1} 
+
+  <Toxtree is distributed with Java 6 installer. Please use Java 6 even if you have Java 7 already installed. There is a known problem, causing instability, when using Java 7.
+  This will be fixed with version 2.5.8.> 
 
  <<Toxtree-v2.5.1 is a bug fix release>>
  
@@ -14,7 +17,7 @@
 
 	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.1/Toxtree-v2.5.1.zip/download}ZIP archive}}  (source and executable, platform independent)
 	
-* <<Change log>>
+	* <<Change log>>
 
 	* build date 3 Feb 2012
  

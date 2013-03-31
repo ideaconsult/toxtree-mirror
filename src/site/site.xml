@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <project name="Toxtree">
+<!-- 
   <bannerLeft>
     <name>Toxtree</name>
     <src>images/toxtree-logo.gif</src>
     <href>index.html</href>
   </bannerLeft>
+   -->
   <body>
       <head>
       <!-- Google Analytics - Start -->
@@ -22,41 +24,22 @@
 
 </script>   
       <!-- Google Analytics - End -->    
-      
-   
     </head>
-    <links>
-
-      <item name="Toxtree" href="/index.html"/>
-      <item name="Toxmatch" href="http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxmatch"/>
-      <item name="ToxPredict" href="http://toxpredict.org"/>
-      <item name="AMBIT 2.0" href="http://ambit.sourceforge.net"/>
-      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net:8080/ambit2"/>
-
-    </links>
 
       <!--<item name="Xdoc Example" href="xdoc.html"/>-->
-    <menu name="Toxtree">
-      <item name="Introduction" href="/index.html"/>
-      
-      <item name="Download" href="/download.html" >
+    <menu name="Home" >
+    	<item name="Toxtree" href="/index.html"/>
+    </menu>
+    <menu name="Download" >
+      		<item name="Toxtree 2.5.1" href="/download.html#Toxtree_2.5.1"/>
       		<item name="Toxtree 2.5.0" href="/download.html#Toxtree_2.5.0"/>
             <item name="Toxtree 2.2.0" href="/download.html#Toxtree_2.2.0"/>
             <item name="Toxtree 2.1.0" href="/download.html#Toxtree_2.1.0"/>
             <item name="Toxtree 1.60" href="/download.html#Toxtree-v1.60"/>
             <item name="Toxtree 1.51" href="/download.html#Toxtree-v1.51"/>
             <item name="Toxtree 1.20" href="/download.html#Toxtree-v1.20"/>
-      </item>
 	</menu>
-	<menu name="Support">      
-	  
-	  <item name="Support and feedback" href="/intro.html" />
-	  <item name="FAQ" href="/faq.html" />
-  	  <item name="Forum" hrefhttp://sourceforge.net/projects/toxtree/forums" />
-	  <item name="Mailing lists" href="http://sourceforge.net/mail/?group_id=152702" />
-	  <item name="Bug reports" href="/issue-tracking.html" />
-    </menu>
-    <menu name="Toxtree plugins">
+    <menu name="Plugins">
       <item name="Cramer rules" href="/cramer.html"/>
       <item name="Extended Cramer rules" href="/cramer2.html"/>
       <item name="Verhaar scheme" href="/verhaar.html"/>
@@ -71,10 +54,16 @@
 	  <item name="Skin sensitisation alerts" href="/skinsensitisation.html" />
 	  <item name="SMARTCyp" href="/smartcyp.html" />
 	  <item name="Kroes TTC decision tree" href="/kroes.html" />
-
-	  
+	  <item name="In vitro mutagenicity (Ames test)" href="/ames.html" />
     </menu>
-    <menu name="Toxtree publications">
+	<menu name="Support">      
+	  <item name="Support and feedback" href="/intro.html" />
+	  <item name="FAQ" href="/faq.html" />
+  	  <item name="G+ page" href="https://plus.google.com/b/102898313049050824023/102898313049050824023/posts" />
+  	  <item name="LinkedIn group" href="http://www.linkedin.com/groups/Toxtree-4140613" />
+	  <item name="Bug reports" href="/issue-tracking.html" />
+    </menu>    
+    <menu name="Publications">
     	<item name="How to cite Toxtree" href="/pubs_citetoxtree.html" />
     	<item name="Toxtree citations" href="/pubs_usage.html" />
     	<item name="Toxtree evaluations" href="/pubs_eval.html" />
@@ -85,6 +74,14 @@
     <menu ref="parent"/>
     -->
 
+    <menu name="Related links">
+      <item name="Toxmatch" href="http://toxmatch.sf.net"/>
+      <item name="ToxPredict" href="http://toxpredict.org"/>
+      <item name="AMBIT 2.0" href="http://ambit.sourceforge.net"/>
+      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net:8080/ambit2"/>
+      <item name="SMILES quiz" href="http://tinyurl.com/smilesquiz"/>
+      
+    </menu>
   </body>
 
   <poweredBy>
@@ -93,15 +90,36 @@
   </poweredBy>
 
     <skin>
-        <groupId>com.googlecode.fluido-skin</groupId>
-        <artifactId>fluido-skin</artifactId>
-        <version>1.3</version>
+        <groupId>org.apache.maven.skins</groupId>
+    	<artifactId>maven-fluido-skin</artifactId>
+    	<version>1.3.0</version>
     </skin>
-<!-- 
-  <skin>
-    <groupId>org.apache.maven.skins</groupId>
-    <artifactId>maven-application-skin</artifactId>
-    <version>1.0-SNAPSHOT</version>
-  </skin>
- -->
+
+  <custom>
+    <fluidoSkin>
+      <topBarEnabled>true</topBarEnabled>
+       <topBarContainerStyle>width: 90%;</topBarContainerStyle>
+       <navBarStyle>navbar-inverse</navBarStyle>
+      <sideBarEnabled>false</sideBarEnabled>
+      <topBarIcon>
+        <name>Toxtree</name>
+        <alt>Toxtree</alt>
+        <src>/images/toxtree-logo.gif</src>
+        <href>/index.html</href>
+      </topBarIcon>
+      <googleSearch>
+        <sitesearch>http://toxtree.sourceforge.net</sitesearch>
+      </googleSearch>
+      <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+      <twitter>
+        <user>10705013</user>
+        <showUser>false</showUser>
+        <showFollowers>false</showFollowers>
+      </twitter>
+       <ohloh>
+        <projectId>toxtree</projectId>
+        <widget>stats</widget>
+      </ohloh>
+    </fluidoSkin>
+  </custom>
 </project>
