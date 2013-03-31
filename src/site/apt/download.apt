@@ -6,6 +6,30 @@
  2011/08/05
  -----
 
+{Toxtree-2.5.1} 
+
+ <<Toxtree-v2.5.1 is a bug fix release>>
+ 
+ 	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.1/Toxtree-v2.5.1-setup.exe/download}Windows installer}}  (source and executable, Windows)
+
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.1/Toxtree-v2.5.1.zip/download}ZIP archive}}  (source and executable, platform independent)
+	
+* <<Change log>>
+
+	* build date 3 Feb 2012
+ 
+    * corrected Schiff base SMARTS;
+
+    * fixed ionic bonds matching;
+
+    * fixed explanation for RuleAliphaticWithSomeFuncGroups in Cramer rules and Extended Cramer rules;
+
+    * fixed recognition of  carbonyl in amide group,  affecting Q18 and Q20  of Cramer rules;
+
+    * included jre-6u30-windows-i586.exe in Windows installer;
+
+    * updated manuals and README;    
+    
 {Toxtree-2.5.0} 
 
  <<Toxtree-v2.5.0 is a stable release including 2 new plugins, 2 improved plugins, new features and bug fixes.>>
