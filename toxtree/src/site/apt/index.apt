@@ -3,7 +3,7 @@
  -----
  Nina Jeliazkova
  ----- 
- 2011/07/21
+ 2013/03/31
  -----
  
 {Toxtree} - Toxic Hazard Estimation by decision tree approach 
@@ -16,23 +16,13 @@
 
 [images/cramer/thumb.jpg] Toxtree Cramer rules module screenshot 
 
-*{ToxTree online}
+*{Downloads}
 
-    Find chemical compounds and apply Toxtree (and other methods) online! 
-    
-    {{{http://toxpredict.org}ToxPredict}}  (Several Toxtree modules and more)
+	* {{{./download.html#Toxtree_2.5.1}Toxtree-2.5.1}}
 	
-*{Multiplatform}
-
-	The  Toxtree  application  is suitable  for a  standalone PC and can run on any platform, supported by Java 1.5 or higher. 
-	  
-*Modular plugin design
-
-    Toxtree has  been   designed with  flexible capabilities  for future  extensions in  mind (e.g.
-    other classification schemes that could be developed at a future date). New
-    decision trees with arbitrary rules can be built with the help of graphical
-    user interface or by developing new plug-ins. Toxtree was commissioned by {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}JRC Computational Toxicology and Modelling}} and developed by {{{http://www.ideaconsult.net}Ideaconsult Ltd.}} (Sofia, Bulgaria).
-	Plugins have been and are currently being developed by several different organisations.  
+	* {{{./download.html#Toxtree_2.5.0}Toxtree-2.5.0}}
+	
+	* {{{./download.html}All versions}}
 	
 *{Plugins}
 
@@ -62,16 +52,22 @@
 	
 	* {{{./issfunc.html}Structural Alerts for Functional Group Identification (ISSFUNC)}}
 	
-*{Downloads}
+*{ToxTree online}
 
-	* {{{./download.html#Toxtree_2.5.0}Toxtree-2.5.0}}
+    Find chemical compounds and apply Toxtree (and other methods) online! 
+    
+    {{{http://toxpredict.org}ToxPredict}}  (Several Toxtree modules and more)
 	
-    * {{{./download.html#Toxtree_2.2.0}Toxtree-2.2.0}}
-    
-    * {{{./download.html#Toxtree_2.1.0}Toxtree-2.1.0}}
-    
-    * {{{./download.html#Toxtree-v1.60}Toxtree-1.60}}
-    
-    * {{{./download.html#Toxtree-v1.51}Toxtree-1.51}}
-    
-    * {{{./download.html#Toxtree-v1.20}Toxtree-1.20}}
+*{Multiplatform}
+
+	The  Toxtree  application  is suitable  for a  standalone PC and can run on any platform, supported by Java 1.5 or higher. 
+	  
+*Modular plugin design
+
+    Toxtree has  been   designed with  flexible capabilities  for future  extensions in  mind (e.g.
+    other classification schemes that could be developed at a future date). New
+    decision trees with arbitrary rules can be built with the help of graphical
+    user interface or by developing new plug-ins. Toxtree was commissioned by {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}JRC Computational Toxicology and Modelling}} and developed by {{{http://www.ideaconsult.net}Ideaconsult Ltd.}} (Sofia, Bulgaria).
+	Plugins have been and are currently being developed by several different organisations.  
+	
+
