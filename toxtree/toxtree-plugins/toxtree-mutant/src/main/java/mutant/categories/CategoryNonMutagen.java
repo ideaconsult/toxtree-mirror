@@ -1,7 +1,7 @@
 /*
-Copyright (C) 2005-2006  
+Copyright (C) 2005-2013
 
-Contact: nina@acad.bg
+Contact: Ideaconsult Ltd.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -22,6 +22,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+
 package mutant.categories;
 
 
@@ -34,6 +35,10 @@ public class CategoryNonMutagen extends MutantCategory {
 	public CategoryNonMutagen() {
 		super("Unlikely to be a S. typhimurium TA100 mutagen based on QSAR",4,4);
 		setExplanation("Assigned according to the output of <a href=\"#QSAR6\">QSAR6</a> or <a href=\"#QSAR13\">QSAR13</a>");
+	}
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasNontoxicCategory;
 	}
 }
 

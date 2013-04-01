@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007  
+Copyright Ideaconsult Ltd. (C) 2005-2013  
 
-Contact: nina@acad.bg
+Contact: Ideaconsult Ltd.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package mutant.categories;
 
 
+
 public class CategoryCarcinogen extends MutantCategory {
 	/**
 	 * 
@@ -34,6 +35,11 @@ public class CategoryCarcinogen extends MutantCategory {
 	public CategoryCarcinogen() {
 		super("Potential carcinogen based on QSAR",5,6);
         setExplanation("Assigned according to the output of <a href=\"#QSAR8\">QSAR8 (aromatic amines)</a>");
+	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasToxicCategory;
 	}
 
 }

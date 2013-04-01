@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2013 
 
-Contact: nina@acad.bg
+Contact: www.ideaconsult.net
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -22,12 +22,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
+
 package toxTree.tree;
 
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Observable;
 import java.util.logging.Level;
 
@@ -57,7 +59,10 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionMethodIOException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.query.MolFlags;
+import ambit2.base.data.Property;
+import ambit2.base.exceptions.AmbitException;
 import ambit2.core.data.ArrayResult;
+import ambit2.core.data.IObject2Properties;
 import ambit2.core.data.StringDescriptorResultType;
 
 /**
@@ -68,7 +73,7 @@ import ambit2.core.data.StringDescriptorResultType;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-11-10
  */
-public class UserDefinedTree extends AbstractTree implements IDecisionInteractive , IMolecularDescriptor {
+public class UserDefinedTree extends AbstractTree implements IDecisionInteractive , IMolecularDescriptor, IObject2Properties<UserDefinedTree> { 
 	protected boolean editable = true;
 	protected IDecisionNodesFactory nodesFactory;
     protected UserOptions options = UserOptions.YEStoALL;	
@@ -421,7 +426,7 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 				}
 			StringBuffer b = result.explain(true);	
 			value.set(descriptorNames.length-1, b.toString());
-			descriptorNames[descriptorNames.length-1] = String.format("%s#explanation", descriptorNames[0]) ;
+			descriptorNames[descriptorNames.length-1] = String.format("%s#explanation", getTitle()) ;
 			return new DescriptorValue(
 						getSpecification(),
 						getParameterNames(),
@@ -480,7 +485,23 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 				((IDecisionInteractive)rule).removeListener();
 		}		
 	}
-	
+
+	@Override
+	public List<Property> process(UserDefinedTree target) throws AmbitException {
+		IDecisionResult result = createDecisionResult();
+		return result.getResultProperties();
+	}	
+	@Override
+	public void setEnabled(boolean value) {
+	}
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+	@Override
+	public long getID() {
+		return 0;
+	}
 }
 
 class UnvisitedRules implements IProcessRule {
@@ -526,8 +547,6 @@ class UnvisitedRules implements IProcessRule {
 		for (int i=0; i < nodes.size();i++) 
 			nodes.getNode(i).setVisited(false);		
 	}
-	
-	
 	
 	
 	

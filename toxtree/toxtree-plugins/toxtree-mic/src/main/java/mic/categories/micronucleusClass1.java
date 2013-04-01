@@ -28,13 +28,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package mic.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.ToxicCategory;
 
 /**
  
  * @author Olga Tcheremenskaia <b>Modified</b> 2009-01-19
  */
-public class micronucleusClass1 extends DefaultCategory {
+public class micronucleusClass1 extends ToxicCategory {
 
 	/**
 	 * Comment for <code>serialVersionUID</code>

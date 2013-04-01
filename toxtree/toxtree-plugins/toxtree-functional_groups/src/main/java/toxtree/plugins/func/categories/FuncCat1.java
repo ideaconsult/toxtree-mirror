@@ -50,4 +50,9 @@ public class FuncCat1 extends DefaultCategory {
 		setThreshold("");
 
 	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasInconclusiveCategory;
+	}
 }

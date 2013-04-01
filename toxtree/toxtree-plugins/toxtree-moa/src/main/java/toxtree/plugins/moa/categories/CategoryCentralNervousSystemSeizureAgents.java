@@ -1,8 +1,8 @@
 package toxtree.plugins.moa.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.ToxicCategory;
 
-public class CategoryCentralNervousSystemSeizureAgents extends DefaultCategory {
+public class CategoryCentralNervousSystemSeizureAgents extends ToxicCategory {
 	 
 	protected static final String title="Category Central Nervous System Seizure Agents";
 	/**

@@ -1,8 +1,8 @@
 package toxtree.plugins.kroes.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.NonToxicCategory;
 
-public class NegligibleRisk extends DefaultCategory {
+public class NegligibleRisk extends NonToxicCategory {
 
     public NegligibleRisk()
     {

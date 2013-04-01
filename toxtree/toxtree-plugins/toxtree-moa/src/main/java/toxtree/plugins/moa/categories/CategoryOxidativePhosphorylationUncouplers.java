@@ -1,8 +1,8 @@
 package toxtree.plugins.moa.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.ToxicCategory;
 
-public class CategoryOxidativePhosphorylationUncouplers extends DefaultCategory {
+public class CategoryOxidativePhosphorylationUncouplers extends ToxicCategory {
 	protected static final String title="Oxidative phosphorylation uncoupling";
 	/**
 	 * 

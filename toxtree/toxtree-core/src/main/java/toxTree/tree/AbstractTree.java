@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2013 
 
-Contact: nina@acad.bg
+Contact: www.ideaconsult.net
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -22,6 +22,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
+
 package toxTree.tree;
 
 import java.awt.Color;
@@ -85,6 +86,14 @@ import ambit2.rendering.CompoundImageTools;
  * <b>Modified</b> 2005-4-30
  */
 public abstract class AbstractTree extends Observable implements IDecisionMethod, Observer, XMLSerializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3786430005546416893L;
+	/**
+	 * 
+	 */
+
 	protected static transient Logger logger = Logger.getLogger(AbstractTree.class.getName());
 	protected Dimension imageSize = new Dimension(150,150);
 	protected boolean web = false;
@@ -682,6 +691,7 @@ public abstract class AbstractTree extends Observable implements IDecisionMethod
 				);
 	
 	}
+
 }
 
 class TreeSelector implements IProcessor<IAtomContainer,IChemObjectSelection> {
@@ -718,6 +728,7 @@ class TreeSelector implements IProcessor<IAtomContainer,IChemObjectSelection> {
 	@Override
 	public void setEnabled(boolean value) {
 	}
+	
 	
 
 }

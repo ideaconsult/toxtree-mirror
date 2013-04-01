@@ -1,5 +1,7 @@
 package toxtree.plugins.proteinbinding.categories;
 
+import ambit2.base.interfaces.ICategory.CategoryType;
+
 
 /**
  * Shiff base
@@ -15,4 +17,5 @@ public class ShiffBaseAlerts extends ProteinBindingCategory {
 	public ShiffBaseAlerts() {
 		super(ProteinBindingAlerts.SHIFF_BASE);
 	}
+
 }

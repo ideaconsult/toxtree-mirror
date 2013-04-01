@@ -20,7 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package sicret.categories;
 
 
+import ambit2.base.interfaces.ICategory.CategoryType;
 import toxTree.tree.DefaultCategory;
+import toxTree.tree.NonToxicCategory;
 
 /**
  * 
@@ -28,7 +30,7 @@ import toxTree.tree.DefaultCategory;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class CategoryNotCorrosive extends DefaultCategory {
+public class CategoryNotCorrosive extends NonToxicCategory {
 
 	/**
 	 * Comment for <code>serialVersionUID</code>
@@ -41,8 +43,7 @@ public class CategoryNotCorrosive extends DefaultCategory {
 	public CategoryNotCorrosive() {
 		super("Not Corrosive to skin",1);
 		setExplanation("Not Corrosive to skin (NOT R34 or R35)");
-		
-
 	}
+
 }
 

@@ -19,14 +19,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.plugins.moa.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.ToxicCategory;
 
 /**
  * Assigned when compound is estimated to be corrosive to skin. 
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class CategoryNarcosis1 extends DefaultCategory {
+public class CategoryNarcosis1 extends ToxicCategory {
 
 	/**
 	 * 

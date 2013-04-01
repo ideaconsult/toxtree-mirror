@@ -39,6 +39,11 @@ public class CategoryBiodegradable extends DefaultCategory
 {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 315431724282932716L;
+
+	/**
      * Default constructor
      */
     public CategoryBiodegradable() 
@@ -49,5 +54,9 @@ public class CategoryBiodegradable extends DefaultCategory
             "that are associated with easy biodegradation." 
         );
     }
-    
+ 
+    @Override
+    public CategoryType getCategoryType() {
+    	return CategoryType.hasNontoxicCategory;
+    }
 }

@@ -48,6 +48,12 @@ import toxtree.plugins.ames.categories.CategoryMutagenTA100;
 import toxtree.plugins.ames.categories.CategoryNoAlertAmes;
 import toxtree.plugins.ames.categories.CategoryNonMutagen;
 import toxtree.plugins.ames.categories.CategoryPositiveAlertAmes;
+import ambit2.base.data.ILiteratureEntry;
+import ambit2.base.data.ILiteratureEntry._type;
+import ambit2.base.data.Property;
+import ambit2.base.data.PropertyAnnotation;
+import ambit2.base.data.PropertyAnnotations;
+import ambit2.base.exceptions.AmbitException;
 
 //import toxtree.plugins.ames.categories.CategoryNonMutagen;
 
@@ -103,6 +109,47 @@ public class AmesMutagenicityTreeResult extends TreeResult {
 			names[i] = c.get(i).toString();
 		return names;
 	}
+	
+	@Override
+	public List<Property> getResultProperties() throws AmbitException {
+
+		if (getDecisionMethod() == null) throw new AmbitException("Unassigned method");
+		ILiteratureEntry le = getReference();
+		le.setType(_type.Algorithm);
+		List<Property> p = new ArrayList<Property>();
+		for (IDecisionCategory category : getDecisionMethod().getCategories()) {
+			Property property = new Property(category.toString(),le);
+			property.setLabel(le.getURL());
+			property.setClazz(String.class);
+			property.setOrder(p.size()+1);
+			property.setEnabled(true);
+			property.setNominal(true);
+			PropertyAnnotations pa = new PropertyAnnotations();
+			property.setAnnotations(pa);
+			PropertyAnnotation a = new PropertyAnnotation();
+			a.setType("Category");
+			a.setPredicate(category.getCategoryType().name());
+			a.setObject(Answers.toString(Answers.YES));
+			pa.add(a);
+			a = new PropertyAnnotation();
+			a.setType("Category");
+			a.setPredicate(category.getCategoryType().getNegative().name());
+			a.setObject(Answers.toString(Answers.NO));
+			pa.add(a);
+			p.add(property);
+		}
+		
+		Property property = new Property(String.format("%s#explanation", getDecisionMethod().getTitle()),le); 
+		property.setLabel(le.getURL());
+		property.setClazz(String.class);
+		property.setOrder(p.size()+1);
+		property.setEnabled(true);
+		property.setNominal(false);
+		p.add(property);
+		
+		return p;
+	}
+	
 	protected ArrayList<IAtomContainer> getAllAssignedMolecules() {
         ArrayList<IAtomContainer> residues = new ArrayList<IAtomContainer>();
         return residues;

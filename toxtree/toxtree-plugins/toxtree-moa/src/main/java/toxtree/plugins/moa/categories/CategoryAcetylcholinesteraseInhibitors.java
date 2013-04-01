@@ -1,8 +1,8 @@
 package toxtree.plugins.moa.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.ToxicCategory;
 
-public class CategoryAcetylcholinesteraseInhibitors extends DefaultCategory {
+public class CategoryAcetylcholinesteraseInhibitors extends ToxicCategory {
 	protected static final String title="Acetylcholinesterase Inhibitors";
 	/**
 	 * 

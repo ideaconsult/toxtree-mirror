@@ -55,6 +55,11 @@ public class MutantCategory extends DefaultCategory {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasInconclusiveCategory;
+	}
 }
 
 

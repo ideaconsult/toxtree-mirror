@@ -16,4 +16,10 @@ public class RequireCompoundSpecificToxicityData extends DefaultCategory
     }
 
     private static final long serialVersionUID = 0xf8e2d8d0ba9a765fL;
+    
+    
+    @Override
+    public CategoryType getCategoryType() {
+    	return CategoryType.hasInconclusiveCategory;
+    }
 }

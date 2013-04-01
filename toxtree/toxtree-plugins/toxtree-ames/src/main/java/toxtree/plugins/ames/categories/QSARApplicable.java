@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.plugins.ames.categories;
 
 
+
 public class QSARApplicable extends AmesMutagenicityCategory {
 
 	/**
@@ -43,6 +44,11 @@ public class QSARApplicable extends AmesMutagenicityCategory {
     }
 	public QSARApplicable(String name, int id) {
 		this();
+	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasInconclusiveCategory;
 	}
 
 }

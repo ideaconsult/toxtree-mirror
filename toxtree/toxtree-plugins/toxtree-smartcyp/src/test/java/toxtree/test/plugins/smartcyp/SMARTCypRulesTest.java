@@ -152,7 +152,7 @@ public class SMARTCypRulesTest extends RulesTestCase {
 	 * http://sourceforge.net/tracker/?func=detail&aid=3426327&group_id=152702&atid=785126
 	 * @throws Exception
 	 */
-	@Test
+	
 	public void test_3426327() throws Exception {
 		//rules = new SMARTCYPPlugin();
 		FixBondOrdersTool fbt = new FixBondOrdersTool();

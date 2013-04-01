@@ -33,6 +33,8 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.RuleResult;
+import ambit2.base.data.Property;
+import ambit2.base.exceptions.AmbitException;
 
 
 /**
@@ -78,6 +80,11 @@ public interface IDecisionResult extends Comparable, Serializable , IProgressSta
 	 * Returns the name of the property that will contain the result
 	 */
 	String[] getResultPropertyNames();
+	/**
+	 * Returns the properties to contain the result in {@link Property} class
+	 * @return
+	 */
+	public List<Property> getResultProperties()  throws AmbitException;
 	public List<CategoryFilter> getFilters();
     void setNotify(boolean value);
     void hilightAlert(IDecisionRule rule) throws DecisionResultException;

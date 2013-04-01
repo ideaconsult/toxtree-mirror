@@ -1,8 +1,8 @@
 package toxtree.plugins.moa.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.ToxicCategory;
 
-public class CategoryNarcosis3 extends DefaultCategory {
+public class CategoryNarcosis3 extends ToxicCategory {
 
 	/**
 	 * 

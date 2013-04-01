@@ -33,6 +33,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.qsar.IMolecularDescriptor;
 
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionCategory;
@@ -43,6 +44,13 @@ import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DMethodNotAssigned;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
+import ambit2.base.data.ILiteratureEntry;
+import ambit2.base.data.ILiteratureEntry._type;
+import ambit2.base.data.LiteratureEntry;
+import ambit2.base.data.Property;
+import ambit2.base.data.PropertyAnnotation;
+import ambit2.base.data.PropertyAnnotations;
+import ambit2.base.exceptions.AmbitException;
 /**
  * A default class implementing {@link toxTree.core.IDecisionResult}
  * @author Nina Jeliazkova nina@acad.bg<br>
@@ -495,10 +503,55 @@ public class TreeResult implements IDecisionResult {
         */
         firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);        
 	}
+	
+	@Override
 	public String[] getResultPropertyNames() {
 		if (getDecisionMethod() == null) return new String[] {"Unassigned method"};
 		else return new String[] {getDecisionMethod().getTitle()};
 	}
+	
+	protected ILiteratureEntry getReference() {
+		if (getDecisionMethod() instanceof IMolecularDescriptor) {
+			IMolecularDescriptor tree = (IMolecularDescriptor) getDecisionMethod();
+			return LiteratureEntry.getInstance(
+					tree.getSpecification().getImplementationTitle(),
+					tree.getSpecification().getSpecificationReference());
+		} else return LiteratureEntry.getInstance("Toxtree","http://toxtree.sf.net");
+	}
+	
+	@Override
+	public List<Property> getResultProperties() throws AmbitException {
+		if (getDecisionMethod() == null) throw new AmbitException("Unassigned method");
+		ILiteratureEntry le = getReference();
+		le.setType(_type.Algorithm);
+		Property property = new Property(getDecisionMethod().getTitle(),le);
+		property.setLabel(le.getURL());
+		property.setClazz(String.class);
+		property.setOrder(1);
+		property.setEnabled(true);
+		property.setNominal(true);
+		PropertyAnnotations pa = new PropertyAnnotations();
+		property.setAnnotations(pa);
+		for (IDecisionCategory category : getDecisionMethod().getCategories()) {
+			PropertyAnnotation a = new PropertyAnnotation();
+			a.setType("Category");
+			a.setPredicate(category.getCategoryType().name());
+			a.setObject(category.getName());
+			pa.add(a);
+		}
+		List<Property> p = new ArrayList<Property>();
+		p.add(property);
+		
+		property = new Property(String.format("%s#explanation", getDecisionMethod().getTitle()),le); 
+		property.setLabel(le.getURL());
+		property.setClazz(String.class);
+		property.setOrder(2);
+		property.setEnabled(true);
+		property.setNominal(false);
+		p.add(property);
+		return p;
+	}
+	
 	public ArrayList<RuleResult> getRuleResults() {
 		return ruleResults;
 	}

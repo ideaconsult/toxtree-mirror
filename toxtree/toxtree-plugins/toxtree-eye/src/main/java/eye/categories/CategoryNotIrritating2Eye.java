@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd.(C) 2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd.(C) 2006-2013  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,19 +19,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package eye.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.NonToxicCategory;
 
 /**
  * Assigned when compound is estimated to be not irritating to skin.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * <b>Modified</b> Apr 1, 2013
  */
-public class CategoryNotIrritating2Eye extends DefaultCategory {
+public class CategoryNotIrritating2Eye extends NonToxicCategory {
 
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
-	private static final long serialVersionUID = 0;
+	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2478375025406169883L;
 
 	/**
 	 * 
@@ -41,5 +45,6 @@ public class CategoryNotIrritating2Eye extends DefaultCategory {
 		setExplanation("NOT irritating to eye (NOT R36)");
 
 	}
+
 }
 

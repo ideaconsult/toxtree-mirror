@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007  
+Copyright (C) 2005-2013
 
-Contact: nina@acad.bg
+Contact: Ideaconsult Ltd.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package mutant.categories;
 
 
+
 public class CategoryNoNongenotoxicAlert extends MutantCategory {
 
 	/**
@@ -35,6 +36,11 @@ public class CategoryNoNongenotoxicAlert extends MutantCategory {
 	public CategoryNoNongenotoxicAlert() {
 		super("Negative for nongenotoxic carcinogenicity",9,1);
         setExplanation("Assigned when neither an <a href=\"#Alerts\">alert for genotoxic carcinogenicity</a> nor an <a href=\"#Alerts(nongenotoxic)\"> alert for nongenotoxic carcinogenicity</a> is fired.");
+	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasNontoxicCategory;
 	}
 }
 

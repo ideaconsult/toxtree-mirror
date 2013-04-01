@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.plugins.ames.categories;
 
 
+
 public class CategoryPositiveAlertAmes extends AmesMutagenicityCategory {
 
 	/**
@@ -37,10 +38,10 @@ public class CategoryPositiveAlertAmes extends AmesMutagenicityCategory {
         setExplanation("Assigned when an <a href=\"#Alerts\">alert for genotoxic carcinogenicity</a> is fired.");
 	}
 
-	/*
-	 * 
-	 */
-
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasToxicCategory;
+	}
 }
 
 

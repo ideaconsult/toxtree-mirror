@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.plugins.ames.categories;
 
 
+
 public class CategoryMutagenTA100 extends AmesMutagenicityCategory {
 	
 	/**
@@ -35,6 +36,11 @@ public class CategoryMutagenTA100 extends AmesMutagenicityCategory {
 	public CategoryMutagenTA100() {
 		super("Potential S. typhimurium TA100 mutagen based on QSAR",3,5);
         setExplanation("Assigned according to the output of <a href=\"#QSAR6\">QSAR6</a> or <a href=\"#QSAR13\">QSAR13</a>");
+	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasToxicCategory;
 	}
 }
 

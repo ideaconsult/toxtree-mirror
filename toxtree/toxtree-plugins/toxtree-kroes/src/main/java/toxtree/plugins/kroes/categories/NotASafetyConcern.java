@@ -1,13 +1,13 @@
 package toxtree.plugins.kroes.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.NonToxicCategory;
 
 /**
  * Substance would not be expected to be a safety concern
  * @author nina
  *
  */
-public class NotASafetyConcern extends DefaultCategory {
+public class NotASafetyConcern extends NonToxicCategory {
 
 
 	/**

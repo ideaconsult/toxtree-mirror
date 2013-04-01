@@ -1,8 +1,8 @@
 package toxtree.plugins.moa.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.ToxicCategory;
 
-public class CategoryElectrophileProelectrophileReactivity extends DefaultCategory {
+public class CategoryElectrophileProelectrophileReactivity extends ToxicCategory {
 	protected static final String title="Electrophile / Proelectrophile Reactivity";
 	/**
 	 * 
