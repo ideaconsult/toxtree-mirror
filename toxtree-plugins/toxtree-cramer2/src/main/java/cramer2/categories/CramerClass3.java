@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package cramer2.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.ToxicCategory;
 
 /**
  * A {@link toxTree.tree.DefaultCategory} descendant, implementation of 
@@ -32,7 +32,7 @@ import toxTree.tree.DefaultCategory;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-10-9
  */
-public class CramerClass3 extends DefaultCategory {
+public class CramerClass3 extends ToxicCategory {
 
 	/**
 	 * Comment for <code>serialVersionUID</code>

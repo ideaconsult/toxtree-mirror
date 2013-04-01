@@ -13,4 +13,9 @@ public class NoSites extends DefaultCategory {
 		setExplanation("No sites");
 		setThreshold("");
 	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasInconclusiveCategory;
+	}
 }

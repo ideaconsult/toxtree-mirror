@@ -50,4 +50,8 @@ public class FuncCat2 extends DefaultCategory {
 		setThreshold("");
 
 	}
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasNontoxicCategory;
+	}
 }

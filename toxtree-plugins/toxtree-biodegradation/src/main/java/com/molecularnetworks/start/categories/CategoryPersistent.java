@@ -49,5 +49,10 @@ public class CategoryPersistent extends DefaultCategory
             "associated with persistence in the environment" 
         );
     }
+    
+    @Override
+    public CategoryType getCategoryType() {
+    	return CategoryType.hasToxicCategory;
+    }
 
 }

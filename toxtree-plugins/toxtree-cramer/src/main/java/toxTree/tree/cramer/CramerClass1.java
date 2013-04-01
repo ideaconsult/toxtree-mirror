@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.tree.cramer;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.NonToxicCategory;
 
 /**
  * A {@link toxTree.tree.DefaultCategory} descendant, implementation of 
@@ -32,7 +32,7 @@ import toxTree.tree.DefaultCategory;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-10-9
  */
-public class CramerClass1 extends DefaultCategory {
+public class CramerClass1 extends NonToxicCategory {
 
 	/**
 	 * Comment for <code>serialVersionUID</code>
@@ -48,4 +48,5 @@ public class CramerClass1 extends DefaultCategory {
 		setThreshold("\nFifth percentile NOEL (mg/kg bw/day)  3.0 Human exposure threshold  (mg/person/day)  1.8");
 
 	}
+
 }

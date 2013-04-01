@@ -1,5 +1,7 @@
 package toxtree.plugins.proteinbinding.categories;
 
+import ambit2.base.interfaces.ICategory.CategoryType;
+
 
 /**
  * Michael Acceptors
@@ -15,4 +17,5 @@ public class MichaelAcceptors extends ProteinBindingCategory {
 	public MichaelAcceptors() {
 		super(ProteinBindingAlerts.MICHAEL_ACCEPTORS);
 	}
+
 }

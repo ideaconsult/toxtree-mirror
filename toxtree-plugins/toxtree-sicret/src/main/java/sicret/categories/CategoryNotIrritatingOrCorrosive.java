@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd.(C) 2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd.(C) 2006-2013  
+Contact: Ideaconsult Ltd.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,20 +19,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package sicret.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.NonToxicCategory;
 
 /**
  * 
  * Assigned when compound is estimated to be not Irritating or corrosive to skin.
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
+ * <b>Modified</b> Apr 1, 2013
  */
-public class CategoryNotIrritatingOrCorrosive extends DefaultCategory {
+public class CategoryNotIrritatingOrCorrosive extends NonToxicCategory {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6262205717485184257L;
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
-	private static final long serialVersionUID = 0;
+
 
 	/**
 	 * 
@@ -40,8 +44,6 @@ public class CategoryNotIrritatingOrCorrosive extends DefaultCategory {
 	public CategoryNotIrritatingOrCorrosive() {
 		super("Not Irritating or Corrosive to skin",2);
 		setExplanation("Not Irritating or Corrosive to skin (NOT R34, R35 or R38)");
-		
-		
-
 	}
+
 }

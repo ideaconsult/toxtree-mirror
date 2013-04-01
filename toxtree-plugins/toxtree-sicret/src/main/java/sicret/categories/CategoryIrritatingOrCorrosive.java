@@ -1,13 +1,13 @@
 package sicret.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.ToxicCategory;
 
 /**
  * Assigned when compound is estimated to be irritating or corrosive to skin.
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class CategoryIrritatingOrCorrosive extends DefaultCategory {
+public class CategoryIrritatingOrCorrosive extends ToxicCategory {
 
 	/**
 	 * Comment for <code>serialVersionUID</code>

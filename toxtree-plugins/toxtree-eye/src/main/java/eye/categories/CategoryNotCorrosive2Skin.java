@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package eye.categories;
 
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.NonToxicCategory;
 
 /**
  * 
@@ -28,7 +28,7 @@ import toxTree.tree.DefaultCategory;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class CategoryNotCorrosive2Skin extends DefaultCategory {
+public class CategoryNotCorrosive2Skin extends NonToxicCategory {
 
 	/**
 	 * Comment for <code>serialVersionUID</code>

@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2013 
 
-Contact: nina@acad.bg
+Contact: www.ideaconsult.net
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package cramer2.categories;
 
+import ambit2.base.interfaces.ICategory.CategoryType;
 import toxTree.tree.DefaultCategory;
 
 /**
@@ -46,6 +47,10 @@ public class CramerClass2 extends DefaultCategory {
 		super("Intermediate (Class II)",2);
 		setExplanation("Substances which possess structures that are less innocuous than class I substances, but do not contain structural features suggestive of toxicity like those substances in class III.");
 		setThreshold("Fifth percentile NOEL (mg/kg bw/day)  0.91 Human exposure threshold  (mg/person/day)  0.54");
-
 	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasInconclusiveCategory;
+	}	
 }

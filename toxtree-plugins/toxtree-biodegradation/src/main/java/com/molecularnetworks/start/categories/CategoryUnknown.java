@@ -48,5 +48,8 @@ public class CategoryUnknown extends DefaultCategory
             "The biodegradability of  the chemical cannot be assessed." 
         );
     }
-    
+    @Override
+    public CategoryType getCategoryType() {
+    	return CategoryType.hasInconclusiveCategory;
+    }
 }

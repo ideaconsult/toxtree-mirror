@@ -45,6 +45,7 @@ import toxTree.core.IProcessRule;
 import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
+import ambit2.base.data.Property;
 import ambit2.base.exceptions.AmbitException;
 
 /**
@@ -405,7 +406,11 @@ public class BatchDecisionResultsList extends DecisionResultsList implements IDe
     	return null;
     }
     public String[] getResultPropertyNames() {
-    	// TODO Auto-generated method stub
+    	return null;
+    }
+    @Override
+    public List<Property> getResultProperties() throws AmbitException {
+
     	return null;
     }
     public int getPriority() {
@@ -426,6 +431,7 @@ public class BatchDecisionResultsList extends DecisionResultsList implements IDe
             getMethod(i).walkRules(rule,processor);
         }    
 	}
+
 	public List<CategoryFilter> getFilters() {
 		return null;
 	}

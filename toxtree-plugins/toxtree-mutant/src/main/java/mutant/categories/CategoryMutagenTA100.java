@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007  
+Copyright (C) 2005-2013
 
-Contact: nina@acad.bg
+Contact: Ideaconsult Ltd.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -22,7 +22,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 */
 
+
 package mutant.categories;
+
 
 
 public class CategoryMutagenTA100 extends MutantCategory {
@@ -35,6 +37,11 @@ public class CategoryMutagenTA100 extends MutantCategory {
 	public CategoryMutagenTA100() {
 		super("Potential S. typhimurium TA100 mutagen based on QSAR",3,5);
         setExplanation("Assigned according to the output of <a href=\"#QSAR6\">QSAR6</a> or <a href=\"#QSAR13\">QSAR13</a>");
+	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasToxicCategory;
 	}
 }
 

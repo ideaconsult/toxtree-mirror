@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd. (C) 2005-2013  
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 /**
  * Created on 2005-5-2
 
- * @author Nina Jeliazkova nina@acad.bg
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com
  *
  * Project : toxtree
  * Package : toxTree.core
@@ -30,6 +30,8 @@ package toxTree.core;
 
 import java.io.Serializable;
 
+import ambit2.base.interfaces.ICategory;
+
 /**
  * An interface definition to represent a chemical category
  * The application of a decision tree {@link toxTree.core.IDecisionMethod} 
@@ -38,7 +40,7 @@ import java.io.Serializable;
  * @author Nina Jeliazkova <br>
  * @version 0.1, 2005-5-2
  */
-public interface IDecisionCategory extends Serializable, Comparable<IDecisionCategory> {
+public interface IDecisionCategory extends Serializable, Comparable<IDecisionCategory>, ICategory {
 	int getID();
 	void setID(int id);
 	String getName();

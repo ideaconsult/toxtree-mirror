@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd (C) 2005-2011 
-Contact: jeliazkova.nina@gmail.com
+Copyright Ideaconsult Ltd (C) 2005-2013 
+Contact: Ideaconsult Ltd.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.categories;
 
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.ToxicCategory;
 
 /**
  * 
@@ -28,7 +28,7 @@ import toxTree.tree.DefaultCategory;
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class Class3UnspecificReactivity extends DefaultCategory {
+public class Class3UnspecificReactivity extends ToxicCategory {
 
 	/**
 	 * Comment for <code>serialVersionUID</code>

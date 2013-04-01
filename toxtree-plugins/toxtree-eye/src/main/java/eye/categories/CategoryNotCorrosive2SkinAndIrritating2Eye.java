@@ -1,7 +1,7 @@
 /*
-Copyright (C) 2005-2008  
+Copyright (C) 2005-2013  
 
-Contact: nina@acad.bg
+Contact: Ideaconsult Ltd.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -24,9 +24,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package eye.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.NonToxicCategory;
 
-public class CategoryNotCorrosive2SkinAndIrritating2Eye extends DefaultCategory {
+public class CategoryNotCorrosive2SkinAndIrritating2Eye extends NonToxicCategory {
 	/**
 	 * 
 	 */

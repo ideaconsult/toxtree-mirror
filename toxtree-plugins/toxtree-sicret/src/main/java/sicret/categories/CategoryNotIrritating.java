@@ -19,14 +19,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package sicret.categories;
 
-import toxTree.tree.DefaultCategory;
+import toxTree.tree.NonToxicCategory;
 
 /**
  * Assigned when compound is estimated to be not irritating to skin.
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Modified</b> Dec 17, 2006
  */
-public class CategoryNotIrritating extends DefaultCategory {
+public class CategoryNotIrritating extends NonToxicCategory {
 
 	/**
 	 * Comment for <code>serialVersionUID</code>
@@ -39,9 +39,8 @@ public class CategoryNotIrritating extends DefaultCategory {
 	public CategoryNotIrritating() {
 		super("Not Irritating",3);
 		setExplanation("No Irritating to skin (NOT R38)");
-		
-		
-
 	}
-}
+}	
+	
+
 

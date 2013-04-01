@@ -1,7 +1,7 @@
 /*
-Copyright (C) 2005-2006  
+Copyright (C) 2005-2013
 
-Contact: nina@acad.bg
+Contact: Ideaconsult Ltd.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public License
@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package mutant.categories;
 
 
+
 public class CategoryPositiveAlertNongenotoxic extends MutantCategory {
 	/**
 	 * 
@@ -35,7 +36,10 @@ public class CategoryPositiveAlertNongenotoxic extends MutantCategory {
 		super("Structural Alert for nongenotoxic carcinogenicity",2,2);
         setExplanation("Assigned when an <a href=\"#Alerts(nongenotoxic)\">alert for nongenotoxic carcinogenicity</a> is fired.");        
 	}
-
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasToxicCategory;
+	}
 }
 
 

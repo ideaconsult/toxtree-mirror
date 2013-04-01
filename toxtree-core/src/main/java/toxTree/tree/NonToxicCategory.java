@@ -1,7 +1,7 @@
 /*
 Copyright Ideaconsult Ltd. (C) 2005-2013 
 
-Contact: www.ideaconsult.net
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -22,26 +22,36 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 */
+package toxTree.tree;
 
-package toxtree.plugins.lewis.categories;
-
-import toxTree.tree.DefaultCategory;
-
-public class CYP2E extends DefaultCategory {
+/**
+ * A non toxic category
+ * @author nina
+ *
+ */
+public class NonToxicCategory extends DefaultCategory {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8373035451566762061L;
+	private static final long serialVersionUID = -1854754496782018338L;
 
-	public CYP2E() {
-		super("CYP2E",6);
-		setExplanation("Potential CYP2E substrate");
-		setThreshold("");
-
+	public NonToxicCategory() {
+		this("Default",-1);
 	}
+	/**
+	 * 
+	 * Constructor
+	 * @param name
+	 * @param id
+	 */
+	public NonToxicCategory(String name, int id) {
+		super(name,id);
+	}
+	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasInconclusiveCategory;
+		return CategoryType.hasNontoxicCategory;
 	}
+
 }

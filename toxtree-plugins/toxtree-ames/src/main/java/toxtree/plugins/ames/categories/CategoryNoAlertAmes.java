@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.plugins.ames.categories;
 
 
+
 public class CategoryNoAlertAmes extends AmesMutagenicityCategory {
 
 	/**
@@ -35,6 +36,11 @@ public class CategoryNoAlertAmes extends AmesMutagenicityCategory {
 	public CategoryNoAlertAmes() {
 		super("No alerts for S. typhimurium mutagenicity",2,1);
         setExplanation("Assigned when neither an <a href=\"#Alerts\">alert for genotoxic carcinogenicity</a> nor an <a href=\"#Alerts(nongenotoxic)\"> alert for nongenotoxic carcinogenicity</a> is fired.");
+	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasNontoxicCategory;
 	}
 }
 

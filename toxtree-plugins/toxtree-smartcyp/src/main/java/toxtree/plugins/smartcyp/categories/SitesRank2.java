@@ -15,5 +15,10 @@ public class SitesRank2 extends DefaultCategory {
 		setExplanation("SMARTCyp secondary sites of metabolism found");
 		setThreshold("");
 	}
+	
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasInconclusiveCategory;
+	}
 
 }

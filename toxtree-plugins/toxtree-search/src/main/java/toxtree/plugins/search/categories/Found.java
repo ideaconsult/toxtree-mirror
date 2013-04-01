@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd (C) 2005-2011 
-Contact: jeliazkova.nina@gmail.com
+Copyright Ideaconsult Ltd (C) 2005-2013 
+Contact: Ideaconsult Ltd.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -41,5 +41,9 @@ public class Found extends DefaultCategory {
 		super("Found",1);
 		setExplanation("Found");
 		setThreshold("");
+	}
+	@Override
+	public CategoryType getCategoryType() {
+		return CategoryType.hasInconclusiveCategory;
 	}
 }
