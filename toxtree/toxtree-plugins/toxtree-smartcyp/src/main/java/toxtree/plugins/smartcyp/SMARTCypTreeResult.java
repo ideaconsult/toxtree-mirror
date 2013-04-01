@@ -43,6 +43,12 @@ import toxTree.tree.ProgressStatus;
 import toxTree.tree.RuleResult;
 import toxTree.tree.TreeResult;
 import toxTree.tree.rules.IAlertCounter;
+import ambit2.base.data.ILiteratureEntry;
+import ambit2.base.data.ILiteratureEntry._type;
+import ambit2.base.data.Property;
+import ambit2.base.data.PropertyAnnotation;
+import ambit2.base.data.PropertyAnnotations;
+import ambit2.base.exceptions.AmbitException;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
 import dk.smartcyp.core.SMARTSData;
 import dk.smartcyp.smirks.SMARTCYPReaction;
@@ -94,10 +100,76 @@ public class SMARTCypTreeResult extends TreeResult {
 		}
      	
         firePropertyChangeEvent(ProgressStatus._pRuleResult, null, status);        
-
-        
-        
 	}
+	private final SMARTCYP_PROPERTY[] scp = new SMARTCYP_PROPERTY[] {SMARTCYP_PROPERTY.Score,SMARTCYP_PROPERTY.Energy,SMARTCYP_PROPERTY.Reaction,SMARTCYP_PROPERTY.SMIRKS,SMARTCYP_PROPERTY.Accessibility};
+	@Override
+	public String[] getResultPropertyNames() {
+		IDecisionCategories c = decisionMethod.getCategories();
+		
+ 
+		String[] names = new String[c.size()*(scp.length+1)];
+		for (int i=0; i < c.size();i++) 
+			names[i] = c.get(i).toString(); //atoms per rank
+
+		int n = c.size();
+		for (int j=0; j < scp.length;j++) //scores per rank
+			for (int i=0; i < c.size();i++) { 
+				names[n] = String.format(FORMAT,"",c.get(i).getID(),scp[j]);
+				n++;
+			}	
+			//names[i] = c.get(i).toString();
+
+		return names;
+	}
+	@Override
+	public List<Property> getResultProperties() throws AmbitException {
+
+		if (getDecisionMethod() == null) throw new AmbitException("Unassigned method");
+		ILiteratureEntry le = getReference();
+		le.setType(_type.Algorithm);
+		List<Property> p = new ArrayList<Property>();
+		for (IDecisionCategory category : getDecisionMethod().getCategories()) {
+			Property property = new Property(category.toString(),le);
+			property.setLabel(le.getURL());
+			property.setClazz(String.class);
+			property.setOrder(p.size()+1);
+			property.setEnabled(true);
+			property.setNominal(true);
+			PropertyAnnotations pa = new PropertyAnnotations();
+			property.setAnnotations(pa);
+			PropertyAnnotation a = new PropertyAnnotation();
+			a.setType("Category");
+			a.setPredicate(category.getCategoryType().name());
+			a.setObject(Answers.toString(Answers.YES));
+			pa.add(a);
+			a = new PropertyAnnotation();
+			a.setType("Category");
+			a.setPredicate(category.getCategoryType().getNegative().name());
+			a.setObject(Answers.toString(Answers.NO));
+			pa.add(a);
+			p.add(property);
+		}
+		
+		for (int j=0; j < scp.length;j++) //scores per rank
+			for (IDecisionCategory category : getDecisionMethod().getCategories()) {
+				Property property = new Property(String.format(FORMAT,"",category.getID(),scp[j]),le);
+				property.setLabel("http://www.opentox.org/echaEndpoints.owl#"+scp[j].name());
+				property.setOrder(p.size()+1);
+				property.setEnabled(true);
+				property.setNominal(false);
+				p.add(property);
+			}	
+		
+		Property property = new Property(String.format("%s#explanation", getDecisionMethod().getTitle()),le); 
+		property.setLabel(le.getURL());
+		property.setClazz(String.class);
+		property.setOrder(p.size()+1);
+		property.setEnabled(true);
+		property.setNominal(false);
+		p.add(property);
+		
+		return p;
+	}	
 	protected Object getAtomScoresOfRank(IAtomContainer moleculeKU,Integer rank,SMARTCYP_PROPERTY property) {
            
            List atoms = new ArrayList();
@@ -184,26 +256,7 @@ public class SMARTCypTreeResult extends TreeResult {
 			
 
 	}	
-	@Override
-	public String[] getResultPropertyNames() {
-		IDecisionCategories c = decisionMethod.getCategories();
 		
-		SMARTCYP_PROPERTY[] p = new SMARTCYP_PROPERTY[] {SMARTCYP_PROPERTY.Score,SMARTCYP_PROPERTY.Energy,SMARTCYP_PROPERTY.Reaction,SMARTCYP_PROPERTY.SMIRKS,SMARTCYP_PROPERTY.Accessibility}; 
-		String[] names = new String[c.size()*(p.length+1)];
-		for (int i=0; i < c.size();i++) 
-			names[i] = c.get(i).toString(); //atoms per rank
-
-		int n = c.size();
-		for (int j=0; j < p.length;j++) //scores per rank
-			for (int i=0; i < c.size();i++) { 
-				names[n] = String.format(FORMAT,"",c.get(i).getID(),p[j]);
-				n++;
-			}	
-			//names[i] = c.get(i).toString();
-
-		return names;
-	}
-	
 	@Override
 	protected boolean acceptCategory(IDecisionCategory category) {
 		return category != null;
