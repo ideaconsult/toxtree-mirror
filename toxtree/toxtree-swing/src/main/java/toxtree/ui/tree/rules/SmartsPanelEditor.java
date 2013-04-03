@@ -47,7 +47,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxtree.ui.molecule.MoleculeEditAction;
@@ -68,7 +68,7 @@ public class SmartsPanelEditor extends JPanel  {
 	protected JTextArea pattern;
 	protected JLabel status;
 	protected Panel2D panel2D;
-	protected IMolecule testMolecule = null;
+	protected IAtomContainer testMolecule = null;
 	protected MoleculeEditAction moleculeEditAction;
 	protected ISmartsPatternFactory smartsPatternFactory;
 	

@@ -91,7 +91,7 @@ public class RuleSubstructuresEditAction extends RuleMoleculeEditAction {
 			
 	}
     @Override
-    protected void updateMolecule(IMolecule mol) {
+    protected void updateMolecule(IAtomContainer mol) {
         super.updateMolecule(mol);
         if (rule instanceof IRuleSubstructures)  {
             IAtomContainer a = getMolecule();
