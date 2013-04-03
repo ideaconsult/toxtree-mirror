@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.Icon;
 
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionRule;
@@ -115,7 +116,7 @@ public class RuleExampleEditAction extends RuleMoleculeEditAction {
 		}
 	}
 	@Override
-	protected void updateMolecule(IMolecule mol) {
+	protected void updateMolecule(IAtomContainer mol) {
 	    super.updateMolecule(mol);
         rule.setExampleMolecule(mol,answer);
         setMolecule(null);

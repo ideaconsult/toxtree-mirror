@@ -71,17 +71,17 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
 	 */
 	private static final long serialVersionUID = 5166718649430988452L;
 
-	public MoleculeEditAction(IMolecule molecule) {
+	public MoleculeEditAction(IAtomContainer molecule) {
 		super(molecule);
 		setJCPModel();
 	}
 
-	public MoleculeEditAction(IMolecule molecule, String arg0) {
+	public MoleculeEditAction(IAtomContainer molecule, String arg0) {
 		super(molecule, arg0);
 		setJCPModel();
 	}
 
-	public MoleculeEditAction(IMolecule molecule, String arg0, Icon arg1) {
+	public MoleculeEditAction(IAtomContainer molecule, String arg0, Icon arg1) {
 		super(molecule, arg0, arg1);
 		setJCPModel();
 
@@ -161,7 +161,7 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
     
 	 */
 	@Override
-	public void setMolecule(IMolecule molecule) {
+	public void setMolecule(IAtomContainer molecule) {
 		super.setMolecule(molecule);
 		try {
 			molecules = getMoleculeForEdit(molecule);
@@ -235,7 +235,7 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
 */
                         dispose();
                         jcpDialog = null;
-                        return molecule;
+                        return (IMolecule)molecule;
                     };
                     
                     @Override
@@ -285,7 +285,7 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
         }
     }
 
-    protected void updateMolecule(IMolecule mol) {
+    protected void updateMolecule(IAtomContainer mol) {
         molecule = mol;
         try {
 	        AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
