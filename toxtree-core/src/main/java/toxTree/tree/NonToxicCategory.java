@@ -51,7 +51,7 @@ public class NonToxicCategory extends DefaultCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasNontoxicCategory;
+		return CategoryType.NontoxicCategory;
 	}
 
 }

@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2013 
 
-Contact: nina@acad.bg
+Contact: www.ideaconsult.net
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -534,8 +534,8 @@ public class TreeResult implements IDecisionResult {
 		property.setAnnotations(pa);
 		for (IDecisionCategory category : getDecisionMethod().getCategories()) {
 			PropertyAnnotation a = new PropertyAnnotation();
-			a.setType("Category");
-			a.setPredicate(category.getCategoryType().name());
+			a.setType("^^"+category.getCategoryType().name());
+			a.setPredicate("acceptValue");
 			a.setObject(category.getName());
 			pa.add(a);
 		}

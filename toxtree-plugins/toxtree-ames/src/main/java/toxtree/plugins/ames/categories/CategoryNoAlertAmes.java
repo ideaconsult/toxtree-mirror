@@ -40,7 +40,7 @@ public class CategoryNoAlertAmes extends AmesMutagenicityCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasNontoxicCategory;
+		return CategoryType.NontoxicCategory;
 	}
 }
 

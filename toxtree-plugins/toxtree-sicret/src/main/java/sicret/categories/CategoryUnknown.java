@@ -53,7 +53,7 @@ public class CategoryUnknown extends DefaultCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasInconclusiveCategory;
+		return CategoryType.InconclusiveCategory;
 	}
 }
 

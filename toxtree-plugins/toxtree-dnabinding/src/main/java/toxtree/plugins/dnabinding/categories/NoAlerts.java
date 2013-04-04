@@ -39,6 +39,6 @@ public class NoAlerts extends DNABindingCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasNontoxicCategory;
+		return CategoryType.NontoxicCategory;
 	}
 }

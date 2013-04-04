@@ -17,6 +17,6 @@ public class NoAlerts extends ProteinBindingCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasNontoxicCategory;
+		return CategoryType.NontoxicCategory;
 	}
 }

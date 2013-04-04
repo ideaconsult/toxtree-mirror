@@ -42,6 +42,6 @@ public class CYP2E extends DefaultCategory {
 	}
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasInconclusiveCategory;
+		return CategoryType.InconclusiveCategory;
 	}
 }

@@ -40,7 +40,7 @@ public class CategoryNoGenotoxicAlert extends MutantCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasNontoxicCategory;
+		return CategoryType.NontoxicCategory;
 	}
 }
 

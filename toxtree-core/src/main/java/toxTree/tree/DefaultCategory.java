@@ -187,6 +187,6 @@ public class DefaultCategory extends Observable implements IDecisionCategory , X
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasInconclusiveCategory;
+		return CategoryType.InconclusiveCategory;
 	}
 }

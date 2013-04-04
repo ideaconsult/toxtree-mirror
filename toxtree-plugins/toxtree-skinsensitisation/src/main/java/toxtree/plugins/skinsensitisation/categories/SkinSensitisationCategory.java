@@ -41,6 +41,6 @@ public class SkinSensitisationCategory extends DefaultCategory {
 	}
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasToxicCategory;
+		return CategoryType.ToxicCategory;
 	}
 }

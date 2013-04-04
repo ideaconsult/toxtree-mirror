@@ -52,6 +52,6 @@ public class FuncCat2 extends DefaultCategory {
 	}
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasNontoxicCategory;
+		return CategoryType.NontoxicCategory;
 	}
 }

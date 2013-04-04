@@ -104,13 +104,13 @@ public class DNABindingTreeResult extends TreeResult {
 			PropertyAnnotations pa = new PropertyAnnotations();
 			property.setAnnotations(pa);
 			PropertyAnnotation a = new PropertyAnnotation();
-			a.setType("Category");
-			a.setPredicate(category.getCategoryType().name());
+			a.setType("^^"+category.getCategoryType().name());
+			a.setPredicate("acceptValue");
 			a.setObject(Answers.toString(Answers.YES));
 			pa.add(a);
 			a = new PropertyAnnotation();
-			a.setType("Category");
-			a.setPredicate(category.getCategoryType().getNegative().name());
+			a.setType("^^"+category.getCategoryType().getNegative().name());
+			a.setPredicate("acceptValue");
 			a.setObject(Answers.toString(Answers.NO));
 			pa.add(a);
 			p.add(property);

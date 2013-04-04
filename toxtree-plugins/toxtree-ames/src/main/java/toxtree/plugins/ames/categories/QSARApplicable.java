@@ -48,7 +48,7 @@ public class QSARApplicable extends AmesMutagenicityCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasInconclusiveCategory;
+		return CategoryType.InconclusiveCategory;
 	}
 
 }
