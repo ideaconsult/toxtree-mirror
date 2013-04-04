@@ -40,6 +40,6 @@ public class SitesRank1 extends DefaultCategory {
 	}
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasInconclusiveCategory;
+		return CategoryType.InconclusiveCategory;
 	}
 }

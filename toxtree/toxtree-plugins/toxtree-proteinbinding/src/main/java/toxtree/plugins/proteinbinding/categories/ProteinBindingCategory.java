@@ -40,6 +40,6 @@ public class ProteinBindingCategory extends DefaultCategory {
 	}
 	
 	public CategoryType getCategoryType() {
-		return CategoryType.hasToxicCategory;
+		return CategoryType.ToxicCategory;
 	}
 }

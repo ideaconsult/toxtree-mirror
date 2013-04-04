@@ -40,7 +40,7 @@ public class CategoryMutagenTA100 extends AmesMutagenicityCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasToxicCategory;
+		return CategoryType.ToxicCategory;
 	}
 }
 

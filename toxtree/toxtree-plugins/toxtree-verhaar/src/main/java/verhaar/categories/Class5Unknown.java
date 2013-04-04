@@ -60,7 +60,7 @@ public class Class5Unknown extends DefaultCategory {
 	
 		@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasInconclusiveCategory;
+		return CategoryType.InconclusiveCategory;
 	}
 
 }

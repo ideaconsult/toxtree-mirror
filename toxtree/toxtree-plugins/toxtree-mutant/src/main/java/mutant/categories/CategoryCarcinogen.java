@@ -39,7 +39,7 @@ public class CategoryCarcinogen extends MutantCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasToxicCategory;
+		return CategoryType.ToxicCategory;
 	}
 
 }

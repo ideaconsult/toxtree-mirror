@@ -37,6 +37,6 @@ public abstract class DNABindingCategory extends DefaultCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasToxicCategory;
+		return CategoryType.ToxicCategory;
 	}
 }

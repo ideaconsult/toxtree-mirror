@@ -44,6 +44,6 @@ public class CategoryNotIrritatingOrCorrosive2Eye extends NonToxicCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasNontoxicCategory;
+		return CategoryType.NontoxicCategory;
 	}
 }

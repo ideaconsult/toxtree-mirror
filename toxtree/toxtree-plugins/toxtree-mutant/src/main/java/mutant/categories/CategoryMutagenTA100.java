@@ -41,7 +41,7 @@ public class CategoryMutagenTA100 extends MutantCategory {
 	
 	@Override
 	public CategoryType getCategoryType() {
-		return CategoryType.hasToxicCategory;
+		return CategoryType.ToxicCategory;
 	}
 }
 
