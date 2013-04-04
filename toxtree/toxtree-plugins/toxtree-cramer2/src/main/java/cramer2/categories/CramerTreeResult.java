@@ -74,7 +74,7 @@ public class CramerTreeResult extends TreeResult {
     }
     @Override
     public String[] getResultPropertyNames() {
-    	return new String[] {"Cramer rules (extended)"};
+    	return new String[] {getDecisionMethod().getTitle()};
     }
     
 }

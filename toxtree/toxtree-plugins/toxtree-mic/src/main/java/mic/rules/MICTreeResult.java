@@ -70,7 +70,8 @@ public class MICTreeResult extends TreeResult {
     }
     @Override
     public String[] getResultPropertyNames() {
-    	return new String[] {"ISSMIC"};
+		if (getDecisionMethod() == null) return new String[] {"Unassigned method"};
+		else return new String[] {getDecisionMethod().getTitle()};
     }
 
 	protected ArrayList<IAtomContainer> getAllAssignedMolecules() {
