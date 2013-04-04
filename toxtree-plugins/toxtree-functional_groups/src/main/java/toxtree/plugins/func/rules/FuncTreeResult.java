@@ -67,7 +67,8 @@ public class FuncTreeResult extends TreeResult {
 	}
 	@Override
 	public String[] getResultPropertyNames() {
-		return new String[] {"ISSFUNC"};
+		if (getDecisionMethod() == null) return new String[] {"Unassigned method"};
+		else return new String[] {getDecisionMethod().getTitle()};
 	}
 	protected ArrayList<IAtomContainer> getAllAssignedMolecules() {
         ArrayList<IAtomContainer> residues = new ArrayList<IAtomContainer>();
