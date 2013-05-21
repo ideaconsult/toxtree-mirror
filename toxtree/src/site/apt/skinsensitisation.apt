@@ -10,13 +10,14 @@ Skin sensitisation reactivity domains
 
   Identification of mechanisms of toxic action for skin sensitisation using a SMARTS pattern based approach.
     
- Available since {{{./download.html#Toxtree_2.1.0}ToxTree 2.1.0}}
-
+  Available since {{{./download.html#Toxtree_2.1.0}ToxTree 2.1.0}} (under name "Skin sensitisation alerts" and "Skin sensitisation alerts (M.Cronin)").
+  The name is changed to "Skin sensitisation reactivity domain" by P&G team suggestion in order to reflect the fact the alerts provide grouping into reactivity mode of action and do not predict skin sensitisation potential. 
+ 
   Developed by {{{http://www.pg.com}Procter and Gamble}} 2010
   
   Screenshots: {{{./images/skinsensitisation/screen.jpg}Main screen}} , {{{./images/skinsensitisation/tree.jpg}Decision tree}}
    
-[images/skinsensitisation/thumb.jpg]
+[./images/skinsensitisation/thumb.jpg]
    
 * Reference
 
