@@ -517,7 +517,7 @@ public enum DNABindingAlerts {
 		}
 		@Override
 		public String getCategoryTitle() {
-			return "No protein binding alerts identified.";
+			return "No DNA binding alerts identified.";
 		}
 		@Override
 		public String getTitle() {

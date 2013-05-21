@@ -18,4 +18,5 @@ copy toxtree-plugins\toxtree-biodegradation\target\*2.5.9-SNAPSHOT.jar dist\ext
 ;copy toxtree-plugins\toxtree-verhaar2\target\*2.5.9-SNAPSHOT.jar dist\ext
 copy toxtree-plugins\toxtree-functional_groups\target\*2.5.9-SNAPSHOT.jar dist\ext
 copy toxtree-plugins\toxtree-proteinbinding\target\*2.5.9-SNAPSHOT.jar dist\ext
+copy toxtree-plugins\toxtree-dnabinding\target\*2.5.9-SNAPSHOT.jar dist\ext
 rem copy toxtree-plugins\toxtree-moa\target\*.jar dist\ext
