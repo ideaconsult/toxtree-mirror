@@ -6,6 +6,57 @@
  2013/03/31
  -----
 
+{Toxtree-2.5.4} 
+
+	<Toxtree is distributed with Java 6 installer. Please use Java 6 even if you have Java 7 already installed. There is a known problem, causing instability, when using Java 7.
+    This will be fixed starting with {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/2.5.8}Toxtree 2.5.8}}> 
+
+ <<Toxtree-v2.5.4 is a bug fix release>>
+ 
+ 	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.4/Toxtree-v2.5.4-setup.exe/download}Windows installer}}  (source and executable, Windows)
+
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.4/Toxtree-v2.5.4.zip/download}ZIP archive}}  (source and executable, platform independent)
+	
+	* <<Change log>>
+
+	* build date 02 Apr 2012
+ 
+    * added new plugin {{{./proteinbinding.html}Protein binding}}
+    
+    * updated CDK to v1.4.8;
+
+    * updated JChemPaint to v3.3.0;
+
+    * updated to jre-6u31-windows-i586;
+
+    * fixed bug 3493804 (Different results between 2.5.0 and earlier versions);
+
+    * fixed bug 3493431 (Cramer Rule 20 behaviour);
+
+    * fixed bug 3492853 (Some compounds not found in bodymol.sdf);
+
+    * fixed bug 3491753 (Non serializable exception in CYP450 module);
+
+    * fixed bug 3488950 (Cramer2 Q42 rule);
+
+    * fixed bug 3472325 (Micronucleus plugin SA34 rule);
+
+    * fixed bug 3431053 (Incorrect structure of protoheme in bodymol.sdf);
+
+    * fixed bug 3396489 (Name of the "skin sensitization alerts" plugin changed);
+
+    * fixed bug 3089700 (Cramer2 rule 4);
+
+    * fixed bug 3089699 (Cramer2 rule 40);
+
+    * updated installation and user manual;
+
+    * updated README.
+        
+    * {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/2.5.4}Source code}}  
+      
+    * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~2.5.4~~}Maven repository}}   
+    
 {Toxtree-2.5.1} 
 
   <Toxtree is distributed with Java 6 installer. Please use Java 6 even if you have Java 7 already installed. There is a known problem, causing instability, when using Java 7.

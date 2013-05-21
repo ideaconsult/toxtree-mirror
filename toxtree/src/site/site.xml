@@ -31,6 +31,7 @@
     	<item name="Toxtree" href="/index.html"/>
     </menu>
     <menu name="Download" >
+    		<item name="Toxtree 2.5.4" href="/download.html#Toxtree_2.5.4"/>
       		<item name="Toxtree 2.5.1" href="/download.html#Toxtree_2.5.1"/>
       		<item name="Toxtree 2.5.0" href="/download.html#Toxtree_2.5.0"/>
             <item name="Toxtree 2.2.0" href="/download.html#Toxtree_2.2.0"/>
@@ -51,8 +52,10 @@
 	  <item name="Functional Group (ISSFUNC)" href="/issfunc.html" />
 	  <item name="START (biodegradation and persistence)" href="/start.html"/>	
 	  <item name="Michael Acceptors" href="/michaelacceptors.html" />
-	  <item name="Skin sensitisation alerts" href="/skinsensitisation.html" />
-	  <item name="SMARTCyp" href="/smartcyp.html" />
+	  <item name="Skin sensitisation reactivity domains" href="/skinsensitisation.html" />
+	  <item name="Protein binding alerts" href="/proteinbinding.html" />
+	  <item name="DNA binding alerts" href="/dnabinding.html" />
+	  <item name="SMARTCyp and metabolite prediction" href="/smartcyp.html" />
 	  <item name="Kroes TTC decision tree" href="/kroes.html" />
 	  <item name="In vitro mutagenicity (Ames test)" href="/ames.html" />
     </menu>
