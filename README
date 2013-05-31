@@ -1,6 +1,6 @@
                                   Toxtree README
 
-              (2.5.3-SNAPSHOT is the current version under development)
+                           (last revision - 02 Apr 2012)
 
     This is the README file  for the Toxtree installer distribution.  If you're
     reading this,  you've probably  just run   our installer  and installed the
@@ -28,7 +28,7 @@ INTRODUCTION
 
     - Cramer rules (Cramer G. M., R.  A. Ford, R. L. Hall, Estimation of  Toxic
     Hazard - A  Decision Tree Approach,  J. Cosmet. Toxicol.,  Vol.16,  pp. 255
-    -276, Pergamon  Press, 1978);
+    -276, Pergamon Press, 1978);
 
     - Verhaar scheme for predicting toxicity mode of actions (Verhaar HJM,  van
     Leeuwen CJ and Hermens JLM (1992) Classifying environmental pollutants.  1.
@@ -109,7 +109,12 @@ INTRODUCTION
     10.2788/33281,  Catalogue   Number:  LB-NA-24871-EN-N),   Benigni  R.,   O.
     Tcheremenskaia, and A.  Worth, Computational Characterisation  of Chemicals
     and  Datasets  in  Terms  of Organic  Functional  Groups  -  a New  Toxtree
-    Rulebase.
+    Rulebase;
+
+    - Protein binding - S.  J. Enoch, C. M. Ellison,  T. W. Schultz & M.  T. D.
+    Cronin,  A  review  of the  electrophilic  reaction  chemistry involved  in
+    covalent  protein  binding  relevant  to  toxicity,  Critical  Reviews   in
+    Toxicology, 2011, 1-20.
 
     Toxtree could  be applied  to datasets from various compatible file  types.
     User-defined  molecular  structures  are also  supported  -  they could  be
@@ -167,7 +172,7 @@ SYSTEM REQUIREMENTS & INSTALLATION
 
 RELEASE NOTES
 
-    Toxtree-v2.5.1 is a stable bug fix release.
+    Toxtree-v2.5.4 is a stable release with new features and bug fixes.
 
 BUG REPORTS AND FEEDBACK
 
@@ -186,13 +191,42 @@ REDISTRIBUTION
 
 CHANGE LOG
 
+    * Toxtree-v2.5.4 (build date 02 Apr 2012):
 
-    * Toxtree 2.5.3-SNAPSHOT  (current version under development)
+    - added new plugin "Protein binding",  which implements S. J. Enoch, C.  M.
+    Ellison, T. W.  Schultz & M.  T. D. Cronin,  A review of  the electrophilic
+    reaction  chemistry  involved  in  covalent  protein  binding  relevant  to
+    toxicity, Critical Reviews in Toxicology, 2011, 1-20.
 
-    - The CDK library upgraded to 1.4.8 
+    - updated CDK to v1.4.8;
 
-    - The Ambit library upgraded to 2.4.5
+    - updated JChemPaint to v3.3.0;
 
+    - updated to jre-6u31-windows-i586;
+
+    - fixed bug 3493804 (Different results between 2.5.0 and earlier versions);
+
+    - fixed bug 3493431 (Cramer Rule 20 behaviour);
+
+    - fixed bug 3492853 (Some compounds not found in bodymol.sdf);
+
+    - fixed bug 3491753 (Non serializable exception in CYP450 module);
+
+    - fixed bug 3488950 (Cramer2 Q42 rule);
+
+    - fixed bug 3472325 (Micronucleus plugin SA34 rule);
+
+    - fixed bug 3431053 (Incorrect structure of protoheme in bodymol.sdf);
+
+    - fixed bug 3396489 (Name of the "skin sensitization alerts" plugin changed);
+
+    - fixed bug 3089700 (Cramer2 rule 4);
+
+    - fixed bug 3089699 (Cramer2 rule 40);
+
+    - updated installation and user manual;
+
+    - updated README.
 
     * Toxtree-v2.5.1 (build date 03 Feb 2012):
 
