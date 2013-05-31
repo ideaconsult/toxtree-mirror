@@ -77,7 +77,7 @@
   <inceptionYear>2004</inceptionYear>
   <issueManagement>
   	<system>Subversion</system>
-  	<url>http://sourceforge.net/p/toxtree/bugs/?source=navbar</url>
+  	<url>http://sourceforge.net/p/toxtree/bugs</url>
   </issueManagement>
    <developers>
   	<developer>
@@ -157,8 +157,8 @@
   
 	<scm>
 		<connection>scm:svn:https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</connection>
-	  <developerConnection>scm:svn:https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</developerConnection>
-	  <tag>https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags</tag>
+	  <developerConnection>scm:svn+ssh://USERNAME@svn.code.sf.net/p/toxtree/svn/trunk/toxtree</developerConnection>
+	  <tag>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags</tag>
 	  <url>https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</url>
 	</scm>  	
     <mailingLists>
