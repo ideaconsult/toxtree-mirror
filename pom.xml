@@ -156,10 +156,10 @@
    </developers>
   
 	<scm>
-		<connection>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/</connection>
-	  <developerConnection>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/</developerConnection>
+		<connection>scm:svn:https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</connection>
+	  <developerConnection>scm:svn:https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</developerConnection>
 	  <tag>https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags</tag>
-	  <url>http://toxtree.svn.sourceforge.net/viewvc/toxtree/trunk/toxtree/</url>
+	  <url>https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</url>
 	</scm>  	
     <mailingLists>
     <mailingList>
