@@ -321,14 +321,16 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
             	}	
             };
         };        
-
+        
         descriptors[pageCategoryOptions] = new ToxTreeWizardPanelDescriptor(
                 pages[pageCategoryOptions],pages[pagePanel],null,categoryOptionsPanel,null);
         
         /** rule */
+        final String _options_treerules = "Select from rules used in the tree";
+        final String _options_allrules = "Select from all available rules";
         ArrayList ruleOptions = new ArrayList();
-        ruleOptions.add("Select from rules used in the tree");
-        ruleOptions.add("Select from all available rules");
+        ruleOptions.add(_options_treerules);
+        ruleOptions.add(_options_allrules);
         for (RuleOptions o : RuleOptions.values()) 
         	ruleOptions.add(o);
         
@@ -337,14 +339,14 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 			public void selectObject(ActionEvent e, Object object) {
             	
             	try {
-	            	RuleOptions option = RuleOptions.valueOf(object.toString());
+            		RuleOptions option = (RuleOptions) object;
 	            	IDecisionRule c = option.getRule();
 	                setSelectedObject(c);
 	                nodePanel.setEditor(c.getEditor());
 	        		descriptors[pageRuleOptions].setNextId(pages[pageDetails]);
 	        		descriptors[pageDetails].setBackId(pages[pageRuleOptions]);
             	} catch (Exception x) {
-            		if (object.equals("Select from all available rules")) {
+            		if (object.equals(_options_allrules)) {
             		if (rulesListPanel == null) {
 	           			ToxTreePackageEntries ruleTypes = Introspection.getAvailableRuleTypes(this.getClass().getClassLoader());
 	           			rulesListPanel = new ListPanel("Rules",new ToxTreePackageEntryModel(ruleTypes),null);

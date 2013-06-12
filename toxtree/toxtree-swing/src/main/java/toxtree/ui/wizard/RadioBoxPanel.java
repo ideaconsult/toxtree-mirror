@@ -37,9 +37,9 @@ import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-public abstract class RadioBoxPanel extends JPanel {
+public abstract class RadioBoxPanel<T> extends JPanel {
     List<JRadioButton> buttons;
-    List<?> options;
+    List<T> options;
     /**
      * 
      */
@@ -47,7 +47,7 @@ public abstract class RadioBoxPanel extends JPanel {
     public RadioBoxPanel() {
         this("",null,-1);
     }
-    public RadioBoxPanel(String caption, List<?> list, int selectedIndex) {
+    public RadioBoxPanel(String caption, List<T> list, int selectedIndex) {
         super();
         buttons = new ArrayList<JRadioButton>();
          setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
@@ -56,17 +56,15 @@ public abstract class RadioBoxPanel extends JPanel {
         setMinimumSize(new Dimension(200,100));
     }
     
-    public void createButtons(List<?> list, List<JRadioButton> buttons,int selectedIndex) {
+    public void createButtons(List<T> list, List<JRadioButton> buttons,int selectedIndex) {
         buttons.clear();
-        Iterator<?> i = list.iterator();
         ButtonGroup group = new ButtonGroup();
         int c = 0;
         if (selectedIndex < 0) selectedIndex = 0;
-
-        while (i.hasNext()) {
-            JRadioButton b = new JRadioButton(new RadioButtonAction(i.next()) {
+        for (T item: list) {
+            JRadioButton b = new JRadioButton(new RadioButtonAction<T>(item) {
                 @Override
-                public void select(ActionEvent e, Object object) {
+                public void select(ActionEvent e, T object) {
                     selectObject(e, object);
                 }
             });
@@ -83,13 +81,13 @@ public abstract class RadioBoxPanel extends JPanel {
             if (buttons.get(i).isSelected()) return i;
         return -1;
     }
-    public abstract void selectObject(ActionEvent e, Object object);
+    public abstract void selectObject(ActionEvent e, T object);
 
-    public synchronized List<?> getOptions() {
+    public synchronized List<T> getOptions() {
         return options;
     }
 
-    public synchronized void setOptions(List<?> list,int selectedIndex) {
+    public synchronized void setOptions(List<T> list,int selectedIndex) {
         Iterator<JRadioButton> i = buttons.iterator();
         while (i.hasNext()) {
             remove(i.next());
@@ -107,9 +105,13 @@ public abstract class RadioBoxPanel extends JPanel {
     }
 }
 
-class RadioButtonAction extends AbstractAction {
-    protected Object object;
-    public RadioButtonAction(Object object) {
+class RadioButtonAction<T> extends AbstractAction {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7246566066465990669L;
+	protected T object;
+    public RadioButtonAction(T object) {
         super(object.toString());
         this.object = object;
     }
@@ -118,7 +120,7 @@ class RadioButtonAction extends AbstractAction {
         select(e, object);
         
     }
-    public void select(ActionEvent e, Object object) {
+    public void select(ActionEvent e, T object) {
         
     }
 }
