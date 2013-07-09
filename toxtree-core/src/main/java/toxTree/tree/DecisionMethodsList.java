@@ -241,6 +241,7 @@ public class DecisionMethodsList extends Observable implements	IDecisionMethodsL
 		    };		
 			File dir = new File(String.format("%s/ext",Introspection.getToxTreeRoot()));
 			File[] trees = dir.listFiles(fileFilter);
+			if (trees!=null)
 			for (File tree : trees) {
 				InputStream in = null;
 				try {
