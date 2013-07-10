@@ -8,7 +8,9 @@
 
 {Toxtree-2.6.0} 
 
- <<Toxtree-v2.6.0 is a stable release including 2 new plugins, new features and bug fixes.>>
+ <<Toxtree-v2.6.0 is a stable release including 2 new plugins, new features and bug fixes.>> 
+
+  <Toxtree 2.6.0 is distributed with Java 7 installer>
  
 	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.0/Toxtree-v2.6.0-setup.exe/download}Windows installer}}  (source and executable, Windows)
 
@@ -31,8 +33,6 @@
       
       * updated to {{{http://ambit.sf.net}ambit-2.4.12}};
 
-      * improved implementation of {{{./verhaar.html}Verhaar scheme plugin}}; validated against a published dataset;
-      
       * added new plug-ins: {{{./ames.html}In vitro mutagenicity (Ames test) alerts by ISS}} and {{{./dnabinding.html}Structural alerts associated with covalent DNA binding}};
 
       * The skin sensitisation alerts plugin renamed to {{{./skinsensitisation.html}Skin sensitisation reactivity domains}};
@@ -42,7 +42,9 @@
       * fixed {{{https://sourceforge.net/p/toxtree/bugs/80/}bug}} in the Decision rules editor ;
       
       * fixed {{{https://sourceforge.net/p/toxtree/bugs/74}bug}} affecting substituents recognition in {{{./mutant.html}Carcinogenicity plugin}};
-
+      
+      * included jre-7u25-windows-i586.exe in Windows installer;
+      
       * updated {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.0/Toxtree_user_manual.pdf/download}manuals}} and {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.0/README.txt/download}README}}.	
       
       * {{{https://sourceforge.net/p/toxtree/svn/1623/tree/tags/2.6.0/}Source code}}  
