@@ -8,7 +8,7 @@
 
 {Toxtree-2.6.0} 
 
-<<Toxtree-v2.6.0 is a stable release including X new plugins, Y improved plugins, new features and bug fixes.>>
+ <<Toxtree-v2.6.0 is a stable release including 2 new plugins, new features and bug fixes.>>
  
 	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.0/Toxtree-v2.6.0-setup.exe/download}Windows installer}}  (source and executable, Windows)
 
@@ -33,7 +33,7 @@
 
       * improved implementation of {{{./verhaar.html}Verhaar scheme plugin}}; validated against a published dataset;
       
-      * added new plug-ins: {{{./ames.html}In vitro mutagenicity (Ames test) alerts by ISS}}, and {{{./proteinbinding.html}Protein binding alerts}}, {{{./dnabinding.html}Structural alerts associated with covalent DNA binding}};
+      * added new plug-ins: {{{./ames.html}In vitro mutagenicity (Ames test) alerts by ISS}} and {{{./dnabinding.html}Structural alerts associated with covalent DNA binding}};
 
       * The skin sensitisation alerts plugin renamed to {{{./skin sensitisation}Skin sensitisation reactivity domains}};
       
@@ -42,10 +42,6 @@
       * fixed {{{https://sourceforge.net/p/toxtree/bugs/80/}bug}} in the Decision rules editor ;
       
       * fixed {{{https://sourceforge.net/p/toxtree/bugs/74}bug}} affecting substituents recognition in {{{./mutant.html}Carcinogenicity plugin}};
-      
-      * fixed {{{./carc.html}Benigni / Bossa rulebase}} rule (QSAR6,8 applicability domain);
-      
-      * enabled CAS & EINECS lookup in remote {{{http://opentox.org}OpenTox}} {{{http://apps.ideaconsult.net:8080/ambit2/query/compound/search/all} service}}; this new functionality is disabled by default -- check "Method/Decision tree option/Remote Query" menu to enable it;
 
       * updated {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.0/Toxtree_user_manual.pdf/download}manuals}} and {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.0/README.txt/download}README}}.	
       
@@ -263,9 +259,9 @@
 	   
 	   * new Skin sensitisation alerts plugin (developed by {{{http://www.pg.com}Procter & Gamble}})
 	   
-	   * new {{{kroes.html}Kroes TTC decision tree plugin}}
+	   * new {{{./kroes.html}Kroes TTC decision tree plugin}}
 	
-	   * new {{{smartcyp.html}SMARTCyp plugin}}
+	   * new {{{./smartcyp.html}SMARTCyp plugin}}
 	
 	   * upgraded to CDK 1.3.3 and JChemPaint;
 	
