@@ -30,7 +30,7 @@
 	
 *{Plugins}
 
-	{{{./download.html#Toxtree_2.5.0}Toxtree-2.5.0}} is distributed with 14 plugins:
+	{{{./download.html#Toxtree_2.6.0}Toxtree-2.6.0}} is distributed with 17 plugins:
 	
 	* {{{./cramer.html}Cramer rules}} & {{{/cramer2.html}  Cramer  rules with  extensions}}
 	
@@ -55,6 +55,12 @@
 	* {{{./mic.html}Structure Alerts for the in vivo micronucleus assay in rodents (ISSMIC)}}	
 	
 	* {{{./issfunc.html}Structural Alerts for Functional Group Identification (ISSFUNC)}}
+	
+	* {{{./dnabinding.html}DNA binding alerts}}
+	
+	* {{{./proteinbinding.html}Protein binding alerts}}
+	
+	* {{{./ames.html}In vitro mutagenicity (Ames test) alerts by ISS}}
 	
 *{ToxTree online}
 
