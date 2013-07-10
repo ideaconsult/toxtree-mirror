@@ -1,0 +1,50 @@
+ -----
+ Protein binding alerts
+ -----
+ Nina Jeliazkova
+ -----
+ 2013/05/21
+ -----
+
+Protein binding alerts
+
+ Structural alerts associated with covalent protein binding.
+    
+ Available since {{{./download.html#Toxtree_2.5.4}ToxTree 2.5.4}}
+
+  Developed by by {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria). SMARTS alerts provided by Steve Enoch and Mark Cronin.
+  
+  Screenshots: {{{./images/proteinbinding/screen.png}Main screen}} , {{{./images/proteinbinding/tree.jpg}Decision tree}}
+   
+[./images/proteinbinding/thumb.png]
+   
+* Reference
+
+ [Enoch, 2010] S. J. Enoch, C. M. Ellison, T. W. Schultz & M. T. D. Cronin, A review of the electrophilic reaction chemistry involved in covalent protein binding relevant to toxicity,Critical Reviews in Toxicology, 2011, 1-20 {{{http://dx.doi.org/10.3109/10408444.2011.598141}doi:10.3109/10408444.2011.598141}}
+
+* For developers 
+
+	* Source 
+
+ {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-proteininding}source code}}
+ 
+	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-skinsensitisation</artifactId>
+  <version>2.5.8</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++---------------------------------  

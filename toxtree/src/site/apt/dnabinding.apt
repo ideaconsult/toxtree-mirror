@@ -1,0 +1,50 @@
+ -----
+ DNA binding alerts
+ -----
+ Nina Jeliazkova
+ -----
+ 2013/05/21
+ -----
+
+DNA binding alerts
+
+ Structural alerts associated with covalent DNA binding.
+    
+ Available since {{{./download.html#Toxtree_2.6.0}ToxTree 2.6.0}}
+
+  Developed by by {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria). SMARTS alerts provided by Steve Enoch and Mark Cronin.
+  
+  Screenshots: {{{./images/dnabinding/screen.png}Main screen}} , {{{./images/dnabinding/tree.jpg}Decision tree}}
+   
+[./images/dnabinding/thumb.png]
+   
+* Reference
+
+ [Enoch, 2010] S. J. Enoch and M. T. D. Cronin, A review of the electrophilic reaction chemistry involved in covalent DNA binding, Critical Reviews in Toxicology,2010;40(8):728-748 {{{http://dx.doi.org/10.3109/10408444.2010.494175}doi:10.3109/10408444.2010.494175}}
+
+* For developers 
+
+	* Source 
+
+ {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-dnabindng}source code}}
+ 
+	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-dnabinding</artifactId>
+  <version>2.5.8</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-plovdiv-releases</id>
+        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+    </repository>
++---------------------------------  
