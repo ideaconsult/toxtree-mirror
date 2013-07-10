@@ -35,7 +35,7 @@
       
       * added new plug-ins: {{{./ames.html}In vitro mutagenicity (Ames test) alerts by ISS}} and {{{./dnabinding.html}Structural alerts associated with covalent DNA binding}};
 
-      * The skin sensitisation alerts plugin renamed to {{{./skin sensitisation}Skin sensitisation reactivity domains}};
+      * The skin sensitisation alerts plugin renamed to {{{./skinsensitisation.html}Skin sensitisation reactivity domains}};
       
       * fixed {{{https://sourceforge.net/p/toxtree/bugs/77/}bug}} causing instability under Java 7;
       
