@@ -28,7 +28,7 @@ import joelib.smarts.JOESmartsPattern;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.cdk.isomorphism.matchers.IQueryAtomContainer;
 
 import ambit2.smarts.query.AbstractSmartsPattern;
 import ambit2.smarts.query.SMARTSException;
@@ -95,7 +95,7 @@ public class SmartsPattern extends  AbstractSmartsPattern<JOEMol>{
 		throw new UnsupportedOperationException();
 		
 	}
-	public QueryAtomContainer getQuery() {
+	public IQueryAtomContainer getQuery() {
 		// TODO Auto-generated method stub
 		return null;
 	}
