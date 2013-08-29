@@ -14,4 +14,5 @@ public class CategoryError extends MutantCategory {
 		super(explanation,10,10);
         setExplanation(explanation);
 	}	
+
 }
