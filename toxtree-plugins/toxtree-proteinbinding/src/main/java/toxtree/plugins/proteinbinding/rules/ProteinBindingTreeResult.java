@@ -48,6 +48,7 @@ import ambit2.base.data.Property;
 import ambit2.base.data.PropertyAnnotation;
 import ambit2.base.data.PropertyAnnotations;
 import ambit2.base.exceptions.AmbitException;
+import ambit2.base.interfaces.ICategory;
 
 public class ProteinBindingTreeResult extends TreeResult {
     protected static String SUFFIX = "SUFFIX";
@@ -134,7 +135,7 @@ public class ProteinBindingTreeResult extends TreeResult {
 			a.setObject(Answers.toString(Answers.YES));
 			pa.add(a);
 			a = new PropertyAnnotation();
-			a.setType("^^"+category.getCategoryType().getNegative().name());
+			a.setType("^^"+category.getNegativeCategoryType().name());
 			a.setPredicate("acceptValue");
 			a.setObject(Answers.toString(Answers.NO));
 			pa.add(a);

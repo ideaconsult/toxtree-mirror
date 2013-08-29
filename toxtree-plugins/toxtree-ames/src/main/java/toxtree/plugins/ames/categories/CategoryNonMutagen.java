@@ -41,6 +41,7 @@ public class CategoryNonMutagen extends AmesMutagenicityCategory {
 	public CategoryType getCategoryType() {
 		return CategoryType.NontoxicCategory;
 	}
+	
 }
 
 

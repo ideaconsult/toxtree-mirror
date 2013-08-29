@@ -43,4 +43,8 @@ public class SkinSensitisationCategory extends DefaultCategory {
 	public CategoryType getCategoryType() {
 		return CategoryType.ToxicCategory;
 	}
+	@Override
+	public CategoryType getNegativeCategoryType() {
+		return CategoryType.InconclusiveCategory;
+	}
 }

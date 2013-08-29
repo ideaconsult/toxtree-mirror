@@ -19,4 +19,8 @@ public class NoAlerts extends SkinSensitisationCategory {
 	public CategoryType getCategoryType() {
 		return CategoryType.NontoxicCategory;
 	}
+	@Override
+	public CategoryType getNegativeCategoryType() {
+		return CategoryType.ToxicCategory;
+	}
 }

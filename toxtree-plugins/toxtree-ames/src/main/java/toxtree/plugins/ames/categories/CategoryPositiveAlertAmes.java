@@ -42,6 +42,10 @@ public class CategoryPositiveAlertAmes extends AmesMutagenicityCategory {
 	public CategoryType getCategoryType() {
 		return CategoryType.ToxicCategory;
 	}
+	@Override
+	public CategoryType getNegativeCategoryType() {
+		return CategoryType.InconclusiveCategory;
+	}
 }
 
 

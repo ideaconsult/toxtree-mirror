@@ -42,6 +42,10 @@ public class CategoryNoNongenotoxicAlert extends MutantCategory {
 	public CategoryType getCategoryType() {
 		return CategoryType.NontoxicCategory;
 	}
+	@Override
+	public CategoryType getNegativeCategoryType() {
+		return CategoryType.ToxicCategory;
+	}
 }
 
 

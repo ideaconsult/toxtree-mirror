@@ -42,4 +42,9 @@ public class ProteinBindingCategory extends DefaultCategory {
 	public CategoryType getCategoryType() {
 		return CategoryType.ToxicCategory;
 	}
+	@Override
+	public CategoryType getNegativeCategoryType() {
+		// not having an alert doesn't mean lack of toxicity
+		return CategoryType.InconclusiveCategory;
+	}
 }

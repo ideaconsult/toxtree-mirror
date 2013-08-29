@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.categories;
 
+import ambit2.base.interfaces.ICategory.CategoryType;
+
 
 
 public class CategoryNoGenotoxicAlert extends MutantCategory {
@@ -41,6 +43,10 @@ public class CategoryNoGenotoxicAlert extends MutantCategory {
 	@Override
 	public CategoryType getCategoryType() {
 		return CategoryType.NontoxicCategory;
+	}
+	@Override
+	public CategoryType getNegativeCategoryType() {
+		return CategoryType.ToxicCategory;
 	}
 }
 

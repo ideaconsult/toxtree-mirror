@@ -125,7 +125,7 @@ public class MutantTreeResult extends TreeResult {
 			a.setObject(Answers.toString(Answers.YES));
 			pa.add(a);
 			a = new PropertyAnnotation();
-			a.setType("^^"+category.getCategoryType().getNegative().name());
+			a.setType("^^"+category.getNegativeCategoryType().name());
 			a.setPredicate("acceptValue");
 			a.setObject(Answers.toString(Answers.NO));
 			pa.add(a);

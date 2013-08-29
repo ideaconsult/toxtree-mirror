@@ -42,6 +42,7 @@ public class CategoryMutagenTA100 extends AmesMutagenicityCategory {
 	public CategoryType getCategoryType() {
 		return CategoryType.ToxicCategory;
 	}
+	
 }
 
 
