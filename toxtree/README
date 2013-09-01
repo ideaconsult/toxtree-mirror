@@ -1,6 +1,6 @@
                                   Toxtree README
 
-                           (last revision - 02 Apr 2012)
+                           (last revision - 1 Sep 2013)
 
     This is the README file  for the Toxtree installer distribution.  If you're
     reading this,  you've probably  just run   our installer  and installed the
@@ -114,7 +114,16 @@ INTRODUCTION
     - Protein binding - S.  J. Enoch, C. M. Ellison,  T. W. Schultz & M.  T. D.
     Cronin,  A  review  of the  electrophilic  reaction  chemistry involved  in
     covalent  protein  binding  relevant  to  toxicity,  Critical  Reviews   in
-    Toxicology, 2011, 1-20.
+    Toxicology, 2011, 1-20;
+
+    - Structural alerts associated with covalent DNA binding. - S. J. Enoch and
+    M. T. D. Cronin, A review of the electrophilic reaction chemistry  involved
+    in covalent DNA binding, Critical Reviews in Toxicology,2010;40(8):728-748;
+
+    -  A  decision  tree  for estimating  in  vitro  mutagenicity  (Ames test).
+    Benigni,   R.,  Bossa   C.,  Tcheremenskaia   O.  (2013)   In  vitro   cell
+    transformation  assays  for   an  integrated,  alternative   assessment  of
+    carcinogenicity: a data-based analysis. Mutagenesis 2013;28(1):107-16.
 
     Toxtree could  be applied  to datasets from various compatible file  types.
     User-defined  molecular  structures  are also  supported  -  they could  be
@@ -128,27 +137,27 @@ INTRODUCTION
 
 SYSTEM REQUIREMENTS & INSTALLATION
 
-    Toxtree requires Java(TM)  2 Runtime Environment,  Standard Edition 1.6  or
+    Toxtree requires Java(TM)  2 Runtime Environment,  Standard Edition 1.7  or
     newer on the  target system and  it is platform-independent.  It runs under
     any host operating  system, which supports Java(TM) 2 Runtime  Environment,
     Standard Edition.
 
     The  Toxtree  application is  distributed  with a  fully  automated offline
     installer (Toxtree-vX.Y.Z-setup.exe),  compatible with  recent versions  of
-    the Microsoft Windows  (NT, 2000, XP,  2003) operating system.  In order to
-    install Toxtree  just run  the installer  and follow  its instructions.  It
-    contains  all  the  required packages,  including  the  Java(TM) 2  Runtime
-    Environment, Standard Edition 1.6 setup.
+    the Microsoft Windows (NT, 2000, XP, 2003, 7, 2008)  operating  system.  In
+    order  to   install   Toxtree   just  run  the  installer  and  follow  its
+    instructions. It contains all the required packages, including the Java(TM)
+    2 Runtime Environment, Standard Edition 1.7 setup.
 
     If the installer does not detect Java(TM) 2 Runtime  Environment,  Standard
-    Edition 1.6 or  newer on the  target system, it will attempt to install  it
+    Edition 1.7 or  newer on the  target system, it will attempt to install  it
     before proceeding with  the Toxtree setup.  In this case,  the user running
     the installer SHOULD  HAVE ADMINISTRATIVE PRIVILEGES  on the target  system
     (otherwise the Java(TM) 2 Runtime Environment, Standard Edition setup would
     be aborted and Toxtree would not be installed).
 
     If the installer detects  Java(TM) 2 Runtime Environment,  Standard Edition
-    1.6  or  newer  already installed  on the  target system,  it will  proceed
+    1.7  or  newer  already installed  on the  target system,  it will  proceed
     directly with the  Toxtree setup. In  this case, ADMINISTRATIVE  PRIVILEGES
     ARE RECOMMENDED BUT NOT NECESSARILY REQUIRED.
     
@@ -172,7 +181,7 @@ SYSTEM REQUIREMENTS & INSTALLATION
 
 RELEASE NOTES
 
-    Toxtree-v2.5.4 is a stable release with new features and bug fixes.
+    Toxtree-v2.6.0 is a stable release with new features and bug fixes.
 
 BUG REPORTS AND FEEDBACK
 
@@ -190,6 +199,47 @@ REDISTRIBUTION
     LICENSE.txt). It is freely distributable.
 
 CHANGE LOG
+
+		* Toxtree-v2.6.2 (build date 1 Sep 2013):
+		
+		- Toxicity category assignment fixed (absence of structure alert doesn't mean lack of toxicity)
+		
+		- updated to ambit-2.5.1;
+		
+		* Toxtree-v2.6.1 (build date 19 Aug 2013):
+		
+		- updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.5.0;
+		
+		- updated to ambit-2.5.0;
+		
+    * Toxtree-v2.6.0 (build date 10 Jul 2013):
+
+    - updated to http://cdk.sf.net}cdk 1.4.11;
+
+    - updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.4.0;
+
+    - updated to ambit-2.4.12;
+
+    - improved  the implementation of Verhaar scheme plugin  and  validated  it
+    against a published dataset;
+
+    - renamed  the  Skin  sensitisation  alerts  plugin  to  Skin sensitisation
+     reactivity domains;
+
+    - added In vitro mutagenicity (Ames test) alerts plugin (developed by
+    ISS);
+
+    - added Structural alerts associated with covalent DNA binding plugin;
+
+    - fixed bug causing instability under Java 7;
+
+    - fixed bug in the Decision rules editor;
+
+    - fixed bug affecting substituents recognition in Carcinogenicity plugin;
+
+    - included jre-7u25-windows-i586.exe in Windows installer;
+
+    - updated manuals and README;
 
     * Toxtree-v2.5.4 (build date 02 Apr 2012):
 
@@ -747,4 +797,4 @@ TO DO
     * this section is empty.
 
 -------------------------------------------------------------------------------
-Developed (2012) by Ideaconsult Ltd., 4 Angel Kanchev St., 1000 Sofia, Bulgaria
+Developed (2013) by Ideaconsult Ltd., 4 Angel Kanchev St., 1000 Sofia, Bulgaria
