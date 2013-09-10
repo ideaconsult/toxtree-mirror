@@ -41,10 +41,10 @@ import java.util.Map;
 import java.util.logging.Level;
 
 import org.openscience.cdk.exception.CDKException;
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemFile;
 import org.openscience.cdk.interfaces.IChemObject;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.io.formats.IResourceFormat;
 import org.openscience.cdk.tools.DataFeatures;
 
@@ -124,10 +124,10 @@ public class PDFWriter extends FilesWithHeaderWriter {
      */
     public void write(IChemObject object) throws CDKException {
         
-        if (object instanceof IMoleculeSet) {
-            writeSetOfMolecules((IMoleculeSet)object);
-        } else if (object instanceof IMolecule) {
-            writeMolecule((IMolecule)object);
+        if (object instanceof IAtomContainerSet) {
+            writeSetOfMolecules((IAtomContainerSet)object);
+        } else if (object instanceof IAtomContainer) {
+            writeMolecule((IAtomContainer)object);
         } else {
             throw new CDKException("Only supported is writing of ChemFile and Molecule objects.");
         }
@@ -141,7 +141,7 @@ public class PDFWriter extends FilesWithHeaderWriter {
         Class[] interfaces = classObject.getInterfaces();
         for (int i=0; i<interfaces.length; i++) {
             if (IChemFile.class.equals(interfaces[i])) return true;
-            if (IMoleculeSet.class.equals(interfaces[i])) return true;
+            if (IAtomContainerSet.class.equals(interfaces[i])) return true;
         }
         return false;
     }
@@ -181,12 +181,12 @@ public class PDFWriter extends FilesWithHeaderWriter {
         
        
     }
-    public void  writeSetOfMolecules(IMoleculeSet som)
+    public void  writeSetOfMolecules(IAtomContainerSet som)
     {
-        for (int i = 0; i < som.getMoleculeCount(); i++) {
+        for (int i = 0; i < som.getAtomContainerCount(); i++) {
             try {
                 
-                writeMolecule(som.getMolecule(i));
+                writeMolecule(som.getAtomContainer(i));
             } catch (Exception exc) {
             }
         }
@@ -207,7 +207,7 @@ public class PDFWriter extends FilesWithHeaderWriter {
         if (smilesIndex == -1) { header.add(0,defaultSMILESHeader); smilesIndex = 0; }
         logger.finer("Header created from hashtable\t"+header);
     }     
-    public void writeMolecule(IMolecule molecule) {
+    public void writeMolecule(IAtomContainer molecule) {
         Object value;       
         
         try {

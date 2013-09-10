@@ -29,7 +29,6 @@ import junit.framework.TestCase;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.templates.MoleculeFactory;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
@@ -43,7 +42,7 @@ import toxTree.tree.demo.SubstructureTree;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 public class SubstructureTreeTest extends TestCase {
-
+	protected UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(SubstructureTreeTest.class);
 	}
@@ -78,12 +77,12 @@ public class SubstructureTreeTest extends TestCase {
 			assertEquals(1,((RuleAnySubstructure) node.getRule()).getSubstructuresCount());
 			
 			IAtomContainer fragment = ((RuleAnySubstructure) node.getRule()).getSubstructure(0);
-			IMolecule benzene = MoleculeFactory.makeBenzene();
+			IAtomContainer benzene = MoleculeFactory.makeBenzene();
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(benzene);
 			CDKHueckelAromaticityDetector.detectAromaticity(benzene);
 			
-			//IMolecule hexane = MoleculeFactory.makeAlkane(6);
-			assertTrue(UniversalIsomorphismTester.isIsomorph(fragment,benzene));
+			//IAtomContainer hexane = MoleculeFactory.makeAlkane(6);
+			assertTrue(uit.isIsomorph(fragment,benzene));
 			
 			IDecisionResult result = tree.createDecisionResult();
 			//IAtomContainer mol = FunctionalGroups.createAtomContainer("c1ccccc1", true);

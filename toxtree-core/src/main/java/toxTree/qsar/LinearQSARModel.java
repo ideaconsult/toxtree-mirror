@@ -23,8 +23,8 @@ package toxTree.qsar;
 
 import java.util.List;
 
+import org.openscience.cdk.IImplementationSpecification;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.BooleanResult;
@@ -296,7 +296,7 @@ public class LinearQSARModel extends AbstractQSARModel  {
 					b.append("<br>");
 					b.append("If not available, it is calculated by ");
 					b.append(getDescriptor(i).getClass().getName());
-					DescriptorSpecification ds= getDescriptor(i).getSpecification();
+					IImplementationSpecification ds= getDescriptor(i).getSpecification();
 					b.append("<br>Reference: ");
 					b.append(ds.getSpecificationReference());
 						

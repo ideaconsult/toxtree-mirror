@@ -6,7 +6,7 @@ import java.io.OutputStream;
 
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IDecisionResult;
@@ -21,7 +21,7 @@ public class ToxTreeAppTest {
 		IDecisionResult result = rules.createDecisionResult();
 		result.setDecisionMethod(rules);
 		InputStream in = this.getClass().getClassLoader().getResourceAsStream("toxtree/apps/test.sdf");
-		IteratingMDLReader reader = new IteratingMDLReader(in,SilentChemObjectBuilder.getInstance());
+		IteratingSDFReader reader = new IteratingSDFReader(in,SilentChemObjectBuilder.getInstance());
 		OutputStream out = new FileOutputStream("result.sdf");
 		MDLWriter writer = new MDLWriter(out);
 		while (reader.hasNext()) {

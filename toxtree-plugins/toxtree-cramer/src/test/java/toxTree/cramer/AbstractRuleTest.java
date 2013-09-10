@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 import junit.framework.TestCase;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
@@ -38,6 +38,8 @@ import toxTree.query.MolAnalyser;
 public abstract class AbstractRuleTest extends TestCase {
 	protected static Logger logger = Logger.getLogger(AbstractRuleTest.class.getName());
 	protected IDecisionRule rule2test = null;
+    protected UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
+    
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -58,7 +60,7 @@ public abstract class AbstractRuleTest extends TestCase {
 
         int success = 0;
 	    for (int i = 0; i < smiles_and_answer.length; i++) {
-	    	IMolecule mol = (IMolecule)FunctionalGroups.createAtomContainer(smiles_and_answer[i][0].toString());
+	    	IAtomContainer mol = (IAtomContainer)FunctionalGroups.createAtomContainer(smiles_and_answer[i][0].toString());
 	        if (mol != null) {
 	            	MolAnalyser.analyse(mol);
 	                Boolean b = (Boolean) smiles_and_answer[i][1];

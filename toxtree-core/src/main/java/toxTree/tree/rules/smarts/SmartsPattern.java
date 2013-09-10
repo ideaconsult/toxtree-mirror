@@ -27,7 +27,6 @@ import joelib.molecule.JOEMol;
 import joelib.smarts.JOESmartsPattern;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtomContainer;
 
 import ambit2.smarts.query.AbstractSmartsPattern;
@@ -80,7 +79,7 @@ public class SmartsPattern extends  AbstractSmartsPattern<JOEMol>{
         return joeSmartsPatern.numMatches();
     }
     public JOEMol getObjectToVerify(IAtomContainer mol) {
-    	return Convertor.convert((IMolecule)mol);
+    	return Convertor.convert((IAtomContainer)mol);
     }
     public String getImplementationDetails() {
 		if (joeSmartsPatern == null)

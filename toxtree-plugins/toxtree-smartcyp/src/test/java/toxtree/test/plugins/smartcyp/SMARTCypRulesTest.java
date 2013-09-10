@@ -31,9 +31,8 @@ import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -87,9 +86,9 @@ public class SMARTCypRulesTest extends RulesTestCase {
 
 	}
 
-    protected IMolecule getMolecule(String smiles) {
+    protected IAtomContainer getMolecule(String smiles) {
         try {
-        	IMolecule mol = gen.parseSmiles(smiles);
+        	IAtomContainer mol = gen.parseSmiles(smiles);
             MolAnalyser.analyse(mol);
             return mol;
 	    } catch (InvalidSmilesException x ) {
@@ -157,12 +156,12 @@ public class SMARTCypRulesTest extends RulesTestCase {
 		//rules = new SMARTCYPPlugin();
 		FixBondOrdersTool fbt = new FixBondOrdersTool();
 		InputStream in = getClass().getClassLoader().getResourceAsStream("toxtree/test/plugins/smartcyp/bad.sdf");
-		IIteratingChemObjectReader reader = new IteratingMDLReader(in,SilentChemObjectBuilder.getInstance());
+		IIteratingChemObjectReader reader = new IteratingSDFReader(in,SilentChemObjectBuilder.getInstance());
 		SmilesGenerator g = new SmilesGenerator();
 		g.setUseAromaticityFlag(false);
 		try {
 			while (reader.hasNext()) {
-				IMolecule mol = (IMolecule)reader.next();
+				IAtomContainer mol = (IAtomContainer)reader.next();
 				int aromaticAtoms = 0;
 				int doubleBonds = 0;
 				for (IAtom atom : mol.atoms()) { 
@@ -212,7 +211,7 @@ public class SMARTCypRulesTest extends RulesTestCase {
 		String smiles = "c1nc(c2c(n1)n(cn2)[C@H]3[C@@H]([C@@H]([C@H](O3)CO[P@@](=O)(O)O[P@@](=O)(O)OP(=O)(O)O)O)O)N";
 		SmilesParser parser = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		
-				IMolecule mol = parser.parseSmiles(smiles);
+				IAtomContainer mol = parser.parseSmiles(smiles);
 				int aromaticAtoms = 0;
 				int doubleBonds = 0;
 				for (IAtom atom : mol.atoms()) {

@@ -24,8 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.query;
 
-import org.openscience.cdk.Atom;
 import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.smarts.AnyAtom;
 
 /**
@@ -43,11 +44,12 @@ public class TopologyAnyAtom extends AnyAtom {
 	/**
 	 * 
 	 */
-	public TopologyAnyAtom(boolean inRing) {
-		super();
+	public TopologyAnyAtom(boolean inRing,IChemObjectBuilder builder) {
+		super(builder);
 		this.inRing = inRing;
 	}
-	public boolean matches(Atom atom) {
+	@Override
+	public boolean matches(IAtom atom) {
 		return 
 				(atom.getFlag(CDKConstants.ISINRING) && inRing) ||
 				(!atom.getFlag(CDKConstants.ISINRING) && !inRing)

@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IDecisionResult;
@@ -42,7 +42,7 @@ public class MichaelAcceptorDataTest  {
 	public void testPredictions() throws Exception {
 		IDecisionResult r = cr.createDecisionResult();
 		InputStream in = getClass().getClassLoader().getResourceAsStream("toxtree/michaelacceptors/LLNA_3D.sdf");
-		IIteratingChemObjectReader reader = new IteratingMDLReader(in, SilentChemObjectBuilder.getInstance());
+		IIteratingChemObjectReader reader = new IteratingSDFReader(in, SilentChemObjectBuilder.getInstance());
 		int tp = 0;
 		int tn = 0;
 		int fp = 0;

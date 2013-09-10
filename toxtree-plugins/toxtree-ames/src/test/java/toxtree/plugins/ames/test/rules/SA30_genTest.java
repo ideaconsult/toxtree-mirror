@@ -28,7 +28,7 @@ import junit.framework.Assert;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
@@ -59,7 +59,7 @@ public class SA30_genTest extends TestAmesMutagenicityRules {
 	 */
 	public void test_bug3138566() throws Exception {
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
-		IMolecule m = p.parseSmiles("O=C1\\C=C/c2ccccc2O1");
+		IAtomContainer m = p.parseSmiles("O=C1\\C=C/c2ccccc2O1");
 		verifyExample(m, true);
 		
 	}
@@ -70,7 +70,7 @@ public class SA30_genTest extends TestAmesMutagenicityRules {
 	 */
 	public void test_bug3138566_coumarin_aromaticity() throws Exception {
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
-		IMolecule m = p.parseSmiles("O=C1\\C=C/c2ccccc2O1");
+		IAtomContainer m = p.parseSmiles("O=C1\\C=C/c2ccccc2O1");
 		MolAnalyser.analyse(m);
 		int aromatic = 0;
 		for (IAtom a : m.atoms()) {

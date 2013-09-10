@@ -34,8 +34,7 @@ import junit.framework.Assert;
 import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openscience.cdk.Molecule;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRuleList;
@@ -65,7 +64,7 @@ public class AmesMutagenicityDataTest  {
 		IDecisionResult result = rules.createDecisionResult();
 		
 		result.setDecisionMethod(rules);
-		IMolecule mol = (IMolecule) FunctionalGroups.createAtomContainer(smiles,id);
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer(smiles,id);
 		try {
 			result.classify(mol);
 		} catch (DecisionResultException x) {
@@ -177,9 +176,9 @@ public class AmesMutagenicityDataTest  {
             while (reader.hasNext()) {
                 Object object = reader.next();
                 Assert.assertNotNull(object);
-                if(object instanceof IMolecule){
+                if(object instanceof IAtomContainer){
               
-                IMolecule mol = (IMolecule)object; 
+                IAtomContainer mol = (IAtomContainer)object; 
                 //smiles,class,name,tree path,MeltingPoint,LogKow,LipidSolubility,MoleculWeight,SurfaceTension,VapourPressure,AqueousSolubility
                 molecules[molCount][0] = mol.getProperty("SMILES").toString();               
                 molecules[molCount][1] = "1";
@@ -239,9 +238,9 @@ public class AmesMutagenicityDataTest  {
             while (reader.hasNext()) {
                 Object object = reader.next();
                 Assert.assertNotNull(object);
-                Assert.assertTrue((object instanceof Molecule));
+                Assert.assertTrue((object instanceof IAtomContainer));
                 /*if(molCount==1){
-                	IMolecule mol = (IMolecule)object; 
+                	IAtomContainer mol = (IAtomContainer)object; 
                 	Hashtable temp = mol.getProperties();
                 	Enumeration e  = temp.keys();            		
                 	while(e.hasMoreElements()){ 
@@ -249,9 +248,9 @@ public class AmesMutagenicityDataTest  {
                 		
                 	}
                 }*/
-                if(object instanceof IMolecule){
+                if(object instanceof IAtomContainer){
               
-                IMolecule mol = (IMolecule)object; 
+                IAtomContainer mol = (IAtomContainer)object; 
                 //smiles,class,name,tree path,MeltingPoint,LogKow,LipidSolubility,MoleculWeight,SurfaceTension,VapourPressure,AqueousSolubility
                 molecules[molCount][0] = mol.getProperty("SMILES").toString();               
                 molecules[molCount][1] = "1";

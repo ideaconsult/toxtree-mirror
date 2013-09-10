@@ -34,10 +34,10 @@ import mutant.test.TestMutantRules;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IMolecularFormula;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -67,7 +67,7 @@ public class SA10_genTest extends TestMutantRules {
 	}
 	
 	public void test663() throws Exception {
-		IMolecule m663 = create663();
+		IAtomContainer m663 = create663();
 		assertTrue(applySmarts("[#6]:,=[#6][#6](=O)[!O]",m663));
 		
 	}
@@ -84,7 +84,7 @@ public class SA10_genTest extends TestMutantRules {
 		IAtomContainer c = FunctionalGroups.createAtomContainer("CC(C)CCC=CC=O");
 			MolAnalyser.analyse(c);
 		
-		IMoleculeSet sc = ((SA10_gen)ruleToTest).detachSubstituentAtBetaCarbon(c);
+		IAtomContainerSet sc = ((SA10_gen)ruleToTest).detachSubstituentAtBetaCarbon(c);
 		assertNotNull(sc);
 		Hashtable<String,Integer> results = new Hashtable<String,Integer>();
 		results.put("[H]C([H])([H])C([H])([H])C([H])(C([H])([H])[H])C([H])([H])[H]",new Integer(5));
@@ -92,7 +92,7 @@ public class SA10_genTest extends TestMutantRules {
 		if (sc != null) {
 			SmilesGenerator g = new SmilesGenerator(true);
 			for (int i=0;i<sc.getAtomContainerCount();i++) {
-				String s = g.createSMILES((IMolecule)sc.getAtomContainer(i));
+				String s = g.createSMILES((IAtomContainer)sc.getAtomContainer(i));
 //				System.out.println(s);
 				assertNotNull(results.get(s));
 				IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(sc.getAtomContainer(i));
@@ -106,8 +106,8 @@ public class SA10_genTest extends TestMutantRules {
 
 		}
 	}
-	protected IMolecule create663() throws Exception {
-			  IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+	protected IAtomContainer create663() throws Exception {
+			  IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
 			  IAtom a1 = MoleculeTools.newAtom(mol.getBuilder(),Elements.CARBON);
 			  a1.setPoint2d(new Point2d(2.598076211353316, -4.440892098500626E-16));  mol.addAtom(a1);
 			  IAtom a2 = MoleculeTools.newAtom(mol.getBuilder(),Elements.CARBON);
@@ -230,15 +230,16 @@ public class SA10_genTest extends TestMutantRules {
 	}
 	
 	public void testException() throws Exception {
-		SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
+		IChemObjectBuilder builder= SilentChemObjectBuilder.getInstance();
+		SmilesParser sp = new SmilesParser(builder);
 		IAtomContainer ac = sp.parseSmiles("CCCC(=O)C=C"); //"OC(=O)C=C");
-		CDKHydrogenAdder h = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
+		CDKHydrogenAdder h = CDKHydrogenAdder.getInstance(builder);
 		h.addImplicitHydrogens(ac);
 		AtomContainerManipulator.convertImplicitToExplicitHydrogens(ac);
 		/**
 		 *  This runs fine
 		 */
-		SMARTSQueryTool sqt1 = new SMARTSQueryTool("[#6]=[#6][#6](=O)[!O]");
+		SMARTSQueryTool sqt1 = new SMARTSQueryTool("[#6]=[#6][#6](=O)[!O]",builder);
 		assertTrue(sqt1.matches(ac));
 		
 		/**
@@ -252,13 +253,13 @@ public class SA10_genTest extends TestMutantRules {
 
 		 */
 		
-		SMARTSQueryTool sqt2 = new SMARTSQueryTool("[#6]!:;=[#6][#6](=O)[!O]");
+		SMARTSQueryTool sqt2 = new SMARTSQueryTool("[#6]!:;=[#6][#6](=O)[!O]",builder);
 		assertTrue(sqt2.matches(ac));
 		
-		SMARTSQueryTool sqt3 = new SMARTSQueryTool("[N;$([N!X4])]!@;-[N;$([N!X4])]");
+		SMARTSQueryTool sqt3 = new SMARTSQueryTool("[N;$([N!X4])]!@;-[N;$([N!X4])]",builder);
 		assertFalse(sqt3.matches(ac));		
 
-		SMARTSQueryTool sqt4 = new SMARTSQueryTool("[N]=[N]-,=[N]");
+		SMARTSQueryTool sqt4 = new SMARTSQueryTool("[N]=[N]-,=[N]",builder);
 		assertFalse(sqt4.matches(ac));		
 		
 		/**

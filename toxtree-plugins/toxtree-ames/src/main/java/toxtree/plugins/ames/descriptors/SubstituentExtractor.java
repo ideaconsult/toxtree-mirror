@@ -38,7 +38,6 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.mcss.RMap;
@@ -52,7 +51,7 @@ public class SubstituentExtractor {
     protected static Boolean yes = new Boolean(true);
     protected static String atom_C = "C";
 	protected QueryAtomContainer ringQuery;
-
+	protected UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
 	protected static Logger logger = Logger.getLogger(SubstituentExtractor.class.getName());
 	public SubstituentExtractor() {
 		this(null);
@@ -71,7 +70,7 @@ public class SubstituentExtractor {
 
 		logger.finer("extract substituents");
 		if (ringQuery == null) throw new CDKException("Query not assigned");
-        List list = UniversalIsomorphismTester.getSubgraphAtomsMaps(a,ringQuery);
+        List list = uit.getSubgraphAtomsMaps(a,ringQuery);
         list = getUniqueAtomMaps(list);
         Hashtable<String,IAtomContainerSet> substituents = new Hashtable<String,IAtomContainerSet>();            
         
@@ -90,7 +89,7 @@ public class SubstituentExtractor {
                 }
                 */
                 IAtomContainer mc = cloneDiscardRingAtomAndBonds(a,mark);
-                IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
+                IAtomContainerSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
                 
                 substituents.put(mark,s);
             } else 

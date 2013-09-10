@@ -41,10 +41,9 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.AllRingsFinder;
@@ -135,10 +134,10 @@ public class MolAnalyser {
                     }
                 }
         	} else {
-        		IMoleculeSet moleculeSet = ConnectivityChecker.partitionIntoMolecules(mol);
-        	    IMolecule m = MoleculeTools.newMolecule(mol.getBuilder());  
-        	      for (int k = 0; k < moleculeSet.getMoleculeCount(); k++) {
-        	    	  IMolecule molPart = moleculeSet.getMolecule(k);
+        		IAtomContainerSet moleculeSet = ConnectivityChecker.partitionIntoMolecules(mol);
+        	    IAtomContainer m = MoleculeTools.newMolecule(mol.getBuilder());  
+        	      for (int k = 0; k < moleculeSet.getAtomContainerCount(); k++) {
+        	    	  IAtomContainer molPart = moleculeSet.getAtomContainer(k);
       		          h.addImplicitHydrogens(molPart);
       		          logger.fine("Adding implicit hydrogens; atom count "+molPart.getAtomCount());
       		        HydrogenAdderProcessor.convertImplicitToExplicitHydrogens(molPart);
@@ -253,12 +252,12 @@ public class MolAnalyser {
 	        HydrogenAdder h = new HydrogenAdder();
 	        try {
 	        	if (mol instanceof Molecule)
-	        		h.addExplicitHydrogensToSatisfyValency((IMolecule)mol);
+	        		h.addExplicitHydrogensToSatisfyValency((IAtomContainer)mol);
 	        	else {
-	        		IMoleculeSet moleculeSet = ConnectivityChecker.partitionIntoMolecules(mol);
+	        		IAtomContainerSet moleculeSet = ConnectivityChecker.partitionIntoMolecules(mol);
 	        	      
 	        	      for (int k = 0; k < moleculeSet.getMoleculeCount(); k++) {
-	        	    	  IMolecule molPart = moleculeSet.getMolecule(k);
+	        	    	  IAtomContainer molPart = moleculeSet.getMolecule(k);
 	        	          for (int i = 0; i < molPart.getAtomCount(); i++) {
 		        	          h.addExplicitHydrogensToSatisfyValency(molPart, molPart.getAtom(i), mol);
 		        	      }

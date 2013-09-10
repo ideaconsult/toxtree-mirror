@@ -32,7 +32,7 @@ import java.util.logging.Logger;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionResult;
 import toxTree.exceptions.DecisionMethodException;
@@ -182,7 +182,7 @@ public class CramerDataTest extends TestCase {
 		IDecisionResult result = rules.createDecisionResult();
 		
 		result.setDecisionMethod(rules);
-		IMolecule mol = (IMolecule) FunctionalGroups.createAtomContainer(smiles,id);
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer(smiles,id);
 		try {
 			result.classify(mol);
 		} catch (DecisionResultException x) {

@@ -1,6 +1,7 @@
 package toxTree.query;
 
 import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.smarts.AnyAtom;
 
 /**
@@ -23,6 +24,9 @@ public class ReallyAnyAtom extends AnyAtom {
 	 * 
 	 */
 	private static final long serialVersionUID = -2338751806424429161L;
+	public ReallyAnyAtom(IChemObjectBuilder builder) {
+        super(builder);
+}
 	@Override
 	public boolean matches(IAtom atom) {
 

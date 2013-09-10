@@ -27,8 +27,7 @@ import java.util.logging.Logger;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.Molecule;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 
 import sicret.SicretRules;
 import sicret.rules.RuleLogP;
@@ -102,7 +101,7 @@ public class SicretDataTest extends TestCase {
 		IDecisionResult result = rules.createDecisionResult();
 		
 		result.setDecisionMethod(rules);
-		IMolecule mol = (IMolecule) FunctionalGroups.createAtomContainer(smiles,id);
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer(smiles,id);
 		try {
 			result.classify(mol);
 		} catch (DecisionResultException x) {
@@ -115,7 +114,7 @@ public class SicretDataTest extends TestCase {
 		IDecisionResult result = rules.createDecisionResult();
 		
 		result.setDecisionMethod(rules);
-		IMolecule mol = (IMolecule) FunctionalGroups.createAtomContainer(smiles,id);
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer(smiles,id);
 		mol.setProperty(RuleMeltingPoint.MeltingPoint,MeltingPoint);
 		mol.setProperty(RuleLogP.LogKow,LogKow);
 		mol.setProperty("LipidSolubility",LipidSolubility);	
@@ -226,9 +225,9 @@ public class SicretDataTest extends TestCase {
             while (reader.hasNext()) {
                 Object object = reader.next();
                 assertNotNull(object);
-                if(object instanceof IMolecule){
+                if(object instanceof IAtomContainer){
               
-                IMolecule mol = (IMolecule)object; 
+                IAtomContainer mol = (IAtomContainer)object; 
                 //smiles,class,name,tree path,MeltingPoint,LogKow,LipidSolubility,MoleculWeight,SurfaceTension,VapourPressure,AqueousSolubility
                 molecules[molCount][0] = mol.getProperty("SMILES").toString();               
                 molecules[molCount][1] = "1";
@@ -292,9 +291,9 @@ public class SicretDataTest extends TestCase {
             while (reader.hasNext()) {
                 Object object = reader.next();
                 assertNotNull(object);
-                assertTrue((object instanceof Molecule));
+                assertTrue((object instanceof IAtomContainer));
                 /*if(molCount==1){
-                	IMolecule mol = (IMolecule)object; 
+                	IAtomContainer mol = (IAtomContainer)object; 
                 	Hashtable temp = mol.getProperties();
                 	Enumeration e  = temp.keys();            		
                 	while(e.hasMoreElements()){ 
@@ -302,9 +301,9 @@ public class SicretDataTest extends TestCase {
                 		
                 	}
                 }*/
-                if(object instanceof IMolecule){
+                if(object instanceof IAtomContainer){
               
-                IMolecule mol = (IMolecule)object; 
+                IAtomContainer mol = (IAtomContainer)object; 
                 //smiles,class,name,tree path,MeltingPoint,LogKow,LipidSolubility,MoleculWeight,SurfaceTension,VapourPressure,AqueousSolubility
                 molecules[molCount][0] = mol.getProperty("SMILES").toString();               
                 molecules[molCount][1] = "1";

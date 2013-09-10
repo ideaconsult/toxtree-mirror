@@ -25,6 +25,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.query;
 
 
+import java.util.Arrays;
+
+import javax.vecmath.Point2d;
+import javax.vecmath.Point3d;
+
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.isomorphism.matchers.IQueryBond;
@@ -54,7 +59,67 @@ public class AssociationQueryBond extends MyAssociationBond implements IQueryBon
 	public AssociationQueryBond() {
 		super();
 	}
+	
+	@Override
 	public boolean matches(IBond bond) {
 		return bond instanceof MyAssociationBond;
+	}
+
+	@Override
+	public Iterable<IAtom> atoms() {
+		return Arrays.asList(atoms);
+	}
+
+	@Override
+	public IAtom getAtom(int position) {
+		return atoms[position];
+	}
+
+	@Override
+	public IAtom getConnectedAtom(IAtom atom) {
+		return null;
+	}
+
+	@Override
+	public IAtom[] getConnectedAtoms(IAtom atom) {
+		return null;
+	}
+
+	@Override
+	public void setAtom(IAtom atom, int position) {
+		atoms[position] = atom;
+	}
+
+	@Override
+	public Order getOrder() {
+		return null;
+	}
+
+	@Override
+	public void setOrder(Order order) {
+	}
+
+	@Override
+	public Stereo getStereo() {
+		return null;
+	}
+
+	@Override
+	public void setStereo(Stereo stereo) {
+	}
+
+	@Override
+	public Point2d get2DCenter() {
+		return null;
+	}
+
+	@Override
+	public Point3d get3DCenter() {
+		return null;
+	}
+
+	@Override
+	public boolean isConnectedTo(IBond bond) {
+		return false;
 	}
 }

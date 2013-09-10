@@ -24,8 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.cramer2;
 
-import org.openscience.cdk.Molecule;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -60,7 +59,7 @@ public class CramerRulesTest extends RulesTestCase {
 
 
 	public void testVerifyRule2()  throws Exception {
-		Molecule mol = MoleculeFactory.makeAlkane(6);
+		IAtomContainer mol = MoleculeFactory.makeAlkane(6);
 		verifyRule(mol,2);
 
 	}
@@ -69,13 +68,13 @@ public class CramerRulesTest extends RulesTestCase {
 	 * Class under test for int classify(Molecule)
 	 */
 	public void testClassifyMolecule()  throws Exception {
-		IMolecule mol = MoleculeFactory.makeAlkane(6);
+		IAtomContainer mol = MoleculeFactory.makeAlkane(6);
 		classify(mol,rules,3);
 
 	}
 
-    protected IMolecule getMolecule(String smiles)  throws Exception {
-       	IMolecule mol = gen.parseSmiles(smiles);
+    protected IAtomContainer getMolecule(String smiles)  throws Exception {
+       	IAtomContainer mol = gen.parseSmiles(smiles);
         MolAnalyser.analyse(mol);
         return mol;
     }

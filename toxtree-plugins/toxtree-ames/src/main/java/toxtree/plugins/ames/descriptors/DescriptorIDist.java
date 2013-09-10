@@ -26,10 +26,9 @@ package toxtree.plugins.ames.descriptors;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.qsar.AbstractMolecularDescriptor;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
-import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 import org.openscience.cdk.qsar.result.IntegerResult;
 
@@ -52,7 +51,7 @@ import ambit2.smarts.query.SmartsPatternCDK;
  * @author Nina Jeliazkova
  *
  */
-public class DescriptorIDist implements IMolecularDescriptor {
+public class DescriptorIDist extends AbstractMolecularDescriptor {
 	protected String[] names = {"Idist"};
 	protected ISmartsPattern[] smarts= null;
 	
@@ -78,7 +77,7 @@ public class DescriptorIDist implements IMolecularDescriptor {
 	                new IntegerResult(0), getDescriptorNames(),
 	                new CDKException("Substructure not assigned!"));
 
-		if (arg0 instanceof IMolecule) {
+		if (arg0 instanceof IAtomContainer) {
 			
 	        Object mol = null;
 			int ok = 0;
@@ -104,7 +103,7 @@ public class DescriptorIDist implements IMolecularDescriptor {
 			}
 		} else 
 	        return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
-	                new IntegerResult(0), getDescriptorNames(),new CDKException("IMolecule expected!"));
+	                new IntegerResult(0), getDescriptorNames(),new CDKException("IAtomContainer expected!"));
 	}
 
 	public IDescriptorResult getDescriptorResultType() {

@@ -27,6 +27,7 @@ package toxTree.query;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 
@@ -45,8 +46,8 @@ public class TopologyOrderQueryBond extends OrderQueryBond {
 	/**
 	 * 
 	 */
-	public TopologyOrderQueryBond() {
-		super();
+	public TopologyOrderQueryBond(IChemObjectBuilder builder) {
+		super(builder);
 	}
 
 	/**
@@ -54,11 +55,11 @@ public class TopologyOrderQueryBond extends OrderQueryBond {
 	 * @param arg1
 	 * @param arg2
 	 */
-	public TopologyOrderQueryBond(IQueryAtom arg0, IQueryAtom arg1, IBond.Order arg2) {
-		super(arg0, arg1, arg2);
+	public TopologyOrderQueryBond(IQueryAtom arg0, IQueryAtom arg1, IBond.Order arg2, IChemObjectBuilder builder) {
+		super(arg0, arg1, arg2,builder);
 	}
-	public TopologyOrderQueryBond(IQueryAtom arg0, IQueryAtom arg1, IBond.Order arg2, boolean inRing) {
-		super(arg0, arg1, arg2);
+	public TopologyOrderQueryBond(IQueryAtom arg0, IQueryAtom arg1, IBond.Order arg2, boolean inRing, IChemObjectBuilder builder) {
+		super(arg0, arg1, arg2,builder);
 		this.inRing = inRing;
 	}	
 	/* (non-Javadoc)

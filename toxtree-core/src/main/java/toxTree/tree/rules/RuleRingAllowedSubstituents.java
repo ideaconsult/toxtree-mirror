@@ -27,8 +27,7 @@ package toxTree.tree.rules;
 
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 
@@ -102,10 +101,10 @@ public class RuleRingAllowedSubstituents extends RuleRingSubstituents {
 	        IAtomContainer mc = FunctionalGroups.cloneDiscardRingAtomAndBonds(mol,r);	        
 			logger.fine("\tmol atoms\t"+mc.getAtomCount());
 		    
-			IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
-			logger.fine("partitions\t"+s.getMoleculeCount());
-			for (int k = 0; k < s.getMoleculeCount(); k++) {
-				IMolecule m = s.getMolecule(k);
+			IAtomContainerSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
+			logger.fine("partitions\t"+s.getAtomContainerCount());
+			for (int k = 0; k < s.getAtomContainerCount(); k++) {
+				IAtomContainer m = s.getAtomContainer(k);
 			    if (m!=null) {
 				    if ((m.getAtomCount() == 1) && (m.getAtom(0).getSymbol().equals("H"))) continue;
 				    logger.finer("Partition\t"+(k+1));

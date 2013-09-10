@@ -32,9 +32,9 @@ import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.atomtype.CDKAtomTypeMatcher;
 import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IBond.Order;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.FixBondOrdersTool;
@@ -52,19 +52,19 @@ import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
  * <b>Modified</b> 2008-3-5
  */
 public class AromaticityTest extends TestCase {
-
+	protected UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(AromaticityTest.class);
 	}
 	public void aromaticRoundTrip(String smiles) throws Exception  {
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
-		IMolecule m = p.parseSmiles(smiles);
+		IAtomContainer m = p.parseSmiles(smiles);
 		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
 		CDKHueckelAromaticityDetector.detectAromaticity(m);
 		aromaticRoundTrip(m);
 	}
 	
-	public void aromaticRoundTrip(IMolecule m)  throws Exception  {
+	public void aromaticRoundTrip(IAtomContainer m)  throws Exception  {
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		SmilesGenerator sg = new SmilesGenerator(true);
 
@@ -85,7 +85,7 @@ public class AromaticityTest extends TestCase {
 			String s = sg.createSMILES(m);
 			//System.out.println(s);
 		
-			IMolecule m1 = p.parseSmiles(s);
+			IAtomContainer m1 = p.parseSmiles(s);
 			
 			b = CDKHueckelAromaticityDetector.detectAromaticity(m);
 			
@@ -99,13 +99,13 @@ public class AromaticityTest extends TestCase {
 			
 			assertTrue(b);
 			
-			assertTrue(UniversalIsomorphismTester.isIsomorph(m,m1));
+			assertTrue(uit.isIsomorph(m,m1));
 			
 	
 	}
 	public void testDeduceBondOrders() throws Exception  {
         SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
-        IMolecule m = p.parseSmiles("c1ccccc1");
+        IAtomContainer m = p.parseSmiles("c1ccccc1");
         
     	CDKAtomTypeMatcher matcher = CDKAtomTypeMatcher.getInstance(m.getBuilder());
     	Iterator<IAtom> atoms = m.atoms().iterator();
@@ -119,7 +119,7 @@ public class AromaticityTest extends TestCase {
         boolean b = CDKHueckelAromaticityDetector.detectAromaticity(m);
         assertTrue(b);
         FixBondOrdersTool dbst = new FixBondOrdersTool();
-        IMolecule m1 = dbst.kekuliseAromaticRings(m);
+        IAtomContainer m1 = dbst.kekuliseAromaticRings(m);
         int single_bonds = 0;
         int double_bonds = 0;
         int aromatic_bonds = 0;

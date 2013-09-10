@@ -27,6 +27,7 @@ package toxTree.query;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
 
 /**
@@ -43,8 +44,8 @@ public class TopologySymbolQueryAtom extends SymbolQueryAtom {
 	/**
 	 * 
 	 */
-	public TopologySymbolQueryAtom(boolean inRing) {
-		super();
+	public TopologySymbolQueryAtom(boolean inRing,IChemObjectBuilder builder) {
+		super(builder);
 		this.inRing = inRing;
 	}
 

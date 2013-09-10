@@ -27,6 +27,7 @@ package toxTree.query;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 
 /**
  * Matches if not aromatic and of type set
@@ -43,8 +44,8 @@ public class AliphaticCHQueryAtom extends CHQueryAtom {
 	/**
 	 * 
 	 */
-	public AliphaticCHQueryAtom() {
-		super();
+	public AliphaticCHQueryAtom(IChemObjectBuilder builder) {
+		super(builder);
 
 	}
 

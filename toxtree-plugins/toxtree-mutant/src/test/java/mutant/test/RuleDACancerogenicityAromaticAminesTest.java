@@ -31,8 +31,7 @@ import mutant.rules.RuleDACancerogenicityAromaticAmines;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IReaction;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
@@ -45,7 +44,7 @@ public class RuleDACancerogenicityAromaticAminesTest extends TestCase {
 
 	public void testVerifyRule() throws Exception  {
 		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();	
-		IMolecule mol = (IMolecule) FunctionalGroups.createAtomContainer("CC(O)(CS(=O)(=O)C1=CC=C(F)C=C1)C(=O)NC2=CC=C(C(=C2)C(F)(F)F)C(N)=O","test");
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer("CC(O)(CS(=O)(=O)C1=CC=C(F)C=C1)C(=O)NC2=CC=C(C(=C2)C(F)(F)F)C(N)=O","test");
 		MolAnalyser.analyse(mol);
 		rule.verifyRule(mol);
 	}
@@ -121,7 +120,7 @@ public class RuleDACancerogenicityAromaticAminesTest extends TestCase {
 			SimpleReactions sr = new SimpleReactions();
 			IReaction r = sr.getMetabolicReaction(0);
 			IAtomContainer mol = FunctionalGroups.createAtomContainer("Cc1ccc(cc1)N=Nc2ccccc2",true);
-			IMoleculeSet products = SimpleReactions.process(mol,r);
+			IAtomContainerSet products = SimpleReactions.process(mol,r);
 			assertNotNull(products);
 			assertEquals(2,products.getAtomContainerCount());
 		} catch (CDKException x) {

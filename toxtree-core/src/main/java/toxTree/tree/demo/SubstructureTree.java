@@ -32,7 +32,7 @@ package toxTree.tree.demo;
 import java.util.logging.Level;
 
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.templates.MoleculeFactory;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
@@ -73,7 +73,7 @@ public class SubstructureTree extends UserDefinedTree {
         categories.add(c2);
         
         
-        IMolecule m = MoleculeFactory.makeBenzene();
+        IAtomContainer m = MoleculeFactory.makeBenzene();
         try {
         	AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
         	CDKHueckelAromaticityDetector.detectAromaticity(m);
@@ -83,7 +83,7 @@ public class SubstructureTree extends UserDefinedTree {
         m.setID("benzene");
         
         /*
-        IMolecule m = MoleculeFactory.makeAlkane(6);
+        IAtomContainer m = MoleculeFactory.makeAlkane(6);
         m.setID("hexane");
         */
 		RuleAnySubstructure rs = new RuleAnySubstructure();

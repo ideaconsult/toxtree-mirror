@@ -729,6 +729,6 @@ class TreeSelector implements IProcessor<IAtomContainer,IChemObjectSelection> {
 	public void setEnabled(boolean value) {
 	}
 	
-	
+
 
 }

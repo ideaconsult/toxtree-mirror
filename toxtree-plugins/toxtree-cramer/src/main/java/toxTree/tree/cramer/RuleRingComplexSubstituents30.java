@@ -36,8 +36,7 @@ package toxTree.tree.cramer;
 import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.ringsearch.SSSRFinder;
@@ -118,7 +117,7 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 					try {
 						//trying to hydrolize
 						b = true;
-						SetOfAtomContainers residues = sr.isReadilyHydrolised((IMolecule)a);
+						SetOfAtomContainers residues = sr.isReadilyHydrolised((IAtomContainer)a);
 						canBeHydrolized = (residues != null); 
 						if (residues == null) {
 							logger.debug("Long chain substituent can't be hydrolized!\t - ",c);
@@ -160,7 +159,7 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected) throws DecisionMethodException {
 		logger.finer(toString());
 		boolean canBeHydrolized = false;
-		IMoleculeSet residues = null;
+		IAtomContainerSet residues = null;
 		IAtomContainer  newMol = mol;
 		if (FunctionalGroups.hasGroup(mol,ester,false)) {
 			SimpleReactions sr = new SimpleReactions();
@@ -176,11 +175,11 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 				else {
 					if (residueIDHidden)
 						for (int i = 0; i < residues.getAtomContainerCount(); i++)
-							residues.getMolecule(i).setID(mol.getID());
+							residues.getAtomContainer(i).setID(mol.getID());
 					
 					for (int i = 0; i < residues.getAtomContainerCount(); i++) 
 						try {
-							IMolecule residue = residues.getMolecule(i);
+							IAtomContainer residue = residues.getAtomContainer(i);
 							MolAnalyser.analyse(residue);
 						    MolFlags mf = (MolFlags) residue.getProperty(MolFlags.MOLFLAGS);
 						    if (mf == null) throw new DecisionMethodException("Structure should be preprocessed!");						

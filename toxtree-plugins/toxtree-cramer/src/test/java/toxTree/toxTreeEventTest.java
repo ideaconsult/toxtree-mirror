@@ -13,7 +13,7 @@ import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openscience.cdk.Molecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.core.IDecisionResult;
@@ -66,7 +66,7 @@ public class toxTreeEventTest  {
     	IDecisionResult result = rules.createDecisionResult();
 		
 		result.addPropertyChangeListener(resultListener);
-		Molecule mol = MoleculeFactory.makeAlkane(6);		
+		IAtomContainer mol = MoleculeFactory.makeAlkane(6);		
 		result.setDecisionMethod(rules);
 		try {
 			result.classify(mol);

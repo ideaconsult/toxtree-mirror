@@ -27,7 +27,7 @@ package toxtree.ui.molecule;
 import javax.swing.AbstractAction;
 import javax.swing.Icon;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 
 
 /**
@@ -37,27 +37,27 @@ import org.openscience.cdk.interfaces.IMolecule;
  */
 public abstract class AbstractMoleculeAction extends AbstractAction {
 	
-	protected  IMolecule molecule; 
-	public AbstractMoleculeAction(IMolecule molecule) {
+	protected  IAtomContainer molecule; 
+	public AbstractMoleculeAction(IAtomContainer molecule) {
 		super("Edit molecule");
 		this.molecule = molecule;
 	}
 
-	public AbstractMoleculeAction(IMolecule molecule,String arg0) {
+	public AbstractMoleculeAction(IAtomContainer molecule,String arg0) {
 		super(arg0);
 		this.molecule = molecule;
 	}
 
-	public AbstractMoleculeAction(IMolecule molecule,String arg0, Icon arg1) {
+	public AbstractMoleculeAction(IAtomContainer molecule,String arg0, Icon arg1) {
 		super(arg0, arg1);
 		this.molecule = molecule;
 	}
 
-	public IMolecule getMolecule() {
+	public IAtomContainer getMolecule() {
 		return molecule;
 	}
 
-	public void setMolecule(IMolecule molecule) {
+	public void setMolecule(IAtomContainer molecule) {
 		this.molecule = molecule;
 	}
 

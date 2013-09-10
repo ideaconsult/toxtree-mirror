@@ -29,8 +29,7 @@ import java.util.logging.Level;
 
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -90,10 +89,10 @@ public abstract class RuleRingOtherThanAllowedSubstituents extends RuleRingSubst
 			
 		    SmilesGenerator gen = new SmilesGenerator(true);
 		    
-		    IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
-			logger.finer("Substituents\t"+s.getMoleculeCount());
-			for (int k = 0; k < s.getMoleculeCount(); k++) {
-				IMolecule m = s.getMolecule(k);
+		    IAtomContainerSet  s = ConnectivityChecker.partitionIntoMolecules(mc);
+			logger.finer("Substituents\t"+s.getAtomContainerCount());
+			for (int k = 0; k < s.getAtomContainerCount(); k++) {
+				IAtomContainer m = s.getAtomContainer(k);
 			    if (m!=null) {
 				    if ((m.getAtomCount() == 1) && (m.getAtom(0).getSymbol().equals("H"))) continue;
 				    if (logger.isLoggable(Level.FINER)) {

@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IDecisionCategories;
@@ -47,7 +46,7 @@ public class DataContainer extends Observable {
 
     public void newMolecule() {
     	if (!enabled) return;
-    	IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+    	IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
     	//mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
     	mol.setProperty("SMILES","");
     	newMolecule(mol);
@@ -60,7 +59,7 @@ public class DataContainer extends Observable {
     
     public void addMolecule() {
     	if (!enabled) return;
-    	IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+    	IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
     	mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
     	addMolecule(mol);
     }

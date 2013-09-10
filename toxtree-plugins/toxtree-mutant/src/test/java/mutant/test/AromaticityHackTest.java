@@ -10,6 +10,7 @@ import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
@@ -61,24 +62,25 @@ public class AromaticityHackTest extends TestCase {
 
 	}
 	protected QueryAtomContainer aromaticN() {
-		QueryAtomContainer q = new QueryAtomContainer();
+		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+		QueryAtomContainer q = new QueryAtomContainer(builder);
 		q.setID("Hack");
-		IAtom n = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
+		IAtom n = MoleculeTools.newAtom(builder,Elements.NITROGEN);
 		n.setCharge(+1.0);
 		SymbolQueryAtom qn = new SymbolQueryAtom(n);
 		q.addAtom(qn);
 		SymbolQueryAtom prev = qn;
 		IBond.Order[] border = new IBond.Order[] {CDKConstants.BONDORDER_SINGLE,CDKConstants.BONDORDER_DOUBLE}; 
 		for (int i=0; i < 5; i++) {
-			SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+			SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
 			q.addAtom(c);
 			q.addBond(
-					new OrderQueryBond(prev,c,border[i % 2])
+					new OrderQueryBond(prev,c,border[i % 2],builder)
 					);
 			prev = c;
 		}
 		q.addBond(
-				new OrderQueryBond(prev,qn,border[5 % 2])
+				new OrderQueryBond(prev,qn,border[5 % 2],builder)
 				);		
 		return q;
 	}

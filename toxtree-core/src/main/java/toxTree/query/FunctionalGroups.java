@@ -48,12 +48,11 @@ import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.graph.PathTools;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IElement;
 import org.openscience.cdk.interfaces.IMolecularFormula;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
@@ -152,7 +151,7 @@ public class FunctionalGroups {
     public static final String ANHYDRIDE="ANHYDRIDE";
     public static final String CARBONATE="CARBONATE";
     public static final String AROMATIC_N_OXIDE="Aromatic ring N oxide";
-    
+    protected static UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
     public static final String  RING_NUMBERING="RingNumbering";
     /**
 	 * Use DONTMARK constant when building a query
@@ -185,20 +184,21 @@ public class FunctionalGroups {
      * @return
      */
     public static QueryAtomContainer methyl() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CH3);
 
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        SymbolQueryAtom h3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));        
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        SymbolQueryAtom h3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));        
         query.addAtom(c);
         query.addAtom(h1);
         query.addAtom(h2);        
         query.addAtom(h3);        
-        query.addBond(new OrderQueryBond(c, h1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, h2, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, h3, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(c, h1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, h2, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, h3, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     /**
@@ -206,124 +206,131 @@ public class FunctionalGroups {
      * @return
      */
     public static QueryAtomContainer methoxy() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(METHOXY);
-        ReallyAnyAtom r = new ReallyAnyAtom(); r.setSymbol("R");
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        SymbolQueryAtom h3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        ReallyAnyAtom r = new ReallyAnyAtom(builder); r.setSymbol("R");
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        SymbolQueryAtom h3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         query.addAtom(r);
         query.addAtom(o);
         query.addAtom(c);
         query.addAtom(h1);
         query.addAtom(h2);        
         query.addAtom(h3);        
-        query.addBond(new OrderQueryBond(r, o, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(o, c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, h1, CDKConstants.BONDORDER_SINGLE));        
-        query.addBond(new OrderQueryBond(c, h2, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, h3, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r, o, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(o, c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, h1, CDKConstants.BONDORDER_SINGLE,builder));        
+        query.addBond(new OrderQueryBond(c, h2, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, h3, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     public static QueryAtomContainer methoxy_ring() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(METHOXY);
-        TopologyAnyAtom r = new TopologyAnyAtom(true); r.setSymbol("R");
+        TopologyAnyAtom r = new TopologyAnyAtom(true,builder); r.setSymbol("R");
         r.setProperty(DONTMARK,query.getID());        
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        SymbolQueryAtom h3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        SymbolQueryAtom h3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         query.addAtom(r);
         query.addAtom(o);
         query.addAtom(c);
         query.addAtom(h1);
         query.addAtom(h2);        
         query.addAtom(h3);        
-        query.addBond(new OrderQueryBond(r, o, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(o, c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, h1, CDKConstants.BONDORDER_SINGLE));        
-        query.addBond(new OrderQueryBond(c, h2, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, h3, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r, o, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(o, c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, h1, CDKConstants.BONDORDER_SINGLE,builder));        
+        query.addBond(new OrderQueryBond(c, h2, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, h3, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }    
     
     public static QueryAtomContainer noxide_aromatic() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(AROMATIC_N_OXIDE);
-        AromaticSymbolAtom n = new AromaticSymbolAtom("N");
+        AromaticSymbolAtom n = new AromaticSymbolAtom("N",builder);
         n.setCharge(1.0);
-        TopologySymbolQueryAtom o = new TopologySymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN),false);
+        TopologySymbolQueryAtom o = new TopologySymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN),false);
         o.setCharge(-1.0);
         query.addAtom(o);
         query.addAtom(n);
-        query.addBond(new OrderQueryBond(o, n, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(o, n, CDKConstants.BONDORDER_SINGLE,builder));
         
         return query;
     }
     public static QueryAtomContainer hydroxy_ring() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(HYDROXY);
-        TopologySymbolQueryAtom c = new TopologySymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON),true);
+        TopologySymbolQueryAtom c = new TopologySymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON),true);
         c.setProperty(DONTMARK,query.getID());        
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         query.addAtom(h);
         query.addAtom(o);
         query.addAtom(c);
-        query.addBond(new OrderQueryBond(o, c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(o, h, CDKConstants.BONDORDER_SINGLE));        
+        query.addBond(new OrderQueryBond(o, c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(o, h, CDKConstants.BONDORDER_SINGLE,builder));        
         return query;
     }
     public static QueryAtomContainer hydroxy1() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(HYDROXY1);
         //aliphatic c
-        IQueryAtom c = new AliphaticSymbolAtom("C");
-        //old - fails to match safrole TopologySymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON),false); 
+        IQueryAtom c = new AliphaticSymbolAtom("C",builder);
+        //old - fails to match safrole TopologySymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON),false); 
         c.setProperty(DONTMARK,query.getID());
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         query.addAtom(h);
         query.addAtom(o);
         query.addAtom(c);
-        query.addBond(new OrderQueryBond(o, c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(o, h, CDKConstants.BONDORDER_SINGLE));        
+        query.addBond(new OrderQueryBond(o, c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(o, h, CDKConstants.BONDORDER_SINGLE,builder));        
         return query;
     }        
     // CCCC...COC(=O)R
     public static QueryAtomContainer hydroxyEsterSubstituted() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(HYDROXYESTERSUBSTITED);
-        SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); 
-        SymbolQueryAtom c2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON)); 
+        SymbolQueryAtom c2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         query.addAtom(r);
         query.addAtom(o);query.addAtom(o2);
         query.addAtom(c1);query.addAtom(c2);
-        query.addBond(new OrderQueryBond(c1, o, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(o, c2, CDKConstants.BONDORDER_SINGLE));        
-        query.addBond(new OrderQueryBond(o2, c2, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(r, c2, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(c1, o, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(o, c2, CDKConstants.BONDORDER_SINGLE,builder));        
+        query.addBond(new OrderQueryBond(o2, c2, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(r, c2, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }        
     //R-CH2-R
     public static QueryAtomContainer ethyl() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CH2);
 
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        InverseSymbolSetQueryAtom h3 = new InverseSymbolSetQueryAtom();
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        InverseSymbolSetQueryAtom h3 = new InverseSymbolSetQueryAtom(builder);
         h3.addSymbol("H");
         h3.setProperty(DONTMARK,query.getID());
-        InverseSymbolSetQueryAtom h4 = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom h4 = new InverseSymbolSetQueryAtom(builder);
         h4.addSymbol("H");
         h4.setProperty(DONTMARK,query.getID());
         
@@ -331,47 +338,49 @@ public class FunctionalGroups {
         query.addAtom(h1);
         query.addAtom(h2);        
         query.addAtom(h3);        
-        query.addBond(new OrderQueryBond(c, h1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, h2, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new AnyOrderQueryBond(c, h3,CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new AnyOrderQueryBond(c, h3,CDKConstants.BONDORDER_SINGLE));        
+        query.addBond(new OrderQueryBond(c, h1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, h2, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new AnyOrderQueryBond(c, h3,CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new AnyOrderQueryBond(c, h3,CDKConstants.BONDORDER_SINGLE,builder));        
         return query;
     }        
     public static QueryAtomContainer hydrocarbon() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CH);
 
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         query.addAtom(c);
         SymbolSetQueryAtom[] neighbors = new SymbolSetQueryAtom[4];
         for (int i =0; i < 4; i++) {
-            neighbors[i] = new SymbolSetQueryAtom();
+            neighbors[i] = new SymbolSetQueryAtom(builder);
             neighbors[i].addSymbol("C");
             neighbors[i].addSymbol("H");
             query.addAtom(neighbors[i]);
-            query.addBond(new OrderQueryBond(c, neighbors[i], CDKConstants.BONDORDER_SINGLE));
+            query.addBond(new OrderQueryBond(c, neighbors[i], CDKConstants.BONDORDER_SINGLE,builder));
         }
         return query;
     }    
     
     
     public static QueryAtomContainer primaryAmine(boolean aliphatic) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(PRIMARY_AMINE);
         IQueryAtom r;
-        if (aliphatic) r= new TopologySymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON),false); 
-        else r = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        if (aliphatic) r= new TopologySymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON),false); 
+        else r = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         ((IAtom)r).setProperty(DONTMARK,query.getID());
-        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         query.addAtom((IAtom)r);
         query.addAtom(n);
         query.addAtom(h1);
         query.addAtom(h2);        
-        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(n, h1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(n, h2, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(n, h1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(n, h2, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     /**
@@ -380,53 +389,55 @@ public class FunctionalGroups {
      * @return
      */
     public static QueryAtomContainer secondaryAmine(boolean aliphatic) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         if (aliphatic) query.setID(SECONDARY_AMINE_ALIPHATIC);
         else  query.setID(SECONDARY_AMINE);
         SymbolQueryAtom[] c = new SymbolQueryAtom[2];
         
-        IAtom a  = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
+        IAtom a  = MoleculeTools.newAtom(builder,Elements.NITROGEN);
         a.setFormalCharge(0);
         SymbolAndChargeQueryAtom n = new SymbolAndChargeQueryAtom(a);
-        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         
         for (int i=0; i<2; i++) {
-	        //if (aliphatic) c[i]= new TopologySymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON),false); 
+	        //if (aliphatic) c[i]= new TopologySymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON),false); 
 	        //else 
         	if (aliphatic)
-        		c[i] = new CHQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        	else c[i]= new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        		c[i] = new CHQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        	else c[i]= new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
 	        query.addAtom(c[i]);
 	        if (aliphatic)
-	        	query.addBond(new TopologyOrderQueryBond(c[i], n, CDKConstants.BONDORDER_SINGLE,false));
+	        	query.addBond(new TopologyOrderQueryBond(c[i], n, CDKConstants.BONDORDER_SINGLE,false,builder));
 	        else
-	        	query.addBond(new OrderQueryBond(c[i], n, CDKConstants.BONDORDER_SINGLE));
+	        	query.addBond(new OrderQueryBond(c[i], n, CDKConstants.BONDORDER_SINGLE,builder));
         }
         query.addAtom(n);
         query.addAtom(h);        
-        query.addBond(new OrderQueryBond(n, h, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(n, h, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
 
     public static QueryAtomContainer tertiaryAmine() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(TERTIARY_AMINE);
         InverseSymbolSetQueryAtom[] r = new InverseSymbolSetQueryAtom[3];
-        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
+        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
         for (int i =0; i < 3; i++) {
-	    	r[i] = new InverseSymbolSetQueryAtom();
+	    	r[i] = new InverseSymbolSetQueryAtom(builder);
 	    	r[i].setSymbol("*");
         	r[i].addSymbol("H");	
 	        
         	query.addAtom(r[i]);
-        	query.addBond(new OrderQueryBond(r[i], n, CDKConstants.BONDORDER_SINGLE));        	
+        	query.addBond(new OrderQueryBond(r[i], n, CDKConstants.BONDORDER_SINGLE,builder));        	
 	    }    
         return query;
     }	
 
     /*
     public static QueryAtomContainer amine(int order, boolean aliphatic) {
-        QueryAtomContainer query = new QueryAtomContainer();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         switch (order) {
         //primary
         case 1:{query.setID(PRIMARY_AMINE); break;}
@@ -438,7 +449,7 @@ public class FunctionalGroups {
         default :	{order= 0;query.setID(AMINE); break;}
         }
         InverseSymbolSetQueryAtom[] r = new InverseSymbolSetQueryAtom[3];
-        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
+        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
         for (int i =0; i < order; i++) {
 	    	r[i] = new InverseSymbolSetQueryAtom();
         	r[i].addSymbol("H");
@@ -451,57 +462,59 @@ public class FunctionalGroups {
     // [N+].[Cl-]
     public static QueryAtomContainer hydrochlorideOfAmine(int amine) {
     	//TODO verify the correct way of representation hydrochlorideOfAmine
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(HYDROCHLORIDE_OF_AMINE);
-        IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
+        IAtom a = MoleculeTools.newAtom(builder,Elements.NITROGEN);
         a.setFormalCharge(1);
         SymbolAndChargeQueryAtom n = new SymbolAndChargeQueryAtom(a);
         //SymbolQueryAtom n = new SymbolQueryAtom(a);
         query.addAtom(n);
         
-        IAtom chlor = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CHLORINE);
+        IAtom chlor = MoleculeTools.newAtom(builder,Elements.CHLORINE);
         chlor.setFormalCharge(-1);
         SymbolAndChargeQueryAtom cl = new SymbolAndChargeQueryAtom(chlor);
         query.addAtom(cl);        
         SymbolQueryAtom[] r = new SymbolQueryAtom[4];
         for (int i=0; i < 4; i++) {
         	
-        	if ((i+1) > amine) r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        	else r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        	if ((i+1) > amine) r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        	else r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         	query.addAtom(r[i]);
-        	query.addBond(new OrderQueryBond(n, r[i], CDKConstants.BONDORDER_SINGLE));
+        	query.addBond(new OrderQueryBond(n, r[i], CDKConstants.BONDORDER_SINGLE,builder));
         }
         //TODO should verify somehow for ionic bond, not any ...
-        query.addBond(new AnyOrderQueryBond(n,cl, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new AnyOrderQueryBond(n,cl, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
 
     public static QueryAtomContainer hydrochlorideOfAmine3() {
     	//TODO verify the correct way of representation hydrochlorideOfAmine
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(HYDROCHLORIDE_OF_AMINE);
-        IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
+        IAtom a = MoleculeTools.newAtom(builder,Elements.NITROGEN);
         a.setFormalCharge(1);
         SymbolAndChargeQueryAtom n = new SymbolAndChargeQueryAtom(a);
         //SymbolQueryAtom n = new SymbolQueryAtom(a);
         query.addAtom(n);
         
-        IAtom chlor = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CHLORINE);
+        IAtom chlor = MoleculeTools.newAtom(builder,Elements.CHLORINE);
         chlor.setFormalCharge(-1);
         SymbolAndChargeQueryAtom cl = new SymbolAndChargeQueryAtom(chlor);
         query.addAtom(cl);        
         SymbolQueryAtom[] r = new SymbolQueryAtom[3];
         for (int i=0; i < 3; i++) {
         	
-        	r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        	r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         	query.addAtom(r[i]);
         	if (i==0)
-        		query.addBond(new OrderQueryBond(n, r[i], CDKConstants.BONDORDER_DOUBLE));
+        		query.addBond(new OrderQueryBond(n, r[i], CDKConstants.BONDORDER_DOUBLE,builder));
         	else
-        		query.addBond(new OrderQueryBond(n, r[i], CDKConstants.BONDORDER_SINGLE));
+        		query.addBond(new OrderQueryBond(n, r[i], CDKConstants.BONDORDER_SINGLE,builder));
         }
         //TODO should verify somehow for ionic bond, not any ...
-        query.addBond(new AnyOrderQueryBond(n,cl, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new AnyOrderQueryBond(n,cl, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     
@@ -509,14 +522,15 @@ public class FunctionalGroups {
     
     public static QueryAtomContainer hydrochlorideOfAmineBreakable() {
     	//TODO verify the correct way of representation hydrochlorideOfAmine
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(HYDROCHLORIDE_OF_AMINE);
-        IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
+        IAtom a = MoleculeTools.newAtom(builder,Elements.NITROGEN);
         a.setFormalCharge(1);
         SymbolAndChargeQueryAtom n = new SymbolAndChargeQueryAtom(a);
         query.addAtom(n);
         
-        IAtom chlor = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CHLORINE);
+        IAtom chlor = MoleculeTools.newAtom(builder,Elements.CHLORINE);
         chlor.setFormalCharge(-1);
         
         SymbolAndChargeQueryAtom cl = new SymbolAndChargeQueryAtom(chlor);
@@ -526,35 +540,36 @@ public class FunctionalGroups {
         //TODO moze li da ima drugi elementi zakaceni za N
         SymbolSetQueryAtom[] r = new SymbolSetQueryAtom[2];
         for (int i=0; i < r.length; i++) {
-        	r[i] = new SymbolSetQueryAtom();
+        	r[i] = new SymbolSetQueryAtom(builder);
         	r[i].addSymbol("C");
         	r[i].addSymbol("H");
         	query.addAtom(r[i]);
-        	query.addBond(new SingleOrDoubleQueryBond(n, r[i]));
+        	query.addBond(new SingleOrDoubleQueryBond(n, r[i],builder));
         }
         //TODO should verify somehow for ionic bond, not any ...
-        query.addBond(new OrderQueryBond(n,cl, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(n,cl, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     
     //S(=O)(=O)(OH)[O-][N+]
     public static QueryAtomContainer sulphateOfAmine(int amine) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(SULPHATE_OF_AMINE);
-        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR));
+        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.SULFUR));
         query.addAtom(s);        
         IQueryAtom[] o = new IQueryAtom[4];
         for (int i=0; i < 4; i++) {
         	if (i==0) {
-        		IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+        		IAtom a = MoleculeTools.newAtom(builder,Elements.OXYGEN);
         		a.setFormalCharge(-1);
         		o[i] = new SymbolAndChargeQueryAtom(a);
-        	} else	o[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        	} else	o[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         	query.addAtom((IAtom)o[i]);
         	if (i<2)
-        		query.addBond(new OrderQueryBond(s, o[i], CDKConstants.BONDORDER_SINGLE));
+        		query.addBond(new OrderQueryBond(s, o[i], CDKConstants.BONDORDER_SINGLE,builder));
         	else
-        		query.addBond(new OrderQueryBond(s, o[i], CDKConstants.BONDORDER_DOUBLE));
+        		query.addBond(new OrderQueryBond(s, o[i], CDKConstants.BONDORDER_DOUBLE,builder));
         }
         
         
@@ -566,11 +581,11 @@ public class FunctionalGroups {
          * 
          */
         /*TODO verify if this is necessary
-        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         query.addAtom(h);
         query.addBond(new OrderQueryBond(h, o[1], CDKConstants.BONDORDER_SINGLE));
         */
-        IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
+        IAtom a = MoleculeTools.newAtom(builder,Elements.NITROGEN);
         a.setFormalCharge(1);
         SymbolAndChargeQueryAtom n = new SymbolAndChargeQueryAtom(a);
         //SymbolQueryAtom n = new SymbolQueryAtom(a);
@@ -579,15 +594,15 @@ public class FunctionalGroups {
         if (amine > 0) { //primary, sec, etc
 	        SymbolSetQueryAtom[] r = new SymbolSetQueryAtom[4];
 	        for (int i=0; i < 4; i++) {
-	        	r[i] = new SymbolSetQueryAtom();
+	        	r[i] = new SymbolSetQueryAtom(builder);
 	        	if ((i+1) > amine) r[i].addSymbol("H");
 	        	else r[i].addSymbol("C");
 	        	query.addAtom(r[i]);
-	        	query.addBond(new OrderQueryBond(n, r[i], CDKConstants.BONDORDER_SINGLE)); //[N+]-R  or [N+]-H
+	        	query.addBond(new OrderQueryBond(n, r[i], CDKConstants.BONDORDER_SINGLE,builder)); //[N+]-R  or [N+]-H
 	        }
         }
         //TODO should verify somehow for ionic bond, not any ...
-        query.addBond(new AnyOrderQueryBond(n,o[0], CDKConstants.BONDORDER_SINGLE)); //[N+]-[O-]
+        query.addBond(new AnyOrderQueryBond(n,o[0], CDKConstants.BONDORDER_SINGLE,builder)); //[N+]-[O-]
         return query;
     }
     /**
@@ -622,21 +637,22 @@ public class FunctionalGroups {
      * @return
      */
     public static QueryAtomContainer cyano() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CYANO);
         
-        SymbolSetQueryAtom a = new SymbolSetQueryAtom();
+        SymbolSetQueryAtom a = new SymbolSetQueryAtom(builder);
         a.addSymbol("N");
         a.addSymbol("C");
         a.addSymbol("H");
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
         
         query.addAtom(a);
         query.addAtom(c);
         query.addAtom(n);
-        query.addBond(new OrderQueryBond(a, c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_TRIPLE));
+        query.addBond(new OrderQueryBond(a, c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_TRIPLE,builder));
         return query;
     }
     /**
@@ -644,19 +660,20 @@ public class FunctionalGroups {
      * @return
      */
     public static QueryAtomContainer nitro2double() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(NITRO);
-        InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom(builder);
         r.addSymbol("H");
-        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));        
+        SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));        
         
         query.addAtom(r);query.addAtom(n);
         query.addAtom(o1);query.addAtom(o2);
-        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(n, o1, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(n, o2, CDKConstants.BONDORDER_DOUBLE));        
+        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(n, o1, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(n, o2, CDKConstants.BONDORDER_DOUBLE,builder));        
         return query;
     }
     /**
@@ -664,25 +681,26 @@ public class FunctionalGroups {
      * @return
      */
     public static QueryAtomContainer nitro1double() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(NITRO);
-        InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom(builder);
         
         r.addSymbol("H");
-        IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);      a.setFormalCharge(+1);
+        IAtom a = MoleculeTools.newAtom(builder,Elements.NITROGEN);      a.setFormalCharge(+1);
         SymbolAndChargeQueryAtom n = new SymbolAndChargeQueryAtom(a);
         
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         
-        IAtom o = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);      o.setFormalCharge(-1);
+        IAtom o = MoleculeTools.newAtom(builder,Elements.OXYGEN);      o.setFormalCharge(-1);
         SymbolAndChargeQueryAtom o2 = new SymbolAndChargeQueryAtom(o);
         
         
         query.addAtom(r);query.addAtom(n);
         query.addAtom(o1);query.addAtom(o2);
-        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(n, o1, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(n, o2, CDKConstants.BONDORDER_SINGLE));        
+        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(n, o1, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(n, o2, CDKConstants.BONDORDER_SINGLE,builder));        
         return query;
     }        
     /**
@@ -690,35 +708,37 @@ public class FunctionalGroups {
      * @return
      */
     public static QueryAtomContainer Nnitroso() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(NNITROSO);
-        InverseSymbolSetQueryAtom r1 = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom r1 = new InverseSymbolSetQueryAtom(builder);
         r1.addSymbol("H");
-        InverseSymbolSetQueryAtom r2 = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom r2 = new InverseSymbolSetQueryAtom(builder);
         r2.addSymbol("H");
-        SymbolQueryAtom n1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        SymbolQueryAtom n2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom n1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+        SymbolQueryAtom n2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         
         query.addAtom(r1);query.addAtom(r2);
         query.addAtom(n1);query.addAtom(n2);
         query.addAtom(o);
-        query.addBond(new OrderQueryBond(r1, n1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(r2, n1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(n1, n2, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(n2, o, CDKConstants.BONDORDER_DOUBLE));
+        query.addBond(new OrderQueryBond(r1, n1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(r2, n1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(n1, n2, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(n2, o, CDKConstants.BONDORDER_DOUBLE,builder));
         return query;
     }
     /*
      * SMARTS: N#N
      */
     public static QueryAtomContainer diAzo() {
-        SymbolQueryAtom n1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        SymbolQueryAtom n2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        SymbolQueryAtom n1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+        SymbolQueryAtom n2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(DIAZO);
         query.addAtom(n1);query.addAtom(n2);
-        query.addBond(new OrderQueryBond(n1, n2, CDKConstants.BONDORDER_TRIPLE));
+        query.addBond(new OrderQueryBond(n1, n2, CDKConstants.BONDORDER_TRIPLE,builder));
         return query;
     }
     /**
@@ -726,355 +746,375 @@ public class FunctionalGroups {
      * @return
      */
     public static QueryAtomContainer triAzeno() {
-        
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(TRIAZENO);
         
-     	SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+     	SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
      	r.setProperty(DONTMARK,query.getID());
-        SymbolQueryAtom n1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        SymbolQueryAtom n2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        SymbolQueryAtom n3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom n1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+        SymbolQueryAtom n2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+        SymbolQueryAtom n3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+        SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
+        SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         
         query.addAtom(r);query.addAtom(n1);
         query.addAtom(n2);query.addAtom(n3);
         query.addAtom(h1);query.addAtom(h2);
-        query.addBond(new OrderQueryBond(r, n1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(n1, n2, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(n2, n3, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(n3, h1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(n3, h2, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r, n1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(n1, n2, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(n2, n3, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(n3, h1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(n3, h2, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     
     
     public static QueryAtomContainer quaternaryNitrogen1(boolean charged) {
-    	
-    	ReallyAnyAtom r1 = new ReallyAnyAtom();
-    	ReallyAnyAtom r2 = new ReallyAnyAtom();
-    	ReallyAnyAtom r3 = new ReallyAnyAtom();
-    	ReallyAnyAtom r4 = new ReallyAnyAtom();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+    	ReallyAnyAtom r1 = new ReallyAnyAtom(builder);
+    	ReallyAnyAtom r2 = new ReallyAnyAtom(builder);
+    	ReallyAnyAtom r3 = new ReallyAnyAtom(builder);
+    	ReallyAnyAtom r4 = new ReallyAnyAtom(builder);
 
-     	//SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-     	IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
+     	//SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+     	IAtom a = MoleculeTools.newAtom(builder,Elements.NITROGEN);
      	IQueryAtom n;
      	if (charged) {
      		a.setFormalCharge(1);
      		n = new SymbolAndChargeQueryAtom(a);
      	} else n = new SymbolQueryAtom(a);
 
-        QueryAtomContainer query = new QueryAtomContainer();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(QUATERNARY_NITROGEN);
         query.addAtom(r1);query.addAtom(r2);
         query.addAtom(r3);query.addAtom(r4);
         query.addAtom((IAtom)n);
-        query.addBond(new OrderQueryBond(r1, n, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(r2, n, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(r3, n, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(r4, n, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r1, n, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(r2, n, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(r3, n, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(r4, n, CDKConstants.BONDORDER_SINGLE,builder));
             
         return query;
     }
     
     public static QueryAtomContainer quaternaryNitrogen2(boolean charged) {
-    	
-    	ReallyAnyAtom r1 = new ReallyAnyAtom();
-    	ReallyAnyAtom r2 = new ReallyAnyAtom();
-    	ReallyAnyAtom r3 = new ReallyAnyAtom();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+    	ReallyAnyAtom r1 = new ReallyAnyAtom(builder);
+    	ReallyAnyAtom r2 = new ReallyAnyAtom(builder);
+    	ReallyAnyAtom r3 = new ReallyAnyAtom(builder);
 
-     	//SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-     	IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
+     	//SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.NITROGEN));
+     	IAtom a = MoleculeTools.newAtom(builder,Elements.NITROGEN);
      	IQueryAtom n;
      	if (charged) {
      		a.setFormalCharge(1);
      		n = new SymbolAndChargeQueryAtom(a);
      	} else n = new SymbolQueryAtom(a);      	//else to cope with wrong record
  
-        QueryAtomContainer query = new QueryAtomContainer();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(QUATERNARY_NITROGEN);
         query.addAtom(r1);query.addAtom(r2);
         query.addAtom(r3);
         query.addAtom((IAtom)n);
-        query.addBond(new OrderQueryBond(r1, n, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(r2, n, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(r3, n, CDKConstants.BONDORDER_DOUBLE));
+        query.addBond(new OrderQueryBond(r1, n, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(r2, n, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(r3, n, CDKConstants.BONDORDER_DOUBLE,builder));
             
         return query;
     }
     
     
     public static QueryAtomContainer quarternaryNitrogenException() {
-    	ReallyAnyAtom nr1 = new ReallyAnyAtom();
-    	ReallyAnyAtom nr2 = new ReallyAnyAtom();
-     	SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-     	IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+    	ReallyAnyAtom nr1 = new ReallyAnyAtom(builder);
+    	ReallyAnyAtom nr2 = new ReallyAnyAtom(builder);
+     	SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+     	IAtom a = MoleculeTools.newAtom(builder,Elements.NITROGEN);
      	a.setFormalCharge(1);
         SymbolAndChargeQueryAtom n = new SymbolAndChargeQueryAtom(a);
-        InverseSymbolSetQueryAtom cr1 = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom cr1 = new InverseSymbolSetQueryAtom(builder);
         cr1.addSymbol("H");
-        InverseSymbolSetQueryAtom cr2 = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom cr2 = new InverseSymbolSetQueryAtom(builder);
         cr2.addSymbol("H");
         
-        QueryAtomContainer query = new QueryAtomContainer();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(QUATERNARY_NITROGEN_EXCEPTION);
         query.addAtom(nr1);query.addAtom(nr2);
         query.addAtom(cr1);query.addAtom(cr2);
         query.addAtom(n);query.addAtom(c);
         query.addAtom(n);
-        query.addBond(new OrderQueryBond(nr1, n, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(nr2, n, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(cr1, c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(cr2, c, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(nr1, n, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(nr2, n, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(cr1, c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(cr2, c, CDKConstants.BONDORDER_SINGLE,builder));
         
         return query;
     }    
     //    R-C(=O)-OH
     public static QueryAtomContainer carboxylicAcid() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CARBOXYLIC_ACID);        
-        ReallyAnyAtom r = new ReallyAnyAtom();
+        ReallyAnyAtom r = new ReallyAnyAtom(builder);
         r.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));        
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));        
         query.addAtom(r); query.addAtom(c);
         query.addAtom(o1); query.addAtom(o2);query.addAtom(h);
-        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(h, o1, CDKConstants.BONDORDER_SINGLE));        
-        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE));
+        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(h, o1, CDKConstants.BONDORDER_SINGLE,builder));        
+        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,builder));
         return query;
     }
     public static QueryAtomContainer acyclic_acetal() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(ACETAL);        
         SymbolQueryAtom[] c = new SymbolQueryAtom[3];
         for (int i =0; i < 3; i++) {
-            c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+            c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
             query.addAtom(c[i]);
         }
         SymbolQueryAtom[] o = new SymbolQueryAtom[2];
         for (int i =0; i < 2; i++) {
-            o[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+            o[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
             query.addAtom(o[i]);
         }
-        query.addBond(new TopologyOrderQueryBond(c[0], o[0], CDKConstants.BONDORDER_SINGLE,false));
-        query.addBond(new TopologyOrderQueryBond(c[1], o[0], CDKConstants.BONDORDER_SINGLE,false));
-        query.addBond(new TopologyOrderQueryBond(c[1], o[1], CDKConstants.BONDORDER_SINGLE,false));
-        query.addBond(new TopologyOrderQueryBond(c[2], o[1], CDKConstants.BONDORDER_SINGLE,false));        
+        query.addBond(new TopologyOrderQueryBond(c[0], o[0], CDKConstants.BONDORDER_SINGLE,false,builder));
+        query.addBond(new TopologyOrderQueryBond(c[1], o[0], CDKConstants.BONDORDER_SINGLE,false,builder));
+        query.addBond(new TopologyOrderQueryBond(c[1], o[1], CDKConstants.BONDORDER_SINGLE,false,builder));
+        query.addBond(new TopologyOrderQueryBond(c[2], o[1], CDKConstants.BONDORDER_SINGLE,false,builder));        
         return query;
     	
     }
     // -C-O-C-O-C-
     public static QueryAtomContainer acetal() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(ACETAL);        
         SymbolQueryAtom[] c = new SymbolQueryAtom[3];
         for (int i =0; i < 3; i++) {
-            c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+            c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
             query.addAtom(c[i]);
         }
         SymbolQueryAtom[] o = new SymbolQueryAtom[2];
         for (int i =0; i < 2; i++) {
-            o[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+            o[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
             query.addAtom(o[i]);
         }
-        query.addBond(new OrderQueryBond(c[0], o[0], CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c[1], o[0], CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c[1], o[1], CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c[2], o[1], CDKConstants.BONDORDER_SINGLE));        
+        query.addBond(new OrderQueryBond(c[0], o[0], CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c[1], o[0], CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c[1], o[1], CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c[2], o[1], CDKConstants.BONDORDER_SINGLE,builder));        
         return query;
     }
 
     // C-O-C  have to check if substituted
     public static QueryAtomContainer ether() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(ETHER);
         SymbolQueryAtom[] r = new SymbolQueryAtom[2];
         for (int i =0; i < 2; i++) {
-            r[i] = new CHQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+            r[i] = new CHQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
 //            r[i].setProperty(DONTMARK,query.getID());            
             query.addAtom(r[i]);
         }
         //TotalValencyAtom s = new TotalValencyAtom(2);
-        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(s);
-        query.addBond(new OrderQueryBond(r[0], s, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(r[1], s, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r[0], s, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(r[1], s, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     // C-O-C  have to check if substituted
     public static QueryAtomContainer alkoxy() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(ETHER);
         SymbolQueryAtom[] r = new SymbolQueryAtom[2];
         for (int i =0; i < 2; i++) {
-            r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+            r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
             query.addAtom(r[i]);
         }
         //TotalValencyAtom s = new TotalValencyAtom(2);
-        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(s);
-        query.addBond(new OrderQueryBond(r[0], s, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(r[1], s, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r[0], s, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(r[1], s, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }    
     // C-O-C  have to check if substituted
     public static QueryAtomContainer methylether() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(METHYLETHER);
         
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(o);        
         SymbolQueryAtom[] r = new SymbolQueryAtom[2];
         for (int i =0; i < 2; i++) {
-            r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+            r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
             query.addAtom(r[i]);
-            query.addBond(new OrderQueryBond(r[i], o, CDKConstants.BONDORDER_SINGLE));            
+            query.addBond(new OrderQueryBond(r[i], o, CDKConstants.BONDORDER_SINGLE,builder));            
         }
         SymbolQueryAtom[] h = new SymbolQueryAtom[3];
         for (int i =0; i < 3; i++) {
-            h[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+            h[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
             query.addAtom(h[i]);
-            query.addBond(new OrderQueryBond(h[i], r[0], CDKConstants.BONDORDER_SINGLE));            
+            query.addBond(new OrderQueryBond(h[i], r[0], CDKConstants.BONDORDER_SINGLE,builder));            
         }        
         return query;
     }
     
     // C-S-C
     public static QueryAtomContainer sulphide() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(SULPHIDE);
         SymbolQueryAtom[] r = new SymbolQueryAtom[2];
         for (int i =0; i < 2; i++) {
-            r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+            r[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
             query.addAtom(r[i]);
         }
         //TotalValencyAtom s = new TotalValencyAtom(2);
-        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR));
+        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.SULFUR));
         query.addAtom(s);
-        query.addBond(new OrderQueryBond(r[0], s, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(r[1], s, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r[0], s, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(r[1], s, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
 
     // R-SH
     public static QueryAtomContainer mercaptan() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(MERCAPTAN);
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR));
-        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.SULFUR));
+        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         
         query.addAtom(s);query.addAtom(c);query.addAtom(h);
-        query.addBond(new OrderQueryBond(c, s, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(s, h, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(c, s, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(s, h, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }   
 	//R-S-C(=O)-R'
     //R-S-C(=S)-R'
     public static QueryAtomContainer thioester() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(THIOESTER);        
-        InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom(builder);
         r.addSymbol("H");
         r.addSymbol("S");
         r.addSymbol("O");
         r.setProperty(DONTMARK,query.getID());
         
-        InverseSymbolSetQueryAtom e = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom e = new InverseSymbolSetQueryAtom(builder);
         e.addSymbol("H");
         e.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR));
-        SymbolSetQueryAtom o2 = new SymbolSetQueryAtom();
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.SULFUR));
+        SymbolSetQueryAtom o2 = new SymbolSetQueryAtom(builder);
         o2.addSymbol("O");
         o2.addSymbol("S");
         
         query.addAtom(r); query.addAtom(e); query.addAtom(c);
         query.addAtom(s); query.addAtom(o2);
-        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, s, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(s, e, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, s, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(s, e, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
 	
     // RC(=O)OR
     public static QueryAtomContainer ester() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(ESTER);        
-        ReallyAnyAtom r = new ReallyAnyAtom();
+        ReallyAnyAtom r = new ReallyAnyAtom(builder);
         r.setProperty(DONTMARK,query.getID());
-        InverseSymbolSetQueryAtom e = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom e = new InverseSymbolSetQueryAtom(builder);
         e.addSymbol("H");
         e.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(r); 
         query.addAtom(e); 
         query.addAtom(c);
         query.addAtom(o1); query.addAtom(o2);
-        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(o1, e, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(o1, e, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     // ROC(=O)OR
     public static QueryAtomContainer carbonate() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CARBONATE);        
-        ReallyAnyAtom r = new ReallyAnyAtom();
+        ReallyAnyAtom r = new ReallyAnyAtom(builder);
         r.setProperty(DONTMARK,query.getID());
-        InverseSymbolSetQueryAtom e = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom e = new InverseSymbolSetQueryAtom(builder);
         e.addSymbol("H");
         e.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));        
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));        
         query.addAtom(r); query.addAtom(e); query.addAtom(c);
         query.addAtom(o1); query.addAtom(o2); query.addAtom(o3);
-        query.addBond(new OrderQueryBond(o3, r, CDKConstants.BONDORDER_SINGLE));        
-        query.addBond(new OrderQueryBond(o3, c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(o1, e, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(o3, r, CDKConstants.BONDORDER_SINGLE,builder));        
+        query.addBond(new OrderQueryBond(o3, c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(o1, e, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }    
     public static QueryAtomContainer anhydride() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(ANHYDRIDE);        
 
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         
-        SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         r.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom e = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolQueryAtom e = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         r.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(r); query.addAtom(e); query.addAtom(c);
         query.addAtom(o1); query.addAtom(o2);
         query.addBond(new TopologyAnyBond(r, c, true));
-        query.addBond(new TopologyOrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,true));
-        query.addBond(new TopologyOrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,false));
+        query.addBond(new TopologyOrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,true,builder));
+        query.addBond(new TopologyOrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,false,builder));
         query.addBond(new TopologyAnyBond(o1, e, true));
         
-        query.addBond(new TopologyOrderQueryBond(e, o, CDKConstants.BONDORDER_DOUBLE,false));
+        query.addBond(new TopologyOrderQueryBond(e, o, CDKConstants.BONDORDER_DOUBLE,false,builder));
         return query;
     }
     /**
@@ -1083,31 +1123,32 @@ public class FunctionalGroups {
      * @return
      */
     public static QueryAtomContainer lactone(boolean abUnsaturated) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(LACTONE);        
 
-        SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         r.setProperty(DONTMARK,query.getID());
         
         
-        SymbolQueryAtom e = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolQueryAtom e = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         r.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(r); query.addAtom(e); query.addAtom(c);
         query.addAtom(o1); query.addAtom(o2);
         query.addBond(new TopologyAnyBond(r, c, true));
-        query.addBond(new TopologyOrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,true));
-        query.addBond(new TopologyOrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,false));
+        query.addBond(new TopologyOrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,true,builder));
+        query.addBond(new TopologyOrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,false,builder));
         query.addBond(new TopologyAnyBond(o1, e, true));
         
         if (abUnsaturated) {
-            SymbolQueryAtom ab = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+            SymbolQueryAtom ab = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
             ab.setProperty(DONTMARK,query.getID());
             query.addAtom(ab);
-            query.addBond(new TopologyOrderQueryBond(r, ab,CDKConstants.BONDORDER_DOUBLE, true));
+            query.addBond(new TopologyOrderQueryBond(r, ab,CDKConstants.BONDORDER_DOUBLE, true,builder));
         }
         
         return query;
@@ -1115,22 +1156,23 @@ public class FunctionalGroups {
     
     
     public static QueryAtomContainer lactoneBreakable() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(LACTONE);        
-        SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         //AnyAtom r = new AnyAtom();
-        SymbolQueryAtom e = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        SymbolQueryAtom e = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         e.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(r); query.addAtom(e); query.addAtom(c);
         query.addAtom(o1); query.addAtom(o2);
-        query.addBond(new TopologyOrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE,true));
-        query.addBond(new TopologyOrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,true));
-        query.addBond(new TopologyOrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,false));
-        TopologyOrderQueryBond b = new TopologyOrderQueryBond(o1, e, CDKConstants.BONDORDER_SINGLE,true);
+        query.addBond(new TopologyOrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE,true,builder));
+        query.addBond(new TopologyOrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,true,builder));
+        query.addBond(new TopologyOrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,false,builder));
+        TopologyOrderQueryBond b = new TopologyOrderQueryBond(o1, e, CDKConstants.BONDORDER_SINGLE,true,builder);
         b.setProperty(DONTMARK,query.getID());
         query.addBond(b);
         return query;
@@ -1181,29 +1223,31 @@ public class FunctionalGroups {
     	}
     }    
     public static QueryAtomContainer isopreneUnit() {
-    	QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+    	QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(ISOPRENE);
         SymbolQueryAtom[] c = new SymbolQueryAtom[5];
         for (int i =0; i < c.length; i++) {
-            c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));   
+            c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));   
             query.addAtom(c[i]);
 
         }
         for (int i =1; i < c.length-1; i++) 
-        	query.addBond(new SingleOrDoubleQueryBond(c[i-1], c[i]));
-        query.addBond(new OrderQueryBond(c[1], c[4],CDKConstants.BONDORDER_SINGLE));
+        	query.addBond(new SingleOrDoubleQueryBond(c[i-1], c[i],builder));
+        query.addBond(new OrderQueryBond(c[1], c[4],CDKConstants.BONDORDER_SINGLE,builder));
         
         return query;
     }
     //CC(=O)C
     public static QueryAtomContainer ketone() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(KETONE);
         
-        SymbolQueryAtom c =  new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); 
+        SymbolQueryAtom c =  new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON)); 
         InverseSymbolSetQueryAtom[] r = new InverseSymbolSetQueryAtom[2];
         for (int i =0; i < 2; i++) {
-            r[i] = new InverseSymbolSetQueryAtom();
+            r[i] = new InverseSymbolSetQueryAtom(builder);
             r[i].addSymbol("H");
             r[i].addSymbol("O");
             r[i].addSymbol("S");
@@ -1212,47 +1256,49 @@ public class FunctionalGroups {
             query.addAtom(r[i]);
         }
         
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(o);
-        query.addBond(new OrderQueryBond(r[0], c, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(r[1], c, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r[0], c, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(r[1], c, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     public static QueryAtomContainer ketone_ring() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(KETONE);        
         SymbolQueryAtom[] c = new SymbolQueryAtom[3];
         for (int i =0; i < 3; i++) {
-       		c[i] = new TopologySymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON),true);   
+       		c[i] = new TopologySymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON),true);   
             query.addAtom(c[i]);
         }
         
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(o);
-        query.addBond(new OrderQueryBond(c[0], c[1], CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c[1], o, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(c[1], c[2], CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(c[0], c[1], CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c[1], o, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(c[1], c[2], CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     
     public static QueryAtomContainer sidechain_ketone() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(KETONE_SIDECHAIN);        
         SymbolQueryAtom[] c = new SymbolQueryAtom[3];
         for (int i =0; i < 3; i++) {
         	if (i==1)
-        		c[i] = new TopologySymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON),false);
+        		c[i] = new TopologySymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON),false);
         	else
-        		c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));   
+        		c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));   
             query.addAtom(c[i]);
         }
         
-        SymbolQueryAtom o = new TopologySymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN),false);
+        SymbolQueryAtom o = new TopologySymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN),false);
         query.addAtom(o);
-        query.addBond(new OrderQueryBond(c[0], c[1], CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new TopologyOrderQueryBond(c[1], o, CDKConstants.BONDORDER_DOUBLE,false));
-        query.addBond(new OrderQueryBond(c[1], c[2], CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(c[0], c[1], CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new TopologyOrderQueryBond(c[1], o, CDKConstants.BONDORDER_DOUBLE,false,builder));
+        query.addBond(new OrderQueryBond(c[1], c[2], CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     
@@ -1263,50 +1309,53 @@ public class FunctionalGroups {
      * (Where -R represents the carbon chain.) 
      */
     public static QueryAtomContainer aldehyde() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(ALDEHYDE);
         /*
         InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom();
         //r.addSymbol("H"); ne moze da poznae formaldehyde
         r.addSymbol("O"); //shte bude ester ako e O
         */
-        SymbolSetQueryAtom r = new SymbolSetQueryAtom();
+        SymbolSetQueryAtom r = new SymbolSetQueryAtom(builder);
         r.addSymbol("C");
         r.addSymbol("H");
         r.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));        
-        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));        
+        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         query.addAtom(r);query.addAtom(c);query.addAtom(o);query.addAtom(h);
-        query.addBond(new OrderQueryBond(c, h, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(c, h, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     //C=O
     public static QueryAtomContainer carbonyl() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CARBONYL);
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));        
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));        
         query.addAtom(c);query.addAtom(o);
-        query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE));
+        query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE,builder));
         return query;
     }    
     public static QueryAtomContainer ab_unsaturated_carbonyl() {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CARBONYL_ABUNSATURATED);
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));        
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));        
         query.addAtom(c);query.addAtom(o);
-        query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE));
-        SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        query.addBond(new OrderQueryBond(c, c1, CDKConstants.BONDORDER_SINGLE));
-        SymbolQueryAtom c2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        query.addBond(new OrderQueryBond(c2, c1, CDKConstants.BONDORDER_DOUBLE));
-        ReallyAnyAtom a = new ReallyAnyAtom();
-        query.addBond(new AnyOrderQueryBond(c2, a, CDKConstants.BONDORDER_DOUBLE));
+        query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE,builder));
+        SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        query.addBond(new OrderQueryBond(c, c1, CDKConstants.BONDORDER_SINGLE,builder));
+        SymbolQueryAtom c2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        query.addBond(new OrderQueryBond(c2, c1, CDKConstants.BONDORDER_DOUBLE,builder));
+        ReallyAnyAtom a = new ReallyAnyAtom(builder);
+        query.addBond(new AnyOrderQueryBond(c2, a, CDKConstants.BONDORDER_DOUBLE,builder));
         a.setProperty(DONTMARK,query.getID());
         return query;
     }    
@@ -1316,180 +1365,188 @@ public class FunctionalGroups {
      * @return
      */
     public static QueryAtomContainer alcohol(boolean aliphatic) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(ALCOHOL);
         CHQueryAtom r;
         if (aliphatic) { 
-            r= new AliphaticCHQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+            r= new AliphaticCHQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         	query.addAtom(r);
         } else { 
-        	r = new CHQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+        	r = new CHQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
         	query.addAtom((SymbolQueryAtom)r); 
         }
         r.setProperty(DONTMARK,query.getID());
-        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(o);
-        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+        SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
         query.addAtom(h);
-        query.addBond(new OrderQueryBond(r, o, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(o, h, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(r, o, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(o, h, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }   
     //HNS(=O)(=O)(O-Me)N
     
     public static QueryAtomContainer sulphamate(String[] metals) {
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
     	SymbolSetQueryAtom me = null;
     	if (metals != null) {
-	    	me = new SymbolSetQueryAtom();
+	    	me = new SymbolSetQueryAtom(builder);
 	    	for (int i=0; i < metals.length; i++) me.addSymbol(metals[i]);
     	}
-    	QueryAtomContainer q = new QueryAtomContainer();
+    	QueryAtomContainer q = new QueryAtomContainer(builder);
     	q.setID(SULPHAMATE);
     	IElement atoms[] = {Elements.SULFUR,Elements.NITROGEN,Elements.OXYGEN,Elements.OXYGEN,Elements.OXYGEN,Elements.HYDROGEN}; 
     	SymbolQueryAtom[] a = new SymbolQueryAtom[6];
     	for (int i= 0; i<(atoms.length-1);i++) {
-    		a[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),atoms[i]));
+    		a[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,atoms[i]));
     		q.addAtom(a[i]);
     	}
-    	q.addBond(new OrderQueryBond(a[0], a[1], CDKConstants.BONDORDER_SINGLE));//S-N
-    	q.addBond(new OrderQueryBond(a[0], a[2], CDKConstants.BONDORDER_DOUBLE));//S=O
-    	q.addBond(new OrderQueryBond(a[0], a[3], CDKConstants.BONDORDER_DOUBLE));//S=O
-    	q.addBond(new OrderQueryBond(a[0], a[4], CDKConstants.BONDORDER_SINGLE));//S-O
+    	q.addBond(new OrderQueryBond(a[0], a[1], CDKConstants.BONDORDER_SINGLE,builder));//S-N
+    	q.addBond(new OrderQueryBond(a[0], a[2], CDKConstants.BONDORDER_DOUBLE,builder));//S=O
+    	q.addBond(new OrderQueryBond(a[0], a[3], CDKConstants.BONDORDER_DOUBLE,builder));//S=O
+    	q.addBond(new OrderQueryBond(a[0], a[4], CDKConstants.BONDORDER_SINGLE,builder));//S-O
     	//q.addBond(new OrderQueryBond(a[1], a[5], CDKConstants.BONDORDER_SINGLE));//N-H
     	if (me != null)
-    		q.addBond(new OrderQueryBond(a[4], me, CDKConstants.BONDORDER_SINGLE));//O-Me
+    		q.addBond(new OrderQueryBond(a[4], me, CDKConstants.BONDORDER_SINGLE,builder));//O-Me
     	return q;
 
     }
     //R-C(=O)O-Me
     public static QueryAtomContainer saltOfCarboxylicAcid(String[] metals) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CARBOXYLIC_ACID_SALT);        
-        SymbolSetQueryAtom m = new SymbolSetQueryAtom();
+        SymbolSetQueryAtom m = new SymbolSetQueryAtom(builder);
         for (int i=0; i < metals.length; i++)
             m.addSymbol(metals[i]);
         
-        SymbolSetQueryAtom r = new SymbolSetQueryAtom();
+        SymbolSetQueryAtom r = new SymbolSetQueryAtom(builder);
         r.setSymbol("*");    r.addSymbol("C");      r.addSymbol("H");
         r.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(r); query.addAtom(c);
         query.addAtom(o1); query.addAtom(o2);
-        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE));//R-C
-        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE));//C-O
-        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE));//C=O
-        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE));//O-Me
+        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE,builder));//R-C
+        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,builder));//C-O
+        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,builder));//C=O
+        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE,builder));//O-Me
         return query;
     }
 
     //C[O-] Me+
     public static QueryAtomContainer saltOfCarboxylicAcid1(String[] metals) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CARBOXYLIC_ACID_SALT);        
-        SymbolSetQueryAtom m = new SymbolSetQueryAtom();
+        SymbolSetQueryAtom m = new SymbolSetQueryAtom(builder);
         for (int i=0; i < metals.length; i++)
             m.addSymbol(metals[i]);
         
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        IAtom a = MoleculeTools.newAtom(builder,Elements.OXYGEN);
         a.setFormalCharge(-1);
         SymbolAndChargeQueryAtom o1 = new SymbolAndChargeQueryAtom(a);
         query.addAtom(c);
         query.addAtom(o1);
         
-        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE));//C-O
-        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE));//O-Me
+        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,builder));//C-O
+        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE,builder));//O-Me
         return query;
     }
     //C[O-] Me+
     public static QueryAtomContainer saltOfCarboxylicAcid2(String[] metals) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CARBOXYLIC_ACID_SALT);        
-        SymbolSetQueryAtom m = new SymbolSetQueryAtom();
+        SymbolSetQueryAtom m = new SymbolSetQueryAtom(builder);
         for (int i=0; i < metals.length; i++)
             m.addSymbol(metals[i]);
         
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        IAtom a = MoleculeTools.newAtom(builder,Elements.CARBON);
         a.setFormalCharge(-1);
         SymbolAndChargeQueryAtom o1 = new SymbolAndChargeQueryAtom(a);
         query.addAtom(c);
         query.addAtom(o1);
         
-        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE));//C-O
-        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE));//O-Me
+        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,builder));//C-O
+        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE,builder));//O-Me
         return query;
     }    
     
     public static QueryAtomContainer saltOfCarboxylicAcidBreakable(String[] metals) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CARBOXYLIC_ACID_SALT);        
-        SymbolSetQueryAtom m = new SymbolSetQueryAtom();
+        SymbolSetQueryAtom m = new SymbolSetQueryAtom(builder);
         for (int i=0; i < metals.length; i++)
             m.addSymbol(metals[i]);
         m.setProperty(DONTMARK,query.getID());
         
         
-        SymbolSetQueryAtom r = new SymbolSetQueryAtom();
+        SymbolSetQueryAtom r = new SymbolSetQueryAtom(builder);
         r.setSymbol("*");    r.addSymbol("C");      r.addSymbol("H");
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
                 
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         query.addAtom(r); query.addAtom(c);
         query.addAtom(o1); query.addAtom(o2);
-        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE));//R-C
-        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE));//C-O
-        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE));//C=O
-        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE));//O-Me
+        query.addBond(new OrderQueryBond(r, c, CDKConstants.BONDORDER_SINGLE,builder));//R-C
+        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,builder));//C-O
+        query.addBond(new OrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE,builder));//C=O
+        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE,builder));//O-Me
         return query;
     }
     
     //C-[O-] Me+
     public static QueryAtomContainer saltOfCarboxylicAcidBreakable1(String[] metals) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CARBOXYLIC_ACID_SALT);        
-        SymbolSetQueryAtom m = new SymbolSetQueryAtom();
+        SymbolSetQueryAtom m = new SymbolSetQueryAtom(builder);
         for (int i=0; i < metals.length; i++)
             m.addSymbol(metals[i]);
         m.setProperty(DONTMARK,query.getID());
         
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        IAtom a = MoleculeTools.newAtom(builder,Elements.OXYGEN);
         a.setFormalCharge(-1);
         SymbolAndChargeQueryAtom o1 = new SymbolAndChargeQueryAtom(a);
                 
         query.addAtom(c);
         query.addAtom(o1); 
-        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE));//C-O
-        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE));//O-Me
+        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,builder));//C-O
+        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE,builder));//O-Me
         return query;
     }
     public static QueryAtomContainer saltOfCarboxylicAcidBreakable2(String[] metals) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(CARBOXYLIC_ACID_SALT);        
-        SymbolSetQueryAtom m = new SymbolSetQueryAtom();
+        SymbolSetQueryAtom m = new SymbolSetQueryAtom(builder);
         for (int i=0; i < metals.length; i++)
             m.addSymbol(metals[i]);
         m.setProperty(DONTMARK,query.getID());
         
         
-        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+        SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
+        IAtom a = MoleculeTools.newAtom(builder,Elements.CARBON);
         a.setFormalCharge(-1);
         SymbolAndChargeQueryAtom o1 = new SymbolAndChargeQueryAtom(a);
                 
         query.addAtom(c);
         query.addAtom(o1); 
-        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE));//C-O
-        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE));//O-Me
+        query.addBond(new OrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE,builder));//C-O
+        query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE,builder));//O-Me
         return query;
     }        
  
@@ -1498,17 +1555,18 @@ public class FunctionalGroups {
     	return sulphonate(metals,true);
     }
     public static QueryAtomContainer sulphonate(String[] metals,boolean bonded) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(SULPHONATE);
         SymbolSetQueryAtom m = null;
         if (metals != null) {
-         	m = new SymbolSetQueryAtom();
+         	m = new SymbolSetQueryAtom(builder);
 	        for (int i=0; i < metals.length; i++)
 	            m.addSymbol(metals[i]);
 	        query.addAtom(m);
 		}        
         //TODO moze li da ima izob sto atom razlicen ot C na towa miasto 
-        InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom();
+        InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom(builder);
         r.addSymbol("O");
         r.addSymbol("H");
         r.addSymbol("N");
@@ -1516,114 +1574,120 @@ public class FunctionalGroups {
         
         r.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));        
+        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.SULFUR));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));        
         query.addAtom(r); query.addAtom(s);
         query.addAtom(o1); query.addAtom(o2); query.addAtom(o3);
-        query.addBond(new OrderQueryBond(r, s, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(s, o1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(s, o2, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(s, o3, CDKConstants.BONDORDER_DOUBLE));
+        query.addBond(new OrderQueryBond(r, s, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(s, o1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(s, o2, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(s, o3, CDKConstants.BONDORDER_DOUBLE,builder));
         if ((m != null) && bonded)         
-        	query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE));
+        	query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
     //[setOfAtoms]-OS(O-subst)(=O)(=O)O
     public static QueryAtomContainer sulphate(String[] setOfAtoms) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(SULPHATE);
         SymbolSetQueryAtom m = null;
         if (setOfAtoms != null) {
-         	m = new SymbolSetQueryAtom();
+         	m = new SymbolSetQueryAtom(builder);
 	        for (int i=0; i < setOfAtoms.length; i++)
 	            m.addSymbol(setOfAtoms[i]);
 		}
-        ReallyAnyAtom r = new ReallyAnyAtom();
+        ReallyAnyAtom r = new ReallyAnyAtom(builder);
         r.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o4 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));          
+        SymbolQueryAtom s = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.SULFUR));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o4 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));          
          
         query.addAtom(s);query.addAtom(r);
         query.addAtom(o1); query.addAtom(o2); query.addAtom(o3);
         
-        query.addBond(new OrderQueryBond(s, o1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(s, o2, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(s, o3, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(s, o4, CDKConstants.BONDORDER_SINGLE));        
+        query.addBond(new OrderQueryBond(s, o1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(s, o2, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(s, o3, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(s, o4, CDKConstants.BONDORDER_SINGLE,builder));        
         if (m != null)         
-        	query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(o4, r, CDKConstants.BONDORDER_SINGLE));
+        	query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(o4, r, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
 
     public static QueryAtomContainer phosphate(String[] setOfAtoms) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(PHOSPHATE);
         SymbolSetQueryAtom m = null;
         if (setOfAtoms != null) {
-         	m = new SymbolSetQueryAtom();
+         	m = new SymbolSetQueryAtom(builder);
 	        for (int i=0; i < setOfAtoms.length; i++)
 	            m.addSymbol(setOfAtoms[i]);
 		}
-        ReallyAnyAtom r = new ReallyAnyAtom();
+        ReallyAnyAtom r = new ReallyAnyAtom(builder);
         r.setProperty(DONTMARK,query.getID());
         
-        SymbolQueryAtom p = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.PHOSPHORUS));
-        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom p = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.PHOSPHORUS));
+        SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
         //o1.setCharge(-1.0);
-        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
-        SymbolQueryAtom o3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+        SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
+        SymbolQueryAtom o3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
          
          
         query.addAtom(p);query.addAtom(r);
         query.addAtom(o1); query.addAtom(o2); query.addAtom(o3);
         
-        query.addBond(new OrderQueryBond(p, o1, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(p, o2, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(p, o3, CDKConstants.BONDORDER_DOUBLE));
+        query.addBond(new OrderQueryBond(p, o1, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(p, o2, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(p, o3, CDKConstants.BONDORDER_DOUBLE,builder));
         
         if (m != null)         
-        	query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(o2, r, CDKConstants.BONDORDER_SINGLE));
+        	query.addBond(new OrderQueryBond(o1, m, CDKConstants.BONDORDER_SINGLE,builder));
+        query.addBond(new OrderQueryBond(o2, r, CDKConstants.BONDORDER_SINGLE,builder));
         return query;
     }
 
     //polyoxyethylene
     public static QueryAtomContainer polyoxyethylene(int n) {
-        QueryAtomContainer query = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID(POLYOXYETHYLENE);
-        ReallyAnyAtom a1 = new ReallyAnyAtom();
+        ReallyAnyAtom a1 = new ReallyAnyAtom(builder);
         a1.setProperty(DONTMARK,query.getID());
-        ReallyAnyAtom a2 = new ReallyAnyAtom();
+        ReallyAnyAtom a2 = new ReallyAnyAtom(builder);
         a2.setProperty(DONTMARK,query.getID());
         
         SymbolQueryAtom o;
         SymbolQueryAtom[] c = new SymbolQueryAtom[2];
         SymbolQueryAtom[] h = new SymbolQueryAtom[4];
         for (int i = 0; i < n; i++) {
-            o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN)); query.addAtom(o);
+            o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN)); query.addAtom(o);
             if (i>0)
-                query.addBond(new OrderQueryBond(o, c[1], CDKConstants.BONDORDER_SINGLE));
+                query.addBond(new OrderQueryBond(o, c[1], CDKConstants.BONDORDER_SINGLE,builder));
             else
-                query.addBond(new OrderQueryBond(o, a1, CDKConstants.BONDORDER_SINGLE));            	
+                query.addBond(new OrderQueryBond(o, a1, CDKConstants.BONDORDER_SINGLE,builder));            	
             for (int j=0; j < 2; j++) { 
-                c[j] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); query.addAtom(c[j]);
+                c[j] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON)); query.addAtom(c[j]);
                 for (int j1=0; j1 < 2; j1++) { 
-                    h[j*2+j1] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN)); 
+                    h[j*2+j1] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN)); 
                     query.addAtom(h[j*2+j1]);
-                    query.addBond(new OrderQueryBond(c[j], h[j*2+j1], CDKConstants.BONDORDER_SINGLE));
+                    query.addBond(new OrderQueryBond(c[j], h[j*2+j1], CDKConstants.BONDORDER_SINGLE,builder));
                 }
             }    
-            query.addBond(new OrderQueryBond(o, c[0], CDKConstants.BONDORDER_SINGLE));
-            query.addBond(new OrderQueryBond(c[0], c[1], CDKConstants.BONDORDER_SINGLE));
+            query.addBond(new OrderQueryBond(o, c[0], CDKConstants.BONDORDER_SINGLE,builder));
+            query.addBond(new OrderQueryBond(c[0], c[1], CDKConstants.BONDORDER_SINGLE,builder));
             if (i==(n-1))
-                query.addBond(new OrderQueryBond(a2, c[1], CDKConstants.BONDORDER_SINGLE));
+                query.addBond(new OrderQueryBond(a2, c[1], CDKConstants.BONDORDER_SINGLE,builder));
         }
         return query;
         
@@ -1675,7 +1739,7 @@ public class FunctionalGroups {
 				isPreprocessed = true;
 			}        	
         	try {
-	            list = UniversalIsomorphismTester.getSubgraphMaps(mol,q);
+	            list = uit.getSubgraphMaps(mol,q);
 		    	markMaps(mol,q,list);
 	    		
         	} catch (Exception x) {
@@ -1726,7 +1790,7 @@ public class FunctionalGroups {
 				isPreprocessed = true;
 			}    	
 			try {
-				list = UniversalIsomorphismTester.getSubgraphMaps(mol,q);
+				list = uit.getSubgraphMaps(mol,q);
 			} catch (CDKException x) {
 				list = null;
 				logger.log(Level.SEVERE,x.getMessage(),x);
@@ -1913,7 +1977,7 @@ public class FunctionalGroups {
 	    		}	
     }
     
-    public static void mapHydrocarbon(IMolecule mol) {
+    public static void mapHydrocarbon(IAtomContainer mol) {
         for (int i=0; i < mol.getAtomCount(); i++) {
             
         }
@@ -2109,7 +2173,7 @@ public class FunctionalGroups {
     public static void preProcess(IAtomContainer mol) {
     	markCHn(mol);
     }
-    public static boolean markUniqueBondMap(IMolecule mol, ArrayList query, boolean isPreprocessed) {
+    public static boolean markUniqueBondMap(IAtomContainer mol, ArrayList query, boolean isPreprocessed) {
 	    if ((query == null) || (query.size() == 0)) return false;
 	    else
 	    	for (int i=0; i < query.size(); i++) {
@@ -2305,7 +2369,7 @@ public class FunctionalGroups {
                 h.addImplicitHydrogens(mol);
                 HydrogenAdderProcessor.convertImplicitToExplicitHydrogens(mol);
       
-                //h.addExplicitHydrogensToSatisfyValency((IMolecule)mol);
+                //h.addExplicitHydrogensToSatisfyValency((IAtomContainer)mol);
             } catch (InvalidSmilesException x ) {
             	logger.log(Level.SEVERE,x.getMessage(),x);
                 return null;
@@ -2336,110 +2400,114 @@ public class FunctionalGroups {
     }       
     public static QueryAtomContainer vicinalDiKetone() {
     	//TODO "[*]C(=O)C(=O)[*]"
-    	  	
-    	  QueryAtomContainer q = new QueryAtomContainer();
+    	 IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+    	  QueryAtomContainer q = new QueryAtomContainer(builder);
     	  q.setID("vicinal diketone");
-    	  SymbolQueryAtom a1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+    	  SymbolQueryAtom a1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
     	  q.addAtom(a1);
-    	  SymbolQueryAtom a2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+    	  SymbolQueryAtom a2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
     	  q.addAtom(a2);
-    	  InverseSymbolSetQueryAtom a3 = new InverseSymbolSetQueryAtom();
+    	  InverseSymbolSetQueryAtom a3 = new InverseSymbolSetQueryAtom(builder);
     	  a3.addSymbol("O"); a3.addSymbol("S"); q.addAtom(a3);
-    	  SymbolQueryAtom a4 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+    	  SymbolQueryAtom a4 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
     	  q.addAtom(a4);
-    	  SymbolQueryAtom a5 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+    	  SymbolQueryAtom a5 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
     	  q.addAtom(a5);
-    	  InverseSymbolSetQueryAtom a6 = new InverseSymbolSetQueryAtom();
+    	  InverseSymbolSetQueryAtom a6 = new InverseSymbolSetQueryAtom(builder);
     	  a6.addSymbol("O"); a6.addSymbol("S");  q.addAtom(a6);
-    	  OrderQueryBond b1 = new OrderQueryBond(a2, a1, IBond.Order.DOUBLE);
+    	  OrderQueryBond b1 = new OrderQueryBond(a2, a1, IBond.Order.DOUBLE,builder);
     	  q.addBond(b1);
-    	  OrderQueryBond b2 = new OrderQueryBond(a3, a2, IBond.Order.SINGLE);
+    	  OrderQueryBond b2 = new OrderQueryBond(a3, a2, IBond.Order.SINGLE,builder);
     	  q.addBond(b2);
-    	  OrderQueryBond b3 = new OrderQueryBond(a4, a2, IBond.Order.SINGLE);
+    	  OrderQueryBond b3 = new OrderQueryBond(a4, a2, IBond.Order.SINGLE,builder);
     	  q.addBond(b3);
-    	  OrderQueryBond b4 = new OrderQueryBond(a5, a4, IBond.Order.DOUBLE);
+    	  OrderQueryBond b4 = new OrderQueryBond(a5, a4, IBond.Order.DOUBLE,builder);
     	  q.addBond(b4);
-    	  OrderQueryBond b5 = new OrderQueryBond(a6, a4, IBond.Order.SINGLE);
+    	  OrderQueryBond b5 = new OrderQueryBond(a6, a4, IBond.Order.SINGLE,builder);
     	  q.addBond(b5);    	
     	  return q;
     }
     public static QueryAtomContainer ketoneAttachedToTerminalVinyl() {
-    	  QueryAtomContainer mol = new   QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+
+    	  QueryAtomContainer mol = new   QueryAtomContainer(builder);
     	  mol.setID("Ketone attached to terminal vinyl");
-    	  SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+    	  SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
     	  mol.addAtom(c1);
-    	  InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom();
+    	  InverseSymbolSetQueryAtom r = new InverseSymbolSetQueryAtom(builder);
     	  r.addSymbol("O");  r.addSymbol("S"); r.addSymbol("N");  mol.addAtom(r);
-    	  SymbolQueryAtom c2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+    	  SymbolQueryAtom c2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
     	  mol.addAtom(c2);
-    	  SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+    	  SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
     	  mol.addAtom(o);
-    	  SymbolQueryAtom c3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+    	  SymbolQueryAtom c3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
     	  mol.addAtom(c3);
-    	  SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+    	  SymbolQueryAtom h1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
     	  mol.addAtom(h1);
-    	  SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+    	  SymbolQueryAtom h2 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
     	  mol.addAtom(h2);
-    	  SymbolQueryAtom h3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+    	  SymbolQueryAtom h3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
     	  mol.addAtom(h3);
-    	  OrderQueryBond b1 = new OrderQueryBond(r, c1, IBond.Order.SINGLE);
+    	  OrderQueryBond b1 = new OrderQueryBond(r, c1, IBond.Order.SINGLE,builder);
     	  mol.addBond(b1);
-    	  OrderQueryBond b2 = new OrderQueryBond(c1, c2, IBond.Order.SINGLE);
+    	  OrderQueryBond b2 = new OrderQueryBond(c1, c2, IBond.Order.SINGLE,builder);
     	  mol.addBond(b2);
-    	  OrderQueryBond b3 = new OrderQueryBond(c1,o, IBond.Order.DOUBLE);
+    	  OrderQueryBond b3 = new OrderQueryBond(c1,o, IBond.Order.DOUBLE,builder);
     	  mol.addBond(b3);
-    	  OrderQueryBond b4 = new OrderQueryBond(c2, c3, IBond.Order.DOUBLE);
+    	  OrderQueryBond b4 = new OrderQueryBond(c2, c3, IBond.Order.DOUBLE,builder);
     	  mol.addBond(b4);
-    	  OrderQueryBond b5 = new OrderQueryBond(c3, h1, IBond.Order.SINGLE);
+    	  OrderQueryBond b5 = new OrderQueryBond(c3, h1, IBond.Order.SINGLE,builder);
     	  mol.addBond(b5);
-    	  OrderQueryBond b6 = new OrderQueryBond(c3, h2, IBond.Order.SINGLE);
+    	  OrderQueryBond b6 = new OrderQueryBond(c3, h2, IBond.Order.SINGLE,builder);
     	  mol.addBond(b6);
-    	  OrderQueryBond b7 = new OrderQueryBond(c2,h3, IBond.Order.SINGLE);
+    	  OrderQueryBond b7 = new OrderQueryBond(c2,h3, IBond.Order.SINGLE,builder);
     	  mol.addBond(b7);
     	  return mol;
     }
     public static QueryAtomContainer ketalAttachedToTerminalVinyl() {
     	//TODO "[*]C(O)(O)C=C"
-    	  QueryAtomContainer mol = new   QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+    	  QueryAtomContainer mol = new   QueryAtomContainer(builder);
     	  mol.setID("ketal attached to terminal vinyl");
-    	  InverseSymbolSetQueryAtom r1 = new  InverseSymbolSetQueryAtom();
+    	  InverseSymbolSetQueryAtom r1 = new  InverseSymbolSetQueryAtom(builder);
     	  r1.addSymbol("O");   r1.addSymbol("H");   mol.addAtom(r1);
-    	  InverseSymbolSetQueryAtom r2 = new  InverseSymbolSetQueryAtom();
+    	  InverseSymbolSetQueryAtom r2 = new  InverseSymbolSetQueryAtom(builder);
     	  r2.addSymbol("O");   r2.addSymbol("H");   mol.addAtom(r2);
-    	  InverseSymbolSetQueryAtom r3 = new  InverseSymbolSetQueryAtom();
+    	  InverseSymbolSetQueryAtom r3 = new  InverseSymbolSetQueryAtom(builder);
     	  r3.addSymbol("O");   r3.addSymbol("H");   mol.addAtom(r3);
     	  
-    	    SymbolQueryAtom a1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+    	    SymbolQueryAtom a1 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
     	    mol.addAtom(a1);
-    	    SymbolQueryAtom a3 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+    	    SymbolQueryAtom a3 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
     	    mol.addAtom(a3);
-    	    SymbolQueryAtom a4 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+    	    SymbolQueryAtom a4 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
     	    mol.addAtom(a4);
-    	    SymbolQueryAtom a5 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
+    	    SymbolQueryAtom a5 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.OXYGEN));
     	    mol.addAtom(a5);
-    	    SymbolQueryAtom a6 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+    	    SymbolQueryAtom a6 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
     	    mol.addAtom(a6);
-    	    SymbolQueryAtom a9 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+    	    SymbolQueryAtom a9 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
     	    mol.addAtom(a9);
-    	    SymbolQueryAtom a10 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
+    	    SymbolQueryAtom a10 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.HYDROGEN));
     	    mol.addAtom(a10);
-    	    OrderQueryBond b1 = new OrderQueryBond(r1, a1, IBond.Order.SINGLE);
+    	    OrderQueryBond b1 = new OrderQueryBond(r1, a1, IBond.Order.SINGLE,builder);
     	    mol.addBond(b1);
-    	    OrderQueryBond b2 = new OrderQueryBond(a1, a3, IBond.Order.SINGLE);
+    	    OrderQueryBond b2 = new OrderQueryBond(a1, a3, IBond.Order.SINGLE,builder);
     	    mol.addBond(b2);
-    	    OrderQueryBond b3 = new OrderQueryBond(a1, a4, IBond.Order.SINGLE);
+    	    OrderQueryBond b3 = new OrderQueryBond(a1, a4, IBond.Order.SINGLE,builder);
     	    mol.addBond(b3);
-    	    OrderQueryBond b4 = new OrderQueryBond(a1, a5, IBond.Order.SINGLE);
+    	    OrderQueryBond b4 = new OrderQueryBond(a1, a5, IBond.Order.SINGLE,builder);
     	    mol.addBond(b4);
-    	    OrderQueryBond b5 = new OrderQueryBond(a3, a6, IBond.Order.DOUBLE);
+    	    OrderQueryBond b5 = new OrderQueryBond(a3, a6, IBond.Order.DOUBLE,builder);
     	    mol.addBond(b5);
-    	    OrderQueryBond b6 = new OrderQueryBond(a4, r2, IBond.Order.SINGLE);
+    	    OrderQueryBond b6 = new OrderQueryBond(a4, r2, IBond.Order.SINGLE,builder);
     	    mol.addBond(b6);
-    	    OrderQueryBond b7 = new OrderQueryBond(a5, r3, IBond.Order.SINGLE);
+    	    OrderQueryBond b7 = new OrderQueryBond(a5, r3, IBond.Order.SINGLE,builder);
     	    mol.addBond(b7);
-    	    OrderQueryBond b8 = new OrderQueryBond(a6, a9, IBond.Order.SINGLE);
+    	    OrderQueryBond b8 = new OrderQueryBond(a6, a9, IBond.Order.SINGLE,builder);
     	    mol.addBond(b8);
-    	    OrderQueryBond b9 = new OrderQueryBond(a6, a10, IBond.Order.SINGLE);
+    	    OrderQueryBond b9 = new OrderQueryBond(a6, a10, IBond.Order.SINGLE,builder);
     	    mol.addBond(b9);
     	    return mol;
     }  
@@ -2448,7 +2516,7 @@ public class FunctionalGroups {
     	//return createQuery("CC(O)C=C",);
     	//return createQuery("[H]OC([H])(C)C([H])=C([H])[H]","secondary alcohol attached to terminal vinyl group");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-    	  IMolecule mol = new org.openscience.cdk.Molecule();
+    	  IAtomContainer mol =  MoleculeTools.newAtomContainer(builder);
     	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
@@ -2467,7 +2535,7 @@ public class FunctionalGroups {
     	  mol.addAtom(a8);
     	  IAtom a9 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a9);
-    	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a10 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a10);
     	  IBond b1 = MoleculeTools.newBond(builder,a2, a1, IBond.Order.SINGLE);
     	  mol.addBond(b1);
@@ -2497,7 +2565,7 @@ public class FunctionalGroups {
     	//TODO ""CC(C(=O)O[*])C=C""
     	//return createQuery("CC(C(=O)OC)C=C","ester of secondary alcohol attached to terminal vinyl group");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-    	  IMolecule mol = MoleculeTools.newMolecule(builder);
+    	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
@@ -2550,7 +2618,7 @@ public class FunctionalGroups {
     }
     public static IAtomContainer allylAlcohol() {
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  	 IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  	 IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
@@ -2597,7 +2665,7 @@ public class FunctionalGroups {
     	//TODO "[*]C(OCC=C)(OCC=C)[H]"
     	//return createQuery("C(OCC=C)(OCC=C)[H]","allyl alcohol acetal");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-    	  IMolecule mol = MoleculeTools.newMolecule(builder);
+    	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
@@ -2688,30 +2756,30 @@ public class FunctionalGroups {
     public static QueryAtomContainer allylAlcoholEsterDerivative() {
     	//TODO "CC=CCOC(=O)C[*]"
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  	IMolecule mol = MoleculeTools.newMolecule(builder);
-    	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+  	  	IAtomContainer mol = MoleculeTools.newMolecule(builder);
+    	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a1);
-    	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a2);
-    	  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a3 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a3);
-    	  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+    	  IAtom a4 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a4);
-    	  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a5 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a5);
-    	  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a6 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a6);
-    	  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a7 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a7);
-    	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a8 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a8);
-    	  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a9 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a9);
-    	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a10 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a10);
-    	  IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a11 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a11);
-    	  IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a12 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a12);
     	  IBond b1 = MoleculeTools.newBond(builder,a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
@@ -2744,26 +2812,26 @@ public class FunctionalGroups {
     public static IAtomContainer allylMercaptan() {
     	//return createAtomContainer("[H]SC([H])([H])C([H])=C([H])[H]","allyl mercaptan");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
-    	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
+    	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
-    	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a2);
-    	  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a3 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a3);
-    	  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR);
+    	  IAtom a4 = MoleculeTools.newAtom(builder,Elements.SULFUR);
     	  mol.addAtom(a4);
-    	  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a5 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a5);
-    	  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a6 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a6);
-    	  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a7 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a7);
-    	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a8 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a8);
-    	  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a9 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a9);
-    	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a10 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a10);
     	  IBond b1 = MoleculeTools.newBond(builder,a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
@@ -2789,28 +2857,28 @@ public class FunctionalGroups {
     public static IAtomContainer allylAmine() {
 //    	return createAtomContainer("C=CCN","allyl amine");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
-    	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
+    	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
-    	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a2);
-    	  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a3 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a3);
-    	  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
+    	  IAtom a4 = MoleculeTools.newAtom(builder,Elements.NITROGEN);
     	  mol.addAtom(a4);
-    	  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a5 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a5);
-    	  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a6 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a6);
-    	  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a7 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a7);
-    	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a8 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a8);
-    	  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a9 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a9);
-    	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a10 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a10);
-    	  IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a11 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a11);
     	  IBond b1 = MoleculeTools.newBond(builder,a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
@@ -2838,40 +2906,40 @@ public class FunctionalGroups {
     public static IAtomContainer allylSulphide() {
     	//return createAtomContainer("C=CCSCC=C","allyl sulphide");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
-    	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
+    	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
-    	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a2);
-    	  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a3 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a3);
-    	  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR);
+    	  IAtom a4 = MoleculeTools.newAtom(builder,Elements.SULFUR);
     	  mol.addAtom(a4);
-    	  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a5 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a5);
-    	  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a6 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a6);
-    	  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a7 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a7);
-    	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a8 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a8);
-    	  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a9 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a9);
-    	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a10 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a10);
-    	  IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a11 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a11);
-    	  IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a12 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a12);
-    	  IAtom a13 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a13 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a13);
-    	  IAtom a14 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a14 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a14);
-    	  IAtom a15 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a15 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a15);
-    	  IAtom a16 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a16 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a16);
-    	  IAtom a17 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a17 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a17);
     	  IBond b1 = MoleculeTools.newBond(builder,a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
@@ -2911,30 +2979,30 @@ public class FunctionalGroups {
     public static IAtomContainer allylThioester() {
     	//	return createQuery("C(=O)SCC=C","allyl thioester");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
-    	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
+    	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
-    	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+    	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a2);
-    	  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.SULFUR);
+    	  IAtom a3 = MoleculeTools.newAtom(builder,Elements.SULFUR);
     	  mol.addAtom(a3);
-    	  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a4 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a4);
-    	  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a5 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a5);
-    	  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a6 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a6);
-    	  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a7 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a7);
-    	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a8 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a8);
-    	  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a9 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a9);
-    	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a10 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a10);
-    	  IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a11 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a11);
-    	  IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a12 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a12);
     	  IBond b1 = MoleculeTools.newBond(builder,a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
@@ -2964,22 +3032,22 @@ public class FunctionalGroups {
     public static IAtomContainer acrolein() {
     	//return createAtomContainer("C=CC=O","acrolein");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	     IMolecule mol = MoleculeTools.newMolecule(builder);
-    	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+  	     IAtomContainer mol = MoleculeTools.newMolecule(builder);
+    	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
-    	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a2);
-    	  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a3 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a3);
-    	  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+    	  IAtom a4 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a4);
-    	  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a5 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a5);
-    	  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a6 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a6);
-    	  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a7 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a7);
-    	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a8 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a8);
     	  IBond b1 = MoleculeTools.newBond(builder,a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
@@ -3001,28 +3069,28 @@ public class FunctionalGroups {
     public static IAtomContainer methacrolein() {
     	//return createAtomContainer("C=C(C)C=O","methacrolein");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
-    	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
+    	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
-    	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a2);
-    	  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a3 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a3);
-    	  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a4 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a4);
-    	  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+    	  IAtom a5 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a5);
-    	  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a6 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a6);
-    	  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a7 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a7);
-    	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a8 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a8);
-    	  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a9 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a9);
-    	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a10 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a10);
-    	  IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a11 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a11);
     	  IBond b1 = MoleculeTools.newBond(builder,a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
@@ -3049,46 +3117,46 @@ public class FunctionalGroups {
     }       
     public static IAtomContainer methacroleinAcetal() {
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
-    	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
+    	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
-    	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a2);
-    	  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a3 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a3);
-    	  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a4 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a4);
-    	  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+    	  IAtom a5 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a5);
-    	  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+    	  IAtom a6 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a6);
-    	  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a7 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a7);
-    	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a8 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a8);
-    	  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a9 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a9);
-    	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a10 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a10);
-    	  IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a11 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a11);
-    	  IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a12 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a12);
-    	  IAtom a13 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a13 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a13);
-    	  IAtom a14 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a14 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a14);
-    	  IAtom a15 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a15 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a15);
-    	  IAtom a16 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a16 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a16);
-    	  IAtom a17 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a17 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a17);
-    	  IAtom a18 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a18 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a18);
-    	  IAtom a19 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a19 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a19);
-    	  IAtom a20 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a20 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a20);
     	  IBond b1 = MoleculeTools.newBond(builder,a1, a2, IBond.Order.SINGLE);
     	  mol.addBond(b1);
@@ -3135,24 +3203,24 @@ public class FunctionalGroups {
     public static IAtomContainer acrylicAcid() {
     	//return createAtomContainer("C=CC(O)=O","acrylic acid");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
-    	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
+    	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
-    	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a2);
-    	  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a3 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a3);
-    	  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+    	  IAtom a4 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a4);
-    	  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+    	  IAtom a5 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a5);
-    	  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a6 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a6);
-    	  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a7 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a7);
-    	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a8 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a8);
-    	  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a9 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a9);
     	  IBond b1 = MoleculeTools.newBond(builder,a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
@@ -3176,30 +3244,30 @@ public class FunctionalGroups {
     public static IAtomContainer methacrylicAcid() {
     	//return createAtomContainer("C=C(C)C(O)=O","methacrylic acid");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
-    	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
+    	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
-    	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a2);
-    	  IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a3 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a3);
-    	  IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
+    	  IAtom a4 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a4);
-    	  IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+    	  IAtom a5 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a5);
-    	  IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+    	  IAtom a6 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
     	  mol.addAtom(a6);
-    	  IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a7 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a7);
-    	  IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a8 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a8);
-    	  IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a9 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a9);
-    	  IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a10 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a10);
-    	  IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a11 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a11);
-    	  IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+    	  IAtom a12 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a12);
     	  IBond b1 = MoleculeTools.newBond(builder,a2, a1, IBond.Order.DOUBLE);
     	  mol.addBond(b1);
@@ -3241,49 +3309,49 @@ public class FunctionalGroups {
     }
     
     public static QueryAtomContainer stericallyHindered() {
-
-	  	  QueryAtomContainer mol = new QueryAtomContainer();
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+	  	  QueryAtomContainer mol = new QueryAtomContainer(builder);
 		  SymbolQueryAtom a[] = new SymbolQueryAtom[6];
 	
 		  InverseSymbolSetQueryAtom[] r = new InverseSymbolSetQueryAtom[6];
 		  for (int i=0; i < 6; i++) {
-		  	r[i] = new InverseSymbolSetQueryAtom();
-			a[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+		  	r[i] = new InverseSymbolSetQueryAtom(builder);
+			a[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
 			mol.addAtom(a[i]);
 		  	r[i].addSymbol("H");
 		  	mol.addAtom(r[i]);
 		  	if (i>0) {
-		  		AnyOrderQueryBond b = new AnyOrderQueryBond(a[i], a[i-1],IBond.Order.SINGLE);
+		  		AnyOrderQueryBond b = new AnyOrderQueryBond(a[i], a[i-1],IBond.Order.SINGLE,builder);
 		  		mol.addBond(b);
 		  	}
 		  }
-		  SymbolQueryAtom a7 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+		  SymbolQueryAtom a7 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
     	  mol.addAtom(a7);
-		  SymbolQueryAtom a11 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+		  SymbolQueryAtom a11 = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
     	  mol.addAtom(a11);
 
-		  InverseSymbolSetQueryAtom hindered = new InverseSymbolSetQueryAtom();
+		  InverseSymbolSetQueryAtom hindered = new InverseSymbolSetQueryAtom(builder);
 		  hindered.addSymbol("H"); //anything but H
 		  //hindered.addSymbol("C");
     	  mol.addAtom(hindered);    	  
-	  	  AnyOrderQueryBond b = new AnyOrderQueryBond(a[3], hindered,IBond.Order.SINGLE);
+	  	  AnyOrderQueryBond b = new AnyOrderQueryBond(a[3], hindered,IBond.Order.SINGLE,builder);
 	  	  mol.addBond(b);
     	  
-    	  OrderQueryBond b7 = new OrderQueryBond(a[2], a7, IBond.Order.SINGLE);
+    	  OrderQueryBond b7 = new OrderQueryBond(a[2], a7, IBond.Order.SINGLE,builder);
     	  mol.addBond(b7);
-    	  OrderQueryBond b8 = new OrderQueryBond(a7, r[0], IBond.Order.SINGLE);
+    	  OrderQueryBond b8 = new OrderQueryBond(a7, r[0], IBond.Order.SINGLE,builder);
     	  mol.addBond(b8);
-    	  OrderQueryBond b9 = new OrderQueryBond(a7, r[1], IBond.Order.SINGLE);
+    	  OrderQueryBond b9 = new OrderQueryBond(a7, r[1], IBond.Order.SINGLE,builder);
     	  mol.addBond(b9);
-    	  OrderQueryBond b10 = new OrderQueryBond(a7, r[2], IBond.Order.SINGLE);
+    	  OrderQueryBond b10 = new OrderQueryBond(a7, r[2], IBond.Order.SINGLE,builder);
     	  mol.addBond(b10);
-    	  OrderQueryBond b11 = new OrderQueryBond(a[4], a11, IBond.Order.SINGLE);
+    	  OrderQueryBond b11 = new OrderQueryBond(a[4], a11, IBond.Order.SINGLE,builder);
     	  mol.addBond(b11);
-    	  OrderQueryBond b12 = new OrderQueryBond(a11, r[3], IBond.Order.SINGLE);
+    	  OrderQueryBond b12 = new OrderQueryBond(a11, r[3], IBond.Order.SINGLE,builder);
     	  mol.addBond(b12);
-    	  OrderQueryBond b13 = new OrderQueryBond(a11, r[4], IBond.Order.SINGLE);
+    	  OrderQueryBond b13 = new OrderQueryBond(a11, r[4], IBond.Order.SINGLE,builder);
     	  mol.addBond(b13);
-    	  OrderQueryBond b14 = new OrderQueryBond(a11, r[5], IBond.Order.SINGLE);
+    	  OrderQueryBond b14 = new OrderQueryBond(a11, r[5], IBond.Order.SINGLE,builder);
     	  mol.addBond(b14);
     	  
       	  mol.setID("Sterically hindered\t");
@@ -3427,7 +3495,7 @@ public class FunctionalGroups {
 		if (selected==null)
 			try {
 				
-				if (UniversalIsomorphismTester.isSubgraph(mol,q)) {
+				if (uit.isSubgraph(mol,q)) {
 					//logger.fine(mapToString(mol));
 					logger.fine("Molecule \t"+mol.getID()+MSG_HASGROUP+q.getID()+"\tYES");
 					return true;
@@ -3442,7 +3510,7 @@ public class FunctionalGroups {
 			} 
 		else
 			try {
-				List<RMap> list = UniversalIsomorphismTester.getSubgraphAtomsMap(mol,q);
+				List<RMap> list = uit.getSubgraphAtomsMap(mol,q);
 				if (list != null)
 					for (int i=0; i < list.size();i++) {
 						RMap map = list.get(i);
@@ -3459,7 +3527,7 @@ public class FunctionalGroups {
 		try {
 		if (mol.getAtomCount() != q.getAtomCount()) return false; // no need to spend time on isomorphism ...
 		if (mol.getBondCount() != q.getBondCount()) return false; // no need to spend time on isomorphism ...
-		boolean b= (UniversalIsomorphismTester.isIsomorph(mol,q));
+		boolean b= (uit.isIsomorph(mol,q));
 		
 		if (logger.isLoggable(Level.FINE))
 			if (b) logger.fine(MSG_MOLECULEIS+q.getID()+"\tYES");
@@ -3619,7 +3687,7 @@ public class FunctionalGroups {
 	*/
 	public static int associateIonic(IAtomContainer a) throws CDKException {
 		
-		IMoleculeSet c = ConnectivityChecker.partitionIntoMolecules(a);
+		IAtomContainerSet c = ConnectivityChecker.partitionIntoMolecules(a);
 		//clear VISITED flag
 		for (int i=0; i<a.getAtomCount();i++) a.getAtom(i).setFlag(CDKConstants.VISITED,false);
 		
@@ -3712,7 +3780,7 @@ public class FunctionalGroups {
 	 * by breaking bonds as above. Hydrogens are added on the broken end of each bond 
 	 *TODO care for bond orders!
 	 */
-	public static IMoleculeSet detachGroup(IAtomContainer a, QueryAtomContainer q) {
+	public static IAtomContainerSet detachGroup(IAtomContainer a, QueryAtomContainer q) {
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
 
 		List list = FunctionalGroups.getUniqueBondMap(a, q,needsPreprocessing(q));
@@ -3763,7 +3831,7 @@ public class FunctionalGroups {
 				if (q.getID().equals(CARBOXYLIC_ACID_SALT))
 					if (a1.getSymbol().equals("O") && (a1.getFormalCharge() != null) && (a1.getFormalCharge()==-1)) {
 						a1.setFormalCharge(0);
-						h = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+						h = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
 						a.addAtom(h);
 						a.addBond(MoleculeTools.newBond(builder,a1,h));
 						a1.removeProperty(q.getID());
@@ -3797,20 +3865,20 @@ public class FunctionalGroups {
 					} else;
 					/*{
 						a1[k].setFormalCharge(0);						
-						h = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+						h = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
 						a.addAtom(h);
 						a.addBond(MoleculeTools.newBond(builder,a1[k],h));
 					}*/
 				}else if (q.getID().equals(LACTONE)) {
 					if (a1.getSymbol().equals("O")) {
-						h = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+						h = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
 						a.addAtom(h);
 						a.addBond(MoleculeTools.newBond(builder,a1,h));
 						a1.removeProperty(q.getID());
 					} else { // atatch OH
-						h = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+						h = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
 						a.addAtom(h);
-						IAtom o = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
+						IAtom o = MoleculeTools.newAtom(builder,Elements.OXYGEN);
 						a.addAtom(o);
 						a.addBond(MoleculeTools.newBond(builder,o,h));
 						a.addBond(MoleculeTools.newBond(builder,a1,o));						
@@ -3819,7 +3887,7 @@ public class FunctionalGroups {
 				} else {	
 					int hydrogens = a1.getValency() - a.getConnectedAtomsCount(a1);
 					for (int nh=0; nh < hydrogens; nh++) {
-						h = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN);
+						h = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
 						a.addAtom(h);
 						a.addBond(MoleculeTools.newBond(builder,a1,h));
 					}
@@ -3864,21 +3932,22 @@ public class FunctionalGroups {
 	 * @return ring
 	 */
 	public static QueryAtomContainer ring(int size) {
-		QueryAtomContainer q = new QueryAtomContainer();
+		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+		QueryAtomContainer q = new QueryAtomContainer(builder);
 		q.setID("RING "+Integer.toString(size));
 		SymbolQueryAtom[] c= new SymbolQueryAtom[size];
 		ReallyAnyAtom[] h= new ReallyAnyAtom[size];
 		for (int i=0;i < size; i++) {
-			c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+			c[i] = new SymbolQueryAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
 			c[i].setProperty(RING_NUMBERING,new Integer(i));
 			q.addAtom(c[i]);
-			if (i>0) q.addBond(new AnyOrderQueryBond(c[i],c[i-1],IBond.Order.SINGLE));
-			h[i] = new ReallyAnyAtom();
+			if (i>0) q.addBond(new AnyOrderQueryBond(c[i],c[i-1],IBond.Order.SINGLE,builder));
+			h[i] = new ReallyAnyAtom(builder);
 			h[i].setProperty(RING_NUMBERING,new Integer(i));
 			q.addAtom(h[i]);
-			q.addBond(new AnyOrderQueryBond(c[i],h[i],IBond.Order.SINGLE));
+			q.addBond(new AnyOrderQueryBond(c[i],h[i],IBond.Order.SINGLE,builder));
 		}
-		q.addBond(new AnyOrderQueryBond(c[0],c[size-1],IBond.Order.SINGLE));
+		q.addBond(new AnyOrderQueryBond(c[0],c[size-1],IBond.Order.SINGLE,builder));
 		return q;
 	}
 	/**
@@ -3888,7 +3957,7 @@ public class FunctionalGroups {
 	 */
 	public static void markAtomsInRing(IAtomContainer mol, QueryAtomContainer q) {
 		try {
-			List list = UniversalIsomorphismTester.getSubgraphAtomsMap(mol,q);
+			List list = uit.getSubgraphAtomsMap(mol,q);
 			if (list != null)
 				for (int i=0; i < list.size();i++) {
 					RMap map = (RMap)list.get(i);
@@ -3956,10 +4025,11 @@ public class FunctionalGroups {
 	}
 
 	public static QueryAtomContainers getAllGroups() {
+		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
 		String[] metals = {"Na","K","Ca"};
 		QueryAtomContainers list = new QueryAtomContainers();
 		IAtomContainer m = new org.openscience.cdk.AtomContainer();
-		m.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
+		m.addAtom(MoleculeTools.newAtom(builder,Elements.CARBON));
 		m.setID("Empty fragment");
 		list.add(m);
 		list.add(methyl());

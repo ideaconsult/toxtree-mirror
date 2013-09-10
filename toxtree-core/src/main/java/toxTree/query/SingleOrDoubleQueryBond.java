@@ -24,8 +24,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.query;
 
-import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 
@@ -44,8 +45,8 @@ public class SingleOrDoubleQueryBond extends OrderQueryBond {
 	/**
 	 * 
 	 */
-	public SingleOrDoubleQueryBond() {
-		super();
+	public SingleOrDoubleQueryBond(IChemObjectBuilder builder) {
+		super(builder);
 
 	}
 
@@ -53,10 +54,11 @@ public class SingleOrDoubleQueryBond extends OrderQueryBond {
 	 * @param atom1
 	 * @param atom2
 	 */
-	public SingleOrDoubleQueryBond(IQueryAtom atom1, IQueryAtom atom2) {
-		super(atom1, atom2,CDKConstants.BONDORDER_SINGLE);
+	public SingleOrDoubleQueryBond(IQueryAtom atom1, IQueryAtom atom2, IChemObjectBuilder builder) {
+		super(atom1, atom2,CDKConstants.BONDORDER_SINGLE,builder);
 	}
-	public boolean matches(Bond bond) {
+	@Override
+	public boolean matches(IBond bond) {
 		return
 			((this.getOrder() == CDKConstants.BONDORDER_SINGLE) || 
 			(this.getOrder() == CDKConstants.BONDORDER_DOUBLE)) 

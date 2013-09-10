@@ -245,4 +245,12 @@ public class ListOfAtomContainers extends ArrayList<IAtomContainer> implements	I
 		set(position,container);
 		
 	}
+	@Override
+	public Number getFlagValue() {
+		return null;
+	}
+	@Override
+	public <T> T getProperty(Object description, Class<T> c) {
+		return null;
+	}
 }

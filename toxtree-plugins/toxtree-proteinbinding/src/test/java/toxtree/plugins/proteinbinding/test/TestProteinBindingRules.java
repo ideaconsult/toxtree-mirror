@@ -46,9 +46,8 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.smiles.smarts.SMARTSQueryTool;
@@ -106,7 +105,7 @@ public abstract class TestProteinBindingRules extends TestCase {
         return rule.getID();
     }
     protected IIteratingChemObjectReader getReader(InputStream stream, IChemObjectBuilder b) {
-    	return  new IteratingMDLReader(stream,b);
+    	return  new IteratingSDFReader(stream,b);
     }
 	protected void applyRule(IDecisionRule rule, InputStream source, InputStream results, String compoundID, String resultsFolder) throws Exception {
 		
@@ -188,8 +187,8 @@ public abstract class TestProteinBindingRules extends TestCase {
 		
 		while (sourceReader.hasNext()) {
 			Object o = sourceReader.next();
-			if (o instanceof IMolecule) {
-				IMolecule a = (IMolecule) o;
+			if (o instanceof IAtomContainer) {
+				IAtomContainer a = (IAtomContainer) o;
 				Object id = a.getProperty(compoundID);
 				if (id == null) id = "???";
 				//System.out.println(id);
@@ -266,11 +265,11 @@ public abstract class TestProteinBindingRules extends TestCase {
         return p.match(c);
     }   
 	protected void verifyExample(boolean answer) throws DecisionMethodException {
-		IMolecule m = ruleToTest.getExampleMolecule(answer);
+		IAtomContainer m = ruleToTest.getExampleMolecule(answer);
 		verifyExample(m, answer);
 	}
 	
-	protected void verifyExample(IMolecule m, boolean answer) throws DecisionMethodException {
+	protected void verifyExample(IAtomContainer m, boolean answer) throws DecisionMethodException {
 		try {
 			MolAnalyser.analyse(m);
 			//for (int i=0; i < m.getAtomCount();i++)
@@ -287,7 +286,7 @@ public abstract class TestProteinBindingRules extends TestCase {
 		verifyExample(true);
 	}
     public int printAromaticity() throws Exception {
-    	IteratingMDLReader resultsReader = new IteratingMDLReader(
+    	IteratingSDFReader resultsReader = new IteratingSDFReader(
     			this.getClass().getClassLoader().getResourceAsStream("data/"+getHitsFile()),SilentChemObjectBuilder.getInstance());
     	int aromaticCompounds = 0;
     	while (resultsReader.hasNext()) {
@@ -332,7 +331,7 @@ public abstract class TestProteinBindingRules extends TestCase {
             return ruleToTest.verifyRule(no);
     }
     protected int[] match(String smarts, String smiles) throws Exception {
-        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
+        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,SilentChemObjectBuilder.getInstance());
         SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
         IAtomContainer atomContainer = sp.parseSmiles(smiles);
         MolAnalyser.analyse(atomContainer);

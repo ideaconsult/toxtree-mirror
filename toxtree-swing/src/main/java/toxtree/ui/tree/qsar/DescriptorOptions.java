@@ -29,8 +29,8 @@ import java.awt.Dimension;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 
+import org.openscience.cdk.IImplementationSpecification;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.IDescriptor;
 
 
@@ -61,7 +61,7 @@ public class DescriptorOptions extends OptionsPanel<IDescriptor> {
 		t.setPreferredSize(dim);
 		t.setMinimumSize(dimmin);
 		if (getObject()!=null) {
-			DescriptorSpecification s = getObject().getSpecification();
+			IImplementationSpecification s = getObject().getSpecification();
 			switch (i) {
 			case 0: {t.setText(s.getSpecificationReference()); break;}
 			case 1: {t.setText(s.getImplementationTitle());break;}

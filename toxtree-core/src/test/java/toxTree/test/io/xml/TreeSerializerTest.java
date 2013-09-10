@@ -69,7 +69,8 @@ public class TreeSerializerTest {
 
 	protected static Logger logger = Logger.getLogger(TreeSerializerTest.class.getName());
 
-
+	protected UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
+	
 	@Test
 	public void testAbstractRule() throws Exception  {
 		IDecisionRule r = new RuleAromatic();
@@ -93,10 +94,10 @@ public class TreeSerializerTest {
 
 			Assert.assertEquals(r,r1);
 			
-			Assert.assertTrue(UniversalIsomorphismTester.isIsomorph(
+			Assert.assertTrue(uit.isIsomorph(
 						r.getExampleMolecule(true),((AbstractRule)r1).getExampleMolecule(true)
 						));
-			Assert.assertTrue(UniversalIsomorphismTester.isIsomorph(
+			Assert.assertTrue(uit.isIsomorph(
 					r.getExampleMolecule(false),((AbstractRule)r1).getExampleMolecule(false)
 						));
 		

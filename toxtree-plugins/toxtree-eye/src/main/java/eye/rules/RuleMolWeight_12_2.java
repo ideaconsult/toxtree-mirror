@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package eye.rules;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import sicret.rules.RuleMolWeight;
@@ -47,15 +47,15 @@ public class RuleMolWeight_12_2  extends RuleMolWeight {
 		setTitle(getPropertyName() + getCondition() + getProperty());
 
 	}
-	public IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
-		IMolecule m = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());  
+	public IAtomContainer getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
+		IAtomContainer m = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());  
         if (ruleResult){
         	
-        		m = (IMolecule)FunctionalGroups.createAtomContainer("OS(=O)(=O)c1cc2NC4(Nc2c(c1)S(O)(=O)=O)C=3\\C=C/C4=C\\C=3",false);
+        		m = (IAtomContainer)FunctionalGroups.createAtomContainer("OS(=O)(=O)c1cc2NC4(Nc2c(c1)S(O)(=O)=O)C=3\\C=C/C4=C\\C=3",false);
     			m.setProperty(MolWeight, 674.567985);
         }
     	else {
-    		m = (IMolecule)FunctionalGroups.createAtomContainer("S(SCCC)CCC",false);
+    		m = (IAtomContainer)FunctionalGroups.createAtomContainer("S(SCCC)CCC",false);
         		m.setProperty(MolWeight, 150.305997);
     	}      	
 		return m;

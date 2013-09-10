@@ -65,7 +65,7 @@ import toxTree.tree.rules.RuleStructuresList;
  * <b>Modified</b> 2005-9-5
  */
 public class TreeSerializerTest {
-	
+	protected UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
 	protected static Logger logger = Logger.getLogger(TreeSerializerTest.class.getName()); 
 	@Before
 	public void setUp() throws Exception {
@@ -95,10 +95,10 @@ public class TreeSerializerTest {
 			
 			in.close();
 
-			Assert.assertTrue(UniversalIsomorphismTester.isIsomorph(
+			Assert.assertTrue(uit.isIsomorph(
 						r.getExampleMolecule(true),((AbstractRule)r1).getExampleMolecule(true)
 						));
-			Assert.assertTrue(UniversalIsomorphismTester.isIsomorph(
+			Assert.assertTrue(uit.isIsomorph(
 						r.getExampleMolecule(false),((AbstractRule)r1).getExampleMolecule(false)
 						));
 

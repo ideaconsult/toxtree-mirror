@@ -2,16 +2,16 @@ package toxTree.core;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.qsar.AbstractMolecularDescriptor;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
-import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
 
 import toxTree.exceptions.DecisionResultException;
 import ambit2.core.data.ArrayResult;
 import ambit2.core.data.StringDescriptorResultType;
 
-public class ToxTreeDescriptor implements IMolecularDescriptor {
+public class ToxTreeDescriptor extends AbstractMolecularDescriptor {
 	protected String[] paramNames = {"decisionTree"};
 	protected Object[] parameters = new Object[1];
 	protected transient IDecisionMethod decisionTree = null;

@@ -29,16 +29,17 @@ import java.util.logging.Logger;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.cdk.qsar.AbstractMolecularDescriptor;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
-import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.BooleanResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
 
-public abstract class DescriptorStructurePresence<T> implements IMolecularDescriptor {
+public abstract class DescriptorStructurePresence<T> extends AbstractMolecularDescriptor {
 
 	protected transient static Logger logger = Logger.getLogger(DescriptorStructurePresence.class.getName());
 
@@ -89,7 +90,7 @@ public abstract class DescriptorStructurePresence<T> implements IMolecularDescri
 	}
 
 	public Object getParameterType(String name) {
-		if (paramNames[0].equals(name)) return new QueryAtomContainer();
+		if (paramNames[0].equals(name)) return new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		else if (paramNames[1].equals(name)) return getResultName();
 		else return null;
 	}

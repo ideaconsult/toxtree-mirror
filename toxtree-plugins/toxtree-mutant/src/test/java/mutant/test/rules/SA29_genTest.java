@@ -5,6 +5,7 @@ import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.SSSRFinder;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -35,10 +36,10 @@ public class SA29_genTest extends TestMutantRules {
 	//"[$(a:a[#16X4](=[OX1])(=[OX1])[OX2H1]),$(a:a:a[#16X4](=[OX1])(=[OX1])[OX2H1]),$(a:a:a:a[#16X4](=[OX1])(=[OX1])[OX2H1]),$(a:a:a:a:a[#16X4](=[OX1])(=[OX1])[OX2H1])][N]=[N][$(a:a[#16X4](=[OX1])(=[OX1])[OX2H1]),$(a:a:a[#16X4](=[OX1])(=[OX1])[OX2H1]),$(a:a:a:a[#16X4](=[OX1])(=[OX1])[OX2H1]),$(a:a:a:a:a[#16X4](=[OX1])(=[OX1])[OX2H1])]"
 	
 	public int CDKSmarts(String smarts, String smiles) throws Exception  {
-
-	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
+		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,builder);
         
-	   SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
+	   SmilesParser sp = new SmilesParser(builder);
 	        	
 	   IAtomContainer atomContainer = sp.parseSmiles(smiles);
 	           

@@ -39,6 +39,7 @@ import javax.swing.JOptionPane;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
@@ -502,6 +503,9 @@ public class UserDefinedTree extends AbstractTree implements IDecisionInteractiv
 	public long getID() {
 		return 0;
 	}
+	@Override
+	public void initialise(IChemObjectBuilder builder) {
+	}
 }
 
 class UnvisitedRules implements IProcessRule {
@@ -547,7 +551,5 @@ class UnvisitedRules implements IProcessRule {
 		for (int i=0; i < nodes.size();i++) 
 			nodes.getNode(i).setVisited(false);		
 	}
-	
-	
 	
 }

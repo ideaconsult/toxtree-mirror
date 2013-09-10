@@ -14,12 +14,12 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IBond.Order;
 import org.openscience.cdk.interfaces.IElement;
 import org.openscience.cdk.interfaces.IMolecularFormula;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.io.iterator.IteratingSMILESReader;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtomContainer;
@@ -111,14 +111,14 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
         {
             IIteratingChemObjectReader reader;
             if(format.endsWith(".sdf"))
-                reader = new IteratingMDLReader(fStream, SilentChemObjectBuilder.getInstance());
+                reader = new IteratingSDFReader(fStream, SilentChemObjectBuilder.getInstance());
             else
             if(format.endsWith(".csv"))
                 reader = new IteratingDelimitedFileReader(fStream);
             else
             if(format.endsWith(".smi"))
             {
-                reader = new IteratingSMILESReader(fStream);
+                reader = new IteratingSMILESReader(fStream,SilentChemObjectBuilder.getInstance());
             } else
             {
                 logger.severe("Unsupported format");
@@ -132,7 +132,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
                 Object o = reader.next();
                 if(o instanceof IAtomContainer)
                 {
-                    IMolecule m = (IMolecule)o;
+                    IAtomContainer m = (IAtomContainer)o;
                     if(m.getAtomCount() > 0)
                         try
                         {
@@ -157,16 +157,16 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
         
     }
 
-    public static IQueryAtomContainer createQueryContainer(IAtomContainer container)
-    {
-        IQueryAtomContainer queryContainer = new QueryAtomContainer();
+    public static IQueryAtomContainer createQueryContainer(IAtomContainer container)   {
+    	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        IQueryAtomContainer queryContainer = new QueryAtomContainer(builder);
         Iterator<IAtom> atoms = container.atoms().iterator();
         while (atoms.hasNext()) {
         	IAtom atom  = atoms.next();
         
             if(atom.getSymbol().equals("H"))
             {
-                SymbolSetQueryAtom a = new SymbolSetQueryAtom();
+                SymbolSetQueryAtom a = new SymbolSetQueryAtom(builder);
                 a.setSymbol("Hal");
                 a.addSymbol("Hal");
                 a.addSymbol("H");
@@ -185,12 +185,12 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
             int index2 = container.getAtomNumber(bond.getAtom(1));
             if(bond.getFlag(CDKConstants.ISAROMATIC))
             {
-                AromaticQueryBond b = new AromaticQueryBond((IQueryAtom)queryContainer.getAtom(index1), (IQueryAtom)queryContainer.getAtom(index2), Order.SINGLE);
+                AromaticQueryBond b = new AromaticQueryBond((IQueryAtom)queryContainer.getAtom(index1), (IQueryAtom)queryContainer.getAtom(index2), Order.SINGLE,builder);
                 b.setFlag(CDKConstants.ISAROMATIC, true);
                 queryContainer.addBond(b);
             } else
             {
-                MyOrderQueryBond q = new MyOrderQueryBond((IQueryAtom)queryContainer.getAtom(index1), (IQueryAtom)queryContainer.getAtom(index2), bond.getOrder());
+                MyOrderQueryBond q = new MyOrderQueryBond((IQueryAtom)queryContainer.getAtom(index1), (IQueryAtom)queryContainer.getAtom(index2), bond.getOrder(),builder);
                 q.setFlag(CDKConstants.ISAROMATIC, bond.getFlag(CDKConstants.ISAROMATIC));
                 queryContainer.addBond(q);
             }

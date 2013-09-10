@@ -28,12 +28,11 @@ import java.util.List;
 import java.util.logging.Level;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
@@ -82,10 +81,10 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 		    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 		    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
 
-		    IMoleculeSet origin = ConnectivityChecker.partitionIntoMolecules(mol);
-			IMoleculeSet sc = null;
+		    IAtomContainerSet origin = ConnectivityChecker.partitionIntoMolecules(mol);
+			IAtomContainerSet sc = null;
 		    for (int g=0; g < groups.length;g++) {
-		    	sc = new MoleculeSet();
+		    	sc = MoleculeTools.newAtomContainerSet(SilentChemObjectBuilder.getInstance());
 				deriveAmine(groups[g], origin, sc);
 				if ((sc != null) && (sc.getAtomContainerCount()>0))
 					origin = sc;
@@ -97,7 +96,7 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 					if (origin.getAtomContainer(i).getAtomCount()<=3)
 						origin.removeAtomContainer(i);
 					else {
-						String s = gen.createSMILES((IMolecule)origin.getAtomContainer(i));
+						String s = gen.createSMILES((IAtomContainer)origin.getAtomContainer(i));
 						origin.getAtomContainer(i).setID("Derived_amine_"+Integer.toString(r) + " " + s);
 						r++;
 					}
@@ -109,9 +108,9 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 		} else return false;
 	}
 	
-	protected void deriveAmine(QueryAtomContainer q, IMoleculeSet origin,IMoleculeSet results) {
+	protected void deriveAmine(QueryAtomContainer q, IAtomContainerSet origin,IAtomContainerSet results) {
 		for (int j=0; j < origin.getAtomContainerCount();j++) {
-			IMoleculeSet sc = detachSubstituent(q,origin.getAtomContainer(j));
+			IAtomContainerSet sc = detachSubstituent(q,origin.getAtomContainer(j));
 			if (sc != null)
 			for (int i= sc.getAtomContainerCount()-1; i>=0;i--)  
 				if (sc.getAtomContainer(i).getAtomCount()>3)
@@ -121,41 +120,43 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 	
 	//aN=C=O
 	public  static QueryAtomContainer group1() {
-        QueryAtomContainer query = new QueryAtomContainer();
+		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID("aN=C=O");
         SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
         SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));
         SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        AromaticAtom a = new AromaticAtom();
+        AromaticAtom a = new AromaticAtom(builder);
         query.addAtom(c);query.addAtom(o);query.addAtom(n);query.addAtom(a);
-        query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(n, a, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(n, a, CDKConstants.BONDORDER_SINGLE,builder));
         c.setProperty(FunctionalGroups.DONTMARK,query.getID());
         //to be split at C=N bond
         return query;
     }    
 	//aN=C=CH2
 	public static QueryAtomContainer group2() {
-        QueryAtomContainer query = new QueryAtomContainer();
+		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
+        QueryAtomContainer query = new QueryAtomContainer(builder);
         query.setID("aN=CH2");
         SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
         SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN));
-        AromaticAtom a = new AromaticAtom();
+        AromaticAtom a = new AromaticAtom(builder);
         query.addAtom(c);query.addAtom(n);query.addAtom(a);
-        query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE));
-        query.addBond(new OrderQueryBond(n, a, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE,builder));
+        query.addBond(new OrderQueryBond(n, a, CDKConstants.BONDORDER_SINGLE,builder));
 
         
         for (int i=0; i < 2; i++) {
         	SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.HYDROGEN));
-        	query.addBond(new OrderQueryBond(c, h, CDKConstants.BONDORDER_SINGLE));
+        	query.addBond(new OrderQueryBond(c, h, CDKConstants.BONDORDER_SINGLE,builder));
         }
         //to be split at C=N bond
         c.setProperty(FunctionalGroups.DONTMARK,query.getID());
         return query;
     } 	
-	public IMoleculeSet detachSubstituent(QueryAtomContainer q, IAtomContainer c) {
+	public IAtomContainerSet detachSubstituent(QueryAtomContainer q, IAtomContainer c) {
 		List map = FunctionalGroups.getBondMap(c,q,false);
 		FunctionalGroups.markMaps(c,q,map);
 		if (map == null) return null;

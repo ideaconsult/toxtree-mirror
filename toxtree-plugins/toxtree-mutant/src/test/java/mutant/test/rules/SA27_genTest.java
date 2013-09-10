@@ -105,7 +105,7 @@ public class SA27_genTest extends TestMutantRules {
         h.addImplicitHydrogens(mol);
         AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
         CDKHueckelAromaticityDetector.detectAromaticity(mol);
-        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
+        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,mol.getBuilder());
         return sqt.matches(mol);
     }
 

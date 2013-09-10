@@ -29,7 +29,6 @@ import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.core.IDecisionRule;
@@ -70,7 +69,7 @@ public class RuleAromaticDiazoTest extends TestAmesMutagenicityRules {
         assertEquals(4,products.getAtomContainerCount());
         SmilesGenerator g = new SmilesGenerator(true);
         for (int i=0; i < products.getAtomContainerCount();i++) {
-            String sm = g.createSMILES((IMolecule)products.getAtomContainer(i));
+            String sm = g.createSMILES((IAtomContainer)products.getAtomContainer(i));
             //System.out.println(sm);
             assertTrue(expected.indexOf(sm)>-1);
             

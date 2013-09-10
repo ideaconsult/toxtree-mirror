@@ -29,7 +29,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 
 import toxTree.exceptions.ToxTreeIOException;
 
@@ -58,7 +58,7 @@ public interface IMoleculesIterator extends Iterator {
 	public IAtomContainer[] getMolecules();
 	public void setMolecules(List molecules);
 	public IAtomContainer getMolecule();
-	public IMoleculeSet getMoleculeForEdit() throws Exception;
+	public IAtomContainerSet getMoleculeForEdit() throws Exception;
 	public IAtomContainer getAtomContainer(int index);
 	
 	public void addMolecule(IAtomContainer mol);

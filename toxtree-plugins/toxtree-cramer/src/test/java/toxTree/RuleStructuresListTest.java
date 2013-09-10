@@ -37,9 +37,8 @@ import org.junit.Test;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
@@ -101,7 +100,7 @@ public class RuleStructuresListTest  {
 			IAtomContainer c = FunctionalGroups.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
 
 				MolAnalyser.analyse(c);
-				c.setProperty("SMILES",gen.createSMILES((IMolecule)c));
+				c.setProperty("SMILES",gen.createSMILES((IAtomContainer)c));
 				writer.setSdFields(c.getProperties());
 				writer.write(c);
 				System.out.print(c.getProperty("NAME"));
@@ -124,7 +123,7 @@ public class RuleStructuresListTest  {
 			IIteratingChemObjectReader reader;
 
 			InputStream in = this.getClass().getClassLoader().getResourceAsStream("bodymol.sdf");
-			reader = new IteratingMDLReader(in,SilentChemObjectBuilder.getInstance());
+			reader = new IteratingSDFReader(in,SilentChemObjectBuilder.getInstance());
 				int r = 0;
 				boolean ok = false;
 				while (reader.hasNext()) {
@@ -132,7 +131,7 @@ public class RuleStructuresListTest  {
 					Object o = reader.next();
 					
 					if (o instanceof IAtomContainer) {
-						IMolecule m = (IMolecule) o;
+						IAtomContainer m = (IAtomContainer) o;
 						try {
 							MolAnalyser.analyse(m);			
 							//hadder.addExplicitHydrogensToSatisfyValency(m);

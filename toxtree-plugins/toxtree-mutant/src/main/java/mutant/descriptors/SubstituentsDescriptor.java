@@ -8,13 +8,14 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.cdk.qsar.AbstractMolecularDescriptor;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
-import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.DoubleArrayResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
-public abstract class SubstituentsDescriptor implements IMolecularDescriptor {
+public abstract class SubstituentsDescriptor extends AbstractMolecularDescriptor {
 	protected transient static Logger logger = Logger.getLogger(SubstituentsDescriptor.class.getName()); 
 	protected String[] paramNames = {"ring","descriptor_names"};
 	protected String[] descriptorNames = null;
@@ -79,7 +80,7 @@ public abstract class SubstituentsDescriptor implements IMolecularDescriptor {
 	}
 	public Object getParameterType(String arg0) {
 		if (paramNames[0].equals(arg0))
-			return new QueryAtomContainer();
+			return new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		else if (paramNames[1].equals(arg0)) return new String[] {};
 		else return null;
 	}

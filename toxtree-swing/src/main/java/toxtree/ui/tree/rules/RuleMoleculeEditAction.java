@@ -25,7 +25,7 @@ package toxtree.ui.tree.rules;
 
 import javax.swing.Icon;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxtree.ui.molecule.MoleculeEditAction;
@@ -49,7 +49,7 @@ public class RuleMoleculeEditAction extends MoleculeEditAction implements IRuleA
 	/**
 	 * @param molecule
 	 */
-	public RuleMoleculeEditAction(IMolecule molecule) {
+	public RuleMoleculeEditAction(IAtomContainer molecule) {
 		super(molecule);
 	}
 
@@ -57,7 +57,7 @@ public class RuleMoleculeEditAction extends MoleculeEditAction implements IRuleA
 	 * @param molecule
 	 * @param arg0
 	 */
-	public RuleMoleculeEditAction(IMolecule molecule, String arg0) {
+	public RuleMoleculeEditAction(IAtomContainer molecule, String arg0) {
 		super(molecule, arg0);
 		// TODO Auto-generated constructor stub
 	}
@@ -67,7 +67,7 @@ public class RuleMoleculeEditAction extends MoleculeEditAction implements IRuleA
 	 * @param arg0
 	 * @param arg1
 	 */
-	public RuleMoleculeEditAction(IMolecule molecule, String arg0, Icon arg1) {
+	public RuleMoleculeEditAction(IAtomContainer molecule, String arg0, Icon arg1) {
 		super(molecule, arg0, arg1);
 		// TODO Auto-generated constructor stub
 	}
