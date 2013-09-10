@@ -24,8 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxtree.data;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Observable;
@@ -33,24 +31,18 @@ import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
 import org.openscience.cdk.interfaces.IChemModel;
-import org.openscience.cdk.interfaces.IChemObjectBuilder;
-import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.cdk.silent.SilentChemObjectBuilder;
-import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.batch.BatchProcessing;
 import toxTree.io.batch.BatchProcessingException;
 import ambit2.core.data.MoleculeTools;
-import ambit2.jchempaint.editor.JChemPaintDialog;
 
 public abstract class DataModule extends Observable implements Serializable, Observer {
 	protected transient static Logger logger = Logger.getLogger(DataModule.class.getName());
@@ -59,7 +51,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
 	protected DataContainer dataContainer = null;
 	protected int useDatabase = 0; //-1 : not available; 0 - unknown, have to check; 1 : available
 	//jcp
-	protected JChemPaintDialog jcpDialog = null;
+	protected JComponent jcpDialog = null;
 	protected IChemModel jcpModel = null;  //for JCP use
 	//batch
 	protected BatchProcessing batch = null;	

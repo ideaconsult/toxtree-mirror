@@ -28,6 +28,7 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 
 import javax.swing.Icon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.vecmath.Vector2d;
 
@@ -44,8 +45,6 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import ambit2.core.data.MoleculeTools;
-import ambit2.jchempaint.editor.AbstractMoleculeAction;
-import ambit2.jchempaint.editor.JChemPaintDialog;
 
 /**
  * 
@@ -58,7 +57,7 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
 	protected IChemModel jcpModel;
 	protected StructureDiagramGenerator sdg = null;
 	protected Component parentComponent=null;
-    protected JChemPaintDialog jcpDialog = null;
+    protected JComponent jcpDialog = null;
     protected boolean modal = false;
 	/**
 	 * 
