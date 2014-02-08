@@ -93,7 +93,7 @@ public class RuleStructuresListTest  {
 
 			MDLWriter writer = new MDLWriter(new FileOutputStream(new File("bodymol.test.sdf")));
 			writer.dontWriteAromatic();
-			SmilesGenerator gen = new SmilesGenerator(true);
+			SmilesGenerator gen = new SmilesGenerator().aromatic();
 			
 			//adenine NC1=C2N=CN=C2N=CN1
 			//guanine NC1=NC2=C(NC=N2)C(=O)N1
@@ -116,7 +116,7 @@ public class RuleStructuresListTest  {
 
 			MDLWriter writer = new MDLWriter(new FileOutputStream(new File("bodymol.test.sdf")));
 			writer.dontWriteAromatic();
-			SmilesGenerator gen = new SmilesGenerator(true);
+			SmilesGenerator gen = new SmilesGenerator().aromatic();
 			IAtomContainer c = FunctionalGroups.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
 			MolAnalyser.analyse(c);
 			

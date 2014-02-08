@@ -239,7 +239,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 							continue;							
 						}
 					
-					if (sg == null) sg = new SmilesGenerator(true);
+					if (sg == null) sg = new SmilesGenerator().aromatic();
 					if (!residueIDHidden)  {
 						a.setID(residues.getID() + sg.createSMILES(a)); 
 						/*if set to smth different than mol.getId() will affect path representation 

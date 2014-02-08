@@ -39,6 +39,8 @@ import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AromaticAtom;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.cdk.tools.CDKHydrogenAdder;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
@@ -91,14 +93,17 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 		    }
 			if (origin != null) {
 				int r = 1;
-				SmilesGenerator gen = new SmilesGenerator(true);
+				SmilesGenerator gen = new SmilesGenerator().aromatic();
+
 				for (int i= origin.getAtomContainerCount()-1; i>=0;i--) { 
 					if (origin.getAtomContainer(i).getAtomCount()<=3)
 						origin.removeAtomContainer(i);
-					else {
-						String s = gen.createSMILES((IAtomContainer)origin.getAtomContainer(i));
+					else try {
+						String s = gen.create(origin.getAtomContainer(i));
 						origin.getAtomContainer(i).setID("Derived_amine_"+Integer.toString(r) + " " + s);
 						r++;
+					} catch (Exception x) {
+						origin.getAtomContainer(i).setID("Derived_amine_"+x.getMessage());
 					}
 				}
 				mf.setResidues(origin);

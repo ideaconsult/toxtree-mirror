@@ -90,7 +90,7 @@ public class SA10_genTest extends TestMutantRules {
 		results.put("[H]C([H])([H])C([H])([H])C([H])(C([H])([H])[H])C([H])([H])[H]",new Integer(5));
 		results.put("[H]C([H])=C([H])C(=O)[H]",new Integer(3));
 		if (sc != null) {
-			SmilesGenerator g = new SmilesGenerator(true);
+			SmilesGenerator g = new SmilesGenerator().aromatic();
 			for (int i=0;i<sc.getAtomContainerCount();i++) {
 				String s = g.createSMILES((IAtomContainer)sc.getAtomContainer(i));
 //				System.out.println(s);

@@ -43,7 +43,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 			assertNotNull(mf);
 			assertNotNull(mf.getResidues());
 			IAtomContainerSet sc = mf.getResidues();
-			SmilesGenerator g = new SmilesGenerator(true);
+			SmilesGenerator g = new SmilesGenerator().aromatic();
 			ArrayList<String> results = new ArrayList<String>();
 			results.add("[H]N([H])C=1C([H])=C([H])C([H])=C(C=1C([H])([H])[H])N([H])[H]");
 			results.add("[H]N([H])C=1C([H])=C([H])C(=C(C=1([H]))N([H])[H])C([H])([H])[H]");
@@ -85,7 +85,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 		results.put("[H]NC=1C([H])=C([H])C(=C([H])C=1(OC([H])([H])[H]))C=2C([H])=C([H])C(N[H])=C(OC([H])([H])[H])C=2([H])",new Integer(14));
 		results.put("O=C[H]",new Integer(1));
 		if (sc != null) {
-			SmilesGenerator g = new SmilesGenerator(true);
+			SmilesGenerator g = new SmilesGenerator().aromatic();
 			for (int i=0;i<sc.getAtomContainerCount();i++) {
 				String s = g.createSMILES(sc.getAtomContainer(i));
 				System.out.println(s);

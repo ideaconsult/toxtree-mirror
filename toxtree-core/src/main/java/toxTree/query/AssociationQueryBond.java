@@ -122,4 +122,8 @@ public class AssociationQueryBond extends MyAssociationBond implements IQueryBon
 	public boolean isConnectedTo(IBond bond) {
 		return false;
 	}
+	@Override
+	public AssociationQueryBond clone() throws CloneNotSupportedException {
+		return (AssociationQueryBond)super.clone();
+	}
 }

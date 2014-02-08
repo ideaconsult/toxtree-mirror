@@ -38,7 +38,7 @@ import toxTree.exceptions.DecisionMethodIOException;
 public class SimpleTreePrinter extends AbstractTreeWriter implements IProcessRule {
 	
 	protected char delimiter = '\t';
-	protected SmilesGenerator g = new SmilesGenerator(true);
+	protected SmilesGenerator g = SmilesGenerator.generic();
 
 	public char getDelimiter() {
 		return delimiter;

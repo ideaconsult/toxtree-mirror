@@ -937,7 +937,7 @@ public class FuncGroupsTest extends TestCase {
 		
 	public void testBreakHydrochlorideOfAmine() throws Exception  {
 		QueryAtomContainer q = FunctionalGroups.hydrochlorideOfAmineBreakable();
-		SmilesGenerator g = new SmilesGenerator(true);		
+		SmilesGenerator g = new SmilesGenerator().aromatic();		
 		
 		String[] examples = {
 				"[Cl-].[NH3+]C1CCCCC1",

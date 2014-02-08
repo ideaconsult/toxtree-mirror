@@ -66,7 +66,7 @@ public class AromaticityTest extends TestCase {
 	
 	public void aromaticRoundTrip(IAtomContainer m)  throws Exception  {
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
-		SmilesGenerator sg = new SmilesGenerator(true);
+		SmilesGenerator sg = new SmilesGenerator().aromatic();
 
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
 			boolean b = CDKHueckelAromaticityDetector.detectAromaticity(m);

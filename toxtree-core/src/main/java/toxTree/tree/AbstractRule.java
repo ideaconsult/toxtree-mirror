@@ -207,7 +207,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	public void setExampleMolecule(IAtomContainer  mol, boolean ruleResult) {
 	    int index;
 	    if (ruleResult) index = 1; else index =0;
-		SmilesGenerator g = new SmilesGenerator(true);
+		SmilesGenerator g = SmilesGenerator.generic();
 		//try {
 		    if (mol instanceof IAtomContainer)
 		        examples[index] = g.createSMILES(mol);

@@ -56,7 +56,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
 	 * 
 	 */
 	public static String propertyFingerprint = "FINGERPRINT1024";
-	protected SmilesGenerator smigen = new SmilesGenerator(true);
+	protected SmilesGenerator smigen = new SmilesGenerator().generic();
 	protected Fingerprinter fp = new Fingerprinter(1024);
     protected static String NA = "";
 	private static final long serialVersionUID = 4566523260890189354L;

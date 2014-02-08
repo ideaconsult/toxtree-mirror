@@ -33,6 +33,7 @@ import joelib.molecule.JOEMol;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.config.Elements;
+import org.openscience.cdk.config.Isotopes;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
@@ -119,8 +120,8 @@ public class Convertor {
             
             if (atom.getAtomicNumber()<=0) 
             	try {
-            		org.openscience.cdk.config.IsotopeFactory isotopeFactory =
-            			org.openscience.cdk.config.IsotopeFactory.getInstance(atom.getBuilder());
+            		org.openscience.cdk.config.IsotopeFactory isotopeFactory = Isotopes.getInstance();
+
             		isotopeFactory.configure(atom);
             	} catch (Exception x) {
             		
@@ -150,8 +151,8 @@ public class Convertor {
             IAtom convertedAtom = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
             try {
                 // try to give the atom the correct symbol
-                org.openscience.cdk.config.IsotopeFactory isotopeFactory =
-                    org.openscience.cdk.config.IsotopeFactory.getInstance(convertedAtom.getBuilder());
+                org.openscience.cdk.config.IsotopeFactory isotopeFactory = Isotopes.getInstance();
+
                 //isotopeFactory.configure(convertedAtom);
                 IElement element = isotopeFactory.getElement(atom.getAtomicNum());
                 convertedAtom = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),element.getSymbol());

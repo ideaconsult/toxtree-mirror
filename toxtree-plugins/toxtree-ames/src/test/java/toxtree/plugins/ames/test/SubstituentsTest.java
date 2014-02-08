@@ -63,7 +63,8 @@ public class SubstituentsTest  {
 		IAtomContainer a = getfromSDF();
 		for (int i = 0; i < a.getAtomCount(); i++)
 			System.out.println(a.getAtom(i).getFormalCharge());
-		SmilesGenerator g = new SmilesGenerator(true);
+		SmilesGenerator g = new SmilesGenerator().aromatic();
+		// configure atom types
 		String smiles = g.createSMILES(a);
 		System.out.println(smiles);
 		Fingerprinter fp = new Fingerprinter(1024);
@@ -187,7 +188,7 @@ public class SubstituentsTest  {
 			 * LookupFile lookup = new LookupFile("substituents.sdf");
 			 * lookup.setUseCache(false); lookup.setCheckAromaticity(true);
 			 */
-				SmilesGenerator g = new SmilesGenerator(true);
+				SmilesGenerator g = new SmilesGenerator().aromatic();
 				InputStream in = getClass().getClassLoader().getResourceAsStream("substituents.sdf");
 				IteratingSDFReader reader = new IteratingSDFReader(in,SilentChemObjectBuilder.getInstance());
 				int record = 0;
@@ -289,7 +290,7 @@ public class SubstituentsTest  {
 	public void testSmiles() throws Exception {
 		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
 				SilentChemObjectBuilder.getInstance(), null);
-		SmilesGenerator g = new SmilesGenerator(true);
+		SmilesGenerator g = new SmilesGenerator().aromatic();
 		int r = 0;
 		for (int i = 0; i < lookup.getAtomContainerCount(); i++) {
 			IAtomContainer a = lookup.getAtomContainer(i);
@@ -320,7 +321,7 @@ public class SubstituentsTest  {
 		// lookup.setCheckAromaticity(false);
 		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
 				SilentChemObjectBuilder.getInstance(),null);
-		SmilesGenerator g = new SmilesGenerator(true);
+		SmilesGenerator g = new SmilesGenerator().aromatic();
 		for (int k = 0; k < s.getAtomContainerCount(); k++) {
 			System.out.println("Substituent\t" + k);
 			IAtomContainer m = s.getAtomContainer(k);

@@ -68,7 +68,7 @@ public class RuleAromaticDiazoTest extends TestMutantRules {
         assertNotNull(mf);
         IAtomContainerSet products = mf.getResidues();
         assertEquals(4,products.getAtomContainerCount());
-        SmilesGenerator g = new SmilesGenerator(true);
+        SmilesGenerator g = new SmilesGenerator().aromatic();
         for (int i=0; i < products.getAtomContainerCount();i++) {
             String sm = g.createSMILES((IAtomContainer)products.getAtomContainer(i));
             //System.out.println(sm);
