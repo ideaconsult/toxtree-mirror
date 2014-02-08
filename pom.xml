@@ -6,6 +6,13 @@
   <name>SMARTCyp </name>
   <version>1.5.10-SNAPSHOT</version>
   <repositories>
+    
+      <!-- CDK SNAPSHOT repository at EBI -->
+      <repository>
+          <id>ebi-snapshots</id>
+          <name>ebi-snapshots</name>
+          <url>https://www.ebi.ac.uk/~maven/m2repo_snapshots/</url>
+      </repository>  	  
     	 <repository>
         <id>ambit-plovdiv</id>
         <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/thirdparty</url>
@@ -16,8 +23,8 @@
     </repositories>
   <modules>
   	<module>smartcyp-core</module>
+<!--   	
   	<module>smartcyp-app</module>
-<!--
   	<module>smartcyp-metabolites</module>
 -->
   </modules>
@@ -60,6 +67,6 @@
   	</build>
     <properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<cdk.version>1.5.3</cdk.version>
+    	<cdk.version>1.5.6-SNAPSHOT</cdk.version>
     </properties>	
 </project>

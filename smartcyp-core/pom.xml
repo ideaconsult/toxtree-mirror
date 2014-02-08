@@ -23,5 +23,20 @@
 	  <artifactId>cdk-smarts</artifactId>
 	  <version>${cdk.version}</version>
 	</dependency>
+	<dependency>
+	  <groupId>org.openscience.cdk</groupId>
+	  <artifactId>cdk-extra</artifactId>
+	  <version>${cdk.version}</version>
+	</dependency>
+    <dependency>
+    	<groupId>uk.ac.ebi.beam</groupId>
+			<artifactId>beam-func</artifactId>
+			<version>0.5-SNAPSHOT</version>
+		</dependency>	
+    <dependency>
+    	<groupId>uk.ac.ebi.beam</groupId>
+			<artifactId>beam-core</artifactId>
+			<version>0.5-SNAPSHOT</version>
+		</dependency>			
 </dependencies>
 </project>
