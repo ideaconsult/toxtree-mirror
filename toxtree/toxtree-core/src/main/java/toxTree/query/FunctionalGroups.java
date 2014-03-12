@@ -2293,7 +2293,7 @@ public class FunctionalGroups {
     public static IAtomContainer createAtomContainer(String smiles,boolean addHydrogens,String id,SMILES_PARSER mode) {
         try {
         	//logger.fine("Creating molecule from SMILES\t",smiles);
-        	SmilesParserWrapper sp = mode==null?SmilesParserWrapper.getInstance():SmilesParserWrapper.getInstance(mode);
+        	SmilesParserWrapper sp = mode==null?SmilesParserWrapper.getInstance(SMILES_PARSER.CDK):SmilesParserWrapper.getInstance(mode);
         	
             IAtomContainer mol = sp.parseSmiles(smiles);
             if ((mol != null) && (mol.getAtomCount()==0)) return null;
