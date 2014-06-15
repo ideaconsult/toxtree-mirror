@@ -25,7 +25,8 @@ Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity).
 
  [Benigni 2008] R. Benigni,  C. Bossa, N. Jeliazkova, T. Netzeva, and A. Worth. The Benigni / Bossa rulebase for mutagenicity and carcinogenicity - a module of Toxtree {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_23241_EN.pdf}(European Commission report EUR 23241)}}
 
-
+ [Benigni 2013]	Benigni, R., Bossa, C., & Tcheremenskaia, O. (2013). Nongenotoxic carcinogenicity of chemicals: mechanisms of action and early recognition through a new set of structural alerts. Chemical Reviews, 113(5), 2940–57. {{{http://pubs.acs.org/doi/abs/10.1021/cr300206t}doi:10.1021/cr300206t}}
+ 
 * Forum
 
   {{{http://sourceforge.net/forum/forum.php?forum_id=867722}Benigni/Bossa rulebase forum}}
