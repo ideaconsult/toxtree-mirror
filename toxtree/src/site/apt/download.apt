@@ -28,17 +28,15 @@
     
       * build date 15 June 2014
     	
-      * updated to {{{http://cdk.sf.net}cdk 1.4.11}};
-
       * updated to {{{http://opsin.ch.cam.ac.uk/information.html} Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.5.0}};
       
       * updated to {{{http://ambit.sf.net}ambit-2.5.6}};
 
       * fixed {{{http://sourceforge.net/p/toxtree/bugs/81/}bug}} causing errors when starting in Linux;
       
-      * included jre-7u25-windows-i586.exe in Windows installer;
+      * included jre-7u60-windows-i586.exe in Windows installer;
       
-      * updated {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.0/Toxtree_user_manual.pdf/download}manuals}} and {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.0/README.txt/download}README}}.	
+      * updated {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.6/Toxtree_user_manual.pdf/download}manuals}} and {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.6/README.txt/download}README}}.	
       
       * {{{https://sourceforge.net/p/toxtree/svn/1623/tree/tags/2.6.6/}Source code}}  
       
