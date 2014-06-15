@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2008
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd. (C) 2005-2014
+Contact: www.ideaconsult.net
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -87,39 +87,44 @@ public class ToxTreeApp extends CompoundMethodApplication {
 	protected DataModule createDataModule() {
 		DecisionMethodsList methods = new DecisionMethodsList();
 		try {
-				methods.loadAllFromPlugins();
-				//TODO for test only, make it as plugin
+				//methods.loadAllFromPlugins();
+				methods.loadPluginsByConfiguration();
 
 		} catch (Exception x) {
 			logger.log(Level.SEVERE,x.getMessage(),x);
 		}
 		if (methods.size() == 0) {
-			try {
-				methods.add(Introspection.loadCreateObject("toxTree.tree.cramer.CramerRules")); //1
-				methods.add(Introspection.loadCreateObject("cramer2.CramerRulesWithExtensions")); //2
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.kroes.Kroes1Tree")); //3
-				methods.add(Introspection.loadCreateObject("verhaar.VerhaarScheme")); //4
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.verhaar2.VerhaarScheme2")); //5
-				methods.add(Introspection.loadCreateObject("mutant.BB_CarcMutRules")); //6
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.ames.AmesMutagenicityRules")); //6
-				methods.add(Introspection.loadCreateObject("sicret.SicretRules")); //7
-				methods.add(Introspection.loadCreateObject("eye.EyeIrritationRules")); //8				
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.skinsensitisation.SkinSensitisationPlugin"));//10
-				methods.add(Introspection.loadCreateObject("michaelacceptors.MichaelAcceptorRules")); //11
-				methods.add(Introspection.loadCreateObject("com.molecularnetworks.start.BiodgeradationRules"));//12
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.smartcyp.SMARTCYPPlugin"));//13
-				methods.add(Introspection.loadCreateObject("mic.MICRules"));//14
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.func.FuncRules"));//100
+			logger.log(Level.WARNING,"No decision trees found! Have you installed the application correctly?");
+			logger.log(Level.INFO,"Loadind default plugins...");
+			String[] config = new String[] {
+			            "toxTree.tree.cramer.CramerRules",
+			            "cramer2.CramerRulesWithExtensions",
+			            "toxtree.plugins.kroes.Kroes1Tree",
+			            "verhaar.VerhaarScheme",
+			            "toxtree.plugins.verhaar2.VerhaarScheme2",
+			            "mutant.BB_CarcMutRules",
+			            "toxtree.plugins.ames.AmesMutagenicityRules", //6
+						"sicret.SicretRules", //7
+						"eye.EyeIrritationRules", //8				
+						"toxtree.plugins.skinsensitisation.SkinSensitisationPlugin",//10
+						"michaelacceptors.MichaelAcceptorRules", //11
+						"com.molecularnetworks.start.BiodgeradationRules",//12
+						"toxtree.plugins.smartcyp.SMARTCYPPlugin",//13
+						"mic.MICRules",//14
+						"toxtree.plugins.func.FuncRules",//100
+						"toxtree.plugins.proteinbinding.ProteinBindingPlugin",//100
+						"toxtree.plugins.dnabinding.DNABindingPlugin"          	
+			};
+			for (String clazz : config)
+				try {
+					logger.log(Level.INFO,"Loading "+clazz);
+					methods.add(Introspection.loadCreateObject(clazz));
+				} catch (Exception x) { logger.log(Level.WARNING,x.getMessage());}
 				
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.proteinbinding.ProteinBindingPlugin"));//100
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.dnabinding.DNABindingPlugin"));//100
 				//methods.add(Introspection.loadCreateObject("toxtree.plugins.moa.MOARules"));//100
 				//methods.add(Introspection.loadCreateObject("toxtree.plugins.search.CompoundLookup"));
-			} catch (Exception x) { 
-				x.printStackTrace();
-				try {methods.add( new SubstructureTree()); } catch (Exception e) {}
-			}
-			logger.warning("No decision trees found! Have you installed the application correctly?");
+
+
 		}
 		return new ToxTreeModule(mainFrame, fileToOpen,methods);
 	}
