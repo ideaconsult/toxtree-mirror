@@ -52,7 +52,7 @@ public class RuleCommonComponentOfFood extends RuleStructuresList {
 		explanation.append("This definition excludes natural or man made contaminants and hormones.");
 		explanation.append("</i>");
 		if (isImplemented()) {
-			explanation.append("<p><b>Note the answer of the question relies on an incomplete list of compounds, indentified by an expert as a common component of food.");		
+			explanation.append("<p><b>Note the answer of the question relies on an incomplete list of compounds, identified by an expert as a common component of food.");		
 			explanation.append("If you believe a query compound is wrongly identfied as a such, or not recognised, ");
 			explanation.append("please consult and/or update the list.<i>");
 			explanation.append(getFile().getAbsolutePath());

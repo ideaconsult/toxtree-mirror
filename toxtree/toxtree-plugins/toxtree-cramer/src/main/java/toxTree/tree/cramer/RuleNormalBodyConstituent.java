@@ -57,7 +57,7 @@ public class RuleNormalBodyConstituent extends RuleStructuresList {
 		explanation.append("<html>Is the substance a normal constituent of the body, or an optical isomer of such?<p>");
 		explanation.append("This question throws into class I all normal constituents of body tissues and fluids, including normal metabolites. Hormones are excluded, as are, by implication, the metabolites of environmental and food contaminants or those resulting from disease state.");
 		if (isImplemented()) {
-			explanation.append("<p><b>Note the answer of the question relies on an incomplete list of compounds, indentified by an expert as a normal body constituents.");		
+			explanation.append("<p><b>Note the answer of the question relies on an incomplete list of compounds, identified by an expert as a normal body constituents.");		
 			explanation.append("If you believe a query compound is wrongly identfied as a such, or not recognised, ");
 			explanation.append("please consult and/or update the list.<i>");
 			explanation.append(getFile().getAbsolutePath());
