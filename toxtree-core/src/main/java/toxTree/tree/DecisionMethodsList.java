@@ -29,13 +29,16 @@ import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Observable;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -214,6 +217,62 @@ public class DecisionMethodsList extends Observable implements	IDecisionMethodsL
 		return list.toArray(arg0);
 	}
 
+	public void loadPluginsByConfiguration() {
+		List packageEntries = Introspection.getAvailableTreeTypes(getClass().getClassLoader());
+		if (packageEntries == null) return;
+		File config = new File(Introspection.getToxTreeRoot()+"toxtree-plugins.properties");
+		logger.log(Level.INFO,String.format("Plugin configuration at %s ",config.getAbsoluteFile()));
+		Properties plugins = new Properties();
+		InputStream in = null;
+		try {
+			in = new FileInputStream(config);
+			plugins.load(in);
+			logger.log(Level.INFO,String.format("Plugins configured %s ",plugins));
+			Object folder = plugins.get("folder");
+			Object[] keys = plugins.keySet().toArray();
+			Arrays.sort(keys);
+			for (Object key : keys ) {
+				if ("folder".equals(key.toString())) continue;
+				Object o;
+				String className=  plugins.get(key).toString();
+				try { 
+						logger.log(Level.INFO,String.format("Plugin %s.%s enabled, loading ...", key, className));
+						if (key.toString().endsWith(".tml")) {
+							try {
+								File tmlFile = new File(folder + "/" + className);
+								in =  new FileInputStream(tmlFile);
+								addDecisionMethod(Introspection.loadRulesXML(in, tmlFile.getAbsolutePath()));
+								logger.log(Level.INFO,String.format("Plugin %s loaded.", key));
+							} catch (Exception x) {
+								logger.log(Level.SEVERE,x.getMessage(),x);
+							} finally {
+								try { in.close();} catch (Exception x) {}
+							}							
+						} else { //jar
+							o = Introspection.loadCreateObject(className);
+							if (o instanceof IDecisionMethod) {
+								if (((IDecisionMethod) o).getRules().size() > 0) {
+									((IDecisionMethod)o).setEditable(false);
+									((IDecisionMethod)o).setModified(false);
+									addDecisionMethod((IDecisionMethod)o);
+									logger.log(Level.INFO,String.format("Plugin %s loaded.", className));
+								} else
+									logger.log(Level.WARNING,String.format("Plugin %s has no rules, ignored.", className));
+							} else {
+								logger.log(Level.WARNING,String.format("Plugin %s does not implement toxtree.core.IDecisionMethod", className));
+							}							
+						} 
+
+				} catch (Exception x) {
+					logger.log(Level.SEVERE,x.getMessage());		
+				}
+			}
+		} catch (Exception x) {
+			logger.log(Level.WARNING,x.getMessage());
+		} finally {
+			try {in.close();} catch (Exception x) {}
+		}
+	}
 	public void loadAllFromPlugins() {
 		List packageEntries = Introspection.getAvailableTreeTypes(getClass().getClassLoader());
 		if (packageEntries == null) return;
@@ -229,7 +288,7 @@ public class DecisionMethodsList extends Observable implements	IDecisionMethodsL
 					}
 				}	
 			} catch (Exception x) {
-				x.printStackTrace();
+				logger.log(Level.SEVERE,x.getMessage());
 			}
 		}
 		try {

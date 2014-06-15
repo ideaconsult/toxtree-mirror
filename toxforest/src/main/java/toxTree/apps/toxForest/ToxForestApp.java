@@ -82,23 +82,19 @@ public class ToxForestApp extends CompoundMethodApplication {
 			logger.log(Level.SEVERE,x.getLocalizedMessage(),x);
 		}		
 		if (methods.size() == 0) {
-			try {
-				methods.add(Introspection.loadCreateObject("toxTree.tree.cramer.CramerRules"));
-				methods.add(Introspection.loadCreateObject("cramer2.CramerRulesWithExtensions"));
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.kroes.Kroes1Tree"));
-				methods.add(Introspection.loadCreateObject("sicret.SicretRules"));
-				methods.add(Introspection.loadCreateObject("mutant.BB_CarcMutRules"));
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.smartcyp.SMARTCYPPlugin"));
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.skinsensitisation.SkinSensitisationPlugin"));
-				methods.add(Introspection.loadCreateObject("com.molecularnetworks.start.BiodgeradationRules"));
-				methods.add(Introspection.loadCreateObject("verhaar.VerhaarScheme"));
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.verhaar2.VerhaarScheme2"));
-				methods.add(Introspection.loadCreateObject("toxtree.plugins.func.FuncRules"));
-			} catch (Exception x) { 
-				
-				try {methods.add(methods.add(Introspection.loadCreateObject("toxTree.tree.demo.SMARTSTree"))); } catch (Exception e) {}
-			}
-			logger.warning("No decision trees found! Have you installed the application correctly?");
+			logger.warning("No decision trees found! Have you installed the application correctly? Loading default plugins ...");
+			try { methods.add(Introspection.loadCreateObject("toxTree.tree.cramer.CramerRules"));} catch (Exception e) {}
+			try { methods.add(Introspection.loadCreateObject("cramer2.CramerRulesWithExtensions"));}catch (Exception e) {}
+			try { methods.add(Introspection.loadCreateObject("toxtree.plugins.kroes.Kroes1Tree"));}catch (Exception e) {}
+			try { methods.add(Introspection.loadCreateObject("sicret.SicretRules"));}catch (Exception e) {}
+			try { methods.add(Introspection.loadCreateObject("mutant.BB_CarcMutRules"));}catch (Exception e) {}
+			try { methods.add(Introspection.loadCreateObject("toxtree.plugins.smartcyp.SMARTCYPPlugin"));}catch (Exception e) {}
+			try { methods.add(Introspection.loadCreateObject("toxtree.plugins.skinsensitisation.SkinSensitisationPlugin"));}catch (Exception e) {}
+			try { methods.add(Introspection.loadCreateObject("com.molecularnetworks.start.BiodgeradationRules"));}catch (Exception e) {}
+			try { methods.add(Introspection.loadCreateObject("verhaar.VerhaarScheme"));}catch (Exception e) {}
+			try { methods.add(Introspection.loadCreateObject("toxtree.plugins.verhaar2.VerhaarScheme2"));}catch (Exception e) {}
+			try { methods.add(Introspection.loadCreateObject("toxtree.plugins.func.FuncRules"));}catch (Exception e) {}
+			//try {methods.add(methods.add(Introspection.loadCreateObject("toxTree.tree.demo.SMARTSTree"))); } catch (Exception e) {}
 		}		
 		return new ToxForestDataModule(mainFrame,null,methods);
 	}
