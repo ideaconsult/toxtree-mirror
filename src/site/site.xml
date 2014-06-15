@@ -78,6 +78,7 @@
     <menu ref="parent"/>
     -->
     <menu name="Related links">
+    	<item name="Toxtree online" href="http://toxtree.sf.net/predict" />
       <item name="Toxmatch" href="http://toxmatch.sf.net" />
       <item name="ToxPredict" href="http://toxpredict.org" />
       <item name="AMBIT 2.0" href="http://ambit.sourceforge.net" />
