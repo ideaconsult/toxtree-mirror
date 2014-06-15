@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="iso-8859-1"?>
 <project name="Toxtree">
-<!-- 
+  <!-- 
   <bannerLeft>
     <name>Toxtree</name>
     <src>images/toxtree-logo.gif</src>
@@ -8,9 +8,9 @@
   </bannerLeft>
    -->
   <body>
-      <head>
+    <head>
       <!-- Google Analytics - Start -->
-<script type="text/javascript">
+      <script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-24983132-1']);
@@ -22,88 +22,91 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
-</script>   
-      <!-- Google Analytics - End -->    
+</script>
+      <!-- Google Analytics - End -->
     </head>
-
-      <!--<item name="Xdoc Example" href="xdoc.html"/>-->
-    <menu name="Home" >
-    	<item name="Toxtree" href="/index.html"/>
+    <!--<item name="Xdoc Example" href="xdoc.html"/>-->
+    <menu name="Home">
+      <item name="Toxtree" href="/index.html" />
     </menu>
-    <menu name="Download" >
-      	<item name="Toxtree 2.6.0" href="/download.html#Toxtree_2.6.0"/>
-    		<item name="Toxtree 2.5.4" href="/download.html#Toxtree_2.5.4"/>
-      		<item name="Toxtree 2.5.1" href="/download.html#Toxtree_2.5.1"/>
-      		<item name="Toxtree 2.5.0" href="/download.html#Toxtree_2.5.0"/>
-            <item name="Toxtree 2.2.0" href="/download.html#Toxtree_2.2.0"/>
-            <item name="Toxtree 2.1.0" href="/download.html#Toxtree_2.1.0"/>
-            <item name="Toxtree 1.60" href="/download.html#Toxtree-v1.60"/>
-            <item name="Toxtree 1.51" href="/download.html#Toxtree-v1.51"/>
-            <item name="Toxtree 1.20" href="/download.html#Toxtree-v1.20"/>
-	</menu>
+    <menu name="Download">
+    	<item name="Toxtree 2.6.6" href="/download.html#Toxtree_2.6.6" />
+      <item name="Toxtree 2.6.0" href="/download.html#Toxtree_2.6.0" />
+      <item name="Toxtree 2.5.4" href="/download.html#Toxtree_2.5.4" />
+      <item name="Toxtree 2.5.1" href="/download.html#Toxtree_2.5.1" />
+      <item name="Toxtree 2.5.0" href="/download.html#Toxtree_2.5.0" />
+      <item name="Toxtree 2.2.0" href="/download.html#Toxtree_2.2.0" />
+      <item name="Toxtree 2.1.0" href="/download.html#Toxtree_2.1.0" />
+      <item name="Toxtree 1.60" href="/download.html#Toxtree-v1.60" />
+      <item name="Toxtree 1.51" href="/download.html#Toxtree-v1.51" />
+      <item name="Toxtree 1.20" href="/download.html#Toxtree-v1.20" />
+    </menu>
     <menu name="Plugins">
-      <item name="Cramer rules" href="/cramer.html"/>
-      <item name="Extended Cramer rules" href="/cramer2.html"/>
-      <item name="Verhaar scheme" href="/verhaar.html"/>
-      <item name="Modified Verhaar scheme" href="/verhaar2.html"/>
+      <item name="Cramer rules" href="/cramer.html" />
+      <item name="Extended Cramer rules" href="/cramer2.html" />
+      <item name="Verhaar scheme" href="/verhaar.html" />
+      <item name="Modified Verhaar scheme" href="/verhaar2.html" />
       <item name="Skin irritation" href="skin.html" />
-	  <item name="Eye irritation" href="/eye.html"/>
-	  <item name="Benigni-Bossa rule base for carcinogenicity and mutagenicity" href="/carc.html"/>
-	  <item name="Structure Alerts (ISSMIC)" href="/mic.html"/>	  
-	  <item name="Functional Group (ISSFUNC)" href="/issfunc.html" />
-	  <item name="START (biodegradation and persistence)" href="/start.html"/>	
-	  <item name="Michael Acceptors" href="/michaelacceptors.html" />
-	  <item name="Skin sensitisation reactivity domains" href="/skinsensitisation.html" />
-	  <item name="Protein binding alerts" href="/proteinbinding.html" />
-	  <item name="DNA binding alerts" href="/dnabinding.html" />
-	  <item name="SMARTCyp and metabolite prediction" href="/smartcyp.html" />
-	  <item name="Kroes TTC decision tree" href="/kroes.html" />
-	  <item name="In vitro mutagenicity (Ames test)" href="/ames.html" />
+      <item name="Eye irritation" href="/eye.html" />
+      <item name="Benigni-Bossa rule base for carcinogenicity and mutagenicity" href="/carc.html" />
+      <item name="Structure Alerts (ISSMIC)" href="/mic.html" />
+      <item name="Functional Group (ISSFUNC)" href="/issfunc.html" />
+      <item name="START (biodegradation and persistence)" href="/start.html" />
+      <item name="Michael Acceptors" href="/michaelacceptors.html" />
+      <item name="Skin sensitisation reactivity domains" href="/skinsensitisation.html" />
+      <item name="Protein binding alerts" href="/proteinbinding.html" />
+      <item name="DNA binding alerts" href="/dnabinding.html" />
+      <item name="SMARTCyp and metabolite prediction" href="/smartcyp.html" />
+      <item name="Kroes TTC decision tree" href="/kroes.html" />
+      <item name="In vitro mutagenicity (Ames test)" href="/ames.html" />
     </menu>
-	<menu name="Support">      
-	  <item name="Support and feedback" href="/intro.html" />
-	  <item name="FAQ" href="/faq.html" />
-  	  <item name="G+ page" href="https://plus.google.com/b/102898313049050824023/102898313049050824023/posts" />
-  	  <item name="LinkedIn group" href="http://www.linkedin.com/groups/Toxtree-4140613" />
-	  <item name="Bug reports" href="/issue-tracking.html" />
-    </menu>    
+    <menu name="Support">
+      <item name="Support and feedback" href="/intro.html" />
+      <item name="FAQ" href="/faq.html" />
+      <item name="G+ page" href="https://plus.google.com/b/102898313049050824023/102898313049050824023/posts" />
+      <item name="LinkedIn group" href="http://www.linkedin.com/groups/Toxtree-4140613" />
+      <item name="Bug reports" href="/issue-tracking.html" />
+    </menu>
     <menu name="Publications">
-    	<item name="How to cite Toxtree" href="/pubs_citetoxtree.html" />
-    	<item name="Toxtree citations" href="/pubs_usage.html" />
-    	<item name="Toxtree evaluations" href="/pubs_eval.html" />
-    </menu> 
-    <menu ref="reports"/>
+      <item name="How to cite Toxtree" href="/pubs_citetoxtree.html" />
+      <item name="Toxtree citations" href="/pubs_usage.html" />
+      <item name="Toxtree evaluations" href="/pubs_eval.html" />
+    </menu>
+    <menu ref="reports" />
     <!--
     <menu ref="modules" />
     <menu ref="parent"/>
     -->
-
     <menu name="Related links">
-      <item name="Toxmatch" href="http://toxmatch.sf.net"/>
-      <item name="ToxPredict" href="http://toxpredict.org"/>
-      <item name="AMBIT 2.0" href="http://ambit.sourceforge.net"/>
-      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net:8080/ambit2"/>
-      <item name="SMILES quiz" href="http://tinyurl.com/smilesquiz"/>
-      
+      <item name="Toxmatch" href="http://toxmatch.sf.net" />
+      <item name="ToxPredict" href="http://toxpredict.org" />
+      <item name="AMBIT 2.0" href="http://ambit.sourceforge.net" />
+      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net:8080/ambit2" />
+      <item name="SMILES quiz" href="http://tinyurl.com/smilesquiz" />
     </menu>
   </body>
-
   <poweredBy>
-    <logo name="SourceForge" href="http://sourceforge.net/projects/toxtree"
-          img="http://sflogo.sourceforge.net/sflogo.php?group_id=152702&amp;type=12"/>
+    <logo name="SourceForge" href="http://sourceforge.net/projects/toxtree" img="http://sflogo.sourceforge.net/sflogo.php?group_id=152702&amp;type=12" />
   </poweredBy>
-
+  
     <skin>
         <groupId>org.apache.maven.skins</groupId>
     	<artifactId>maven-fluido-skin</artifactId>
     	<version>1.3.0</version>
     </skin>
-
+    
+    <!--
+  <skin>
+    <groupId>lt.velykis.maven.skins</groupId>
+    <artifactId>reflow-maven-skin</artifactId>
+    <version>1.1.0</version>
+  </skin>
+  -->
   <custom>
     <fluidoSkin>
       <topBarEnabled>true</topBarEnabled>
-       <topBarContainerStyle>width: 90%;</topBarContainerStyle>
-       <navBarStyle>navbar-inverse</navBarStyle>
+      <topBarContainerStyle>width: 90%;</topBarContainerStyle>
+      <navBarStyle>navbar-inverse</navBarStyle>
       <sideBarEnabled>false</sideBarEnabled>
       <topBarIcon>
         <name>Toxtree</name>
@@ -120,7 +123,7 @@
         <showUser>false</showUser>
         <showFollowers>false</showFollowers>
       </twitter>
-       <ohloh>
+      <ohloh>
         <projectId>toxtree</projectId>
         <widget>stats</widget>
       </ohloh>
