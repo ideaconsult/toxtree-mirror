@@ -16,8 +16,14 @@
 
 [images/cramer/thumb.jpg] Toxtree Cramer rules module screenshot 
 
+*{Try Toxtree online}
+
+	* {{{http://toxtree.sourceforge.net/predict}http://toxtree.sourceforge.net/predict}}
+
 *{Downloads}
 
+	* {{{./download.html#Toxtree_2.6.6}Toxtree-2.6.6}}
+	
 	* {{{./download.html#Toxtree_2.6.0}Toxtree-2.6.0}}
   
 	* {{{./download.html#Toxtree_2.5.4}Toxtree-2.5.4}}
@@ -30,7 +36,7 @@
 	
 *{Plugins}
 
-	{{{./download.html#Toxtree_2.6.0}Toxtree-2.6.0}} is distributed with 17 plugins:
+	{{{./download.html#Toxtree_2.6.0}Toxtree-2.6.6}} is distributed with 17 plugins:
 	
 	* {{{./cramer.html}Cramer rules}} & {{{/cramer2.html}  Cramer  rules with  extensions}}
 	
