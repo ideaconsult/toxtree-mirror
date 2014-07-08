@@ -29,6 +29,8 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.logging.Level;
 
+import net.idea.modbcum.i.exceptions.AmbitException;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionCategories;
@@ -47,8 +49,6 @@ import ambit2.base.data.ILiteratureEntry._type;
 import ambit2.base.data.Property;
 import ambit2.base.data.PropertyAnnotation;
 import ambit2.base.data.PropertyAnnotations;
-import ambit2.base.exceptions.AmbitException;
-import ambit2.base.interfaces.ICategory;
 
 public class SkinSensitisationTreeResult extends TreeResult {
     protected static String SUFFIX = "SUFFIX";

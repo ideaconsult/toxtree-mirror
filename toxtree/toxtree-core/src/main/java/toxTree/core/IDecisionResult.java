@@ -28,13 +28,14 @@ import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.util.List;
 
+import net.idea.modbcum.i.exceptions.AmbitException;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.RuleResult;
 import ambit2.base.data.Property;
-import ambit2.base.exceptions.AmbitException;
 
 
 /**

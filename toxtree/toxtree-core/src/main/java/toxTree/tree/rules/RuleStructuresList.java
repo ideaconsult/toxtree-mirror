@@ -21,13 +21,16 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.tree.rules;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.logging.Level;
+
+import net.idea.modbcum.i.exceptions.AmbitException;
+import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -39,58 +42,67 @@ import toxTree.exceptions.DRuleNotImplemented;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.Tools;
 import toxTree.tree.AbstractRule;
-import ambit2.base.exceptions.AmbitException;
-import ambit2.base.interfaces.IProcessor;
 
 /**
- * A rule, which returns true if the query is isomorphic to one of the structures 
- * read from a preconfigured file of a type SDF, SMI, CSV 
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-9-6
+ * A rule, which returns true if the query is isomorphic to one of the
+ * structures read from a preconfigured file of a type SDF, SMI, CSV
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-9-6
  */
 public class RuleStructuresList extends AbstractRule {
-	
+
 	protected transient ILookupFile lookupFile;
-    protected String filename = null;
+	protected String filename = null;
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = 1445819316236082148L;
+
 	/**
 	 * 
 	 */
 	public RuleStructuresList() {
-		this(new File(Introspection.getToxTreeRoot()+"bodymol.sdf"));
-		
+		this(new File(Introspection.getToxTreeRoot() + "bodymol.sdf"));
+
 	}
+
 	public RuleStructuresList(String resource) {
 		this(Tools.getFileFromResourceSilent(resource));
 	}
 
 	public RuleStructuresList(File file) {
 		super();
-		
+
 		try {
 			setFile(file);
-			
+
 		} catch (Exception x) {
-			try {setFile(Tools.getFileFromResource(file.getName()));} catch (Exception xx) { lookupFile = null;}
-			logger.log(Level.SEVERE,x.getMessage(),x);
+			try {
+				setFile(Tools.getFileFromResource(file.getName()));
+			} catch (Exception xx) {
+				lookupFile = null;
+			}
+			logger.log(Level.SEVERE, x.getMessage(), x);
 		}
 		setExplanation("Returns true if the query is isomorphic to one of the structures loaded from a preconfigured file of a type SDF, SMI, CSV ");
 		setTitle("Exact search");
-        
-	}	
+
+	}
+
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		if (lookupFile == null) throw new DRuleNotImplemented();
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		if (lookupFile == null)
+			throw new DRuleNotImplemented();
 		return lookupFile.find(mol);
 
-		
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.AbstractRule#isImplemented()
 	 */
 	@Override
@@ -104,74 +116,91 @@ public class RuleStructuresList extends AbstractRule {
 	public synchronized File getFile() {
 		return lookupFile.getFile();
 	}
-	/**
-	 * @param file The file to set.
-	 */
-	
-	public synchronized void setFile(File file) throws CDKException,IOException {
-		lookupFile = new LookupFile(file);
-        setFilename(file.getAbsolutePath());
 
-		logger.fine("Will be using file\t"+file.getAbsoluteFile());		
-		
-	}
 	/**
-	public synchronized boolean isUsingCache() {
-		return lookupFile.isUseCache();
+	 * @param file
+	 *            The file to set.
+	 */
+
+	public synchronized void setFile(File file) throws CDKException,
+			IOException {
+		lookupFile = new LookupFile(file);
+		setFilename(file.getAbsolutePath());
+
+		logger.fine("Will be using file\t" + file.getAbsoluteFile());
+
 	}
-	public synchronized void setUsingCache(boolean useCache) {
-		lookupFile.setUseCache(useCache);
+
+	/**
+	 * public synchronized boolean isUsingCache() { return
+	 * lookupFile.isUseCache(); } public synchronized void setUsingCache(boolean
+	 * useCache) { lookupFile.setUseCache(useCache); } /*
+	 * 
+	 * @Override public IDecisionRuleEditor getEditor() { return new
+	 *           RuleStructuresPanel(this); }
+	 */
+	private void readObject(ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		in.defaultReadObject();
+		try {
+			lookupFile = new LookupFile(getFilename());
+		} catch (Exception x) {
+			logger.log(Level.SEVERE, x.getMessage(), x);
+			lookupFile = null;
+		}
 	}
-	/*
-	@Override
-	public IDecisionRuleEditor getEditor() {
-		return new RuleStructuresPanel(this);
+
+	public synchronized String getFilename() {
+		return filename;
 	}
-	*/
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-            try {
-                lookupFile = new LookupFile(getFilename());
-            } catch (Exception x) {
-            	logger.log(Level.SEVERE,x.getMessage(),x);
-                lookupFile = null;
-            }
-    }
-    public synchronized String getFilename() {
-        return filename;
-    }
-    public synchronized void setFilename(String filename) {
-        this.filename = filename;
-    }    
-	
-    
-	public boolean  verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol,IAtomContainer selected) throws DecisionMethodException {
+
+	public synchronized void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public boolean verifyRule(
+			org.openscience.cdk.interfaces.IAtomContainer mol,
+			IAtomContainer selected) throws DecisionMethodException {
 		boolean ok = verifyRule(mol);
-		if (ok && (selected!=null))
+		if (ok && (selected != null))
 			selected.add(mol);
 		return ok;
 	}
-    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-    	return new IProcessor<IAtomContainer, IChemObjectSelection>() {
-    		public IChemObjectSelection process(IAtomContainer mol)
-    				throws AmbitException {
-    			//try {
-    				//IAtomContainer selected = SilentChemObjectBuilder.getInstance().newAtomContainer();
-	    			//verifyRule(mol, selected);
-	    			return new SingleSelection<IAtomContainer>(mol);
-    			//} catch (DecisionMethodException x) {
-    			//	throw new AmbitException(x);
-    			//}
-    		}
-    		public boolean isEnabled() {
-    			return true;
-    		}
-    		public long getID() {
-    			return 0;
-    		}
-    		public void setEnabled(boolean arg0) {
-    		}
-    	};
-    }	
-	   
+
+	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+			public IChemObjectSelection process(IAtomContainer mol)
+					throws AmbitException {
+				// try {
+				// IAtomContainer selected =
+				// SilentChemObjectBuilder.getInstance().newAtomContainer();
+				// verifyRule(mol, selected);
+				return new SingleSelection<IAtomContainer>(mol);
+				// } catch (DecisionMethodException x) {
+				// throw new AmbitException(x);
+				// }
+			}
+
+			public boolean isEnabled() {
+				return true;
+			}
+
+			public long getID() {
+				return 0;
+			}
+
+			public void setEnabled(boolean arg0) {
+			}
+
+			@Override
+			public void open() throws Exception {
+			}
+
+			@Override
+			public void close() throws Exception {
+			}
+
+		};
+	}
+
 }

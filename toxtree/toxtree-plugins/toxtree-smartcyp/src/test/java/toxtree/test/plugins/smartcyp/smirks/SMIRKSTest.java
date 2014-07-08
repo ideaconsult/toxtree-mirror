@@ -12,6 +12,7 @@ import java.util.Hashtable;
 import javax.imageio.ImageIO;
 
 import junit.framework.Assert;
+import net.idea.modbcum.i.processors.IProcessor;
 
 import org.junit.Test;
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
@@ -31,7 +32,6 @@ import toxTree.core.IDecisionResult;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.stats.ConfusionMatrix;
 import toxtree.plugins.smartcyp.SMARTCYPPlugin;
-import ambit2.base.interfaces.IProcessor;
 import ambit2.core.data.IStructureDiagramHighlights;
 import ambit2.core.io.MDLWriter;
 import ambit2.core.processors.structure.AtomConfigurator;

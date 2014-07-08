@@ -32,6 +32,8 @@ import java.beans.PropertyChangeSupport;
 import java.util.List;
 import java.util.Observable;
 
+import net.idea.modbcum.i.exceptions.AmbitException;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionCategories;
@@ -46,7 +48,6 @@ import toxTree.data.CategoryFilter;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import ambit2.base.data.Property;
-import ambit2.base.exceptions.AmbitException;
 
 /**
  * Encapsulates {@link DecisionResultsList} as {@link IDecisionMethod}.

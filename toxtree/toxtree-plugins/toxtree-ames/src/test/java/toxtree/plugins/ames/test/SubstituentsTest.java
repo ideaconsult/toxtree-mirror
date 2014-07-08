@@ -32,7 +32,6 @@ import java.util.Iterator;
 
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;

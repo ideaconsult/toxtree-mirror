@@ -20,8 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package sicret.categories;
 
 
-import ambit2.base.interfaces.ICategory.CategoryType;
-import toxTree.tree.DefaultCategory;
 import toxTree.tree.NonToxicCategory;
 
 /**

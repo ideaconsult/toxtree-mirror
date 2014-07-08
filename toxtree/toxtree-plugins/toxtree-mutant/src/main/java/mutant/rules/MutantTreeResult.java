@@ -38,6 +38,7 @@ import mutant.categories.CategoryNonMutagen;
 import mutant.categories.CategoryNotCarcinogen;
 import mutant.categories.CategoryPositiveAlertGenotoxic;
 import mutant.categories.CategoryPositiveAlertNongenotoxic;
+import net.idea.modbcum.i.exceptions.AmbitException;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -58,7 +59,6 @@ import ambit2.base.data.ILiteratureEntry._type;
 import ambit2.base.data.Property;
 import ambit2.base.data.PropertyAnnotation;
 import ambit2.base.data.PropertyAnnotations;
-import ambit2.base.exceptions.AmbitException;
 
 public class MutantTreeResult extends TreeResult {
     protected static String SUFFIX = "SUFFIX";

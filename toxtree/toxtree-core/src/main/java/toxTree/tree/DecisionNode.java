@@ -37,6 +37,8 @@ import java.beans.PropertyChangeListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
@@ -46,7 +48,6 @@ import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleEditor;
 import toxTree.core.IDecisionTransition;
 import toxTree.exceptions.DecisionMethodException;
-import ambit2.base.interfaces.IProcessor;
 
 /**
  * A decision node to be used in {@link UserDefinedTree}. Implements {@link IDecisionRule}

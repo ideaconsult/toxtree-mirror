@@ -21,6 +21,8 @@ package toxtree.plugins.search.rules;
 
 import java.util.Iterator;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.index.CASNumber;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -29,8 +31,6 @@ import toxTree.tree.AbstractRule;
 import ambit2.base.data.LiteratureEntry;
 import ambit2.base.data.Property;
 import ambit2.base.data.Template;
-import ambit2.base.exceptions.AmbitException;
-import ambit2.base.interfaces.IProcessor;
 import ambit2.base.processors.search.AbstractFinder;
 import ambit2.namestructure.Name2StructureFinder;
 import ambit2.pubchem.rest.PUGRestRequest;
@@ -91,7 +91,7 @@ public class Find extends AbstractRule {
 			Object content = p.process(value.toString());
 			System.out.println(content);
 			return content != null;
-		} catch (AmbitException x) {
+		} catch (Exception x) {
 			throw new DecisionMethodException(x);
 		}
 		

@@ -27,6 +27,8 @@ package eye.rules;
 import java.util.List;
 import java.util.logging.Level;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
@@ -37,7 +39,6 @@ import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
-import ambit2.base.interfaces.IProcessor;
 import ambit2.smarts.query.SMARTSException;
 import ambit2.smarts.query.SmartsPatternCDK;
 

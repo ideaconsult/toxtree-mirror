@@ -32,6 +32,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import net.idea.modbcum.i.exceptions.AmbitException;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
@@ -50,7 +52,6 @@ import ambit2.base.data.LiteratureEntry;
 import ambit2.base.data.Property;
 import ambit2.base.data.PropertyAnnotation;
 import ambit2.base.data.PropertyAnnotations;
-import ambit2.base.exceptions.AmbitException;
 /**
  * A default class implementing {@link toxTree.core.IDecisionResult}
  * @author Nina Jeliazkova nina@acad.bg<br>

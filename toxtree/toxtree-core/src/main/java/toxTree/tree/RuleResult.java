@@ -26,12 +26,13 @@ package toxTree.tree;
 
 import java.io.Serializable;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionRule;
-import ambit2.base.interfaces.IProcessor;
 
 /**
  * Stores the result of {@link IDecisionRule} application,

@@ -35,7 +35,6 @@ import javax.swing.JFrame;
 
 import toxTree.core.Introspection;
 import toxTree.tree.DecisionMethodsList;
-import toxTree.tree.demo.SubstructureTree;
 import toxtree.data.DataModule;
 import toxtree.data.ToxTreeModule;
 import toxtree.ui.DataModulePanel;

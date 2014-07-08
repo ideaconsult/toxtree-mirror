@@ -42,6 +42,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
@@ -51,7 +53,6 @@ import toxTree.tree.ProgressStatus;
 import toxtree.data.DataContainer;
 import toxtree.ui.molecule.NavigationPanel;
 import toxtree.ui.molecule.PropertyPanel;
-import ambit2.base.interfaces.IProcessor;
 import ambit2.ui.Panel2D;
 
 
