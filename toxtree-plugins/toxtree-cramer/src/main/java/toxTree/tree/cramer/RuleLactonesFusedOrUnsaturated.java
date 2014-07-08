@@ -35,6 +35,8 @@ package toxTree.tree.cramer;
 import java.util.List;
 import java.util.logging.Level;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -49,7 +51,6 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
 import toxTree.tree.rules.RuleAnySubstructure;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
-import ambit2.base.interfaces.IProcessor;
 
 /**
  * Rule 9 of the Cramer scheme (see {@link toxTree.tree.cramer.CramerRules})

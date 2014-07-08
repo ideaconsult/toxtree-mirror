@@ -1,5 +1,7 @@
 package toxtree.plugins.kroes.rules;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
@@ -10,7 +12,6 @@ import toxTree.tree.DefaultCategory;
 import toxTree.tree.cramer.CramerClass3;
 import toxTree.tree.cramer.CramerRules;
 import toxTree.tree.cramer.CramerTreeResult;
-import ambit2.base.interfaces.IProcessor;
 
 /**
  * Is the compound in Cramer structural class III?

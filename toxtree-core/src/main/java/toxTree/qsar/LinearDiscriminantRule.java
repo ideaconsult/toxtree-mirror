@@ -26,6 +26,8 @@ package toxTree.qsar;
 
 import java.util.Hashtable;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
@@ -36,7 +38,6 @@ import toxTree.exceptions.DRuleException;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import ambit2.base.exceptions.QSARModelException;
-import ambit2.base.interfaces.IProcessor;
 
 /**
  * Uses {@link LinearQSARModel} and returns true if {@link LinearQSARModel#predict(IAtomContainer)} is >= {@link #getThreshold()} and false otherwise.

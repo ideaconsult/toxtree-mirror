@@ -34,7 +34,6 @@ import junit.framework.Assert;
 import mutant.descriptors.AromaticAmineSubstituentsDescriptor;
 import mutant.descriptors.SubstituentExtractor;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;

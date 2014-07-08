@@ -30,15 +30,12 @@ import java.util.logging.Level;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.tree.rules.StructureAlertCDK;
-import ambit2.core.data.MoleculeTools;
 import ambit2.smarts.query.SMARTSException;
 
 public class SA10_gen extends StructureAlertCDK {

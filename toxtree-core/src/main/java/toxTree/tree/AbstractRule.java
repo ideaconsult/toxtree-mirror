@@ -40,6 +40,8 @@ import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
@@ -58,7 +60,6 @@ import toxTree.core.XMLSerializable;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.XMLDecisionMethodException;
 import toxTree.ui.EditorFactory;
-import ambit2.base.interfaces.IProcessor;
 
 /**
  * An abstract class implementing {@link IDecisionRule} interface.

@@ -1,6 +1,5 @@
 package toxtree.plugins.proteinbinding.categories;
 
-import ambit2.base.interfaces.ICategory.CategoryType;
 
 
 /**

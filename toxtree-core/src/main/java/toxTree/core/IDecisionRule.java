@@ -36,12 +36,13 @@ package toxTree.core;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
-import ambit2.base.interfaces.IProcessor;
 
 /**
  * An interface definition to represent a rule, that will be used in a {@link toxTree.core.IDecisionMethod}.

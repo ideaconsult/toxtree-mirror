@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
+import net.idea.modbcum.i.processors.IProcessor;
+
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRing;
@@ -34,7 +36,6 @@ import toxTree.tree.rules.DefaultAlertCounter;
 import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleRingSubstituents;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
-import ambit2.base.interfaces.IProcessor;
 
 public class SA20_nogen extends RuleRingSubstituents implements IAlertCounter {
 	/**
