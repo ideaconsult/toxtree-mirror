@@ -44,4 +44,7 @@
   	  		<scope>compile</scope>
   	  	</dependency>
   </dependencies>
+ <properties>
+ 	<opsin.version>1.6.0</opsin.version>
+	</properties>  
 </project>
