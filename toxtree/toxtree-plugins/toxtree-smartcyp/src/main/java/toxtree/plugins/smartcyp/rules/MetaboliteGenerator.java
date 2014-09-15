@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
@@ -164,7 +163,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 	}
 
 	@Override
-	public boolean accept(Vector<IAtom> atoms) {
+	public boolean accept(List<IAtom> atoms) {
 
 		boolean ok = false;
 		for (IAtom atom : atoms) {
