@@ -4,11 +4,11 @@
   <parent>
     <artifactId>toxtree-plugins</artifactId>
     <groupId>toxtree</groupId>
-    <version>2.6.11-SNAPSHOT</version>
+    <version>2.6.11</version>
   </parent>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-moa</artifactId>
-  <version>2.6.11-SNAPSHOT</version>
+  <version>2.6.11</version>
   <name>Toxtree module: Mode of Action</name>
   <description>Environmental Toxicology and Chemistry, Vol. 16, No. 5, pp. 948–967, 1997</description>
   <url>http://www.epa.gov/ncct/dsstox/Citations/ETC_Russom_1997_v16p948.pdf</url>
