@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
     <artifactId>toxtree</artifactId>
     <groupId>toxtree</groupId>
-    <version>2.6.11-SNAPSHOT</version>
+    <version>2.6.11</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>toxtree</groupId>
@@ -11,19 +12,16 @@
   <packaging>jar</packaging>
   <description>Helper classes</description>
   <organization>
-  	<name>Ideaconsult Ltd.</name>
-  	<url>http://www.ideaconsult.net</url>
+    <name>Ideaconsult Ltd.</name>
+    <url>http://www.ideaconsult.net</url>
   </organization>
-
   <dependencies>
-  	  <dependency>
-  	  		<groupId>ambit</groupId>
-  	  		<artifactId>opentox-opensso</artifactId>
-  	  		<version>2.0.0-SNAPSHOT</version>
-  	  		<type>jar</type>
-  	  		<scope>compile</scope>
-  	  	</dependency>
-  	
+    <dependency>
+      <groupId>ambit</groupId>
+      <artifactId>opentox-opensso</artifactId>
+      <version>2.0.0</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
-
 </project>
