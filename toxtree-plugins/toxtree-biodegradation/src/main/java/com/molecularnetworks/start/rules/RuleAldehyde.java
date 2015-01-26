@@ -34,36 +34,35 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for aldehydes.
+ * 
  * @version $Id: RuleAldehyde.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleAldehyde extends RuleSMARTSubstructure 
-{
+public class RuleAldehyde extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1589466114886371526L;
 
     /**
      * Default constructor
      */
-    public RuleAldehyde() 
-    {
-        super();		
-        try 
-        {
-            super.initSingleSMARTS( super.smartsPatterns, "1", "[CX3H1](=O)[#6]" );
-            super.setExplanation( 
-                "Checks for aldehyde functional group. " +
-                "Aldehydes are associated with easy biodegradability." 
-            );
-            id = "26";
-            title = "Adehydes";
-            examples[ 0 ] = "CC1OC1CC";
-            examples[ 1 ] = "CCCC=O";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleAldehyde() {
+	super();
+	try {
+	    super.initSingleSMARTS(super.smartsPatterns, "1", "[CX3H1](=O)[#6]");
+	    super.setExplanation("Checks for aldehyde functional group. "
+		    + "Aldehydes are associated with easy biodegradability.");
+	    id = "26";
+	    title = "Adehydes";
+	    examples[0] = "CC1OC1CC";
+	    examples[1] = "CCCC=O";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }

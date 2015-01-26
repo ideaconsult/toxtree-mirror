@@ -167,7 +167,12 @@ public class ListPanel extends JPanel implements ListSelectionListener {
             }
             
             TableCellRenderer r = new DefaultTableCellRenderer() {
-                /* (non-Javadoc)
+                /**
+		 * 
+		 */
+		private static final long serialVersionUID = -3358949345191423491L;
+
+		/* (non-Javadoc)
                  * @see javax.swing.table.DefaultTableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
                  */
                 @Override

@@ -34,37 +34,34 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for esters.
+ * 
  * @version $Id: RuleEsters.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleEsters extends RuleSMARTSubstructure 
-{
+public class RuleEsters extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5058885959824507696L;
 
     /**
      * Default constructor
      */
-    public RuleEsters() 
-    {
-        super();		
-        try 
-        {
-            super.initSingleSMARTS( super.smartsPatterns, "1", "[#6][CX3](=O)[$([OX2H0]([#6])[#6])]" );
-            super.setExplanation( 
-                "Checks for an ester. " +
-                "Esters are associated with easy biodegradability."
-            );
-            id = "28";
-            title = "Esters";
-            examples[ 0 ] = "CC1OC1CC";
-            examples[ 1 ] = "CCCC(=O)OCCC";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleEsters() {
+	super();
+	try {
+	    super.initSingleSMARTS(super.smartsPatterns, "1", "[#6][CX3](=O)[$([OX2H0]([#6])[#6])]");
+	    super.setExplanation("Checks for an ester. " + "Esters are associated with easy biodegradability.");
+	    id = "28";
+	    title = "Esters";
+	    examples[0] = "CC1OC1CC";
+	    examples[1] = "CCCC(=O)OCCC";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }
-

@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxtree.ui.molecule;
 
 import javax.swing.AbstractAction;
@@ -29,36 +29,41 @@ import javax.swing.Icon;
 
 import org.openscience.cdk.interfaces.IMolecule;
 
-
 /**
  * An abstract action to perform smth on a molecule
+ * 
  * @author Nina Jeliazkova
- *
+ * 
  */
 public abstract class AbstractMoleculeAction extends AbstractAction {
-	
-	protected  IMolecule molecule; 
-	public AbstractMoleculeAction(IMolecule molecule) {
-		super("Edit molecule");
-		this.molecule = molecule;
-	}
 
-	public AbstractMoleculeAction(IMolecule molecule,String arg0) {
-		super(arg0);
-		this.molecule = molecule;
-	}
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5270491315560823241L;
+    protected IMolecule molecule;
 
-	public AbstractMoleculeAction(IMolecule molecule,String arg0, Icon arg1) {
-		super(arg0, arg1);
-		this.molecule = molecule;
-	}
+    public AbstractMoleculeAction(IMolecule molecule) {
+	super("Edit molecule");
+	this.molecule = molecule;
+    }
 
-	public IMolecule getMolecule() {
-		return molecule;
-	}
+    public AbstractMoleculeAction(IMolecule molecule, String arg0) {
+	super(arg0);
+	this.molecule = molecule;
+    }
 
-	public void setMolecule(IMolecule molecule) {
-		this.molecule = molecule;
-	}
+    public AbstractMoleculeAction(IMolecule molecule, String arg0, Icon arg1) {
+	super(arg0, arg1);
+	this.molecule = molecule;
+    }
+
+    public IMolecule getMolecule() {
+	return molecule;
+    }
+
+    public void setMolecule(IMolecule molecule) {
+	this.molecule = molecule;
+    }
 
 }

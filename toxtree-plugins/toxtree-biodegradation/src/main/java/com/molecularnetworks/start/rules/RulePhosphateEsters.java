@@ -34,40 +34,38 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for phosphoric esters.
+ * 
  * @version $Id: RulePhosphateEsters.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RulePhosphateEsters extends RuleSMARTSubstructure 
-{
+public class RulePhosphateEsters extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -2427824181349541804L;
 
     /**
      * Default constructor
      */
-    public RulePhosphateEsters() 
-    {
-        super();		
-        try 
-        {
-            super.initSingleSMARTS( 
-                super.smartsPatterns, 
-                "1",
-                "[$(P(=[OX1])([OX2][#6])([$([OX2H]),$([OX1-]),$([OX2][#6])])[$([OX2H]),$([OX1-]),$([OX2][#6]),$([OX2]P)]),$([P+]([OX1-])([OX2][#6])([$([OX2H]),$([OX1-]),$([OX2][#6])])[$([OX2H]),$([OX1-]),$([OX2][#6]),$([OX2]P)])]" 
-            );
-            super.setExplanation( 
-                "Checks for phosphoric ester. " +
-                "Phosphoric esters are associated with easy biodegradability." 
-            );
-            id = "29";
-            title = "Phosphoric esters";
-            examples[ 0 ] = "CC1OC1CC";
-            examples[ 1 ] = "CCOP(=O)(OCC)OCC";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RulePhosphateEsters() {
+	super();
+	try {
+	    super.initSingleSMARTS(
+		    super.smartsPatterns,
+		    "1",
+		    "[$(P(=[OX1])([OX2][#6])([$([OX2H]),$([OX1-]),$([OX2][#6])])[$([OX2H]),$([OX1-]),$([OX2][#6]),$([OX2]P)]),$([P+]([OX1-])([OX2][#6])([$([OX2H]),$([OX1-]),$([OX2][#6])])[$([OX2H]),$([OX1-]),$([OX2][#6]),$([OX2]P)])]");
+	    super.setExplanation("Checks for phosphoric ester. "
+		    + "Phosphoric esters are associated with easy biodegradability.");
+	    id = "29";
+	    title = "Phosphoric esters";
+	    examples[0] = "CC1OC1CC";
+	    examples[1] = "CCOP(=O)(OCC)OCC";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }

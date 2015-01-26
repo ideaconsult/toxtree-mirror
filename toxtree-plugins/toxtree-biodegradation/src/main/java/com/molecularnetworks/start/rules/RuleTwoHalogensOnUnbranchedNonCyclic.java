@@ -39,117 +39,99 @@ import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
 
 /**
- * Biodegradation rule for unbranched, non-cyclic 
- * chemicals with two halogen substituents.
- * @version $Id: RuleTwoHalogensOnUnbranchedNonCyclic.java 936 2008-12-04 17:43:31Z joerg $
+ * Biodegradation rule for unbranched, non-cyclic chemicals with two halogen
+ * substituents.
+ * 
+ * @version $Id: RuleTwoHalogensOnUnbranchedNonCyclic.java 936 2008-12-04
+ *          17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleTwoHalogensOnUnbranchedNonCyclic extends RuleSMARTSubstructure 
-{
+public class RuleTwoHalogensOnUnbranchedNonCyclic extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4863820045166489254L;
 
     /**
      * Default constructor
      */
-    public RuleTwoHalogensOnUnbranchedNonCyclic() 
-    {
-        super();		
-        try 
-        {
-            // SMARTS - branching
-            super.addSubstructure( "1", "[$([C][C]([C])[C])]", true );
-            // SMARTS - no rings
-            super.addSubstructure( "2", "[R]", true );
-            // SMARTS - halogene substitution
-            super.addSubstructure( "3", "[#6][F,Cl,Br,I]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Unbranched, non-cyclic chemicals with two " +
-                "halogen substitutions are associated with low " +
-                "biodegradability." 
-            );
-            id = "7";
-            title = "Unbranched, non-cyclic chemicals with two halogen substitutions";
-            examples[ 0 ] = "C1CCCC1CC";
-            examples[ 1 ] = "ClCCCCCCCl";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleTwoHalogensOnUnbranchedNonCyclic() {
+	super();
+	try {
+	    // SMARTS - branching
+	    super.addSubstructure("1", "[$([C][C]([C])[C])]", true);
+	    // SMARTS - no rings
+	    super.addSubstructure("2", "[R]", true);
+	    // SMARTS - halogene substitution
+	    super.addSubstructure("3", "[#6][F,Cl,Br,I]", false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Unbranched, non-cyclic chemicals with two "
+		    + "halogen substitutions are associated with low " + "biodegradability.");
+	    id = "7";
+	    title = "Unbranched, non-cyclic chemicals with two halogen substitutions";
+	    examples[0] = "C1CCCC1CC";
+	    examples[1] = "ClCCCCCCCl";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
+
     /**
-     * Overrides the default {@link IDecisionRule} behaviour.
-     * Returns TRUE, if the answer of the rule is YES for the analyzed 
-     * molecule {@link org.openscience.cdk.interfaces.AtomContainer}
-     * Returns FALSE, if the answer of the rule is NO for the analyzed 
-     * molecule {@link org.openscience.cdk.interfaces.AtomContainer}
-     * @param mol  {@link org.openscience.cdk.interfaces.AtomContainer}
+     * Overrides the default {@link IDecisionRule} behaviour. Returns TRUE, if
+     * the answer of the rule is YES for the analyzed molecule
+     * {@link org.openscience.cdk.interfaces.AtomContainer} Returns FALSE, if
+     * the answer of the rule is NO for the analyzed molecule
+     * {@link org.openscience.cdk.interfaces.AtomContainer}
+     * 
+     * @param mol
+     *            {@link org.openscience.cdk.interfaces.AtomContainer}
      * @return rule result, boolean
      * @throws {@link DecisionMethodException}
      */
     @Override
-    public boolean verifyRule( org.openscience.cdk.interfaces.IAtomContainer mol )
-            throws DecisionMethodException 
-    {
-        logger.finer( getID() );
-        IAtomContainer moltotest = getObjectToVerify( mol );
-        if ( ! isAPossibleHit( mol, moltotest ) ) 
-        {
-            logger.finer("Not a possible hit due to the prescreen step.");
-            return false;
-        }
-        Enumeration e  = smartsPatterns.keys();
-        boolean is_true = false;
-        String temp_id = "";
-    	while( e.hasMoreElements() ) 
-        {
-            temp_id = e.nextElement().toString();
-            ISmartsPattern pattern = smartsPatterns.get( temp_id );
-            if ( null == pattern ) 
-            {
-                throw new DecisionMethodException( 
-                    "ID '" + id + "' is missing in " + getClass().getName() 
-                );
-            }
-            
-            try {
-	            int matchCount = pattern.hasSMARTSPattern( moltotest );
-	            if ( "3".equals( temp_id ) ) 
-	            {
-	                is_true = matchCount == 2;
-	            }
-	            else 
-	            {
-	                is_true = matchCount > 0;
-	            }
-	            logger.finer(
-	                "SMARTS " + temp_id + "\t" + pattern.toString()+
-	                "\tmatches "+
-	                matchCount+ 
-	                "times\tresult is "+
-	                is_true 
-	            );
-            } catch (Exception x) {
-            	throw new DecisionMethodException(x);
-            }
-            if ( pattern.isNegate() ) 
-            {
-                is_true = !is_true;
-            }
-            if ( containsAllSubstructures && !is_true ) 
-            {
-                return false;
-            } 
-            else if ( !containsAllSubstructures && is_true ) 
-            {    			
-                is_true = true;
-                break;
-            }
-    	}
-        return is_true;
+    public boolean verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol) throws DecisionMethodException {
+	logger.finer(getID());
+	IAtomContainer moltotest = getObjectToVerify(mol);
+	if (!isAPossibleHit(mol, moltotest)) {
+	    logger.finer("Not a possible hit due to the prescreen step.");
+	    return false;
+	}
+	Enumeration e = smartsPatterns.keys();
+	boolean is_true = false;
+	String temp_id = "";
+	while (e.hasMoreElements()) {
+	    temp_id = e.nextElement().toString();
+	    ISmartsPattern pattern = smartsPatterns.get(temp_id);
+	    if (null == pattern) {
+		throw new DecisionMethodException("ID '" + id + "' is missing in " + getClass().getName());
+	    }
+
+	    try {
+		int matchCount = pattern.hasSMARTSPattern(moltotest);
+		if ("3".equals(temp_id)) {
+		    is_true = matchCount == 2;
+		} else {
+		    is_true = matchCount > 0;
+		}
+		logger.finer("SMARTS " + temp_id + "\t" + pattern.toString() + "\tmatches " + matchCount
+			+ "times\tresult is " + is_true);
+	    } catch (Exception x) {
+		throw new DecisionMethodException(x);
+	    }
+	    if (pattern.isNegate()) {
+		is_true = !is_true;
+	    }
+	    if (containsAllSubstructures && !is_true) {
+		return false;
+	    } else if (!containsAllSubstructures && is_true) {
+		is_true = true;
+		break;
+	    }
+	}
+	return is_true;
     }
-    
+
 }

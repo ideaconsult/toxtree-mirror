@@ -39,6 +39,11 @@ public class CategoryPersistent extends DefaultCategory
 {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 2288663059442529409L;
+
+    /**
      * Default constructor
      */
     public CategoryPersistent() 

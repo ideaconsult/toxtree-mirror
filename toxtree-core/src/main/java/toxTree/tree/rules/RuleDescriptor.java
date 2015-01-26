@@ -113,7 +113,12 @@ public abstract class RuleDescriptor extends AbstractRule {
 	}
 
 	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = -1646574508555649397L;
+
 			public IChemObjectSelection process(IAtomContainer mol)
 					throws AmbitException {
 				try {

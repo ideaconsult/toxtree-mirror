@@ -42,6 +42,11 @@ public class RuleNNitroso extends RuleSMARTSubstructure
 {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 5273428658329365629L;
+
+    /**
      * Default constructor
      */
     public RuleNNitroso() 

@@ -34,36 +34,35 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for nitriles.
+ * 
  * @version $Id: RuleNitrile.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleNitrile extends RuleSMARTSubstructure 
-{
+public class RuleNitrile extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2866525745824191317L;
 
     /**
      * Default constructor
      */
-    public RuleNitrile() 
-    {
-        super();		
-        try 
-        {
-            super.initSingleSMARTS( super.smartsPatterns, "1", "[C]#[N]" );
-            super.setExplanation( 
-                "Checks for nitrile functional group. " +
-                "Nitriles are associated with easy biodegradability." 
-            );
-            id = "25";
-            title = "Nitriles";
-            examples[ 0 ] = "CC1OC1CC";
-            examples[ 1 ] = "CCCC#N";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleNitrile() {
+	super();
+	try {
+	    super.initSingleSMARTS(super.smartsPatterns, "1", "[C]#[N]");
+	    super.setExplanation("Checks for nitrile functional group. "
+		    + "Nitriles are associated with easy biodegradability.");
+	    id = "25";
+	    title = "Nitriles";
+	    examples[0] = "CC1OC1CC";
+	    examples[1] = "CCCC#N";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }

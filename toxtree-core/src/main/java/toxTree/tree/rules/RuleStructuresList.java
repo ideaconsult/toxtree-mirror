@@ -169,6 +169,11 @@ public class RuleStructuresList extends AbstractRule {
 
 	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
 		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = 1941242188425144120L;
+
 			public IChemObjectSelection process(IAtomContainer mol)
 					throws AmbitException {
 				// try {

@@ -34,38 +34,37 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for aromatic sulphonic acids.
+ * 
  * @version $Id: RuleAromaticSulphonicAcid.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleAromaticSulphonicAcid extends RuleSMARTSubstructure 
-{
+public class RuleAromaticSulphonicAcid extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4951096883397535662L;
 
     /**
      * Default constructor
      */
-    public RuleAromaticSulphonicAcid() 
-    {
-        super();
-        try 
-        {
-            super.addSubstructure( "1",
-                "[$([#16X4](=[OX1])(=[OX1])([a])[OX2H,OX1H0-]),$([#16X4+2]([OX1-])([OX1-])([a])[OX2H,OX1H0-])]", false );
-            super.setContainsAllSubstructures( false );
-            super.setExplanation( 
-                "Aromatic sulphonic acids " +
-                "are associated with low biodegradability." 
-            );
-            id = "16";
-            title = "Aromatic sulphonic acid";
-            examples[ 0 ] = "C1CCCC1";
-            examples[ 1 ] = "c1ccccc1S(=O)(=O)O";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleAromaticSulphonicAcid() {
+	super();
+	try {
+	    super.addSubstructure("1",
+		    "[$([#16X4](=[OX1])(=[OX1])([a])[OX2H,OX1H0-]),$([#16X4+2]([OX1-])([OX1-])([a])[OX2H,OX1H0-])]",
+		    false);
+	    super.setContainsAllSubstructures(false);
+	    super.setExplanation("Aromatic sulphonic acids " + "are associated with low biodegradability.");
+	    id = "16";
+	    title = "Aromatic sulphonic acid";
+	    examples[0] = "C1CCCC1";
+	    examples[1] = "c1ccccc1S(=O)(=O)O";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
+
 }

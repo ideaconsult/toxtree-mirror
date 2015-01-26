@@ -445,7 +445,12 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         
     public static QueryAtomContainer aromaticAmine(String mark) {
         QueryAtomContainer query = new QueryAtomContainer() {
-        	@Override
+        	/**
+	     * 
+	     */
+	    private static final long serialVersionUID = -819579792535610163L;
+
+		@Override
         	public String toString() {
         		return getID();
         	}
@@ -567,6 +572,11 @@ interface ISubstituentAction<T> {
  *
  */
 class ReallyAnyAtom extends AnyAtom {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -5287029857329985037L;
+
 	@Override
 	public boolean matches(IAtom atom) {
 		return true;

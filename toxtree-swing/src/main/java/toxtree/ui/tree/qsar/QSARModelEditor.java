@@ -49,6 +49,10 @@ public class QSARModelEditor extends JTabbedPane implements IToxTreeEditor {
 		super();
 		
 		OptionsPanel<AbstractQSARModel> m = new OptionsPanel<AbstractQSARModel>(model) {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = -4814907876586431137L;
 			@Override
 			public int getHeaderRows() {
 				return 0;
@@ -93,6 +97,11 @@ public class QSARModelEditor extends JTabbedPane implements IToxTreeEditor {
 		final DescriptorOptions o = new DescriptorOptions();
 		ListPanel p = new ListPanel("Descriptor",new ListTableModel(model.getDescriptors()),null) {
 			
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = 4572409802215466122L;
+
 			@Override
 			public void setSelectedObject(Object selectedObject, int index) {
 				super.setSelectedObject(selectedObject, index);

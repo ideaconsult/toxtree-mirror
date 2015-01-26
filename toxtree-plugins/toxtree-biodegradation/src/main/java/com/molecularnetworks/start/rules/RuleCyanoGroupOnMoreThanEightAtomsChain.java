@@ -33,38 +33,38 @@ import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
 import ambit2.smarts.query.SMARTSException;
 
 /**
- * Biodegradation rule for chemicals containing a cyano group 
- * that is attached to a more than 8 atoms chain.
- * @version $Id: RuleCyanoGroupOnMoreThanEightAtomsChain.java 936 2008-12-04 17:43:31Z joerg $
+ * Biodegradation rule for chemicals containing a cyano group that is attached
+ * to a more than 8 atoms chain.
+ * 
+ * @version $Id: RuleCyanoGroupOnMoreThanEightAtomsChain.java 936 2008-12-04
+ *          17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleCyanoGroupOnMoreThanEightAtomsChain extends RuleSMARTSubstructure 
-{
+public class RuleCyanoGroupOnMoreThanEightAtomsChain extends RuleSMARTSubstructure {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8650746019973342262L;
+
     /**
      * Default constructor
      */
-    public RuleCyanoGroupOnMoreThanEightAtomsChain() 
-    {
-        super();		
-        try 
-        {
-            super.addSubstructure( "1", "[N]#[C]~[AR0]~[AR0]~[AR0]~[AR0]~[AR0]~[AR0]~[AR0]~[AR0]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Chemicals with a cyano group attached to a more than " +
-                "8 atoms chain are associated with low biodegradability."
-            );
-            id = "12";
-            title = "Cyano group attached to a more than 8 atoms chain";
-            examples[ 0 ] = "C1CCCC1";
-            examples[ 1 ] = "CCCCCCCCCC#N";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleCyanoGroupOnMoreThanEightAtomsChain() {
+	super();
+	try {
+	    super.addSubstructure("1", "[N]#[C]~[AR0]~[AR0]~[AR0]~[AR0]~[AR0]~[AR0]~[AR0]~[AR0]", false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Chemicals with a cyano group attached to a more than "
+		    + "8 atoms chain are associated with low biodegradability.");
+	    id = "12";
+	    title = "Cyano group attached to a more than 8 atoms chain";
+	    examples[0] = "C1CCCC1";
+	    examples[1] = "CCCCCCCCCC#N";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
+
 }

@@ -46,192 +46,160 @@ import toxTree.tree.DecisionNodesList;
 import toxTree.tree.UserDefinedTree;
 
 /**
- * Wrapper class that knows the biodegradation rules that are available in the 
+ * Wrapper class that knows the biodegradation rules that are available in the
  * toxBiodegradation plugin.
+ * 
  * @version $Id: BiodgeradationRules.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
 public class BiodgeradationRules extends UserDefinedTree implements IDecisionInteractive {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3790027027577230994L;
     protected boolean residuesIDVisible;
     boolean interactive = false;
-    
-    public final static transient String[] c_rules = {
-        "com.molecularnetworks.start.rules.RuleTerminalTertButyl",
-        "com.molecularnetworks.start.rules.RuleEpoxide",
-        "com.molecularnetworks.start.rules.RuleAliphaticFusedRingsNonBranched",
-        "com.molecularnetworks.start.rules.RuleTerminalIsopropylNonCyclic",
-        "com.molecularnetworks.start.rules.RuleAliphaticCyclicNoBranches",
-        "com.molecularnetworks.start.rules.RuleHalogenSubstitutedBranched",
-        "com.molecularnetworks.start.rules.RuleTwoHalogensOnUnbranchedNonCyclic",
-        "com.molecularnetworks.start.rules.RuleMoreThanTwoHydroxyOnAromaticRing",
-        "com.molecularnetworks.start.rules.RuleTwoOrMoreRings",
-        "com.molecularnetworks.start.rules.RuleTwoTerminalDiaminoGroupsOnNonCyclic",
-        "com.molecularnetworks.start.rules.RuleTwoTerminalDoubleBondsOnUnbranched",
-        "com.molecularnetworks.start.rules.RuleCyanoGroupOnMoreThanEightAtomsChain",
-        "com.molecularnetworks.start.rules.RuleNNitroso",
-        "com.molecularnetworks.start.rules.RuleAromaticHalogen",
-        "com.molecularnetworks.start.rules.RuleAromaticNGroups",
-        "com.molecularnetworks.start.rules.RuleAromaticSulphonicAcid",
-        "com.molecularnetworks.start.rules.RuleAliphaticEther",
-        "com.molecularnetworks.start.rules.RuleTertiaryAmine",
-        "com.molecularnetworks.start.rules.RuleAzoGroup",
-        "com.molecularnetworks.start.rules.RuleTrifluoromethyl",
-        "com.molecularnetworks.start.rules.RuleTriazineRing",
-        "com.molecularnetworks.start.rules.RulePyridineRing",
-        "com.molecularnetworks.start.rules.RuleKetone",
-        "com.molecularnetworks.start.rules.RuleOneHalogenOnUnbranched",
-        "com.molecularnetworks.start.rules.RuleNitrile",
-        "com.molecularnetworks.start.rules.RuleAldehyde",
-        "com.molecularnetworks.start.rules.RuleAlcohols",
-        "com.molecularnetworks.start.rules.RuleEsters",
-        "com.molecularnetworks.start.rules.RulePhosphateEsters",
-        "com.molecularnetworks.start.rules.RuleAminoAcids",
-        "com.molecularnetworks.start.rules.RuleAlyphaticSulphonicAcids",
-	"com.molecularnetworks.start.rules.RuleFormaldehyde"
-    };
-    
+
+    public final static transient String[] c_rules = { "com.molecularnetworks.start.rules.RuleTerminalTertButyl",
+	    "com.molecularnetworks.start.rules.RuleEpoxide",
+	    "com.molecularnetworks.start.rules.RuleAliphaticFusedRingsNonBranched",
+	    "com.molecularnetworks.start.rules.RuleTerminalIsopropylNonCyclic",
+	    "com.molecularnetworks.start.rules.RuleAliphaticCyclicNoBranches",
+	    "com.molecularnetworks.start.rules.RuleHalogenSubstitutedBranched",
+	    "com.molecularnetworks.start.rules.RuleTwoHalogensOnUnbranchedNonCyclic",
+	    "com.molecularnetworks.start.rules.RuleMoreThanTwoHydroxyOnAromaticRing",
+	    "com.molecularnetworks.start.rules.RuleTwoOrMoreRings",
+	    "com.molecularnetworks.start.rules.RuleTwoTerminalDiaminoGroupsOnNonCyclic",
+	    "com.molecularnetworks.start.rules.RuleTwoTerminalDoubleBondsOnUnbranched",
+	    "com.molecularnetworks.start.rules.RuleCyanoGroupOnMoreThanEightAtomsChain",
+	    "com.molecularnetworks.start.rules.RuleNNitroso", "com.molecularnetworks.start.rules.RuleAromaticHalogen",
+	    "com.molecularnetworks.start.rules.RuleAromaticNGroups",
+	    "com.molecularnetworks.start.rules.RuleAromaticSulphonicAcid",
+	    "com.molecularnetworks.start.rules.RuleAliphaticEther",
+	    "com.molecularnetworks.start.rules.RuleTertiaryAmine", "com.molecularnetworks.start.rules.RuleAzoGroup",
+	    "com.molecularnetworks.start.rules.RuleTrifluoromethyl",
+	    "com.molecularnetworks.start.rules.RuleTriazineRing", "com.molecularnetworks.start.rules.RulePyridineRing",
+	    "com.molecularnetworks.start.rules.RuleKetone",
+	    "com.molecularnetworks.start.rules.RuleOneHalogenOnUnbranched",
+	    "com.molecularnetworks.start.rules.RuleNitrile", "com.molecularnetworks.start.rules.RuleAldehyde",
+	    "com.molecularnetworks.start.rules.RuleAlcohols", "com.molecularnetworks.start.rules.RuleEsters",
+	    "com.molecularnetworks.start.rules.RulePhosphateEsters",
+	    "com.molecularnetworks.start.rules.RuleAminoAcids",
+	    "com.molecularnetworks.start.rules.RuleAlyphaticSulphonicAcids",
+	    "com.molecularnetworks.start.rules.RuleFormaldehyde" };
+
     private final static transient int c_transitions[][] = {
-        //{if no go to, if yes go to, assign if no, assign if yes}
-        {  2, 0, 0, 2 },
-        {  3, 0, 0, 2 },
-        {  4, 0, 0, 2 },
-        {  5, 0, 0, 2 },
-        {  6, 0, 0, 2 },
-        {  7, 0, 0, 2 },
-        {  8, 0, 0, 2 },
-        {  9, 0, 0, 2 },
-        { 10, 0, 0, 2 },
-        { 11, 0, 0, 2 },
-        { 12, 0, 0, 2 },
-        { 13, 0, 0, 2 },
-        { 14, 0, 0, 2 },
-        { 15, 0, 0, 2 },
-        { 16, 0, 0, 2 },
-        { 17, 0, 0, 2 },
-        { 18, 0, 0, 2 },
-        { 19, 0, 0, 2 },
-        { 20, 0, 0, 2 },
-        { 21, 0, 0, 2 },
-        { 22, 0, 0, 2 },
-        { 23, 0, 0, 2 },
-        { 24, 0, 0, 2 },
-        { 25, 0, 0, 1 },
-        { 26, 0, 0, 1 },
-        { 27, 0, 0, 1 },
-        { 28, 0, 0, 1 },
-        { 29, 0, 0, 1 },
-        { 30, 0, 0, 1 },
-        { 31, 0, 0, 1 },
-	{ 32, 0, 0, 1 }, 
-        {  0, 0, 3, 1 }
-    };
+	    // {if no go to, if yes go to, assign if no, assign if yes}
+	    { 2, 0, 0, 2 }, { 3, 0, 0, 2 }, { 4, 0, 0, 2 }, { 5, 0, 0, 2 }, { 6, 0, 0, 2 }, { 7, 0, 0, 2 },
+	    { 8, 0, 0, 2 }, { 9, 0, 0, 2 }, { 10, 0, 0, 2 }, { 11, 0, 0, 2 }, { 12, 0, 0, 2 }, { 13, 0, 0, 2 },
+	    { 14, 0, 0, 2 }, { 15, 0, 0, 2 }, { 16, 0, 0, 2 }, { 17, 0, 0, 2 }, { 18, 0, 0, 2 }, { 19, 0, 0, 2 },
+	    { 20, 0, 0, 2 }, { 21, 0, 0, 2 }, { 22, 0, 0, 2 }, { 23, 0, 0, 2 }, { 24, 0, 0, 2 }, { 25, 0, 0, 1 },
+	    { 26, 0, 0, 1 }, { 27, 0, 0, 1 }, { 28, 0, 0, 1 }, { 29, 0, 0, 1 }, { 30, 0, 0, 1 }, { 31, 0, 0, 1 },
+	    { 32, 0, 0, 1 }, { 0, 0, 3, 1 } };
 
-    private final static transient String c_categories[] = {        
-        "com.molecularnetworks.start.categories.CategoryBiodegradable",
-        "com.molecularnetworks.start.categories.CategoryPersistent",
-        "com.molecularnetworks.start.categories.CategoryUnknown"
-    };
-    
+    private final static transient String c_categories[] = {
+	    "com.molecularnetworks.start.categories.CategoryBiodegradable",
+	    "com.molecularnetworks.start.categories.CategoryPersistent",
+	    "com.molecularnetworks.start.categories.CategoryUnknown" };
+
     public BiodgeradationRules() throws DecisionMethodException {
-        super( new CategoriesList( c_categories ), null );
-        rules = new DecisionNodesList( categories, c_rules,c_transitions );
-        if ( rules instanceof Observable ) ((Observable)rules).addObserver( this );
+	super(new CategoriesList(c_categories), null);
+	rules = new DecisionNodesList(categories, c_rules, c_transitions);
+	if (rules instanceof Observable)
+	    ((Observable) rules).addObserver(this);
 
-        setChanged();
-        notifyObservers();
-        setTitle( "START Biodegradability" );
+	setChanged();
+	notifyObservers();
+	setTitle("START Biodegradability");
 
-        setInteractive( false );
-        setPriority( 12);
+	setInteractive(false);
+	setPriority(12);
     }
 
     @Override
     public void addPropertyChangeListener(PropertyChangeListener l) {
-        if ( null == changes ) changes = new PropertyChangeSupport( this );
-        changes.addPropertyChangeListener( l );
-        for ( int i=0; i < rules.size(); i++ ) 
-            if ( rules.getRule( i ) != null )
-                rules.getRule( i ).addPropertyChangeListener( l );
+	if (null == changes)
+	    changes = new PropertyChangeSupport(this);
+	changes.addPropertyChangeListener(l);
+	for (int i = 0; i < rules.size(); i++)
+	    if (rules.getRule(i) != null)
+		rules.getRule(i).addPropertyChangeListener(l);
     }
-    
+
     @Override
-    public void removePropertyChangeListener( PropertyChangeListener l ) {
-        if ( null != changes ) {
-            changes.removePropertyChangeListener( l );
-            for ( int i=0; i < rules.size(); i++ ) 
-                if ( rules.getRule( i ) != null )
-                    rules.getRule( i ).removePropertyChangeListener( l );
-        }	
-    }	
-    
+    public void removePropertyChangeListener(PropertyChangeListener l) {
+	if (null != changes) {
+	    changes.removePropertyChangeListener(l);
+	    for (int i = 0; i < rules.size(); i++)
+		if (rules.getRule(i) != null)
+		    rules.getRule(i).removePropertyChangeListener(l);
+	}
+    }
+
     @Override
     public String toString() {
-        return getName();
+	return getName();
     }
-	
+
     public String getName() {
-        return name;
+	return name;
     }
-    
-    public void setName( String value ) {
-       name = value;
+
+    public void setName(String value) {
+	name = value;
     }
-    
+
     @Override
-    public StringBuffer explainRules( IDecisionResult result, boolean verbose )
-            throws DecisionMethodException {
-        try {
-            StringBuffer b = result.explain( verbose );
-            return b;
-        } catch ( DecisionResultException x ) {
-            throw new DecisionMethodException(x);
-        }
+    public StringBuffer explainRules(IDecisionResult result, boolean verbose) throws DecisionMethodException {
+	try {
+	    StringBuffer b = result.explain(verbose);
+	    return b;
+	} catch (DecisionResultException x) {
+	    throw new DecisionMethodException(x);
+	}
     }
 
     public boolean isResiduesIDVisible() {
-        return residuesIDVisible;
+	return residuesIDVisible;
     }
 
-    public void setResiduesIDVisible( boolean residuesIDVisible ) {
-        this.residuesIDVisible = residuesIDVisible;
-        for ( int i=0; i < rules.size(); i++ ) {
-            rules.getRule( i ).hideResiduesID( ! residuesIDVisible );
-        }
+    public void setResiduesIDVisible(boolean residuesIDVisible) {
+	this.residuesIDVisible = residuesIDVisible;
+	for (int i = 0; i < rules.size(); i++) {
+	    rules.getRule(i).hideResiduesID(!residuesIDVisible);
+	}
     }
 
     @Override
-    public void setEditable( boolean value ) {
-        editable = value;
-        for ( int i = 0; i < rules.size(); i++ )
-            rules.getRule( i ).setEditable( value );
+    public void setEditable(boolean value) {
+	editable = value;
+	for (int i = 0; i < rules.size(); i++)
+	    rules.getRule(i).setEditable(value);
     }
-    
+
     @Override
-    public void setParameters( IAtomContainer mol ) {
-        if ( interactive ) {
-            JComponent c = optionsPanel( mol );
-            if ( null != c )
-                JOptionPane.showMessageDialog( null, c, "Enter properties", JOptionPane.PLAIN_MESSAGE );
-        }    
+    public void setParameters(IAtomContainer mol) {
+	if (interactive) {
+	    JComponent c = optionsPanel(mol);
+	    if (null != c)
+		JOptionPane.showMessageDialog(null, c, "Enter properties", JOptionPane.PLAIN_MESSAGE);
+	}
     }
 
     @Override
     public boolean getInteractive() {
-        return interactive;
+	return interactive;
     }
 
     @Override
-    public void setInteractive( boolean value ) {
-        interactive = value;
+    public void setInteractive(boolean value) {
+	interactive = value;
     }
-    
-	public DescriptorSpecification getSpecification() {
-        return new DescriptorSpecification(
-                "http://toxtree.sourceforge.net/start.html",
-                getTitle(),
-                this.getClass().getName(),                
-                "Toxtree plugin");
-	}
-   
+
+    public DescriptorSpecification getSpecification() {
+	return new DescriptorSpecification("http://toxtree.sourceforge.net/start.html", getTitle(), this.getClass()
+		.getName(), "Toxtree plugin");
+    }
+
 }

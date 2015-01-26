@@ -34,38 +34,38 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for branched, halogen substituted chemicals.
- * @version $Id: RuleHalogenSubstitutedBranched.java 936 2008-12-04 17:43:31Z joerg $
+ * 
+ * @version $Id: RuleHalogenSubstitutedBranched.java 936 2008-12-04 17:43:31Z
+ *          joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleHalogenSubstitutedBranched extends RuleSMARTSubstructure 
-{
-    
+public class RuleHalogenSubstitutedBranched extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6527506785078121094L;
+
     /**
      * Default constructor
      */
-    public RuleHalogenSubstitutedBranched() 
-    {
-        super();		
-        try 
-        {
-            super.addSubstructure( "1", "[$([C][C;!R]([C])[C])]", false ); //branch
-            super.addSubstructure( "2", "[#6][F,Cl,Br,I]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Branched, halogen substituted chemicals " +
-                "are associated with low biodegradability."
-            );
-            id = "6";
-            title = "One or more halogen substitutions on a branched molecule";
-            examples[ 0 ] = "C1CCCC1CC";
-            examples[ 1 ] = "C1CCCC1CCl";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleHalogenSubstitutedBranched() {
+	super();
+	try {
+	    super.addSubstructure("1", "[$([C][C;!R]([C])[C])]", false); // branch
+	    super.addSubstructure("2", "[#6][F,Cl,Br,I]", false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Branched, halogen substituted chemicals "
+		    + "are associated with low biodegradability.");
+	    id = "6";
+	    title = "One or more halogen substitutions on a branched molecule";
+	    examples[0] = "C1CCCC1CC";
+	    examples[1] = "C1CCCC1CCl";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }

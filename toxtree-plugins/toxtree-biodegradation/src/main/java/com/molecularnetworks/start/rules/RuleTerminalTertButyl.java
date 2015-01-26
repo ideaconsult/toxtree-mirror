@@ -34,40 +34,35 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for chemicals with a terminal tert-butyl branch.
+ * 
  * @version $Id: RuleTerminalTertButyl.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleTerminalTertButyl extends RuleSMARTSubstructure 
-{
+public class RuleTerminalTertButyl extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7433915475793045786L;
 
     /**
      * Default constructor
      */
-    public RuleTerminalTertButyl() 
-    {
-        super();		
-        try 
-        {
-            super.initSingleSMARTS(
-                super.smartsPatterns, 
-                "1",
-                "[$([C]([CH3])([CH3])([CH3])([*]))]" 
-            );
-            super.setExplanation( 
-                "Chemicals containing a terminal tert-butyl branch " +
-                "are associated with low biodegradability." 
-            );
-            id = "1";
-            title = "Terminal tert-butyl branch";
-            examples[0] = "CCCCC";
-            examples[1] = "C(C)(C)(C)CCC";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleTerminalTertButyl() {
+	super();
+	try {
+	    super.initSingleSMARTS(super.smartsPatterns, "1", "[$([C]([CH3])([CH3])([CH3])([*]))]");
+	    super.setExplanation("Chemicals containing a terminal tert-butyl branch "
+		    + "are associated with low biodegradability.");
+	    id = "1";
+	    title = "Terminal tert-butyl branch";
+	    examples[0] = "CCCCC";
+	    examples[1] = "C(C)(C)(C)CCC";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
+
 }

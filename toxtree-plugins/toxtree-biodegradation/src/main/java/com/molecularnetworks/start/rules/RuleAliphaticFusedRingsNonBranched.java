@@ -33,44 +33,47 @@ import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
 import ambit2.smarts.query.SMARTSException;
 
 /**
- * Biodegradation rule for aliphatic compounds consisting of
- * fused rings and no branches.
- * @version $Id: RuleAliphaticFusedRingsNonBranched.java 936 2008-12-04 17:43:31Z joerg $
+ * Biodegradation rule for aliphatic compounds consisting of fused rings and no
+ * branches.
+ * 
+ * @version $Id: RuleAliphaticFusedRingsNonBranched.java 936 2008-12-04
+ *          17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleAliphaticFusedRingsNonBranched extends RuleSMARTSubstructure 
-{
-    
+public class RuleAliphaticFusedRingsNonBranched extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5200777251403091926L;
+
     /**
      * Default constructor
      */
-    public RuleAliphaticFusedRingsNonBranched() 
-    {
-        super();
-        try 
-        {
-            //super.initSingleSMARTS( super.smartsPatterns, "1", "[$(C1OC1)]" );
-            //super.addSubstructure( "1", "a", true ); // an aromatic atom, should not be there
-            //super.addSubstructure( "2", "[!R]", true ); // an atom not in a ring, should not be there
-            //super.addSubstructure( "3", "[CX4&H0]", true ); // a spiro carbon, should not be there
-            super.addSubstructure( "1", "[!R&!#1,CX4&H0,a]", true );
-            //super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Checks for aliphatic compounds consisting " +
-                "of fused rings and no branches. " + 
-                "Such compounds are associated with low biodegradability." 
-            );
-            id = "3";
-            title = "FusedAliphaticNonBranchedRings";
-            examples[ 0 ] = "C1CCCC2C1CCCC2C(C)CCCO";
-            examples[ 1 ] = "C1CCCC2C1CCCC2";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleAliphaticFusedRingsNonBranched() {
+	super();
+	try {
+	    // super.initSingleSMARTS( super.smartsPatterns, "1", "[$(C1OC1)]"
+	    // );
+	    // super.addSubstructure( "1", "a", true ); // an aromatic atom,
+	    // should not be there
+	    // super.addSubstructure( "2", "[!R]", true ); // an atom not in a
+	    // ring, should not be there
+	    // super.addSubstructure( "3", "[CX4&H0]", true ); // a spiro
+	    // carbon, should not be there
+	    super.addSubstructure("1", "[!R&!#1,CX4&H0,a]", true);
+	    // super.setContainsAllSubstructures( true );
+	    super.setExplanation("Checks for aliphatic compounds consisting " + "of fused rings and no branches. "
+		    + "Such compounds are associated with low biodegradability.");
+	    id = "3";
+	    title = "FusedAliphaticNonBranchedRings";
+	    examples[0] = "C1CCCC2C1CCCC2C(C)CCCO";
+	    examples[1] = "C1CCCC2C1CCCC2";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }

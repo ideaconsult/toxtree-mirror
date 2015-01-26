@@ -148,6 +148,10 @@ public class RuleDACancerogenicityAromaticAmines extends LinearDiscriminantRule 
 
 		double weights[] = new double[] {-3.79,+ 3.52, -4.12, +4.41, +3.09, + 2.60, +4.63,-3.49, +1.80, -1.78,0};
 		LinearQSARModel model = new LinearQSARModel(names,descriptors,result,weights) {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = 7845896417422465664L;
 			@Override
 			protected void processNaNDescriptors(String name) throws QSARModelException {
 				throw new QSARModelException(dictionary.get(name));

@@ -63,7 +63,12 @@ public abstract class RadioBoxPanel<T> extends JPanel {
         if (selectedIndex < 0) selectedIndex = 0;
         for (T item: list) {
             JRadioButton b = new JRadioButton(new RadioButtonAction<T>(item) {
-                @Override
+                /**
+		 * 
+		 */
+		private static final long serialVersionUID = -9169920677955802372L;
+
+		@Override
                 public void select(ActionEvent e, T object) {
                     selectObject(e, object);
                 }

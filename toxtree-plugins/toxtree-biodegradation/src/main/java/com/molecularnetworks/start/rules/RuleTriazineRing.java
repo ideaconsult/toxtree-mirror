@@ -34,37 +34,35 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for chemicals containing triazine ring.
+ * 
  * @version $Id: RuleTriazineRing.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleTriazineRing extends RuleSMARTSubstructure 
-{
+public class RuleTriazineRing extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3244371114565022733L;
 
     /**
      * Default constructor
      */
-    public RuleTriazineRing() 
-    {
-        try 
-        {
-            // SMARTS - all possible triazine rings
-            super.addSubstructure( "1", "[$(n1nnccc1),$(n1ncncc1),$(n1cncnc1)]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Chemicals containing triazine ring " +
-                "are associated with low biodegradability." 
-            );
-            id = "21";
-            title = "Triazine ring";
-            examples[ 0 ] = "C1CCCC1";
-            examples[ 1 ] = "n1cncnc1CC";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleTriazineRing() {
+	try {
+	    // SMARTS - all possible triazine rings
+	    super.addSubstructure("1", "[$(n1nnccc1),$(n1ncncc1),$(n1cncnc1)]", false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Chemicals containing triazine ring " + "are associated with low biodegradability.");
+	    id = "21";
+	    title = "Triazine ring";
+	    examples[0] = "C1CCCC1";
+	    examples[1] = "n1cncnc1CC";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
+
 }
