@@ -34,36 +34,35 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for alcohols.
+ * 
  * @version $Id: RuleAlcohols.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleAlcohols extends RuleSMARTSubstructure 
-{
+public class RuleAlcohols extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 147969301298783746L;
 
     /**
      * Default constructor
      */
-    public RuleAlcohols() 
-    {
-        super();		
-        try 
-        {
-            super.initSingleSMARTS( super.smartsPatterns, "1", "[#6][OX2H]" );
-            super.setExplanation( 
-                "Checks for hydroxyl functional group. " +
-                "Alcohols are associated with easy biodegradability." 
-            );
-            id = "27";
-            title = "Alcohols";
-            examples[ 0 ] = "CC1OC1CC";
-            examples[ 1 ] = "CCCCO";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleAlcohols() {
+	super();
+	try {
+	    super.initSingleSMARTS(super.smartsPatterns, "1", "[#6][OX2H]");
+	    super.setExplanation("Checks for hydroxyl functional group. "
+		    + "Alcohols are associated with easy biodegradability.");
+	    id = "27";
+	    title = "Alcohols";
+	    examples[0] = "CC1OC1CC";
+	    examples[1] = "CCCCO";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }

@@ -43,6 +43,11 @@ public class RuleAromaticHalogen extends RuleSMARTSubstructure
 {
 
     /**
+     * 
+     */
+    private static final long serialVersionUID = 5654110800755729796L;
+
+    /**
      * Default constructor
      */
     public RuleAromaticHalogen() 

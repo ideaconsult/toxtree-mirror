@@ -11,6 +11,11 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.tree.rules.RuleVerifyProperty;
 
 public class PropertyInput implements PropertyChangeListener , Serializable {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -6774904746111990006L;
+
 	public void propertyChange(PropertyChangeEvent evt) {
 		Object o = evt.getSource();
 		if (o instanceof RuleVerifyProperty) {

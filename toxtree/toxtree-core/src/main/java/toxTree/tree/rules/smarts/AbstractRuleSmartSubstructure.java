@@ -108,6 +108,11 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 
 	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
 		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = -8219964178716366585L;
+
 			public IChemObjectSelection process(IAtomContainer mol)
 					throws AmbitException {
 				try {

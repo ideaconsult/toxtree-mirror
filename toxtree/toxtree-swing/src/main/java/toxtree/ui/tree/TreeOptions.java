@@ -20,7 +20,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package toxtree.ui.tree;
 
@@ -58,187 +58,196 @@ import com.l2fprod.common.swing.JOutlookBar;
 import com.l2fprod.common.swing.PercentLayout;
 
 public class TreeOptions extends JSplitPane {
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -4430297393022588312L;
+    private static final long serialVersionUID = -4430297393022588312L;
 
-	public TreeOptions(IDecisionMethod tree, IAtomContainer atomcontainer) {
-		super(JSplitPane.HORIZONTAL_SPLIT);
-	    JOutlookBar outlook = new JOutlookBar();
-        outlook.setBackground(Color.white);
-	    outlook.setTabPlacement(JTabbedPane.LEFT);
-	    addGenericTab(outlook);
-	    if (atomcontainer != null)
-	    	addMoleculeTab(outlook, atomcontainer);
-	    addTreeTab(outlook, tree);
-	    setLeftComponent(outlook);
-	    JTextPane details = new JTextPane();
-	    details.addHyperlinkListener(new HyperlinkListener() {
-		    public void hyperlinkUpdate(HyperlinkEvent e) {
-		        if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-		        	try { 
-		        		if(Desktop.isDesktopSupported()) {
-		        		    Desktop.getDesktop().browse(e.getURL().toURI());
-		        		} else 
-		        			Tools.openURL(e.getURL().toString());
-		        	} catch (Exception x) {
-		        		x.printStackTrace();
-		        	}
-		        }
+    public TreeOptions(IDecisionMethod tree, IAtomContainer atomcontainer) {
+	super(JSplitPane.HORIZONTAL_SPLIT);
+	JOutlookBar outlook = new JOutlookBar();
+	outlook.setBackground(Color.white);
+	outlook.setTabPlacement(JTabbedPane.LEFT);
+	addGenericTab(outlook);
+	if (atomcontainer != null)
+	    addMoleculeTab(outlook, atomcontainer);
+	addTreeTab(outlook, tree);
+	setLeftComponent(outlook);
+	JTextPane details = new JTextPane();
+	details.addHyperlinkListener(new HyperlinkListener() {
+	    public void hyperlinkUpdate(HyperlinkEvent e) {
+		if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+		    try {
+			if (Desktop.isDesktopSupported()) {
+			    Desktop.getDesktop().browse(e.getURL().toURI());
+			} else
+			    Tools.openURL(e.getURL().toString());
+		    } catch (Exception x) {
+			x.printStackTrace();
 		    }
-		});
-	    details.setEditorKit(new HTMLEditorKit());
-	    details.setText(tree.getExplanation());
-	    setRightComponent(new JScrollPane(details));
-	    setPreferredSize(new Dimension(450,400));
-	    
+		}
+	    }
+	});
+	details.setEditorKit(new HTMLEditorKit());
+	details.setText(tree.getExplanation());
+	setRightComponent(new JScrollPane(details));
+	setPreferredSize(new Dimension(450, 400));
+
+    }
+
+    void addGenericTab(JOutlookBar tabs) {
+	JPanel panel = new JPanel();
+	panel.setLayout(new PercentLayout(PercentLayout.VERTICAL, 0));
+	panel.setOpaque(false);
+
+	JButton button = new JButton(new PropertiesAction("Options", "General Toxtree options") {
+	    /**
+	     * 
+	     */
+	    private static final long serialVersionUID = -7838273383616865960L;
+
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+
+		setRightComponent(new PreferencesPanel(new Preferences.VTAGS[] { VTAGS.General, VTAGS.Structure,
+			VTAGS.RemoteQuery }).getJComponent());
+	    }
+	});
+	try {
+
+	    button.setUI((ButtonUI) Class.forName((String) UIManager.get("OutlookButtonUI")).newInstance());
+	    button.setIcon(Tools.getImage("cog.png"));
+	} catch (Exception e) {
+	    e.printStackTrace();
 	}
-	void addGenericTab(JOutlookBar tabs) {
-	    JPanel panel = new JPanel();
-	    panel.setLayout(new PercentLayout(PercentLayout.VERTICAL, 0));
-	    panel.setOpaque(false);
-	    
+	panel.add(button);
 
-       	JButton button = new JButton(new PropertiesAction("Options","General Toxtree options"){
-       		@Override
-       		public void actionPerformed(ActionEvent e) {
+	JScrollPane scroll = tabs.makeScrollPane(panel);
+	tabs.addTab("General", scroll);
 
-       			setRightComponent(new PreferencesPanel(
-       					new Preferences.VTAGS[] {VTAGS.General,VTAGS.Structure,VTAGS.RemoteQuery}
-       					).getJComponent());
-       		}
-       	});
-        try {
-            
-   		   button.setUI((ButtonUI)Class.forName((String)UIManager.get("OutlookButtonUI")).newInstance());
-   		   button.setIcon(Tools.getImage("cog.png"));           
-		} catch (Exception e) {
-    	       e.printStackTrace();
-   		}
-    	panel.add(button);	            	
+    }
 
+    void addMoleculeTab(JOutlookBar tabs, IAtomContainer atomcontainer) {
+	JPanel panel = new JPanel();
+	panel.setLayout(new PercentLayout(PercentLayout.VERTICAL, 0));
+	panel.setOpaque(false);
+
+	JButton button = new JButton(new StructureAction(atomcontainer, "Structure", "Current structure") {
+	    /**
+	     * 
+	     */
+	    private static final long serialVersionUID = 3895237480993153266L;
+
+	    public void actionPerformed(ActionEvent e) {
+		setRightComponent(new PropertyEditor(getMolecule(), null));
+	    }
+	});
+	try {
+	    button.setUI((ButtonUI) Class.forName((String) UIManager.get("OutlookButtonUI")).newInstance());
+	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	panel.add(button);
+
+	JScrollPane scroll = tabs.makeScrollPane(panel);
+	tabs.addTab("Structure", scroll);
+
+    }
+
+    void addTreeTab(JOutlookBar tabs, IDecisionMethod tree) {
+	JPanel panel = null;
+
+	IDecisionRuleList rules = tree.getRules();
+	for (int i = 0; i < rules.size(); i++) {
+	    IDecisionRule rule = rules.getRule(i);
+	    /*
+	     * if (rule instanceof IDecisionInteractive) { JComponent c =
+	     * ((IDecisionInteractive) rule).optionsPanel(null); if (c == null)
+	     * continue; JButton button = new JButton(new
+	     * RuleAction((IDecisionInteractive)
+	     * rule,rule.getID(),rule.getExplanation()) { public void
+	     * actionPerformed(ActionEvent e) { JComponent c =
+	     * getRule().optionsPanel(null); setPreferredSize(new
+	     * Dimension(200,400)); setRightComponent(c);
+	     * 
+	     * } }); try { button.setUI((ButtonUI)Class.forName(
+	     * (String)UIManager.get("OutlookButtonUI")).newInstance());
+	     * button.setIcon(Tools.getImage("arrow_divide.png")); } catch
+	     * (Exception e) { e.printStackTrace(); } if (panel == null) { panel
+	     * = new JPanel(); panel.setLayout(new
+	     * PercentLayout(PercentLayout.VERTICAL, 0));
+	     * panel.setOpaque(false); } panel.add(button); }
+	     */
+	}
+
+	if (panel != null) {
 	    JScrollPane scroll = tabs.makeScrollPane(panel);
-	    tabs.addTab("General", scroll);
-	    		
-	}	
-	void addMoleculeTab(JOutlookBar tabs, IAtomContainer atomcontainer) {
-	    JPanel panel = new JPanel();
-	    panel.setLayout(new PercentLayout(PercentLayout.VERTICAL, 0));
-	    panel.setOpaque(false);
+	    tabs.addTab("", scroll);
 
-       	JButton button = new JButton(new StructureAction(atomcontainer,"Structure","Current structure") {
-            		public void actionPerformed(ActionEvent e) {
-            			setRightComponent(new PropertyEditor(getMolecule(),null));
-            		}
-          	});     
-         try {
-    		        button.setUI((ButtonUI)Class.forName(
-    		          (String)UIManager.get("OutlookButtonUI")).newInstance());
-  		      } catch (Exception e) {
-    		        e.printStackTrace();
-   		      }
-    		      panel.add(button);	            	
-
-	    JScrollPane scroll = tabs.makeScrollPane(panel);
-	    tabs.addTab("Structure", scroll);
-	    		
+	    // this to test the UI gets notified of changes
+	    int index = tabs.indexOfComponent(scroll);
+	    tabs.setTitleAt(index, "Rules options");
+	    tabs.setToolTipTextAt(index, tree.getTitle());
 	}
-	void addTreeTab(JOutlookBar tabs, IDecisionMethod tree) {
-			JPanel panel = null;
 
-		    IDecisionRuleList rules = tree.getRules();
-	        for (int i=0;i< rules.size(); i++) {
-	            IDecisionRule rule = rules.getRule(i);
-	            /*
-	            if (rule instanceof IDecisionInteractive) {
-	                JComponent c = ((IDecisionInteractive) rule).optionsPanel(null);
-	                if (c == null) continue;
-	            	JButton button = new JButton(new RuleAction((IDecisionInteractive) rule,rule.getID(),rule.getExplanation()) {
-	            		public void actionPerformed(ActionEvent e) {
-	            			JComponent c = getRule().optionsPanel(null);
-	            			setPreferredSize(new Dimension(200,400));
-	            			setRightComponent(c);
-	            			
-	            		}
-	            	});     
-	            	try {
-	    		        button.setUI((ButtonUI)Class.forName(
-	    		          (String)UIManager.get("OutlookButtonUI")).newInstance());
-                           button.setIcon(Tools.getImage("arrow_divide.png"));                                   
-	    		      } catch (Exception e) {
-	    		        e.printStackTrace();
-	    		      }
-	    		      if (panel == null) {
-	    				    panel = new JPanel();
-	    				    panel.setLayout(new PercentLayout(PercentLayout.VERTICAL, 0));
-	    				    panel.setOpaque(false);
-	    		      }
-	    		      panel.add(button);	            	
-	            }
-	            */
-	        } 
-	        
-	        if (panel != null) {
-			    JScrollPane scroll = tabs.makeScrollPane(panel);
-			    tabs.addTab("", scroll);
-	
-			    // this to test the UI gets notified of changes
-			    int index = tabs.indexOfComponent(scroll);
-			    tabs.setTitleAt(index, "Rules options");
-			    tabs.setToolTipTextAt(index, tree.getTitle());
-	        }
-		    
-	}	
+    }
 }
 
-class  StructureAction extends PropertiesAction {
-	protected IAtomContainer molecule = null;
-	/**
+class StructureAction extends PropertiesAction {
+    protected IAtomContainer molecule = null;
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -1074623615249070194L;
-	public StructureAction(IAtomContainer molecule,String title, String hint) {
-		super(title,hint);
-		setMolecule(molecule);
-	}
-	public IAtomContainer getMolecule() {
-		return molecule;
-	}
-	public void setMolecule(IAtomContainer molecule) {
-		this.molecule = molecule;
-	}
+    private static final long serialVersionUID = -1074623615249070194L;
+
+    public StructureAction(IAtomContainer molecule, String title, String hint) {
+	super(title, hint);
+	setMolecule(molecule);
+    }
+
+    public IAtomContainer getMolecule() {
+	return molecule;
+    }
+
+    public void setMolecule(IAtomContainer molecule) {
+	this.molecule = molecule;
+    }
 }
-class  RuleAction extends PropertiesAction {
-	protected IDecisionInteractive rule = null;
-	/**
+
+class RuleAction extends PropertiesAction {
+    protected IDecisionInteractive rule = null;
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -1074623615249070194L;
-	public RuleAction(IDecisionInteractive rule,String title, String hint) {
-		super(title,hint);
-		this.rule = rule;
-	}
-	public IDecisionInteractive getRule() {
-		return rule;
-	}
-	public void setRule(IDecisionInteractive rule) {
-		this.rule = rule;
-	}
+    private static final long serialVersionUID = -1074623615249070194L;
+
+    public RuleAction(IDecisionInteractive rule, String title, String hint) {
+	super(title, hint);
+	this.rule = rule;
+    }
+
+    public IDecisionInteractive getRule() {
+	return rule;
+    }
+
+    public void setRule(IDecisionInteractive rule) {
+	this.rule = rule;
+    }
 }
 
-class  PropertiesAction extends AbstractAction {
-	/**
+class PropertiesAction extends AbstractAction {
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -1074623615249070194L;
-	public PropertiesAction(String title, String hint) {
-		super(title);
-		putValue(AbstractAction.SHORT_DESCRIPTION,hint);
+    private static final long serialVersionUID = -1074623615249070194L;
 
-	}
-	public void actionPerformed(ActionEvent e) {
+    public PropertiesAction(String title, String hint) {
+	super(title);
+	putValue(AbstractAction.SHORT_DESCRIPTION, hint);
 
-	}
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+    }
 }
-

@@ -39,112 +39,94 @@ import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
 
 /**
- * Biodegradation rule for a non-cyclic chemical 
- * with at least two terminal isopropyl groups.
- * @version $Id: RuleTerminalIsopropylNonCyclic.java 936 2008-12-04 17:43:31Z joerg $
+ * Biodegradation rule for a non-cyclic chemical with at least two terminal
+ * isopropyl groups.
+ * 
+ * @version $Id: RuleTerminalIsopropylNonCyclic.java 936 2008-12-04 17:43:31Z
+ *          joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleTerminalIsopropylNonCyclic extends RuleSMARTSubstructure 
-{
-    
+public class RuleTerminalIsopropylNonCyclic extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6195321815817952516L;
+
     /**
      * Default constructor
      */
-    public RuleTerminalIsopropylNonCyclic() 
-    {
-        super();		
-        try 
-        {
-            super.addSubstructure( "1", "[R]", true );
-            super.addSubstructure( "2", "[$([CH3][CH]([*])[CH3])]" );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation(
-                "Checks at least two terminal isopropyl " +
-                "groups for a non-cyclic chemical. " +
-                "Such chemicals are associated with low biodegradability."
-            );
-            id = "4";
-            title = "At least two terminal isopropyl groups for a non-cyclic chemical";
-            examples[ 0 ] = "CCCCC";
-            examples[ 1 ] = "CC(C)CCC(C)C";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleTerminalIsopropylNonCyclic() {
+	super();
+	try {
+	    super.addSubstructure("1", "[R]", true);
+	    super.addSubstructure("2", "[$([CH3][CH]([*])[CH3])]");
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Checks at least two terminal isopropyl " + "groups for a non-cyclic chemical. "
+		    + "Such chemicals are associated with low biodegradability.");
+	    id = "4";
+	    title = "At least two terminal isopropyl groups for a non-cyclic chemical";
+	    examples[0] = "CCCCC";
+	    examples[1] = "CC(C)CCC(C)C";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
+
     /**
-     * Overrides the default {@link IDecisionRule} behaviour.
-     * Returns TRUE, if the answer of the rule is YES for the analyzed 
-     * molecule {@link org.openscience.cdk.interfaces.AtomContainer}
-     * Returns FALSE, if the answer of the rule is NO for the analyzed 
-     * molecule {@link org.openscience.cdk.interfaces.AtomContainer}
-     * @param mol  {@link org.openscience.cdk.interfaces.AtomContainer}
+     * Overrides the default {@link IDecisionRule} behaviour. Returns TRUE, if
+     * the answer of the rule is YES for the analyzed molecule
+     * {@link org.openscience.cdk.interfaces.AtomContainer} Returns FALSE, if
+     * the answer of the rule is NO for the analyzed molecule
+     * {@link org.openscience.cdk.interfaces.AtomContainer}
+     * 
+     * @param mol
+     *            {@link org.openscience.cdk.interfaces.AtomContainer}
      * @return rule result, boolean
      * @throws {@link DecisionMethodException}
      */
     @Override
-    public boolean verifyRule( org.openscience.cdk.interfaces.IAtomContainer mol )
-            throws DecisionMethodException 
-    {
-        logger.finer( getID() );
-        IAtomContainer moltotest = getObjectToVerify( mol );
-        if ( ! isAPossibleHit( mol, moltotest ) ) 
-        {
-            logger.finer("Not a possible hit due to the prescreen step.");
-            return false;
-        }
-        Enumeration e  = smartsPatterns.keys();
-        boolean is_true = false;
-        String temp_id = "";
-    	while( e.hasMoreElements() ) 
-        {
-            temp_id = e.nextElement().toString();
-            ISmartsPattern pattern = smartsPatterns.get( temp_id );
-            if ( null == pattern ) 
-            {
-                throw new DecisionMethodException(
-                    "ID '" + id + "' is missing in " + getClass().getName() 
-                );
-            }
-            try {
-	            int matchCount = pattern.hasSMARTSPattern( moltotest );
-	            if ( "2".equals( temp_id ) ) 
-	            {
-	                is_true = matchCount > 2;
-	            }
-	            else 
-	            {
-	                is_true = matchCount > 0;
-	            }
-	            logger.finer(
-	                "SMARTS " + temp_id + "\t" + pattern.toString()+
-	                "\tmatches "+
-	                matchCount+ 
-	                "times\tresult is "+
-	                is_true 
-	            );
-            } catch (Exception x) {
-            	throw new DecisionMethodException(x);
-            }
-            if ( pattern.isNegate() ) 
-            {
-                is_true = !is_true;
-            }
-            if ( containsAllSubstructures && !is_true ) 
-            {
-                return false;
-            } 
-            else if ( !containsAllSubstructures && is_true ) 
-            {    			
-                is_true = true;
-                break;
-            }
-    	}
-        return is_true;
+    public boolean verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol) throws DecisionMethodException {
+	logger.finer(getID());
+	IAtomContainer moltotest = getObjectToVerify(mol);
+	if (!isAPossibleHit(mol, moltotest)) {
+	    logger.finer("Not a possible hit due to the prescreen step.");
+	    return false;
+	}
+	Enumeration e = smartsPatterns.keys();
+	boolean is_true = false;
+	String temp_id = "";
+	while (e.hasMoreElements()) {
+	    temp_id = e.nextElement().toString();
+	    ISmartsPattern pattern = smartsPatterns.get(temp_id);
+	    if (null == pattern) {
+		throw new DecisionMethodException("ID '" + id + "' is missing in " + getClass().getName());
+	    }
+	    try {
+		int matchCount = pattern.hasSMARTSPattern(moltotest);
+		if ("2".equals(temp_id)) {
+		    is_true = matchCount > 2;
+		} else {
+		    is_true = matchCount > 0;
+		}
+		logger.finer("SMARTS " + temp_id + "\t" + pattern.toString() + "\tmatches " + matchCount
+			+ "times\tresult is " + is_true);
+	    } catch (Exception x) {
+		throw new DecisionMethodException(x);
+	    }
+	    if (pattern.isNegate()) {
+		is_true = !is_true;
+	    }
+	    if (containsAllSubstructures && !is_true) {
+		return false;
+	    } else if (!containsAllSubstructures && is_true) {
+		is_true = true;
+		break;
+	    }
+	}
+	return is_true;
     }
 
 }

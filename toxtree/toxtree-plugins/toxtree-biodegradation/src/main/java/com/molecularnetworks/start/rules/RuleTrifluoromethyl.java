@@ -34,37 +34,36 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for chemicals containing trifluoromethyl group (-CF3).
+ * 
  * @version $Id: RuleTrifluoromethyl.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleTrifluoromethyl extends RuleSMARTSubstructure 
-{
+public class RuleTrifluoromethyl extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5128660426369886557L;
 
     /**
      * Default constructor
      */
-    public RuleTrifluoromethyl() 
-    {
-        try 
-        {
-            // SMARTS - -CF3
-            super.addSubstructure( "1", "[$([*]C(F)(F)F)]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Chemicals containing trifluoromethyl group (-CF3) " +
-                "are associated with low biodegradability." 
-            );
-            id = "20";
-            title = "Trifluoromethyl (-CF3)";
-            examples[ 0 ] = "C1CCCC1";
-            examples[ 1 ] = "CCCCC(F)(F)F";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleTrifluoromethyl() {
+	try {
+	    // SMARTS - -CF3
+	    super.addSubstructure("1", "[$([*]C(F)(F)F)]", false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Chemicals containing trifluoromethyl group (-CF3) "
+		    + "are associated with low biodegradability.");
+	    id = "20";
+	    title = "Trifluoromethyl (-CF3)";
+	    examples[0] = "C1CCCC1";
+	    examples[1] = "CCCCC(F)(F)F";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
+
 }

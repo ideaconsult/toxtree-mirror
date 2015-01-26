@@ -34,36 +34,34 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for aliphatic ethers.
+ * 
  * @version $Id: RuleAliphaticEther.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleAliphaticEther extends RuleSMARTSubstructure 
-{
+public class RuleAliphaticEther extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6146293767026160227L;
 
     /**
      * Default constructor
      */
-    public RuleAliphaticEther() 
-    {
-        try 
-        {
-            super.addSubstructure( "1", "[!$(C=O);$([C&!a])][OX2&H0][!$(C=O);$([C&!a])]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Aliphatic ethers " +
-                "are associated with low biodegradability." 
-            );
-            id = "17";
-            title = "Aliphatic ether";
-            examples[ 0 ] = "C1CCCC1";
-            examples[ 1 ] = "CCCCOCCCCCC";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleAliphaticEther() {
+	try {
+	    super.addSubstructure("1", "[!$(C=O);$([C&!a])][OX2&H0][!$(C=O);$([C&!a])]", false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Aliphatic ethers " + "are associated with low biodegradability.");
+	    id = "17";
+	    title = "Aliphatic ether";
+	    examples[0] = "C1CCCC1";
+	    examples[1] = "CCCCOCCCCCC";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }

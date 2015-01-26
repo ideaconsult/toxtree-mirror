@@ -5,7 +5,6 @@
     <version>2.6.13-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>toxtree</groupId>
   <artifactId>toxtree-ames</artifactId>
   <name>in vitro mutagenicity (Ames test) alerts by ISS</name>
   <description>This profiler is based on the Mutagenicity/Carcinogenicity module of the software Toxtree. It works as a decision tree for estimating in vitro (Ames test) mutagenicity, based on a list of 30 structural alerts (SAs). The SAs for mutagenicity are molecular functional groups or substructures known to be linked to the mutagenic activity of chemicals. As one or more SAs embedded in a molecular structure are recognised, the system flags the potential mutagenicity of the chemical. The present list of SAs is a subset of the original Toxtree list, obtained by eliminating the SAs for nongenotoxic carcinogenicity. Details are available in the scientific document:

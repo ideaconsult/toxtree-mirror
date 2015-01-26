@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.test.tree.rules;
 
 import java.io.FileInputStream;
@@ -35,40 +35,47 @@ import toxTree.tree.rules.RuleLipinski5;
 
 public class RuleLipinskiTest extends TestCase {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+    }
+
+    public RuleLipinskiTest(String arg0) {
+	super(arg0);
+    }
+
+    @Override
+    protected void setUp() throws Exception {
+	super.setUp();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+	super.tearDown();
+    }
+
+    public void testSerialization() {
+	RuleLipinski5 rule = new RuleLipinski5();
+	ObjectInputStream in = null;
+	try {
+	    ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("rule5.tmp"));
+	    o.writeObject(rule);
+	    o.close();
+	    in = new ObjectInputStream(new FileInputStream("rule5.tmp"));
+	    RuleLipinski5 ruleNew = (RuleLipinski5) in.readObject();
+	    assertEquals(rule, ruleNew);
+	} catch (IOException x) {
+	    x.printStackTrace();
+	    fail();
+	} catch (ClassNotFoundException x) {
+	    x.printStackTrace();
+	    fail();
+
+	} finally {
+	    try {
+		if (in != null)
+		    in.close();
+	    } catch (Exception x) {
+	    }
 	}
 
-	public RuleLipinskiTest(String arg0) {
-		super(arg0);
-	}
-
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
-	public void testSerialization() {
-		RuleLipinski5 rule = new RuleLipinski5();
-		try {
-			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("rule5.tmp"));
-			o.writeObject(rule);
-			o.close();
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream("rule5.tmp"));
-			RuleLipinski5 ruleNew = (RuleLipinski5) in.readObject();
-			assertEquals(rule,ruleNew);
-		} catch (IOException x) {
-			x.printStackTrace();
-			fail();
-		} catch (ClassNotFoundException x) {
-			x.printStackTrace();
-			fail();
-		}
-
-		
-	}
+    }
 }

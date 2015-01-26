@@ -122,6 +122,11 @@ public class SmartsPanelEditor extends JPanel  {
 	        
 		
 		JButton b = new JButton(new AbstractAction("Test SMARTS") {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = 452392690145649840L;
+
 			public void actionPerformed(java.awt.event.ActionEvent arg0) {
 				try {
 					isValidSMARTS(getSMARTS());
@@ -191,7 +196,12 @@ public class SmartsPanelEditor extends JPanel  {
     protected void createPanel2DPopupmenu() {
     	AbstractAction[] actions = new AbstractAction[2];
         actions[0] = new AbstractAction("Insert SMILES") {
-        	public void actionPerformed(ActionEvent arg0) {
+        	/**
+	     * 
+	     */
+	    private static final long serialVersionUID = -1667447011719644291L;
+
+		public void actionPerformed(ActionEvent arg0) {
         		try {
 	        		String smiles = JOptionPane.showInputDialog("Enter SMILES");
 	        		SmilesParserWrapper p =  SmilesParserWrapper.getInstance();
@@ -203,7 +213,12 @@ public class SmartsPanelEditor extends JPanel  {
         	};
         };
         actions[1] = new AbstractAction("Edit structure") {
-        	public void actionPerformed(ActionEvent arg0) {
+        	/**
+	     * 
+	     */
+	    private static final long serialVersionUID = -6495174332963944625L;
+
+		public void actionPerformed(ActionEvent arg0) {
           		moleculeEditAction.setMolecule(testMolecule);
         		moleculeEditAction.actionPerformed(null);
         		testMolecule = moleculeEditAction.getMolecule();
@@ -247,28 +262,53 @@ public class SmartsPanelEditor extends JPanel  {
     protected void createPopupmenu() {
     	AbstractAction[] actions = new AbstractAction[5];
         actions[0] = new AbstractAction("Select all") {
-        	public void actionPerformed(ActionEvent arg0) {
+        	/**
+	     * 
+	     */
+	    private static final long serialVersionUID = -1265978756720942753L;
+
+		public void actionPerformed(ActionEvent arg0) {
         		pattern.selectAll();
         	};
         };
         actions[1] = new AbstractAction("Cut") {
-        	public void actionPerformed(ActionEvent arg0) {
+        	/**
+	     * 
+	     */
+	    private static final long serialVersionUID = 4380351635447715366L;
+
+		public void actionPerformed(ActionEvent arg0) {
         		pattern.cut();
         	};
         };
         actions[2] = new AbstractAction("Copy") {
-        	public void actionPerformed(ActionEvent arg0) {
+        	/**
+	     * 
+	     */
+	    private static final long serialVersionUID = -5843457830006436798L;
+
+		public void actionPerformed(ActionEvent arg0) {
         		pattern.copy();
         	};
         };
 
         actions[3] = new AbstractAction("Paste") {
-        	public void actionPerformed(ActionEvent arg0) {
+        	/**
+	     * 
+	     */
+	    private static final long serialVersionUID = 8037761359456501089L;
+
+		public void actionPerformed(ActionEvent arg0) {
         		pattern.paste();
         	};
         };
         actions[4] = new AbstractAction("Load from file") {
-        	public void actionPerformed(ActionEvent arg0) {
+        	/**
+	     * 
+	     */
+	    private static final long serialVersionUID = 1550187741919699506L;
+
+		public void actionPerformed(ActionEvent arg0) {
         		loadFromFile();
         	};
         };

@@ -81,6 +81,10 @@ public class SMARTSRuleEditor extends RuleEditor implements
 	public Component createSmartsPane() {
 		JPanel p = new JPanel(new BorderLayout());
 		tableModel = new HashtableModel(((AbstractRuleSmartSubstructure)rule).getSmartsPatterns(),true) {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = -7486290393614266313L;
 			@Override
 			public Object getValueAt(int row, int col) {
 				
@@ -147,6 +151,11 @@ public class SMARTSRuleEditor extends RuleEditor implements
 		p.add(new JScrollPane(table),BorderLayout.CENTER);
 		JPanel toolbar = new JPanel();
 		JButton b = new JButton(new AbstractAction("Add SMARTS"){
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = -8906706820110658576L;
+
 			public void actionPerformed(ActionEvent arg0) {
 				editSmarts();
 			}
@@ -155,6 +164,11 @@ public class SMARTSRuleEditor extends RuleEditor implements
 		toolbar.add(b);
 		
 		b = new JButton(new AbstractAction("Edit") {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = 9045669465786568251L;
+
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectedIndex == -1) return;
 				editSmarts(table.getValueAt(selectedIndex, 1).toString(), table.getValueAt(selectedIndex, 2).toString());
@@ -164,6 +178,11 @@ public class SMARTSRuleEditor extends RuleEditor implements
 		toolbar.add(b);		
 		
 		b = new JButton(new AbstractAction("Delete") {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = 7647704546247842919L;
+
 			public void actionPerformed(ActionEvent arg0) {
 				deleteSmarts();
 			};

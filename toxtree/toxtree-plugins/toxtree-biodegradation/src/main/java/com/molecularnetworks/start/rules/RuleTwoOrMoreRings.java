@@ -40,62 +40,60 @@ import toxTree.tree.AbstractRule;
 
 /**
  * Biodegradation rule for chemicals with two or more rings.
+ * 
  * @version $Id: RuleTwoOrMoreRings.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleTwoOrMoreRings extends AbstractRule 
-{
+public class RuleTwoOrMoreRings extends AbstractRule {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -7413443885130587425L;
 
     /**
      * Default constructor
      */
-    public RuleTwoOrMoreRings() 
-    {
-        setExplanation( 
-            "Chemicals with two or more rings " +
-            "are associated with low biodegradability." 
-        );
-        id = "9";
-        title = "Two or more rings";
-        examples[ 0 ] = "C1CCCC1CC";
-        examples[ 1 ] = "C1CCCC1CCC1CCCC1C";
-        editable = false;
+    public RuleTwoOrMoreRings() {
+	setExplanation("Chemicals with two or more rings " + "are associated with low biodegradability.");
+	id = "9";
+	title = "Two or more rings";
+	examples[0] = "C1CCCC1CC";
+	examples[1] = "C1CCCC1CCC1CCCC1C";
+	editable = false;
     }
 
     /**
-     * Overrides the default behaviour.
-     * Returns always TRUE.
+     * Overrides the default behaviour. Returns always TRUE.
+     * 
      * @return is implemented result, boolean
      */
     @Override
-    public boolean isImplemented() 
-    {
-        return true;
+    public boolean isImplemented() {
+	return true;
     }
-    
+
     /**
-     * Overrides the default {@link IDecisionRule} behaviour.
-     * Returns TRUE, if the answer of the rule is YES for the analyzed 
-     * molecule {@link org.openscience.cdk.interfaces.AtomContainer}
-     * Returns FALSE, if the answer of the rule is NO for the analyzed 
-     * molecule {@link org.openscience.cdk.interfaces.AtomContainer}
-     * @param mol  {@link org.openscience.cdk.interfaces.AtomContainer}
+     * Overrides the default {@link IDecisionRule} behaviour. Returns TRUE, if
+     * the answer of the rule is YES for the analyzed molecule
+     * {@link org.openscience.cdk.interfaces.AtomContainer} Returns FALSE, if
+     * the answer of the rule is NO for the analyzed molecule
+     * {@link org.openscience.cdk.interfaces.AtomContainer}
+     * 
+     * @param mol
+     *            {@link org.openscience.cdk.interfaces.AtomContainer}
      * @return rule result, boolean
      * @throws {@link DecisionMethodException}
      */
-    public boolean verifyRule( IAtomContainer mol ) throws DecisionMethodException 
-    {
-        try 
-        {
-            AllRingsFinder ringsFinder = new AllRingsFinder();
-            IRingSet rings = ringsFinder.findAllRings(mol);
-            return rings.getAtomContainerCount() >= 2;
-        } 
-        catch ( CDKException ex ) 
-        {
-            throw new DecisionMethodException( ex );
-        }
+    public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+	try {
+	    AllRingsFinder ringsFinder = new AllRingsFinder();
+	    IRingSet rings = ringsFinder.findAllRings(mol);
+	    return rings.getAtomContainerCount() >= 2;
+	} catch (CDKException ex) {
+	    throw new DecisionMethodException(ex);
+	}
     }
-    
+
 }

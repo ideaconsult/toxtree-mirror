@@ -6,7 +6,6 @@
     <version>2.6.13-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>toxtree</groupId>
   <artifactId>toxtree-app</artifactId>
   <name>ToxTree</name>
   <dependencies>

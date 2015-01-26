@@ -34,39 +34,40 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for aliphatic sulphonic acids.
- * @version $Id: RuleAlyphaticSulphonicAcids.java 936 2008-12-04 17:43:31Z joerg $
+ * 
+ * @version $Id: RuleAlyphaticSulphonicAcids.java 936 2008-12-04 17:43:31Z joerg
+ *          $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleAlyphaticSulphonicAcids extends RuleSMARTSubstructure 
-{
+public class RuleAlyphaticSulphonicAcids extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6538233414546134030L;
 
     /**
      * Default constructor
      */
-    public RuleAlyphaticSulphonicAcids() 
-    {
-        super();		
-        try 
-        {
-            super.addSubstructure( "1", "a", true );
-            super.addSubstructure( "2", "[$([#16X4](=[OX1])(=[OX1])([#6])[OX2H,OX1H0-]),$([#16X4+2]([OX1-])([OX1-])([#6])[OX2H,OX1H0-])]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Checks for alyphatic sulphonic acids. " +
-                "Alyphatic sulphonic acids are associated with easy biodegradability." 
-            );
-            id = "31";
-            title = "Alyphatic sulphonic acid";
-            examples[ 0 ] = "CC1OC1CC";
-            examples[ 1 ] = "CCCCCS(=O)(=O)O";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleAlyphaticSulphonicAcids() {
+	super();
+	try {
+	    super.addSubstructure("1", "a", true);
+	    super.addSubstructure("2",
+		    "[$([#16X4](=[OX1])(=[OX1])([#6])[OX2H,OX1H0-]),$([#16X4+2]([OX1-])([OX1-])([#6])[OX2H,OX1H0-])]",
+		    false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Checks for alyphatic sulphonic acids. "
+		    + "Alyphatic sulphonic acids are associated with easy biodegradability.");
+	    id = "31";
+	    title = "Alyphatic sulphonic acid";
+	    examples[0] = "CC1OC1CC";
+	    examples[1] = "CCCCCS(=O)(=O)O";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }
-

@@ -58,7 +58,12 @@ public class MetabolitesPanel extends JPanel {
 		        } catch (Exception x) {
 		            toxTreeIcon = null;
 		        }
-				AbstractAction action = new AbstractAction("Copy molecule",toxTreeIcon) {
+		AbstractAction action = new AbstractAction("Copy molecule", toxTreeIcon) {
+					/**
+				     * 
+				     */
+				    private static final long serialVersionUID = 6429866600460376583L;
+
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						try {

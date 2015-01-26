@@ -65,6 +65,11 @@ public class PropertyPanel extends JPanel {
         //molecule properties instead cas/name text boxes
         tableModel = new AtomContainerPropertyTableModel();
 		JTable table = new JTable(tableModel) {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = -7131465553536386479L;
+
 			public java.awt.Component prepareRenderer(javax.swing.table.TableCellRenderer renderer, int rowIndex, int vColIndex) {
 				Component c = super.prepareRenderer(renderer, rowIndex, vColIndex);
 	            if (c instanceof JComponent) {

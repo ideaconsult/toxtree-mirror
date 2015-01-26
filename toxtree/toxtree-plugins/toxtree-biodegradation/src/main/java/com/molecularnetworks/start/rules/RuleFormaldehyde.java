@@ -34,36 +34,34 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for formaldehyde.
+ * 
  * @version $Id: RuleFormaldehyde.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleFormaldehyde extends RuleSMARTSubstructure 
-{
+public class RuleFormaldehyde extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 903877425079350836L;
 
     /**
      * Default constructor
      */
-    public RuleFormaldehyde() 
-    {
-        super();		
-        try 
-        {
-            super.initSingleSMARTS( super.smartsPatterns, "1", "[CX3H2](=O)" );
-            super.setExplanation( 
-                "Checks for formaldehyde. " +
-                "Fromaldehyde is associated with easy biodegradability."
-            );
-            id = "32";
-            title = "Formaldehyde";
-            examples[ 0 ] = "CC1OC1CC";
-            examples[ 1 ] = "C=O";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleFormaldehyde() {
+	super();
+	try {
+	    super.initSingleSMARTS(super.smartsPatterns, "1", "[CX3H2](=O)");
+	    super.setExplanation("Checks for formaldehyde. " + "Fromaldehyde is associated with easy biodegradability.");
+	    id = "32";
+	    title = "Formaldehyde";
+	    examples[0] = "CC1OC1CC";
+	    examples[1] = "C=O";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }

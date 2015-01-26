@@ -34,37 +34,35 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for chemicals containing an azo group.
+ * 
  * @version $Id: RuleAzoGroup.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleAzoGroup extends RuleSMARTSubstructure 
-{
+public class RuleAzoGroup extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5443054594102675597L;
 
     /**
      * Default constructor
      */
-    public RuleAzoGroup() 
-    {
-        try 
-        {
-            super.addSubstructure( "1", "[$([!R&N]=[!R&N])]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Chemicals containing azo group (-N=N-) " +
-                "are associated with low biodegradability."
-            );
-            id = "19";
-            title = "Azo group (-N=N-)";
-            examples[ 0 ] = "C1CCCC1";
-            examples[ 1 ] = "CCCCCN=NC";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleAzoGroup() {
+	try {
+	    super.addSubstructure("1", "[$([!R&N]=[!R&N])]", false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Chemicals containing azo group (-N=N-) "
+		    + "are associated with low biodegradability.");
+	    id = "19";
+	    title = "Azo group (-N=N-)";
+	    examples[0] = "C1CCCC1";
+	    examples[1] = "CCCCCN=NC";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
-}
 
+}

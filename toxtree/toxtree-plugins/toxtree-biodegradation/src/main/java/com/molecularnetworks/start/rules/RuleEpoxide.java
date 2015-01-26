@@ -34,36 +34,35 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for chemicals containing an epoxide functional group.
+ * 
  * @version $Id: RuleEpoxide.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleEpoxide extends RuleSMARTSubstructure 
-{
+public class RuleEpoxide extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8975105151159486366L;
 
     /**
      * Default constructor
      */
-    public RuleEpoxide() 
-    {
-        super();		
-        try 
-        {
-            super.initSingleSMARTS( super.smartsPatterns, "1", "[$(C1OC1)]" );
-            super.setExplanation( 
-                "Checks for epoxide functional group. " +
-                "Epoxides are associated with low biodegradability." 
-            );
-            id = "2";
-            title = "Epoxides";
-            examples[ 0 ] = "C(C)CCCO";
-            examples[ 1 ] = "CC1OC1CC";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleEpoxide() {
+	super();
+	try {
+	    super.initSingleSMARTS(super.smartsPatterns, "1", "[$(C1OC1)]");
+	    super.setExplanation("Checks for epoxide functional group. "
+		    + "Epoxides are associated with low biodegradability.");
+	    id = "2";
+	    title = "Epoxides";
+	    examples[0] = "C(C)CCCO";
+	    examples[1] = "CC1OC1CC";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
 }

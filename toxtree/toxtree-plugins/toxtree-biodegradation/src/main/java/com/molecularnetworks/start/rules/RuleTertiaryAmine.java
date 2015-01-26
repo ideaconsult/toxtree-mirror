@@ -34,36 +34,34 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for tertiary amines.
+ * 
  * @version $Id: RuleTertiaryAmine.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleTertiaryAmine extends RuleSMARTSubstructure 
-{
+public class RuleTertiaryAmine extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2308435762805621276L;
 
     /**
      * Default constructor
      */
-    public RuleTertiaryAmine() 
-    {
-        try 
-        {
-            super.addSubstructure( "1", "[!R&NX3&H0]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Tertiary amines " +
-                "are associated with low biodegradability." 
-            );
-            id = "18";
-            title = "Tertiary amine";
-            examples[ 0 ] = "C1CCCC1";
-            examples[ 1 ] = "CCN(C)C";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleTertiaryAmine() {
+	try {
+	    super.addSubstructure("1", "[!R&NX3&H0]", false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Tertiary amines " + "are associated with low biodegradability.");
+	    id = "18";
+	    title = "Tertiary amine";
+	    examples[0] = "C1CCCC1";
+	    examples[1] = "CCN(C)C";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
+
 }

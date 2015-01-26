@@ -236,6 +236,11 @@ public class RuleElements extends AbstractRule {
 
 	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
 		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = -369980300586785085L;
+
 			public IChemObjectSelection process(IAtomContainer mol)
 					throws AmbitException {
 				try {
@@ -269,5 +274,5 @@ public class RuleElements extends AbstractRule {
 			}
 
 		};
-	}
+    }
 }

@@ -39,111 +39,95 @@ import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
 
 /**
- * Biodegradation rule for chemicals with more than two 
- * hydroxy substituents on an aromatic ring.
- * @version $Id: RuleMoreThanTwoHydroxyOnAromaticRing.java 936 2008-12-04 17:43:31Z joerg $
+ * Biodegradation rule for chemicals with more than two hydroxy substituents on
+ * an aromatic ring.
+ * 
+ * @version $Id: RuleMoreThanTwoHydroxyOnAromaticRing.java 936 2008-12-04
+ *          17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
 public class RuleMoreThanTwoHydroxyOnAromaticRing extends RuleSMARTSubstructure {
-    
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6993856558017848786L;
+
     /**
      * Default constructor
      */
-    public RuleMoreThanTwoHydroxyOnAromaticRing() 
-    {
-        super();		
-        try 
-        {
-            super.addSubstructure( "1", "[$([a&R][OX2H])]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Chemicals with more than two hydroxy substituents " +
-                "on an aromatic ring are associated with low biodegradability."
-            );
-            id = "8";
-            title = "More than two hydroxy substituents on aromatic ring";
-            examples[ 0 ] = "C1CCCC1CC";
-            examples[ 1 ] = "c1c(O)c(O)c(O)cc1";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-            logger.log(Level.SEVERE,x.getMessage(), x );
-        }
+    public RuleMoreThanTwoHydroxyOnAromaticRing() {
+	super();
+	try {
+	    super.addSubstructure("1", "[$([a&R][OX2H])]", false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Chemicals with more than two hydroxy substituents "
+		    + "on an aromatic ring are associated with low biodegradability.");
+	    id = "8";
+	    title = "More than two hydroxy substituents on aromatic ring";
+	    examples[0] = "C1CCCC1CC";
+	    examples[1] = "c1c(O)c(O)c(O)cc1";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
 
     /**
-     * Overrides the default {@link IDecisionRule} behaviour.
-     * Returns TRUE, if the answer of the rule is YES for the analyzed 
-     * molecule {@link org.openscience.cdk.interfaces.AtomContainer}
-     * Returns FALSE, if the answer of the rule is NO for the analyzed 
-     * molecule {@link org.openscience.cdk.interfaces.AtomContainer}
-     * @param mol  {@link org.openscience.cdk.interfaces.AtomContainer}
+     * Overrides the default {@link IDecisionRule} behaviour. Returns TRUE, if
+     * the answer of the rule is YES for the analyzed molecule
+     * {@link org.openscience.cdk.interfaces.AtomContainer} Returns FALSE, if
+     * the answer of the rule is NO for the analyzed molecule
+     * {@link org.openscience.cdk.interfaces.AtomContainer}
+     * 
+     * @param mol
+     *            {@link org.openscience.cdk.interfaces.AtomContainer}
      * @return rule result, boolean
      * @throws {@link DecisionMethodException}
      */
     @Override
-    public boolean verifyRule( org.openscience.cdk.interfaces.IAtomContainer mol )
-            throws DecisionMethodException 
-    {
-        logger.finer( getID() );
-        IAtomContainer moltotest = getObjectToVerify( mol );
-        if ( ! isAPossibleHit( mol, moltotest ) ) 
-        {
-            logger.fine("Not a possible hit due to the prescreen step.");
-            return false;
-        }
-        Enumeration e  = smartsPatterns.keys();
-        boolean is_true = false;
-        String temp_id = "";
-    	while( e.hasMoreElements() ) 
-        {
-            temp_id = e.nextElement().toString();
-            ISmartsPattern pattern = smartsPatterns.get( temp_id );
-            if ( null == pattern ) 
-            {
-                throw new DecisionMethodException( 
-                    "ID '" + id + "' is missing in " + getClass().getName() 
-                );
-            }
-            
-            try {
-	            int matchCount = pattern.hasSMARTSPattern( moltotest );
-	            if ( "1".equals( temp_id ) ) 
-	            {
-	                is_true = matchCount > 2;
-	            }
-	            else 
-	            {
-	                is_true = matchCount > 0;
-	            }
-	            logger.fine(
-	                "SMARTS " + temp_id + "\t" + pattern.toString()+
-	                "\tmatches "+
-	                matchCount+
-	                "times\tresult is "+
-	                is_true 
-	            );
-            
-            } catch (Exception x) {
-            	throw new DecisionMethodException(x);
-            }
-            if ( pattern.isNegate() ) 
-            {
-                is_true = !is_true;
-            }
-            if ( containsAllSubstructures && !is_true ) 
-            {
-                return false;
-            } 
-            else if ( !containsAllSubstructures && is_true ) 
-            {    			
-                is_true = true;
-                break;
-            }
-    	}
-        return is_true;
+    public boolean verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol) throws DecisionMethodException {
+	logger.finer(getID());
+	IAtomContainer moltotest = getObjectToVerify(mol);
+	if (!isAPossibleHit(mol, moltotest)) {
+	    logger.fine("Not a possible hit due to the prescreen step.");
+	    return false;
+	}
+	Enumeration e = smartsPatterns.keys();
+	boolean is_true = false;
+	String temp_id = "";
+	while (e.hasMoreElements()) {
+	    temp_id = e.nextElement().toString();
+	    ISmartsPattern pattern = smartsPatterns.get(temp_id);
+	    if (null == pattern) {
+		throw new DecisionMethodException("ID '" + id + "' is missing in " + getClass().getName());
+	    }
+
+	    try {
+		int matchCount = pattern.hasSMARTSPattern(moltotest);
+		if ("1".equals(temp_id)) {
+		    is_true = matchCount > 2;
+		} else {
+		    is_true = matchCount > 0;
+		}
+		logger.fine("SMARTS " + temp_id + "\t" + pattern.toString() + "\tmatches " + matchCount
+			+ "times\tresult is " + is_true);
+
+	    } catch (Exception x) {
+		throw new DecisionMethodException(x);
+	    }
+	    if (pattern.isNegate()) {
+		is_true = !is_true;
+	    }
+	    if (containsAllSubstructures && !is_true) {
+		return false;
+	    } else if (!containsAllSubstructures && is_true) {
+		is_true = true;
+		break;
+	    }
+	}
+	return is_true;
     }
-    
+
 }

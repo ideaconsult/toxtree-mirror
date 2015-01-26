@@ -67,6 +67,11 @@ public class RuleStructuresPanel extends RuleEditor implements IDecisionRuleEdit
 		JPanel p1 = new JPanel(new BorderLayout());
 		p1.setBorder(BorderFactory.createTitledBorder("Searching for exact structures from file:"));
 		JButton b = new JButton(new AbstractAction("File") {
+			/**
+		     * 
+		     */
+		    private static final long serialVersionUID = 7552999440534127570L;
+
 			public void actionPerformed(ActionEvent arg0) {
 		        selectFile();
 

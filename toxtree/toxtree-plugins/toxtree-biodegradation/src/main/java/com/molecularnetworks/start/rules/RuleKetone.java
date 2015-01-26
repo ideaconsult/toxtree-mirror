@@ -34,36 +34,34 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for ketones.
+ * 
  * @version $Id: RuleKetone.java 936 2008-12-04 17:43:31Z joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleKetone extends RuleSMARTSubstructure 
-{
+public class RuleKetone extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -121797072830479928L;
 
     /**
      * Default constructor
      */
-     public RuleKetone() 
-     {
-        try 
-        {
-            super.addSubstructure( "1", "[C][C](=O)[C]", false );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Chemicals containing a ketogroup " +
-                "are associated with low biodegradability." 
-            );
-            id = "23";
-            title = "Ketone";
-            examples[ 0 ] = "C1CCCC1";
-            examples[ 1 ] = "CCC(=O)CC";
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleKetone() {
+	try {
+	    super.addSubstructure("1", "[C][C](=O)[C]", false);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Chemicals containing a ketogroup " + "are associated with low biodegradability.");
+	    id = "23";
+	    title = "Ketone";
+	    examples[0] = "C1CCCC1";
+	    examples[1] = "CCC(=O)CC";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
+
 }

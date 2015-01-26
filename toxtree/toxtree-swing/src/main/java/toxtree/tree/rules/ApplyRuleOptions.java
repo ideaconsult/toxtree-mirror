@@ -92,6 +92,11 @@ public class ApplyRuleOptions implements Serializable,PropertyChangeListener {
 			
 			for (UserOptions value : UserOptions.values()) {
 				JRadioButton b = new JRadioButton(new AbstractAction(value.toString()) {
+					/**
+				     * 
+				     */
+				    private static final long serialVersionUID = -7398590938591904762L;
+
 					public void actionPerformed(ActionEvent e) {
 						String a = e.getActionCommand();
 						for (UserOptions o : UserOptions.values()) 

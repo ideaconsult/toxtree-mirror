@@ -34,37 +34,37 @@ import ambit2.smarts.query.SMARTSException;
 
 /**
  * Biodegradation rule for aliphatic cyclic chemicals with no branches.
- * @version $Id: RuleAliphaticCyclicNoBranches.java 936 2008-12-04 17:43:31Z joerg $
+ * 
+ * @version $Id: RuleAliphaticCyclicNoBranches.java 936 2008-12-04 17:43:31Z
+ *          joerg $
  * @author <a href="mailto:info@molecular-networks.com">Molecular Networks</a>
  * @author $Author: joerg $
  */
-public class RuleAliphaticCyclicNoBranches extends RuleSMARTSubstructure 
-{
+public class RuleAliphaticCyclicNoBranches extends RuleSMARTSubstructure {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5563610494405030477L;
 
     /**
      * Default constructor
      */
-    public RuleAliphaticCyclicNoBranches() 
-    {
-        super();		
-        try 
-        {
-            super.addSubstructure( "1", "[!R,a]", true );
-            super.setContainsAllSubstructures( true );
-            super.setExplanation( 
-                "Aliphatic cyclic chemicals with no branches" +
-                " are associated with low biodegradability." 
-            );
-            id = "5";
-            title = "Aliphatic cyclic chemicals with no branches";
-            examples[ 0 ] = "C1CCCC1CC";
-            examples[ 1 ] = "C1CCCC1";	
-            editable = false;
-        } 
-        catch ( SMARTSException x ) 
-        {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
+    public RuleAliphaticCyclicNoBranches() {
+	super();
+	try {
+	    super.addSubstructure("1", "[!R,a]", true);
+	    super.setContainsAllSubstructures(true);
+	    super.setExplanation("Aliphatic cyclic chemicals with no branches"
+		    + " are associated with low biodegradability.");
+	    id = "5";
+	    title = "Aliphatic cyclic chemicals with no branches";
+	    examples[0] = "C1CCCC1CC";
+	    examples[1] = "C1CCCC1";
+	    editable = false;
+	} catch (SMARTSException x) {
+	    logger.log(Level.SEVERE, x.getMessage(), x);
+	}
     }
-    
+
 }

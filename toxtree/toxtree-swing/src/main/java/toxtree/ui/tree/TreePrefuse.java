@@ -329,7 +329,12 @@ public class TreePrefuse extends Display implements ITreeView {
     public Action getHelpAction() {
         Action a = new AbstractAction("Help",Tools.getImage("help.png")) {
             
-            public void actionPerformed(ActionEvent arg0) {
+            /**
+	     * 
+	     */
+	    private static final long serialVersionUID = 6907883029421002289L;
+
+	    public void actionPerformed(ActionEvent arg0) {
                 showHelp();
             }
         };
