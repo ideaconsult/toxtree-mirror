@@ -11,7 +11,7 @@ import org.opentox.aa.opensso.OpenSSOToken;
 import org.opentox.rest.HTTPClient;
 
 public abstract class RemoteLookup<RESULT> {
-	//protected static final String defaultLookup = "http://apps.ideaconsult.net:8080/ambit2/query/compound/search/all?search=%s&max=1&media=chemical%%2Fx-mdl-sdfile";;
+	//protected static final String defaultLookup = "https://apps.ideaconsult.net/ambit2/query/compound/search/all?search=%s&max=1&media=chemical%%2Fx-mdl-sdfile";;
 	protected static String lookupService = null;
 	protected String authService;
 	protected String policyService;
