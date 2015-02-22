@@ -28,7 +28,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.Icon;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
@@ -101,7 +100,7 @@ public class RuleExampleEditAction extends RuleMoleculeEditAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (rule != null) {
-			IMolecule m = null;
+			IAtomContainer m = null;
 			try {
 				m = rule.getExampleMolecule(answer);
 			} catch (DecisionMethodException x) {

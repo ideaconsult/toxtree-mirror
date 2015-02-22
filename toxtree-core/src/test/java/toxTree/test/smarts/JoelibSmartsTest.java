@@ -33,12 +33,10 @@ import joelib.smiles.JOESmilesParser;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.IsomorphismTester;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
@@ -89,7 +87,7 @@ public class JoelibSmartsTest  {
 	    }
 	@Test
 	    public void testCDKJoeMol() throws Exception {
-			IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+			IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
 	        
 	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
 	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN)); // 5
@@ -99,7 +97,7 @@ public class JoelibSmartsTest  {
 	        MolAnalyser.analyse(mol);
 		
 	        JOEMol converted = Convertor.convert(mol);
-	        IMolecule reverted = Convertor.convert(converted);
+	        IAtomContainer reverted = Convertor.convert(converted);
 
 	        Assert.assertEquals(mol.getAtomCount(), reverted.getAtomCount());
 	        Assert.assertEquals(mol.getBondCount(), reverted.getBondCount());
@@ -125,7 +123,7 @@ public class JoelibSmartsTest  {
 	    }
 	    @Test
 	    public void testCDKJoeMolAllC() throws Exception {
-	        IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+	        IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
 	        
 	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
 	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 5
@@ -134,7 +132,7 @@ public class JoelibSmartsTest  {
 
 		
 	        JOEMol converted = Convertor.convert(mol);
-	        IMolecule reverted = Convertor.convert(converted);
+	        IAtomContainer reverted = Convertor.convert(converted);
 
 	        Assert.assertEquals(mol.getAtomCount(), reverted.getAtomCount());
 	        Assert.assertEquals(mol.getBondCount(), reverted.getBondCount());

@@ -17,7 +17,7 @@ import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IBond.Order;
 import org.openscience.cdk.interfaces.IElement;
 import org.openscience.cdk.interfaces.IMolecularFormula;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingMDLReader;
 import org.openscience.cdk.io.iterator.IteratingSMILESReader;
@@ -132,7 +132,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures
                 Object o = reader.next();
                 if(o instanceof IAtomContainer)
                 {
-                    IMolecule m = (IMolecule)o;
+                    IAtomContainer m = (IAtomContainer)o;
                     if(m.getAtomCount() > 0)
                         try
                         {

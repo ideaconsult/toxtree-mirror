@@ -39,7 +39,6 @@ import java.io.Serializable;
 import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
@@ -96,7 +95,7 @@ public interface IDecisionRule extends Serializable, Cloneable {
 	 * @return {@link org.openscience.cdk.interfaces.Molecule}
 	 * @throws {@link DecisionMethodException}
 	 */
-	IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException ;
+	IAtomContainer getExampleMolecule(boolean ruleResult) throws DecisionMethodException ;
 	/**
 	 * Sets example molecule for the YES or NO answer of the rule
 	 * @param mol {@link org.openscience.cdk.interfaces.Molecule}

@@ -27,9 +27,8 @@ package toxTree.cramer;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.exception.InvalidSmilesException;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -84,18 +83,18 @@ public class CramerRulesTest extends RulesTestCase {
 	}
 
 	/*
-	 * Class under test for int classify(IMolecule)
+	 * Class under test for int classify(IAtomContainer)
 	 */
 	@Test
 	public void testClassifyMolecule() {
-		IMolecule mol = MoleculeFactory.makeAlkane(6);
+		IAtomContainer mol = MoleculeFactory.makeAlkane(6);
 		classify(mol,rules,3);
 
 	}
 
-    protected IMolecule getMolecule(String smiles) {
+    protected IAtomContainer getMolecule(String smiles) {
         try {
-        	IMolecule mol = gen.parseSmiles(smiles);
+        	IAtomContainer mol = gen.parseSmiles(smiles);
             MolAnalyser.analyse(mol);
             return mol;
 	    } catch (InvalidSmilesException x ) {

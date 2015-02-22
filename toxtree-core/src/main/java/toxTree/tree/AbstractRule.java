@@ -43,7 +43,6 @@ import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -214,7 +213,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
      * @param yes
      * @return {@link org.openscience.cdk.interfaces.Molecule}
      */
-    public static IMolecule makeMolecule(boolean yes) throws DecisionMethodException {
+    public static IAtomContainer makeMolecule(boolean yes) throws DecisionMethodException {
 	if (yes)
 	    throw new DecisionMethodException("This rules has no 'YES' example molecule defined!");
 	else
@@ -229,7 +228,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	    index = 0;
 	SmilesGenerator g = new SmilesGenerator(true);
 	// try {
-	if (mol instanceof IMolecule)
+	if (mol instanceof IAtomContainer)
 	    examples[index] = g.createSMILES((org.openscience.cdk.Molecule) mol);
 	else
 	    examples[index] = "";
@@ -240,7 +239,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	 */
     }
 
-    public IMolecule getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
+    public IAtomContainer getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
 	SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 	int index;
 	if (ruleResult)
@@ -248,7 +247,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	else
 	    index = 0;
 	try {
-	    IMolecule mol = sp.parseSmiles(examples[index]);
+	    IAtomContainer mol = sp.parseSmiles(examples[index]);
 	    AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
 	    CDKHueckelAromaticityDetector.detectAromaticity(mol);
 	    if (ruleResult)

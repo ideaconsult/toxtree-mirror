@@ -48,12 +48,11 @@ import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.graph.PathTools;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IElement;
 import org.openscience.cdk.interfaces.IMolecularFormula;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
@@ -1913,7 +1912,7 @@ public class FunctionalGroups {
 	    		}	
     }
     
-    public static void mapHydrocarbon(IMolecule mol) {
+    public static void mapHydrocarbon(IAtomContainer mol) {
         for (int i=0; i < mol.getAtomCount(); i++) {
             
         }
@@ -2109,7 +2108,7 @@ public class FunctionalGroups {
     public static void preProcess(IAtomContainer mol) {
     	markCHn(mol);
     }
-    public static boolean markUniqueBondMap(IMolecule mol, ArrayList query, boolean isPreprocessed) {
+    public static boolean markUniqueBondMap(IAtomContainer mol, ArrayList query, boolean isPreprocessed) {
 	    if ((query == null) || (query.size() == 0)) return false;
 	    else
 	    	for (int i=0; i < query.size(); i++) {
@@ -2305,7 +2304,7 @@ public class FunctionalGroups {
                 h.addImplicitHydrogens(mol);
                 HydrogenAdderProcessor.convertImplicitToExplicitHydrogens(mol);
       
-                //h.addExplicitHydrogensToSatisfyValency((IMolecule)mol);
+                //h.addExplicitHydrogensToSatisfyValency((IAtomContainer)mol);
             } catch (InvalidSmilesException x ) {
             	logger.log(Level.SEVERE,x.getMessage(),x);
                 return null;
@@ -2448,7 +2447,7 @@ public class FunctionalGroups {
     	//return createQuery("CC(O)C=C",);
     	//return createQuery("[H]OC([H])(C)C([H])=C([H])[H]","secondary alcohol attached to terminal vinyl group");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-    	  IMolecule mol = new org.openscience.cdk.Molecule();
+    	  IAtomContainer mol = new org.openscience.cdk.Molecule();
     	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.HYDROGEN);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
@@ -2497,7 +2496,7 @@ public class FunctionalGroups {
     	//TODO ""CC(C(=O)O[*])C=C""
     	//return createQuery("CC(C(=O)OC)C=C","ester of secondary alcohol attached to terminal vinyl group");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-    	  IMolecule mol = MoleculeTools.newMolecule(builder);
+    	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
@@ -2550,7 +2549,7 @@ public class FunctionalGroups {
     }
     public static IAtomContainer allylAlcohol() {
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  	 IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  	 IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.CARBON);
@@ -2597,7 +2596,7 @@ public class FunctionalGroups {
     	//TODO "[*]C(OCC=C)(OCC=C)[H]"
     	//return createQuery("C(OCC=C)(OCC=C)[H]","allyl alcohol acetal");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-    	  IMolecule mol = MoleculeTools.newMolecule(builder);
+    	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(builder,Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(builder,Elements.OXYGEN);
@@ -2688,7 +2687,7 @@ public class FunctionalGroups {
     public static QueryAtomContainer allylAlcoholEsterDerivative() {
     	//TODO "CC=CCOC(=O)C[*]"
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  	IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  	IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -2744,7 +2743,7 @@ public class FunctionalGroups {
     public static IAtomContainer allylMercaptan() {
     	//return createAtomContainer("[H]SC([H])([H])C([H])=C([H])[H]","allyl mercaptan");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -2789,7 +2788,7 @@ public class FunctionalGroups {
     public static IAtomContainer allylAmine() {
 //    	return createAtomContainer("C=CCN","allyl amine");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -2838,7 +2837,7 @@ public class FunctionalGroups {
     public static IAtomContainer allylSulphide() {
     	//return createAtomContainer("C=CCSCC=C","allyl sulphide");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -2911,7 +2910,7 @@ public class FunctionalGroups {
     public static IAtomContainer allylThioester() {
     	//	return createQuery("C(=O)SCC=C","allyl thioester");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
@@ -2964,7 +2963,7 @@ public class FunctionalGroups {
     public static IAtomContainer acrolein() {
     	//return createAtomContainer("C=CC=O","acrolein");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	     IMolecule mol = MoleculeTools.newMolecule(builder);
+  	     IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -3001,7 +3000,7 @@ public class FunctionalGroups {
     public static IAtomContainer methacrolein() {
     	//return createAtomContainer("C=C(C)C=O","methacrolein");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -3049,7 +3048,7 @@ public class FunctionalGroups {
     }       
     public static IAtomContainer methacroleinAcetal() {
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -3135,7 +3134,7 @@ public class FunctionalGroups {
     public static IAtomContainer acrylicAcid() {
     	//return createAtomContainer("C=CC(O)=O","acrylic acid");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -3176,7 +3175,7 @@ public class FunctionalGroups {
     public static IAtomContainer methacrylicAcid() {
     	//return createAtomContainer("C=C(C)C(O)=O","methacrylic acid");
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-  	  IMolecule mol = MoleculeTools.newMolecule(builder);
+  	  IAtomContainer mol = MoleculeTools.newMolecule(builder);
     	  IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
     	  mol.addAtom(a1);
     	  IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON);
@@ -3619,7 +3618,7 @@ public class FunctionalGroups {
 	*/
 	public static int associateIonic(IAtomContainer a) throws CDKException {
 		
-		IMoleculeSet c = ConnectivityChecker.partitionIntoMolecules(a);
+		IAtomContainerSet c = ConnectivityChecker.partitionIntoMolecules(a);
 		//clear VISITED flag
 		for (int i=0; i<a.getAtomCount();i++) a.getAtom(i).setFlag(CDKConstants.VISITED,false);
 		
@@ -3712,7 +3711,7 @@ public class FunctionalGroups {
 	 * by breaking bonds as above. Hydrogens are added on the broken end of each bond 
 	 *TODO care for bond orders!
 	 */
-	public static IMoleculeSet detachGroup(IAtomContainer a, QueryAtomContainer q) {
+	public static IAtomContainerSet detachGroup(IAtomContainer a, QueryAtomContainer q) {
     	IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
 
 		List list = FunctionalGroups.getUniqueBondMap(a, q,needsPreprocessing(q));

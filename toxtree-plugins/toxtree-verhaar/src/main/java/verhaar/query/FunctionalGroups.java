@@ -26,7 +26,6 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.interfaces.IPseudoAtom;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.InverseSymbolSetQueryAtom;
@@ -326,9 +325,9 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		}
 		return q;
 	}
-	public static IMolecule makeNitroPhenol() {
+	public static IAtomContainer makeNitroPhenol() {
 		 IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-		  IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+		  IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
 		  IAtom a1 = MoleculeTools.newAtom(builder,"C");
 		  mol.addAtom(a1);
 		  IAtom a2 = MoleculeTools.newAtom(builder,"C");

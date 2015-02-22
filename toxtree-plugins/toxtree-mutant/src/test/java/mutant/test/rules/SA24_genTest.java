@@ -3,7 +3,7 @@ package mutant.test.rules;
 import mutant.rules.SA24_gen;
 import mutant.test.TestMutantRules;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
@@ -30,7 +30,7 @@ public class SA24_genTest extends TestMutantRules {
 	 */
 	public void test_bug3138570() throws Exception {
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
-		IMolecule m = p.parseSmiles("C1CC=CO1");
+		IAtomContainer m = p.parseSmiles("C1CC=CO1");
 
 		try {
 			/*

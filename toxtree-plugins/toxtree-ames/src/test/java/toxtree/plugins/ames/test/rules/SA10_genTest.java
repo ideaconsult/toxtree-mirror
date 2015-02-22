@@ -31,10 +31,9 @@ import javax.vecmath.Point2d;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IMolecularFormula;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -66,7 +65,7 @@ public class SA10_genTest extends TestAmesMutagenicityRules {
 	}
 	
 	public void test663() throws Exception {
-		IMolecule m663 = create663();
+		IAtomContainer m663 = create663();
 		assertTrue(applySmarts("[#6]:,=[#6][#6](=O)[!O]",m663));
 		
 	}
@@ -83,7 +82,7 @@ public class SA10_genTest extends TestAmesMutagenicityRules {
 		IAtomContainer c = FunctionalGroups.createAtomContainer("CC(C)CCC=CC=O");
 			MolAnalyser.analyse(c);
 		
-		IMoleculeSet sc = ((SA10_gen)ruleToTest).detachSubstituentAtBetaCarbon(c);
+		IAtomContainerSet sc = ((SA10_gen)ruleToTest).detachSubstituentAtBetaCarbon(c);
 		assertNotNull(sc);
 		Hashtable<String,Integer> results = new Hashtable<String,Integer>();
 		results.put("[H]C([H])([H])C([H])([H])C([H])(C([H])([H])[H])C([H])([H])[H]",new Integer(5));
@@ -91,7 +90,7 @@ public class SA10_genTest extends TestAmesMutagenicityRules {
 		if (sc != null) {
 			SmilesGenerator g = new SmilesGenerator(true);
 			for (int i=0;i<sc.getAtomContainerCount();i++) {
-				String s = g.createSMILES((IMolecule)sc.getAtomContainer(i));
+				String s = g.createSMILES((IAtomContainer)sc.getAtomContainer(i));
 //				System.out.println(s);
 				assertNotNull(results.get(s));
 				IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(sc.getAtomContainer(i));
@@ -105,8 +104,8 @@ public class SA10_genTest extends TestAmesMutagenicityRules {
 
 		}
 	}
-	protected IMolecule create663() throws Exception {
-			  IMolecule mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+	protected IAtomContainer create663() throws Exception {
+			  IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
 			  IAtom a1 = MoleculeTools.newAtom(mol.getBuilder(),Elements.CARBON);
 			  a1.setPoint2d(new Point2d(2.598076211353316, -4.440892098500626E-16));  mol.addAtom(a1);
 			  IAtom a2 = MoleculeTools.newAtom(mol.getBuilder(),Elements.CARBON);

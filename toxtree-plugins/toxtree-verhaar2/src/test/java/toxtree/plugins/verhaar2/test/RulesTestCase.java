@@ -38,9 +38,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionResult;
@@ -93,11 +91,11 @@ public abstract class RulesTestCase  {
 
 	
 	public boolean goTestRule(IDecisionRule rule) throws Exception {
-		    IMolecule m1 = rule.getExampleMolecule(true);
+		    IAtomContainer m1 = rule.getExampleMolecule(true);
 		    
 		    MolAnalyser.analyse(m1);
 		    boolean r1 = rule.verifyRule(m1);
-		    IMolecule m2 = rule.getExampleMolecule(false);
+		    IAtomContainer m2 = rule.getExampleMolecule(false);
 		    
 		    MolAnalyser.analyse(m2);
 		    boolean r2 = rule.verifyRule(m2);

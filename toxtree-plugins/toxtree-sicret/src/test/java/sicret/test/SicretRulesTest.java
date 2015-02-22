@@ -16,14 +16,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package sicret.test;
-
-
 
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
@@ -35,11 +32,12 @@ import toxTree.query.MolAnalyser;
 
 /**
  * TODO Add SicretRulesTest description
+ * 
  * @author Nina Jeliazkova <br>
  * @version 0.1, 2005-4-30
  */
 public class SicretRulesTest extends RulesTestCase {
-    protected SmilesParser gen = null;
+	protected SmilesParser gen = null;
 
 	/**
 	 * 
@@ -48,76 +46,80 @@ public class SicretRulesTest extends RulesTestCase {
 		super();
 		try {
 			rules = new SicretRules();
-			((SicretRules)rules).setResiduesIDVisible(false);
+			((SicretRules) rules).setResiduesIDVisible(false);
 		} catch (DecisionMethodException x) {
 			fail();
-		}	
-        gen = new SmilesParser(SilentChemObjectBuilder.getInstance());
-        
+		}
+		gen = new SmilesParser(SilentChemObjectBuilder.getInstance());
+
 	}
 
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see junit.framework.TestCase#tearDown()
 	 */
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
 
-	/*public void testVerifyRule2() {
-		Molecule mol = MoleculeFactory.makeAlkane(6);
-		try {
-			verifyRule(mol,1);
-		} catch (DecisionMethodException x) {
-			x.printStackTrace();
-			assertTrue(false);
-		}
-	}*/
+	/*
+	 * public void testVerifyRule2() { Molecule mol =
+	 * MoleculeFactory.makeAlkane(6); try { verifyRule(mol,1); } catch
+	 * (DecisionMethodException x) { x.printStackTrace(); assertTrue(false); } }
+	 */
 
 	/*
-	 * Class under test for int classify(IMolecule)
+	 * Class under test for int classify(IAtomContainer)
 	 */
 	public void testClassifyMolecule() {
-		IAtomContainer mol = FunctionalGroups.createAtomContainer("Nc1ccc3c(c1)Cc2cc(ccc23)Br",true);
-        /*
-		mol.setProperty(RuleMeltingPoint.MeltingPoint,"100");
-		mol.setProperty(RuleLogP.LogKow,"100");
-		mol.setProperty(RuleLipidSolubility.LipidSolubility,"100");	
-		mol.setProperty("SurfaceTension","100");
-		mol.setProperty("VapourPressure","100");
-		mol.setProperty("AqueousSolubility","100");
-        */
-		//assign properties
-        rules.setParameters(mol);
-		classify(mol,rules,rules.getNumberOfClasses());
+		IAtomContainer mol = FunctionalGroups.createAtomContainer(
+				"Nc1ccc3c(c1)Cc2cc(ccc23)Br", true);
+		/*
+		 * mol.setProperty(RuleMeltingPoint.MeltingPoint,"100");
+		 * mol.setProperty(RuleLogP.LogKow,"100");
+		 * mol.setProperty(RuleLipidSolubility.LipidSolubility,"100");
+		 * mol.setProperty("SurfaceTension","100");
+		 * mol.setProperty("VapourPressure","100");
+		 * mol.setProperty("AqueousSolubility","100");
+		 */
+		// assign properties
+		rules.setParameters(mol);
+		classify(mol, rules, rules.getNumberOfClasses());
 
 	}
 
-    protected IMolecule getMolecule(String smiles) {
-        try {
-        	IMolecule mol = gen.parseSmiles(smiles);
-            MolAnalyser.analyse(mol);
-            return mol;
-	    } catch (InvalidSmilesException x ) {
-	        x.printStackTrace();
-	        return null;
-	    } catch (MolAnalyseException x) {
-	        x.printStackTrace();
-	        return null;
-	    }    
-    }
+	protected IAtomContainer getMolecule(String smiles) {
+		try {
+			IAtomContainer mol = gen.parseSmiles(smiles);
+			MolAnalyser.analyse(mol);
+			return mol;
+		} catch (InvalidSmilesException x) {
+			x.printStackTrace();
+			return null;
+		} catch (MolAnalyseException x) {
+			x.printStackTrace();
+			return null;
+		}
+	}
+
 	public void testSicret() {
-		SicretRules rulesNew = (SicretRules)objectRoundTrip(rules,"SicretRules");
+		SicretRules rulesNew = (SicretRules) objectRoundTrip(rules,
+				"SicretRules");
 		rulesNew.setResiduesIDVisible(false);
 		rules = rulesNew;
 		tryImplementedRules();
 	}
+
 	public void testPrintSicret() {
 		try {
 			System.out.println(new SicretRules().getRules());

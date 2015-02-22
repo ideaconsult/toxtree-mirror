@@ -28,7 +28,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
 import toxTree.exceptions.DecisionMethodException;
@@ -92,7 +92,7 @@ public abstract class LDARuleTest extends TestCase {
 	}
 
 	protected void verifyExample(boolean answer) throws DecisionMethodException {
-		IMolecule m = ruleToTest.getExampleMolecule(answer);
+		IAtomContainer m = ruleToTest.getExampleMolecule(answer);
 		try {
 			/*
 			HydrogenAdder ha = new HydrogenAdder();
