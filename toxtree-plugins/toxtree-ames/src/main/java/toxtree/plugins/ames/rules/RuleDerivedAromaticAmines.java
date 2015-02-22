@@ -120,7 +120,7 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 	
 	//aN=C=O
 	public  static QueryAtomContainer group1() {
-        QueryAtomContainer query = new QueryAtomContainer();
+        QueryAtomContainer query = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
         query.setID("aN=C=O");
         SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
         SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN));

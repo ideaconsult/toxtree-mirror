@@ -145,7 +145,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	 * @return
 	 */
 	public static QueryAtomContainer halogenAtBetaFromUnsaturation(String[] halogens) {
-		QueryAtomContainer q = new QueryAtomContainer();
+		QueryAtomContainer q = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		q.setID(HALOGEN_BETA_FROM_UNSATURATION);
 		IAtom a[] = new IAtom[4];
 		for (int i=0;i<a.length;i++) {
@@ -174,7 +174,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		return halogen(h);
 	}
 	public static QueryAtomContainer halogen(String[] halogens) {
-		QueryAtomContainer q = new QueryAtomContainer();
+		QueryAtomContainer q = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		q.setID(HALOGEN);
 		SymbolSetQueryAtom h = new SymbolSetQueryAtom();
 		h.setSymbol("*");
@@ -204,7 +204,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	}
 	public static QueryAtomContainer phenol() {
 		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-		QueryAtomContainer q = new QueryAtomContainer();
+		QueryAtomContainer q = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		q.setID(PHENOL);
 		IAtom[] a = new IAtom[6];
 		for (int i=0;i<a.length;i++) {
@@ -226,7 +226,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		return q;
 	}
 	public static QueryAtomContainer aniline() {
-		QueryAtomContainer q = new QueryAtomContainer();
+		QueryAtomContainer q = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		q.setID(ANILINE);
 		IAtom[] a = new IAtom[6];
 		for (int i=0;i<a.length;i++) {
@@ -248,7 +248,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	}
 
 	public static QueryAtomContainer pyridine() {
-		QueryAtomContainer q = new QueryAtomContainer();
+		QueryAtomContainer q = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		q.setID(PYRIDINE);
 		IAtom[] a = new IAtom[6];
 		for (int i=0;i<a.length;i++) {
@@ -264,7 +264,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 	}	
 
 	public static QueryAtomContainer pyridine_character() {
-		QueryAtomContainer q = new QueryAtomContainer();
+		QueryAtomContainer q = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		q.setID(PYRIDINE);
 		IAtom[] a = new IAtom[6];
 		for (int i=0;i<a.length;i++) {
@@ -297,7 +297,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		return q;
 	}
 	public static QueryAtomContainer ketone_a_b_unsaturated() {
-		QueryAtomContainer q = new QueryAtomContainer();
+		QueryAtomContainer q = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		q.setID(KETONE_A_B_UNSATURATED);
 		IAtom[] a = new IAtom[5];
 		for (int i=0; i < a.length; i++) {
@@ -374,7 +374,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		return createAutoQueryContainer(createAtomContainer(smiles,false,smiles));
 	}
     public static QueryAtomContainer createAutoQueryContainer(IAtomContainer container) {
-        QueryAtomContainer queryContainer = new QueryAtomContainer();
+        QueryAtomContainer queryContainer = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
         
         for (int i = 0; i < container.getAtomCount(); i++) {
         	IAtom atom = container.getAtom(i);
@@ -406,7 +406,7 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
     }    
     //TODO cyclic sulphonic/sulphuric esters
     public static QueryAtomContainer cyclicEster() {
-        QueryAtomContainer query = new QueryAtomContainer();
+        QueryAtomContainer query = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
         query.setID(CYCLICESTER);        
         AnyAtom r = new ReallyAnyAtom();
         r.setProperty(DONTMARK,query.getID());

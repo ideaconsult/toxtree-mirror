@@ -577,7 +577,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
     }
         
     public static QueryAtomContainer aromaticAmine(String mark) {
-        QueryAtomContainer query = new QueryAtomContainer() {
+        QueryAtomContainer query = new QueryAtomContainer(SilentChemObjectBuilder.getInstance()) {
         	/**
 	     * 
 	     */

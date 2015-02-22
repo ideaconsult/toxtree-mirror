@@ -565,7 +565,7 @@ public class SimpleReactions {
 
 	public static QueryAtomContainer createQueryContainer(
 			IAtomContainer container) {
-		QueryAtomContainer queryContainer = new QueryAtomContainer();
+		QueryAtomContainer queryContainer = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		
 		for (int i = 0; i < container.getAtomCount(); i++) {
 			IAtom atom = container.getAtom(i);

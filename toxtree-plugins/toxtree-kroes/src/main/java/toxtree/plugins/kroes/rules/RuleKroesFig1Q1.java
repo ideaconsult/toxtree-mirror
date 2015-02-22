@@ -142,7 +142,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures {
 
 	public static IQueryAtomContainer createQueryContainer(
 			IAtomContainer container) {
-		IQueryAtomContainer queryContainer = new QueryAtomContainer();
+		IQueryAtomContainer queryContainer = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		Iterator<IAtom> atoms = container.atoms().iterator();
 		while (atoms.hasNext()) {
 			IAtom atom = atoms.next();

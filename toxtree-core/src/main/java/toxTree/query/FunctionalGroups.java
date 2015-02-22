@@ -191,7 +191,8 @@ public class FunctionalGroups {
 	 * @return
 	 */
 	public static QueryAtomContainer methyl() {
-		QueryAtomContainer query = new QueryAtomContainer();
+		QueryAtomContainer query = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
 		query.setID(CH3);
 
 		SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(
@@ -218,7 +219,8 @@ public class FunctionalGroups {
 	 * @return
 	 */
 	public static QueryAtomContainer methoxy() {
-		QueryAtomContainer query = new QueryAtomContainer();
+		QueryAtomContainer query = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
 		query.setID(METHOXY);
 		ReallyAnyAtom r = new ReallyAnyAtom();
 		r.setSymbol("R");
@@ -277,7 +279,8 @@ public class FunctionalGroups {
 	}
 
 	public static QueryAtomContainer noxide_aromatic() {
-		QueryAtomContainer query = new QueryAtomContainer();
+		QueryAtomContainer query = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
 		query.setID(AROMATIC_N_OXIDE);
 		AromaticSymbolAtom n = new AromaticSymbolAtom("N");
 		n.setCharge(1.0);
@@ -312,7 +315,8 @@ public class FunctionalGroups {
 	}
 
 	public static QueryAtomContainer hydroxy1() {
-		QueryAtomContainer query = new QueryAtomContainer();
+		QueryAtomContainer query = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
 		query.setID(HYDROXY1);
 		// aliphatic c
 		IQueryAtom c = new AliphaticSymbolAtom("C");
@@ -359,7 +363,8 @@ public class FunctionalGroups {
 
 	// R-CH2-R
 	public static QueryAtomContainer ethyl() {
-		QueryAtomContainer query = new QueryAtomContainer();
+		QueryAtomContainer query = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
 		query.setID(CH2);
 
 		SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(
@@ -389,7 +394,8 @@ public class FunctionalGroups {
 	}
 
 	public static QueryAtomContainer hydrocarbon() {
-		QueryAtomContainer query = new QueryAtomContainer();
+		QueryAtomContainer query = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
 		query.setID(CH);
 
 		SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(

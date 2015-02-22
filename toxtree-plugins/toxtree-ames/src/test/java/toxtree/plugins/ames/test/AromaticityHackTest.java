@@ -85,7 +85,7 @@ public class AromaticityHackTest extends TestCase {
 
 	}
 	protected QueryAtomContainer aromaticN() {
-		QueryAtomContainer q = new QueryAtomContainer();
+		QueryAtomContainer q = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		q.setID("Hack");
 		IAtom n = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.NITROGEN);
 		n.setCharge(+1.0);

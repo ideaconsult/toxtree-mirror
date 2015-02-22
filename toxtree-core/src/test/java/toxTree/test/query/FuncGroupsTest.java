@@ -124,26 +124,30 @@ public class FuncGroupsTest extends TestCase {
 
 	public void testmatchInherited() throws Exception {
 
-        SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-        SymbolAndChargeQueryAtom c2 = new SymbolAndChargeQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
-    	IAtomContainer c = MoleculeFactory.makeAlkane(2); 
-        
-    	UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
-    	QueryAtomContainer query1 = new QueryAtomContainer();
-        query1.addAtom(c1);
-        query1.addAtom(c2);
-        query1.addBond(new OrderQueryBond(c1,c2, CDKConstants.BONDORDER_SINGLE));
-    	assertTrue(uit.isSubgraph(c,query1));
-    	
-    	QueryAtomContainer query = new QueryAtomContainer();
-        query.addAtom(c1);
-        query.addAtom(c2);
-        query.addBond(new AnyOrderQueryBond(c1,c2, CDKConstants.BONDORDER_SINGLE));
-    	assertTrue(uit.isSubgraph(c,query));
-    	
+		SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.CARBON));
+		SymbolAndChargeQueryAtom c2 = new SymbolAndChargeQueryAtom(
+				MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
+						Elements.CARBON));
+		IAtomContainer c = MoleculeFactory.makeAlkane(2);
 
-    	
-    }
+		UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
+		QueryAtomContainer query1 = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
+		query1.addAtom(c1);
+		query1.addAtom(c2);
+		query1.addBond(new OrderQueryBond(c1, c2, CDKConstants.BONDORDER_SINGLE));
+		assertTrue(uit.isSubgraph(c, query1));
+
+		QueryAtomContainer query = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
+		query.addAtom(c1);
+		query.addAtom(c2);
+		query.addBond(new AnyOrderQueryBond(c1, c2,
+				CDKConstants.BONDORDER_SINGLE));
+		assertTrue(uit.isSubgraph(c, query));
+
+	}
 
 	public void testhydrochlorideOfAmine() {
 		QueryAtomContainer q = FunctionalGroups.hydrochlorideOfAmine(1); // primary
