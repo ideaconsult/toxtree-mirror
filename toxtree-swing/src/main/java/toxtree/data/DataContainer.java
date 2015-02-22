@@ -11,9 +11,9 @@ import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
-import toxTree.core.IAtomContainersIterator;
 import toxTree.core.IDecisionCategories;
 import toxTree.core.IDecisionResult;
+import toxTree.core.IMoleculesIterator;
 import toxTree.data.CategoryFilter;
 import toxTree.exceptions.FilterException;
 import toxTree.exceptions.ToxTreeIOException;
@@ -21,7 +21,7 @@ import ambit2.core.data.MoleculeTools;
 
 public class DataContainer extends Observable {
 	protected static Logger logger = null;
-	protected IAtomContainersIterator containers = null;
+	protected IMoleculesIterator containers = null;
 	protected File processingFile = null;
 	protected boolean modified = false;
 	protected boolean enabled = true;

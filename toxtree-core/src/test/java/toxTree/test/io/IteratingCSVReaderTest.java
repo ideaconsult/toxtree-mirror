@@ -29,7 +29,7 @@ import java.io.InputStream;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.openscience.cdk.Molecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 
 import ambit2.core.io.IteratingDelimitedFileReader;
 
@@ -49,7 +49,7 @@ public class IteratingCSVReaderTest{
             while (reader.hasNext()) {
                 Object object = reader.next();
                 Assert.assertNotNull(object);
-                Assert.assertTrue(object instanceof Molecule);
+                Assert.assertTrue(object instanceof IAtomContainer);
                 molCount++;
             }
             

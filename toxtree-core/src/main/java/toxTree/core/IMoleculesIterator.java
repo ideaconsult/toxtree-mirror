@@ -33,7 +33,7 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 
 import toxTree.exceptions.ToxTreeIOException;
 
-public interface IAtomContainersIterator extends Iterator {
+public interface IMoleculesIterator extends Iterator {
 
 	public static final String MSG_UNSUPPORTEDFORMAT="Error Unsupported format\t";
 	public static final String MSG_ERRORONSAVE="Error when writing file\t";

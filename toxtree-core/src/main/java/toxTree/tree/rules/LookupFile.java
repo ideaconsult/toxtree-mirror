@@ -33,7 +33,7 @@ import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.io.iterator.IteratingSMILESReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
@@ -90,7 +90,7 @@ public class LookupFile implements ILookupFile, Serializable  {
 		boolean FOUND = false;
 		try {
 			fStream = new FileInputStream(file);
-			if (f.endsWith(".sdf")) reader = new IteratingMDLReader(fStream,SilentChemObjectBuilder.getInstance());
+			if (f.endsWith(".sdf")) reader = new IteratingSDFReader(fStream,SilentChemObjectBuilder.getInstance());
 			else if (f.endsWith(".csv")) reader = new IteratingDelimitedFileReader(fStream);
 			else if (f.endsWith(".smi")) reader = new IteratingSMILESReader(fStream);
 			else {

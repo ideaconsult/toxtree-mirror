@@ -46,6 +46,7 @@ import org.openscience.cdk.interfaces.IChemModel;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.silent.AtomContainer;
+import org.openscience.cdk.silent.AtomContainerSet;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.jchempaint.JChemPaintPanel;
 
@@ -178,8 +179,8 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
 		
 		IAtomContainerSet molecules = ConnectivityChecker.partitionIntoMolecules(atomContainer);
 		
-		IAtomContainerSet m =  new MoleculeSet();
-		for (int i=0; i< molecules.getAtomContainer();i++) {
+		IAtomContainerSet m =  new AtomContainerSet();
+		for (int i=0; i< molecules.getAtomContainerCount();i++) {
 			IAtomContainer a = molecules.getAtomContainer(i);
 			if (!GeometryTools.has2DCoordinates(a)) {
 				if (sdg == null) sdg = new StructureDiagramGenerator();
@@ -187,7 +188,7 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
 				sdg.generateCoordinates(new Vector2d(0,1));
 				molecules.replaceAtomContainer(i,sdg.getMolecule());
 			}
-			m.addMolecule(molecules.getAtomContainer(i));
+			m.addAtomContainer(molecules.getAtomContainer(i));
 		}
 		return m;		
 	}

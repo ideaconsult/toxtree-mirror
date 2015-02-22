@@ -59,7 +59,7 @@ public class CramerRulesTest extends RulesTestCase {
 
 
 	public void testVerifyRule2()  throws Exception {
-		Molecule mol = MoleculeFactory.makeAlkane(6);
+		IAtomContainer mol = MoleculeFactory.makeAlkane(6);
 		verifyRule(mol,2);
 
 	}

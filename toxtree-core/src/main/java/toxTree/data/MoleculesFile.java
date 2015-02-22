@@ -349,7 +349,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
                 	//MolAnalyser.analyse(clone);
                     AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(clone);
                     CDKHueckelAromaticityDetector.detectAromaticity(clone);
-                	BitSet bs = fp.getFingerprint(clone);
+                	BitSet bs = fp.getBitFingerprint(clone).asBitSet();
                     setProperty(i, propertyFingerprint,bs);
                   
                  } catch (Exception x) {
@@ -475,7 +475,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet, IChe
         return index;
     }
     public BitSet getFingerprint(IAtomContainer mol) throws Exception {
-    	return fp.getFingerprint(mol);
+    	return fp.getBitFingerprint(mol).asBitSet();
     }
     public void sortAtomContainers(Comparator<IAtomContainer> comparator) {
     	

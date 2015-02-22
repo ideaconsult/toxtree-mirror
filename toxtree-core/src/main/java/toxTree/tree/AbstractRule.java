@@ -229,7 +229,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 	SmilesGenerator g = new SmilesGenerator(true);
 	// try {
 	if (mol instanceof IAtomContainer)
-	    examples[index] = g.createSMILES((org.openscience.cdk.Molecule) mol);
+	    examples[index] = g.createSMILES(mol);
 	else
 	    examples[index] = "";
 	setChanged();

@@ -38,6 +38,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.isomorphism.IsomorphismTester;
+import org.openscience.cdk.silent.AtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.query.FunctionalGroups;
@@ -49,7 +50,7 @@ import ambit2.core.data.MoleculeTools;
 public class JoelibSmartsTest  {
 	@Test
 	   public void testCDKJoeMolMatch() {
-	        Molecule mol = new Molecule();
+		IAtomContainer mol = new AtomContainer();
 	        
 	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 0
 	        mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON)); // 1

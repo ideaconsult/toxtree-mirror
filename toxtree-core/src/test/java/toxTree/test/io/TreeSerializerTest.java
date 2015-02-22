@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.test.io;
 
 import java.io.File;
@@ -61,12 +61,14 @@ import toxTree.tree.rules.RuleStructuresList;
 
 /**
  * tests {@link IDecisionMethod} serialization
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-9-5
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-9-5
  */
 public class TreeSerializerTest {
-	
-	protected static Logger logger = Logger.getLogger(TreeSerializerTest.class.getName()); 
+
+	protected static Logger logger = Logger.getLogger(TreeSerializerTest.class
+			.getName());
+
 	@Before
 	public void setUp() throws Exception {
 
@@ -79,109 +81,108 @@ public class TreeSerializerTest {
 		r.setNum(99);
 		r.setTitle("test");
 		r.setExplanation("explanation");
-		r.setExampleMolecule(MoleculeFactory.makeBenzene(),true);
-		r.setExampleMolecule(MoleculeFactory.makeAlkane(2),false);
-		
-		File temp = File.createTempFile("test", ".rule");  
+		r.setExampleMolecule(MoleculeFactory.makeBenzene(), true);
+		r.setExampleMolecule(MoleculeFactory.makeAlkane(2), false);
+
+		File temp = File.createTempFile("test", ".rule");
 		temp.deleteOnExit();
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(temp));
-			out.writeObject(r);
-			out.close();
-			ObjectInputStream in = new ObjectInputStream(
-					new FileInputStream(temp));
-			
-			Object r1 = in.readObject();
-			Assert.assertEquals(r,r1);
-			
-			in.close();
+		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(
+				temp));
+		out.writeObject(r);
+		out.close();
+		ObjectInputStream in = new ObjectInputStream(new FileInputStream(temp));
 
-			Assert.assertTrue(UniversalIsomorphismTester.isIsomorph(
-						r.getExampleMolecule(true),((AbstractRule)r1).getExampleMolecule(true)
-						));
-			Assert.assertTrue(UniversalIsomorphismTester.isIsomorph(
-						r.getExampleMolecule(false),((AbstractRule)r1).getExampleMolecule(false)
-						));
+		Object r1 = in.readObject();
+		Assert.assertEquals(r, r1);
 
-		
+		in.close();
+		UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
+		Assert.assertTrue(uit.isIsomorph(r.getExampleMolecule(true),
+				((AbstractRule) r1).getExampleMolecule(true)));
+		Assert.assertTrue(uit.isIsomorph(r.getExampleMolecule(false),
+				((AbstractRule) r1).getExampleMolecule(false)));
+
 	}
+
 	@Test
 	public void testCategoryRoundTrip() throws Exception {
-		DefaultCategory c1 = new DefaultCategory("My Class",100);
+		DefaultCategory c1 = new DefaultCategory("My Class", 100);
 		DefaultCategory c2 = new DefaultCategory();
-		Assert.assertNotSame(c1,c2);
-		
-			//writing
-			File f = File.createTempFile("Category","test");
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));
-			os.writeObject(c1);
-			os.close();
-			
-			//reading
-			ObjectInputStream is = new ObjectInputStream(new FileInputStream(f));
-			c2 =(DefaultCategory) is.readObject();
-			is.close();
-			f.delete();
-			Assert.assertEquals(c1,c2);
-			
-	}
-	
-	protected AbstractRule ruleRoundTrip(AbstractRule rule) throws Exception {
-		return (AbstractRule)objectRoundTrip(rule,"Rule");
-	}
-	protected Object objectRoundTrip(Object rule,String filename) throws Exception {		
+		Assert.assertNotSame(c1, c2);
 
-			//writing
-			File f = File.createTempFile(filename,"test");
-			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));
-			os.writeObject(rule);
-			os.close();
-			
-			//reading
-			ObjectInputStream is = new ObjectInputStream(new FileInputStream(f));
-			Object rule2 =is.readObject();
-			is.close();
-			f.delete();
-			logger.finer(rule.toString());
-			Assert.assertEquals(rule,rule2);
-			return rule2;
-	}	
+		// writing
+		File f = File.createTempFile("Category", "test");
+		ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));
+		os.writeObject(c1);
+		os.close();
+
+		// reading
+		ObjectInputStream is = new ObjectInputStream(new FileInputStream(f));
+		c2 = (DefaultCategory) is.readObject();
+		is.close();
+		f.delete();
+		Assert.assertEquals(c1, c2);
+
+	}
+
+	protected AbstractRule ruleRoundTrip(AbstractRule rule) throws Exception {
+		return (AbstractRule) objectRoundTrip(rule, "Rule");
+	}
+
+	protected Object objectRoundTrip(Object rule, String filename)
+			throws Exception {
+
+		// writing
+		File f = File.createTempFile(filename, "test");
+		ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));
+		os.writeObject(rule);
+		os.close();
+
+		// reading
+		ObjectInputStream is = new ObjectInputStream(new FileInputStream(f));
+		Object rule2 = is.readObject();
+		is.close();
+		f.delete();
+		logger.finer(rule.toString());
+		Assert.assertEquals(rule, rule2);
+		return rule2;
+	}
+
 	@Test
 	public void testRules() throws Exception {
-		//ruleRoundTrip(new RuleSubstructures());
+		// ruleRoundTrip(new RuleSubstructures());
 		ruleRoundTrip(new RuleAnySubstructure());
-		
+
 		ruleRoundTrip(new RuleRingAllowedSubstituents());
 		ruleRoundTrip(new RuleReadilyHydrolised());
 		ruleRoundTrip(new RuleOpenChain());
 		ruleRoundTrip(new RuleOnlyAllowedSubstructures());
 		ruleRoundTrip(new RuleManyAromaticRings());
 		ruleRoundTrip(new RuleHeterocyclic());
-		
+
 		ruleRoundTrip(new RuleCommonTerpene());
 		ruleRoundTrip(new RuleAromatic());
 		RuleAnySubstructure rule1 = new RuleAnySubstructure();
 		rule1.addSubstructure(FunctionalGroups.ester());
 		rule1.addSubstructure(FunctionalGroups.acrolein());
-		RuleAnySubstructure rule2 = (RuleAnySubstructure)ruleRoundTrip(rule1);
+		RuleAnySubstructure rule2 = (RuleAnySubstructure) ruleRoundTrip(rule1);
 		IAtomContainer m = FunctionalGroups.acrolein();
 
-			MolAnalyser.analyse(m);
-			Assert.assertTrue(rule2.verifyRule(m));
-			
-			m = FunctionalGroups.createAtomContainer("CCC(=O)OCCC");
-			MolAnalyser.analyse(m);
-			Assert.assertTrue(rule2.verifyRule(m));			
+		MolAnalyser.analyse(m);
+		Assert.assertTrue(rule2.verifyRule(m));
 
-		
+		m = FunctionalGroups.createAtomContainer("CCC(=O)OCCC");
+		MolAnalyser.analyse(m);
+		Assert.assertTrue(rule2.verifyRule(m));
+
 		ruleRoundTrip(new RuleAnySubstituents());
 		ruleRoundTrip(new RuleAllSubstructures());
 		RuleElements rule = new RuleElements();
 		rule.addElement("C");
 		rule.addElement("N");
 		ruleRoundTrip(rule);
-		
+
 		ruleRoundTrip(new RuleStructuresList());
 	}
-	
 
 }

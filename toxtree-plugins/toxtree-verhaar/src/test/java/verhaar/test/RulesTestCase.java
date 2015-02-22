@@ -66,7 +66,7 @@ public abstract class RulesTestCase extends TestCase {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
-	protected boolean verifyRule(Molecule mol,int id) throws DecisionMethodException {
+	protected boolean verifyRule(IAtomContainer mol,int id) throws DecisionMethodException {
 		return rules.getRule(id).verifyRule(mol);
 	}
 	protected void classify(IAtomContainer mol,IDecisionMethod rules, int categories){

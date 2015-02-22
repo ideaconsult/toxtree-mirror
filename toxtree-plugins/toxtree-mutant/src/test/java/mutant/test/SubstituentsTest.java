@@ -43,6 +43,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.io.MDLV2000Reader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -52,7 +53,7 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import ambit2.core.data.MoleculeTools;
 
-public class SubstituentsTest  {
+public class SubstituentsTest {
 
 	@Test
 	public void testFingerprint() throws Exception {
@@ -62,15 +63,15 @@ public class SubstituentsTest  {
 		IAtomContainer a = getfromSDF();
 		for (int i = 0; i < a.getAtomCount(); i++)
 			System.out.println(a.getAtom(i).getFormalCharge());
-		SmilesGenerator g = new SmilesGenerator(true);
+		SmilesGenerator g = new SmilesGenerator();
 		String smiles = g.createSMILES(a);
 		System.out.println(smiles);
 		Fingerprinter fp = new Fingerprinter(1024);
-		BitSet bs = fp.getFingerprint(a);
+		BitSet bs = fp.getBitFingerprint(a).asBitSet();
 		MolAnalyser.analyse(a);
 		smiles = g.createSMILES(a);
 		System.out.println(smiles);
-		BitSet bs1 = fp.getFingerprint(a);
+		BitSet bs1 = fp.getBitFingerprint(a).asBitSet();
 		Assert.assertEquals(bs, bs1);
 	}
 
@@ -80,23 +81,20 @@ public class SubstituentsTest  {
 		n.append("  CDK    2/26/08,15:51\n");
 		n.append("\n");
 		n.append("  4  3  0  0  0  0  0  0  0  0999 V2000\n");
-		n
-				.append("    0.0000    0.0000    0.0000 R   0  0  0  0  0  0  0  0  0  0  0  0\n");
-		n
-				.append("    0.0000    1.5000    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0\n");
-		n
-				.append("   -1.2990    2.2500    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n");
-		n
-				.append("    1.2990    2.2500    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n");
+		n.append("    0.0000    0.0000    0.0000 R   0  0  0  0  0  0  0  0  0  0  0  0\n");
+		n.append("    0.0000    1.5000    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0\n");
+		n.append("   -1.2990    2.2500    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n");
+		n.append("    1.2990    2.2500    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n");
 		n.append("  1  2  1  0  0  0  0\n");
 		n.append("  2  3  2  0  0  0  0\n");
 		n.append("  2  4  1  0  0  0  0\n");
 		n.append("M  CHG  1   2   1\n");
 		n.append("M  CHG  1   4  -1\n");
 		n.append("M  END\n");
-		MDLV2000Reader reader = new MDLV2000Reader(new StringReader(n
-				.toString()));
-		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());  
+		MDLV2000Reader reader = new MDLV2000Reader(new StringReader(
+				n.toString()));
+		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder
+				.getInstance());
 		reader.read(mol);
 		reader.close();
 		return mol;
@@ -149,10 +147,14 @@ public class SubstituentsTest  {
 			Assert.assertTrue(lookup.find((IAtomContainer) a) > -1);
 			System.out.println(System.currentTimeMillis() - now);
 
-			a = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
-			IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.OXYGEN);
-			IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),"R");
-			IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),	Elements.HYDROGEN);
+			a = MoleculeTools.newAtomContainer(SilentChemObjectBuilder
+					.getInstance());
+			IAtom a1 = MoleculeTools.newAtom(
+					SilentChemObjectBuilder.getInstance(), Elements.OXYGEN);
+			IAtom a2 = MoleculeTools.newAtom(
+					SilentChemObjectBuilder.getInstance(), "R");
+			IAtom a3 = MoleculeTools.newAtom(
+					SilentChemObjectBuilder.getInstance(), Elements.HYDROGEN);
 			a.addAtom(a1);
 			a.addAtom(a2);
 			a.addAtom(a3);
@@ -167,8 +169,8 @@ public class SubstituentsTest  {
 				IAtomContainer mol = lookup.getAtomContainer(index);
 				Assert.assertNotNull(mol);
 				System.out.println(System.currentTimeMillis() - now);
-				Assert.assertEquals(0.28, Double.parseDouble(mol.getProperty("MR")
-						.toString()));
+				Assert.assertEquals(0.28,
+						Double.parseDouble(mol.getProperty("MR").toString()));
 			} else
 				Assert.fail("not found");
 
@@ -177,77 +179,79 @@ public class SubstituentsTest  {
 			Assert.fail(x.getMessage());
 		}
 	}
+
 	@Test
 	public void testAll() throws Exception {
-			// LookupFile lookup = new
-			// LookupFile("plugins/mutant/src/mutant/descriptors/substituents.sdf");
-			MoleculesFile lookup = new MoleculesFile("substituents.sdf", SilentChemObjectBuilder.getInstance(),null);
-			/*
-			 * LookupFile lookup = new LookupFile("substituents.sdf");
-			 * lookup.setUseCache(false); lookup.setCheckAromaticity(true);
-			 */
-				SmilesGenerator g = new SmilesGenerator(true);
-				InputStream in = getClass().getClassLoader().getResourceAsStream("substituents.sdf");
-				IteratingMDLReader reader = new IteratingMDLReader(in,SilentChemObjectBuilder.getInstance());
-				int record = 0;
-				int found_records = 0;
-				while (reader.hasNext()) {
-					Object o = reader.next();
-					if (o instanceof IAtomContainer)
-						try {
-							MolAnalyser.analyse((IAtomContainer) o);
-							long now = System.currentTimeMillis();
+		// LookupFile lookup = new
+		// LookupFile("plugins/mutant/src/mutant/descriptors/substituents.sdf");
+		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
+				SilentChemObjectBuilder.getInstance(), null);
+		/*
+		 * LookupFile lookup = new LookupFile("substituents.sdf");
+		 * lookup.setUseCache(false); lookup.setCheckAromaticity(true);
+		 */
+		SmilesGenerator g = new SmilesGenerator(true);
+		InputStream in = getClass().getClassLoader().getResourceAsStream(
+				"substituents.sdf");
+		IteratingSDFReader reader = new IteratingSDFReader(in,
+				SilentChemObjectBuilder.getInstance());
+		int record = 0;
+		int found_records = 0;
+		while (reader.hasNext()) {
+			Object o = reader.next();
+			if (o instanceof IAtomContainer)
+				try {
+					MolAnalyser.analyse((IAtomContainer) o);
+					long now = System.currentTimeMillis();
 
-							if (lookup.find((IAtomContainer) o) > -1) {
-								System.out.println(System.currentTimeMillis()
-										- now);
-								found_records++;
-							} else {
-								System.err.print(record);
-								System.err.print('\t');
-								System.err.print(((IAtomContainer) o)
-										.getProperty("#"));
-								System.err.print('\t');
-								System.err.print(((IAtomContainer) o)
-										.getProperty("SMILES"));
-								System.err.print('\t');
-								System.err.print(((IAtomContainer) o)
-										.getProperty("Group"));
-								System.err.print('\t');
-								System.err.print("B5STM\t");
-								System.err.print(((IAtomContainer) o)
-										.getProperty("B5STM"));
-								System.err.print("B1STM\t");
-								System.err.print(((IAtomContainer) o)
-										.getProperty("B1STM"));
-								System.err.print("MR\t");
+					if (lookup.find((IAtomContainer) o) > -1) {
+						System.out.println(System.currentTimeMillis() - now);
+						found_records++;
+					} else {
+						System.err.print(record);
+						System.err.print('\t');
+						System.err.print(((IAtomContainer) o).getProperty("#"));
+						System.err.print('\t');
+						System.err.print(((IAtomContainer) o)
+								.getProperty("SMILES"));
+						System.err.print('\t');
+						System.err.print(((IAtomContainer) o)
+								.getProperty("Group"));
+						System.err.print('\t');
+						System.err.print("B5STM\t");
+						System.err.print(((IAtomContainer) o)
+								.getProperty("B5STM"));
+						System.err.print("B1STM\t");
+						System.err.print(((IAtomContainer) o)
+								.getProperty("B1STM"));
+						System.err.print("MR\t");
 
-								System.err.print(((IAtomContainer) o)
-										.getProperty("MR"));
-								System.err.print("\nFingerprint\t");
-								System.err.print(lookup
-										.getFingerprint((IAtomContainer) o));
-								System.err.print("\nSMILES generated ");
-								System.err.print(g.createSMILES((IAtomContainer) o));
-								System.err.print("\nFingerprint in file\t");
-								System.err.print(lookup.getProperty(record,
-										MoleculesFile.propertyFingerprint));
+						System.err
+								.print(((IAtomContainer) o).getProperty("MR"));
+						System.err.print("\nFingerprint\t");
+						System.err.print(lookup
+								.getFingerprint((IAtomContainer) o));
+						System.err.print("\nSMILES generated ");
+						System.err.print(g.createSMILES((IAtomContainer) o));
+						System.err.print("\nFingerprint in file\t");
+						System.err.print(lookup.getProperty(record,
+								MoleculesFile.propertyFingerprint));
 
-								System.err.print('\n');
-								System.err.println("not found");
+						System.err.print('\n');
+						System.err.println("not found");
 
-								Assert.fail("not found");
+						Assert.fail("not found");
 
-							}
-							record++;
+					}
+					record++;
 
-						} catch (Exception x) {
-							x.printStackTrace();
-						}
-
+				} catch (Exception x) {
+					x.printStackTrace();
 				}
-				Assert.assertEquals(291, record);
-				Assert.assertEquals(record, found_records);
+
+		}
+		Assert.assertEquals(291, record);
+		Assert.assertEquals(record, found_records);
 	}
 
 	/*
@@ -318,7 +322,7 @@ public class SubstituentsTest  {
 		// lookup.setUseCache(true);
 		// lookup.setCheckAromaticity(false);
 		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
-				SilentChemObjectBuilder.getInstance(),null);
+				SilentChemObjectBuilder.getInstance(), null);
 		SmilesGenerator g = new SmilesGenerator(true);
 		for (int k = 0; k < s.getAtomContainerCount(); k++) {
 			System.out.println("Substituent\t" + k);
@@ -376,6 +380,7 @@ public class SubstituentsTest  {
 		}
 		return substituents;
 	}
+
 	@Test
 	public void testAromaticAmine() throws Exception {
 		QueryAtomContainer q = AromaticAmineSubstituentsDescriptor
@@ -385,22 +390,27 @@ public class SubstituentsTest  {
 		MolAnalyser.analyse(mol);
 		Assert.assertTrue(FunctionalGroups.hasGroup(mol, q));
 	}
+
 	@Test
 	public void testSubstituentExtractor1() throws Exception {
 		substituentExtractor("c2ccc(N)cc2");
-	}	
+	}
+
 	@Test
 	public void testSubstituentExtractor2() throws Exception {
 		substituentExtractor("N(=Nc1ccc(cc1)N(C)C)c2ccccc2");
 	}
+
 	@Test
 	public void testSubstituentExtractor() throws Exception {
 		substituentExtractor("c1(CC)c(O)c(Cl)c(P(=O)(F)F)c(NC)c(S)1");
 	}
+
 	@Test
 	public void testSubstituentExtractorFusedRings() throws Exception {
 		substituentExtractor("Nc1cccc2c4cccc3cccc(c12)c34");
 	}
+
 	@Test
 	public void testSubstituentExtractorAnthracene() throws Exception {
 		substituentExtractor("Nc1ccc2cc3ccccc3(cc2(c1))");
@@ -410,8 +420,11 @@ public class SubstituentsTest  {
 		// "NC1=CC=CC2=CC=CC=C12");
 		// "NC=1C=CC2=CC=CC=C2(C=1)");
 	}
+
 	/**
-	 * TODO it looks for FunctionalGroups.RING_NUMBERING, while atoms are marked with FunctionalGroups.RING_NUMBERING_number
+	 * TODO it looks for FunctionalGroups.RING_NUMBERING, while atoms are marked
+	 * with FunctionalGroups.RING_NUMBERING_number
+	 * 
 	 * @param smiles
 	 * @throws Exception
 	 */

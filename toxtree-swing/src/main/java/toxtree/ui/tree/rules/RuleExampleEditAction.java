@@ -20,7 +20,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
+ */
 package toxtree.ui.tree.rules;
 
 import java.awt.event.ActionEvent;
@@ -28,14 +28,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.Icon;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.silent.AtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
 
 /**
  * An action to edit the example molecule of a rule
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-10-12
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-10-12
  */
 public class RuleExampleEditAction extends RuleMoleculeEditAction {
 	protected boolean answer = false;
@@ -49,22 +50,24 @@ public class RuleExampleEditAction extends RuleMoleculeEditAction {
 	 * @param rule
 	 * @param answer
 	 */
-	public RuleExampleEditAction(IDecisionRule rule,boolean answer) {
+	public RuleExampleEditAction(IDecisionRule rule, boolean answer) {
 		super(null);
 		setRule(rule);
 		setAnswer(answer);
 	}
+
 	/**
 	 * 
 	 * @param rule
 	 * @param answer
 	 * @param arg0
 	 */
-	public RuleExampleEditAction(IDecisionRule rule,boolean answer, String arg0) {
+	public RuleExampleEditAction(IDecisionRule rule, boolean answer, String arg0) {
 		super(null, arg0);
 		setRule(rule);
-		setAnswer(answer);		
+		setAnswer(answer);
 	}
+
 	/**
 	 * 
 	 * @param rule
@@ -72,10 +75,11 @@ public class RuleExampleEditAction extends RuleMoleculeEditAction {
 	 * @param arg0
 	 * @param arg1
 	 */
-	public RuleExampleEditAction(IDecisionRule rule,boolean answer, String arg0, Icon arg1) {
+	public RuleExampleEditAction(IDecisionRule rule, boolean answer,
+			String arg0, Icon arg1) {
 		super(null, arg0, arg1);
 		setRule(rule);
-		setAnswer(answer);		
+		setAnswer(answer);
 	}
 
 	/**
@@ -84,8 +88,10 @@ public class RuleExampleEditAction extends RuleMoleculeEditAction {
 	public synchronized boolean isAnswer() {
 		return answer;
 	}
+
 	/**
-	 * @param answer The answer to set.
+	 * @param answer
+	 *            The answer to set.
 	 */
 	public synchronized void setAnswer(boolean answer) {
 		this.answer = answer;
@@ -96,7 +102,7 @@ public class RuleExampleEditAction extends RuleMoleculeEditAction {
 				molecule.removeAllElements();
 		}
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (rule != null) {
@@ -106,18 +112,19 @@ public class RuleExampleEditAction extends RuleMoleculeEditAction {
 			} catch (DecisionMethodException x) {
 				m = null;
 			}
-			if (m==null) {
-				m = new org.openscience.cdk.Molecule();
+			if (m == null) {
+				m = new AtomContainer();
 			}
 			setMolecule(m);
 			super.actionPerformed(arg0);
-	
+
 		}
 	}
+
 	@Override
 	protected void updateMolecule(IAtomContainer mol) {
-	    super.updateMolecule(mol);
-        rule.setExampleMolecule(mol,answer);
-        setMolecule(null);
+		super.updateMolecule(mol);
+		rule.setExampleMolecule(mol, answer);
+		setMolecule(null);
 	}
 }

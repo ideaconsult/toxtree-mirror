@@ -110,7 +110,7 @@ public class RuleAllSubstructuresTest extends TestCase {
 		try {
 			RuleAllSubstructures rule1 = new RuleAllSubstructures();
 			rule1.addSubstructure(MoleculeFactory.makeAlkane(3));
-			Molecule q = MoleculeFactory.makeBenzene();
+			IAtomContainer q = MoleculeFactory.makeBenzene();
 			logger.debug("\nSubstructure is aromatic\t");
 			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(q);
 

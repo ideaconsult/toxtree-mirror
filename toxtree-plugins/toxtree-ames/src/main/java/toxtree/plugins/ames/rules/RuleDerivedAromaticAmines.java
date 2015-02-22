@@ -36,6 +36,7 @@ import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AromaticAtom;
+import org.openscience.cdk.silent.AtomContainerSet;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
@@ -83,7 +84,7 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK{
 		    IAtomContainerSet origin = ConnectivityChecker.partitionIntoMolecules(mol);
 			IAtomContainerSet sc = null;
 		    for (int g=0; g < groups.length;g++) {
-		    	sc = new MoleculeSet();
+		    	sc = new AtomContainerSet();
 				deriveAmine(groups[g], origin, sc);
 				if ((sc != null) && (sc.getAtomContainerCount()>0))
 					origin = sc;

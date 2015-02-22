@@ -20,7 +20,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package toxtree.plugins.ames.descriptors;
 
@@ -28,95 +28,111 @@ import java.util.logging.Logger;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.BooleanResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
 
-public abstract class DescriptorStructurePresence<T> implements IMolecularDescriptor {
+public abstract class DescriptorStructurePresence<T> implements
+		IMolecularDescriptor {
 
-	protected transient static Logger logger = Logger.getLogger(DescriptorStructurePresence.class.getName());
+	protected transient static Logger logger = Logger
+			.getLogger(DescriptorStructurePresence.class.getName());
 
-	protected String[] paramNames = {"fragment","resultName"};
-	
+	protected String[] paramNames = { "fragment", "resultName" };
+
 	protected ISmartsPattern<T> fragment = null;
 	protected String resultName = "I";
-    
-    public DescriptorStructurePresence() {
-        super();
-        fragment = createSmartsPattern();
-    }
-	public String getSMARTS() {
-        if (fragment ==null) return null;
-        else return fragment.getSmarts();
+
+	public DescriptorStructurePresence() {
+		super();
+		fragment = createSmartsPattern();
 	}
-	
-    protected abstract ISmartsPattern<T> createSmartsPattern() ;
-    
+
+	public String getSMARTS() {
+		if (fragment == null)
+			return null;
+		else
+			return fragment.getSmarts();
+	}
+
+	protected abstract ISmartsPattern<T> createSmartsPattern();
+
 	public void setSMARTS(String smarts) throws SMARTSException {
-        fragment.setSmarts(smarts);
+		fragment.setSmarts(smarts);
 	}
 
 	public DescriptorValue calculate(IAtomContainer container) {
-        
-		if (fragment == null) 
-            return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
-                    new BooleanResult(false), new String[]{getResultName()},new CDKException("Substructure not assigned!"));
-		
-        try {
-            boolean ok = fragment.match(container) > 0;
-            return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
-                    new BooleanResult(ok), new String[]{getResultName()});
-        } catch (Exception x) {
-            return new DescriptorValue(getSpecification(), getParameterNames(), getParameters(),
-                    new BooleanResult(false), new String[]{getResultName()},x);
-        }
-		
+
+		if (fragment == null)
+			return new DescriptorValue(getSpecification(), getParameterNames(),
+					getParameters(), new BooleanResult(false),
+					new String[] { getResultName() }, new CDKException(
+							"Substructure not assigned!"));
+
+		try {
+			boolean ok = fragment.match(container) > 0;
+			return new DescriptorValue(getSpecification(), getParameterNames(),
+					getParameters(), new BooleanResult(ok),
+					new String[] { getResultName() });
+		} catch (Exception x) {
+			return new DescriptorValue(getSpecification(), getParameterNames(),
+					getParameters(), new BooleanResult(false),
+					new String[] { getResultName() }, x);
+		}
+
 	}
-	
+
 	public IDescriptorResult getDescriptorResultType() {
 		return new BooleanResult(true);
 	}
 
 	public String[] getParameterNames() {
-        return paramNames;
+		return paramNames;
 	}
 
 	public Object getParameterType(String name) {
-		if (paramNames[0].equals(name)) return new QueryAtomContainer();
-		else if (paramNames[1].equals(name)) return getResultName();
-		else return null;
+		if (paramNames[0].equals(name))
+			return new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
+		else if (paramNames[1].equals(name))
+			return getResultName();
+		else
+			return null;
 	}
 
 	public Object[] getParameters() {
-		return new Object[] {getSMARTS(),resultName};
+		return new Object[] { getSMARTS(), resultName };
 	}
 
-	 public DescriptorSpecification getSpecification() {
-	        return new DescriptorSpecification(
-	            "ToxTree Mutant plugin",
-	            this.getClass().getName(),
-	            "$Id: DescriptorStructurePresence.java  2007-04-07 19:41 nina$",
-	            "ToxTree Mutant plugin");
-	    }
-
+	public DescriptorSpecification getSpecification() {
+		return new DescriptorSpecification(
+				"ToxTree Mutant plugin",
+				this.getClass().getName(),
+				"$Id: DescriptorStructurePresence.java  2007-04-07 19:41 nina$",
+				"ToxTree Mutant plugin");
+	}
 
 	public void setParameters(Object[] params) throws CDKException {
-		if (params.length > 2) throw new CDKException(getClass().getName() + " expects 2 parameters only.");
+		if (params.length > 2)
+			throw new CDKException(getClass().getName()
+					+ " expects 2 parameters only.");
 		if (params.length >= 1)
-			if (params[0] instanceof String )
-                try {
-                    setSMARTS(params[0].toString());
-                } catch (SMARTSException x) {
-                    throw new CDKException(x.getMessage());
-                }
-			else 
-				throw new CDKException(params[0] + " not an instance of IQueryAtomContainer");
+			if (params[0] instanceof String)
+				try {
+					setSMARTS(params[0].toString());
+				} catch (SMARTSException x) {
+					throw new CDKException(x.getMessage());
+				}
+			else
+				throw new CDKException(params[0]
+						+ " not an instance of IQueryAtomContainer");
 		if (params.length == 2)
 			setResultName(params[1].toString());
 	}
@@ -136,13 +152,18 @@ public abstract class DescriptorStructurePresence<T> implements IMolecularDescri
 	public String getResultName() {
 		return resultName;
 	}
+
 	@Override
 	public String toString() {
 		return resultName;
 	}
+
 	public String[] getDescriptorNames() {
-    	return new String[] {getResultName()};
-    }
+		return new String[] { getResultName() };
+	}
+
+	@Override
+	public void initialise(IChemObjectBuilder builder) {
+
+	}
 }
-
-

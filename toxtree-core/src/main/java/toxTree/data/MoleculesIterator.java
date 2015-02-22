@@ -52,6 +52,7 @@ import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.SMILESReader;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
+import org.openscience.cdk.silent.AtomContainerSet;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -59,7 +60,7 @@ import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
-import toxTree.core.IAtomContainersIterator;
+import toxTree.core.IMoleculesIterator;
 import toxTree.exceptions.ToxTreeIOException;
 import toxTree.io.PDFWriter;
 import ambit2.core.config.AmbitCONSTANTS;
@@ -81,7 +82,7 @@ import ambit2.core.io.ReaderFactoryExtended;
  * @author Nina Jeliazkova
  * <b>Modified</b> 2005-9-3
  */
-public class MoleculesIterator implements IAtomContainersIterator {
+public class MoleculesIterator implements IMoleculesIterator {
 	
 	private static transient StructureDiagramGenerator sdg = null;
 	protected ListOfAtomContainers containers = null;
@@ -392,7 +393,7 @@ public class MoleculesIterator implements IAtomContainersIterator {
 		return filename;
 	}
 	public IAtomContainerSet getSetOfAtomContainers() {
-		IAtomContainerSet c = new MoleculeSet();
+		IAtomContainerSet c = new AtomContainerSet();
 		for (int i=0; i< getContainers().getAtomContainerCount();i++)
 			c.addAtomContainer(getContainers().getAtomContainer(i));
 		return c;

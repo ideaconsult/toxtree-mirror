@@ -152,7 +152,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 			/**
 		     * 
 		     */
-		    private static final long serialVersionUID = -2848526389291041910L;
+			private static final long serialVersionUID = -2848526389291041910L;
 
 			public IChemObjectSelection process(IAtomContainer mol)
 					throws AmbitException {

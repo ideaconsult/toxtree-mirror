@@ -246,7 +246,7 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 			int substituents = 0;
 			
 			
-			for (int k = 0; k < s.getMoleculeCount(); k++) {
+			for (int k = 0; k < s.getAtomContainerCount(); k++) {
 				IAtomContainer m = s.getAtomContainer(k);
 			    if (m!=null) {
 				    if ((m.getAtomCount() == 1) && (m.getAtom(0).getSymbol().equals("H"))) continue;

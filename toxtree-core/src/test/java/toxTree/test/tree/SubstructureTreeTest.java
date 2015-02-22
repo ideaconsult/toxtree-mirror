@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.test.tree;
 
 import junit.framework.TestCase;
@@ -67,37 +67,42 @@ public class SubstructureTreeTest extends TestCase {
 	public void testSubstructureTree() {
 		try {
 			SubstructureTree tree = new SubstructureTree();
-			
+
 			IDecisionRule topRule = tree.getTopRule();
 			assertNotNull(topRule);
 			assertTrue(topRule instanceof DecisionNode);
-			DecisionNode node = (DecisionNode)topRule;
+			DecisionNode node = (DecisionNode) topRule;
 			assertTrue(node.getRule() instanceof RuleAnySubstructure);
-			
-			assertEquals(1,((RuleAnySubstructure) node.getRule()).getSubstructuresCount());
-			
-			IAtomContainer fragment = ((RuleAnySubstructure) node.getRule()).getSubstructure(0);
+
+			assertEquals(1,
+					((RuleAnySubstructure) node.getRule())
+							.getSubstructuresCount());
+
+			IAtomContainer fragment = ((RuleAnySubstructure) node.getRule())
+					.getSubstructure(0);
 			IAtomContainer benzene = MoleculeFactory.makeBenzene();
-			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(benzene);
+			AtomContainerManipulator
+					.percieveAtomTypesAndConfigureAtoms(benzene);
 			CDKHueckelAromaticityDetector.detectAromaticity(benzene);
-			
-			//IAtomContainer hexane = MoleculeFactory.makeAlkane(6);
-			assertTrue(UniversalIsomorphismTester.isIsomorph(fragment,benzene));
-			
+			UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
+			// IAtomContainer hexane = MoleculeFactory.makeAlkane(6);
+			assertTrue(uit.isIsomorph(fragment, benzene));
+
 			IDecisionResult result = tree.createDecisionResult();
-			//IAtomContainer mol = FunctionalGroups.createAtomContainer("c1ccccc1", true);
+			// IAtomContainer mol =
+			// FunctionalGroups.createAtomContainer("c1ccccc1", true);
 			result.classify(benzene);
-			assertEquals(node.getCategory(true),result.getCategory());
-			
+			assertEquals(node.getCategory(true), result.getCategory());
+
 			IAtomContainer mol = MoleculeFactory.makeAlkane(1);
 			result.classify(mol);
-			assertEquals(node.getCategory(false),result.getCategory());
-			
+			assertEquals(node.getCategory(false), result.getCategory());
+
 		} catch (CDKException x) {
 			fail();
-			
+
 		} catch (DecisionResultException x) {
-			
+
 			fail();
 		} catch (DecisionMethodException x) {
 			fail();
@@ -105,5 +110,3 @@ public class SubstructureTreeTest extends TestCase {
 	}
 
 }
-
-

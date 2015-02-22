@@ -34,8 +34,6 @@ import java.util.logging.Logger;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.Molecule;
-import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionMethod;
@@ -67,7 +65,7 @@ public abstract class RulesTestCase extends TestCase {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
-	protected boolean verifyRule(Molecule mol,int id) throws DecisionMethodException {
+	protected boolean verifyRule(IAtomContainer mol,int id) throws DecisionMethodException {
 		return rules.getRule(id).verifyRule(mol);
 	}
 	protected void classify(IAtomContainer mol,IDecisionMethod rules, int categories){
