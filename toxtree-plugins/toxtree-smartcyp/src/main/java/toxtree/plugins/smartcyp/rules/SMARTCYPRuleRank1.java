@@ -3,7 +3,6 @@ package toxtree.plugins.smartcyp.rules;
 import net.idea.modbcum.i.exceptions.AmbitException;
 import net.idea.modbcum.i.processors.IProcessor;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -19,6 +18,7 @@ import toxTree.query.MolFlags;
 import toxTree.tree.RuleResult;
 import toxTree.ui.tree.categories.CategoriesRenderer;
 import ambit2.core.data.MoleculeTools;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.processors.structure.HydrogenAdderProcessor;
 import ambit2.rendering.CompoundImageTools;
 import dk.smartcyp.core.MoleculeKU;

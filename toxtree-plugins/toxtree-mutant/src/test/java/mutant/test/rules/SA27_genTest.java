@@ -5,7 +5,6 @@ import java.util.Iterator;
 import mutant.rules.SA27_gen;
 import mutant.test.TestMutantRules;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -15,6 +14,7 @@ import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionRule;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class SA27_genTest extends TestMutantRules {
 

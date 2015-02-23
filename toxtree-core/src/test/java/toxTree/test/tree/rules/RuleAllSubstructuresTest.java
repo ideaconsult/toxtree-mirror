@@ -26,7 +26,6 @@ package toxTree.test.tree.rules;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -38,6 +37,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.RuleAllSubstructures;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 /**
  * TODO add description

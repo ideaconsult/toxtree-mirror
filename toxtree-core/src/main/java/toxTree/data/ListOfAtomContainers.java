@@ -44,6 +44,12 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
  * @author Nina Jeliazkova
  *
  */
+/**
+ * An attempt to implement {@link org.openscience.cdk.interfaces.SetOfAtomContainers} interface 
+ * as a {@link java.util.List} 
+ * @author Nina Jeliazkova
+ *
+ */
 public class ListOfAtomContainers extends ArrayList<IAtomContainer> implements	IAtomContainerSet {
 	protected transient static Logger logger = Logger.getLogger(ListOfAtomContainers.class.getName());
 
@@ -244,5 +250,23 @@ public class ListOfAtomContainers extends ArrayList<IAtomContainer> implements	I
 	public void replaceAtomContainer(int position, IAtomContainer container) {
 		set(position,container);
 		
+	}
+	//inherited from IChemObject
+	@Override
+	public void addProperties(Map<Object, Object> properties) {
+		// TODO Auto-generated method stub
+		
+	}
+	//inherited from IChemObject
+	@Override
+	public Number getFlagValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	//inherited from IChemObject
+	@Override
+	public <T> T getProperty(Object description, Class<T> c) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

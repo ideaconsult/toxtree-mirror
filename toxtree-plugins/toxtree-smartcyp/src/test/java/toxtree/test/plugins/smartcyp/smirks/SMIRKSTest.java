@@ -15,7 +15,6 @@ import junit.framework.Assert;
 import net.idea.modbcum.i.processors.IProcessor;
 
 import org.junit.Test;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -32,6 +31,7 @@ import toxTree.query.MolAnalyser;
 import toxTree.tree.stats.ConfusionMatrix;
 import toxtree.plugins.smartcyp.SMARTCYPPlugin;
 import ambit2.core.data.IStructureDiagramHighlights;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.io.MDLWriter;
 import ambit2.core.processors.structure.AtomConfigurator;
 import ambit2.core.processors.structure.HydrogenAdderProcessor;

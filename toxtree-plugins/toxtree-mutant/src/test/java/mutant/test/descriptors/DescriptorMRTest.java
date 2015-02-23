@@ -3,7 +3,6 @@ package mutant.test.descriptors;
 import junit.framework.TestCase;
 import mutant.descriptors.DescriptorMolarRefractivity;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorValue;
@@ -11,6 +10,7 @@ import org.openscience.cdk.qsar.result.DoubleResult;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.query.FunctionalGroups;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class DescriptorMRTest extends TestCase {
 	public void test() {

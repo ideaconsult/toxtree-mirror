@@ -30,7 +30,6 @@ import java.io.FileReader;
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -38,6 +37,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.data.MoleculesFile;
 import toxTree.io.Tools;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.io.MyIteratingMDLReader;
 
 public class MoleculesFileTest  {

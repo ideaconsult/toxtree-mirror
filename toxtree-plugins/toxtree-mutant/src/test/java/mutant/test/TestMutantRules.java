@@ -40,7 +40,6 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.atomtype.CDKAtomTypeMatcher;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
@@ -62,6 +61,7 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
 import toxtree.ui.tree.actions.NewRuleAction;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.io.MDLWriter;
 import ambit2.smarts.query.ISmartsPattern;
 

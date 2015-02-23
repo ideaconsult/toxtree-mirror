@@ -31,7 +31,6 @@ package toxTree.tree.demo;
 
 import java.util.logging.Level;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.templates.MoleculeFactory;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
@@ -45,6 +44,7 @@ import toxTree.tree.UserDefinedTree;
 import toxTree.tree.categories.DefaultClass1;
 import toxTree.tree.categories.DefaultClass2;
 import toxTree.tree.rules.RuleAnySubstructure;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 
 /**

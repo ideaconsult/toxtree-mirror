@@ -33,7 +33,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
@@ -44,6 +43,7 @@ import toxTree.data.MoleculesIterator;
 import toxTree.exceptions.ToxTreeIOException;
 import toxTree.io.MolFileFilter;
 import toxtree.data.ToxTreeActions;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class SubstructuresFromFileAction extends AbstractRuleAction {
 

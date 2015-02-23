@@ -33,7 +33,6 @@ import mutant.rules.SA18_gen;
 import mutant.test.TestMutantRules;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
@@ -43,6 +42,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class SA18_genTest extends TestMutantRules {
     String[] smiles = {

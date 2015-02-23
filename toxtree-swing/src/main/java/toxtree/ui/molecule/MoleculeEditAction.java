@@ -37,7 +37,6 @@ import javax.swing.JOptionPane;
 import javax.vecmath.Vector2d;
 
 import org.openscience.cdk.ChemModel;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.geometry.GeometryTools;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -50,6 +49,7 @@ import org.openscience.cdk.silent.AtomContainerSet;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.jchempaint.JChemPaintPanel;
 
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.jchempaint.editor.AbstractMoleculeAction;
 import ambit2.jchempaint.editor.JChemPaintDialog;
 

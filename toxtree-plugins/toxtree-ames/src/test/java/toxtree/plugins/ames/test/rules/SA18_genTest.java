@@ -25,7 +25,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxtree.plugins.ames.test.rules;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
@@ -37,6 +36,7 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxtree.plugins.ames.rules.SA18_gen;
 import toxtree.plugins.ames.test.TestAmesMutagenicityRules;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class SA18_genTest extends TestAmesMutagenicityRules {
     String[] smiles = {

@@ -26,7 +26,6 @@ package toxTree.test.tree;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
@@ -40,6 +39,7 @@ import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.DecisionNode;
 import toxTree.tree.demo.SubstructureTree;
 import toxTree.tree.rules.RuleAnySubstructure;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class SubstructureTreeTest extends TestCase {
 

@@ -34,7 +34,6 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.openscience.cdk.ChemObject;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.fingerprint.Fingerprinter;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -50,6 +49,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.io.Tools;
 import toxTree.query.FunctionalGroups;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class MoleculesFile extends ChemObject implements IAtomContainerSet,
 		IChemObjectListener {

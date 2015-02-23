@@ -3,7 +3,6 @@ package mutant.test.descriptors;
 import junit.framework.TestCase;
 import mutant.descriptors.AromaticAmineSubstituentsDescriptor;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.result.DoubleArrayResult;
@@ -12,6 +11,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.smiles.SmilesParserWrapper;
 import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
 
