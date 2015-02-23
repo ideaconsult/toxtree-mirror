@@ -54,11 +54,12 @@ public class IonicSMILEStest {
 			IAtomContainer m = p.parseSmiles(smiles);
 			IAtomContainerSet c = ConnectivityChecker.partitionIntoMolecules(m);
 			System.out.println(c.getAtomContainerCount());
-			SmilesGenerator g = new SmilesGenerator();
+			SmilesGenerator g = SmilesGenerator.generic();
 			for (int i=0; i < c.getAtomContainerCount(); i++) {
 				IAtomContainer m1 = (IAtomContainer) c.getAtomContainer(i); 
 				//System.out.println(g.createSMILESWithoutCheckForMultipleMolecules(m1,false,new boolean[m1.getBondCount()]));
-				System.out.println(g.createSMILES(m1,false,new boolean[m1.getBondCount()]));
+				//System.out.println(g.createSMILES(m1,false,new boolean[m1.getBondCount()]));
+				System.out.println(g.createSMILES(m1));
 			}
 	
 		

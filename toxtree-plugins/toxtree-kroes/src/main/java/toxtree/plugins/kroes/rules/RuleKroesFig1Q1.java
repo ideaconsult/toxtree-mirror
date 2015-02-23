@@ -177,7 +177,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures {
 				MyOrderQueryBond q = new MyOrderQueryBond(
 						(IQueryAtom) queryContainer.getAtom(index1),
 						(IQueryAtom) queryContainer.getAtom(index2),
-						bond.getOrder());
+						bond.getOrder(),queryContainer.getBuilder());
 				q.setFlag(CDKConstants.ISAROMATIC,
 						bond.getFlag(CDKConstants.ISAROMATIC));
 				queryContainer.addBond(q);
