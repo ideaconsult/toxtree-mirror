@@ -13,8 +13,8 @@ import java.util.Iterator;
 import java.util.TreeSet;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 
 import dk.smartcyp.core.MoleculeKU;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
@@ -48,7 +48,7 @@ public class WriteResultsAsHTML {
 	}
 
 	
-	public void writeHTML(MoleculeSet moleculeSet) {
+	public void writeHTML(IAtomContainerSet moleculeSet) {
 
 
 		try {
@@ -106,11 +106,11 @@ public class WriteResultsAsHTML {
 
 	}
 
-	public void writeBody(MoleculeSet moleculeSet){
+	public void writeBody(IAtomContainerSet moleculeSet){
 
 		outfile.println("<body>");
 		//error message if problems
-		if (moleculeSet.getMoleculeCount()==0){
+		if (moleculeSet.getAtomContainerCount()==0){
 			outfile.println("<h1>There were no molecules in the input</h1>");
 		}
 		else {
@@ -122,17 +122,17 @@ public class WriteResultsAsHTML {
 		outfile.println("<table>");
 
 		// Iterate MoleculKUs
-		for (int moleculeIndex=0; moleculeIndex < moleculeSet.getMoleculeCount(); moleculeIndex++) {
+		for (int moleculeIndex=0; moleculeIndex < moleculeSet.getAtomContainerCount(); moleculeIndex++) {
 
-			MoleculeKU moleculeKU = (MoleculeKU) moleculeSet.getMolecule(moleculeIndex);
+			MoleculeKU moleculeKU = (MoleculeKU) moleculeSet.getAtomContainer(moleculeIndex);
 			this.writeMoleculeKUTable(moleculeKU);
 		}
 
 		outfile.println("</table>");
 		// Iterate again to preload images with atom numbers
-		for (int moleculeIndex=0; moleculeIndex < moleculeSet.getMoleculeCount(); moleculeIndex++) {
+		for (int moleculeIndex=0; moleculeIndex < moleculeSet.getAtomContainerCount(); moleculeIndex++) {
 
-			MoleculeKU moleculeKU = (MoleculeKU) moleculeSet.getMolecule(moleculeIndex);
+			MoleculeKU moleculeKU = (MoleculeKU) moleculeSet.getAtomContainer(moleculeIndex);
 			this.writePreLoadImage(moleculeKU);
 		}
 		}
