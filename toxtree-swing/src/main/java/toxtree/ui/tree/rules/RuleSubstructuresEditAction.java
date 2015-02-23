@@ -31,6 +31,7 @@ import javax.swing.JOptionPane;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
+import org.openscience.cdk.silent.AtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IRuleSubstructures;
@@ -81,7 +82,7 @@ public class RuleSubstructuresEditAction extends RuleMoleculeEditAction {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			if (createNewMolecule) {
-				IAtomContainer m = new org.openscience.cdk.Molecule();
+				IAtomContainer m = new AtomContainer();
 				m.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),Elements.CARBON));
 				setMolecule(m);
 			}

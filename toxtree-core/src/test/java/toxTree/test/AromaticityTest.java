@@ -63,44 +63,40 @@ public class AromaticityTest extends TestCase {
 		aromaticRoundTrip(m);
 	}
 
-	public void aromaticRoundTrip(IAtomContainer m)  throws Exception  {
+	public void aromaticRoundTrip(IAtomContainer m) throws Exception {
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
-		SmilesGenerator sg = new SmilesGenerator(true);
+		SmilesGenerator sg = SmilesGenerator.generic();
 
-			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
-			boolean b = CDKHueckelAromaticityDetector.detectAromaticity(m);
-			/*
-			for (int i=0; i<m.getBondCount();i++) {
-				System.out.print("order "+m.getBond(i).getOrder());
-				if (m.getBond(i).getFlag(CDKConstants.ISAROMATIC))
-				System.out.print("\taromatic");
-				System.out.println();
-			}
-			*/
+		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
+		boolean b = CDKHueckelAromaticityDetector.detectAromaticity(m);
+		/*
+		 * for (int i=0; i<m.getBondCount();i++) {
+		 * System.out.print("order "+m.getBond(i).getOrder()); if
+		 * (m.getBond(i).getFlag(CDKConstants.ISAROMATIC))
+		 * System.out.print("\taromatic"); System.out.println(); }
+		 */
 
-			assertTrue(b);
-	        FixBondOrdersTool dbst = new FixBondOrdersTool();
-	        m = dbst.kekuliseAromaticRings(m);				
-			String s = sg.createSMILES(m);
-			//System.out.println(s);
-		
-			IAtomContainer m1 = p.parseSmiles(s);
-			
-			b = CDKHueckelAromaticityDetector.detectAromaticity(m);
-			
-			/*
-			for (int i=0; i<m1.getBondCount();i++) {
-				System.out.println("order "+m1.getBond(i).getOrder());
-				if (m1.getBond(i).getFlag(CDKConstants.ISAROMATIC))
-				System.out.println("\taromatic");
-			}
-			*/
-			
-			assertTrue(b);
-			UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
-			assertTrue(uit.isIsomorph(m,m1));
-			
-	
+		assertTrue(b);
+		FixBondOrdersTool dbst = new FixBondOrdersTool();
+		m = dbst.kekuliseAromaticRings(m);
+		String s = sg.createSMILES(m);
+		// System.out.println(s);
+
+		IAtomContainer m1 = p.parseSmiles(s);
+
+		b = CDKHueckelAromaticityDetector.detectAromaticity(m);
+
+		/*
+		 * for (int i=0; i<m1.getBondCount();i++) {
+		 * System.out.println("order "+m1.getBond(i).getOrder()); if
+		 * (m1.getBond(i).getFlag(CDKConstants.ISAROMATIC))
+		 * System.out.println("\taromatic"); }
+		 */
+
+		assertTrue(b);
+		UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
+		assertTrue(uit.isIsomorph(m, m1));
+
 	}
 
 	public void testDeduceBondOrders() throws Exception {

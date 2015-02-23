@@ -92,7 +92,7 @@ public class LookupFile implements ILookupFile, Serializable  {
 			fStream = new FileInputStream(file);
 			if (f.endsWith(".sdf")) reader = new IteratingSDFReader(fStream,SilentChemObjectBuilder.getInstance());
 			else if (f.endsWith(".csv")) reader = new IteratingDelimitedFileReader(fStream);
-			else if (f.endsWith(".smi")) reader = new IteratingSMILESReader(fStream);
+			else if (f.endsWith(".smi")) reader = new IteratingSMILESReader(fStream,SilentChemObjectBuilder.getInstance());
 			else {
 				fStream.close(); file = null;
 				throw new DecisionMethodException("Unsupported format\t"+file);

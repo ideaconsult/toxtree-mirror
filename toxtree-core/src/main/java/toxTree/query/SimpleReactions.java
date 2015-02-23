@@ -69,7 +69,7 @@ import toxTree.exceptions.ReactionException;
  * @author Nina Jeliazkova <b>Modified</b> 2005-8-18
  */
 public class SimpleReactions {
-	protected static SmilesGenerator gen = new SmilesGenerator(true);
+	protected static SmilesGenerator gen = SmilesGenerator.generic();
 
 	protected static Logger logger = Logger.getLogger(SimpleReactions.class
 			.getName());
