@@ -21,30 +21,25 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.query;
-
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 
 /**
  * Matches if not aromatic and of type set
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-8-20
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-8-20
  */
 public class AliphaticCHQueryAtom extends CHQueryAtom {
 
 	/**
-	 * Comment for <code>serialVersionUID</code>
-	 */
-	private static final long serialVersionUID = 416309648893347645L;
-
-	/**
 	 * 
 	 */
-	public AliphaticCHQueryAtom() {
-		super();
+	public AliphaticCHQueryAtom(IChemObjectBuilder builder) {
+		super(builder);
 
 	}
 
@@ -54,11 +49,14 @@ public class AliphaticCHQueryAtom extends CHQueryAtom {
 	public AliphaticCHQueryAtom(IAtom atom) {
 		super(atom);
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.rules.CHQueryAtom#matches(org.openscience.cdk.Atom)
 	 */
 	@Override
 	public boolean matches(IAtom atom) {
-		return (!atom.getFlag(CDKConstants.ISAROMATIC)) && super.matches(atom) ;
+		return (!atom.getFlag(CDKConstants.ISAROMATIC)) && super.matches(atom);
 	}
 }

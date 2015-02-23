@@ -107,7 +107,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures {
 			else if (format.endsWith(".csv"))
 				reader = new IteratingDelimitedFileReader(fStream);
 			else if (format.endsWith(".smi")) {
-				reader = new IteratingSMILESReader(fStream);
+				reader = new IteratingSMILESReader(fStream,SilentChemObjectBuilder.getInstance());
 			} else {
 				logger.severe("Unsupported format");
 				fStream.close();
@@ -142,13 +142,15 @@ public class RuleKroesFig1Q1 extends RuleSubstructures {
 
 	public static IQueryAtomContainer createQueryContainer(
 			IAtomContainer container) {
-		IQueryAtomContainer queryContainer = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
+		IQueryAtomContainer queryContainer = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
 		Iterator<IAtom> atoms = container.atoms().iterator();
 		while (atoms.hasNext()) {
 			IAtom atom = atoms.next();
 
 			if (atom.getSymbol().equals("H")) {
-				SymbolSetQueryAtom a = new SymbolSetQueryAtom();
+				SymbolSetQueryAtom a = new SymbolSetQueryAtom(
+						queryContainer.getBuilder());
 				a.setSymbol("Hal");
 				a.addSymbol("Hal");
 				a.addSymbol("H");
@@ -168,7 +170,7 @@ public class RuleKroesFig1Q1 extends RuleSubstructures {
 				AromaticQueryBond b = new AromaticQueryBond(
 						(IQueryAtom) queryContainer.getAtom(index1),
 						(IQueryAtom) queryContainer.getAtom(index2),
-						Order.SINGLE);
+						Order.SINGLE, queryContainer.getBuilder());
 				b.setFlag(CDKConstants.ISAROMATIC, true);
 				queryContainer.addBond(b);
 			} else {

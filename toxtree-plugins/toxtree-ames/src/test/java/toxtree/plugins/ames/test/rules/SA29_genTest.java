@@ -59,7 +59,7 @@ public class SA29_genTest extends TestAmesMutagenicityRules {
 	
 	public int CDKSmarts(String smarts, String smiles) throws Exception  {
 
-	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
+	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,SilentChemObjectBuilder.getInstance());
         
 	   SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 	        	

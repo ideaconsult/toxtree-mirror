@@ -237,7 +237,7 @@ public class SA10_genTest extends TestMutantRules {
 		/**
 		 *  This runs fine
 		 */
-		SMARTSQueryTool sqt1 = new SMARTSQueryTool("[#6]=[#6][#6](=O)[!O]");
+		SMARTSQueryTool sqt1 = new SMARTSQueryTool("[#6]=[#6][#6](=O)[!O]",SilentChemObjectBuilder.getInstance());
 		assertTrue(sqt1.matches(ac));
 		
 		/**
@@ -251,13 +251,13 @@ public class SA10_genTest extends TestMutantRules {
 
 		 */
 		
-		SMARTSQueryTool sqt2 = new SMARTSQueryTool("[#6]!:;=[#6][#6](=O)[!O]");
+		SMARTSQueryTool sqt2 = new SMARTSQueryTool("[#6]!:;=[#6][#6](=O)[!O]",SilentChemObjectBuilder.getInstance());
 		assertTrue(sqt2.matches(ac));
 		
-		SMARTSQueryTool sqt3 = new SMARTSQueryTool("[N;$([N!X4])]!@;-[N;$([N!X4])]");
+		SMARTSQueryTool sqt3 = new SMARTSQueryTool("[N;$([N!X4])]!@;-[N;$([N!X4])]",SilentChemObjectBuilder.getInstance());
 		assertFalse(sqt3.matches(ac));		
 
-		SMARTSQueryTool sqt4 = new SMARTSQueryTool("[N]=[N]-,=[N]");
+		SMARTSQueryTool sqt4 = new SMARTSQueryTool("[N]=[N]-,=[N]",SilentChemObjectBuilder.getInstance());
 		assertFalse(sqt4.matches(ac));		
 		
 		/**

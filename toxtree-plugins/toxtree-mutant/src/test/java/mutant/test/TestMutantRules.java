@@ -395,7 +395,7 @@ public abstract class TestMutantRules extends TestCase {
 	}
 
 	protected int[] match(String smarts, String smiles) throws Exception {
-		SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
+		SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,SilentChemObjectBuilder.getInstance());
 		SmilesParser sp = new SmilesParser(
 				SilentChemObjectBuilder.getInstance());
 		IAtomContainer atomContainer = sp.parseSmiles(smiles);

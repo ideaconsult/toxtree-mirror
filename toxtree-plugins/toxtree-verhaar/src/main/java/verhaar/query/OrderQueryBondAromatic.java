@@ -21,6 +21,7 @@ package verhaar.query;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 
@@ -31,18 +32,14 @@ import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
  */
 public class OrderQueryBondAromatic extends OrderQueryBond {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6879162009873103143L;
 
-	public OrderQueryBondAromatic(boolean aromatic) {
-		super();
+	public OrderQueryBondAromatic(boolean aromatic,IChemObjectBuilder builder) {
+		super(builder);
 		setFlag(CDKConstants.ISAROMATIC,aromatic);
 	}
 
-	public OrderQueryBondAromatic(IQueryAtom arg0, IQueryAtom arg1, IBond.Order arg2, boolean aromatic) {
-		super(arg0, arg1, arg2);
+	public OrderQueryBondAromatic(IQueryAtom arg0, IQueryAtom arg1, IBond.Order arg2, boolean aromatic,IChemObjectBuilder builder) {
+		super(arg0, arg1, arg2,builder);
 		setFlag(CDKConstants.ISAROMATIC,aromatic);
 	}
 	public boolean matches(IBond arg0) {

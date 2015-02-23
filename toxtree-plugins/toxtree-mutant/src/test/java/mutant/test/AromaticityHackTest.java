@@ -79,10 +79,10 @@ public class AromaticityHackTest extends TestCase {
 			SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(
 					SilentChemObjectBuilder.getInstance(), Elements.CARBON));
 			q.addAtom(c);
-			q.addBond(new OrderQueryBond(prev, c, border[i % 2]));
+			q.addBond(new OrderQueryBond(prev, c, border[i % 2], q.getBuilder()));
 			prev = c;
 		}
-		q.addBond(new OrderQueryBond(prev, qn, border[5 % 2]));
+		q.addBond(new OrderQueryBond(prev, qn, border[5 % 2], q.getBuilder()));
 		return q;
 	}
 }

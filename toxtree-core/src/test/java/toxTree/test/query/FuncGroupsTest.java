@@ -136,7 +136,7 @@ public class FuncGroupsTest extends TestCase {
 				SilentChemObjectBuilder.getInstance());
 		query1.addAtom(c1);
 		query1.addAtom(c2);
-		query1.addBond(new OrderQueryBond(c1, c2, CDKConstants.BONDORDER_SINGLE));
+		query1.addBond(new OrderQueryBond(c1, c2, CDKConstants.BONDORDER_SINGLE,c1.getBuilder()));
 		assertTrue(uit.isSubgraph(c, query1));
 
 		QueryAtomContainer query = new QueryAtomContainer(
@@ -144,7 +144,7 @@ public class FuncGroupsTest extends TestCase {
 		query.addAtom(c1);
 		query.addAtom(c2);
 		query.addBond(new AnyOrderQueryBond(c1, c2,
-				CDKConstants.BONDORDER_SINGLE));
+				CDKConstants.BONDORDER_SINGLE,c1.getBuilder()));
 		assertTrue(uit.isSubgraph(c, query));
 
 	}

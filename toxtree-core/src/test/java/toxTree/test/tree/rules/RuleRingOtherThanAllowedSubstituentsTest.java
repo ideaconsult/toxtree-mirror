@@ -26,7 +26,6 @@ package toxTree.test.tree.rules;
 
 import junit.framework.TestCase;
 
-import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -98,7 +97,7 @@ public class RuleRingOtherThanAllowedSubstituentsTest extends TestCase {
 				return true;
 			}
 		};
-		AtomContainer a = MoleculeFactory.makeAlkane(3);
+		IAtomContainer a = MoleculeFactory.makeAlkane(3);
 		a.setID("CCC");
 		rule[0].addSubstructure(a);
 		

@@ -131,7 +131,8 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK {
 
 	// aN=C=O
 	public static QueryAtomContainer group1() {
-		QueryAtomContainer query = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
+		QueryAtomContainer query = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
 		query.setID("aN=C=O");
 		SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(
 				SilentChemObjectBuilder.getInstance(), Elements.CARBON));
@@ -139,14 +140,17 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK {
 				SilentChemObjectBuilder.getInstance(), Elements.OXYGEN));
 		SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(
 				SilentChemObjectBuilder.getInstance(), Elements.NITROGEN));
-		AromaticAtom a = new AromaticAtom();
+		AromaticAtom a = new AromaticAtom(query.getBuilder());
 		query.addAtom(c);
 		query.addAtom(o);
 		query.addAtom(n);
 		query.addAtom(a);
-		query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE));
-		query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE));
-		query.addBond(new OrderQueryBond(n, a, CDKConstants.BONDORDER_SINGLE));
+		query.addBond(new OrderQueryBond(c, o, CDKConstants.BONDORDER_DOUBLE,
+				query.getBuilder()));
+		query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE,
+				query.getBuilder()));
+		query.addBond(new OrderQueryBond(n, a, CDKConstants.BONDORDER_SINGLE,
+				query.getBuilder()));
 		c.setProperty(FunctionalGroups.DONTMARK, query.getID());
 		// to be split at C=N bond
 		return query;
@@ -154,24 +158,27 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK {
 
 	// aN=C=CH2
 	public static QueryAtomContainer group2() {
-		QueryAtomContainer query = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
+		QueryAtomContainer query = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
 		query.setID("aN=CH2");
 		SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(
 				SilentChemObjectBuilder.getInstance(), Elements.CARBON));
 		SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(
 				SilentChemObjectBuilder.getInstance(), Elements.NITROGEN));
-		AromaticAtom a = new AromaticAtom();
+		AromaticAtom a = new AromaticAtom(query.getBuilder());
 		query.addAtom(c);
 		query.addAtom(n);
 		query.addAtom(a);
-		query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE));
-		query.addBond(new OrderQueryBond(n, a, CDKConstants.BONDORDER_SINGLE));
+		query.addBond(new OrderQueryBond(c, n, CDKConstants.BONDORDER_DOUBLE,
+				query.getBuilder()));
+		query.addBond(new OrderQueryBond(n, a, CDKConstants.BONDORDER_SINGLE,
+				query.getBuilder()));
 
 		for (int i = 0; i < 2; i++) {
 			SymbolQueryAtom h = new SymbolQueryAtom(MoleculeTools.newAtom(
 					SilentChemObjectBuilder.getInstance(), Elements.HYDROGEN));
 			query.addBond(new OrderQueryBond(c, h,
-					CDKConstants.BONDORDER_SINGLE));
+					CDKConstants.BONDORDER_SINGLE, query.getBuilder()));
 		}
 		// to be split at C=N bond
 		c.setProperty(FunctionalGroups.DONTMARK, query.getID());

@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.query;
 
 import java.io.IOException;
@@ -71,18 +71,18 @@ import toxTree.exceptions.ReactionException;
 public class SimpleReactions {
 	protected static SmilesGenerator gen = new SmilesGenerator(true);
 
-	protected static Logger logger = Logger.getLogger(SimpleReactions.class.getName());
+	protected static Logger logger = Logger.getLogger(SimpleReactions.class
+			.getName());
 
 	protected IReaction reaction = null;
 
-	protected static IReaction[] hydrolysis = {
-			null, null, null, null, null, null };
+	protected static IReaction[] hydrolysis = { null, null, null, null, null,
+			null };
 
-	protected static IReaction[] metabolic = {
-			null, null, null, null };
+	protected static IReaction[] metabolic = { null, null, null, null };
 
-    protected static IReaction[] hydrolysisPO4 = {//NEW
-			null, null, null };
+	protected static IReaction[] hydrolysisPO4 = {// NEW
+	null, null, null };
 
 	protected static String[] hydrolize = {
 			"toxTree/config/reactions/reaction-hydrolize-C(dO)O.cml",
@@ -96,37 +96,36 @@ public class SimpleReactions {
 			"toxTree/config/reactions/reaction-metabolize-NdN.cml",
 			"toxTree/config/reactions/reaction-metabolize-Npd.cml",
 			"toxTree/config/reactions/reaction-metabolize-R-N.cml",
-			"toxTree/config/reactions/reaction-metabolize-CdC.cml"
-            };
+			"toxTree/config/reactions/reaction-metabolize-CdC.cml" };
 
-	protected static String[] hydrolizePO4 = { //NEW
-			"toxTree/config/reactions/reaction-hydrolize-P(dO)(O)(O)OX.cml",
+	protected static String[] hydrolizePO4 = { // NEW
+	"toxTree/config/reactions/reaction-hydrolize-P(dO)(O)(O)OX.cml",
 			"toxTree/config/reactions/reaction-hydrolize-C(dO)O.cml",
-			"toxTree/config/reactions/reaction-hydrolize-C(dO)S.cml"
-            };
+			"toxTree/config/reactions/reaction-hydrolize-C(dO)S.cml" };
 
-    /**
+	/**
 	 * 
 	 */
 	public SimpleReactions() {
 		super();
 	}
 
-	protected IReaction loadPreconfiguredReaction(
-			String filename) throws CDKException {
-		logger.finer("Reading reaction from file\t"+ filename);
+	protected IReaction loadPreconfiguredReaction(String filename)
+			throws CDKException {
+		logger.finer("Reading reaction from file\t" + filename);
 		IReaction newReaction = null;
-		
-		InputStream stream = SimpleReactions.class.getClassLoader().getResourceAsStream(filename);
-		if (stream ==null) throw new CDKException("Can't find "+filename);
+
+		InputStream stream = SimpleReactions.class.getClassLoader()
+				.getResourceAsStream(filename);
+		if (stream == null)
+			throw new CDKException("Can't find " + filename);
 		CMLReader reader = new CMLReader(stream);
-		IChemFile chemFile = (IChemFile) reader.read((IChemObject) new org.openscience.cdk.ChemFile());
+		IChemFile chemFile = (IChemFile) reader
+				.read((IChemObject) new org.openscience.cdk.ChemFile());
 		for (int i = 0; i < chemFile.getChemSequenceCount(); i++) {
-			IChemSequence seq = chemFile
-					.getChemSequence(i);
+			IChemSequence seq = chemFile.getChemSequence(i);
 			for (int j = 0; j < seq.getChemModelCount(); j++) {
-				IChemModel model = seq
-						.getChemModel(j);
+				IChemModel model = seq.getChemModel(j);
 				IReactionSet reactions = model.getReactionSet();
 				for (int k = 0; k < reactions.getReactionCount(); k++) {
 					newReaction = reactions.getReaction(k);
@@ -139,7 +138,8 @@ public class SimpleReactions {
 			reader.close();
 			stream.close();
 		} catch (IOException x) {
-			logger.log(Level.SEVERE,"Error when reading reaction"+ filename,x);
+			logger.log(Level.SEVERE, "Error when reading reaction" + filename,
+					x);
 			return null;
 		}
 		reader = null;
@@ -147,31 +147,27 @@ public class SimpleReactions {
 		return newReaction;
 	}
 
-	protected IReaction loadHydrolysisReaction(
-			int index) throws CDKException {
+	protected IReaction loadHydrolysisReaction(int index) throws CDKException {
 		return loadPreconfiguredReaction(hydrolize[index]);
 	}
 
-	protected IReaction loadMetabolicReaction(
-			int index) throws CDKException {
+	protected IReaction loadMetabolicReaction(int index) throws CDKException {
 		return loadPreconfiguredReaction(metabolize[index]);
 	}
 
-	public IReaction getHydrolysisReaction(
-			int index) throws CDKException {
+	public IReaction getHydrolysisReaction(int index) throws CDKException {
 		if (hydrolysis[index] == null)
 			hydrolysis[index] = loadPreconfiguredReaction(hydrolize[index]);
 		return hydrolysis[index];
 	}
 
-	public IReaction getMetabolicReaction(
-			int index) throws CDKException {
+	public IReaction getMetabolicReaction(int index) throws CDKException {
 		if (metabolic[index] == null)
 			metabolic[index] = loadPreconfiguredReaction(metabolize[index]);
 		return metabolic[index];
 	}
 
-    public IReaction getHydrolysisPO4Reaction(//NEW
+	public IReaction getHydrolysisPO4Reaction(// NEW
 			int index) throws CDKException {
 		if (hydrolysisPO4[index] == null)
 			hydrolysisPO4[index] = loadPreconfiguredReaction(hydrolizePO4[index]);
@@ -186,24 +182,21 @@ public class SimpleReactions {
 		return metabolize.length;
 	}
 
-    public static int getHydrolysisPO4ReactionCount() {//NEW
+	public static int getHydrolysisPO4ReactionCount() {// NEW
 		return hydrolizePO4.length;
 	}
-    public static IAtomContainerSet process(
-			IAtomContainer mol,
-			IReaction reaction) 	throws ReactionException {
-    	return process(mol, reaction,mol.getBuilder());
-    }
-    
-    public static IAtomContainerSet process(
-			IAtomContainer mol,
-			IReaction reaction,
-			IChemObjectBuilder builder)
+
+	public static IAtomContainerSet process(IAtomContainer mol,
+			IReaction reaction) throws ReactionException {
+		return process(mol, reaction, mol.getBuilder());
+	}
+
+	public static IAtomContainerSet process(IAtomContainer mol,
+			IReaction reaction, IChemObjectBuilder builder)
 			throws ReactionException {
-		logger.fine("Process reaction\t"+ reaction.getID());
-		logger.finer("Molecule\t"+ mol.getID());
-		IAtomContainer reactant = reaction
-				.getReactants().getAtomContainer(0);
+		logger.fine("Process reaction\t" + reaction.getID());
+		logger.finer("Molecule\t" + mol.getID());
+		IAtomContainer reactant = reaction.getReactants().getAtomContainer(0);
 		QueryAtomContainer q = createQueryContainer(reactant);
 		q.setID(reaction.getID());
 
@@ -212,37 +205,36 @@ public class SimpleReactions {
 		List list = FunctionalGroups.getUniqueBondMap(mol, q, false);
 		// FunctionalGroups.markMaps(mol,q,list);
 		if ((list == null) || (list.size() == 0)) {
-			logger.finer(
-					"Can't perform this reaction, no relevant groups found\t"+
-					q.getID());
+			logger.finer("Can't perform this reaction, no relevant groups found\t"
+					+ q.getID());
 			return null;
 		}
-		logger.finer("Relevant groups found\t"+ q.getID());
+		logger.finer("Relevant groups found\t" + q.getID());
 		if (reaction.getID().startsWith("reaction-hydrolize")) {
 			// search for single bond between two non R atoms and break it
-			return hydrolize(mol, q, list,builder);
+			return hydrolize(mol, q, list, builder);
 		} else if (reaction.getID().startsWith("reaction-metabolize")) {
 			if (reaction.getID().equals("reaction-metabolize-R-N"))
-				return metabolize1(mol, q, list,builder);
+				return metabolize1(mol, q, list, builder);
 			else
-				return metabolize(mol, q, list,builder);
+				return metabolize(mol, q, list, builder);
 
 		} else
 			throw new ReactionException(reaction.getID() + " not implemented!");
 		// FunctionalGroups.markMaps(mol,q,list);
 
 	}
-	
-	protected static IAtomContainerSet hydrolize(
-			IAtomContainer a,
-			QueryAtomContainer q, List list,IChemObjectBuilder builder) throws ReactionException {
-		logger.fine("hydrolize\t"+ q.getID());
-		logger.finer("Molecule\t"+ a.getID());
+
+	protected static IAtomContainerSet hydrolize(IAtomContainer a,
+			QueryAtomContainer q, List list, IChemObjectBuilder builder)
+			throws ReactionException {
+		logger.fine("hydrolize\t" + q.getID());
+		logger.finer("Molecule\t" + a.getID());
 		IAtomContainer mol = null;
 		try {
-		    mol = (IAtomContainer) a.clone();
+			mol = (IAtomContainer) a.clone();
 		} catch (CloneNotSupportedException x) {
-		    throw new ReactionException(x);
+			throw new ReactionException(x);
 		}
 		int bondToSplitMap = -1;
 
@@ -281,7 +273,7 @@ public class SimpleReactions {
 		IBond bondToSplitMol = null;
 		for (int b = 0; b < bondsToSplitMol.size(); b++) {
 			bondToSplitMol = (IBond) bondsToSplitMol.get(b);
-			//IAtom[] atoms = bondToSplitMol.getAtoms();
+			// IAtom[] atoms = bondToSplitMol.getAtoms();
 			int ohAtom = -1;
 			int hAtom = -1;
 			for (int i = 0; i < bondToSplitMol.getAtomCount(); i++) {
@@ -293,7 +285,7 @@ public class SimpleReactions {
 				 */
 				List cb = mol.getConnectedBondsList(atom);
 				for (int j = 0; j < cb.size(); j++)
-					if ( ((IBond) cb.get(j)).getOrder() == CDKConstants.BONDORDER_DOUBLE) {
+					if (((IBond) cb.get(j)).getOrder() == CDKConstants.BONDORDER_DOUBLE) {
 						ohAtom = i;
 						hAtom = (i + 1) % 2;
 						break;
@@ -307,17 +299,20 @@ public class SimpleReactions {
 			mol.removeElectronContainer(bondToSplitMol);
 
 			// add H and link it to hAtom
-			IAtom h = builder.newInstance(IAtom.class,"H");
+			IAtom h = builder.newInstance(IAtom.class, "H");
 			mol.addAtom(h);
-			mol.addBond(builder.newInstance(IBond.class,bondToSplitMol.getAtom(hAtom), h,
-							CDKConstants.BONDORDER_SINGLE));
+			mol.addBond(builder.newInstance(IBond.class,
+					bondToSplitMol.getAtom(hAtom), h,
+					CDKConstants.BONDORDER_SINGLE));
 
 			// add H-O-ohAtom
-			h = builder.newInstance(IAtom.class,"H");
+			h = builder.newInstance(IAtom.class, "H");
 			mol.addAtom(h);
-			IAtom o = builder.newInstance(IAtom.class,"O");
-			mol.addBond(builder.newInstance(IBond.class,o, h, CDKConstants.BONDORDER_SINGLE));
-			mol.addBond(builder.newInstance(IBond.class,bondToSplitMol.getAtom(ohAtom), o,
+			IAtom o = builder.newInstance(IAtom.class, "O");
+			mol.addBond(builder.newInstance(IBond.class, o, h,
+					CDKConstants.BONDORDER_SINGLE));
+			mol.addBond(builder.newInstance(IBond.class,
+					bondToSplitMol.getAtom(ohAtom), o,
 					CDKConstants.BONDORDER_SINGLE));
 		}
 		// finally separate the resulting molecules
@@ -327,34 +322,35 @@ public class SimpleReactions {
 		return result;
 
 	}
-	
-	private static void splitMetabolize1(
-			IAtomContainer mol,
-			IBond b, int bondToSplitMol, IChemObjectBuilder builder) {
-		//IAtom[] atoms = b.getAtoms();
+
+	private static void splitMetabolize1(IAtomContainer mol, IBond b,
+			int bondToSplitMol, IChemObjectBuilder builder) {
+		// IAtom[] atoms = b.getAtoms();
 
 		// break the bond
-        logger.finer("Break bond "+b.getAtom(0).getSymbol() + " "+b.getAtom(1).getSymbol());
+		logger.finer("Break bond " + b.getAtom(0).getSymbol() + " "
+				+ b.getAtom(1).getSymbol());
 		mol.removeElectronContainer(bondToSplitMol);
 		for (int i = 0; i < 2; i++) {
 			// add H and link it to each atom f the broken bond
-			IAtom h = builder.newInstance(IAtom.class,"H");
+			IAtom h = builder.newInstance(IAtom.class, "H");
 			mol.addAtom(h);
-			mol.addBond(builder.newInstance(IBond.class,b.getAtom(i), h, CDKConstants.BONDORDER_SINGLE));
+			mol.addBond(builder.newInstance(IBond.class, b.getAtom(i), h,
+					CDKConstants.BONDORDER_SINGLE));
 		}
 	}
 
-	private static IAtomContainerSet metabolize1(
-			IAtomContainer a,
-			QueryAtomContainer q, List list, IChemObjectBuilder builder) throws ReactionException {
+	private static IAtomContainerSet metabolize1(IAtomContainer a,
+			QueryAtomContainer q, List list, IChemObjectBuilder builder)
+			throws ReactionException {
 		logger.finer("metabolize1\t" + q.getID());
-		logger.fine("Molecule\t"+ a.getID());
+		logger.fine("Molecule\t" + a.getID());
 		IAtomContainer mol = null;
 		try {
-		    mol = (IAtomContainer) a.clone();
+			mol = (IAtomContainer) a.clone();
 		} catch (CloneNotSupportedException x) {
-		    throw new ReactionException(x);
-		}		    
+			throw new ReactionException(x);
+		}
 		boolean[] bondToSplitMap = new boolean[q.getBondCount()];
 		int bondToSplitMol = -1;
 		IBond b = null;
@@ -388,8 +384,8 @@ public class SimpleReactions {
 										.getFlag(CDKConstants.ISINRING)) || (b
 										.getAtom(1)
 										.getFlag(CDKConstants.ISINRING)))) {
-							logger.finer("Selecting split \t"+ Integer
-									.toString(bondToSplitMol));
+							logger.finer("Selecting split \t"
+									+ Integer.toString(bondToSplitMol));
 							bondToSplitMol = rmap.getId1();
 						}
 
@@ -397,7 +393,7 @@ public class SimpleReactions {
 			}
 			if (bondToSplitMol != -1) {
 				b = mol.getBond(bondToSplitMol);
-				splitMetabolize1(mol, b, bondToSplitMol,builder);
+				splitMetabolize1(mol, b, bondToSplitMol, builder);
 				break;
 			}
 			// if (b!=null) break;
@@ -412,7 +408,9 @@ public class SimpleReactions {
 		 * 
 		 * //break the bond mol.removeElectronContainer(bondToSplitMol); for
 		 * (int i=0; i <2; i++) { // add H and link it to each atom f the broken
-		 * bond Atom h = SilentChemObjectBuilder.getInstance().newAtom(Elements.HYDROGEN); mol.addAtom(h); mol.addBond(new
+		 * bond Atom h =
+		 * SilentChemObjectBuilder.getInstance().newAtom(Elements.HYDROGEN);
+		 * mol.addAtom(h); mol.addBond(new
 		 * Bond(atoms[i],h,CDKConstants.BONDORDER_SINGLE)); }
 		 */
 		// finally separate the resulting molecules
@@ -423,17 +421,16 @@ public class SimpleReactions {
 
 	}
 
-	private static void splitMetabolize(
-			IAtomContainer mol,
-			IBond b,
-			IChemObjectBuilder builder) 
-    //, int bondToSplitMol) 
-    {
+	private static void splitMetabolize(IAtomContainer mol, IBond b,
+			IChemObjectBuilder builder)
+	// , int bondToSplitMol)
+	{
 		IAtom[] atoms = new IAtom[b.getAtomCount()];
-		for (int i=0; i < b.getAtomCount(); i++)
+		for (int i = 0; i < b.getAtomCount(); i++)
 			atoms[i] = b.getAtom(i);
-		
-        logger.finer("splitMetabolize: Break bond "+b.getAtom(0).getSymbol() + " "+b.getAtom(1).getSymbol());
+
+		logger.finer("splitMetabolize: Break bond " + b.getAtom(0).getSymbol()
+				+ " " + b.getAtom(1).getSymbol());
 		// break the bond
 		mol.removeBond(b);
 		// N=N
@@ -441,29 +438,30 @@ public class SimpleReactions {
 				&& (atoms[1].getSymbol().equals("N")))
 			for (int i = 0; i < 2; i++) {
 				// add H and link it to each atom f the broken bond
-				IAtom h =builder.newInstance(IAtom.class,"H");
+				IAtom h = builder.newInstance(IAtom.class, "H");
 				mol.addAtom(h);
-				mol
-						.addBond(builder.newInstance(IBond.class,atoms[i], h,
-								CDKConstants.BONDORDER_SINGLE));
-				h = builder.newInstance(IAtom.class,"H");
+				mol.addBond(builder.newInstance(IBond.class, atoms[i], h,
+						CDKConstants.BONDORDER_SINGLE));
+				h = builder.newInstance(IAtom.class, "H");
 				mol.addAtom(h);
-				mol
-						.addBond(builder.newInstance(IBond.class,atoms[i], h,
-								CDKConstants.BONDORDER_SINGLE));
+				mol.addBond(builder.newInstance(IBond.class, atoms[i], h,
+						CDKConstants.BONDORDER_SINGLE));
 
 			}
 		else if ((atoms[0].getSymbol().equals("C"))
 				&& (atoms[1].getSymbol().equals("C"))) {
-			IAtom h = builder.newInstance(IAtom.class,"H");
+			IAtom h = builder.newInstance(IAtom.class, "H");
 			mol.addAtom(h);
-			mol.addBond(builder.newInstance(IBond.class,atoms[0], h, CDKConstants.BONDORDER_SINGLE));
-			IAtom o = builder.newInstance(IAtom.class,"O");
+			mol.addBond(builder.newInstance(IBond.class, atoms[0], h,
+					CDKConstants.BONDORDER_SINGLE));
+			IAtom o = builder.newInstance(IAtom.class, "O");
 			mol.addAtom(o);
-			h = builder.newInstance(IAtom.class,"H");
+			h = builder.newInstance(IAtom.class, "H");
 			mol.addAtom(h);
-			mol.addBond(builder.newInstance(IBond.class,o, h, CDKConstants.BONDORDER_SINGLE));
-			mol.addBond(builder.newInstance(IBond.class,atoms[1], o, CDKConstants.BONDORDER_SINGLE));
+			mol.addBond(builder.newInstance(IBond.class, o, h,
+					CDKConstants.BONDORDER_SINGLE));
+			mol.addBond(builder.newInstance(IBond.class, atoms[1], o,
+					CDKConstants.BONDORDER_SINGLE));
 		} else {
 			IAtom nAtom = null;
 			IAtom cAtom = null;
@@ -473,25 +471,27 @@ public class SimpleReactions {
 				if (atoms[i].getSymbol().equals("C"))
 					cAtom = atoms[i];
 			}
-			IAtom h = builder.newInstance(IAtom.class,"H");
+			IAtom h = builder.newInstance(IAtom.class, "H");
 			mol.addAtom(h);
-			mol.addBond(builder.newInstance(IBond.class,nAtom, h, CDKConstants.BONDORDER_SINGLE));
-			IAtom o = builder.newInstance(IAtom.class,"O");
+			mol.addBond(builder.newInstance(IBond.class, nAtom, h,
+					CDKConstants.BONDORDER_SINGLE));
+			IAtom o = builder.newInstance(IAtom.class, "O");
 			mol.addAtom(o);
-			mol.addBond(builder.newInstance(IBond.class,cAtom, o, CDKConstants.BONDORDER_DOUBLE));
+			mol.addBond(builder.newInstance(IBond.class, cAtom, o,
+					CDKConstants.BONDORDER_DOUBLE));
 		}
 	}
 
-	private static IAtomContainerSet metabolize(
-			IAtomContainer a,
-			QueryAtomContainer q, List list, IChemObjectBuilder builder) throws ReactionException {
-		logger.fine("metabolize: \t"+ q.getID());
-		logger.finer("Molecule \t"+ a.getID());
+	private static IAtomContainerSet metabolize(IAtomContainer a,
+			QueryAtomContainer q, List list, IChemObjectBuilder builder)
+			throws ReactionException {
+		logger.fine("metabolize: \t" + q.getID());
+		logger.finer("Molecule \t" + a.getID());
 		IAtomContainer mol = null;
 		try {
-		    mol = (IAtomContainer) a.clone();
+			mol = (IAtomContainer) a.clone();
 		} catch (CloneNotSupportedException x) {
-		    throw new ReactionException(x);
+			throw new ReactionException(x);
 		}
 		int bondToSplitMap = -1;
 		int bondToSplitMol = -1;
@@ -509,7 +509,7 @@ public class SimpleReactions {
 		if (bondToSplitMap == -1)
 			throw new ReactionException(
 					"Metabolize: Can't find the bond to break in the reaction pattern!");
-        List<IBond> bondsToBreak = new ArrayList<IBond>();
+		List<IBond> bondsToBreak = new ArrayList<IBond>();
 		for (int i = 0; i < list.size(); i++) {
 			List thisMap = (List) list.get(i);
 			for (int j = 0; j < thisMap.size(); j++) {
@@ -518,22 +518,24 @@ public class SimpleReactions {
 					b = mol.getBond(rmap.getId1());
 					bondToSplitMol = rmap.getId1();
 					// this is the bond to be broken
-                    logger.finer("Break bond "+b.hashCode() + " " + b.getAtom(0).getSymbol() + " "+b.getAtom(1).getSymbol());
-                    bondsToBreak.add(b);
+					logger.finer("Break bond " + b.hashCode() + " "
+							+ b.getAtom(0).getSymbol() + " "
+							+ b.getAtom(1).getSymbol());
+					bondsToBreak.add(b);
 					break;
 				}
 			}
 			// if (b!=null) break;
 		}
-		for (int i=0; i < bondsToBreak.size();i++) {
-            b = bondsToBreak.get(i);
-		    splitMetabolize(mol, b,builder);
-        }
-        
+		for (int i = 0; i < bondsToBreak.size(); i++) {
+			b = bondsToBreak.get(i);
+			splitMetabolize(mol, b, builder);
+		}
+
 		if (b == null)
 			new ReactionException(
 					"Metabolize: Can't find the bond to break in the reactant!");
-	
+
 		// finally separate the resulting molecules
 		IAtomContainerSet result = ConnectivityChecker
 				.partitionIntoMolecules(mol);
@@ -541,18 +543,19 @@ public class SimpleReactions {
 		return result;
 	}
 
-	public static void setResidualID(
-			IAtomContainer mol,
-			IAtomContainerSet r) {
+	public static void setResidualID(IAtomContainer mol, IAtomContainerSet r) {
 		if (r == null)
 			return;
 
 		for (int i = 0; i < r.getAtomContainerCount(); i++)
 			if (logger.isLoggable(Level.FINE)) {
 				// try {
-				r.getAtomContainer(i).setID(
-						gen.createSMILES((IAtomContainer) r.getAtomContainer(i))
-								+ "\t'Residue " + (i + 1) + "'");
+				r.getAtomContainer(i)
+						.setID(gen.createSMILES((IAtomContainer) r
+								.getAtomContainer(i))
+								+ "\t'Residue "
+								+ (i + 1)
+								+ "'");
 				/*
 				 * } catch (CDKException x) { logger.error(x); }
 				 */
@@ -565,12 +568,14 @@ public class SimpleReactions {
 
 	public static QueryAtomContainer createQueryContainer(
 			IAtomContainer container) {
-		QueryAtomContainer queryContainer = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
-		
+		QueryAtomContainer queryContainer = new QueryAtomContainer(
+				SilentChemObjectBuilder.getInstance());
+
 		for (int i = 0; i < container.getAtomCount(); i++) {
 			IAtom atom = container.getAtom(i);
 			if (atom instanceof IPseudoAtom) {
-				InverseSymbolSetQueryAtom a = new InverseSymbolSetQueryAtom();
+				InverseSymbolSetQueryAtom a = new InverseSymbolSetQueryAtom(
+						queryContainer.getBuilder());
 				// a.setSymbol(atoms[i].getSymbol());
 				// a.setAtomTypeName(atoms[i].getAtomTypeName());
 				a.addSymbol("H");
@@ -578,7 +583,7 @@ public class SimpleReactions {
 			} else
 				queryContainer.addAtom(new SymbolQueryAtom(atom));
 		}
-		
+
 		boolean onlyRXbonds = true;
 		for (int i = 0; i < container.getBondCount(); i++) {
 			IBond bond = container.getBond(i);
@@ -587,7 +592,7 @@ public class SimpleReactions {
 				onlyRXbonds = false; // a bond between two defined atoms
 				break;
 			}
-		}	
+		}
 
 		for (int i = 0; i < container.getBondCount(); i++) {
 			IBond bond = container.getBond(i);
@@ -600,19 +605,23 @@ public class SimpleReactions {
 			if (bond.getFlag(CDKConstants.ISAROMATIC)) {
 				queryContainer.addBond(new AromaticQueryBond(
 						(IQueryAtom) queryContainer.getAtom(index1),
-						(IQueryAtom) queryContainer.getAtom(index2),IBond.Order.SINGLE));
+						(IQueryAtom) queryContainer.getAtom(index2),
+						IBond.Order.SINGLE, queryContainer.getBuilder()));
 			} else {
 				OrderQueryBond qBond = null;
 				if (onlyRXbonds) {
 					// logger.debug("Adding acyclic bond\t",atom1,atom2);
-					qBond = new TopologyOrderQueryBond(atom1, atom2, bond.getOrder(), false);
+					qBond = new TopologyOrderQueryBond(atom1, atom2,
+							bond.getOrder(), false, queryContainer.getBuilder());
 				} else if (anyBond) {
 					// logger.debug("Adding any bond\t");
-					qBond = new OrderQueryBond(atom1, atom2, bond.getOrder());
+					qBond = new OrderQueryBond(atom1, atom2, bond.getOrder(),
+							queryContainer.getBuilder());
 
 				} else {
 					// logger.debug("Adding acyclic bond\t",atom1,atom2);
-					qBond = new TopologyOrderQueryBond(atom1, atom2, bond.getOrder(), false);
+					qBond = new TopologyOrderQueryBond(atom1, atom2,
+							bond.getOrder(), false, queryContainer.getBuilder());
 				}
 
 				queryContainer.addBond(qBond);
@@ -622,43 +631,41 @@ public class SimpleReactions {
 		return queryContainer;
 	}
 
-	public IAtomContainerSet hydrolizesPO4(
-			IAtomContainer mol) throws ReactionException {
+	public IAtomContainerSet hydrolizesPO4(IAtomContainer mol)
+			throws ReactionException {
 		return hydrolizesPO4(mol, mol.getBuilder());
 	}
-	
 
-
-	public IAtomContainerSet hydrolizesPO4(
-			IAtomContainer mol,
-			IChemObjectBuilder builder)
-			throws ReactionException {
-		logger.finer("Hydrolizes PO4\t"+ mol.getID());
+	public IAtomContainerSet hydrolizesPO4(IAtomContainer mol,
+			IChemObjectBuilder builder) throws ReactionException {
+		logger.finer("Hydrolizes PO4\t" + mol.getID());
 		IAtomContainerSet result = null;
 		for (int i = 0; i < getHydrolysisPO4ReactionCount(); i++)
 			try {
-                logger.finer("try1 "+i);
+				logger.finer("try1 " + i);
 				IReaction r = getHydrolysisPO4Reaction(i);
-                logger.finer("try2");
-				result = process(mol, r,builder);
-                logger.finer("try3");
+				logger.finer("try2");
+				result = process(mol, r, builder);
+				logger.finer("try3");
 				if (result != null) {
-					logger.finer("YES, it is readily PO4-hydrolised by\t"+ r 
-							.getID());
+					logger.finer("YES, it is readily PO4-hydrolised by\t"
+							+ r.getID());
 					return result;
 				}
 			} catch (CDKException x) {
-				logger.log(Level.SEVERE,"Error when trying PO4-hydrolysis reaction!",x);
+				logger.log(Level.SEVERE,
+						"Error when trying PO4-hydrolysis reaction!", x);
 				throw new ReactionException(x);
 			}
 		logger.finer("NO, it is NOT readily PO4-hydrolised (by predefined reactions)\t");
 		return null;
 	}
-	public IAtomContainerSet isReadilyHydrolised(
-			IAtomContainer mol) throws ReactionException {
-		return isReadilyHydrolised(mol,mol.getBuilder());
+
+	public IAtomContainerSet isReadilyHydrolised(IAtomContainer mol)
+			throws ReactionException {
+		return isReadilyHydrolised(mol, mol.getBuilder());
 	}
-	
+
 	/**
 	 * Checks if 6 predefined hydrolysis reactions can be applied to Molecule
 	 * mol
@@ -667,26 +674,26 @@ public class SimpleReactions {
 	 * @return null if not readily hydrolised, otherwise returns hydrolysis
 	 *         products
 	 */
-	public IAtomContainerSet isReadilyHydrolised(
-			IAtomContainer mol,
-			IChemObjectBuilder builder)
-			throws ReactionException {
-		logger.finer("Verifying if molecule is readily hydrolised\t" + mol.getID());
+	public IAtomContainerSet isReadilyHydrolised(IAtomContainer mol,
+			IChemObjectBuilder builder) throws ReactionException {
+		logger.finer("Verifying if molecule is readily hydrolised\t"
+				+ mol.getID());
 		IAtomContainerSet result = null;
 		for (int i = 0; i < getHydrolysisReactionCount(); i++)
 			try {
 				IReaction r = getHydrolysisReaction(i);
-				result = process(mol, r,builder);
+				result = process(mol, r, builder);
 				if (result != null) {
-					logger.fine("YES, it is readily hydrolised by\t"+ r.getID());
+					logger.fine("YES, it is readily hydrolised by\t"
+							+ r.getID());
 					return result;
 				}
 			} catch (CDKException x) {
-				logger.log(Level.SEVERE,"Error when trying hydrolysis reaction!",x);
+				logger.log(Level.SEVERE,
+						"Error when trying hydrolysis reaction!", x);
 				throw new ReactionException(x);
 			}
-		logger
-				.finer("NO, it is NOT readily hydrolised (by predefined reactions)\t");
+		logger.finer("NO, it is NOT readily hydrolised (by predefined reactions)\t");
 		return null;
 	}
 
@@ -698,38 +705,37 @@ public class SimpleReactions {
 	 *         products
 	 */
 
-	public IAtomContainerSet isReadilyHydrolisedSimpleEster(
-			IAtomContainer mol)
+	public IAtomContainerSet isReadilyHydrolisedSimpleEster(IAtomContainer mol)
 			throws ReactionException {
-		return isReadilyHydrolisedSimpleEster(mol,mol.getBuilder());
+		return isReadilyHydrolisedSimpleEster(mol, mol.getBuilder());
 	}
 
-	public IAtomContainerSet isReadilyHydrolisedSimpleEster(
-			IAtomContainer mol,
-			IChemObjectBuilder builder)
-			throws ReactionException {
-		
+	public IAtomContainerSet isReadilyHydrolisedSimpleEster(IAtomContainer mol,
+			IChemObjectBuilder builder) throws ReactionException {
+
 		IReaction r = null;
 		try {
 			r = getHydrolysisReaction(0);
 		} catch (CDKException x) {
 			throw new ReactionException(x);
 		}
-		logger.finer("Verifying if molecule \t"+mol.getID()+
-				"\t is readily hydrolised by\t"+ r.getID());
+		logger.finer("Verifying if molecule \t" + mol.getID()
+				+ "\t is readily hydrolised by\t" + r.getID());
 		IAtomContainerSet result = null;
 		result = process(mol, r, builder);
 		if (result != null) {
-			logger.finer("YES, it is readily hydrolised by\t"+ r.getID());
+			logger.finer("YES, it is readily hydrolised by\t" + r.getID());
 			return result;
 		}
 		return null;
 	}
-	public IAtomContainerSet canMetabolize(
-			IAtomContainer mol,
+
+	public IAtomContainerSet canMetabolize(IAtomContainer mol,
 			boolean allPossible) throws ReactionException {
-		return canMetabolize(mol, allPossible, SilentChemObjectBuilder.getInstance());
+		return canMetabolize(mol, allPossible,
+				SilentChemObjectBuilder.getInstance());
 	}
+
 	/**
 	 * Checks if 4 predefined metabolic reactions can be applied to Molecule mol
 	 * 
@@ -737,27 +743,30 @@ public class SimpleReactions {
 	 * @return null if not metabolized by these, otherwise returns metabolic
 	 *         products
 	 */
-	public IAtomContainerSet canMetabolize(
-			IAtomContainer mol,
-			boolean allPossible, IChemObjectBuilder builder) throws ReactionException {
-		if (mol==null) throw new ReactionException("Null molecule");
-		logger.finer("Verifying if molecule can be metabolised\t"+ mol.getAtomCount() + "\t"+ mol.getID());
+	public IAtomContainerSet canMetabolize(IAtomContainer mol,
+			boolean allPossible, IChemObjectBuilder builder)
+			throws ReactionException {
+		if (mol == null)
+			throw new ReactionException("Null molecule");
+		logger.finer("Verifying if molecule can be metabolised\t"
+				+ mol.getAtomCount() + "\t" + mol.getID());
 		IAtomContainerSet result = null;
 		for (int i = 0; i < (getMetabolicReactionCount() - 1); i++)
 			try {
 				IReaction r = getMetabolicReaction(i);
 				result = process(mol, r, builder);
 				if (result != null) {
-					logger.finer("YES, it can be metabolised by\t"+ r.getID());
+					logger.finer("YES, it can be metabolised by\t" + r.getID());
 					IAtomContainerSet allProducts = null;
 					if (allPossible)
 						for (int p = 0; p < result.getAtomContainerCount(); p++) {
-							IAtomContainer a = (IAtomContainer) result.getAtomContainer(p);
+							IAtomContainer a = (IAtomContainer) result
+									.getAtomContainer(p);
 							if (logger.isLoggable(Level.FINE)) {
 								a.setID(gen.createSMILES(a));
 							}
-							IAtomContainerSet newProducts = canMetabolize(
-									a, allPossible, builder);
+							IAtomContainerSet newProducts = canMetabolize(a,
+									allPossible, builder);
 							if (allProducts == null)
 								allProducts = new AtomContainerSet();
 
@@ -777,11 +786,11 @@ public class SimpleReactions {
 
 				}
 			} catch (CDKException x) {
-				logger.log(Level.SEVERE,"Error when trying metabolic reaction!",x);
+				logger.log(Level.SEVERE,
+						"Error when trying metabolic reaction!", x);
 				throw new ReactionException(x);
 			}
-		logger
-				.info("NO, this molecule can NOT be metabolized by predefined reactions");
+		logger.info("NO, this molecule can NOT be metabolized by predefined reactions");
 		return null;
 	}
 }

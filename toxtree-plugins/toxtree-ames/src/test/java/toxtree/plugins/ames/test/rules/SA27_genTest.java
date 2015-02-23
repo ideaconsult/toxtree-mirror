@@ -128,7 +128,7 @@ public class SA27_genTest extends TestAmesMutagenicityRules {
         h.addImplicitHydrogens(mol);
         AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
         CDKHueckelAromaticityDetector.detectAromaticity(mol);
-        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
+        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,SilentChemObjectBuilder.getInstance());
         return sqt.matches(mol);
     }
 
