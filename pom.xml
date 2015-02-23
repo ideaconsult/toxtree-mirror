@@ -321,6 +321,6 @@
     <ambit.version>3.0.0-SNAPSHOT</ambit.version>
     <cdk.version>1.5.10</cdk.version>
     <junit.version>4.8.1</junit.version>
-    <smartcyp.version>1.5.9</smartcyp.version>
+    <smartcyp.version>3.0.0-SNAPSHOT</smartcyp.version>
   </properties>
 </project>

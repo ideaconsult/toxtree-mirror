@@ -296,7 +296,7 @@ public class LinearQSARModel extends AbstractQSARModel  {
 					b.append("<br>");
 					b.append("If not available, it is calculated by ");
 					b.append(getDescriptor(i).getClass().getName());
-					DescriptorSpecification ds= getDescriptor(i).getSpecification();
+					DescriptorSpecification ds= (DescriptorSpecification)getDescriptor(i).getSpecification();
 					b.append("<br>Reference: ");
 					b.append(ds.getSpecificationReference());
 						

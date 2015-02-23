@@ -210,6 +210,11 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet,
 		sortedProperties.clear();
 	}
 
+	@Override
+	public boolean isEmpty() {
+		return getAtomContainerCount() == 0;
+	}
+
 	public int getAtomContainerCount() {
 		if (reader == null)
 			return 0;

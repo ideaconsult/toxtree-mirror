@@ -410,7 +410,7 @@ public class MoleculesIterator implements IMoleculesIterator {
 			a.setPoint2d(new Point2d(0,0));
 			mol.addAtom(a);
 			m = MoleculeTools.newMoleculeSet(builder4jcp);
-			m.addMolecule(mol);
+			m.addAtomContainer(mol);
 		} else {
 			m = ConnectivityChecker.partitionIntoMolecules(getMolecule());
 			//IAtomContainerSet m =  new MoleculeSet();
