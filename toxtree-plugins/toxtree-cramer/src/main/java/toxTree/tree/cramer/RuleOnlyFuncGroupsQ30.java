@@ -35,11 +35,11 @@ package toxTree.tree.cramer;
 import java.util.List;
 
 import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.graph.Cycles;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IMolecularFormula;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
-import org.openscience.cdk.ringsearch.SSSRFinder;
 import org.openscience.cdk.tools.manipulator.MolecularFormulaManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
@@ -120,8 +120,8 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 	public boolean substituentIsAllowed(IAtomContainer  a,int[] place)
 			throws DecisionMethodException {
 		//aliphatic chain > 5 carbons
-		SSSRFinder ssrf = new SSSRFinder(a);
-		IRingSet rs = ssrf.findSSSR();
+		
+		IRingSet rs = Cycles.sssr(a).toRingSet();
 		boolean b =false;
 		if (rs.getAtomContainerCount() > 0) {
 			logger.finer(CYCLIC_SUBSTITUENT);
@@ -147,7 +147,6 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 			list = null;
 		}
 		rs = null;
-		ssrf = null;
 		return b;
 	}
 	/* (non-Javadoc)

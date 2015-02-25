@@ -84,8 +84,8 @@ public class AromaticityTest extends TestCase {
 		// System.out.println(s);
 
 		IAtomContainer m1 = p.parseSmiles(s);
-
-		b = CDKHueckelAromaticityDetector.detectAromaticity(m);
+		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m1);
+		b = CDKHueckelAromaticityDetector.detectAromaticity(m1);
 
 		/*
 		 * for (int i=0; i<m1.getBondCount();i++) {
@@ -95,9 +95,11 @@ public class AromaticityTest extends TestCase {
 		 */
 
 		assertTrue(b);
+		System.out.println("m: " + SmilesGenerator.unique().aromatic().create(m));
+		System.out.println("m1: " + SmilesGenerator.unique().aromatic().create(m1));
 		UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
+		assertEquals("Atom counts are different", m.getAtomCount(), m1.getAtomCount());
 		assertTrue(uit.isIsomorph(m, m1));
-
 	}
 
 	public void testDeduceBondOrders() throws Exception {

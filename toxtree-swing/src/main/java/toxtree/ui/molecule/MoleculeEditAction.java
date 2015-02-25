@@ -37,7 +37,7 @@ import javax.swing.JOptionPane;
 import javax.vecmath.Vector2d;
 
 import org.openscience.cdk.ChemModel;
-import org.openscience.cdk.geometry.GeometryTools;
+import org.openscience.cdk.geometry.GeometryUtil;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -182,7 +182,7 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
 		IAtomContainerSet m =  new AtomContainerSet();
 		for (int i=0; i< molecules.getAtomContainerCount();i++) {
 			IAtomContainer a = molecules.getAtomContainer(i);
-			if (!GeometryTools.has2DCoordinates(a)) {
+			if (!GeometryUtil.has2DCoordinates(a)) {
 				if (sdg == null) sdg = new StructureDiagramGenerator();
 				sdg.setMolecule((IAtomContainer)a);
 				sdg.generateCoordinates(new Vector2d(0,1));

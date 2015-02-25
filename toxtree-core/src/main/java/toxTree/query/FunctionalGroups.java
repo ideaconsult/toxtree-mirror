@@ -45,6 +45,7 @@ import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.graph.ConnectivityChecker;
+import org.openscience.cdk.graph.Cycles;
 import org.openscience.cdk.graph.PathTools;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -68,7 +69,6 @@ import org.openscience.cdk.isomorphism.matchers.smarts.AliphaticSymbolAtom;
 import org.openscience.cdk.isomorphism.matchers.smarts.AnyOrderQueryBond;
 import org.openscience.cdk.isomorphism.matchers.smarts.AromaticSymbolAtom;
 import org.openscience.cdk.isomorphism.mcss.RMap;
-import org.openscience.cdk.ringsearch.SSSRFinder;
 import org.openscience.cdk.silent.AtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
@@ -4224,8 +4224,8 @@ public class FunctionalGroups {
 	}
 
 	public static boolean isCommonTerpene(IAtomContainer mol) {
-		SSSRFinder ssrf = new SSSRFinder(mol);
-		return isCommonTerpene(mol, ssrf.findSSSR());
+		Cycles cycles = Cycles.relevant(mol);
+		return isCommonTerpene(mol, cycles.toRingSet());
 	}
 
 	public static boolean isCommonTerpene(IAtomContainer mol, IRingSet rings) {

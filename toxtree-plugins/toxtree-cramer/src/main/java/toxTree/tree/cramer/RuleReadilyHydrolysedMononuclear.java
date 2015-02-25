@@ -32,10 +32,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package toxTree.tree.cramer;
 
+import org.openscience.cdk.graph.Cycles;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IRingSet;
-import org.openscience.cdk.ringsearch.SSSRFinder;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
@@ -76,19 +76,20 @@ public class RuleReadilyHydrolysedMononuclear extends RuleReadilyHydrolised {
 	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
 	    IAtomContainerSet sc = mf.getHydrolysisProducts();
 	    //sc is not null since we had passed the super method
-	    SSSRFinder sf = null;
+
 	    IRingSet rs = null;
 	    boolean result = true;
 	    for (int i=0; i<sc.getAtomContainerCount();i++) {
-	    	sf = new SSSRFinder(sc.getAtomContainer(i));
-	    	rs = sf.findSSSR();
+	    	
+	    	rs = Cycles.sssr(sc.getAtomContainer(i)).toRingSet();
+	    	
 	    	if (rs.getAtomContainerCount() > 1) {
 	    		logger.finer("Residue not mononuclear");
 	    		result = false; break;
 	    	} 
 	    }
 	    if (result) mf.setResidues(sc);
-	    sf = null;
+	    
 	    rs = null;
 	    sc = null;
 	    return result;

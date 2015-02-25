@@ -35,11 +35,11 @@ package toxTree.tree.cramer;
 
 import java.util.logging.Level;
 
+import org.openscience.cdk.graph.Cycles;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.cdk.ringsearch.SSSRFinder;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
@@ -99,8 +99,8 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 	@Override
 	public boolean substituentIsAllowed(IAtomContainer  a, int[] place) throws DecisionMethodException {
 		//final String cAtom = "C";
-		SSSRFinder ssrf = new SSSRFinder(a);
-		IRingSet rs = ssrf.findSSSR();
+
+		IRingSet rs = Cycles.sssr(a).toRingSet();		
 		boolean b =false;
 		if (rs.getAtomContainerCount() > 0) {
 			logger.finer(CYCLIC_SUBSTITUENT);
@@ -145,7 +145,6 @@ public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubst
 			} else b = true;
 		}
 		rs = null;
-		ssrf = null;
 		return b;
 	}
 	/* (non-Javadoc)

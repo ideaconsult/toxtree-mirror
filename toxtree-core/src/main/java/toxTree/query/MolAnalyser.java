@@ -35,10 +35,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.atomtype.CDKAtomTypeMatcher;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
+import org.openscience.cdk.graph.Cycles;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -47,7 +47,6 @@ import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.AllRingsFinder;
-import org.openscience.cdk.ringsearch.SSSRFinder;
 import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 import org.openscience.cdk.tools.periodictable.PeriodicTable;
@@ -55,6 +54,7 @@ import org.openscience.cdk.tools.periodictable.PeriodicTable;
 import toxTree.exceptions.MolAnalyseException;
 import ambit2.base.config.Preferences;
 import ambit2.core.data.MoleculeTools;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.processors.structure.HydrogenAdderProcessor;
 
 
@@ -105,6 +105,9 @@ public class MolAnalyser {
 	        while (atoms.hasNext()) {
 	           IAtom atom = atoms.next();
 	           IAtomType type = matcher.findMatchingAtomType(mol, atom);
+	           // CDK 1.5 no longer uses NULL for "no idea what atom type this is", but uses the "X" atom type
+	           // so, the next line restores the CDK 1.4 "functionality"
+	           if ("X".equals(type.getAtomTypeName())) type = null;
 	           try {
 	        	   AtomTypeManipulator.configure(atom, type);
                    logger.fine("Found " + atom.getSymbol() + " of type " + type.getAtomTypeName());
@@ -170,8 +173,8 @@ public class MolAnalyser {
 	        } catch (CDKException x) {
 	        	//timeout on AllRingsFinder, will try SSSR
 	        	logger.warning(x.getMessage());
-	        	SSSRFinder ssrf = new SSSRFinder(mol);
-	        	ringSet = ssrf.findEssentialRings();
+	        	
+	        	ringSet = Cycles.essential(mol).toRingSet();
 	        }
 	        int size = ((IRingSet) ringSet).getAtomContainerCount();
 	        mf.setOpenChain(size == 0);
