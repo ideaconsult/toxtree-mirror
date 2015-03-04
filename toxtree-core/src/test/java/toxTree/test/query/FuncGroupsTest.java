@@ -77,7 +77,7 @@ public class FuncGroupsTest {
 	protected SmilesParser gen = new SmilesParser(
 			SilentChemObjectBuilder.getInstance());
 	protected Logger logger = Logger.getLogger(FuncGroupsTest.class);
-
+	CDKSourceCodeWriter debugWriter = new CDKSourceCodeWriter(System.err);
 	/*
 	 * protected boolean querySalt(String smiles, QueryAtomContainer q) { try {
 	 * Molecule mol = gen. return query(mol,q); } catch (InvalidSmilesException
@@ -85,6 +85,8 @@ public class FuncGroupsTest {
 	 */
 	protected boolean query(String smiles, QueryAtomContainer q) throws Exception  {
 		IAtomContainer mol = FunctionalGroups.createAtomContainer(smiles, true);
+		debugWriter.write(mol);
+		debugWriter.write(q);
 		return (FunctionalGroups.hasGroup(mol, q));
 	}
 

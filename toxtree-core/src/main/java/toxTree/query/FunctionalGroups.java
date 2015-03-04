@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2015
 
-Contact: nina@acad.bg
+Contact: jeliazkova.nina2@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -2984,8 +2984,9 @@ public class FunctionalGroups {
 				CDKHueckelAromaticityDetector.detectAromaticity(mol);
 				// logger.fine("Adding explicit hydrogens");
 				h.addImplicitHydrogens(mol);
-				if (!addHydrogens)
-					mol = AtomContainerManipulator.removeHydrogens(mol);
+				
+				if (addHydrogens)
+					AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
 
 				// h.addExplicitHydrogensToSatisfyValency((IAtomContainer)mol);
 			} catch (CDKException x) {
