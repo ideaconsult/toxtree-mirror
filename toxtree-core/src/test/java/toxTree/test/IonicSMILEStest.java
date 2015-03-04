@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2015 
 
-Contact: nina@acad.bg
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,8 +21,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.test;
+
+import junit.framework.Assert;
 
 import org.junit.Test;
 import org.openscience.cdk.graph.ConnectivityChecker;
@@ -34,34 +36,41 @@ import org.openscience.cdk.smiles.SmilesParser;
 
 /**
  * TODO add description
- * @author ThinClient
- * <b>Modified</b> 2005-9-22
+ * 
+ * @author ThinClient <b>Modified</b> 2005-9-22
  */
 public class IonicSMILEStest {
 	@Test
-	public void testCHA()  throws Exception {
-		ionicSmiles("[Cl-].[NH3+]C1CCCCC1");
+	public void testCHA() throws Exception {
+		String[] expected = new String[] { "[Cl-]", "[NH3+]C1CCCCC1" };
+		ionicSmiles("[Cl-].[NH3+]C1CCCCC1", 2, expected);
 	}
+
 	@Test
-	public void test()  throws Exception  {
-		ionicSmiles("[Na+].[Na+].[Na+].OC1=C(N=NC2=CC=C(C=C2)S([O-])(=O)=O)C(=NN1C3=CC=C(C=C3)S([O-])(=O)=O)C([O-])=O");
+	public void test() throws Exception {
+		String[] expected = new String[] { "[Na+]",
+				"OC1=C(N=NC2=CC=C(C=C2)S([O-])(=O)=O)C(=NN1C3=CC=C(C=C3)S([O-])(=O)=O)C([O-])=O" };
+		ionicSmiles("[Na+].[Na+].[Na+].OC1=C(N=NC2=CC=C(C=C2)S([O-])(=O)=O)C(=NN1C3=CC=C(C=C3)S([O-])(=O)=O)C([O-])=O",
+				4, expected);
 	}
-	@Test
-	public void ionicSmiles(String smiles) throws Exception {
-		
+
+	public void ionicSmiles(String smiles, int num, String[] expected) throws Exception {
+
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
 
-			IAtomContainer m = p.parseSmiles(smiles);
-			IAtomContainerSet c = ConnectivityChecker.partitionIntoMolecules(m);
-			System.out.println(c.getAtomContainerCount());
-			SmilesGenerator g = SmilesGenerator.generic();
-			for (int i=0; i < c.getAtomContainerCount(); i++) {
-				IAtomContainer m1 = (IAtomContainer) c.getAtomContainer(i); 
-				//System.out.println(g.createSMILESWithoutCheckForMultipleMolecules(m1,false,new boolean[m1.getBondCount()]));
-				//System.out.println(g.createSMILES(m1,false,new boolean[m1.getBondCount()]));
-				System.out.println(g.createSMILES(m1));
-			}
-	
-		
+		IAtomContainer m = p.parseSmiles(smiles);
+		IAtomContainerSet c = ConnectivityChecker.partitionIntoMolecules(m);
+		Assert.assertEquals(num, c.getAtomContainerCount());
+		SmilesGenerator g = SmilesGenerator.generic();
+		for (int i = 0; i < c.getAtomContainerCount(); i++) {
+			IAtomContainer m1 = (IAtomContainer) c.getAtomContainer(i);
+			// System.out.println(g.createSMILESWithoutCheckForMultipleMolecules(m1,false,new
+			// boolean[m1.getBondCount()]));
+			// System.out.println(g.createSMILES(m1,false,new
+			// boolean[m1.getBondCount()]));
+			String smi = g.create(m1);
+			Assert.assertTrue(smi.equals(expected[0]) || smi.equals(expected[1]));
+		}
+
 	}
 }

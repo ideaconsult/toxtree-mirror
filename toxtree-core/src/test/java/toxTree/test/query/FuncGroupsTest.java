@@ -48,8 +48,6 @@ import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
-import org.openscience.cdk.io.CDKSourceCodeWriter;
-import org.openscience.cdk.io.IChemObjectWriter;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
@@ -76,7 +74,6 @@ import ambit2.core.data.MoleculeTools;
 public class FuncGroupsTest {
 	protected SmilesParser gen = new SmilesParser(SilentChemObjectBuilder.getInstance());
 	protected Logger logger = Logger.getLogger(FuncGroupsTest.class);
-	CDKSourceCodeWriter debugWriter = new CDKSourceCodeWriter(System.err);
 
 	/*
 	 * protected boolean querySalt(String smiles, QueryAtomContainer q) { try {
@@ -85,8 +82,6 @@ public class FuncGroupsTest {
 	 */
 	protected boolean query(String smiles, QueryAtomContainer q) throws Exception {
 		IAtomContainer mol = FunctionalGroups.createAtomContainer(smiles, true);
-		debugWriter.write(mol);
-		debugWriter.write(q);
 		return (FunctionalGroups.hasGroup(mol, q));
 	}
 
@@ -681,15 +676,15 @@ public class FuncGroupsTest {
 		IAtomContainerSet s = ConnectivityChecker.partitionIntoMolecules(mol);
 		Assert.assertEquals(2, s.getAtomContainerCount());
 		StringWriter stringWriter = new StringWriter();
-		IChemObjectWriter writer = new CDKSourceCodeWriter(stringWriter);
+		//IChemObjectWriter writer = new CDKSourceCodeWriter(stringWriter);
 		SmilesGenerator sg = SmilesGenerator.generic();
 		try {
 			String newSmiles = sg.create(mol);
 			String newSmiles1 = sg.create(salt());
 			logger.debug(newSmiles);
 			logger.debug(newSmiles1);
-			writer.write((IAtomContainer) mol);
-			writer.close();
+			//writer.write((IAtomContainer) mol);
+			//writer.close();
 		} catch (Exception x) {
 			logger.warn(x.getMessage(), x);
 		}

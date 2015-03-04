@@ -20,14 +20,11 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package mutant.rules;
 
-import java.util.logging.Level;
-
 import toxTree.tree.rules.StructureAlertCDK;
-import ambit2.smarts.query.SMARTSException;
 
 public class SA40_nogen extends StructureAlertCDK {
 
@@ -36,24 +33,18 @@ public class SA40_nogen extends StructureAlertCDK {
 	 */
 	private static final long serialVersionUID = 8723199576199214305L;
 
-	public SA40_nogen() {
+	public SA40_nogen() throws Exception {
 		super();
-		try {
-			addSubstructure("c1(OC(C)(C)C(=O)O)ccc([#6,#17])cc1");
-			addSubstructure("c1(OCC(=O)[O;H0])cc(Cl)c(Cl)cc1");
-			addSubstructure("c1(OCC(=O)[O;H0])c(Cl)cc(Cl)cc1");
-			setID("SA40_nogen");
-			setTitle("substituted phenoxyacid");
-			setExplanation("Nongenotoxic mechanism");
-				
-			 examples[0] = "c1ccc(OC(C)(C)C(OCC)=O)cc1";
-	            examples[1] = "Clc1ccc(OC(C)(C)C(OCC)=O)cc1";   
-	            editable = false;
-		} catch (SMARTSException x) {
-			logger.log(Level.SEVERE,x.getMessage(),x);
-		}
+		addSubstructure("c1(OC(C)(C)C(=O)O)ccc([#6,#17])cc1");
+		addSubstructure("c1(OCC(=O)[O;H0])cc(Cl)c(Cl)cc1");
+		addSubstructure("c1(OCC(=O)[O;H0])c(Cl)cc(Cl)cc1");
+		setID("SA40_nogen");
+		setTitle("substituted phenoxyacid");
+		setExplanation("Nongenotoxic mechanism");
+
+		examples[0] = "c1ccc(OC(C)(C)C(OCC)=O)cc1";
+		examples[1] = "Clc1ccc(OC(C)(C)C(OCC)=O)cc1";
+		editable = false;
 	}
 
 }
-
-//

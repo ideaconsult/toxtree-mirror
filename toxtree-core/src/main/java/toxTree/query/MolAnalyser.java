@@ -92,7 +92,7 @@ public class MolAnalyser {
 	}
 	*/
     
-    public static void analyse(IAtomContainer mol) throws MolAnalyseException {
+	public static void analyse(IAtomContainer mol) throws MolAnalyseException {
     	
     	if (mol==null) throw new MolAnalyseException("Null molecule!",mol);
     	if (mol.getAtomCount()==0) throw new MolAnalyseException("No atoms!",mol);

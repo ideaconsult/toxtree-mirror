@@ -43,8 +43,8 @@ import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.ISmartsPatternFactory;
 import ambit2.smarts.query.SMARTSException;
 
-public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
-		implements IRuleSMARTSubstructures, ISmartsPatternFactory {
+public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule implements IRuleSMARTSubstructures,
+		ISmartsPatternFactory {
 
 	private static final long serialVersionUID = 0;
 	protected Hashtable<String, ISmartsPattern<T>> smartsPatterns;
@@ -55,15 +55,13 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 		super();
 		smartsPatterns = new Hashtable<String, ISmartsPattern<T>>();
 		explanation = new StringBuffer();
-		explanation
-				.append("Returns true if the query contains substructures specified by SMARTS patterns.");
+		explanation.append("Returns true if the query contains substructures specified by SMARTS patterns.");
 		setTitle("Substructure by SMARTS patterns.");
 		setID("SMARTS");
 
 	}
 
-	public void addSubstructure(String title, String smarts, boolean negate)
-			throws SMARTSException {
+	public void addSubstructure(String title, String smarts, boolean negate) throws SMARTSException {
 		if ("".equals(title))
 			addSubstructure(smarts);
 		else
@@ -71,8 +69,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 
 	}
 
-	public void addSubstructure(String title, String smarts)
-			throws SMARTSException {
+	public void addSubstructure(String title, String smarts) throws SMARTSException {
 		addSubstructure(title, smarts, false);
 
 	}
@@ -81,13 +78,11 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 		addSubstructure(Integer.toString(smartsPatterns.size() + 1), smarts);
 	}
 
-	public void setSubstructure(String title, String smarts, boolean negate)
-			throws SMARTSException {
+	public void setSubstructure(String title, String smarts, boolean negate) throws SMARTSException {
 		smartsPatterns.put(title, createSmartsPattern(smarts, negate));
 	}
 
-	public void setSubstructure(String title, String smarts)
-			throws SMARTSException {
+	public void setSubstructure(String title, String smarts) throws SMARTSException {
 		setSubstructure(title, smarts, false);
 
 	}
@@ -111,14 +106,11 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 			/**
 		     * 
 		     */
-		    private static final long serialVersionUID = -8219964178716366585L;
+			private static final long serialVersionUID = -8219964178716366585L;
 
-			public IChemObjectSelection process(IAtomContainer mol)
-					throws AmbitException {
+			public IChemObjectSelection process(IAtomContainer mol) throws AmbitException {
 				try {
-					IAtomContainer selected = MoleculeTools
-							.newAtomContainer(SilentChemObjectBuilder
-									.getInstance());
+					IAtomContainer selected = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
 					try {
 						MolAnalyser.analyse(mol);
 					} catch (Exception x) {
@@ -157,9 +149,8 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 		};
 	}
 
-	public boolean verifyRule(
-			org.openscience.cdk.interfaces.IAtomContainer mol,
-			IAtomContainer selected) throws DecisionMethodException {
+	public boolean verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
 		try {
 
 			logger.finer(getID());
@@ -177,14 +168,12 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 
 				ISmartsPattern pattern = smartsPatterns.get(temp_id);
 				if (pattern == null) {
-					throw new DecisionMethodException("ID '" + id
-							+ "' is missing in " + getClass().getName());
+					throw new DecisionMethodException("ID '" + id + "' is missing in " + getClass().getName());
 				}
 
 				is_true = pattern.hasSMARTSPattern(moltotest) > 0;
 
-				logger.fine("SMARTS " + temp_id + '\t' + pattern.toString()
-						+ '\t' + is_true);
+				logger.fine("SMARTS " + temp_id + '\t' + pattern.toString() + '\t' + is_true);
 
 				if (pattern.isNegate())
 					is_true = !is_true;
@@ -259,24 +248,21 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 	 * DecisionMethodException(x); } catch (DecisionMethodException x) { throw
 	 * x; } catch (Exception x) { throw new DecisionMethodException(x); } }
 	 */
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
 		return verifyRule(mol, null);
 	}
 
-	public void removeSingleSMARTS(Hashtable table, String id)
-			throws SMARTSException {
+	public void removeSingleSMARTS(Hashtable table, String id) throws SMARTSException {
 
 		if (!table.containsKey(id)) {
-			throw new SMARTSException("Invalid(id:" + id + ") '"
-					+ "' defined in " + getClass().getName());
+			throw new SMARTSException("Invalid(id:" + id + ") '" + "' defined in " + getClass().getName());
 		}
 
 		table.remove(id);
 	}
 
-	public void initSingleSMARTS(Hashtable<String, ISmartsPattern<T>> table,
-			String id, String smartPattern) throws SMARTSException {
+	public void initSingleSMARTS(Hashtable<String, ISmartsPattern<T>> table, String id, String smartPattern)
+			throws SMARTSException {
 		ISmartsPattern smarts = createSmartsPattern(smartPattern, false);
 		table.put(id, smarts);
 	}
@@ -302,8 +288,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 		return smartsPatterns;
 	}
 
-	public void setSmartsPatterns(
-			Hashtable<String, ISmartsPattern<T>> smartsPatterns) {
+	public void setSmartsPatterns(Hashtable<String, ISmartsPattern<T>> smartsPatterns) {
 		this.smartsPatterns = smartsPatterns;
 	}
 
@@ -329,8 +314,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 		return b.toString();
 	}
 
-	private void printCondition(StringBuffer b, String op, String spName,
-			ISmartsPattern sp) {
+	private void printCondition(StringBuffer b, String op, String spName, ISmartsPattern sp) {
 		if (op != null) {
 			b.append("<u>");
 			b.append(op);
@@ -364,8 +348,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule
 	 * @param mol
 	 * @return
 	 */
-	protected boolean isAPossibleHit(IAtomContainer mol, T processedObject)
-			throws DecisionMethodException {
+	protected boolean isAPossibleHit(IAtomContainer mol, T processedObject) throws DecisionMethodException {
 		return true;
 	}
 

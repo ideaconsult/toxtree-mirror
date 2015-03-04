@@ -20,14 +20,11 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package mutant.rules;
 
-import java.util.logging.Level;
-
 import toxTree.tree.rules.StructureAlertCDK;
-import ambit2.smarts.query.SMARTSException;
 
 public class SA49_nogen extends StructureAlertCDK {
 
@@ -36,25 +33,20 @@ public class SA49_nogen extends StructureAlertCDK {
 	 */
 	private static final long serialVersionUID = 8723199576199214305L;
 
-	public SA49_nogen() {
+	public SA49_nogen() throws Exception {
 		super();
-		try {
-			
-			addSubstructure("imidazole", "n1c[nH]cc1");
-			addSubstructure("benzimidazole", "n2c1ccccc1nc2");
-			
-			setID("SA49_nogen");
-			setTitle("imidazole and benzimidazole");
-			setExplanation("Nongenotoxic mechanism");
-			
-			 examples[0] = "c2c1ccccc1cc2";
-	            examples[1] = "Sc1c(N=CN2)c2ncn1";   
-	            editable = false;
-		} catch (SMARTSException x) {
-			logger.log(Level.SEVERE,x.getMessage(),x);
-		}
+
+		addSubstructure("imidazole", "n1c[nH]cc1");
+		addSubstructure("benzimidazole", "n2c1ccccc1nc2");
+
+		setID("SA49_nogen");
+		setTitle("imidazole and benzimidazole");
+		setExplanation("Nongenotoxic mechanism");
+
+		examples[0] = "c2c1ccccc1cc2";
+		examples[1] = "Sc1c(N=CN2)c2ncn1";
+		editable = false;
+
 	}
 
 }
-
-
