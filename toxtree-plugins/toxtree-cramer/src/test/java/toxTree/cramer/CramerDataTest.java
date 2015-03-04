@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007 
+Copyright Ideaconsult Ltd. (C) 2005-2015 
 
-Contact: nina@acad.bg
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,8 +30,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionResult;
@@ -48,7 +49,7 @@ import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
  * 
  * @author Nina Jeliazkova <b>Modified</b> 2005-8-23
  */
-public class CramerDataTest extends TestCase {
+public class CramerDataTest {
 	protected CramerRules cr = null;
 
 	protected transient static Logger logger = Logger
@@ -229,42 +230,20 @@ public class CramerDataTest extends TestCase {
 					"1N,2N,3N,5N,6N,7Y,8N,10N,11Y,33N" },
 			{ "C[Hg+].[Cl-]", "3", "MMC", "1N,2N,3Y,4N" }, };
 
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(CramerDataTest.class);
-	}
-
-	/*
-	 * @see TestCase#setUp()
-	 */
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	/*
-	 * @see TestCase#tearDown()
-	 */
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
 	/**
 	 * Constructor for CramerDataTest.
 	 * 
 	 * @param arg0
 	 */
-	public CramerDataTest(String arg0) {
-		super(arg0);
-		try {
-			cr = new CramerRules();
-			cr.setResiduesIDVisible(false);
+	public CramerDataTest(String arg0) throws Exception {
+		super();
+		cr = new CramerRules();
+		cr.setResiduesIDVisible(false);
 
-		} catch (DecisionMethodException x) {
-			fail();
-		}
 	}
 
 	protected IDecisionResult classify(String smiles, String id,
-			CramerRules rules) {
+			CramerRules rules) throws Exception {
 		IDecisionResult result = rules.createDecisionResult();
 
 		result.setDecisionMethod(rules);
@@ -279,7 +258,7 @@ public class CramerDataTest extends TestCase {
 		return result;
 	}
 
-	protected int classify(String[][] molecules, int classID) {
+	protected int classify(String[][] molecules, int classID) throws Exception {
 		int success = 0;
 		logger.severe("These compounds should be of class\t" + classID);
 		for (int i = 0; i < molecules.length; i++) {
@@ -325,26 +304,30 @@ public class CramerDataTest extends TestCase {
 		return success;
 	}
 
-	public void testClass1() {
+	@Test
+	public void testClass1() throws Exception {
 		SMILES_PARSER p = SmilesParserWrapper.getInstance().getParser();
 		// junit.framework.AssertionFailedError: expected:<31> but was:<22>
 
 		SmilesParserWrapper.getInstance().setParser(SMILES_PARSER.OPENBABEL);
-		assertEquals(compoundsClass1.length, classify(compoundsClass1, 1));
+		Assert.assertEquals(compoundsClass1.length,
+				classify(compoundsClass1, 1));
 		SmilesParserWrapper.getInstance().setParser(p);
 
 	}
 
 	// junit.framework.AssertionFailedError: expected:<7> but was:<6>
-
-	public void testClass2() {
-		assertEquals(compoundsClass2.length, classify(compoundsClass2, 2));
+	@Test
+	public void testClass2() throws Exception {
+		Assert.assertEquals(compoundsClass2.length,
+				classify(compoundsClass2, 2));
 	}
 
 	// junit.framework.AssertionFailedError: expected:<43> but was:<42>
-
-	public void testClass3() {
-		assertEquals(compoundsClass3.length, classify(compoundsClass3, 3));
+	@Test
+	public void testClass3() throws Exception {
+		Assert.assertEquals(compoundsClass3.length,
+				classify(compoundsClass3, 3));
 	}
 
 	protected void writeCompounds(String[][] array, DataOutputStream f)
@@ -363,21 +346,22 @@ public class CramerDataTest extends TestCase {
 		}
 	}
 
-	public void testWriteCompounds() {
+	@Test
+	public void testWriteCompounds() throws Exception {
+		DataOutputStream f = null;
 		try {
-			DataOutputStream f = new DataOutputStream(new FileOutputStream(
-					"appendix1.csv"));
+			f = new DataOutputStream(new FileOutputStream("appendix1.csv"));
 			f.writeBytes("SMILES,CLASS,Name,Path\n");
 			writeCompounds(compoundsClass1, f);
 			writeCompounds(compoundsClass2, f);
 			writeCompounds(compoundsClass3, f);
 			f.close();
-		} catch (IOException x) {
-			x.printStackTrace();
+		} finally {
+			f.close();
 		}
 	}
-
-	public void testCa() {
-		fail("[Ca+2].O=C[O-].O=C[O-]  - assigns class I, but doesn't highlight it");
+	@Test
+	public void testCa() throws Exception {
+		Assert.fail("[Ca+2].O=C[O-].O=C[O-]  - assigns class I, but doesn't highlight it");
 	}
 }

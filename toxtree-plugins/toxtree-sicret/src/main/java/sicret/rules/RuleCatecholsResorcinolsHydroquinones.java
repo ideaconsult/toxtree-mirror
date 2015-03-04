@@ -41,10 +41,10 @@ public class RuleCatecholsResorcinolsHydroquinones extends RuleAnySubstructure {
 	 * Constructor
 	 * 
 	 */
-	public RuleCatecholsResorcinolsHydroquinones() {
+	public RuleCatecholsResorcinolsHydroquinones()  throws Exception {
 		//TODO fix sterically hindered condition (example NO fails)
 		super();
-
+		
 		addSubstructure(FunctionalGroups.createAtomContainer("OC1=CC(O)=CC=C1",false));	
 		addSubstructure(FunctionalGroups.createAtomContainer("OC1=C(O)C=CC=C1",false));
 		addSubstructure(FunctionalGroups.createAtomContainer("OC1=CC=C(O)C=C1",false));

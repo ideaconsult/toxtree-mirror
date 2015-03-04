@@ -1,5 +1,5 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2012 
+Copyright Ideaconsult Ltd. (C) 2005-2015 
 
 Contact: jeliazkova.nina@gmail.com
 
@@ -39,7 +39,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.exceptions.DecisionResultException;
 import toxTree.query.FunctionalGroups;
 import toxtree.plugins.ames.AmesMutagenicityRules;
 import toxtree.ui.tree.actions.SaveTreeAction;
@@ -60,23 +59,17 @@ public class AmesMutagenicityDataTest {
 	}
 
 	protected IDecisionResult classify(String smiles, String id,
-			AmesMutagenicityRules rules) {
+			AmesMutagenicityRules rules) throws Exception {
 		IDecisionResult result = rules.createDecisionResult();
 
 		result.setDecisionMethod(rules);
 		IAtomContainer mol = (IAtomContainer) FunctionalGroups
 				.createAtomContainer(smiles, id);
-		try {
-			result.classify(mol);
-		} catch (DecisionResultException x) {
-			x.printStackTrace();
-			logger.error(x);
-			result = null;
-		}
+		result.classify(mol);
 		return result;
 	}
 
-	protected int classify(String[][] molecules, int classID) {
+	protected int classify(String[][] molecules, int classID) throws Exception {
 		int success = 0;
 		logger.error("These compounds should be of class\t" + classID);
 
@@ -142,12 +135,14 @@ public class AmesMutagenicityDataTest {
 		System.out.println(result.getAssignedCategories());
 	}
 
+	@Test
 	public void testClass() throws Exception {
 		testCSVFile(compoundsClass);
 		Assert.assertEquals(compoundsClass.length,
 				classify_without_classID(compoundsClass));
 	}
 
+	@Test
 	public void testClass1() throws Exception {
 		testCSVFile1(compoundsClass_1);
 		Assert.assertEquals(compoundsClass_1.length,
@@ -182,7 +177,7 @@ public class AmesMutagenicityDataTest {
 		// writeCompounds(compoundsClass,f);
 		f.close();
 	}
-
+	@Test
 	public void testCSVFile(String[][] molecules) throws Exception {
 		String filename = "toxTree/test/tree/sicret/BfR_irritation.csv";
 		System.out.println("Testing: " + filename);
@@ -257,7 +252,7 @@ public class AmesMutagenicityDataTest {
 		System.out.println("MolCount: " + molCount);
 		// assertEquals(88, molCount);
 	}
-
+	@Test
 	public void testCSVFile1(String[][] molecules) throws Exception {
 		String filename = "toxTree/test/tree/sicret/BfR_corrosion.csv";
 		System.out.println("Testing: " + filename);
@@ -344,7 +339,7 @@ public class AmesMutagenicityDataTest {
 
 	}
 
-	protected int classify_without_classID(String[][] molecules) {
+	protected int classify_without_classID(String[][] molecules) throws Exception {
 		int success = 1;
 		// testCSVFile(molecules);
 		// testCSVFile1(molecules);

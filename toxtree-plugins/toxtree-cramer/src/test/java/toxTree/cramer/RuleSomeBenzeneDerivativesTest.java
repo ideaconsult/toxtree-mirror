@@ -21,9 +21,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.cramer;
 
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
@@ -33,8 +34,8 @@ import toxTree.tree.cramer.RuleSomeBenzeneDerivatives;
 
 /**
  * TODO add description
- * @author ThinClient
- * <b>Modified</b> 2005-10-1
+ * 
+ * @author ThinClient <b>Modified</b> 2005-10-1
  */
 public class RuleSomeBenzeneDerivativesTest extends AbstractRuleTest {
 
@@ -42,24 +43,31 @@ public class RuleSomeBenzeneDerivativesTest extends AbstractRuleTest {
 	protected IDecisionRule createRule() {
 		return new RuleSomeBenzeneDerivatives();
 	}
+
+	@Test
 	public void test() throws Exception {
-		Object[][] answer = {
-				{"c1cc2OCOc2(cc1CCC)",new Boolean(true)}, 
-				{"c1cc(cc(c1)CCC)OC",new Boolean(false)} //not at para place
+		Object[][] answer = { { "c1cc2OCOc2(cc1CCC)", new Boolean(true) },
+				{ "c1cc(cc(c1)CCC)OC", new Boolean(false) } // not at para place
 		};
 		ruleTest(answer);
 	}
-	public void testNumbering() {
-		//AtomContainer c = FunctionalGroups.createAtomContainer("C1C(OC(=C)C)C(CC(C)C1C)C(C)");
-		IAtomContainer c = FunctionalGroups.createAtomContainer("C1CCCCC1",true);
+
+	@Test
+	public void testNumbering() throws Exception {
+		// AtomContainer c =
+		// FunctionalGroups.createAtomContainer("C1C(OC(=C)C)C(CC(C)C1C)C(C)");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("C1CCCCC1",
+				true);
 		QueryAtomContainer q = FunctionalGroups.ring(6);
-		FunctionalGroups.markAtomsInRing(c,q);
+		FunctionalGroups.markAtomsInRing(c, q);
 		int count = 0;
-		for (int i=0;i<c.getAtomCount();i++) {
-			Object o = c.getAtom(i).getProperty(FunctionalGroups.RING_NUMBERING);
-			if (o != null) count ++;
+		for (int i = 0; i < c.getAtomCount(); i++) {
+			Object o = c.getAtom(i)
+					.getProperty(FunctionalGroups.RING_NUMBERING);
+			if (o != null)
+				count++;
 		}
-		assertEquals(12,count);
-		
-	}	
+		assertEquals(12, count);
+
+	}
 }

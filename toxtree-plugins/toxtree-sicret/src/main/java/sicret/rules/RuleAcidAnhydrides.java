@@ -16,8 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package sicret.rules;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
@@ -27,42 +28,48 @@ import toxTree.tree.rules.RuleAnySubstructure;
 /**
  * 
  * Acid anhydrides.
+ * 
  * @author Martin Martinov
- * @author Nina Jeliazkova nina@acad.bg
- * <b>Modified</b> Dec 17, 2006
+ * @author Nina Jeliazkova nina@acad.bg <b>Modified</b> Dec 17, 2006
  */
 public class RuleAcidAnhydrides extends RuleAnySubstructure {
-	public final static transient String MSG_18H="Acyclic group";
+	public final static transient String MSG_18H = "Acyclic group";
 	/**
-     * Comment for <code>serialVersionUID</code>
-     */
-    private static final long serialVersionUID = 0;
+	 * Comment for <code>serialVersionUID</code>
+	 */
+	private static final long serialVersionUID = 0;
 
-    /**
+	/**
 	 * Constructor
 	 * 
 	 */
-	public RuleAcidAnhydrides() {
+	public RuleAcidAnhydrides() throws Exception {
 
-		super();		
-		QueryAtomContainer q = verhaar.query.FunctionalGroups.createAutoQueryContainer("[*]C(=O)OC(=O)[*]");
+		super();
+		QueryAtomContainer q = verhaar.query.FunctionalGroups
+				.createAutoQueryContainer("[*]C(=O)OC(=O)[*]");
 		addSubstructure(q);
-		
+
 		id = "45";
 		title = "AcidAnhydrides";
-		
+
 		examples[0] = "CN";
-		examples[1] = "O=COC=O";	
+		examples[1] = "O=COC=O";
 		editable = false;
 	}
+
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.finer(toString());		
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		logger.finer(toString());
 		return super.verifyRule(mol);
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.AbstractRule#isImplemented()
 	 */
 	public boolean isImplemented() {

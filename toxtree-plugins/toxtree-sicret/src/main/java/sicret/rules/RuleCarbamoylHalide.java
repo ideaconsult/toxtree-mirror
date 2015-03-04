@@ -45,7 +45,7 @@ public class RuleCarbamoylHalide extends RuleAnySubstructure {
 	 * Constructor
 	 * 
 	 */
-	public RuleCarbamoylHalide() {
+	public RuleCarbamoylHalide() throws Exception {
 
 		super();		
 		QueryAtomContainer q = FunctionalGroups.createAutoQueryContainer("[*]N([H])C(=O)Cl");

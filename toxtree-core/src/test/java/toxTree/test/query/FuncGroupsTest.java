@@ -83,7 +83,7 @@ public class FuncGroupsTest {
 	 * Molecule mol = gen. return query(mol,q); } catch (InvalidSmilesException
 	 * x ) { x.printStackTrace(); return false; } }
 	 */
-	protected boolean query(String smiles, QueryAtomContainer q) {
+	protected boolean query(String smiles, QueryAtomContainer q) throws Exception  {
 		IAtomContainer mol = FunctionalGroups.createAtomContainer(smiles, true);
 		return (FunctionalGroups.hasGroup(mol, q));
 	}

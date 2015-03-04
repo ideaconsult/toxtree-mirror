@@ -216,22 +216,22 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 
 	}
 
-	public static QueryAtomContainer epoxide() {
+	public static QueryAtomContainer epoxide() throws Exception {
 		QueryAtomContainer q = createQuery("C1OC1", EPOXIDE);
 		return q;
 	}
 
-	public static QueryAtomContainer azaridine() {
+	public static QueryAtomContainer azaridine() throws Exception {
 		QueryAtomContainer q = createQuery("C1NC1", AZARIDINE);
 		return q;
 	}
 
-	public static QueryAtomContainer peroxide() {
+	public static QueryAtomContainer peroxide() throws Exception {
 		QueryAtomContainer q = createQuery("OO", PEROXIDE);
 		return q;
 	}
 
-	public static QueryAtomContainer phenol() {
+	public static QueryAtomContainer phenol() throws CDKException {
 		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
 		QueryAtomContainer q = new QueryAtomContainer(
 				SilentChemObjectBuilder.getInstance());
@@ -342,20 +342,14 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		return q;
 	}
 
-	public static QueryAtomContainer benzylAlcohol() {
+	public static QueryAtomContainer benzylAlcohol() throws Exception {
 		QueryAtomContainer q = createQuery("c1ccccc1CO[H]", BENZYLALCOHOL);
-		try {
-			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(q);
-			CDKHueckelAromaticityDetector.detectAromaticity(q);
-		} catch (CDKException x) {
-			// FunctionalGroups.logger.error(x);
-			x.printStackTrace();
-		}
-
+		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(q);
+		CDKHueckelAromaticityDetector.detectAromaticity(q);
 		return q;
 	}
 
-	public static QueryAtomContainer ketone_a_b_unsaturated() {
+	public static QueryAtomContainer ketone_a_b_unsaturated() throws Exception {
 		QueryAtomContainer q = new QueryAtomContainer(
 				SilentChemObjectBuilder.getInstance());
 		q.setID(KETONE_A_B_UNSATURATED);
@@ -448,7 +442,8 @@ public class FunctionalGroups extends toxTree.query.FunctionalGroups {
 		return mol;
 	}
 
-	public static QueryAtomContainer createAutoQueryContainer(String smiles) {
+	public static QueryAtomContainer createAutoQueryContainer(String smiles)
+			throws Exception {
 		return createAutoQueryContainer(createAtomContainer(smiles, false,
 				smiles));
 	}

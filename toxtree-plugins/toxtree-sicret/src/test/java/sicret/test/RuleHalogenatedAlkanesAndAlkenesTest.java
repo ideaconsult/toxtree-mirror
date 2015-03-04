@@ -1,6 +1,6 @@
 /*
-Copyright Ideaconsult Ltd.(C) 2006  
-Contact: nina@acad.bg
+Copyright Ideaconsult Ltd.(C) 2006 - 2015
+Contact: jeliazkova.nina@gmail.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -16,166 +16,178 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 
 package sicret.test;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
+
+import org.junit.Test;
+
 import sicret.rules.RuleAliphaticSaturatedAcidsAndHalogenatedAcids;
 import sicret.rules.RuleC10_C20AliphaticAlcohols;
 import sicret.rules.RuleEthyleneGlycolEthers;
 import sicret.rules.RuleHalogenatedAlkanesAndAlkenes;
 import sicret.rules.RulePhenols;
-import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 
-public class RuleHalogenatedAlkanesAndAlkenesTest extends TestCase {
-
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(RuleHalogenatedAlkanesAndAlkenesTest.class);
-	}
-
+public class RuleHalogenatedAlkanesAndAlkenesTest {
 	/*
-	 * Test method for 'toxTree.tree.rules.smarts.RuleSMARTSubstructure.verifyRule(IAtomContainer)'
+	 * Test method for
+	 * 'toxTree.tree.rules.smarts.RuleSMARTSubstructure.verifyRule(IAtomContainer)'
 	 */
-	public void testVerifyRule() {
+	@Test
+	public void testVerifyRule() throws Exception {
 		RuleHalogenatedAlkanesAndAlkenes rule = new RuleHalogenatedAlkanesAndAlkenes();
-		try {
-			assertTrue(rule.verifyRule(rule.getExampleMolecule(true)));
-			assertFalse(rule.verifyRule(rule.getExampleMolecule(false)));
-			boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer("ClC(Cl)(Cl)C",true));
-			
-			assertTrue(result);
-		} catch (DecisionMethodException x) {
-			x.printStackTrace();
-			fail();
-		}
+		Assert.assertTrue(rule.verifyRule(rule.getExampleMolecule(true)));
+		Assert.assertFalse(rule.verifyRule(rule.getExampleMolecule(false)));
+		boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer(
+				"ClC(Cl)(Cl)C", true));
+
+		Assert.assertTrue(result);
 	}
-	public void testVerifyRulePhenols() {
+
+	@Test
+	public void testVerifyRulePhenols() throws Exception {
 		RulePhenols rule = new RulePhenols();
-		try {
-			String smile =" Oc1ccccc1";
-			boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,false));
-			assertTrue(result);
-			smile ="Oc1c(C)cccc1";
-			result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,false));
-			assertTrue(result);
-			smile ="Oc1ccc(cc1)C3(OC(=O)c2ccccc23)c4ccc(O)cc4";
-			result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,false));
-			assertTrue(result);
-		} catch (DecisionMethodException x) {
-			x.printStackTrace();
-			fail();
-		}
+		String smile = " Oc1ccccc1";
+		boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer(
+				smile, false));
+		Assert.assertTrue(result);
+		smile = "Oc1c(C)cccc1";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				false));
+		Assert.assertTrue(result);
+		smile = "Oc1ccc(cc1)C3(OC(=O)c2ccccc23)c4ccc(O)cc4";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				false));
+		Assert.assertTrue(result);
 	}
-	public void testVerifyAliphaticSaturatedAcidsAndHalogenatedAcids() {
+
+	@Test
+	public void testVerifyAliphaticSaturatedAcidsAndHalogenatedAcids()
+			throws Exception {
 		RuleAliphaticSaturatedAcidsAndHalogenatedAcids rule = new RuleAliphaticSaturatedAcidsAndHalogenatedAcids();
-		try {
-			//Decanoic acid
-			String smile ="ClCCCCCCCCCCC(=O)O";
-			boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			assertTrue(result);
-			//oleic acid
-			 smile ="CCCCCCCCC=CCCCCCCCC(=O)O";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			assertFalse(result);
-			//Arachidonic Acid
-			smile ="CCCCCC=CCC=CCC=CCC=CCCCC(=O)O";
-			result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,false));
-			assertFalse(result);
-		} catch (DecisionMethodException x) {
-			x.printStackTrace();
-			fail();
-		}
+
+		// Decanoic acid
+		String smile = "ClCCCCCCCCCCC(=O)O";
+		boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer(
+				smile, true));
+		Assert.assertTrue(result);
+		// oleic acid
+		smile = "CCCCCCCCC=CCCCCCCCC(=O)O";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertFalse(result);
+		// Arachidonic Acid
+		smile = "CCCCCC=CCC=CCC=CCC=CCCCC(=O)O";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				false));
+		Assert.assertFalse(result);
+
 	}
-	public void testVerifyRuleEthyleneGlycolEthers() {
+
+	@Test
+	public void testVerifyRuleEthyleneGlycolEthers() throws Exception {
 		RuleEthyleneGlycolEthers rule = new RuleEthyleneGlycolEthers();
-		try {
-			//Glucose
-			String smile ="OCC1OC(O)C(O)C(O)C1(O)";
-			boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			assertFalse(result);
-			//Ethylene Glycol
-			 smile ="OCCO";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertFalse(result);
-			//No free hydroxyl group
-			 smile ="COCCOC";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			//Methyl glycol
-			 smile ="COCCO";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			//2-Ethoxyethanol
-			 smile ="CCOCCO";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			//2-Butoxyethanol
-			 smile ="CCCCOCCO";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			///////////////////////////////
-			 //2-(phenoxy)ethanol
-			 smile ="C1=CC=C(C=C1)OCCO";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			 //2-(2-phenylethoxy)ethanol
-			 smile ="C1=CC=C(C=C1)CCOCCO";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			 //B.Aleksiev
-			 //methyl 3-methoxypropanoate
-			 smile ="COCCC(=O)OC";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			//propyl 4-hydroxybenzoate
-			 smile ="CCCOC(=O)C1=CC=C(C=C1)O";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			//1,1-dimethoxy-2-methylsulfonylethane
-			 smile ="COC(CS(=O)(=O)C)OC";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			//(2R)-2-aminopropan-1-ol
-			 smile ="CC(CO)N";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			//2-(ethylamino)ethanol
-			 smile ="CCNCCO";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-			 //2-(propylamino)ethanol
-			 smile ="CCCNCCO";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);			 
-			//3-phenylpropyl carbamate
-			 smile ="C1=CC=C(C=C1)CCCOC(=O)N";
-			 result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,true));
-			 assertTrue(result);
-		} catch (DecisionMethodException x) {
-			x.printStackTrace();
-			fail();
-		}
+
+		// Glucose
+		String smile = "OCC1OC(O)C(O)C(O)C1(O)";
+		boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer(
+				smile, true));
+		Assert.assertFalse(result);
+		// Ethylene Glycol
+		smile = "OCCO";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertFalse(result);
+		// No free hydroxyl group
+		smile = "COCCOC";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// Methyl glycol
+		smile = "COCCO";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// 2-Ethoxyethanol
+		smile = "CCOCCO";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// 2-Butoxyethanol
+		smile = "CCCCOCCO";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// /////////////////////////////
+		// 2-(phenoxy)ethanol
+		smile = "C1=CC=C(C=C1)OCCO";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// 2-(2-phenylethoxy)ethanol
+		smile = "C1=CC=C(C=C1)CCOCCO";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// B.Aleksiev
+		// methyl 3-methoxypropanoate
+		smile = "COCCC(=O)OC";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// propyl 4-hydroxybenzoate
+		smile = "CCCOC(=O)C1=CC=C(C=C1)O";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// 1,1-dimethoxy-2-methylsulfonylethane
+		smile = "COC(CS(=O)(=O)C)OC";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// (2R)-2-aminopropan-1-ol
+		smile = "CC(CO)N";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// 2-(ethylamino)ethanol
+		smile = "CCNCCO";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// 2-(propylamino)ethanol
+		smile = "CCCNCCO";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+		// 3-phenylpropyl carbamate
+		smile = "C1=CC=C(C=C1)CCCOC(=O)N";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				true));
+		Assert.assertTrue(result);
+
 	}
-	public void testVerifyRuleC10_C20_Aliphatic_alcohols() {
+
+	@Test
+	public void testVerifyRuleC10_C20_Aliphatic_alcohols() throws Exception {
 		RuleC10_C20AliphaticAlcohols rule = new RuleC10_C20AliphaticAlcohols();
-		try {
-			String smile =" Oc1ccc2ccccc2c1";
-			boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,false));
-			assertFalse(result);			
-			smile ="Oc1ccccc1";
-			result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,false));
-			assertFalse(result);	
-			smile ="CCCCCCCCCCCO";
-			result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,false));
-			assertTrue(result);			
-		} catch (DecisionMethodException x) {
-			x.printStackTrace();
-			fail();
-		}
+
+		String smile = " Oc1ccc2ccccc2c1";
+		boolean result = rule.verifyRule(FunctionalGroups.createAtomContainer(
+				smile, false));
+		Assert.assertFalse(result);
+		smile = "Oc1ccccc1";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				false));
+		Assert.assertFalse(result);
+		smile = "CCCCCCCCCCCO";
+		result = rule.verifyRule(FunctionalGroups.createAtomContainer(smile,
+				false));
+		Assert.assertTrue(result);
+
 	}
 
 }
-
-

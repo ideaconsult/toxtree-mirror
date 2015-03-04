@@ -30,7 +30,7 @@ import verhaar.rules.RuleLogPRange;
 
 public class RuleLogPRangeTest extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleLogPRange();
 	}
 	

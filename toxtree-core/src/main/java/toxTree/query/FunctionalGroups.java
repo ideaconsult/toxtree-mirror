@@ -2938,36 +2938,36 @@ public class FunctionalGroups {
 		return true;
 	}
 
-	public static IAtomContainer createAtomContainer(String smiles, String id) {
+	public static IAtomContainer createAtomContainer(String smiles, String id)  throws CDKException, InvalidSmilesException {
 		return createAtomContainer(smiles, false, id, null);
 	}
 
 	public static IAtomContainer createAtomContainer(String smiles, String id,
-			SMILES_PARSER mode) {
+			SMILES_PARSER mode) throws CDKException, InvalidSmilesException {
 		return createAtomContainer(smiles, false, id, mode);
 	}
 
-	public static IAtomContainer createAtomContainer(String smiles) {
+	public static IAtomContainer createAtomContainer(String smiles) throws CDKException, InvalidSmilesException {
 		return createAtomContainer(smiles, (SMILES_PARSER) null);
 	}
 
 	public static IAtomContainer createAtomContainer(String smiles,
-			SMILES_PARSER mode) {
+			SMILES_PARSER mode) throws CDKException, InvalidSmilesException {
 		return createAtomContainer(smiles, false, smiles, mode);
 	}
 
 	public static IAtomContainer createAtomContainer(String smiles,
-			boolean addHydrogens) {
+			boolean addHydrogens) throws CDKException, InvalidSmilesException {
 		return createAtomContainer(smiles, addHydrogens, smiles);
 	}
 
 	public static IAtomContainer createAtomContainer(String smiles,
-			boolean addHydrogens, String id) {
+			boolean addHydrogens, String id)  throws CDKException, InvalidSmilesException {
 		return createAtomContainer(smiles, addHydrogens, id, null);
 	}
 
 	public static IAtomContainer createAtomContainer(String smiles,
-			boolean addHydrogens, String id, SMILES_PARSER mode) {
+			boolean addHydrogens, String id, SMILES_PARSER mode) throws CDKException, InvalidSmilesException {
 		try {
 			// logger.fine("Creating molecule from SMILES\t",smiles);
 			SmilesParserWrapper sp = mode == null ? SmilesParserWrapper
@@ -2988,28 +2988,23 @@ public class FunctionalGroups {
 					mol = AtomContainerManipulator.removeHydrogens(mol);
 
 				// h.addExplicitHydrogensToSatisfyValency((IAtomContainer)mol);
-			} catch (InvalidSmilesException x) {
-				logger.log(Level.SEVERE, x.getMessage(), x);
-				return null;
 			} catch (CDKException x) {
-				logger.log(Level.SEVERE, x.getMessage(), x);
-				return null;
+				throw x;
 			}
 
 			mol.setID(id);
 			sp = null;
 			return mol;
 		} catch (InvalidSmilesException x) {
-			logger.log(Level.SEVERE, x.getMessage(), x);
-			return null;
+			throw x;
 		}
 	}
 
-	public static QueryAtomContainer createQuery(String smiles) {
+	public static QueryAtomContainer createQuery(String smiles) throws Exception {
 		return createQuery(smiles, smiles);
 	}
 
-	public static QueryAtomContainer createQuery(String smiles, String id) {
+	public static QueryAtomContainer createQuery(String smiles, String id) throws CDKException, InvalidSmilesException {
 		IAtomContainer mol = createAtomContainer(smiles, id, SMILES_PARSER.CDK);
 		if (mol != null) {
 			QueryAtomContainer q = QueryAtomContainerCreator
@@ -3020,7 +3015,7 @@ public class FunctionalGroups {
 			return null;
 	}
 
-	public static QueryAtomContainer vicinalDiKetone() {
+	public static QueryAtomContainer vicinalDiKetone()   {
 		// TODO "[*]C(=O)C(=O)[*]"
 
 		QueryAtomContainer q = new QueryAtomContainer(
@@ -3066,7 +3061,7 @@ public class FunctionalGroups {
 		return q;
 	}
 
-	public static QueryAtomContainer ketoneAttachedToTerminalVinyl() {
+	public static QueryAtomContainer ketoneAttachedToTerminalVinyl()  {
 		QueryAtomContainer mol = new QueryAtomContainer(
 				SilentChemObjectBuilder.getInstance());
 		mol.setID("Ketone attached to terminal vinyl");
@@ -3305,7 +3300,7 @@ public class FunctionalGroups {
 		return q;
 	}
 
-	public static IAtomContainer allylAlcohol() {
+	public static IAtomContainer allylAlcohol()  {
 		IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
 		IAtomContainer mol = MoleculeTools.newMolecule(builder);
 		IAtom a1 = MoleculeTools.newAtom(builder, Elements.CARBON);

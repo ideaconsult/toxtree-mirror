@@ -33,17 +33,18 @@ import toxTree.tree.rules.RuleAnySubstructure;
  * <b>Modified</b> Dec 17, 2006
  */
 public class RuleDi_Tri_Nitrobenzenes extends RuleAnySubstructure {
-	public final static transient String MSG_18H="Acyclic group";
 	/**
-     * Comment for <code>serialVersionUID</code>
-     */
-    private static final long serialVersionUID = 0;
+	 * 
+	 */
+	private static final long serialVersionUID = 727457812604632292L;
+	public final static transient String MSG_18H="Acyclic group";
+
 
     /**
 	 * Constructor
 	 * 
 	 */
-	public RuleDi_Tri_Nitrobenzenes() {
+	public RuleDi_Tri_Nitrobenzenes()  throws Exception {
 
 		super();		
 		addSubstructure(FunctionalGroups.createAtomContainer("O=[N+]([O-])c1ccccc1[N+](=O)[O-]",false));

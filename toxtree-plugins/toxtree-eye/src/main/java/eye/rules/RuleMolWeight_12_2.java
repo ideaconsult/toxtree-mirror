@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package eye.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -29,13 +29,16 @@ import ambit2.core.data.MoleculeTools;
 
 /**
  * Molecular Weight > 280
- *
+ * 
  */
-public class RuleMolWeight_12_2  extends RuleMolWeight {
-	
-	private static final long serialVersionUID = 0;
-	public RuleMolWeight_12_2()
-	{
+public class RuleMolWeight_12_2 extends RuleMolWeight {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7547724816243868768L;
+
+	public RuleMolWeight_12_2() {
 		super();
 		id = "12.2";
 		title = "Molecular Weight  > 280";
@@ -47,19 +50,28 @@ public class RuleMolWeight_12_2  extends RuleMolWeight {
 		setTitle(getPropertyName() + getCondition() + getProperty());
 
 	}
-	public IAtomContainer getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
-		IAtomContainer m = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());  
-        if (ruleResult){
-        	
-        		m = (IAtomContainer)FunctionalGroups.createAtomContainer("OS(=O)(=O)c1cc2NC4(Nc2c(c1)S(O)(=O)=O)C=3\\C=C/C4=C\\C=3",false);
-    			m.setProperty(MolWeight, 674.567985);
-        }
-    	else {
-    		m = (IAtomContainer)FunctionalGroups.createAtomContainer("S(SCCC)CCC",false);
-        		m.setProperty(MolWeight, 150.305997);
-    	}      	
-		return m;
-	}
 
+	public IAtomContainer getExampleMolecule(boolean ruleResult)
+			throws DecisionMethodException {
+		IAtomContainer m = MoleculeTools.newMolecule(SilentChemObjectBuilder
+				.getInstance());
+		try {
+			if (ruleResult) {
+				m = (IAtomContainer) FunctionalGroups
+						.createAtomContainer(
+								"OS(=O)(=O)c1cc2NC4(Nc2c(c1)S(O)(=O)=O)C=3\\C=C/C4=C\\C=3",
+								false);
+				m.setProperty(MolWeight, 674.567985);
+			} else {
+				m = (IAtomContainer) FunctionalGroups.createAtomContainer(
+						"S(SCCC)CCC", false);
+				m.setProperty(MolWeight, 150.305997);
+			}
+
+			return m;
+		} catch (Exception x) {
+			throw new DecisionMethodException(x);
+		}
+	}
 
 }

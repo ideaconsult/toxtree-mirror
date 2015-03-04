@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package verhaar.rules;
 
 
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import verhaar.query.FunctionalGroups;
@@ -37,7 +38,7 @@ public class Rule22 extends Rule21 {
 	 */
 	private static final long serialVersionUID = -8022147695771746487L;
 
-	public Rule22() {
+	public Rule22() throws Exception {
 		super();
 		id = "2.2";
 		setTitle("Be anilines with one nitro substituent and/or one to three chlorine substituents, and/or alkyl substituents");
@@ -46,7 +47,7 @@ public class Rule22 extends Rule21 {
 		examples[1]= "O=[N+]([O-])c1cccc(N)c1";
 		editable = false;
 	}
-	protected QueryAtomContainer createMainStructure() {
+	protected QueryAtomContainer createMainStructure() throws CDKException {
 		return FunctionalGroups.aniline();
 	}
 	@Override

@@ -19,14 +19,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package sicret.test;
 
-import org.openscience.cdk.exception.InvalidSmilesException;
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
 import sicret.SicretRules;
 import toxTree.exceptions.DecisionMethodException;
-import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 
@@ -81,7 +80,8 @@ public class SicretRulesTest extends RulesTestCase {
 	/*
 	 * Class under test for int classify(IAtomContainer)
 	 */
-	public void testClassifyMolecule() {
+	@Test
+	public void testClassifyMolecule() throws Exception {
 		IAtomContainer mol = FunctionalGroups.createAtomContainer(
 				"Nc1ccc3c(c1)Cc2cc(ccc23)Br", true);
 		/*
@@ -98,21 +98,14 @@ public class SicretRulesTest extends RulesTestCase {
 
 	}
 
-	protected IAtomContainer getMolecule(String smiles) {
-		try {
-			IAtomContainer mol = gen.parseSmiles(smiles);
-			MolAnalyser.analyse(mol);
-			return mol;
-		} catch (InvalidSmilesException x) {
-			x.printStackTrace();
-			return null;
-		} catch (MolAnalyseException x) {
-			x.printStackTrace();
-			return null;
-		}
+	protected IAtomContainer getMolecule(String smiles) throws Exception {
+		IAtomContainer mol = gen.parseSmiles(smiles);
+		MolAnalyser.analyse(mol);
+		return mol;
 	}
 
-	public void testSicret() {
+	@Test
+	public void testSicret() throws Exception {
 		SicretRules rulesNew = (SicretRules) objectRoundTrip(rules,
 				"SicretRules");
 		rulesNew.setResiduesIDVisible(false);
@@ -120,11 +113,8 @@ public class SicretRulesTest extends RulesTestCase {
 		tryImplementedRules();
 	}
 
-	public void testPrintSicret() {
-		try {
-			System.out.println(new SicretRules().getRules());
-		} catch (Exception x) {
-			x.printStackTrace();
-		}
+	@Test
+	public void testPrintSicret() throws Exception {
+		System.out.println(new SicretRules().getRules());
 	}
 }
