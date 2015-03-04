@@ -74,8 +74,7 @@ import ambit2.core.data.MoleculeTools;
  *         <b>Modified</b> 2005-8-8
  */
 public class FuncGroupsTest {
-	protected SmilesParser gen = new SmilesParser(
-			SilentChemObjectBuilder.getInstance());
+	protected SmilesParser gen = new SmilesParser(SilentChemObjectBuilder.getInstance());
 	protected Logger logger = Logger.getLogger(FuncGroupsTest.class);
 	CDKSourceCodeWriter debugWriter = new CDKSourceCodeWriter(System.err);
 
@@ -84,8 +83,7 @@ public class FuncGroupsTest {
 	 * Molecule mol = gen. return query(mol,q); } catch (InvalidSmilesException
 	 * x ) { x.printStackTrace(); return false; } }
 	 */
-	protected boolean query(String smiles, QueryAtomContainer q)
-			throws Exception {
+	protected boolean query(String smiles, QueryAtomContainer q) throws Exception {
 		IAtomContainer mol = FunctionalGroups.createAtomContainer(smiles, true);
 		debugWriter.write(mol);
 		debugWriter.write(q);
@@ -95,28 +93,23 @@ public class FuncGroupsTest {
 	@Test
 	public void testmatchInherited() throws Exception {
 
-		SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(
+		SymbolQueryAtom c1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
+				Elements.CARBON));
+		SymbolAndChargeQueryAtom c2 = new SymbolAndChargeQueryAtom(MoleculeTools.newAtom(
 				SilentChemObjectBuilder.getInstance(), Elements.CARBON));
-		SymbolAndChargeQueryAtom c2 = new SymbolAndChargeQueryAtom(
-				MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-						Elements.CARBON));
 		IAtomContainer c = MoleculeFactory.makeAlkane(2);
 
 		UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
-		QueryAtomContainer query1 = new QueryAtomContainer(
-				SilentChemObjectBuilder.getInstance());
+		QueryAtomContainer query1 = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		query1.addAtom(c1);
 		query1.addAtom(c2);
-		query1.addBond(new OrderQueryBond(c1, c2,
-				CDKConstants.BONDORDER_SINGLE, c1.getBuilder()));
+		query1.addBond(new OrderQueryBond(c1, c2, CDKConstants.BONDORDER_SINGLE, c1.getBuilder()));
 		Assert.assertTrue(uit.isSubgraph(c, query1));
 
-		QueryAtomContainer query = new QueryAtomContainer(
-				SilentChemObjectBuilder.getInstance());
+		QueryAtomContainer query = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		query.addAtom(c1);
 		query.addAtom(c2);
-		query.addBond(new AnyOrderQueryBond(c1, c2,
-				CDKConstants.BONDORDER_SINGLE, c1.getBuilder()));
+		query.addBond(new AnyOrderQueryBond(c1, c2, CDKConstants.BONDORDER_SINGLE, c1.getBuilder()));
 		Assert.assertTrue(uit.isSubgraph(c, query));
 
 	}
@@ -124,8 +117,7 @@ public class FuncGroupsTest {
 	@Test
 	public void testhydrochlorideOfAmine1() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.hydrochlorideOfAmine(1); // primary
-		IAtomContainer c = FunctionalGroups
-				.createAtomContainer("[Cl-].[NH3+]C1CCCCC1");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("[Cl-].[NH3+]C1CCCCC1");
 		try {
 			MolAnalyser.analyse(c);
 		} catch (MolAnalyseException x) {
@@ -139,8 +131,7 @@ public class FuncGroupsTest {
 	public void testhydrochlorideOfAmine3() throws Exception {
 
 		QueryAtomContainer q = FunctionalGroups.hydrochlorideOfAmine3(); // tertiary
-		IAtomContainer c = FunctionalGroups
-				.createAtomContainer("oc1c=ccc(c1)=[N+](CC)CC.[Cl-]");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("oc1c=ccc(c1)=[N+](CC)CC.[Cl-]");
 		try {
 			MolAnalyser.analyse(c);
 		} catch (MolAnalyseException x) {
@@ -160,8 +151,7 @@ public class FuncGroupsTest {
 	@Test
 	public void testSulphateOfPrimaryAmine() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.sulphateOfAmine(1); // primary
-		IAtomContainer c = FunctionalGroups
-				.createAtomContainer("S(=O)(=O)([O-])O.[NH3+]C1CCCCC1");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("S(=O)(=O)([O-])O.[NH3+]C1CCCCC1");
 		MolAnalyser.analyse(c);
 		Assert.assertTrue(FunctionalGroups.hasGroup(c, q));
 
@@ -170,8 +160,7 @@ public class FuncGroupsTest {
 	@Test
 	public void testSulphateOfTertiaryAmine() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.sulphateOfAmine(3); // tertiary
-		IAtomContainer c = FunctionalGroups
-				.createAtomContainer("S(=O)(=O)([O-])O.[NH+](CCC)(CC)CCC1CCCCC1");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("S(=O)(=O)([O-])O.[NH+](CCC)(CC)CCC1CCCCC1");
 		MolAnalyser.analyse(c);
 		Assert.assertTrue(FunctionalGroups.hasGroup(c, q));
 
@@ -236,9 +225,7 @@ public class FuncGroupsTest {
 		Assert.assertTrue(query("Cl.[H]N([H])([H])C1CCCCC1", q));
 		Assert.assertTrue(query("[NH3+]C1CCCCC1", q));
 		Assert.assertFalse(query("CNC", q));
-		Assert.assertFalse(query(
-				"O=C(O[Na])C2=NN(=C(O)C2(N=NC1C=CC(CC1)S(=O)(=O)O[Na]))c3ccc(cc3)S(=O)(=O)O[Na]",
-				q));
+		Assert.assertFalse(query("O=C(O[Na])C2=NN(=C(O)C2(N=NC1C=CC(CC1)S(=O)(=O)O[Na]))c3ccc(cc3)S(=O)(=O)O[Na]", q));
 
 	}
 
@@ -255,8 +242,7 @@ public class FuncGroupsTest {
 	@Test
 	public void testNitro() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.nitro1double();
-		Assert.assertTrue(query(
-				"NC(=O)C1=CC(=CC(=C1)[N+]([O-])=O)[N+]([O-])=O", q));
+		Assert.assertTrue(query("NC(=O)C1=CC(=CC(=C1)[N+]([O-])=O)[N+]([O-])=O", q));
 
 	}
 
@@ -270,9 +256,7 @@ public class FuncGroupsTest {
 
 	@Test
 	public void testSaltOfCarboxylicAcid() throws Exception {
-		QueryAtomContainer q = FunctionalGroups
-				.saltOfCarboxylicAcid(new String[] { "Na", "K", "Ca", "Mg",
-						"Al" });
+		QueryAtomContainer q = FunctionalGroups.saltOfCarboxylicAcid(new String[] { "Na", "K", "Ca", "Mg", "Al" });
 		Assert.assertTrue(query("CCCCC(=O)O[Na]", q));
 		Assert.assertTrue(query("CC(CC(CC))CCC(=O)O[Ca]", q));
 		Assert.assertTrue(query("c1ccccc1CCCCC(=O)O[Mg]", q));
@@ -280,8 +264,7 @@ public class FuncGroupsTest {
 
 		// assertTrue(query("[Na+].OC[C@H](O)C1OC(=O)C(O)=C1[O-]",q));
 
-		IAtomContainer mol = (IAtomContainer) FunctionalGroups
-				.createAtomContainer("[Na]OC(=O)C1C=C(O)CC1", true);
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer("[Na]OC(=O)C1C=C(O)CC1", true);
 		List list = FunctionalGroups.getBondMap(mol, q, false);
 		FunctionalGroups.markMaps(mol, q, list);
 		Assert.assertNotNull(list);
@@ -291,19 +274,16 @@ public class FuncGroupsTest {
 
 	@Test
 	public void testSulphonate() throws Exception {
-		QueryAtomContainer q = FunctionalGroups.sulphonate(new String[] { "Na",
-				"K", "Ca" });
+		QueryAtomContainer q = FunctionalGroups.sulphonate(new String[] { "Na", "K", "Ca" });
 		Assert.assertTrue(query("CS(=O)(=O)[O-][Na+]", q));
 		Assert.assertTrue(query("CS(=O)(=O)O[Ca]", q));
 
-		IAtomContainer mol = (IAtomContainer) FunctionalGroups
-				.createAtomContainer("O=S(=O)(O[Na])c1ccccc1", true);
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer("O=S(=O)(O[Na])c1ccccc1", true);
 		List list = FunctionalGroups.getBondMap(mol, q, false);
 		FunctionalGroups.markMaps(mol, q, list);
 		Assert.assertNotNull(list);
 
-		IAtomContainer c = FunctionalGroups
-				.createAtomContainer("[Na+].[O-]S(=O)(=O)NC1CCCCC1");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("[Na+].[O-]S(=O)(=O)NC1CCCCC1");
 		// FunctionalGroups.associateIonic(c);
 		MolAnalyser.analyse(c);
 		Assert.assertFalse(FunctionalGroups.hasGroup(c, q)); // this is a
@@ -337,8 +317,7 @@ public class FuncGroupsTest {
 		MolAnalyser.analyse(c);
 		Assert.assertTrue(FunctionalGroups.hasGroup(c, q));
 
-		c = FunctionalGroups
-				.createAtomContainer("C=CCC(=NOS(=O)(=O)[O-])SC1OC(CO)C(O)C(O)C1(O).[K+].O");
+		c = FunctionalGroups.createAtomContainer("C=CCC(=NOS(=O)(=O)[O-])SC1OC(CO)C(O)C(O)C1(O).[K+].O");
 		Assert.assertNotNull(c); // cannot parse K for whatever reason
 
 		MolAnalyser.analyse(c);
@@ -348,19 +327,16 @@ public class FuncGroupsTest {
 
 	@Test
 	public void testSulphamate() throws Exception {
-		QueryAtomContainer q = FunctionalGroups.sulphamate(new String[] { "Na",
-				"K", "Ca" });
+		QueryAtomContainer q = FunctionalGroups.sulphamate(new String[] { "Na", "K", "Ca" });
 		Assert.assertTrue(query("O=S(=O)(O[Na])NC1CCCCC1", q));
 		Assert.assertFalse(query("CS(=O)(=O)O[Na]", q));
 
-		IAtomContainer mol = (IAtomContainer) FunctionalGroups
-				.createAtomContainer("O=S(=O)(O[Na])NC1CCCCC1", true);
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer("O=S(=O)(O[Na])NC1CCCCC1", true);
 		List list = FunctionalGroups.getBondMap(mol, q, false);
 		FunctionalGroups.markMaps(mol, q, list);
 		Assert.assertNotNull(list);
 
-		IAtomContainer c = FunctionalGroups
-				.createAtomContainer("[Na+].[O-]S(=O)(=O)NC1CCCCC1");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("[Na+].[O-]S(=O)(=O)NC1CCCCC1");
 
 		// FunctionalGroups.associateIonic(c);
 		MolAnalyser.analyse(c);
@@ -395,13 +371,11 @@ public class FuncGroupsTest {
 	@Test
 	public void testAlcohol() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.alcohol(true);
-		IAtomContainer mol = FunctionalGroups.createAtomContainer("CCCCCCO",
-				true);
+		IAtomContainer mol = FunctionalGroups.createAtomContainer("CCCCCCO", true);
 		// FunctionalGroups.markCHn(mol); //note markCH is necessary
 		Assert.assertTrue(FunctionalGroups.hasGroup(mol, q));
 
-		mol = FunctionalGroups
-				.createAtomContainer("CCCCOC(=O)CCCCCCCCCC", true);
+		mol = FunctionalGroups.createAtomContainer("CCCCOC(=O)CCCCCCCCCC", true);
 		// FunctionalGroups.markCHn(mol); //note markCH is necessary
 		Assert.assertFalse(FunctionalGroups.hasGroup(mol, q));
 	}
@@ -421,10 +395,9 @@ public class FuncGroupsTest {
 		mol = FunctionalGroups.createAtomContainer("C1CCCOC1", true);
 		Assert.assertTrue(FunctionalGroups.hasGroup(mol, q));
 
-		mol = FunctionalGroups
-				.createAtomContainer(
-						"CCCCCCCCCCCCCCCC(=O)O[C@]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@H]1O)[C@@]2(CO)O[C@H](CO)[C@@H](O)[C@@H]2O",
-						true);
+		mol = FunctionalGroups.createAtomContainer(
+				"CCCCCCCCCCCCCCCC(=O)O[C@]1(O[C@H](CO)[C@@H](O)[C@H](O)[C@H]1O)[C@@]2(CO)O[C@H](CO)[C@@H](O)[C@@H]2O",
+				true);
 		Assert.assertTrue(FunctionalGroups.hasGroup(mol, q));
 
 	}
@@ -512,16 +485,11 @@ public class FuncGroupsTest {
 	@Test
 	public void testUniqueMap() throws Exception {
 		QueryAtomContainer q1 = FunctionalGroups.polyoxyethylene(1);
-		debugWriter.write(q1);
-		
-		IAtomContainer mol = FunctionalGroups.createAtomContainer("OCC", true);
-		
 
-		debugWriter.write(mol);
-		
+		IAtomContainer mol = FunctionalGroups.createAtomContainer("OCC", true);
+
 		List list = FunctionalGroups.getUniqueBondMap(mol, q1, false);
-		
-		
+
 		Assert.assertNotNull(list);
 		Assert.assertEquals(1, list.size());
 
@@ -530,6 +498,7 @@ public class FuncGroupsTest {
 		Assert.assertNull(list);
 
 		mol = FunctionalGroups.createAtomContainer("CCOCCOCC", true);
+		MolAnalyser.analyse(mol);
 		list = FunctionalGroups.getUniqueBondMap(mol, q2, false);
 		Assert.assertEquals(1, list.size());
 
@@ -540,22 +509,22 @@ public class FuncGroupsTest {
 
 		q2 = FunctionalGroups.polyoxyethylene(3);
 
-		mol = (IAtomContainer) FunctionalGroups.createAtomContainer(
-				"CCOCCOCCOCC", true);
+		mol = FunctionalGroups.createAtomContainer("CCOCCOCCOCC", true);
+		MolAnalyser.analyse(mol);
+
 		list = FunctionalGroups.getUniqueBondMap(mol, q2, false);
 		Assert.assertEquals(1, list.size());
 
-		mol = (IAtomContainer) FunctionalGroups.createAtomContainer(
-				"CCOCCOCCOCC", true);
+		mol = FunctionalGroups.createAtomContainer("CCOCCOCCOCC", true);
+		MolAnalyser.analyse(mol);
 		list = FunctionalGroups.getUniqueBondMap(mol, q1, false);
 		// FunctionalGroups.markMaps(mol,q1,list);
 		// System.out.println(FunctionalGroups.mapToString(mol));
 		Assert.assertEquals(3, list.size());
 
 		q1 = FunctionalGroups.ester();
-		mol = (IAtomContainer) FunctionalGroups.createAtomContainer(
-				"CCCCC(=O)OC(=O)CCCC", true);
-
+		mol = FunctionalGroups.createAtomContainer("CCCCC(=O)OC(=O)CCCC", true);
+		MolAnalyser.analyse(mol);
 		list = FunctionalGroups.getUniqueBondMap(mol, q1, false);
 		// FunctionalGroups.markMaps(mol,q1,list);
 
@@ -567,8 +536,7 @@ public class FuncGroupsTest {
 		QueryAtomContainer q = FunctionalGroups.alcohol(false);
 		String[] ids = new String[5];
 		ids[0] = q.getID();
-		IAtomContainer mol = FunctionalGroups.createAtomContainer(
-				"CNC1=C(C=CC=C1)C(=O)OC", true);
+		IAtomContainer mol = FunctionalGroups.createAtomContainer("CNC1=C(C=CC=C1)C(=O)OC", true);
 
 		MolAnalyser.analyse((IAtomContainer) mol);
 		if (mol != null) {
@@ -597,8 +565,7 @@ public class FuncGroupsTest {
 			int atomsInEsterGroup = 0;
 			for (int i = 0; i < mol.getAtomCount(); i++) {
 				IAtom a = mol.getAtom(i);
-				if (a.getFlag(CDKConstants.ISAROMATIC)
-						&& a.getFlag(CDKConstants.ISINRING))
+				if (a.getFlag(CDKConstants.ISAROMATIC) && a.getFlag(CDKConstants.ISINRING))
 					inRingAromatic++;
 				if (a.getProperty(ids[4]) != null)
 					atomsInEsterGroup++;
@@ -613,8 +580,7 @@ public class FuncGroupsTest {
 	@Test
 	public void testRings() throws Exception {
 
-		IAtomContainer mol = FunctionalGroups.createAtomContainer(
-				"CNC1=C(C=CC=C1)C(=O)OCCCC2CCCCC2", true);
+		IAtomContainer mol = FunctionalGroups.createAtomContainer("CNC1=C(C=CC=C1)C(=O)OCCCC2CCCCC2", true);
 		// "CC(C)CCC1=C(C(O)=O)C2=C(C=C1C)C=C(C=C2)C(C)C");
 		// "CNC1=C(C=CC=C1)C(=O)OC");
 
@@ -655,13 +621,11 @@ public class FuncGroupsTest {
 			IRing r = (IRing) rs.getAtomContainer(i);
 			logger.debug("Ring\t" + (i + 1));
 
-			IAtomContainer mc = FunctionalGroups.cloneDiscardRingAtomAndBonds(
-					mol, r);
+			IAtomContainer mc = FunctionalGroups.cloneDiscardRingAtomAndBonds(mol, r);
 
 			logger.debug("\tmol atoms\t" + mc.getAtomCount());
 			// assertEquals(mc.getAtomCount(),atoms-removedAtoms);
-			IAtomContainerSet s = ConnectivityChecker
-					.partitionIntoMolecules(mc);
+			IAtomContainerSet s = ConnectivityChecker.partitionIntoMolecules(mc);
 			logger.debug("partitions\t" + s.getAtomContainerCount());
 			for (int k = 0; k < s.getAtomContainerCount(); k++) {
 				logger.debug("Partition\t" + (k + 1));
@@ -676,31 +640,22 @@ public class FuncGroupsTest {
 	}
 
 	protected IAtomContainer salt() {
-		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder
-				.getInstance());
-		IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CARBON);
+		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+		IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a1);
-		IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CARBON);
+		IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a2);
-		IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CARBON);
+		IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a3);
-		IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CARBON);
+		IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a4);
-		IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.NITROGEN);
+		IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.NITROGEN);
 		mol.addAtom(a5);
-		IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CARBON);
+		IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a6);
-		IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CARBON);
+		IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a7);
-		IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CHLORINE);
+		IAtom a8 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CHLORINE);
 		mol.addAtom(a8);
 		Bond b1 = new Bond(a2, a1, IBond.Order.SINGLE);
 		mol.addBond(b1);
@@ -721,8 +676,7 @@ public class FuncGroupsTest {
 	public void testSalt() throws Exception {
 		String smiles = "CCCC[N+](C)C.[Cl-]";
 
-		IAtomContainer mol = (IAtomContainer) FunctionalGroups
-				.createAtomContainer(smiles, false);
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer(smiles, false);
 		Assert.assertNotNull(mol);
 		IAtomContainerSet s = ConnectivityChecker.partitionIntoMolecules(mol);
 		Assert.assertEquals(2, s.getAtomContainerCount());
@@ -754,11 +708,9 @@ public class FuncGroupsTest {
 		 * for (int i=0; i < a.getAtomCount(); i++)
 		 * System.out.println(a.getAtomAt(i).getSymbol());
 		 */
-		QueryAtomContainer q = QueryAtomContainerCreator
-				.createBasicQueryContainer(a);
+		QueryAtomContainer q = QueryAtomContainerCreator.createBasicQueryContainer(a);
 
-		IAtomContainer mol = (IAtomContainer) FunctionalGroups
-				.createAtomContainer("CCCCCC(=O)C(=O)CCCCCCCCCC", true);
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer("CCCCCC(=O)C(=O)CCCCCCCCCC", true);
 		Assert.assertTrue(FunctionalGroups.hasGroup(mol, q));
 
 	}
@@ -774,8 +726,7 @@ public class FuncGroupsTest {
 
 	}
 
-	protected void associateIonic(IAtomContainer mol, int ionicBonds)
-			throws CDKException {
+	protected void associateIonic(IAtomContainer mol, int ionicBonds) throws CDKException {
 		Assert.assertEquals(ionicBonds, FunctionalGroups.associateIonic(mol));
 		// SetOfAtomContainers c =
 		// ConnectivityChecker.partitionIntoMolecules(mol);
@@ -817,13 +768,11 @@ public class FuncGroupsTest {
 		c = FunctionalGroups.createAtomContainer("[Cl-].[NH3+]C1CCCCC1");
 		associateIonic(c, 1);
 
-		c = FunctionalGroups
-				.createAtomContainer("[Na+].[O-]S(=O)(=O)NC1CCCCC1");
+		c = FunctionalGroups.createAtomContainer("[Na+].[O-]S(=O)(=O)NC1CCCCC1");
 		associateIonic(c, 1);
 	}
 
-	public IAtomContainerSet removeGroup(String smiles, QueryAtomContainer q)
-			throws Exception {
+	public IAtomContainerSet removeGroup(String smiles, QueryAtomContainer q) throws Exception {
 		IAtomContainer c = FunctionalGroups.createAtomContainer(smiles);
 		MolAnalyser.analyse(c);
 
@@ -849,8 +798,7 @@ public class FuncGroupsTest {
 		c = removeGroup("O=C1CCCO1", q);
 		Assert.assertEquals(1, c.getAtomContainerCount());
 		// hydroxy acid
-		IAtomContainer a = FunctionalGroups.createAtomContainer("O=C(O)CCCO",
-				true);
+		IAtomContainer a = FunctionalGroups.createAtomContainer("O=C(O)CCCO", true);
 		UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
 		Assert.assertTrue(uit.isIsomorph(a, c.getAtomContainer(0)));
 
@@ -863,19 +811,15 @@ public class FuncGroupsTest {
 	public void testLactone() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.lactone(false);
 		QueryAtomContainer q1 = FunctionalGroups.anhydride();
-		Object[][] answer = { { "C1OC(=O)C=C1", new Boolean(true) },
-				{ "O=C1OC(O)C(O)=C1(O)", new Boolean(true) },
+		Object[][] answer = { { "C1OC(=O)C=C1", new Boolean(true) }, { "O=C1OC(O)C(O)=C1(O)", new Boolean(true) },
 				{ "O=C1CCC(=O)O1", new Boolean(false) } };
 
 		for (int i = 0; i < answer.length; i++) {
-			IAtomContainer c = FunctionalGroups
-					.createAtomContainer(answer[i][0].toString());
+			IAtomContainer c = FunctionalGroups.createAtomContainer(answer[i][0].toString());
 			MolAnalyser.analyse(c);
-			logger.info(answer[i][0] + "\t" + q.getID() + "\t"
-					+ ((Boolean) answer[i][1]).toString());
+			logger.info(answer[i][0] + "\t" + q.getID() + "\t" + ((Boolean) answer[i][1]).toString());
 			Assert.assertEquals(true, FunctionalGroups.hasGroup(c, q));
-			Assert.assertEquals(!((Boolean) answer[i][1]).booleanValue(),
-					FunctionalGroups.hasGroup(c, q1));
+			Assert.assertEquals(!((Boolean) answer[i][1]).booleanValue(), FunctionalGroups.hasGroup(c, q1));
 
 		}
 
@@ -941,12 +885,9 @@ public class FuncGroupsTest {
 
 	@Test
 	public void testBreakSalt() throws Exception {
-		QueryAtomContainer q = FunctionalGroups
-				.saltOfCarboxylicAcidBreakable(new String[] { "Na", "K" });
-		IAtomContainer salt = FunctionalGroups
-				.createAtomContainer("CCCCC(=O)[O-].[Na+]");
-		IAtomContainer acid = FunctionalGroups.createAtomContainer(
-				"CCCCC(=O)O", true);
+		QueryAtomContainer q = FunctionalGroups.saltOfCarboxylicAcidBreakable(new String[] { "Na", "K" });
+		IAtomContainer salt = FunctionalGroups.createAtomContainer("CCCCC(=O)[O-].[Na+]");
+		IAtomContainer acid = FunctionalGroups.createAtomContainer("CCCCC(=O)O", true);
 		MolAnalyser.analyse(salt);
 		// MolAnalyser.analyse(acid);
 
@@ -977,30 +918,24 @@ public class FuncGroupsTest {
 		QueryAtomContainer q = FunctionalGroups.hydrochlorideOfAmineBreakable();
 		SmilesGenerator g = SmilesGenerator.generic();
 
-		String[] examples = { "[Cl-].[NH3+]C1CCCCC1", "[Cl-].[N+]C1CCCCC1",
-				"[Cl-].[N+]([H])([H])([H])C1CCCCC1" };
-		IAtomContainer amine = FunctionalGroups.createAtomContainer(
-				"NC1CCCCC1", true);
+		String[] examples = { "[Cl-].[NH3+]C1CCCCC1", "[Cl-].[N+]C1CCCCC1", "[Cl-].[N+]([H])([H])([H])C1CCCCC1" };
+		IAtomContainer amine = FunctionalGroups.createAtomContainer("NC1CCCCC1", true);
 
 		for (int e = 0; e < examples.length; e++) {
-			IAtomContainer hydrochlorideAmine = FunctionalGroups
-					.createAtomContainer(examples[e]);
+			IAtomContainer hydrochlorideAmine = FunctionalGroups.createAtomContainer(examples[e]);
 
 			MolAnalyser.analyse(hydrochlorideAmine);
-			IAtomContainerSet c = FunctionalGroups.detachGroup(
-					hydrochlorideAmine, q);
+			IAtomContainerSet c = FunctionalGroups.detachGroup(hydrochlorideAmine, q);
 			Assert.assertNotNull(c);
 
 			Assert.assertEquals(2, c.getAtomContainerCount());
 			// System.out.print(q.getID());
-			System.out.println("Amine "
-					+ g.createSMILES((IAtomContainer) amine));
+			System.out.println("Amine " + g.createSMILES((IAtomContainer) amine));
 			UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
 			for (int i = 0; i < c.getAtomContainerCount(); i++) {
 				IAtomContainer a = c.getAtomContainer(i);
 
-				System.out.println("Product "
-						+ g.createSMILES((IAtomContainer) a));
+				System.out.println("Product " + g.createSMILES((IAtomContainer) a));
 				if (FunctionalGroups.hasGroupMarked(a, q.getID())) {
 					Assert.assertEquals(amine.getAtomCount(), a.getAtomCount());
 
@@ -1012,72 +947,50 @@ public class FuncGroupsTest {
 	}
 
 	public static IAtomContainer phenazineMethosulphate() throws Exception {
-		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder
-				.getInstance());
-		IAtom nq = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.NITROGEN);
+		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+		IAtom nq = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.NITROGEN);
 		nq.setFormalCharge(+1);
 		mol.addAtom(nq);
-		IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.SULFUR);
+		IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.SULFUR);
 		mol.addAtom(a2);
-		IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.NITROGEN);
+		IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.NITROGEN);
 		mol.addAtom(a3);
-		IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CARBON);
+		IAtom a4 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a4);
-		IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CARBON);
+		IAtom a5 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a5);
-		IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CARBON);
+		IAtom a6 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a6);
-		IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.CARBON);
+		IAtom a7 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a7);
-		IAtom o1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.OXYGEN);
+		IAtom o1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.OXYGEN);
 		o1.setFormalCharge(-1);
 		mol.addAtom(o1);
-		IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
-				Elements.OXYGEN);
+		IAtom a9 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.OXYGEN);
 		mol.addAtom(a9);
-		IAtom a10 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.OXYGEN);
+		IAtom a10 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.OXYGEN);
 		mol.addAtom(a10);
-		IAtom a11 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.OXYGEN);
+		IAtom a11 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.OXYGEN);
 		mol.addAtom(a11);
-		IAtom a12 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a12 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a12);
-		IAtom a13 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a13 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a13);
-		IAtom a14 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a14 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a14);
-		IAtom a15 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a15 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a15);
-		IAtom a16 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a16 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a16);
-		IAtom a17 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a17 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a17);
-		IAtom a18 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a18 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a18);
-		IAtom a19 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a19 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a19);
-		IAtom a20 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a20 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a20);
-		IAtom a21 = MoleculeTools.newAtom(
-				SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a21 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
 		mol.addAtom(a21);
 		Bond b1 = new Bond(a3, a7, IBond.Order.SINGLE);
 		mol.addBond(b1);

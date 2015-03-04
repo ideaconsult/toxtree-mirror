@@ -474,6 +474,7 @@ public class FunctionalGroups {
 		InverseSymbolSetQueryAtom[] r = new InverseSymbolSetQueryAtom[3];
 		SymbolQueryAtom n = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
 				Elements.NITROGEN));
+		query.addAtom(n);
 		for (int i = 0; i < 3; i++) {
 			r[i] = new InverseSymbolSetQueryAtom(query.getBuilder());
 			r[i].setSymbol("*");
@@ -1209,28 +1210,30 @@ public class FunctionalGroups {
 		QueryAtomContainer query = new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		query.setID(ANHYDRIDE);
 
-		SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
+		SymbolQueryAtom o = new SymbolQueryAtom(MoleculeTools.newAtom(query.getBuilder(),
 				Elements.OXYGEN));
 
-		SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
+		SymbolQueryAtom r = new SymbolQueryAtom(MoleculeTools.newAtom(query.getBuilder(),
 				Elements.CARBON));
 		r.setProperty(DONTMARK, query.getID());
 
-		SymbolQueryAtom e = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
+		SymbolQueryAtom e = new SymbolQueryAtom(MoleculeTools.newAtom(query.getBuilder(),
 				Elements.CARBON));
-		r.setProperty(DONTMARK, query.getID());
+		e.setProperty(DONTMARK, query.getID());
 
-		SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
+		SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(query.getBuilder(),
 				Elements.CARBON));
-		SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
+		SymbolQueryAtom o1 = new SymbolQueryAtom(MoleculeTools.newAtom(query.getBuilder(),
 				Elements.OXYGEN));
-		SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
+		SymbolQueryAtom o2 = new SymbolQueryAtom(MoleculeTools.newAtom(query.getBuilder(),
 				Elements.OXYGEN));
+		query.addAtom(o);
 		query.addAtom(r);
 		query.addAtom(e);
 		query.addAtom(c);
 		query.addAtom(o1);
 		query.addAtom(o2);
+		
 		query.addBond(new TopologyAnyBond(r, c, true));
 		query.addBond(new TopologyOrderQueryBond(c, o1, CDKConstants.BONDORDER_SINGLE, true, query.getBuilder()));
 		query.addBond(new TopologyOrderQueryBond(c, o2, CDKConstants.BONDORDER_DOUBLE, false, query.getBuilder()));
@@ -1256,7 +1259,7 @@ public class FunctionalGroups {
 
 		SymbolQueryAtom e = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
 				Elements.CARBON));
-		r.setProperty(DONTMARK, query.getID());
+		e.setProperty(DONTMARK, query.getID());
 
 		SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
 				Elements.CARBON));
@@ -1388,6 +1391,7 @@ public class FunctionalGroups {
 
 		SymbolQueryAtom c = new SymbolQueryAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
 				Elements.CARBON));
+		query.addAtom(c);
 		InverseSymbolSetQueryAtom[] r = new InverseSymbolSetQueryAtom[2];
 		for (int i = 0; i < 2; i++) {
 			r[i] = new InverseSymbolSetQueryAtom(query.getBuilder());
@@ -1576,8 +1580,10 @@ public class FunctionalGroups {
 		q.addBond(new OrderQueryBond(a[0], a[4], CDKConstants.BONDORDER_SINGLE, builder));// S-O
 		// q.addBond(new OrderQueryBond(a[1], a[5],
 		// CDKConstants.BONDORDER_SINGLE));//N-H
-		if (me != null)
+		if (me != null) {
+			q.addAtom(me);
 			q.addBond(new OrderQueryBond(a[4], me, CDKConstants.BONDORDER_SINGLE, builder));// O-Me
+		}	
 		return q;
 
 	}
@@ -1784,6 +1790,7 @@ public class FunctionalGroups {
 			for (int i = 0; i < setOfAtoms.length; i++)
 				m.addSymbol(setOfAtoms[i]);
 		}
+		if (m!=null) query.addAtom(m);
 		ReallyAnyAtom r = new ReallyAnyAtom(SilentChemObjectBuilder.getInstance());
 		r.setProperty(DONTMARK, query.getID());
 
@@ -1803,6 +1810,7 @@ public class FunctionalGroups {
 		query.addAtom(o1);
 		query.addAtom(o2);
 		query.addAtom(o3);
+		query.addAtom(o4);
 
 		query.addBond(new OrderQueryBond(s, o1, CDKConstants.BONDORDER_SINGLE, query.getBuilder()));
 		query.addBond(new OrderQueryBond(s, o2, CDKConstants.BONDORDER_DOUBLE, query.getBuilder()));
