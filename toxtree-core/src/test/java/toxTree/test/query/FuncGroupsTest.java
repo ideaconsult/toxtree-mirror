@@ -78,12 +78,14 @@ public class FuncGroupsTest {
 			SilentChemObjectBuilder.getInstance());
 	protected Logger logger = Logger.getLogger(FuncGroupsTest.class);
 	CDKSourceCodeWriter debugWriter = new CDKSourceCodeWriter(System.err);
+
 	/*
 	 * protected boolean querySalt(String smiles, QueryAtomContainer q) { try {
 	 * Molecule mol = gen. return query(mol,q); } catch (InvalidSmilesException
 	 * x ) { x.printStackTrace(); return false; } }
 	 */
-	protected boolean query(String smiles, QueryAtomContainer q) throws Exception  {
+	protected boolean query(String smiles, QueryAtomContainer q)
+			throws Exception {
 		IAtomContainer mol = FunctionalGroups.createAtomContainer(smiles, true);
 		debugWriter.write(mol);
 		debugWriter.write(q);
@@ -120,7 +122,7 @@ public class FuncGroupsTest {
 	}
 
 	@Test
-	public void testhydrochlorideOfAmine() throws Exception {
+	public void testhydrochlorideOfAmine1() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.hydrochlorideOfAmine(1); // primary
 		IAtomContainer c = FunctionalGroups
 				.createAtomContainer("[Cl-].[NH3+]C1CCCCC1");
@@ -131,8 +133,13 @@ public class FuncGroupsTest {
 		}
 		Assert.assertTrue(FunctionalGroups.hasGroup(c, q));
 
-		q = FunctionalGroups.hydrochlorideOfAmine3(); // tertiary
-		c = FunctionalGroups
+	}
+
+	@Test
+	public void testhydrochlorideOfAmine3() throws Exception {
+
+		QueryAtomContainer q = FunctionalGroups.hydrochlorideOfAmine3(); // tertiary
+		IAtomContainer c = FunctionalGroups
 				.createAtomContainer("oc1c=ccc(c1)=[N+](CC)CC.[Cl-]");
 		try {
 			MolAnalyser.analyse(c);
@@ -180,7 +187,11 @@ public class FuncGroupsTest {
 		Assert.assertTrue(query("c1ccc(NC)cc1", q));
 		q = FunctionalGroups.secondaryAmine(true);
 		Assert.assertFalse(query("c1ccc(NC)cc1", q));
-		q = FunctionalGroups.tertiaryAmine();
+	}
+
+	@Test
+	public void testTertiaryAmine() throws Exception {
+		QueryAtomContainer q = FunctionalGroups.tertiaryAmine();
 		Assert.assertTrue(query("CCCN(CC)CC", q));
 	}
 
@@ -470,13 +481,17 @@ public class FuncGroupsTest {
 	}
 
 	@Test
-	public void testpolyoxyethylene() throws Exception {
+	public void testpolyoxyethylene1() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.polyoxyethylene(1);
 		Assert.assertTrue(query("OCC", q));
 		Assert.assertTrue(query("OCCOCCOCC", q));
 		Assert.assertFalse(query("CS(=O)(=O)OC", q)); // have to check S valency
-														// =2
-		q = FunctionalGroups.polyoxyethylene(4);
+
+	}
+
+	@Test
+	public void testpolyoxyethylene4() throws Exception {
+		QueryAtomContainer q = FunctionalGroups.polyoxyethylene(4);
 		Assert.assertFalse(query("OCC", q));
 		Assert.assertTrue(query("OCCOCCOCCOCC", q));
 	}
@@ -497,18 +512,24 @@ public class FuncGroupsTest {
 	@Test
 	public void testUniqueMap() throws Exception {
 		QueryAtomContainer q1 = FunctionalGroups.polyoxyethylene(1);
-		QueryAtomContainer q2 = FunctionalGroups.polyoxyethylene(2);
+		debugWriter.write(q1);
+		
+		IAtomContainer mol = FunctionalGroups.createAtomContainer("OCC", true);
+		
 
-		IAtomContainer mol = (IAtomContainer) FunctionalGroups
-				.createAtomContainer("OCC", true);
+		debugWriter.write(mol);
+		
 		List list = FunctionalGroups.getUniqueBondMap(mol, q1, false);
+		
+		
 		Assert.assertNotNull(list);
 		Assert.assertEquals(1, list.size());
+
+		QueryAtomContainer q2 = FunctionalGroups.polyoxyethylene(2);
 		list = FunctionalGroups.getUniqueBondMap(mol, q2, false);
 		Assert.assertNull(list);
 
-		mol = (IAtomContainer) FunctionalGroups.createAtomContainer("CCOCCOCC",
-				true);
+		mol = FunctionalGroups.createAtomContainer("CCOCCOCC", true);
 		list = FunctionalGroups.getUniqueBondMap(mol, q2, false);
 		Assert.assertEquals(1, list.size());
 
