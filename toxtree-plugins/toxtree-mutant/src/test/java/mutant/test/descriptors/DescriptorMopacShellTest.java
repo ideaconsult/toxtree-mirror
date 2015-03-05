@@ -40,6 +40,7 @@ public class DescriptorMopacShellTest {
 	}
 
 	// NC1=C(F)C(N)=C(F)C(F)=C1(F).[H]Cl.[H]Cl
+	/* [Si] is now supported
 	@Test
 	public void testCalculateUnsupportedAtom() throws Exception {
 		DescriptorMopacShell d = new DescriptorMopacShell();
@@ -49,6 +50,7 @@ public class DescriptorMopacShellTest {
 		Assert.assertNotNull(value.getException());
 		Assert.assertEquals(" UNSUPPORTED TYPE " + "Si", value.getException().getMessage());
 	}
+	*/
 
 	@Test
 	public void testCalculate1() throws Exception {

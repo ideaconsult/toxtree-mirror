@@ -136,7 +136,7 @@ public class MolAnalyser {
                     	logger.log(Level.WARNING,x.getMessage());
                     }
                 }
-        	} else {
+        	} else {//hmmm
         		IAtomContainerSet moleculeSet = ConnectivityChecker.partitionIntoMolecules(mol);
         	    IAtomContainer m = MoleculeTools.newMolecule(mol.getBuilder());  
         	      for (int k = 0; k < moleculeSet.getAtomContainerCount(); k++) {
@@ -156,7 +156,8 @@ public class MolAnalyser {
 		        	   Integer no = PeriodicTable.getAtomicNumber(atom.getSymbol());
 		        	   if (no != null)
 		        		   atom.setAtomicNumber(no.intValue());
-		           }	   
+		           }
+		           if ("H".equals(atom.getSymbol())) atom.setImplicitHydrogenCount(0); 
 		        }            	
 	        //logger.debug("MolAnalyser\t",mol.getID());
     		Object o = mol.getProperty(MolFlags.MOLFLAGS);

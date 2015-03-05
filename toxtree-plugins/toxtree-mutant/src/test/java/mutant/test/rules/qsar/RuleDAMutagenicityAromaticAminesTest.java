@@ -20,7 +20,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package mutant.test.rules.qsar;
 
@@ -28,53 +28,65 @@ import java.util.List;
 
 import mutant.rules.RuleDAMutagenicityAromaticAmines;
 
+import org.junit.Test;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
 import toxTree.qsar.LinearDiscriminantRule;
 
 public class RuleDAMutagenicityAromaticAminesTest extends LDARuleTest {
 	@Override
-	public LinearDiscriminantRule createRuleToTest() throws Exception  {
+	public LinearDiscriminantRule createRuleToTest() throws Exception {
 		return new RuleDAMutagenicityAromaticAmines();
 	}
-	public void testHasDescriptors()  throws Exception {
+
+	@Test
+	public void testHasDescriptors() throws Exception {
 		List<IMolecularDescriptor> d = ruleToTest.getModel().getDescriptors();
 		assertNotNull(d);
-		assertEquals(6,d.size());
+		assertEquals(6, d.size());
 	}
-	public void testDescriptorEHOMOImplemented()  throws Exception  {
+
+	@Test
+	public void testDescriptorEHOMOImplemented() throws Exception {
 		List<IMolecularDescriptor> d = ruleToTest.getModel().getDescriptors();
 		assertNotNull(d);
 		assertNotNull(d.get(0));
 	}
-	public void testDescriptorELUMOImplemented()  throws Exception {
+
+	@Test
+	public void testDescriptorELUMOImplemented() throws Exception {
 		List<IMolecularDescriptor> d = ruleToTest.getModel().getDescriptors();
 		assertNotNull(d);
 		assertNotNull(d.get(1));
-	}	
-	public void testDescriptorMR2Implemented()  throws Exception {
+	}
+
+	@Test
+	public void testDescriptorMR2Implemented() throws Exception {
 		List<IMolecularDescriptor> d = ruleToTest.getModel().getDescriptors();
 		assertNotNull(d);
 		assertNotNull(d.get(2));
 	}
-	public void testDescriptorMR3Implemented()  throws Exception {
+
+	@Test
+	public void testDescriptorMR3Implemented() throws Exception {
 		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
 		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
 		assertNotNull(d);
 		assertNotNull(d.get(3));
-	}	
-	public void testDescriptorMR6Implemented()  throws Exception {
+	}
+
+	@Test
+	public void testDescriptorMR6Implemented() throws Exception {
 		List<IMolecularDescriptor> d = ruleToTest.getModel().getDescriptors();
 		assertNotNull(d);
 		assertNotNull(d.get(4));
-	}	
-	public void testDescriptorIdistImplemented()  throws Exception {
+	}
+
+	@Test
+	public void testDescriptorIdistImplemented() throws Exception {
 		List<IMolecularDescriptor> d = ruleToTest.getModel().getDescriptors();
 		assertNotNull(d);
 		assertNotNull(d.get(5));
 	}
 
-
 }
-
-

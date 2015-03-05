@@ -20,7 +20,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package mutant.test.rules.qsar;
 
@@ -28,6 +28,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
@@ -39,55 +40,53 @@ import toxTree.query.MolAnalyser;
 
 public abstract class LDARuleTest extends TestCase {
 	protected LinearDiscriminantRule ruleToTest;
+
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		ruleToTest = createRuleToTest();
-		
+
 	}
-	public abstract LinearDiscriminantRule createRuleToTest() throws Exception ;
-	public void hasDescriptors(int number) throws Exception  {
+
+	public abstract LinearDiscriminantRule createRuleToTest() throws Exception;
+
+	public void hasDescriptors(int number) throws Exception {
 		List<IMolecularDescriptor> d = ruleToTest.getModel().getDescriptors();
 		assertNotNull(d);
-		assertEquals(number,d.size());
-	}	
-	
-	public void testPreprocessor()  throws Exception {
+		assertEquals(number, d.size());
+	}
+
+	@Test
+	public void testPreprocessor() throws Exception {
 		IDescriptorPreprocessor p = ruleToTest.getModel().getPreprocessor();
 		System.out.println(ruleToTest.getExplanation());
 		System.out.println("Model");
 		System.out.println(ruleToTest.getModel());
 		if (p != null) {
-						
+
 			assertTrue(p instanceof LinearPreprocessor);
 			LinearPreprocessor lp = (LinearPreprocessor) p;
 			double[] values = new double[p.getDimension()];
 			double[] original = new double[p.getDimension()];
-			for (int i=0; i < values.length; i++) {
-				values[i] = i+1;
+			for (int i = 0; i < values.length; i++) {
+				values[i] = i + 1;
 				original[i] = values[i];
-			}	
+			}
 			double[] newvalues = lp.process(values);
-			
-			assertEquals(newvalues.length,values.length);
 
-			
-			for (int i=0; i < values.length; i++) {
+			assertEquals(newvalues.length, values.length);
+
+			for (int i = 0; i < values.length; i++) {
 				/*
-				System.out.print(newvalues[i]);
-				System.out.print("=");
-				System.out.print(original[i]);
-				System.out.print("*");
-				System.out.print(lp.getScale()[i]);
-				if (lp.getTranslation()[i]>=0)
-					System.out.print("+");
-				System.out.println(lp.getTranslation()[i]);
-				*/
-				assertEquals(lp.getScale()[i]*original[i]+lp.getTranslation()[i], newvalues[i]);
-			}	
-				
+				 * System.out.print(newvalues[i]); System.out.print("=");
+				 * System.out.print(original[i]); System.out.print("*");
+				 * System.out.print(lp.getScale()[i]); if
+				 * (lp.getTranslation()[i]>=0) System.out.print("+");
+				 * System.out.println(lp.getTranslation()[i]);
+				 */
+				assertEquals(lp.getScale()[i] * original[i] + lp.getTranslation()[i], newvalues[i]);
+			}
 
-			
 		}
 	}
 
@@ -95,23 +94,24 @@ public abstract class LDARuleTest extends TestCase {
 		IAtomContainer m = ruleToTest.getExampleMolecule(answer);
 		try {
 			/*
-			HydrogenAdder ha = new HydrogenAdder();
-			ha.addExplicitHydrogensToSatisfyValency(m);
-			*/
+			 * HydrogenAdder ha = new HydrogenAdder();
+			 * ha.addExplicitHydrogensToSatisfyValency(m);
+			 */
 			MolAnalyser.analyse(m);
 		} catch (Exception x) {
 			throw new DecisionMethodException(x);
 		}
-		assertEquals(answer,ruleToTest.verifyRule(m));
+		assertEquals(answer, ruleToTest.verifyRule(m));
 	}
-	
+
+	@Test
 	public void testExampleNo() throws DecisionMethodException {
 		verifyExample(false);
 	}
-	public void testExampleYes()  throws DecisionMethodException {
+
+	@Test
+	public void testExampleYes() throws DecisionMethodException {
 		verifyExample(true);
 	}
-	
+
 }
-
-

@@ -46,10 +46,14 @@ import ambit2.smarts.query.SMARTSException;
 public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule implements IRuleSMARTSubstructures,
 		ISmartsPatternFactory {
 
-	private static final long serialVersionUID = 0;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3546551840533459896L;
 	protected Hashtable<String, ISmartsPattern<T>> smartsPatterns;
 	protected boolean containsAllSubstructures = false;
-	protected ISmartsPattern final_and_patch = null;
+	protected transient ISmartsPattern final_and_patch = null;
 
 	public AbstractRuleSmartSubstructure() {
 		super();

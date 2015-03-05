@@ -91,10 +91,8 @@ public class SubstituentsTest {
 		n.append("M  CHG  1   2   1\n");
 		n.append("M  CHG  1   4  -1\n");
 		n.append("M  END\n");
-		MDLV2000Reader reader = new MDLV2000Reader(new StringReader(
-				n.toString()));
-		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder
-				.getInstance());
+		MDLV2000Reader reader = new MDLV2000Reader(new StringReader(n.toString()));
+		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
 		reader.read(mol);
 		reader.close();
 		return mol;
@@ -106,8 +104,7 @@ public class SubstituentsTest {
 			// LookupFile lookup = new
 			// LookupFile("/src/mutant/descriptors/substituents.sdf");
 			// LookupFile lookup = new LookupFile("substituents.sdf");
-			MoleculesFile lookup = new MoleculesFile("substituents.sdf",
-					SilentChemObjectBuilder.getInstance(), null);
+			MoleculesFile lookup = new MoleculesFile("substituents.sdf", SilentChemObjectBuilder.getInstance(), null);
 			// lookup.setUseCache(false);
 			// lookup.setCheckAromaticity(false);
 
@@ -140,21 +137,16 @@ public class SubstituentsTest {
 			Assert.assertTrue(lookup.find((IAtomContainer) a) > -1);
 			System.out.println(System.currentTimeMillis() - now);
 
-			a = FunctionalGroups.createAtomContainer(
-					"[*]C=1C=CC2=CC=CC=C2(C=1)", true);
+			a = FunctionalGroups.createAtomContainer("[*]C=1C=CC2=CC=CC=C2(C=1)", true);
 			MolAnalyser.analyse(a);
 			now = System.currentTimeMillis();
 			Assert.assertTrue(lookup.find((IAtomContainer) a) > -1);
 			System.out.println(System.currentTimeMillis() - now);
 
-			a = MoleculeTools.newAtomContainer(SilentChemObjectBuilder
-					.getInstance());
-			IAtom a1 = MoleculeTools.newAtom(
-					SilentChemObjectBuilder.getInstance(), Elements.OXYGEN);
-			IAtom a2 = MoleculeTools.newAtom(
-					SilentChemObjectBuilder.getInstance(), "R");
-			IAtom a3 = MoleculeTools.newAtom(
-					SilentChemObjectBuilder.getInstance(), Elements.HYDROGEN);
+			a = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
+			IAtom a1 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.OXYGEN);
+			IAtom a2 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), "R");
+			IAtom a3 = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.HYDROGEN);
 			a.addAtom(a1);
 			a.addAtom(a2);
 			a.addAtom(a3);
@@ -169,8 +161,7 @@ public class SubstituentsTest {
 				IAtomContainer mol = lookup.getAtomContainer(index);
 				Assert.assertNotNull(mol);
 				System.out.println(System.currentTimeMillis() - now);
-				Assert.assertEquals(0.28,
-						Double.parseDouble(mol.getProperty("MR").toString()));
+				Assert.assertEquals(0.28, Double.parseDouble(mol.getProperty("MR").toString()));
 			} else
 				Assert.fail("not found");
 
@@ -184,17 +175,14 @@ public class SubstituentsTest {
 	public void testAll() throws Exception {
 		// LookupFile lookup = new
 		// LookupFile("plugins/mutant/src/mutant/descriptors/substituents.sdf");
-		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
-				SilentChemObjectBuilder.getInstance(), null);
+		MoleculesFile lookup = new MoleculesFile("substituents.sdf", SilentChemObjectBuilder.getInstance(), null);
 		/*
 		 * LookupFile lookup = new LookupFile("substituents.sdf");
 		 * lookup.setUseCache(false); lookup.setCheckAromaticity(true);
 		 */
 		SmilesGenerator g = SmilesGenerator.generic();
-		InputStream in = getClass().getClassLoader().getResourceAsStream(
-				"substituents.sdf");
-		IteratingSDFReader reader = new IteratingSDFReader(in,
-				SilentChemObjectBuilder.getInstance());
+		InputStream in = getClass().getClassLoader().getResourceAsStream("substituents.sdf");
+		IteratingSDFReader reader = new IteratingSDFReader(in, SilentChemObjectBuilder.getInstance());
 		int record = 0;
 		int found_records = 0;
 		while (reader.hasNext()) {
@@ -212,30 +200,23 @@ public class SubstituentsTest {
 						System.err.print('\t');
 						System.err.print(((IAtomContainer) o).getProperty("#"));
 						System.err.print('\t');
-						System.err.print(((IAtomContainer) o)
-								.getProperty("SMILES"));
+						System.err.print(((IAtomContainer) o).getProperty("SMILES"));
 						System.err.print('\t');
-						System.err.print(((IAtomContainer) o)
-								.getProperty("Group"));
+						System.err.print(((IAtomContainer) o).getProperty("Group"));
 						System.err.print('\t');
 						System.err.print("B5STM\t");
-						System.err.print(((IAtomContainer) o)
-								.getProperty("B5STM"));
+						System.err.print(((IAtomContainer) o).getProperty("B5STM"));
 						System.err.print("B1STM\t");
-						System.err.print(((IAtomContainer) o)
-								.getProperty("B1STM"));
+						System.err.print(((IAtomContainer) o).getProperty("B1STM"));
 						System.err.print("MR\t");
 
-						System.err
-								.print(((IAtomContainer) o).getProperty("MR"));
+						System.err.print(((IAtomContainer) o).getProperty("MR"));
 						System.err.print("\nFingerprint\t");
-						System.err.print(lookup
-								.getFingerprint((IAtomContainer) o));
+						System.err.print(lookup.getFingerprint((IAtomContainer) o));
 						System.err.print("\nSMILES generated ");
 						System.err.print(g.createSMILES((IAtomContainer) o));
 						System.err.print("\nFingerprint in file\t");
-						System.err.print(lookup.getProperty(record,
-								MoleculesFile.propertyFingerprint));
+						System.err.print(lookup.getProperty(record, MoleculesFile.propertyFingerprint));
 
 						System.err.print('\n');
 						System.err.println("not found");
@@ -290,8 +271,7 @@ public class SubstituentsTest {
 	 */
 	@Test
 	public void testSmiles() throws Exception {
-		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
-				SilentChemObjectBuilder.getInstance(), null);
+		MoleculesFile lookup = new MoleculesFile("substituents.sdf", SilentChemObjectBuilder.getInstance(), null);
 		SmilesGenerator g = SmilesGenerator.generic();
 		int r = 0;
 		for (int i = 0; i < lookup.getAtomContainerCount(); i++) {
@@ -321,8 +301,7 @@ public class SubstituentsTest {
 		// LookupFile lookup = new LookupFile("substituents.sdf");
 		// lookup.setUseCache(true);
 		// lookup.setCheckAromaticity(false);
-		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
-				SilentChemObjectBuilder.getInstance(), null);
+		MoleculesFile lookup = new MoleculesFile("substituents.sdf", SilentChemObjectBuilder.getInstance(), null);
 		SmilesGenerator g = SmilesGenerator.generic();
 		for (int k = 0; k < s.getAtomContainerCount(); k++) {
 			System.out.println("Substituent\t" + k);
@@ -335,22 +314,18 @@ public class SubstituentsTest {
 			}
 			System.out.print('\n');
 			if (m != null) {
-				if ((m.getAtomCount() == 1)
-						&& (m.getAtom(0).getSymbol().equals("H")))
+				if ((m.getAtomCount() == 1) && (m.getAtom(0).getSymbol().equals("H")))
 					continue;
 
 				Object place = null;
 				int[] p = new int[m.getAtomCount()];
 				for (int j = 0; j < m.getAtomCount(); j++) {
 					p[j] = -1;
-					place = m.getAtom(j).getProperty(
-							FunctionalGroups.RING_NUMBERING);
+					place = m.getAtom(j).getProperty(FunctionalGroups.RING_NUMBERING);
 
 					if (place != null) {
-						System.out.println("Ring substituent at place\t"
-								+ place + "\tatom id\t" + m.getAtom(j).getID()
-								+ "\t" + m.getAtom(j).getSymbol() + "\tsize\t"
-								+ m.getAtomCount());
+						System.out.println("Ring substituent at place\t" + place + "\tatom id\t" + m.getAtom(j).getID()
+								+ "\t" + m.getAtom(j).getSymbol() + "\tsize\t" + m.getAtomCount());
 						p[j] = ((Integer) place).intValue();
 						/*
 						 * 
@@ -363,8 +338,7 @@ public class SubstituentsTest {
 						int index = lookup.indexOf("SMILES", smiles);
 						// assertTrue(index > -1);
 						if (index > -1)
-							System.out.println(lookup.getAtomContainer(index)
-									.getProperties());
+							System.out.println(lookup.getAtomContainer(index).getProperties());
 						// assertTrue(lookup.find(m));
 						substituents++;
 					}
@@ -383,10 +357,8 @@ public class SubstituentsTest {
 
 	@Test
 	public void testAromaticAmine() throws Exception {
-		QueryAtomContainer q = AromaticAmineSubstituentsDescriptor
-				.aromaticAmine(FunctionalGroups.RING_NUMBERING);
-		IAtomContainer mol = FunctionalGroups.createAtomContainer(
-				"c1ccc(N)cc1", true);
+		QueryAtomContainer q = AromaticAmineSubstituentsDescriptor.aromaticAmine(FunctionalGroups.RING_NUMBERING);
+		IAtomContainer mol = FunctionalGroups.createAtomContainer("c1ccc(N)cc1", true);
 		MolAnalyser.analyse(mol);
 		Assert.assertTrue(FunctionalGroups.hasGroup(mol, q));
 	}
@@ -430,13 +402,11 @@ public class SubstituentsTest {
 	 */
 	public void substituentExtractor(String smiles) throws Exception {
 		SubstituentExtractor extractor = new SubstituentExtractor(
-				AromaticAmineSubstituentsDescriptor
-						.aromaticAmine(FunctionalGroups.RING_NUMBERING));
+				AromaticAmineSubstituentsDescriptor.aromaticAmine(FunctionalGroups.RING_NUMBERING));
 		IAtomContainer a = FunctionalGroups.createAtomContainer(smiles, false);
 		Assert.assertNotNull(a);
 		MolAnalyser.analyse(a);
-		Hashtable<String, IAtomContainerSet> set = extractor
-				.extractSubstituents(a);
+		Hashtable<String, IAtomContainerSet> set = extractor.extractSubstituents(a);
 		Assert.assertEquals(1, set.size());
 		Iterator<IAtomContainerSet> c = set.values().iterator();
 		while (c.hasNext())

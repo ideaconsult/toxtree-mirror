@@ -58,7 +58,7 @@ public class RuleDerivedAromaticAmines extends RuleSMARTSubstructureCDK {
 	 * 
 	 */
 	private static final long serialVersionUID = 5890191226995213346L;
-	protected QueryAtomContainer[] groups = new QueryAtomContainer[] {
+	protected transient QueryAtomContainer[] groups = new QueryAtomContainer[] {
 			group1(), group2() };
 
 	public RuleDerivedAromaticAmines() {

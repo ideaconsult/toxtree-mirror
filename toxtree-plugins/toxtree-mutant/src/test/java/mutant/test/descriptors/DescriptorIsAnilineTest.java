@@ -31,83 +31,80 @@ package mutant.test.descriptors;
 
 import mutant.descriptors.DescriptorIsAniline;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
 import ambit2.core.smiles.SmilesParserWrapper;
 
 public class DescriptorIsAnilineTest extends DescriptorsTest {
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        addPropertiesToTest("I(Aniline)","I(An)");
-        SmilesParserWrapper.getInstance().setParser(SmilesParserWrapper.SMILES_PARSER.OPENBABEL);
-    }
+	@Before
+	public void setUp() throws Exception {
+		super.setUp();
+		addPropertiesToTest("I(Aniline)", "I(An)");
+		SmilesParserWrapper.getInstance().setParser(SmilesParserWrapper.SMILES_PARSER.OPENBABEL);
+	}
 
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
+	@Override
+	protected IMolecularDescriptor createDescriptorToTest() throws Exception {
+		return new DescriptorIsAniline();
+	}
 
-    @Override
-    protected IMolecularDescriptor createDescriptorToTest() throws Exception {
-        return new DescriptorIsAniline();
-    }
+	@Override
+	public String getResultsFile() {
+		return "aromatic_amines/qsar8train_aniline.csv";
+	}
 
-    @Override
-    public String getResultsFile() {
-        return "aromatic_amines/qsar8train_aniline.csv";      
-    }
+	@Override
+	public String getSourceFile() {
+		return "aromatic_amines/qsar8train.csv";
 
-    @Override
-    public String getSourceFile() {
-        return "aromatic_amines/qsar8train.csv";
+	}
 
-    }
+	@Override
+	public String getStructureID() {
+		return "CAS Number";
+	}
 
-    @Override
-    public String getStructureID() {
-        return "CAS Number";
-    }
-    /*
-    public void testCalculate() throws Exception {
-        DescriptorIsAniline d = new DescriptorIsAniline();
-        IAtomContainer ac = FunctionalGroups.createAtomContainer("CCCCCc1ccccc1(N)");
-        MolAnalyser.analyse(ac);
-        IAtomContainer ac1 = FunctionalGroups.createAtomContainer("CCCCCc1ccccc1(NCCC)");
-        MolAnalyser.analyse(ac);
-        try {
-            assertTrue(((BooleanResult) ((DescriptorValue) d.calculate(ac)).getValue()).booleanValue());
-            assertFalse(((BooleanResult) ((DescriptorValue) d.calculate(ac1)).getValue()).booleanValue());
-        } catch (CDKException x) {
-            fail(x.getMessage());
-        }
-    }
-    */
+	/*
+	 * public void testCalculate() throws Exception { DescriptorIsAniline d =
+	 * new DescriptorIsAniline(); IAtomContainer ac =
+	 * FunctionalGroups.createAtomContainer("CCCCCc1ccccc1(N)");
+	 * MolAnalyser.analyse(ac); IAtomContainer ac1 =
+	 * FunctionalGroups.createAtomContainer("CCCCCc1ccccc1(NCCC)");
+	 * MolAnalyser.analyse(ac); try { assertTrue(((BooleanResult)
+	 * ((DescriptorValue) d.calculate(ac)).getValue()).booleanValue());
+	 * assertFalse(((BooleanResult) ((DescriptorValue)
+	 * d.calculate(ac1)).getValue()).booleanValue()); } catch (CDKException x) {
+	 * fail(x.getMessage()); } }
+	 */
+	@Test
 	public void testAniline() throws Exception {
-		 
-        Object[][] smiles = new Object[][] {
-        		
-         //{"CCCCCc1ccccc1(N)","I(An)",new Boolean(true)},
-//         {"CCCCCc1ccccc1(NCCC)","I(An)",new Boolean(true)},
-        		
-        //{"CC(=O)NC1=C(C)C=CC=C1(C)","I(An)",new Boolean(true)},
-        		
-       //{"O=C(C)NC1=C(C)C=CC=C1(C)","I(An)",new Boolean(true)},
-      {"CC=2C=CC=C(C)C=2(NC(=O)CN1CCCC1(=O))","I(An)",new Boolean(true)},
-       // {"c1(C)cccc(C)c1(NC(=O)CN1CCCC1(=O))","I(An)",new Boolean(true)},        		
-         
-         
 
-         };
-        calculate(smiles);
-	}     
+		Object[][] smiles = new Object[][] {
+
+		// {"CCCCCc1ccccc1(N)","I(An)",new Boolean(true)},
+		// {"CCCCCc1ccccc1(NCCC)","I(An)",new Boolean(true)},
+
+		// {"CC(=O)NC1=C(C)C=CC=C1(C)","I(An)",new Boolean(true)},
+
+		// {"O=C(C)NC1=C(C)C=CC=C1(C)","I(An)",new Boolean(true)},
+		{ "CC=2C=CC=C(C)C=2(NC(=O)CN1CCCC1(=O))", "I(An)", new Boolean(true) },
+		// {"c1(C)cccc(C)c1(NC(=O)CN1CCCC1(=O))","I(An)",new Boolean(true)},
+
+		};
+		calculate(smiles);
+	}
+
+	@Test
 	public void testNitro() throws Exception {
-		 
-        Object[][] smiles = new Object[][] {
-        		
-         {"c1ccccc1[N+](=O)([O-])","I(An)",new Boolean(false)},
-         };
-        calculate(smiles);
-	}  	
-    //CC=2C=CC=C(C)C=2(NC(=O)CN1CCCC1(=O))
+
+		Object[][] smiles = new Object[][] {
+
+		{ "c1ccccc1[N+](=O)([O-])", "I(An)", new Boolean(false) }, };
+		calculate(smiles);
+	}
+	// CC=2C=CC=C(C)C=2(NC(=O)CN1CCCC1(=O))
 
 }

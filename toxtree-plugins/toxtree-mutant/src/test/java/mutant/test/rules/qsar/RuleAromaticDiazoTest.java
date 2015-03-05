@@ -62,8 +62,7 @@ public class RuleAromaticDiazoTest extends TestMutantRules {
 		expected.add("[H]N([H])C=1C([H])=C([H])C([H])=C([H])C=1([H])");
 
 		String smiles = "NC6=CC=C(N=NC1=CC=C(C=C1)C2=CC=C(C=C2)N=NC=4C(N)=C5C(O)=C(N=NC3=CC=CC=C3)C(=CC5(=CC=4S(=O)(=O)[O-]))S(=O)(=O)[O-])C(N)=C6";
-		IAtomContainer c = toxTree.query.FunctionalGroups
-				.createAtomContainer(smiles);
+		IAtomContainer c = toxTree.query.FunctionalGroups.createAtomContainer(smiles);
 		toxTree.query.MolAnalyser.analyse(c);
 		assertTrue(ruleToTest.verifyRule(c));
 		MolFlags mf = (MolFlags) c.getProperty(MolFlags.MOLFLAGS);
@@ -72,8 +71,7 @@ public class RuleAromaticDiazoTest extends TestMutantRules {
 		assertEquals(4, products.getAtomContainerCount());
 		SmilesGenerator g = SmilesGenerator.generic();
 		for (int i = 0; i < products.getAtomContainerCount(); i++) {
-			String sm = g.createSMILES((IAtomContainer) products
-					.getAtomContainer(i));
+			String sm = g.create(products.getAtomContainer(i));
 			// System.out.println(sm);
 			assertTrue(expected.indexOf(sm) > -1);
 

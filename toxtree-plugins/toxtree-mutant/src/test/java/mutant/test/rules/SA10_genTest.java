@@ -31,6 +31,7 @@ import javax.vecmath.Point2d;
 import mutant.rules.SA10_gen;
 import mutant.test.TestMutantRules;
 
+import org.junit.Test;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -73,40 +74,36 @@ public class SA10_genTest extends TestMutantRules {
 
 	}
 
+	@Test
 	public void testAromaticSubstituent() throws Exception {
 		assertFalse(applySmarts("[!a,#1][#6]([!a,#1])!:;=[#6][#6](=O)[!O]",
 				"[H]C(=O)C([H])=C([H])C1=C([H])C([H])=C([H])C([H])=C1([H])"));
 	}
 
+	@Test
 	public void testCarboxylate() throws Exception {
 		assertTrue(applySmarts("C!@;=C!@C(=O)[O]", "CC=CC(=O)O"));
 	}
 
+	@Test
 	public void testDetachSubstituentAtBetaCarbon() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.ab_unsaturated_carbonyl();
-		IAtomContainer c = FunctionalGroups
-				.createAtomContainer("CC(C)CCC=CC=O");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("CC(C)CCC=CC=O");
 		MolAnalyser.analyse(c);
 
-		IAtomContainerSet sc = ((SA10_gen) ruleToTest)
-				.detachSubstituentAtBetaCarbon(c);
+		IAtomContainerSet sc = ((SA10_gen) ruleToTest).detachSubstituentAtBetaCarbon(c);
 		assertNotNull(sc);
 		Hashtable<String, Integer> results = new Hashtable<String, Integer>();
-		results.put(
-				"[H]C([H])([H])C([H])([H])C([H])(C([H])([H])[H])C([H])([H])[H]",
-				new Integer(5));
+		results.put("[H]C([H])([H])C([H])([H])C([H])(C([H])([H])[H])C([H])([H])[H]", new Integer(5));
 		results.put("[H]C([H])=C([H])C(=O)[H]", new Integer(3));
 		if (sc != null) {
 			SmilesGenerator g = SmilesGenerator.generic();
 			for (int i = 0; i < sc.getAtomContainerCount(); i++) {
-				String s = g.createSMILES((IAtomContainer) sc
-						.getAtomContainer(i));
+				String s = g.createSMILES((IAtomContainer) sc.getAtomContainer(i));
 				// System.out.println(s);
 				assertNotNull(results.get(s));
-				IMolecularFormula formula = MolecularFormulaManipulator
-						.getMolecularFormula(sc.getAtomContainer(i));
-				int catoms = MolecularFormulaManipulator.getElementCount(
-						formula,
+				IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(sc.getAtomContainer(i));
+				int catoms = MolecularFormulaManipulator.getElementCount(formula,
 						MoleculeTools.newElement(formula.getBuilder(), "C"));
 
 				assertEquals(results.get(s), new Integer(catoms));
@@ -118,8 +115,7 @@ public class SA10_genTest extends TestMutantRules {
 	}
 
 	protected IAtomContainer create663() throws Exception {
-		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder
-				.getInstance());
+		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
 		IAtom a1 = MoleculeTools.newAtom(mol.getBuilder(), Elements.CARBON);
 		a1.setPoint2d(new Point2d(2.598076211353316, -4.440892098500626E-16));
 		mol.addAtom(a1);
@@ -207,112 +203,81 @@ public class SA10_genTest extends TestMutantRules {
 		IAtom a29 = MoleculeTools.newAtom(mol.getBuilder(), Elements.HYDROGEN);
 		a29.setPoint2d(new Point2d(-5.196152422706631, 4.500000000000001));
 		mol.addAtom(a29);
-		IBond b1 = MoleculeTools.newBond(mol.getBuilder(), a1, a2,
-				IBond.Order.DOUBLE);
+		IBond b1 = MoleculeTools.newBond(mol.getBuilder(), a1, a2, IBond.Order.DOUBLE);
 		mol.addBond(b1);
-		IBond b2 = MoleculeTools.newBond(mol.getBuilder(), a1, a3,
-				IBond.Order.SINGLE);
+		IBond b2 = MoleculeTools.newBond(mol.getBuilder(), a1, a3, IBond.Order.SINGLE);
 		mol.addBond(b2);
-		IBond b3 = MoleculeTools.newBond(mol.getBuilder(), a1, a4,
-				IBond.Order.SINGLE);
+		IBond b3 = MoleculeTools.newBond(mol.getBuilder(), a1, a4, IBond.Order.SINGLE);
 		mol.addBond(b3);
-		IBond b4 = MoleculeTools.newBond(mol.getBuilder(), a2, a5,
-				IBond.Order.SINGLE);
+		IBond b4 = MoleculeTools.newBond(mol.getBuilder(), a2, a5, IBond.Order.SINGLE);
 		mol.addBond(b4);
-		IBond b5 = MoleculeTools.newBond(mol.getBuilder(), a2, a6,
-				IBond.Order.SINGLE);
+		IBond b5 = MoleculeTools.newBond(mol.getBuilder(), a2, a6, IBond.Order.SINGLE);
 		mol.addBond(b5);
-		IBond b6 = MoleculeTools.newBond(mol.getBuilder(), a3, a7,
-				IBond.Order.DOUBLE);
+		IBond b6 = MoleculeTools.newBond(mol.getBuilder(), a3, a7, IBond.Order.DOUBLE);
 		mol.addBond(b6);
-		IBond b7 = MoleculeTools.newBond(mol.getBuilder(), a4, a8,
-				IBond.Order.SINGLE);
+		IBond b7 = MoleculeTools.newBond(mol.getBuilder(), a4, a8, IBond.Order.SINGLE);
 		mol.addBond(b7);
-		IBond b8 = MoleculeTools.newBond(mol.getBuilder(), a4, a9,
-				IBond.Order.SINGLE);
+		IBond b8 = MoleculeTools.newBond(mol.getBuilder(), a4, a9, IBond.Order.SINGLE);
 		mol.addBond(b8);
-		IBond b9 = MoleculeTools.newBond(mol.getBuilder(), a4, a10,
-				IBond.Order.SINGLE);
+		IBond b9 = MoleculeTools.newBond(mol.getBuilder(), a4, a10, IBond.Order.SINGLE);
 		mol.addBond(b9);
-		IBond b10 = MoleculeTools.newBond(mol.getBuilder(), a5, a11,
-				IBond.Order.DOUBLE);
+		IBond b10 = MoleculeTools.newBond(mol.getBuilder(), a5, a11, IBond.Order.DOUBLE);
 		mol.addBond(b10);
-		IBond b11 = MoleculeTools.newBond(mol.getBuilder(), a5, a12,
-				IBond.Order.SINGLE);
+		IBond b11 = MoleculeTools.newBond(mol.getBuilder(), a5, a12, IBond.Order.SINGLE);
 		mol.addBond(b11);
-		IBond b12 = MoleculeTools.newBond(mol.getBuilder(), a7, a11,
-				IBond.Order.SINGLE);
+		IBond b12 = MoleculeTools.newBond(mol.getBuilder(), a7, a11, IBond.Order.SINGLE);
 		mol.addBond(b12);
-		IBond b13 = MoleculeTools.newBond(mol.getBuilder(), a7, a13,
-				IBond.Order.SINGLE);
+		IBond b13 = MoleculeTools.newBond(mol.getBuilder(), a7, a13, IBond.Order.SINGLE);
 		mol.addBond(b13);
-		IBond b14 = MoleculeTools.newBond(mol.getBuilder(), a11, a14,
-				IBond.Order.SINGLE);
+		IBond b14 = MoleculeTools.newBond(mol.getBuilder(), a11, a14, IBond.Order.SINGLE);
 		mol.addBond(b14);
-		IBond b15 = MoleculeTools.newBond(mol.getBuilder(), a15, a13,
-				IBond.Order.SINGLE);
+		IBond b15 = MoleculeTools.newBond(mol.getBuilder(), a15, a13, IBond.Order.SINGLE);
 		mol.addBond(b15);
-		IBond b16 = MoleculeTools.newBond(mol.getBuilder(), a13, a16,
-				IBond.Order.SINGLE);
+		IBond b16 = MoleculeTools.newBond(mol.getBuilder(), a13, a16, IBond.Order.SINGLE);
 		mol.addBond(b16);
-		IBond b17 = MoleculeTools.newBond(mol.getBuilder(), a14, a17,
-				IBond.Order.SINGLE);
+		IBond b17 = MoleculeTools.newBond(mol.getBuilder(), a14, a17, IBond.Order.SINGLE);
 		mol.addBond(b17);
-		IBond b18 = MoleculeTools.newBond(mol.getBuilder(), a14, a18,
-				IBond.Order.DOUBLE);
+		IBond b18 = MoleculeTools.newBond(mol.getBuilder(), a14, a18, IBond.Order.DOUBLE);
 		mol.addBond(b18);
-		IBond b19 = MoleculeTools.newBond(mol.getBuilder(), a17, a15,
-				IBond.Order.DOUBLE);
+		IBond b19 = MoleculeTools.newBond(mol.getBuilder(), a17, a15, IBond.Order.DOUBLE);
 		mol.addBond(b19);
-		IBond b20 = MoleculeTools.newBond(mol.getBuilder(), a15, a19,
-				IBond.Order.SINGLE);
+		IBond b20 = MoleculeTools.newBond(mol.getBuilder(), a15, a19, IBond.Order.SINGLE);
 		mol.addBond(b20);
-		IBond b21 = MoleculeTools.newBond(mol.getBuilder(), a16, a20,
-				IBond.Order.SINGLE);
+		IBond b21 = MoleculeTools.newBond(mol.getBuilder(), a16, a20, IBond.Order.SINGLE);
 		mol.addBond(b21);
-		IBond b22 = MoleculeTools.newBond(mol.getBuilder(), a16, a21,
-				IBond.Order.SINGLE);
+		IBond b22 = MoleculeTools.newBond(mol.getBuilder(), a16, a21, IBond.Order.SINGLE);
 		mol.addBond(b22);
-		IBond b23 = MoleculeTools.newBond(mol.getBuilder(), a16, a22,
-				IBond.Order.SINGLE);
+		IBond b23 = MoleculeTools.newBond(mol.getBuilder(), a16, a22, IBond.Order.SINGLE);
 		mol.addBond(b23);
-		IBond b24 = MoleculeTools.newBond(mol.getBuilder(), a17, a23,
-				IBond.Order.SINGLE);
+		IBond b24 = MoleculeTools.newBond(mol.getBuilder(), a17, a23, IBond.Order.SINGLE);
 		mol.addBond(b24);
-		IBond b25 = MoleculeTools.newBond(mol.getBuilder(), a20, a24,
-				IBond.Order.SINGLE);
+		IBond b25 = MoleculeTools.newBond(mol.getBuilder(), a20, a24, IBond.Order.SINGLE);
 		mol.addBond(b25);
-		IBond b26 = MoleculeTools.newBond(mol.getBuilder(), a20, a25,
-				IBond.Order.SINGLE);
+		IBond b26 = MoleculeTools.newBond(mol.getBuilder(), a20, a25, IBond.Order.SINGLE);
 		mol.addBond(b26);
-		IBond b27 = MoleculeTools.newBond(mol.getBuilder(), a20, a26,
-				IBond.Order.SINGLE);
+		IBond b27 = MoleculeTools.newBond(mol.getBuilder(), a20, a26, IBond.Order.SINGLE);
 		mol.addBond(b27);
-		IBond b28 = MoleculeTools.newBond(mol.getBuilder(), a23, a27,
-				IBond.Order.SINGLE);
+		IBond b28 = MoleculeTools.newBond(mol.getBuilder(), a23, a27, IBond.Order.SINGLE);
 		mol.addBond(b28);
-		IBond b29 = MoleculeTools.newBond(mol.getBuilder(), a23, a28,
-				IBond.Order.DOUBLE);
+		IBond b29 = MoleculeTools.newBond(mol.getBuilder(), a23, a28, IBond.Order.DOUBLE);
 		mol.addBond(b29);
-		IBond b30 = MoleculeTools.newBond(mol.getBuilder(), a27, a29,
-				IBond.Order.SINGLE);
+		IBond b30 = MoleculeTools.newBond(mol.getBuilder(), a27, a29, IBond.Order.SINGLE);
 		mol.addBond(b30);
 		return mol;
 	}
 
+	@Test
 	public void testException() throws Exception {
-		SmilesParser sp = new SmilesParser(
-				SilentChemObjectBuilder.getInstance());
+		SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		IAtomContainer ac = sp.parseSmiles("CCCC(=O)C=C"); // "OC(=O)C=C");
-		CDKHydrogenAdder h = CDKHydrogenAdder
-				.getInstance(SilentChemObjectBuilder.getInstance());
+		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
+		CDKHydrogenAdder h = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
 		h.addImplicitHydrogens(ac);
 		AtomContainerManipulator.convertImplicitToExplicitHydrogens(ac);
 		/**
 		 * This runs fine
 		 */
-		SMARTSQueryTool sqt1 = new SMARTSQueryTool("[#6]=[#6][#6](=O)[!O]",
-				SilentChemObjectBuilder.getInstance());
+		SMARTSQueryTool sqt1 = new SMARTSQueryTool("[#6]=[#6][#6](=O)[!O]", SilentChemObjectBuilder.getInstance());
 		assertTrue(sqt1.matches(ac));
 
 		/**
@@ -334,17 +299,14 @@ public class SA10_genTest extends TestMutantRules {
 		 * .cdk.smiles.smarts.SMARTSQueryTool.matches(SMARTSQueryTool.java:158)
 		 */
 
-		SMARTSQueryTool sqt2 = new SMARTSQueryTool("[#6]!:;=[#6][#6](=O)[!O]",
-				SilentChemObjectBuilder.getInstance());
+		SMARTSQueryTool sqt2 = new SMARTSQueryTool("[#6]!:;=[#6][#6](=O)[!O]", SilentChemObjectBuilder.getInstance());
 		assertTrue(sqt2.matches(ac));
 
-		SMARTSQueryTool sqt3 = new SMARTSQueryTool(
-				"[N;$([N!X4])]!@;-[N;$([N!X4])]",
+		SMARTSQueryTool sqt3 = new SMARTSQueryTool("[N;$([N!X4])]!@;-[N;$([N!X4])]",
 				SilentChemObjectBuilder.getInstance());
 		assertFalse(sqt3.matches(ac));
 
-		SMARTSQueryTool sqt4 = new SMARTSQueryTool("[N]=[N]-,=[N]",
-				SilentChemObjectBuilder.getInstance());
+		SMARTSQueryTool sqt4 = new SMARTSQueryTool("[N]=[N]-,=[N]", SilentChemObjectBuilder.getInstance());
 		assertFalse(sqt4.matches(ac));
 
 		/**

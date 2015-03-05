@@ -31,8 +31,10 @@ import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
@@ -46,14 +48,13 @@ import toxTree.query.MolAnalyser;
 import ambit2.core.io.DelimitedFileWriter;
 import ambit2.core.io.IteratingDelimitedFileReader;
 
-public abstract class DescriptorsTest extends TestCase {
+public abstract class DescriptorsTest  {
 	protected IMolecularDescriptor descriptor;
 
 	protected Hashtable<String, String> properties;
 
-	@Override
+	@Before
 	protected void setUp() throws Exception {
-		super.setUp();
 		descriptor = createDescriptorToTest();
 		properties = new Hashtable<String, String>();
 	}
@@ -61,7 +62,7 @@ public abstract class DescriptorsTest extends TestCase {
 	protected void addPropertiesToTest(String expected, String calculated) {
 		properties.put(expected, calculated);
 	}
-
+	@Test
 	public void test() throws Exception {
 		calculate(descriptor, getSourceFile(), getResultsFile(), getStructureID());
 	}
@@ -116,10 +117,10 @@ public abstract class DescriptorsTest extends TestCase {
 
 						Object expectedValue = mol.getProperty(expString);
 						Number expNumber = Double.parseDouble(expectedValue.toString());
-						assertNotNull(expNumber);
+						Assert.assertNotNull(expNumber);
 
 						Object calcValue = mol.getProperty(calcString);
-						assertNotNull(calcValue);
+						Assert.assertNotNull(calcValue);
 
 						ok = ok && expNumber.equals(calcValue);
 						if (!ok)
@@ -142,7 +143,7 @@ public abstract class DescriptorsTest extends TestCase {
 		}
 		in_source.close();
 		out_results.close();
-		assertEquals(0, errors);
+		Assert.assertEquals(0, errors);
 	}
 
 	protected abstract IMolecularDescriptor createDescriptorToTest() throws Exception;
@@ -202,7 +203,7 @@ public abstract class DescriptorsTest extends TestCase {
 					ok = ok && (smiles[i][j + 1].equals(o));
 
 				}
-				assertTrue(ok);
+				Assert.assertTrue(ok);
 			} else if (r instanceof BooleanResult) {
 
 				for (int j = 0; j < value.getNames().length; j++) {
@@ -222,7 +223,7 @@ public abstract class DescriptorsTest extends TestCase {
 					ok = ok && (smiles[i][j + 1].equals(o));
 
 				}
-				assertTrue(ok);
+				Assert.assertTrue(ok);
 			} else if (r instanceof IntegerResult) {
 
 				for (int j = 0; j < value.getNames().length; j++) {
@@ -242,7 +243,7 @@ public abstract class DescriptorsTest extends TestCase {
 					ok = ok && (smiles[i][j + 1].equals(o));
 
 				}
-				assertTrue(ok);
+				Assert.assertTrue(ok);
 			}
 		}
 	}

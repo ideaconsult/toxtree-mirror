@@ -7,6 +7,7 @@ import junit.framework.Assert;
 import mutant.rules.RuleDerivedAromaticAmines;
 import mutant.test.TestMutantRules;
 
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -33,6 +34,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 		return "DerivedAmines";
 	}
 
+	@Test
 	public void testDerivedAmine1() {
 		try {
 			// IAtomContainer c =
@@ -65,8 +67,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 			 * );
 			 */
 			for (int i = 0; i < sc.getAtomContainerCount(); i++) {
-				String s = g.createSMILES((IAtomContainer) sc
-						.getAtomContainer(i));
+				String s = g.createSMILES((IAtomContainer) sc.getAtomContainer(i));
 				System.out.println("result " + s);
 				assertTrue(results.indexOf(s) > -1);
 			}
@@ -77,6 +78,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 		}
 	}
 
+	@Test
 	public void testDerivedAmine() throws Exception {
 
 		IAtomContainer c = FunctionalGroups
@@ -90,8 +92,8 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 
 		MolAnalyser.analyse(c);
 
-		IAtomContainerSet sc = ((RuleDerivedAromaticAmines) ruleToTest)
-				.detachSubstituent(RuleDerivedAromaticAmines.group1(), c);
+		IAtomContainerSet sc = ((RuleDerivedAromaticAmines) ruleToTest).detachSubstituent(
+				RuleDerivedAromaticAmines.group1(), c);
 		assertNotNull(sc);
 		Hashtable<String, Integer> results = new Hashtable<String, Integer>();
 		results.put(
@@ -101,8 +103,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 		if (sc != null) {
 			SmilesGenerator g = SmilesGenerator.generic();
 			for (int i = 0; i < sc.getAtomContainerCount(); i++) {
-				String s = g.createSMILES((IAtomContainer) sc
-						.getAtomContainer(i));
+				String s = g.create(sc.getAtomContainer(i));
 				System.out.println(s);
 				// assertNotNull(results.get(s));
 				// MFAnalyser mf = new MFAnalyser(sc.getAtomContainer(i));
