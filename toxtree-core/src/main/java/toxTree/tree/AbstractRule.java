@@ -66,8 +66,7 @@ import ambit2.core.helper.CDKHueckelAromaticityDetector;
  * @author Nina Jeliazkova <br>
  * @version 0.1, 2005-5-2
  */
-public abstract class AbstractRule extends Observable implements IDecisionRule,
-		XMLSerializable {
+public abstract class AbstractRule extends Observable implements IDecisionRule, XMLSerializable {
 
 	/**
      * 
@@ -76,8 +75,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule,
 	public static transient String ERR_STRUCTURENOTPREPROCESSED = "Structure should be preprocessed!";
 	public static transient String MSG_YES = "YES";
 	public static transient String MSG_NO = "NO";
-	protected static transient Logger logger = Logger
-			.getLogger(AbstractRule.class.getName());
+	protected static transient Logger logger = Logger.getLogger(AbstractRule.class.getName());
 	protected transient PropertyChangeSupport changes = null;
 	protected String title = "";
 	protected StringBuffer explanation = new StringBuffer();
@@ -190,8 +188,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule,
 		return b.toString();
 	}
 
-	public static IDecisionRule createRule(String className)
-			throws DecisionMethodException {
+	public static IDecisionRule createRule(String className) throws DecisionMethodException {
 		/*
 		 * IDecisionRule object = null; try { Class classDefinition =
 		 * Class.forName(className); object = (IDecisionRule)
@@ -201,8 +198,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule,
 		try {
 			Object object = Introspection.loadCreateObject(className);
 			if (object == null)
-				throw new DecisionMethodException("Error creating rule\t"
-						+ className);
+				throw new DecisionMethodException("Error creating rule\t" + className);
 			else
 				return (IDecisionRule) object;
 		} catch (Exception x) {
@@ -217,14 +213,11 @@ public abstract class AbstractRule extends Observable implements IDecisionRule,
 	 * @param yes
 	 * @return {@link org.openscience.cdk.interfaces.Molecule}
 	 */
-	public static IAtomContainer makeMolecule(boolean yes)
-			throws DecisionMethodException {
+	public static IAtomContainer makeMolecule(boolean yes) throws DecisionMethodException {
 		if (yes)
-			throw new DecisionMethodException(
-					"This rules has no 'YES' example molecule defined!");
+			throw new DecisionMethodException("This rules has no 'YES' example molecule defined!");
 		else
-			throw new DecisionMethodException(
-					"This rules has no 'NO' example molecule defined!");
+			throw new DecisionMethodException("This rules has no 'NO' example molecule defined!");
 	}
 
 	public void setExampleMolecule(IAtomContainer mol, boolean ruleResult) {
@@ -246,10 +239,8 @@ public abstract class AbstractRule extends Observable implements IDecisionRule,
 		 */
 	}
 
-	public IAtomContainer getExampleMolecule(boolean ruleResult)
-			throws DecisionMethodException {
-		SmilesParser sp = new SmilesParser(
-				SilentChemObjectBuilder.getInstance());
+	public IAtomContainer getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
+		SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		int index;
 		if (ruleResult)
 			index = 1;
@@ -304,8 +295,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule,
 		if (!(obj instanceof IDecisionRule))
 			return false;
 		IDecisionRule r = (IDecisionRule) obj;
-		return (r.getID().equals(id)) && (getTitle().equals(r.getTitle()))
-				&& (explanation.equals(explanation));
+		return (r.getID().equals(id)) && (getTitle().equals(r.getTitle())) && (explanation.equals(explanation));
 	}
 
 	public void clearFlags(IAtomContainer mol) {
@@ -349,8 +339,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule,
 
 	@Override
 	public Object clone() throws CloneNotSupportedException {
-		IDecisionRule obj = (IDecisionRule) Introspection
-				.createObject(getClass().getName());
+		IDecisionRule obj = (IDecisionRule) Introspection.createObject(getClass().getName());
 		obj.setTitle(title);
 		// obj.setNum(no);
 		obj.setID(id);
@@ -372,8 +361,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule,
 
 	}
 
-	public Element toShallowXML(Document document)
-			throws XMLDecisionMethodException {
+	public Element toShallowXML(Document document) throws XMLDecisionMethodException {
 		Element m = document.createElement(xmltag_RULE);
 		m.setAttribute(xmltag_CLASS, getClass().getName());
 		return m;
@@ -383,8 +371,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule,
 		Element e = document.createElement(XMLSerializable.xmltag_RULE);
 		e.setAttribute(xmltag_NAME, getTitle());
 		e.setAttribute(xmltag_ID, getID());
-		Element explanation = document
-				.createElement(XMLSerializable.xmltag_EXPLANATION);
+		Element explanation = document.createElement(XMLSerializable.xmltag_EXPLANATION);
 		explanation.setTextContent(getExplanation());
 		e.appendChild(explanation);
 		return e;

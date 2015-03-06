@@ -177,7 +177,6 @@ public class AmesMutagenicityDataTest {
 		// writeCompounds(compoundsClass,f);
 		f.close();
 	}
-	@Test
 	public void testCSVFile(String[][] molecules) throws Exception {
 		String filename = "toxTree/test/tree/sicret/BfR_irritation.csv";
 		System.out.println("Testing: " + filename);
@@ -252,7 +251,7 @@ public class AmesMutagenicityDataTest {
 		System.out.println("MolCount: " + molCount);
 		// assertEquals(88, molCount);
 	}
-	@Test
+
 	public void testCSVFile1(String[][] molecules) throws Exception {
 		String filename = "toxTree/test/tree/sicret/BfR_corrosion.csv";
 		System.out.println("Testing: " + filename);

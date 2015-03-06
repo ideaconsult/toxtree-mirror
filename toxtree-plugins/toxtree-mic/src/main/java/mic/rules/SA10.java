@@ -54,7 +54,7 @@ public class SA10 extends StructureAlertCDK {
 	protected static String AB_UNSATURATED_CARBONYLS = "\u03B1,\u03B2 unsaturated carbonyls";
 	protected static String AB_UNSATURATED_CARBONYLS_SMARTS = "[!a,#1;!$(C1(=O)C=CC(=O)C=C1)][#6]([!a,#1;!$(C1(=O)C=CC(=O)C=C1)])!:;=[#6][#6](=O)[!O;!$([#6]1:,=[#6][#6](=O)[#6]:,=[#6][#6](=O)1)]";
     //protected static String AB_UNSATURATED_CARBONYLS_SMARTS = "[!a,#1;!$(C1(=O)C=CC(=O)C=C1)][#6]([!a,#1;!$(C1(=O)C=CC(=O)C=C1)])!:;=[#6][#6](=O)[!O;!$(C1=CC(=O)C=CC(=O)1)]";
-	protected QueryAtomContainer query = FunctionalGroups.ab_unsaturated_carbonyl();
+	protected transient QueryAtomContainer query = FunctionalGroups.ab_unsaturated_carbonyl();
 	public SA10() throws SMARTSException {
 			setContainsAllSubstructures(true);
 			addSubstructure(AB_UNSATURATED_CARBONYLS, AB_UNSATURATED_CARBONYLS_SMARTS); //now aldehydes are included

@@ -431,5 +431,6 @@ public abstract class TestAmesMutagenicityRules extends TestCase {
 				.getImplementationDetails());
 		assertEquals(ruleToTest, rule2);
 	}
+	
 
 }

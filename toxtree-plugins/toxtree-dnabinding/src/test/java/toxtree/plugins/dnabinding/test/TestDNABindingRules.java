@@ -36,8 +36,10 @@ import java.util.Iterator;
 import java.util.logging.Logger;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.atomtype.CDKAtomTypeMatcher;
 import org.openscience.cdk.exception.CDKException;
@@ -62,7 +64,7 @@ import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.io.MDLWriter;
 import ambit2.smarts.query.ISmartsPattern;
 
-public abstract class TestDNABindingRules extends TestCase {
+public abstract class TestDNABindingRules {
 	protected static Logger logger = Logger.getLogger(TestDNABindingRules.class
 			.getName());
 	protected IDecisionRule ruleToTest = null;
@@ -71,20 +73,18 @@ public abstract class TestDNABindingRules extends TestCase {
 
 	public abstract String getResultsFolder();
 
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
 		ruleToTest = createRuleToTest();
 	}
 
-	@Override
+	@After
 	protected void tearDown() throws Exception {
 		ruleToTest = null;
-		super.tearDown();
 	}
 
 	protected abstract IDecisionRule createRuleToTest() throws Exception;
-
+	
 	protected String getTestFileName() {
 		return "iss2_rid.sdf";
 	}
@@ -125,8 +125,8 @@ public abstract class TestDNABindingRules extends TestCase {
 			InputStream results, String compoundID, String resultsFolder)
 			throws Exception {
 
-		assertNotNull(source);
-		assertNotNull(results);
+		Assert.assertNotNull(source);
+		Assert.assertNotNull(results);
 
 		IChemObjectBuilder b = SilentChemObjectBuilder.getInstance();
 
@@ -191,7 +191,7 @@ public abstract class TestDNABindingRules extends TestCase {
 		writerMissed.close();
 
 		resultsReader.close();
-		assertTrue(resultsID.size() > 0);
+		Assert.assertTrue(resultsID.size() > 0);
 
 		if (missedResults.size() > 0) {
 			System.out.print("Rule\t" + rule);
@@ -263,11 +263,11 @@ public abstract class TestDNABindingRules extends TestCase {
 		} else
 			f.delete();
 
-		assertEquals(0, missedhits.size());
-		assertEquals(0, wronghits.size());
+		Assert.assertEquals(0, missedhits.size());
+		Assert.assertEquals(0, wronghits.size());
 
 	}
-
+	@Test
 	public void test() throws Exception {
 		applyRule(ruleToTest, getHitsFile(), getResultsFolder());
 	}
@@ -319,13 +319,13 @@ public abstract class TestDNABindingRules extends TestCase {
 		} catch (Exception x) {
 			throw new DecisionMethodException(x);
 		}
-		assertEquals(answer, ruleToTest.verifyRule(m));
+		Assert.assertEquals(answer, ruleToTest.verifyRule(m));
 	}
-
+	@Test
 	public void testExampleNo() throws DecisionMethodException {
 		verifyExample(false);
 	}
-
+	@Test
 	public void testExampleYes() throws DecisionMethodException {
 		verifyExample(true);
 	}
@@ -370,7 +370,7 @@ public abstract class TestDNABindingRules extends TestCase {
 		while (atoms.hasNext()) {
 			IAtom atom = atoms.next();
 			IAtomType type = matcher.findMatchingAtomType(container, atom);
-			assertNotNull(type);
+			Assert.assertNotNull(type);
 			AtomTypeManipulator.configure(atom, type);
 		}
 	}
@@ -395,7 +395,7 @@ public abstract class TestDNABindingRules extends TestCase {
 			return new int[] { 0, 0 };
 		}
 	}
-
+	@Test
 	public void testRuleRoundTrip() throws Exception {
 		// writing
 		File f = File.createTempFile("rule" + ruleToTest.getNum(), "test");
@@ -415,7 +415,7 @@ public abstract class TestDNABindingRules extends TestCase {
 		System.out.println("new");
 		System.out.println(((IImplementationDetails) rule2)
 				.getImplementationDetails());
-		assertEquals(ruleToTest, rule2);
+		Assert.assertEquals(ruleToTest, rule2);
 	}
 
 }

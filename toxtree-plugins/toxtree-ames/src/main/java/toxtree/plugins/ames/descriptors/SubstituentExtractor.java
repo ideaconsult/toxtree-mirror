@@ -50,7 +50,7 @@ public class SubstituentExtractor {
 	// protected static String _RING="RING";
 	protected static Boolean yes = new Boolean(true);
 	protected static String atom_C = "C";
-	protected QueryAtomContainer ringQuery;
+	protected transient QueryAtomContainer ringQuery;
 
 	protected static Logger logger = Logger
 			.getLogger(SubstituentExtractor.class.getName());

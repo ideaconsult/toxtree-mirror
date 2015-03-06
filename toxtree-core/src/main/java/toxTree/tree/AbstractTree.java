@@ -644,6 +644,7 @@ public abstract class AbstractTree extends Observable implements
 					if (a == null)
 						continue;
 				} catch (Exception x) {
+					logger.log(Level.WARNING, x.getMessage(), x);
 					continue;
 				}
 				IChemObjectSelection hit = rule.getSelector().process(a);
