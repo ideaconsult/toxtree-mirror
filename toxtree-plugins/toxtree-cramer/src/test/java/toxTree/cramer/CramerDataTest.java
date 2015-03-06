@@ -230,12 +230,8 @@ public class CramerDataTest {
 					"1N,2N,3N,5N,6N,7Y,8N,10N,11Y,33N" },
 			{ "C[Hg+].[Cl-]", "3", "MMC", "1N,2N,3Y,4N" }, };
 
-	/**
-	 * Constructor for CramerDataTest.
-	 * 
-	 * @param arg0
-	 */
-	public CramerDataTest(String arg0) throws Exception {
+
+	public CramerDataTest() throws Exception {
 		super();
 		cr = new CramerRules();
 		cr.setResiduesIDVisible(false);
