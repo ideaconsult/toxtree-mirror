@@ -234,6 +234,7 @@ public class SMARTCypRulesTest extends RulesTestCase {
 				SilentChemObjectBuilder.getInstance());
 
 		IAtomContainer mol = parser.parseSmiles(smiles);
+		MolAnalyser.analyse(mol);
 		int aromaticAtoms = 0;
 		int doubleBonds = 0;
 		for (IAtom atom : mol.atoms()) {
@@ -249,28 +250,9 @@ public class SMARTCypRulesTest extends RulesTestCase {
 			}
 			}
 		}
-		Assert.assertEquals(3, doubleBonds);
+		Assert.assertEquals(7, doubleBonds);
 		Assert.assertEquals(9, aromaticAtoms);
-		// kekulise
-		AtomContainerManipulator
-				.percieveAtomTypesAndConfigureUnsetProperties(mol);
-		mol = fbt.kekuliseAromaticRings(mol);
-		aromaticAtoms = 0;
-		doubleBonds = 0;
-		for (IAtom atom : mol.atoms())
-			if (atom.getFlag(CDKConstants.ISAROMATIC))
-				aromaticAtoms++;
-		for (IBond bond : mol.bonds()) {
-			switch (bond.getOrder()) {
-			case DOUBLE: {
-				doubleBonds++;
-				break;
-			}
-			}
-		}
-
-		System.out.println(doubleBonds);
-		Assert.assertTrue(doubleBonds > 6);
+		
 
 	}
 }
