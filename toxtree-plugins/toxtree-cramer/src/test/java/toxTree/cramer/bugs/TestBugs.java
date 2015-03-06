@@ -43,7 +43,10 @@ public class TestBugs extends AbstractTreeTest {
 		Assert.assertEquals("1Y",explanation);
 		
 	}
-
+	/**
+	 * http://sourceforge.net/p/toxtree/bugs/62/
+	 * @throws Exception
+	 */
 	@Test
 	public void test3492853() throws Exception {
 		IDecisionResult	result = classify("N=C(N)NCCCC(N)C(=O)O");
@@ -64,4 +67,22 @@ public class TestBugs extends AbstractTreeTest {
 		
 		
 	}	
+	/**
+	 * /http://sourceforge.net/p/toxtree/bugs/79/
+	 */ 
+	@Test
+	public void test79() throws Exception {
+		//Erucamide 
+		IDecisionResult result = classify("O=C(N)CCCCCCCCCCCC=CCCCCCCCC");
+		Assert.assertEquals(1,result.getCategory().getID());
+		String explanation = cr.explainRules(result,false).toString();
+		//Assert.assertEquals("1N,2N,3N,5N,6N,7N,16N,17N,19Y,20N,22N,33N",explanation);
+		//Oleamide 
+		result = classify("O=C(N)CCCCCCCC=CCCCCCCCC");
+		Assert.assertEquals(1,result.getCategory().getID());
+		explanation = cr.explainRules(result,false).toString();
+		//Assert.assertEquals("1N,2N,3N,5N,6N,7N,16N,17N,19Y,20N,22N,33N",explanation);
+
+		
+	}
 }
