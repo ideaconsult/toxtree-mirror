@@ -44,6 +44,8 @@ import org.openscience.cdk.interfaces.IChemModel;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.cdk.tools.CDKHydrogenAdder;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.exceptions.DecisionMethodException;
@@ -181,8 +183,14 @@ public abstract class DataModule extends Observable implements Serializable, Obs
 					    }
 
                         getDataContainer().setEnabled(true);
-                        SmilesGenerator g = new SmilesGenerator(true);
-                        updatedMolecule.setProperty("SMILES",g.createSMILES(updatedMolecule));
+                        SmilesGenerator g = SmilesGenerator.generic();
+                        try {
+                        	AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(updatedMolecule);
+                        	CDKHydrogenAdder.getInstance(builder4toxtree).addImplicitHydrogens(updatedMolecule);
+                        	updatedMolecule.setProperty("SMILES",g.create(updatedMolecule));
+                        } catch (Exception x) {
+                        	x.printStackTrace();
+                        }
                                                 
                         getDataContainer().setMolecule(updatedMolecule);
                         getActions().allActionsEnable(true);
