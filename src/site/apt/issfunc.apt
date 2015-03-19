@@ -6,7 +6,7 @@ Structural Alerts for Functional Group Identification (ISSFUNC)
  2013/03/31
  -----
  
-Structural Alerts for Functional Group Identification (ISSFUNC)
+Toxtree Module: Structural Alerts for Functional Group Identification (ISSFUNC)
 
  Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups.
  
@@ -24,7 +24,7 @@ Structural Alerts for Functional Group Identification (ISSFUNC)
 	
 * Reference
 
- [EUR 24871 EN -2011] {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_24871_EN.pdf} Benigni R., Olga Tcheremenskaia O.,and A. Worth, Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups - a New Toxtree Rulebase}}
+ [EUR 24871 EN -2011] {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/doc/EUR_24871_EN.pdf} Benigni R., Olga Tcheremenskaia O.,and A. Worth, Computational Characterisation of Chemicals and Datasets in Terms of Organic Functional Groups - a New Toxtree Rulebase}}
   
 * For developers
   

@@ -7,7 +7,7 @@
  -----
  
  
-Verhaar scheme for predicting toxicity mode of action (modified)
+Toxtree Module: Verhaar scheme for predicting toxicity mode of action (modified)
 
  Verhaar scheme for predicting toxicity mode of action (modified). Reuses rules from {{{/verhaar.html}Verhaar scheme module}}, and is partially updated, according to recommendations in [Enoch 2008]
  

@@ -10,6 +10,11 @@ Support
 	   
 	   Tell us how do you use ToxTree. Your feedback is crucial!
 	   
+* Frequently asked questions
+
+	   	* {{{./faq.html} FAQ}}
+	   
+	   
 * Online support (your comments and bug reports will be publicly accessible)
 	   
 	   	* {{{http://sourceforge.net/forum/forum.php?forum_id=510090} Post a comment}}
@@ -25,7 +30,7 @@ Support
 * Targeted users support
 	   	
 	   	* {{{mailto:jeliazkova.nina@gmail.com?cc=ecb.qsar@jrc.it&amp;subject=Feedback%20on%20Toxtree}Send a request or report an issue}} to {{{http://vedina.users.sourceforge.net}Nina Jeliazkova}} ({{{www.ideaconsult.net}Ideaconsult Ltd.}}) 
-	   	with copy to the {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}Computational Toxicology Group}} at EC Joint Research Centre
+	   	with copy to the {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/qsar_tools/toxtree}Computational Toxicology Group}} at EC Joint Research Centre
 
 		* contact {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}
 			   	

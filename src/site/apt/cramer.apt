@@ -7,13 +7,14 @@
  -----
 
 
-Cramer rules
+Toxtree Module: Cramer rules
 
   Cramer rules (Cramer G. M., R.  A. Ford, R. L. Hall, Estimation of  Toxic Hazard - A  Decision Tree Approach,  J. Cosmet. Toxicol.,  Vol.16,  pp. 255-276, Pergamon  Press, 1978);
     
-  Developed by {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria) for {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}EC Joint Research Centre, Computational Toxicology}}
+  Developed by {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria) for {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/qsar_tools/toxtree}EC Joint Research Centre, Computational Toxicology}}
   
-  Screenshots: {{{./images/cramer/screen.jpg}Main screen}} , {{{./images/cramer/tree.jpg}Decision tree}}
+  Screenshots: {{{./images/cramer/screen.jpg}Main screen}} , {{{./images/cramer/tree.jpg}Decision tree}}, {{{http://toxtree.sourceforge.net/toxtree-plugins/toxtree-cramer/report/}Decision tree visualisation}}
+  
    
 [images/cramer/thumb.jpg]
 
@@ -66,3 +67,4 @@ Cramer rules
         <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
     </repository>
 +--------------------------------- 
+
