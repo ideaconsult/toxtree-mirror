@@ -7,13 +7,13 @@
  -----
  
  
-In vitro mutagenicity (Ames test) alerts by ISS 
+Toxtree Module: In vitro mutagenicity (Ames test) alerts by ISS 
 
  A decision tree for estimating in vitro mutagenicity (Ames test).
  
  Available since {{{./previous.html#Toxtree-2.6.0}ToxTree 2.6.0}}
  
- Developed by {{{http://www.iss.it}Istituto Superiore di Sanita}} for {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}JRC IHCP Computational Toxicology and Modelling}} and {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria)
+ Developed by {{{http://www.iss.it}Istituto Superiore di Sanita}} for {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/qsar_tools/toxtree}JRC IHCP Computational Toxicology and Modelling}} and {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria)
    
  Screenshots: {{{./images/ames/screen.jpg}Main screen}}
    

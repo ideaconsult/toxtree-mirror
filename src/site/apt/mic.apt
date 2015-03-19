@@ -6,7 +6,7 @@ Structure Alerts for the in vivo micronucleus assay in rodents
  2013/03/31
  -----
  
-Structure Alerts for the in vivo micronucleus assay in rodents
+Toxtree Module: Structure Alerts for the in vivo micronucleus assay in rodents
 
  Structure Alerts for the in vivo micronucleus assay in rodents, based  on the rules, published in the document "Development of structural alerts  for the in vivo  micronucleus assay in  rodents", by Romualdo  Benigni, Cecilia Bossa, Olga Tcheremenskaia and Andrew Worth, European Commission report EUR 23844 EN
  
@@ -28,7 +28,7 @@ Structure Alerts for the in vivo micronucleus assay in rodents
  
  {{{http://ecb.jrc.ec.europa.eu/DOCUMENTS/QSAR/QSAR_TOOLS/Toxtree_ToxMic_manual.pdf}Installation and user manual}}	
  
- [EUR 23844 EN-2009] {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_23844_EN.pdf}JRC report on ToxMic rulebase}}
+ [EUR 23844 EN-2009] {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/doc/EUR_23844_EN.pdf}JRC report on ToxMic rulebase}}
  
 * Forum
 

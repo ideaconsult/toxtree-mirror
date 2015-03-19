@@ -9,13 +9,13 @@
  
 Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity). 
 
- A decision tree for estimating carcinogenicity and mutagenicity by discriminant analysis and structural rules, based on published in  the document {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_23241_EN.pdf}[Benigni 2008]}};
+ A decision tree for estimating carcinogenicity and mutagenicity by discriminant analysis and structural rules, based on published in  the document {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/doc/EUR_23241_EN.pdf}[Benigni 2008]}};
  
  Available since {{{./previous.html#Toxtree-1.30}ToxTree 1.30}}. 
  
  The structure alerts have been updated since {{{.#Toxtree-2.60}ToxTree 2.60}}, according to [Benigni 2013]. 
  
- Developed by by {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria) and {{{http://www.iss.it}Istituto Superiore di Sanita}} for {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree}JRC IHCP Computational Toxicology and Modelling}}
+ Developed by by {{{http://www.ideaconsult.net}IdeaConsult Ltd.}}, (Sofia, Bulgaria) and {{{http://www.iss.it}Istituto Superiore di Sanita}} for {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/qsar_tools/toxtree}JRC IHCP Computational Toxicology and Modelling}}
    
  Screenshots: {{{./images/mutant/screen.jpg}Main screen}} , {{{./images/mutant/tree.jpg}Decision tree}}
    
@@ -25,9 +25,9 @@ Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity).
 
  [Benigni 2007] R. Benigni, C. Bossa, T. Netzeva, A. Rodomonte, and I. Tsakovska (2007) Mechanistic QSAR of aromatic amines: new models for discriminating between mutagens and nonmutagens, and validation of models for carcinogens. Environ mol mutag 48:754-771 
 
- [Benigni 2008] R. Benigni,  C. Bossa, N. Jeliazkova, T. Netzeva, and A. Worth. The Benigni / Bossa rulebase for mutagenicity and carcinogenicity - a module of Toxtree {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/EUR_23241_EN.pdf}(European Commission report EUR 23241)}}
+ [Benigni 2008] R. Benigni,  C. Bossa, N. Jeliazkova, T. Netzeva, and A. Worth. The Benigni / Bossa rulebase for mutagenicity and carcinogenicity - a module of Toxtree {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/doc/EUR_23241_EN.pdf}(European Commission report EUR 23241)}}
 
- [Benigni 2013]	Benigni, R., Bossa, C., & Tcheremenskaia, O. (2013). Nongenotoxic carcinogenicity of chemicals: mechanisms of action and early recognition through a new set of structural alerts. Chemical Reviews, 113(5), 2940–57. {{{http://pubs.acs.org/doi/abs/10.1021/cr300206t}doi:10.1021/cr300206t}}
+ [Benigni 2013]	Benigni, R., Bossa, C., & Tcheremenskaia, O. (2013). Nongenotoxic carcinogenicity of chemicals: mechanisms of action and early recognition through a new set of structural alerts. Chemical Reviews, 113(5), 2940ï¿½57. {{{http://pubs.acs.org/doi/abs/10.1021/cr300206t}doi:10.1021/cr300206t}}
  
 * Forum
 
