@@ -1,45 +1,137 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <project name="Toxtree">
-  <!-- 
-  <bannerLeft>
-    <name>Toxtree</name>
-    <src>images/toxtree-logo.gif</src>
-    <href>index.html</href>
-  </bannerLeft>
-   -->
+
+	<bannerLeft>
+		<name></name>
+	</bannerLeft>
+	<bannerRight>
+		<name>Toxtree</name>
+		<href>index.html</href>
+	</bannerRight>
+	<googleAnalyticsAccountId>UA-24983132-1</googleAnalyticsAccountId>
+	<publishDate position="bottom" format="yyyy-MM-dd" />
+	<version position="bottom" />
+	<poweredBy>
+		<logo name="SourceForge" href="http://sourceforge.net/projects/toxtree"
+			img="http://sflogo.sourceforge.net/sflogo.php?group_id=152702&amp;type=12" />
+	</poweredBy>
+	<skin>
+		<groupId>lt.velykis.maven.skins</groupId>
+		<artifactId>reflow-maven-skin</artifactId>
+		<version>1.1.1</version>
+	</skin>
+	<custom>
+		<reflowSkin>
+			<theme>bootswatch-cosmo</theme>
+			<highlightJs>true</highlightJs>
+			<smoothScroll>true</smoothScroll>
+			<highlightJsTheme>github</highlightJsTheme>
+
+			<brand>
+				<name><![CDATA[   
+      <img src='images/toxtree-logo.gif'>
+      ]]></name>
+				<href>http://toxtree.sf.net</href>
+			</brand>
+			<slogan></slogan>
+			<titleTemplate>%2$s | %1$s</titleTemplate>
+			<toc></toc>
+			<topNav></topNav>
+			<bottomNav>
+				<column>Downloads|docs|reports</column>
+				<column>Plugins</column>
+			</bottomNav>
+			<bottomDescription>
+				Toxtree - Toxic Hazard Estimation by decision tree approach
+			</bottomDescription>
+			<pages>
+				<index>
+					<shortTitle></shortTitle>
+					<bannerRight>
+						<name></name>
+						<href></href>
+					</bannerRight>
+
+					<shortTitle></shortTitle>
+					<breadcrumbs>false</breadcrumbs>
+					<toc>false</toc>
+					<markPageHeader>false</markPageHeader>
+					<sections>
+						<carousel />
+						<columns>1</columns>
+						<body />
+						<sidebar />
+					</sections>
+				</index>
+				<home>
+					<shortTitle>Toxtree | Home</shortTitle>
+					<sections>
+						<columns>2</columns>
+					</sections>
+				</home>
+				<downloads>
+					<shortTitle>Toxtree | Downloads</shortTitle>
+					<sections>
+						<thumbs>2</thumbs>
+					</sections>
+				</downloads>
+				<plugins>
+					<shortTitle>Toxtree | Plugins</shortTitle>
+					<sections>
+						<columns>1</columns>
+					</sections>
+				</plugins>
+				<docs>
+					<shortTitle>Toxtree | Documentation</shortTitle>
+					<sections>
+						<thumbs>2</thumbs>
+					</sections>
+				</docs>
+				<publications>
+					<shortTitle>Toxtree | Publications</shortTitle>
+					<sections>
+						<body/>
+					</sections>
+				</publications>
+				<support>
+					<shortTitle>Toxtree | Support</shortTitle>
+					<sections>
+						<columns>2</columns>
+					</sections>
+				</support>
+				<!-- 
+				<related>
+					<shortTitle>Toxtree | Related</shortTitle>
+					<sections>
+						<thumbs>3</thumbs>
+					</sections>
+				</<related>
+				 -->
+			</pages>
+		</reflowSkin>
+	</custom>
+
   <body>
-    <head>
-      <!-- Google Analytics - Start -->
-      <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-24983132-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-      <!-- Google Analytics - End -->
-    </head>
-    <!--<item name="Xdoc Example" href="xdoc.html"/>-->
+		<head>
+			<link rel="author" href="https://plus.google.com/+NinaJeliazkova" />
+			<meta name="description" content="Toxtree" />
+			<meta name="keywords"
+				content="Toxtree" />
+			<meta name="author" content="Nina Jeliazkova" />
+			<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+		</head>
+		<links>
+			<item name="Toxtree - Toxic Hazard Estimation by decision tree approach" href="/index.html" />
+			<item name="Downloads" href="/download.html" />
+			<item name="Support" href="/intro.html" />
+			<item name="Publications" href="pubs_citetoxtree.html" />
+		</links>		
     <menu name="Home">
       <item name="Toxtree" href="/index.html" />
     </menu>
-    <menu name="Download">
-    	<item name="Toxtree 2.6.6" href="/download.html#Toxtree_2.6.6" />
+    <menu name="Downloads">
+     <item name="Toxtree 2.6.6" href="/download.html#Toxtree_2.6.6" />
       <item name="Toxtree 2.6.0" href="/download.html#Toxtree_2.6.0" />
-      <item name="Toxtree 2.5.4" href="/download.html#Toxtree_2.5.4" />
-      <item name="Toxtree 2.5.1" href="/download.html#Toxtree_2.5.1" />
-      <item name="Toxtree 2.5.0" href="/download.html#Toxtree_2.5.0" />
-      <item name="Toxtree 2.2.0" href="/download.html#Toxtree_2.2.0" />
-      <item name="Toxtree 2.1.0" href="/download.html#Toxtree_2.1.0" />
-      <item name="Toxtree 1.60" href="/download.html#Toxtree-v1.60" />
-      <item name="Toxtree 1.51" href="/download.html#Toxtree-v1.51" />
-      <item name="Toxtree 1.20" href="/download.html#Toxtree-v1.20" />
     </menu>
     <menu name="Plugins">
       <item name="Cramer rules" href="/cramer.html" />
@@ -72,37 +164,29 @@
       <item name="Toxtree citations" href="/pubs_usage.html" />
       <item name="Toxtree evaluations" href="/pubs_eval.html" />
     </menu>
-    <menu ref="reports" />
+    <menu name="Documentation">
+     <item name="FAQ" href="faq.html" />
+    </menu>    
     <!--
     <menu ref="modules" />
     <menu ref="parent"/>
     -->
     <menu name="Related links">
+      <item name="AMBIT" href="http://ambit.sourceforge.net" />
+      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net/ambit2" />
+    
     	<item name="Toxtree online" href="http://toxtree.sf.net/predict" />
       <item name="Toxmatch" href="http://toxmatch.sf.net" />
       <item name="ToxPredict" href="http://toxpredict.org" />
-      <item name="AMBIT 2.0" href="http://ambit.sourceforge.net" />
-      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net:8080/ambit2" />
+      <item name="jToxKit" href="https://github.com/ideaconsult/Toxtree.js" />
       <item name="SMILES quiz" href="http://tinyurl.com/smilesquiz" />
     </menu>
+
+     <menu name="Maven documentation" ref="reports" inherit="bottom" />    
   </body>
-  <poweredBy>
-    <logo name="SourceForge" href="http://sourceforge.net/projects/toxtree" img="http://sflogo.sourceforge.net/sflogo.php?group_id=152702&amp;type=12" />
-  </poweredBy>
   
-    <skin>
-        <groupId>org.apache.maven.skins</groupId>
-    	<artifactId>maven-fluido-skin</artifactId>
-    	<version>1.3.0</version>
-    </skin>
-    
-    <!--
-  <skin>
-    <groupId>lt.velykis.maven.skins</groupId>
-    <artifactId>reflow-maven-skin</artifactId>
-    <version>1.1.0</version>
-  </skin>
-  -->
+	  
+  <!--  
   <custom>
     <fluidoSkin>
       <topBarEnabled>true</topBarEnabled>
@@ -130,4 +214,5 @@
       </ohloh>
     </fluidoSkin>
   </custom>
+  -->
 </project>

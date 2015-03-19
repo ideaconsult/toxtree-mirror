@@ -7,13 +7,13 @@
  -----
  
  
-START biodegradation  and persistence plug-in
+Toxtree Module: START biodegradation  and persistence plug-in
 
  START (Structural  Alerts for Reactivity  in Toxtree) biodegradation  and persistence plug-in  is based  on a  compilation of  structural alerts  for environmental persistence and biodegradability. These structural alerts are molecular functional groups or substructures that are known to be linked to the  environmental  persistence  or  biodegradability  of  chemicals.   The rulebase utilizes the structural alerts  in logical decision trees. If  one or more the  structural alerts embedded  in the molecular  structure of the chemical  are recognized,  the system  flags the  potential persistence  or biodegradability of the chemical.
  
  Available since {{{./download.html#Toxtree-v1.60}ToxTree 1.60}}
  
- Developed by {{{http://www.molecular-networks.com}Molecular Networks GmbH}} (Erlangen, Germany) for {{{http://ecb.jrc.ec.europa.eu/qsar/qsar-tools/index.php?c=TOXTREE}JRC}}
+ Developed by {{{http://www.molecular-networks.com}Molecular Networks GmbH}} (Erlangen, Germany) for {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/qsar_tools/toxtree}JRC}}
   
  Screenshots: {{{./images/start/screen.jpg}Main screen}} , {{{./images/start/tree.jpg}Decision tree}}
   
@@ -29,7 +29,7 @@ START biodegradation  and persistence plug-in
 * Reference
 
  
- [START, 2008] {{{http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/doc/Toxtree_start_manual.pdf}Installation and user manual}}	
+ [START, 2008] {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/doc/Toxtree_start_manual.pdf}Installation and user manual}}	
  
 * For developers
 
