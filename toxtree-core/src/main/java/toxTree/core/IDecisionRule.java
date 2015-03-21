@@ -36,11 +36,9 @@ package toxTree.core;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
+import ambit2.rendering.IAtomContainerHighlights;
 import toxTree.exceptions.DecisionMethodException;
 
 /**
@@ -146,6 +144,6 @@ public interface IDecisionRule extends Serializable, Cloneable {
 	boolean isEditable();
 	void setEditable(boolean value);
 	
-	IProcessor<IAtomContainer, IChemObjectSelection> getSelector();
+	IAtomContainerHighlights getSelector();
 
 }

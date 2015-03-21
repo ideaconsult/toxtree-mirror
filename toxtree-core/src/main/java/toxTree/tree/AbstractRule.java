@@ -39,10 +39,7 @@ import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
@@ -58,6 +55,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.XMLDecisionMethodException;
 import toxTree.ui.EditorFactory;
 import ambit2.core.helper.CDKHueckelAromaticityDetector;
+import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * An abstract class implementing {@link IDecisionRule} interface. Used as a
@@ -385,7 +383,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 		this.examples = examples;
 	}
 
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+	public IAtomContainerHighlights getSelector() {
 		return null;
 	}
 

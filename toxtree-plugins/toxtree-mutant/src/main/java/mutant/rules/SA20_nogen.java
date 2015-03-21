@@ -24,13 +24,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.rules;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRing;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
+import ambit2.rendering.IAtomContainerHighlights;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.DefaultAlertCounter;
 import toxTree.tree.rules.IAlertCounter;
@@ -138,7 +136,7 @@ public class SA20_nogen extends RuleRingSubstituents implements IAlertCounter {
 	}
 
 	@Override
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+	public IAtomContainerHighlights getSelector() {
 		RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
 		try {
 			rule.addSubstructure("[#6;R]!@[Cl,Br,I,F]");

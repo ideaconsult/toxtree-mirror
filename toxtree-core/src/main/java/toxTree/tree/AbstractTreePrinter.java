@@ -10,6 +10,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IProcessRule;
 import toxTree.exceptions.DecisionMethodIOException;
+import toxTree.query.MolAnalyser;
 import ambit2.rendering.CompoundImageTools;
 
 public abstract class AbstractTreePrinter implements IProcessRule {
@@ -42,7 +43,8 @@ public abstract class AbstractTreePrinter implements IProcessRule {
 		
 	}	
     protected void writeMolecule(IDecisionRule rule, boolean answer, OutputStream out) throws Exception  {
-        IAtomContainer m = rule.getExampleMolecule(answer);        
+        IAtomContainer m = rule.getExampleMolecule(answer);      
+        MolAnalyser.analyse(m);
         ImageIO.write(imageTools.getImage(m), "png", out);
     }  
 }

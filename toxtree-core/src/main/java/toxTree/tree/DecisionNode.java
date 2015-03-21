@@ -37,11 +37,9 @@ import java.beans.PropertyChangeListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
+import ambit2.rendering.IAtomContainerHighlights;
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleEditor;
@@ -400,7 +398,7 @@ public class DecisionNode extends Observable implements IDecisionRule,IDecisionT
     public synchronized void setNodes(DecisionNode[] nodes) {
         this.nodes = nodes;
     }
-    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    public IAtomContainerHighlights getSelector() {
     	return rule.getSelector();
     }
 }

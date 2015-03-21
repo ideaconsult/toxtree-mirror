@@ -27,17 +27,15 @@ package eye.rules;
 import java.util.List;
 import java.util.logging.Level;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IBond.Order;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import ambit2.rendering.IAtomContainerHighlights;
 import ambit2.smarts.query.SMARTSException;
 import ambit2.smarts.query.SmartsPatternCDK;
 
@@ -145,7 +143,7 @@ public class Rule38 extends Rule13_AliphaticMonoalcohols {
     }  
     
     @Override
-    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    public IAtomContainerHighlights getSelector() {
     	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
     	try { rule.addSubstructure("N(C)([#1,C])([#1,C])"); } catch (Exception x) {x.printStackTrace();};
     	return rule.getSelector();

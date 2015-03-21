@@ -28,7 +28,6 @@ import java.util.HashSet;
 import java.util.List;
 
 import net.idea.modbcum.i.exceptions.AmbitException;
-import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IElement;
@@ -42,6 +41,7 @@ import toxTree.core.SmartElementsList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import ambit2.core.data.MoleculeTools;
+import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * Verifies if the molecule consists of only allowed elements
@@ -234,8 +234,8 @@ public class RuleElements extends AbstractRule {
 		this.mode = mode;
 	}
 
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	public IAtomContainerHighlights getSelector() {
+		return new IAtomContainerHighlights() {
 			/**
 		     * 
 		     */

@@ -28,7 +28,6 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 
 import net.idea.modbcum.i.exceptions.AmbitException;
-import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
@@ -39,6 +38,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.AbstractRule;
 import ambit2.core.data.MoleculeTools;
+import ambit2.rendering.IAtomContainerHighlights;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.ISmartsPatternFactory;
 import ambit2.smarts.query.SMARTSException;
@@ -105,8 +105,8 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 
 	protected abstract T getObjectToVerify(IAtomContainer mol);
 
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	public IAtomContainerHighlights getSelector() {
+		return new IAtomContainerHighlights() {
 			/**
 		     * 
 		     */

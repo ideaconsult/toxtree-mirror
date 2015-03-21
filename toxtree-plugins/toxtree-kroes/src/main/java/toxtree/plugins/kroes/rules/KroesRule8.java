@@ -1,10 +1,8 @@
 package toxtree.plugins.kroes.rules;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
+import ambit2.rendering.IAtomContainerHighlights;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.AbstractRule;
@@ -59,7 +57,7 @@ public class KroesRule8 extends AbstractRule {
 	public boolean isImplemented() {
 		return true;
 	}
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+	public IAtomContainerHighlights getSelector() {
 		return null;
 	}
 }

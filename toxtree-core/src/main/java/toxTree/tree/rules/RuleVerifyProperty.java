@@ -29,7 +29,6 @@ import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 
 import net.idea.modbcum.i.exceptions.AmbitException;
-import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
@@ -45,6 +44,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import toxTree.ui.EditorFactory;
 import ambit2.core.data.MoleculeTools;
+import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * 
@@ -274,8 +274,8 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 
 	}
 
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	public IAtomContainerHighlights getSelector() {
+		return new IAtomContainerHighlights() {
 			/**
 		     * 
 		     */

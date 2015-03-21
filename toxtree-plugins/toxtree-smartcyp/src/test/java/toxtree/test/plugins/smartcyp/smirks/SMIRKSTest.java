@@ -12,7 +12,6 @@ import java.util.Hashtable;
 import javax.imageio.ImageIO;
 
 import junit.framework.Assert;
-import net.idea.modbcum.i.processors.IProcessor;
 
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtom;
@@ -20,7 +19,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.io.iterator.IteratingSDFReader;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -36,6 +34,7 @@ import ambit2.core.io.MDLWriter;
 import ambit2.core.processors.structure.AtomConfigurator;
 import ambit2.core.processors.structure.HydrogenAdderProcessor;
 import ambit2.rendering.CompoundImageTools;
+import ambit2.rendering.IAtomContainerHighlights;
 import ambit2.smarts.SMIRKSManager;
 import ambit2.smarts.SMIRKSReaction;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
@@ -491,7 +490,7 @@ public class SMIRKSTest {
 	}
 
 	protected String getImageURI(String smiles,
-			IProcessor<IAtomContainer, IChemObjectSelection> selector,
+			IAtomContainerHighlights selector,
 			File folder, String name) {
 
 		File imgFolder = new File(String.format("%s/images/", folder));

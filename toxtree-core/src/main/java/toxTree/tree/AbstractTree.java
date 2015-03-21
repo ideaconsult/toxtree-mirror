@@ -51,7 +51,6 @@ import java.util.logging.Logger;
 import javax.swing.JComponent;
 
 import net.idea.modbcum.i.exceptions.AmbitException;
-import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -77,6 +76,7 @@ import toxTree.query.MolAnalyser;
 import toxTree.ui.EditorFactory;
 import toxTree.ui.tree.categories.CategoriesRenderer;
 import ambit2.rendering.CompoundImageTools;
+import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * An astract class, implementing {@link toxTree.core.IDecisionMethod}
@@ -689,7 +689,7 @@ public abstract class AbstractTree extends Observable implements
 	public BufferedImage getImage(IAtomContainer mol, String ruleID, int width,
 			int height, boolean atomnumbers) throws AmbitException {
 		IDecisionRuleList rules = getRules();
-		IProcessor<IAtomContainer, IChemObjectSelection> selector = null;
+		IAtomContainerHighlights selector = null;
 
 		for (int i = 0; i < rules.size(); i++) {
 			IDecisionRule rule = rules.get(i);
@@ -786,15 +786,15 @@ public abstract class AbstractTree extends Observable implements
 
 }
 
-class TreeSelector implements IProcessor<IAtomContainer, IChemObjectSelection> {
-	protected List<IProcessor<IAtomContainer, IChemObjectSelection>> selectors = new ArrayList<IProcessor<IAtomContainer, IChemObjectSelection>>();
+class TreeSelector implements IAtomContainerHighlights {
+	protected List<IAtomContainerHighlights> selectors = new ArrayList<IAtomContainerHighlights>();
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7753309179379127408L;
 
 	public void addSelector(
-			IProcessor<IAtomContainer, IChemObjectSelection> selector) {
+			IAtomContainerHighlights selector) {
 		selectors.add(selector);
 	}
 
@@ -814,7 +814,7 @@ class TreeSelector implements IProcessor<IAtomContainer, IChemObjectSelection> {
 		Collection<IAtomContainer> set = new ArrayList<IAtomContainer>();
 		MultiSelection<IAtomContainer> ms = new MultiSelection<IAtomContainer>(
 				set);
-		for (IProcessor<IAtomContainer, IChemObjectSelection> selector : selectors)
+		for (IAtomContainerHighlights selector : selectors)
 			try {
 				set.add(selector.process(target).getConnectedAtomContainer());
 			} catch (Exception x) {

@@ -21,6 +21,7 @@ import ambit2.core.data.MoleculeTools;
 import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.processors.structure.HydrogenAdderProcessor;
 import ambit2.rendering.CompoundImageTools;
+import ambit2.rendering.IAtomContainerHighlights;
 import dk.smartcyp.core.MoleculeKU;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
 import dk.smartcyp.core.SMARTSData;
@@ -147,8 +148,8 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 	}
 
 	@Override
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	public IAtomContainerHighlights getSelector() {
+		return new IAtomContainerHighlights() {
 			/**
 		     * 
 		     */

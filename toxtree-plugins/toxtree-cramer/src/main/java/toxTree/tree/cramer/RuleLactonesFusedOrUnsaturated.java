@@ -35,8 +35,6 @@ package toxTree.tree.cramer;
 import java.util.List;
 import java.util.logging.Level;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -44,8 +42,8 @@ import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
+import ambit2.rendering.IAtomContainerHighlights;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
@@ -174,7 +172,7 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 	}
 	
     @Override
-    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    public IAtomContainerHighlights getSelector() {
     	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
     	try { rule.addSubstructure("O@C(=[O;R0])"); } catch (Exception x) {x.printStackTrace();};
     	return rule.getSelector();
