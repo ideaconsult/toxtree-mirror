@@ -1,5 +1,5 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2007  
+Copyright Ideaconsult Ltd. (C) 2005-2015  
 Contact: nina@acad.bg
 
 This program is free software; you can redistribute it and/or
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.apps;
 
 import java.awt.BorderLayout;
@@ -39,58 +39,65 @@ import toxtree.ui.molecule.TopPanel;
 import toxtree.ui.tree.molecule.CompoundPanel;
 
 public abstract class CompoundMethodApplication extends AbstractApplication {
-	//GUI
+	// GUI
 	protected JSplitPane splitPanel;
 	protected JPanel mainPanel;
 	protected CompoundPanel compoundPanel;
 	protected DataModulePanel dataModulePanel;
 	protected TopPanel strucEntryPanel;
 
-	//cmd option
+	// cmd option
 	protected File fileToOpen = null;
-	public CompoundMethodApplication(String title,  Color bgColor, Color fColor) {
+
+	public CompoundMethodApplication(String title, Color bgColor, Color fColor) {
 		super(title);
 
 		mainFrame.getContentPane().add(createMenuBar(), BorderLayout.NORTH);
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
-		
-		compoundPanel = createCompoundPanel(dataModule.getDataContainer(), bgColor, fColor);
-        if (((DecisionMethodsDataModule)dataModule).getTreeResult() != null)
-            ((DecisionMethodsDataModule)dataModule).getTreeResult().addPropertyChangeListener(compoundPanel);        
+
+		compoundPanel = createCompoundPanel(dataModule.getDataContainer(),
+				bgColor, fColor);
+		if (((DecisionMethodsDataModule) dataModule).getTreeResult() != null)
+			((DecisionMethodsDataModule) dataModule).getTreeResult()
+					.addPropertyChangeListener(compoundPanel);
 		dataModulePanel = createDataModulePanel(dataModule);
 		strucEntryPanel = new TopPanel();
 		strucEntryPanel.setAutoscrolls(false);
 		strucEntryPanel.setDataContainer(dataModule.getDataContainer());
 
 		splitPanel = createSplitPanel(JSplitPane.HORIZONTAL_SPLIT);
-		
+
 		mainPanel.add(strucEntryPanel, BorderLayout.NORTH);
 		mainPanel.add(splitPanel, BorderLayout.CENTER);
 
 		// Status bar display
 		JPanel sPanel = createStatusBar();
-		
+
 		mainFrame.getContentPane().add(sPanel, BorderLayout.SOUTH);
 		// Add the panel to the window.
 		mainFrame.getContentPane().add(mainPanel, BorderLayout.CENTER);
 		String t = getTitle();
-		if ((t != null) && (!t.equals(""))) mainFrame.setTitle(t.toString());
+		if ((t != null) && (!t.equals("")))
+			mainFrame.setTitle(t.toString());
 		mainFrame.pack();
 		mainFrame.setVisible(true);
-		centerScreen();		
+		centerScreen();
 	}
 
 	protected JSplitPane createSplitPanel(int splitDirection) {
-		JSplitPane sp = new JSplitPane(splitDirection, compoundPanel,dataModulePanel);
+		JSplitPane sp = new JSplitPane(splitDirection, compoundPanel,
+				dataModulePanel);
 		sp.setOneTouchExpandable(false);
 		sp.setDividerLocation(300);
 		return sp;
 	}
+
 	protected JPanel createStatusBar() {
 		StatusBar sPanel = new StatusBar();
-        if (((DecisionMethodsDataModule)dataModule).getTreeResult() != null)
-            ((DecisionMethodsDataModule)dataModule).getTreeResult().addPropertyChangeListener(sPanel);        
+		if (((DecisionMethodsDataModule) dataModule).getTreeResult() != null)
+			((DecisionMethodsDataModule) dataModule).getTreeResult()
+					.addPropertyChangeListener(sPanel);
 		sPanel.setPreferredSize(new Dimension(300, 24));
 		sPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		sPanel.setDataContainer(dataModule.getDataContainer());
@@ -98,52 +105,34 @@ public abstract class CompoundMethodApplication extends AbstractApplication {
 	}
 
 	protected abstract String getTitle();
-	
-	protected CompoundPanel createCompoundPanel(DataContainer dataContainer, Color bgColor, Color fColor) {
-		CompoundPanel cp = new CompoundPanel(dataModule.getDataContainer(),bgColor,fColor);
+
+	protected CompoundPanel createCompoundPanel(DataContainer dataContainer,
+			Color bgColor, Color fColor) {
+		CompoundPanel cp = new CompoundPanel(dataModule.getDataContainer(),
+				bgColor, fColor);
 		cp.setPreferredSize(new Dimension(300, 500));
 		cp.setMinimumSize(new Dimension(100, 200));
 		return cp;
 	}
-	protected abstract DataModulePanel createDataModulePanel(DataModule dataModule);
+
+	protected abstract DataModulePanel createDataModulePanel(
+			DataModule dataModule);
 
 	@Override
-	protected void parseCmdArgs(String[] args) {
-		char option;
-		int p = 0;
-		while (p < args.length) {
-			option = args[p].charAt(0);
-			if (option != '-')
-				continue;
-			option = args[p].charAt(1);
-			switch (option) {
-			case 'f': {
-				p++;
-				if (p >= args.length)
-					break;
-				fileToOpen = new File(args[p]);
-				if (!fileToOpen.exists()) {
-					logger.severe("File do not exists!\t" + fileToOpen
-							.getAbsolutePath());
-					fileToOpen = null;
-				}
-				break;
-			}
-			}
-			p++;
-		}
+	protected ToxtreeOptions parseCmdArgs(String[] args) throws Exception {
+		ToxtreeOptions option = new ToxtreeOptions();
+		option.parse(args);
+		fileToOpen = option.getInput();
+		return option;
 	}
-
 
 	@Override
 	protected DataModule createDataModule() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	protected ImageIcon getIcon() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

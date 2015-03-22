@@ -1,6 +1,6 @@
                                   Toxtree README
 
-                           (last revision - 1 Sep 2013)
+                           (last revision - 15 Jun 2014)
 
     This is the README file  for the Toxtree installer distribution.  If you're
     reading this,  you've probably  just run   our installer  and installed the
@@ -181,7 +181,7 @@ SYSTEM REQUIREMENTS & INSTALLATION
 
 RELEASE NOTES
 
-    Toxtree-v2.6.0 is a stable release with new features and bug fixes.
+    Toxtree-v2.6.6 is a stable release with new features and bug fixes.
 
 BUG REPORTS AND FEEDBACK
 
@@ -200,28 +200,35 @@ REDISTRIBUTION
 
 CHANGE LOG
 
-		* Toxtree-v2.6.2 (build date 1 Sep 2013):
-		
-		- Toxicity category assignment fixed (absence of structure alert doesn't mean lack of toxicity)
-		
-		- updated to ambit-2.5.1;
-		
-		* Toxtree-v2.6.1 (build date 19 Aug 2013):
-		
-		- updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.5.0;
-		
-		- updated to ambit-2.5.0;
-		
+    * Toxtree-v2.6.13 
+
+    - updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.5.0;
+
+    - updated to ambit-2.7.3;
+
+    - fixed remote query issue
+    
+    - enabled command line options (headless Toxtree) 
+    
+    * Toxtree-v2.6.6 (build date 15 Jun 2014):
+
+    - updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.5.0;
+
+    - updated to ambit-2.5.6;
+
+    - fixed plugin loading issue (was manifested only on Linux platforms);
+
+    - included jre-7u60-windows-i586.exe in Windows installer;
+
+    - updated README;
+
     * Toxtree-v2.6.0 (build date 10 Jul 2013):
 
-    - updated to http://cdk.sf.net}cdk 1.4.11;
+    - updated to cdk 1.4.11;
 
     - updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.4.0;
 
     - updated to ambit-2.4.12;
-
-    - improved  the implementation of Verhaar scheme plugin  and  validated  it
-    against a published dataset;
 
     - renamed  the  Skin  sensitisation  alerts  plugin  to  Skin sensitisation
      reactivity domains;
