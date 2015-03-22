@@ -364,6 +364,7 @@ public class Introspection {
     public static ToxTreePackageEntries getAvailableTypes(ClassLoader classLoader, String interfacename) {
 	setLoader(classLoader);
 	ToxTreePackageEntries listAll = null;
+	
 	for (int i = 0; i < defaultLocation.length; i++) {
 	    try {
 		ToxTreePackageEntries list = implementInterface(classLoader, new File(getToxTreeRoot()
@@ -438,7 +439,7 @@ public class Introspection {
 		    // defaultURL[i] = new URL(defaultLocation[i]);
 
 		} catch (MalformedURLException x) {
-		    x.printStackTrace();
+			  logger.severe(x.getMessage());
 		}
 	    }
 
