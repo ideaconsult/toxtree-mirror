@@ -214,7 +214,7 @@ public class ReportTreePrinter extends AbstractTreeWriter implements
 			writer.write("<td>");
 			writer.write("YES");
 			try {
-				String url = writeMolecule(rule, true);
+				String url = writeMolecule(method,rule, true);
 				writer.write("<img src=\"");
 				writer.write(url);
 				writer.write("\" title=\"a hit\">");
@@ -224,7 +224,7 @@ public class ReportTreePrinter extends AbstractTreeWriter implements
 
 			writer.write("NO");
 			try {
-				String url = writeMolecule(rule, false);
+				String url = writeMolecule(method,rule, false);
 				writer.write("<img src=\"");
 				writer.write(url);
 				writer.write("\" title=\"not a hit\">");
@@ -269,13 +269,13 @@ public class ReportTreePrinter extends AbstractTreeWriter implements
 
 	}
 
-	protected String writeMolecule(IDecisionRule rule, boolean answer)
+	protected String writeMolecule(IDecisionMethod tree, IDecisionRule rule, boolean answer)
 			throws Exception {
 		String url = rule.getID() + Boolean.toString(answer) + ".png";
 		File file = new File(folder + "/" + url);
 		FileOutputStream out = new FileOutputStream(file);
 		try {
-			writeMolecule(rule, answer, out);
+			writeMolecule(tree,rule, answer, out);
 		} finally {
 			out.close();
 		}
