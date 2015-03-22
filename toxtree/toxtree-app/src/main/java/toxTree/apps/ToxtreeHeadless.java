@@ -32,7 +32,6 @@ import toxTree.core.IDecisionResult;
 import toxTree.core.Introspection;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.DecisionMethodsList;
-import toxTree.tree.cramer.CramerRules;
 import ambit2.core.io.FileInputState;
 import ambit2.core.io.FileOutputState;
 
@@ -55,7 +54,7 @@ public class ToxtreeHeadless {
 		} catch (Exception x) {
 			logger.log(Level.SEVERE, x.getMessage(), x);
 		}
-		
+
 		IDecisionMethod tree = null;
 
 		String className = options.getModule();
@@ -65,7 +64,7 @@ public class ToxtreeHeadless {
 		Object c = Introspection.loadCreateObject(className);
 		if (c instanceof IDecisionMethod)
 			tree = (IDecisionMethod) c;
-	
+
 		if (tree == null)
 			throw new Exception("Decision tree not defined");
 		IDecisionResult result = tree.createDecisionResult();
@@ -78,26 +77,33 @@ public class ToxtreeHeadless {
 			writer = FileOutputState.getWriter(out, options.getOutput()
 					.getName());
 			long now = System.currentTimeMillis();
-			logger.log(Level.INFO, String.format("%s:Processing started\tInput:%s\tOutput:%s",className,options.getInput().getAbsolutePath(),options.getOutput().getAbsolutePath()));
+			logger.log(Level.INFO, String.format(
+					"%s:Processing started\tInput:%s\tOutput:%s", className,
+					options.getInput().getAbsolutePath(), options.getOutput()
+							.getAbsolutePath()));
 			int r = 0;
 			while (reader.hasNext()) {
 				Object o = reader.next();
-				if (o instanceof IAtomContainer) try {
-					IAtomContainer mol = (IAtomContainer) o;
-					MolAnalyser.analyse(mol);
-					result.classify(mol);
-					result.assignResult(mol);
-					// System.out.println(mol.getProperties());
-					writer.write(mol);
-					r++;
-					if ((r % 1000)==0) 
-						logger.log(Level.INFO, String.format("%s:Records processed %d",r));
-				} catch (Exception x) {
-					logger.log(Level.WARNING, x.getMessage());
-				}
+				if (o instanceof IAtomContainer)
+					try {
+						IAtomContainer mol = (IAtomContainer) o;
+						MolAnalyser.analyse(mol);
+						result.classify(mol);
+						result.assignResult(mol);
+						writer.write(mol);
+						r++;
+						if ((r % 1000) == 0)
+							logger.log(Level.INFO,
+									String.format("%s:Records processed %d", r));
+					} catch (Exception x) {
+						logger.log(Level.WARNING, x.getMessage());
+					}
 			}
-			logger.log(Level.INFO, String.format("%s:Records processed %d\t%s ms\tInput:%s\tOutput:%s",
-					className,r,System.currentTimeMillis()-now,options.getInput().getAbsolutePath(),options.getOutput().getAbsolutePath()));
+			logger.log(Level.INFO, String.format(
+					"%s:Records processed %d\t%s ms\tInput:%s\tOutput:%s",
+					className, r, System.currentTimeMillis() - now, options
+							.getInput().getAbsolutePath(), options.getOutput()
+							.getAbsolutePath()));
 		} catch (Exception x) {
 			logger.log(Level.WARNING, x.getMessage(), x);
 		} finally {
