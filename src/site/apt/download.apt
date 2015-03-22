@@ -14,17 +14,17 @@
 
 	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.v.2.6.13/Toxtree-vv.2.6.13.zip/download}ZIP archive}}  (source and executable, platform independent)
 	
-	* <<Change log>>
-
-	* build date 22 Mar 2015
-	
-    * updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.6.0;
-
-    * updated to ambit-2.7.3;
-
-    * fixed remote query issue
+   * <<Change log>>
     
-    * enabled command line options (headless Toxtree) 	
+      * build date 22 Mar 2015
+      
+      * updated to {{{http://ambit.sf.net}AMBIT-2.7.3}}     
+	
+      * updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.6.0
+
+      * fixed remote query issue
+    
+      * enabled command line options (headless Toxtree) 	
  
 {Toxtree-2.6.6} 
 
