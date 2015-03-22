@@ -6,7 +6,26 @@
  2014/06/15
  -----
 
+{Toxtree-2.6.13} 
 
+ <<Toxtree-v2.6.13 is a bug fix release>>
+ 
+ 	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.6.13/Toxtree-v.2.6.13-setup.exe/download}Windows installer}}  (source and executable, Windows)
+
+	* {{{http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.v.2.6.13/Toxtree-vv.2.6.13.zip/download}ZIP archive}}  (source and executable, platform independent)
+	
+	* <<Change log>>
+
+	* build date 22 Mar 2015
+	
+    * updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.6.0;
+
+    * updated to ambit-2.7.3;
+
+    * fixed remote query issue
+    
+    * enabled command line options (headless Toxtree) 	
+ 
 {Toxtree-2.6.6} 
 
  <<Toxtree-v2.6.6 is a stable release including new features and bug fixes.>> 

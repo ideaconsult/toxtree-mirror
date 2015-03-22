@@ -116,6 +116,8 @@ Toxtree has  been   designed with  flexible capabilities  for future  extensions
 
 ### Download
 
+>[**Toxtree 2.6.13**](download.html#Toxtree_2.6.13)
+
 >[**Toxtree 2.6.6**](download.html#Toxtree_2.6.6)
 
 >[**Toxtree 2.6.0**](download.html#Toxtree_2.6.0)
