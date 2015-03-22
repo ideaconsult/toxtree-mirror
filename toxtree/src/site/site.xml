@@ -130,7 +130,8 @@
       <item name="Toxtree" href="/index.html" />
     </menu>
     <menu name="Downloads">
-     <item name="Toxtree 2.6.6" href="/download.html#Toxtree_2.6.6" />
+      <item name="Toxtree 2.6.13" href="/download.html#Toxtree_2.6.13" />
+      <item name="Toxtree 2.6.6" href="/download.html#Toxtree_2.6.6" />
       <item name="Toxtree 2.6.0" href="/download.html#Toxtree_2.6.0" />
     </menu>
     <menu name="Plugins">

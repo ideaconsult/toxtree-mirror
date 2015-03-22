@@ -129,7 +129,28 @@ The dataset service accepts common chemical data formats for upload via HTTP POS
         </p>
       </answer>
     </faq>
+    <faq id="K3">
+      <question>How to launch Toxtree from the command line, with options to define input, optuput and selecting the decision tree?</question>
+      <answer>
+        <p>
+       		Available since Toxtree 2.6.13.
+        </p>
+        <ul>
+        	<li> Use the command line opion -n (--noui) and the following options
+<source>     
+java -jar Toxtree-2.6.13.jar -h
 
+ -h,--help                This help
+ -i,--input file_name     Input file
+ -m,--module class_name        Class name
+ -n,--noui                Command line only, do not start UI
+ -o,--output file_name    Output file
+</source>          
+		</li>
+		 </ul>
+ 
+      </answer>
+    </faq>
 
   </part>
 </faqs>
