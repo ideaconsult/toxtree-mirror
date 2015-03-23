@@ -110,7 +110,7 @@ Toxtree has  been   designed with  flexible capabilities  for future  extensions
 
 - [Frequently Asked Questions](./faq.html)
 
-- [Source code examples](https://github.com/ideaconsult/examples-ambit/tree/master/toxtree-example)
+- [Source code examples](https://github.com/ideaconsult/examples-toxtree)
 
 ---
 

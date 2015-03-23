@@ -1,1 +1,1 @@
-http://apps.ideaconsult.net:8080/ambit2/query/compound/search/all?search=%s&max=1&media=chemical%%2Fx-mdl-sdfile
+https://apps.ideaconsult.net/ambit2/query/compound/search/all?search=%s&max=1&media=chemical%%2Fx-mdl-sdfile
