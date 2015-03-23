@@ -344,7 +344,7 @@
   </reporting>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <ambit.version>2.7.4_SNAPSHOT</ambit.version>
+    <ambit.version>2.7.4-SNAPSHOT</ambit.version>
     <cdk.version>1.4.11</cdk.version>
     <junit.version>4.8.1</junit.version>
     <smartcyp.version>1.5.9</smartcyp.version>
