@@ -5,8 +5,8 @@
       <question>Which is the latest Toxtree version?</question>
       <answer>
         <p>
-          <a href='http://toxtree.sourceforge.net/download.html#Toxtree_2.5.1'>Toxtree 2.5.1</a> is the latest stable release.
-          The latest development version is ToxTree 2.5.8 (<a href="http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~2.5.8~~">Maven repository</a>). 
+          <a href='http://toxtree.sourceforge.net/download.html#Toxtree_3.0.0'>Toxtree 3.0.0</a> is the latest stable release.
+          The latest development version is ToxTree 3.0.1-SNAPSHOT (<a href="http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~3.0.1-SNAPSHOT~~">Maven repository</a>). 
         </p>
       </answer>
     </faq>
