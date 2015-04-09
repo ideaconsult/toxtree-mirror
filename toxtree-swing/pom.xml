@@ -41,6 +41,22 @@
   	  		<type>jar</type>
   	  		<scope>compile</scope>
   	  	</dependency>
+		<dependency>
+			<groupId>com.nexes</groupId>
+			<artifactId>wizard</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.l2fprod</groupId>
+			<artifactId>l2fprod-common-all</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.swinglabs</groupId>
+			<artifactId>swing-layout</artifactId>
+			<version>1.0.3</version>
+		</dependency>  	  	
   </dependencies>
  <properties>
  	<opsin.version>1.6.0</opsin.version>
