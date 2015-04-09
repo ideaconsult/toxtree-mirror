@@ -31,5 +31,11 @@
   		<type>jar</type>
   		<scope>test</scope>
   	</dependency>
+  	
+  	<dependency>
+  		<groupId>joelib</groupId>
+  		<artifactId>joelib</artifactId>
+  		<version>1.0</version>
+  	</dependency>  	
   </dependencies>
 </project>
