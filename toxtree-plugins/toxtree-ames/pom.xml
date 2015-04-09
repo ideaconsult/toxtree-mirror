@@ -1,41 +1,48 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <parent>
-    <artifactId>toxtree-plugins</artifactId>
-    <groupId>toxtree</groupId>
-    <version>2.6.14-SNAPSHOT</version>
-  </parent>
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>toxtree-ames</artifactId>
-  <name>in vitro mutagenicity (Ames test) alerts by ISS</name>
-  <description>This profiler is based on the Mutagenicity/Carcinogenicity module of the software Toxtree. It works as a decision tree for estimating in vitro (Ames test) mutagenicity, based on a list of 30 structural alerts (SAs). The SAs for mutagenicity are molecular functional groups or substructures known to be linked to the mutagenic activity of chemicals. As one or more SAs embedded in a molecular structure are recognised, the system flags the potential mutagenicity of the chemical. The present list of SAs is a subset of the original Toxtree list, obtained by eliminating the SAs for nongenotoxic carcinogenicity. Details are available in the scientific document:
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>toxtree-plugins</artifactId>
+		<groupId>toxtree</groupId>
+		<version>2.6.14-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>toxtree-ames</artifactId>
+	<name>in vitro mutagenicity (Ames test) alerts by ISS</name>
+	<description>This profiler is based on the Mutagenicity/Carcinogenicity module of the software Toxtree. It works as a decision tree for estimating in vitro (Ames test) mutagenicity, based on a list of 30 structural alerts (SAs). The SAs for mutagenicity are molecular functional groups or substructures known to be linked to the mutagenic activity of chemicals. As one or more SAs embedded in a molecular structure are recognised, the system flags the potential mutagenicity of the chemical. The present list of SAs is a subset of the original Toxtree list, obtained by eliminating the SAs for nongenotoxic carcinogenicity. Details are available in the scientific document:
 http://ecb.jrc.it/documents/QSAR/EUR_23241_EN.pdf
 </description>
-  <dependencies>
-  	<dependency>
-  		<groupId>ambit</groupId>
-  		<artifactId>ambit2-mopac</artifactId>
-  		<version>${ambit.version}</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>ambit</groupId>
-  		<artifactId>ambit2-smi23d</artifactId>
-  		<version>${ambit.version}</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-core</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-swing</artifactId>
-  		<version>${project.version}</version>
-  		<type>jar</type>
-  		<scope>test</scope>
-  	</dependency>
-  </dependencies>
-<properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-</properties>  
+	<dependencies>
+		<dependency>
+			<groupId>ambit</groupId>
+			<artifactId>ambit2-mopac</artifactId>
+			<version>${ambit.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ambit</groupId>
+			<artifactId>ambit2-smi23d</artifactId>
+			<version>${ambit.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-core</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>joelib</groupId>
+			<artifactId>joelib</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-swing</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 </project>
