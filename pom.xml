@@ -1,351 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>toxtree</groupId>
-  <artifactId>toxtree</artifactId>
-  <name>Toxtree</name>
-  <version>3.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <description>Toxtree is a full-featured and flexible user-friendly open source application, which is able to estimate toxic hazard by applying a decision tree approach. Toxtree could be applied to datasets from various compatible file types. User-defined molecular structures are also supported - they could be entered by SMILES, or by using the built-in 2D structure diagram editor.</description>
-  <url>http://toxtree.sourceforge.net</url>
-  <organization>
-    <name>Ideaconsult Ltd</name>
-    <url>http://www.ideaconsult.net</url>
-  </organization>
-  <repositories>
-    <repository>
-      <id>ambit-plovdiv</id>
-      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/thirdparty</url>
-    </repository>
-    <repository>
-      <id>ambit-plovdiv-releases</id>
-      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
-    </repository>
-    <repository>
-      <id>ambit-plovdiv-snapshots</id>
-      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/snapshots</url>
-    </repository>
-    <!--   
-     <id>website_ambit</id>
-  		<url>http://ambit.sourceforge.net/jars</url>
-  	</repository>
--->
-    <repository>
-      <id>mvnrepository</id>
-      <name>mvnrepository</name>
-      <url>http://mvnrepository.com/</url>
-    </repository>
-    <!-- jgoodies libs are here  -->
-    <!-- 
-  	<repository>
-  		<id>CDK repository</id>
-  		<name>CDK repository</name>
-  		<url>http://pele.farmbio.uu.se/maven2/</url>
-  	</repository>  	
-
-  	<repository>
-     	<id>wwmm</id>
-     	<name>UCC Maven Repository</name>
-     	<url>http://wwmm.ch.cam.ac.uk/maven2</url>
-    </repository>
-     -->
-  </repositories>
-  <modules>
-    <module>toxtree-core</module>
-    <module>toxtree-app</module>
-    <module>toxforest</module>
-    <module>toxtree-plugins</module>
-    <module>toxtree-bundle</module>
-    <module>toxtree-swing</module>
-  </modules>
-  <distributionManagement>
-    <site>
-      <id>website_toxtree</id>
-      <url>scp://shell.sourceforge.net/home/project-web/toxtree/htdocs</url>
-    </site>
-    <snapshotRepository>
-      <id>ambit-plovdiv-snapshots</id>
-      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ambit-plovdiv-releases</id>
-      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
-    </repository>
-  </distributionManagement>
-  <inceptionYear>2004</inceptionYear>
-  <issueManagement>
-    <system>Subversion</system>
-    <url>http://sourceforge.net/p/toxtree/bugs</url>
-  </issueManagement>
-  <developers>
-    <developer>
-      <id>vedina</id>
-      <name>Nina Jeliazkova</name>
-      <email>jeliazkova.nina@gmail.com</email>
-      <roles>
-        <role>Toxtree core developer</role>
-        <role>Plugin: Cramer rules</role>
-        <role>Plugin: Verhaar scheme</role>
-        <role>Plugin: Verhaar2 scheme</role>
-        <role>Plugin: Benigni/Bossa rulebase forcarcinogenicity and mutagenicity</role>
-        <role>Plugin: Structure alerts for Michael Acceptors</role>
-        <role>Plugin: Kroes TTC decision tree</role>
-        <role>Plugin: Compound lookup</role>
-        <role>QA and integration of puugins</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>martinmartnov</id>
-      <name>Martin Martinov</name>
-      <roles>
-        <role>Plugin: Skin irritation</role>
-        <role>Plugin: Structure alerts for Michael Acceptors</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>olvich1972</id>
-      <name>Olga Tcheremenskaia</name>
-      <roles>
-        <role>Plugin: Structure Alerts for the in vivo micronucleus assay in rodents</role>
-        <role>Plugin: Structure Alerts for the Functional Groups detection</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>jk</id>
-      <name>JK</name>
-      <roles>
-        <role>Plugin: Extended Cramer rules</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>mn</id>
-      <name>Molecular Networks</name>
-      <roles>
-        <role>Plugin: START</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>patrikrydberg</id>
-      <name>Patrik Rydberg</name>
-      <roles>
-        <role>Plugin: SMARTCyp</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>vedrin</id>
-      <name>Vedrin Jeliazkov</name>
-      <roles>
-        <role>Windows installer</role>
-        <role>QA</role>
-        <role>Guidance</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>pg</id>
-      <organization>Procter &amp; Gamble</organization>
-      <organizationUrl>http://www.pg.com</organizationUrl>
-      <roles>
-        <role>Plugin: Skin sensitisation alerts</role>
-      </roles>
-    </developer>
-  </developers>
-  <scm>
-    <connection>scm:svn:https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</connection>
-    <developerConnection>scm:svn+ssh://USERNAME@svn.code.sf.net/p/toxtree/svn/trunk/toxtree</developerConnection>
-    <tag>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags</tag>
-    <url>https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</url>
-  </scm>
-  <mailingLists>
-    <mailingList>
-      <name>Users list</name>
-      <subscribe>https://lists.sourceforge.net/lists/listinfo/toxtree-users</subscribe>
-      <unsubscribe>https://lists.sourceforge.net/lists/listinfo/toxtree-users</unsubscribe>
-      <post>mailto:toxtree-users@lists.sourceforge.net</post>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=toxtree-users</archive>
-    </mailingList>
-  </mailingLists>
-  <contributors></contributors>
-  <licenses>
-    <license>
-      <name>GPL</name>
-      <url>http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt</url>
-      <distribution>repo</distribution>
-      <comments></comments>
-    </license>
-  </licenses>
-  <build>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-    </resources>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.2</version>
-          <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <configuration>
-            <skip>true</skip>
-            <disableXmlReport>true</disableXmlReport>
-            <argLine>-Xmx1024m</argLine>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>2.4.3</version>
-          <configuration>
-            <nonFilteredFileExtensions>
-              <nonFilteredFileExtension>exe</nonFilteredFileExtension>
-              <nonFilteredFileExtension>dll</nonFilteredFileExtension>
-              <nonFilteredFileExtension>obf</nonFilteredFileExtension>
-              <nonFilteredFileExtension>sdf</nonFilteredFileExtension>
-            </nonFilteredFileExtensions>
-          </configuration>
-        </plugin>
-        <plugin>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <configuration>
-            <descriptorRefs>
-              <descriptorRef>jar-with-dependencies</descriptorRef>
-            </descriptorRefs>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>2.5</version>
-          <configuration>
-            <archive>
-              <manifest>
-                <!--
-		              <mainClass>${mainclass}</mainClass>
-		              <packageName>${project.artifactId}</packageName>
-		              -->
-                <addClasspath>true</addClasspath>
-                <!-- 
-		              <addExtensions/>
-		              <classpathPrefix/>
-		              -->
-              </manifest>
-              <manifestEntries>
-                <mode>development</mode>
-                <url>${project.url}</url>
-              </manifestEntries>
-              <manifestFile>target/classes/META-INF/MANIFEST.MF</manifestFile>
-            </archive>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>buildnumber-maven-plugin</artifactId>
-          <version>1.0-beta-4</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>2.1.2</version>
-          <executions>
-            <execution>
-              <id>attach-sources</id>
-              <phase>verify</phase>
-              <goals>
-                <goal>jar</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.0</version>
-          <configuration>
-            <releaseProfiles>release</releaseProfiles>
-            <remoteTagging>true</remoteTagging>
-            <tagBase>scm:svn:https://ambit.svn.sourceforge.net/svnroot/ambit/tags</tagBase>
-            <autoVersionSubmodules>true</autoVersionSubmodules>
-            <!--               		<preparationGoals>clean install</preparationGoals> -->
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.4</version>
-          <configuration>
-            <locales>en</locales>
-          </configuration>
-          <dependencies>
-            <dependency>
-              <groupId>lt.velykis.maven.skins</groupId>
-              <artifactId>reflow-velocity-tools</artifactId>
-              <version>1.1.1</version>
-            </dependency>
-            <dependency>
-              <groupId>org.apache.velocity</groupId>
-              <artifactId>velocity</artifactId>
-              <version>1.7</version>
-            </dependency>
-	        <dependency>
-	            <groupId>org.apache.maven.wagon</groupId>
-	            <artifactId>wagon-ssh</artifactId>
-	            <version>2.0</version>
-	        </dependency>            
-          </dependencies>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.9.1</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <extensions>
-      <!-- Enabling the use of SSH -->
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-         <artifactId>wagon-ssh-external</artifactId>
-         <version>1.0-beta-6</version>
-      </extension>
-    </extensions>
-  </build>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.4</version>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>license</report>
-              <report>issue-tracking</report>
-              <report>mailing-list</report>
-              <report>project-team</report>
-              <report>scm</report>
-              <!-- 
-              <report>dependencies</report>
-               -->
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-    </plugins>
-  </reporting>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <ambit.version>3.0.0-SNAPSHOT</ambit.version>
-    <cdk.version>1.5.10</cdk.version>
-    <junit.version>4.8.1</junit.version>
-    <smartcyp.version>3.0.0-SNAPSHOT</smartcyp.version>
-  </properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>toxtree</groupId>
+	<artifactId>toxtree</artifactId>
+	<name>Toxtree</name>
+	<version>3.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<description>Toxtree is a full-featured and flexible user-friendly open source application, which is able to estimate toxic hazard by applying a decision tree approach. Toxtree could be applied to datasets from various compatible file types. User-defined molecular structures are also supported - they could be entered by SMILES, or by using the built-in 2D structure diagram editor.</description>
+	<url>http://toxtree.sourceforge.net</url>
+	<organization>
+		<name>Ideaconsult Ltd</name>
+		<url>http://www.ideaconsult.net</url>
+	</organization>
+	<repositories>
+		<repository>
+			<id>ambit-plovdiv</id>
+			<url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/thirdparty</url>
+		</repository>
+		<repository>
+			<id>ambit-plovdiv-releases</id>
+			<url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<id>ambit-plovdiv-snapshots</id>
+			<url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/snapshots</url>
+		</repository>
+		<!-- <id>website_ambit</id> <url>http://ambit.sourceforge.net/jars</url> 
+			</repository> -->
+		<repository>
+			<id>mvnrepository</id>
+			<name>mvnrepository</name>
+			<url>http://mvnrepository.com/</url>
+		</repository>
+		<!-- jgoodies libs are here -->
+		<!-- <repository> <id>CDK repository</id> <name>CDK repository</name> <url>http://pele.farmbio.uu.se/maven2/</url> 
+			</repository> <repository> <id>wwmm</id> <name>UCC Maven Repository</name> 
+			<url>http://wwmm.ch.cam.ac.uk/maven2</url> </repository> -->
+	</repositories>
+	<modules>
+		<module>toxtree-core</module>
+		<module>toxtree-app</module>
+		<module>toxforest</module>
+		<module>toxtree-plugins</module>
+		<module>toxtree-bundle</module>
+		<module>toxtree-swing</module>
+	</modules>
+	<distributionManagement>
+		<site>
+			<id>website_toxtree</id>
+			<url>scp://shell.sourceforge.net/home/project-web/toxtree/htdocs</url>
+		</site>
+		<snapshotRepository>
+			<id>ambit-plovdiv-snapshots</id>
+			<url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ambit-plovdiv-releases</id>
+			<url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
+	<inceptionYear>2004</inceptionYear>
+	<issueManagement>
+		<system>Subversion</system>
+		<url>http://sourceforge.net/p/toxtree/bugs</url>
+	</issueManagement>
+	<developers>
+		<developer>
+			<id>vedina</id>
+			<name>Nina Jeliazkova</name>
+			<email>jeliazkova.nina@gmail.com</email>
+			<roles>
+				<role>Toxtree core developer</role>
+				<role>Plugin: Cramer rules</role>
+				<role>Plugin: Verhaar scheme</role>
+				<role>Plugin: Verhaar2 scheme</role>
+				<role>Plugin: Benigni/Bossa rulebase forcarcinogenicity and mutagenicity</role>
+				<role>Plugin: Structure alerts for Michael Acceptors</role>
+				<role>Plugin: Kroes TTC decision tree</role>
+				<role>Plugin: Compound lookup</role>
+				<role>QA and integration of puugins</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>martinmartnov</id>
+			<name>Martin Martinov</name>
+			<roles>
+				<role>Plugin: Skin irritation</role>
+				<role>Plugin: Structure alerts for Michael Acceptors</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>olvich1972</id>
+			<name>Olga Tcheremenskaia</name>
+			<roles>
+				<role>Plugin: Structure Alerts for the in vivo micronucleus assay in rodents</role>
+				<role>Plugin: Structure Alerts for the Functional Groups detection</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>jk</id>
+			<name>JK</name>
+			<roles>
+				<role>Plugin: Extended Cramer rules</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>mn</id>
+			<name>Molecular Networks</name>
+			<roles>
+				<role>Plugin: START</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>patrikrydberg</id>
+			<name>Patrik Rydberg</name>
+			<roles>
+				<role>Plugin: SMARTCyp</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>vedrin</id>
+			<name>Vedrin Jeliazkov</name>
+			<roles>
+				<role>Windows installer</role>
+				<role>QA</role>
+				<role>Guidance</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>pg</id>
+			<organization>Procter &amp; Gamble</organization>
+			<organizationUrl>http://www.pg.com</organizationUrl>
+			<roles>
+				<role>Plugin: Skin sensitisation alerts</role>
+			</roles>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:svn:https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</connection>
+		<developerConnection>scm:svn+ssh://USERNAME@svn.code.sf.net/p/toxtree/svn/trunk/toxtree</developerConnection>
+		<tag>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags</tag>
+		<url>https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</url>
+	</scm>
+	<mailingLists>
+		<mailingList>
+			<name>Users list</name>
+			<subscribe>https://lists.sourceforge.net/lists/listinfo/toxtree-users</subscribe>
+			<unsubscribe>https://lists.sourceforge.net/lists/listinfo/toxtree-users</unsubscribe>
+			<post>mailto:toxtree-users@lists.sourceforge.net</post>
+			<archive>http://sourceforge.net/mailarchive/forum.php?forum_name=toxtree-users</archive>
+		</mailingList>
+	</mailingLists>
+	<contributors></contributors>
+	<licenses>
+		<license>
+			<name>GPL</name>
+			<url>http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments></comments>
+		</license>
+	</licenses>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.2</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<skip>true</skip>
+						<disableXmlReport>true</disableXmlReport>
+						<argLine>-Xmx1024m</argLine>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.4.3</version>
+					<configuration>
+						<nonFilteredFileExtensions>
+							<nonFilteredFileExtension>exe</nonFilteredFileExtension>
+							<nonFilteredFileExtension>dll</nonFilteredFileExtension>
+							<nonFilteredFileExtension>obf</nonFilteredFileExtension>
+							<nonFilteredFileExtension>sdf</nonFilteredFileExtension>
+						</nonFilteredFileExtensions>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<configuration>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<!-- <mainClass>${mainclass}</mainClass> <packageName>${project.artifactId}</packageName> -->
+								<addClasspath>true</addClasspath>
+								<!-- <addExtensions/> <classpathPrefix/> -->
+							</manifest>
+							<manifestEntries>
+								<mode>development</mode>
+								<url>${project.url}</url>
+							</manifestEntries>
+							<manifestFile>target/classes/META-INF/MANIFEST.MF</manifestFile>
+						</archive>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>1.0-beta-4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.1.2</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.0</version>
+					<configuration>
+						<releaseProfiles>release</releaseProfiles>
+						<remoteTagging>true</remoteTagging>
+						<tagBase>scm:svn:https://ambit.svn.sourceforge.net/svnroot/ambit/tags</tagBase>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<!-- <preparationGoals>clean install</preparationGoals> -->
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.4</version>
+					<configuration>
+						<locales>en</locales>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>lt.velykis.maven.skins</groupId>
+							<artifactId>reflow-velocity-tools</artifactId>
+							<version>1.1.1</version>
+						</dependency>
+						<dependency>
+							<groupId>org.apache.velocity</groupId>
+							<artifactId>velocity</artifactId>
+							<version>1.7</version>
+						</dependency>
+						<dependency>
+							<groupId>org.apache.maven.wagon</groupId>
+							<artifactId>wagon-ssh</artifactId>
+							<version>2.0</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.3</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<extensions>
+			<!-- Enabling the use of SSH -->
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh-external</artifactId>
+				<version>1.0-beta-6</version>
+			</extension>
+		</extensions>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.4</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>license</report>
+							<report>issue-tracking</report>
+							<report>mailing-list</report>
+							<report>project-team</report>
+							<report>scm</report>
+							<!-- <report>dependencies</report> -->
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<ambit.version>3.0.0-SNAPSHOT</ambit.version>
+		<cdk.version>1.5.10</cdk.version>
+		<junit.version>4.8.1</junit.version>
+		<smartcyp.version>3.0.0-SNAPSHOT</smartcyp.version>
+	</properties>
 </project>
