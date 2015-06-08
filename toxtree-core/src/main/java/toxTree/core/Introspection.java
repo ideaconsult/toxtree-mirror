@@ -67,7 +67,7 @@ import toxTree.tree.ProgressStatus;
  */
 public class Introspection {
 	public static final String TOXTREE_HOME = "TOXTREE";
-	protected static String[] defaultLocation = { "dist", "ext", "toxTree/dist" };
+	protected static String[] defaultLocation = { "ext" };
 
 	protected transient static Logger logger = Logger
 			.getLogger(Introspection.class.getName());
@@ -200,7 +200,7 @@ public class Introspection {
 			List<File> files = new ArrayList<File>();
 			Properties plugins = new Properties();
 
-			in = new FileInputStream("index.properties");
+			in = new FileInputStream(directory.getAbsolutePath() + "/index.properties");
 			plugins.load(in);
 			Object folder = plugins.get("folder");
 			logger.log(Level.INFO, String.format("Jars list in %s ", plugins));
