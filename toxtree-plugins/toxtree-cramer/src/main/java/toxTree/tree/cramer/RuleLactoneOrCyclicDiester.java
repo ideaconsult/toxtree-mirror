@@ -51,7 +51,7 @@ import toxTree.tree.rules.RuleSubstructures;
  */
 public class RuleLactoneOrCyclicDiester extends RuleSubstructures {
 	protected int index_lactone;
-	protected QueryAtomContainer anhydride;
+	protected transient QueryAtomContainer anhydride;
 	
 	/**
      * Comment for <code>serialVersionUID</code>

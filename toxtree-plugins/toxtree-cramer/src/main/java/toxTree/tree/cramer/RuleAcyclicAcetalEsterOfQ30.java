@@ -40,8 +40,8 @@ import toxTree.query.SimpleReactions;
  * @version 0.1, 2005-5-3
  */
 public class RuleAcyclicAcetalEsterOfQ30 extends RuleRingComplexSubstituents30 {
-	protected QueryAtomContainer acetal;
-	protected QueryAtomContainer ester;
+	protected transient QueryAtomContainer acetal;
+	protected transient QueryAtomContainer ester;
 	/**
      * Comment for <code>serialVersionUID</code>
      */

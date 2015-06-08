@@ -37,7 +37,7 @@ import verhaar.query.FunctionalGroups;
  */
 public class Rule141 extends RuleIsOpenChain implements IAlertCounter {
 	protected IAlertCounter alertsCounter;
-	protected QueryAtomContainer x;
+	protected transient QueryAtomContainer x;
 	protected static transient String[] halogens = {"Cl","Br","F","I"};
 	/**
 	 * 

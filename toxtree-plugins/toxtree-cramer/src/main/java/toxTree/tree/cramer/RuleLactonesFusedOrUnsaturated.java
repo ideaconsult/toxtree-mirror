@@ -57,7 +57,7 @@ import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
  */
 public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 	protected static transient QueryAtomContainer lactoneBreakable = null;
-	protected static QueryAtomContainer lactoneUnsaturated = null;
+	protected static transient QueryAtomContainer lactoneUnsaturated = null;
 	
 	/**
      * Comment for <code>serialVersionUID</code>

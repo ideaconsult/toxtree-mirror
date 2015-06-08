@@ -39,7 +39,7 @@ import verhaar.query.FunctionalGroups;
  */
 public class Rule143 extends RuleRingAllowedSubstituents  implements IAlertCounter {
 	protected IAlertCounter alertsCounter;
-	protected QueryAtomContainer x ;
+	protected transient QueryAtomContainer x ;
 	protected String[] halogens = {"Cl","F","Br","I"}; 
 	/**
 	 * 

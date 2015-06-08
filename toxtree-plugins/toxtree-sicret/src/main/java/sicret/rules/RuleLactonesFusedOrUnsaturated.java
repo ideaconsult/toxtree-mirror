@@ -47,7 +47,7 @@ import toxTree.tree.rules.RuleAnySubstructure;
  */
 public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 	//protected transient QueryAtomContainer lactoneBreakable = null;
-	protected QueryAtomContainer lactoneUnsaturated = null;
+	protected transient QueryAtomContainer lactoneUnsaturated = null;
 	
 	/**
      * Comment for <code>serialVersionUID</code>

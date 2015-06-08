@@ -67,7 +67,7 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 	protected int index_hydrocarbon = 4;
 	protected ArrayList chIDs, hydroxyIDs, alkoxyIDs;
 	protected int[] places = {-1,-1,-1,-1,-1,-1}; 
-	protected QueryAtomContainer ring6 = null;
+	protected transient QueryAtomContainer ring6 = null;
 	/**
      * Comment for <code>serialVersionUID</code>
      */

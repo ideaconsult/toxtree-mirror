@@ -42,7 +42,7 @@ import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
  * <b>Modified</b> 2005-10-18
  */
 public class Rule32 extends RuleOnlyAllowedSubstructures {
-	QueryAtomContainer polyoxyethylene5;
+	transient QueryAtomContainer polyoxyethylene5;
 	/**
 	 * 
 	 */

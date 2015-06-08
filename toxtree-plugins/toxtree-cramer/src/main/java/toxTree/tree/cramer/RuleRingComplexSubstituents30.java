@@ -56,7 +56,7 @@ import toxTree.tree.rules.RuleRingOtherThanAllowedSubstituents;
  * @version 0.1, 2005-5-3
  */
 public class RuleRingComplexSubstituents30 extends RuleRingOtherThanAllowedSubstituents {
-	protected QueryAtomContainer ester = null;
+	protected transient QueryAtomContainer ester = null;
 	
 	/**
      * Comment for <code>serialVersionUID</code>
