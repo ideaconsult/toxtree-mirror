@@ -103,6 +103,9 @@ public class MoleculesIterator implements IMoleculesIterator {
 		containers = new ListOfAtomContainers();
 		
         IAtomContainer molecule = MoleculeFactory.makeAlkane(6);
+        try {
+        AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(molecule);
+        } catch (Exception x){}
         molecule.setProperty(AmbitCONSTANTS.NAMES,"Created from SMILES");
         molecule.setProperty(AmbitCONSTANTS.SMILES,"CCCCCC");
         containers.addAtomContainer(molecule);
