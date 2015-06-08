@@ -230,7 +230,8 @@ public class DecisionMethodsList extends Observable implements	IDecisionMethodsL
 			Object folder = plugins.get("folder");
 			Object[] keys = plugins.keySet().toArray();
 			Arrays.sort(keys);
-			for (Object key : keys ) {
+			for (int i= 0; i < keys.length; i++) {
+				Object key = keys[i];
 				if ("folder".equals(key.toString())) continue;
 				Object o;
 				String className=  plugins.get(key).toString();
@@ -263,7 +264,7 @@ public class DecisionMethodsList extends Observable implements	IDecisionMethodsL
 						} 
 
 				} catch (Exception x) {
-					logger.log(Level.SEVERE,x.getMessage());		
+					logger.log(Level.SEVERE,x.getMessage(),x);		
 				}
 			}
 		} catch (Exception x) {

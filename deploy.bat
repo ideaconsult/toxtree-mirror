@@ -4,6 +4,7 @@ copy toxtree-app\toxtree-plugins.properties dist
 copy toxtree-app\target\Toxtree-3.0.0-SNAPSHOT.jar dist
 mkdir dist\ext
 del dist\ext\*
+copy toxtree-app\index.properties dist
 copy toxtree-plugins\toxtree-ames\target\*3.0.0-SNAPSHOT.jar dist\ext
 copy toxtree-plugins\toxtree-cramer\target\*3.0.0-SNAPSHOT.jar dist\ext
 copy toxtree-plugins\toxtree-cramer2\target\*3.0.0-SNAPSHOT.jar dist\ext
