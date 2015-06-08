@@ -765,6 +765,12 @@ public abstract class AbstractTree extends Observable implements
 		}
 		String vendor = labels.getString("vendor");
 		String vendoruri = labels.getString("vendoruri");
+		String specVendor = "";
+		try {
+			specVendor = labels.getString("specification_vendor");
+			if (specVendor != null && !"".equals(specVendor))
+				specVendor = "<h5>Specification: " + specVendor + "</h5>";
+		} catch (Exception x) { specVendor = "";}
 		String uri = labels.getString("uri");
 
 		String traindata = labels.containsKey("trainingdata") ? String.format(
@@ -775,11 +781,9 @@ public abstract class AbstractTree extends Observable implements
 				"<h5>Test data: <a href='%s'>%s</a></h5>",
 				labels.getString("testdata"), "Click to retrieve") : "";
 
-		return String.format("<html><body>"
-				+ "<h3>%s</h3><h5>WWW: <a href='%s'>%s</a></h5>"
-				+ "<h5>Vendor: <a href='%s'>%s</a></h5>" + "%s%s"
-				+ "<hr><h3>References:</h3><ol>%s</ol>" + "</body></html>",
+		return String.format("<html><body><h3>%s</h3><h5>WWW: <a href='%s'>%s</a></h5><h5>Vendor: <a href='%s'>%s</a></h5>%s%s%s<hr><h3>References:</h3><ol>%s</ol></body></html>",
 				labels.getString("explanation"), uri, uri, vendoruri, vendor,
+				specVendor,
 				traindata, testdata, b.toString());
 
 	}
