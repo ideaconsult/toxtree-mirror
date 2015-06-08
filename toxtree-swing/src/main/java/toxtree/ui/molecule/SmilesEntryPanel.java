@@ -60,11 +60,11 @@ import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.query.FunctionalGroups;
 import toxTree.query.remote.RemoteCompoundLookup;
+import uk.ac.cam.ch.wwmm.opsin.NameToStructure;
 import ambit2.base.config.Preferences;
 import ambit2.base.data.Property;
 import ambit2.core.config.AmbitCONSTANTS;
 import ambit2.core.data.EINECS;
-import ambit2.namestructure.Name2StructureProcessor;
 
 /**
  * A {@link javax.swing.JPanel} to enter a SMILES. Now it supports a history of entered SMILES that can be 
@@ -259,23 +259,21 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	
 	    		} else {
 	    			errormsg = String.format(labels.getString(_labels.error_inchi.name()),input);
-	    			Name2StructureProcessor p = new Name2StructureProcessor();
+	    		    NameToStructure nts = NameToStructure.getInstance();
+	    		    String smiles = null;
 	    			try {
-	    				a = p.process(input);
+	    				smiles = nts.parseToSmiles(input);
+	    				a = FunctionalGroups.createAtomContainer(smiles,false);
+	    				a.setProperty(AmbitCONSTANTS.SMILES,smiles);
+	    	    		a.setProperty(CDKConstants.COMMENT,labels.getString(_labels.createdByOpsin.name()));
+	    		    	a.setProperty(AmbitCONSTANTS.NAMES,input);
+	    		    	a.setID(input);
 	    			} catch (Exception x) {
 	    	    		a = null;
 	    	    		errormsg = x.getMessage();
 	    			}
-	    			if (a != null) {
-	    	    		a.setProperty(CDKConstants.COMMENT,labels.getString(_labels.createdByOpsin.name()));
-	    		    	a.setProperty(AmbitCONSTANTS.NAMES,input);
-	    		    	a.setID(input);
-	    		    	if (a instanceof IAtomContainer) 
-	    		    	try { 
-	    		    		SmilesGenerator g = new SmilesGenerator(); 
-	    		    		a.setProperty(AmbitCONSTANTS.SMILES, g.createSMILES((IAtomContainer)a));
-	    		    	} catch (Exception x) {};
-	    			} else 
+	    			if (a == null) {
+
 	    				if (Preferences.getProperty(Preferences.REMOTELOOKUP).equals("true")) {
 	    					a =  retrieveRemote(input);
 	    					if (a!=null) {
@@ -291,7 +289,7 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	    					errormsg = String.format("%s '%s' entered. Name to structure conversion failed. Please enable remote queries via 'Method/Decision Tree Options/Remote query' menu.",
 	    							"Name",input);
 	    				}
-	    				
+	    			}	
 	    		}
 	    	} catch (Exception x) {
 	    		a = null;
