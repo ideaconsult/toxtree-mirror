@@ -27,6 +27,8 @@ package toxTree.tree.rules;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
 
 import net.idea.modbcum.i.exceptions.AmbitException;
 
@@ -59,7 +61,8 @@ import ambit2.rendering.IAtomContainerHighlights;
  * @author Nina Jeliazkova nina@acad.bg
  * @author Martin Martinov <b>Modified</b> Dec 17, 2006
  */
-public class RuleVerifyProperty extends AbstractRule implements IDecisionInteractive, IImplementationDetails {
+public class RuleVerifyProperty extends AbstractRule implements
+		IDecisionInteractive, IImplementationDetails {
 
 	/**
 	 * 
@@ -82,7 +85,7 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 	public static String condition_lower = "<";
 	public static String condition_equals = "=";
 	protected String condition = condition_equals;
-	protected static NumberFormat nf = NumberFormat.getInstance();
+	protected static NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
 	protected double[] propertyExamples = new double[] { Double.NaN, Double.NaN };
 	protected PropertyChangeListener listener;
 
@@ -100,7 +103,8 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 		setListener(EditorFactory.getInstance().createPropertyInput());
 	}
 
-	public RuleVerifyProperty(String propertyName, String units, String condition, double value) {
+	public RuleVerifyProperty(String propertyName, String units,
+			String condition, double value) {
 		this();
 		setPropertyName(propertyName);
 		setPropertyUnits(units);
@@ -110,10 +114,12 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 	}
 
 	public String getCaption() {
-		return getPropertyName() + "[" + getPropertyUnits() + "] " + getCondition() + " " + nf.format(getProperty());
+		return getPropertyName() + "[" + getPropertyUnits() + "] "
+				+ getCondition() + " " + nf.format(getProperty());
 	}
 
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
 		logger.fine(toString());
 		try {
 			Object value = mol.getProperty(this.propertyName);
@@ -123,31 +129,40 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 					value = inputProperty(mol);
 					mol.setProperty(propertyName, value.toString());
 				} else
-					throw new DRuleNotImplemented(propertyName + " not assigned ");
+					throw new DRuleNotImplemented(propertyName
+							+ " not assigned ");
 			}
 			// Double.valueOf returns Double, perhaps Double.parseDouble() could
 			// be used
-			return this
-					.compare(Double.valueOf(mol.getProperty(this.propertyName).toString()), this.propertyStaticValue);
-
+			Number number = NumberFormat.getNumberInstance(Locale.ENGLISH)
+					.parse(value.toString());
+			return this.compare(number.doubleValue(), this.propertyStaticValue);
+		} catch (ParseException x) {
+			throw new DRulePropertyNotAvailable(propertyName, propertyName
+					+ " invalid value ", x);
 		} catch (NumberFormatException x) {
 			// just in case, the property might hold any value, or be empty
-			throw new DRulePropertyNotAvailable(propertyName, propertyName + " invalid value ", x);
+			throw new DRulePropertyNotAvailable(propertyName, propertyName
+					+ " invalid value ", x);
 		} catch (NullPointerException x) {
 			// or the getProperty might be null
-			throw new DRulePropertyNotAvailable(propertyName, propertyName + " not assigned ", x);
+			throw new DRulePropertyNotAvailable(propertyName, propertyName
+					+ " not assigned ", x);
 		}
 	}
 
-	public String inputProperty(IAtomContainer mol) throws DecisionMethodException {
+	public String inputProperty(IAtomContainer mol)
+			throws DecisionMethodException {
 		Object value = mol.getProperty(this.propertyName);
 
 		if ((value == null) || ("".equals(value))) {
 			if (getListener() != null) {
-				getListener().propertyChange(new PropertyChangeEvent(this, propertyName, null, mol));
+				getListener().propertyChange(
+						new PropertyChangeEvent(this, propertyName, null, mol));
 				value = mol.getProperty(this.propertyName);
 			} else
-				throw new DRuleNotImplemented(String.format("%s %s not assigned ", propertyName, propertyUnits));
+				throw new DRuleNotImplemented(String.format(
+						"%s %s not assigned ", propertyName, propertyUnits));
 		}
 		return value.toString();
 	}
@@ -198,7 +213,8 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 	}
 
 	@Override
-	public IAtomContainer getExampleMolecule(boolean ruleResult) throws DecisionMethodException {
+	public IAtomContainer getExampleMolecule(boolean ruleResult)
+			throws DecisionMethodException {
 		int index = 0;
 		if (ruleResult)
 			index = 1;
@@ -281,9 +297,12 @@ public class RuleVerifyProperty extends AbstractRule implements IDecisionInterac
 		     */
 			private static final long serialVersionUID = -959872394651597110L;
 
-			public IChemObjectSelection process(IAtomContainer mol) throws AmbitException {
+			public IChemObjectSelection process(IAtomContainer mol)
+					throws AmbitException {
 				try {
-					IAtomContainer selected = MoleculeTools.newAtomContainer(SilentChemObjectBuilder.getInstance());
+					IAtomContainer selected = MoleculeTools
+							.newAtomContainer(SilentChemObjectBuilder
+									.getInstance());
 					if (verifyRule(mol)) {
 						selected.add(mol);
 						return new SingleSelection<IAtomContainer>(selected);

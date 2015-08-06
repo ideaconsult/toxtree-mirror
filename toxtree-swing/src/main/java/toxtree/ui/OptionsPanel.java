@@ -27,6 +27,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
@@ -63,7 +64,7 @@ public class OptionsPanel extends JPanel implements FocusListener, ItemListener 
         }
         //addSeparator();
         
-        propertyField = new JFormattedTextField(NumberFormat.getNumberInstance());
+        propertyField = new JFormattedTextField(NumberFormat.getNumberInstance(Locale.ENGLISH));
         propertyField.addFocusListener(this);
         propertyField.setToolTipText(rule.getPropertyName() + " value");
         propertyField.setColumns(10);

@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.swing.table.AbstractTableModel;
@@ -49,7 +50,7 @@ public class AtomContainerPropertyTableModel extends AbstractTableModel {
 	protected IAtomContainer ac;
 	protected List<String> names = new ArrayList<String>();
 	private String[] columnNames = new String[] {"Name","Value"};
-    protected static NumberFormat nf = NumberFormat.getInstance();
+    protected static NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
