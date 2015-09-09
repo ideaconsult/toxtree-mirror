@@ -30,9 +30,9 @@ package com.molecularnetworks.start.rules;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
 import org.openscience.cdk.exception.CDKException;
+import org.openscience.cdk.graph.Cycles;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRingSet;
-import org.openscience.cdk.ringsearch.AllRingsFinder;
 
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.DecisionMethodException;
@@ -88,8 +88,8 @@ public class RuleTwoOrMoreRings extends AbstractRule {
      */
     public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
 	try {
-	    AllRingsFinder ringsFinder = new AllRingsFinder();
-	    IRingSet rings = ringsFinder.findAllRings(mol);
+		//TODO this is redundant, there is already mol.getProperty() containing the rings
+	    IRingSet rings = Cycles.all(mol).toRingSet();
 	    return rings.getAtomContainerCount() >= 2;
 	} catch (CDKException ex) {
 	    throw new DecisionMethodException(ex);

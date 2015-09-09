@@ -318,7 +318,7 @@ public class SMIRKSTest {
 
 				htmlFileWriter
 						.write(String
-								.format("&nbsp;<a href='https://apps.ideaconsult.net/ambit2/compound?feature_uris[]=http://apps.ideaconsult.net:8080/ambit2/feature/28402&property=ID&search=%s&feature_uris[]=https://apps.ideaconsult.net/ambit2/dataset/1736/feature' target=_blank>Search</a></h3>",
+								.format("&nbsp;<a href='https://apps.ideaconsult.net/ambit3/compound?feature_uris[]=http://apps.ideaconsult.net:8080/ambit2/feature/28402&property=ID&search=%s&feature_uris[]=https://apps.ideaconsult.net/ambit2/dataset/1736/feature' target=_blank>Search</a></h3>",
 										URLEncoder.encode(molid.toString())));
 				htmlFileWriter.write("\n<table border='1'>");
 				htmlFileWriter.write("\n<tr>");
@@ -472,7 +472,7 @@ public class SMIRKSTest {
 
 	protected String getImageURI(String smiles) {
 		return String.format(
-				"https://apps.ideaconsult.net/ambit2/depict/cdk?search=%s",
+				"https://apps.ideaconsult.net/ambit3/depict/cdk?search=%s",
 				URLEncoder.encode(smiles));
 	}
 
