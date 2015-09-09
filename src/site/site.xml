@@ -173,7 +173,7 @@
     -->
     <menu name="Related links">
       <item name="AMBIT" href="http://ambit.sourceforge.net" />
-      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net/ambit2" />
+      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net/ambit3" />
     
     	<item name="Toxtree online" href="http://toxtree.sf.net/predict" />
       <item name="Toxmatch" href="http://toxmatch.sf.net" />
