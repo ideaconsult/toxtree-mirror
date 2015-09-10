@@ -2326,8 +2326,7 @@ public class FunctionalGroups {
 					}
 					}
 
-			Map h = a.getProperties();
-			for (Iterator e = h.keySet().iterator(); e.hasNext();) {
+			for (Iterator e =  a.getProperties().keySet().iterator(); e.hasNext();) {
 				Object key = e.next();
 				Object o = a.getProperty(key);
 				if (o != null) {
@@ -4302,10 +4301,11 @@ public class FunctionalGroups {
 	}
 
 	public static void clearMarks(IAtomContainer a) {
-		for (int i = 0; i < a.getBondCount(); i++)
-			a.getBond(i).getProperties().clear();
+		for (int i = 0; i < a.getBondCount(); i++) {
+			MoleculeTools.clearProperties(a.getBond(i));
+		}	
 		for (int k = 0; k < a.getAtomCount(); k++)
-			a.getAtom(k).getProperties().clear();
+			MoleculeTools.clearProperties(a.getAtom(k));
 
 	}
 

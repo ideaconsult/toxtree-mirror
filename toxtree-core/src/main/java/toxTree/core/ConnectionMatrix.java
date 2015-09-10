@@ -24,7 +24,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxTree.core;
 
-import org.openscience.cdk.annotations.TestMethod;
 import org.openscience.cdk.graph.matrix.IGraphMatrix;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
@@ -38,7 +37,6 @@ public class ConnectionMatrix implements IGraphMatrix {
      * @param  container The AtomContainer for which the matrix is calculated
 	 * @return           A connection matrix representating this AtomContainer
 	 */
-    @TestMethod("testGetMatrix_IAtomContainer")
     public static double[][] getMatrix(IAtomContainer container) {
 		IBond bond = null;
 		int indexAtom1;

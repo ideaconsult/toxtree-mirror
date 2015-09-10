@@ -16,8 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
-
+ */
 
 package toxtree.ui;
 
@@ -34,48 +33,50 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import toxtree.ui.molecule.PropertyPanel;
 import ambit2.ui.Panel2D;
 
-public class PropertyEditor extends JPanel{
-    /**
+public class PropertyEditor extends JPanel {
+	/**
      * 
      */
-    private static final long serialVersionUID = 5076428184639882491L;
-    protected OptionsPanel optionsPanel;
-    public PropertyEditor(IAtomContainer mol, JComponent options) {
-        super(new BorderLayout());
-        Panel2D panel2d = new Panel2D();
-        panel2d.setBorder(BorderFactory.createEtchedBorder());
-        panel2d.setPreferredSize(new Dimension(200,200));
-        
-        IAtomContainer c = null;
-        if (mol != null) {
-	        try {
-	            c = (IAtomContainer)mol.clone();
-	            c = AtomContainerManipulator.removeHydrogensPreserveMultiplyBonded(c);    
-	            c.setProperties(mol.getProperties());
-	        } catch (Exception x) {
-	            c = mol;
-	        }
-	        panel2d.setAtomContainer(c,true);
-        	add(panel2d,BorderLayout.CENTER);
-        	
-            PropertyPanel p = new PropertyPanel();
-            p.setBorder(BorderFactory.createEtchedBorder());
-            p.setAtomContainer(c);
-            add(p,BorderLayout.WEST);
-        	
-        }
-        
-        if (options != null) {
-        	if (options instanceof OptionsPanel)
-        		optionsPanel = (OptionsPanel) options;
-            add(options,BorderLayout.NORTH);
-        }
-    }
-    public String getPropertyValue() {
-        return optionsPanel.getPropertyValue();
-    }
-    public boolean isSilent() {
-        return optionsPanel.isSilent();
-    }
-}
+	private static final long serialVersionUID = 5076428184639882491L;
+	protected OptionsPanel optionsPanel;
 
+	public PropertyEditor(IAtomContainer mol, JComponent options) {
+		super(new BorderLayout());
+		Panel2D panel2d = new Panel2D();
+		panel2d.setBorder(BorderFactory.createEtchedBorder());
+		panel2d.setPreferredSize(new Dimension(200, 200));
+
+		IAtomContainer c = null;
+		if (mol != null) {
+			try {
+				c = mol.clone();
+				c = AtomContainerManipulator.copyAndSuppressedHydrogens(c);
+				c.setProperties(mol.getProperties());
+			} catch (Exception x) {
+				c = mol;
+			}
+			panel2d.setAtomContainer(c, true);
+			add(panel2d, BorderLayout.CENTER);
+
+			PropertyPanel p = new PropertyPanel();
+			p.setBorder(BorderFactory.createEtchedBorder());
+			p.setAtomContainer(c);
+			add(p, BorderLayout.WEST);
+
+		}
+
+		if (options != null) {
+			if (options instanceof OptionsPanel)
+				optionsPanel = (OptionsPanel) options;
+			add(options, BorderLayout.NORTH);
+		}
+	}
+
+	public String getPropertyValue() {
+		return optionsPanel.getPropertyValue();
+	}
+
+	public boolean isSilent() {
+		return optionsPanel.isSilent();
+	}
+}

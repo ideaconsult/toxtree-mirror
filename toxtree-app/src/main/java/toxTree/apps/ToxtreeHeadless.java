@@ -87,7 +87,6 @@ public class ToxtreeHeadless {
 					MolAnalyser.analyse(mol);
 					result.classify(mol);
 					result.assignResult(mol);
-					// System.out.println(mol.getProperties());
 					writer.write(mol);
 					r++;
 					if ((r % 1000)==0) 

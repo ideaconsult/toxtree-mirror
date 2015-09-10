@@ -87,28 +87,7 @@ public class Rule3FuncGroupsTest extends AbstractRuleTest {
 
 		FunctionalGroups.clearMarks(a);
 		MolAnalyser.analyse(a);
-		/*
-		 * for (int i=0;i < a.getAtomCount(); i++) { //if
-		 * ("H".equals(a.getAtom(i).getSymbol())) {
-		 * 
-		 * System.out.print(a.getAtom(i).getSymbol()); System.out.print('\t');
-		 * System.out.print(a.getAtom(i).getAtomTypeName());
-		 * System.out.print('\t'); System.out.print(a.getAtom(i).getCharge());
-		 * System.out.print('\t');
-		 * System.out.print(a.getAtom(i).getFormalCharge());
-		 * System.out.print('\t');
-		 * System.out.print(a.getAtom(i).getFormalNeighbourCount());
-		 * System.out.print('\t');
-		 * System.out.print(a.getAtom(i).getBondOrderSum());
-		 * System.out.print('\t');
-		 * System.out.print(a.getAtom(i).getHybridization());
-		 * System.out.print('\t');
-		 * System.out.print(a.getAtom(i).getHydrogenCount());
-		 * System.out.print('\t'); System.out.print(a.getAtom(i).getValency());
-		 * System.out.print('\t');
-		 * System.out.print(a.getAtom(i).getProperties()); System.out.println();
-		 * }
-		 */
+
 		return rule2test.verifyRule(a);
 	}
 }

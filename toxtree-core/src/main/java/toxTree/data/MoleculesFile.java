@@ -179,6 +179,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet,
 			}
 			// if (bufferProperties && (updatedProperties[index]==null))
 			// updatedProperties[index] = new Hashtable();
+			//TODO this may not work with CDK 1.5.11 !!!!
 			if (updatedProperties[index] != null) {
 				Map p = recordLoaded.getProperties();
 				Object[] keys = p.keySet().toArray();

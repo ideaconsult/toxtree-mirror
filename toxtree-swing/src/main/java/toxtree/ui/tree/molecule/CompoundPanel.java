@@ -58,7 +58,7 @@ import ambit2.ui.Panel2D;
 
 /**
  * A {@link javax.swing.JPanel} descendant, displaying 2D structure diagram of the molecule at the bottom
- * and a table with molecule properties read by {@link org.openscience.cdk.interfaces.Molecule#getProperties() }
+ * and a table with molecule properties read by {@link org.openscience.cdk.interfaces.Molecule#getRecordProperties() }
  * @author Nina Jeliazkova <br>
  * <b>Modified</b> 2005-4-30
  */

@@ -247,10 +247,7 @@ public class SubstituentExtractor {
 					a = a2;
 
 				if (a != null) {
-					// System.out.println("Substituent starting with "+a.getSymbol()
-					// + " " + a.getProperties());
-					// IAtom r =
-					// SilentChemObjectBuilder.getInstance().newAtom("R");
+
 					IAtom r = MoleculeTools.newPseudoAtom(
 							SilentChemObjectBuilder.getInstance(), "R");
 					result.addAtom(r);

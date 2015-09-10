@@ -243,14 +243,7 @@ public class MutantDataTest {
 			Object object = reader.next();
 			Assert.assertNotNull(object);
 			Assert.assertTrue((object instanceof IAtomContainer));
-			/*
-			 * if(molCount==1){ IAtomContainer mol = (IAtomContainer)object;
-			 * Hashtable temp = mol.getProperties(); Enumeration e =
-			 * temp.keys(); while(e.hasMoreElements()){
-			 * System.out.println(e.nextElement().toString());
-			 * 
-			 * } }
-			 */
+			
 			if (object instanceof IAtomContainer) {
 
 				IAtomContainer mol = (IAtomContainer) object;

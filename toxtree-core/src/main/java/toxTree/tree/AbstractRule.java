@@ -54,6 +54,7 @@ import toxTree.core.XMLSerializable;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.XMLDecisionMethodException;
 import toxTree.ui.EditorFactory;
+import ambit2.core.data.MoleculeTools;
 import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.rendering.IAtomContainerHighlights;
 
@@ -305,7 +306,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 			for (int j = 0; j < o.length; j++) {
 				Object value = props.get(o[j]);
 				if (value instanceof String)
-					props.remove(o[j]);
+					mol.getAtom(i).removeProperty(o[j]);
 			}
 		}
 		for (int i = 0; i < mol.getBondCount(); i++) {
@@ -314,7 +315,7 @@ public abstract class AbstractRule extends Observable implements IDecisionRule, 
 			for (int j = 0; j < o.length; j++) {
 				Object value = props.get(o[j]);
 				if (value instanceof String)
-					props.remove(o[j]);
+					mol.getBond(i).removeProperty(o[j]);
 			}
 		}
 

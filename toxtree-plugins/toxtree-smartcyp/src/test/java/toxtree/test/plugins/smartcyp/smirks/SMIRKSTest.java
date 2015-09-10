@@ -29,6 +29,7 @@ import toxTree.query.MolAnalyser;
 import toxTree.tree.stats.ConfusionMatrix;
 import toxtree.plugins.smartcyp.SMARTCYPPlugin;
 import ambit2.core.data.IStructureDiagramHighlights;
+import ambit2.core.data.MoleculeTools;
 import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.io.MDLWriter;
 import ambit2.core.processors.structure.AtomConfigurator;
@@ -387,8 +388,10 @@ public class SMIRKSTest {
 					IAtomContainer c = (IAtomContainer) ((IAtomContainer) mol)
 							.clone();
 					try {
-						c.getProperties().clear();
-						placeholder.getProperties().clear();
+						//c.getProperties().clear();
+						MoleculeTools.clearProperties(c);
+						MoleculeTools.clearProperties(placeholder);
+						//placeholder.getProperties().clear();						
 						c = applySMIRKSReaction(smrkMan, reaction_smirks, c);
 
 						if (c == null) {
