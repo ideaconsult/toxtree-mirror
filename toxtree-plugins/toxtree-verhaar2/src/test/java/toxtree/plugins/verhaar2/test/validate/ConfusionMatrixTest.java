@@ -8,6 +8,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IDecisionMethod;
@@ -16,7 +17,6 @@ import toxTree.exceptions.DecisionResultException;
 import toxTree.tree.stats.ConfusionMatrix;
 import toxtree.plugins.verhaar2.VerhaarScheme2;
 import verhaar.VerhaarScheme;
-import ambit2.core.io.MyIteratingMDLReader;
 
 public class ConfusionMatrixTest {
 	protected IDecisionMethod rules ;
@@ -101,7 +101,7 @@ Expected	4.0	Predicted	Class 5 (Not possible to classify according to these rule
 	
 	protected void testFile(String filename, String[] expectedColumns) throws Exception {
 			System.out.println(filename);
-			MyIteratingMDLReader reader = new MyIteratingMDLReader(
+			IteratingSDFReader reader = new IteratingSDFReader(
 					new FileInputStream(new File(filename)),SilentChemObjectBuilder.getInstance());
 			IDecisionResult result = rules.createDecisionResult();
 			int ok = 0;

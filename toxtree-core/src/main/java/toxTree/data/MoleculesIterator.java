@@ -51,6 +51,7 @@ import org.openscience.cdk.io.DefaultChemObjectWriter;
 import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.SMILESReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.silent.AtomContainerSet;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -69,7 +70,6 @@ import ambit2.core.io.DelimitedFileFormat;
 import ambit2.core.io.DelimitedFileReader;
 import ambit2.core.io.DelimitedFileWriter;
 import ambit2.core.io.MDLWriter;
-import ambit2.core.io.MyIteratingMDLReader;
 import ambit2.core.io.ReaderFactoryExtended;
 
 
@@ -215,7 +215,7 @@ public class MoleculesIterator implements IMoleculesIterator {
         containers.clear();
         FixBondOrdersTool fbt = new FixBondOrdersTool();
         IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-        MyIteratingMDLReader reader = new MyIteratingMDLReader(in, builder);
+        IteratingSDFReader reader = new IteratingSDFReader(in, builder);
         int r = 0;
         CDKHydrogenAdder hadder = CDKHydrogenAdder.getInstance(builder);
         while (reader.hasNext()) {

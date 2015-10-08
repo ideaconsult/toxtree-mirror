@@ -4,10 +4,10 @@ import java.io.InputStream;
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxtree.lookup.RemoteLookup;
-import ambit2.core.io.MyIteratingMDLReader;
 
 public class RemoteCompoundLookup extends RemoteLookup<IAtomContainer> {
 	
@@ -17,7 +17,7 @@ public class RemoteCompoundLookup extends RemoteLookup<IAtomContainer> {
 
 	@Override
 	public IAtomContainer processStream(String uri,String input,InputStream in) throws Exception {
-		MyIteratingMDLReader reader = new MyIteratingMDLReader(in, SilentChemObjectBuilder.getInstance());
+		IteratingSDFReader reader = new IteratingSDFReader(in, SilentChemObjectBuilder.getInstance());
 		while (reader.hasNext()) {
 			Object o = reader.next();
 			if (o instanceof IAtomContainer) {

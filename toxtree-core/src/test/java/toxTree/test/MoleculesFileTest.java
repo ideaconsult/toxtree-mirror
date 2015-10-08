@@ -32,13 +32,13 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.data.MoleculesFile;
 import toxTree.io.Tools;
 import ambit2.core.helper.CDKHueckelAromaticityDetector;
-import ambit2.core.io.MyIteratingMDLReader;
 
 public class MoleculesFileTest  {
 	@Test
@@ -48,7 +48,7 @@ public class MoleculesFileTest  {
 			File file = Tools.getFileFromResource("substituents.sdf");
 			MoleculesFile mf = new MoleculesFile(file,b);
 			File file1 = Tools.getFileFromResource("substituents.sdf");
-			MyIteratingMDLReader reader = new MyIteratingMDLReader(new FileReader(file1),b);
+			IteratingSDFReader reader = new IteratingSDFReader(new FileReader(file1),b);
 			int record=0;
             int found = 0;
 			while (reader.hasNext()) {
