@@ -22,6 +22,11 @@
   		<version>${ambit.version}</version>
   	</dependency>
   	<dependency>
+  		<groupId>ambit</groupId>
+  		<artifactId>ambit2-descriptors</artifactId>
+  		<version>${ambit.version}</version>
+  	</dependency>  	
+  	<dependency>
   		<groupId>org.prefuse</groupId>
   		<artifactId>prefuse</artifactId>
   		<version>beta-20060220</version>
@@ -36,13 +41,11 @@
   		<artifactId>ambit2-core</artifactId>
   		<version>${ambit.version}</version>
   	</dependency>
-  	<!-- 
   	<dependency>
   		<groupId>ambit</groupId>
-  		<artifactId>ambit2-ui</artifactId>
+  		<artifactId>ambit2-poi</artifactId>
   		<version>${ambit.version}</version>
-  	</dependency>
-  	 -->
+  	</dependency>  	
 	<dependency>
        <groupId>ambit</groupId>
        <artifactId>ambit2-rendering</artifactId>
