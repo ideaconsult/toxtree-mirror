@@ -56,7 +56,7 @@ public abstract class MetaboliteGenerator extends AbstractRule implements
 		if (smrkMan == null) {
 			smrkMan = new SMIRKSManager(SilentChemObjectBuilder.getInstance());
 			//smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL_FIRST);
-			smrkMan.setSSMode(SmartsConst.SSM_NON_IDENTICAL);
+			smrkMan.setSSMode(SmartsConst.SSM_MODE.SSM_NON_IDENTICAL);
 			smrkMan.setFlagFilterEquivalentMappings(true);
 		}
 		List<SMARTCYPReaction> reactions = new ArrayList<SMARTCYPReaction>();
