@@ -25,7 +25,7 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import toxTree.tree.rules.RuleRingAllowedSubstituents;
 
 public abstract class RuleRingMainStrucSubstituents extends RuleRingAllowedSubstituents {
-	protected QueryAtomContainer mainStructure = null;
+	protected transient QueryAtomContainer mainStructure = null;
 	/**
 	 * 
 	 */

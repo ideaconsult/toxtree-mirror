@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.test.io.xml;
 
 import java.io.File;
@@ -48,32 +48,33 @@ public class DecisionMethodsListTest extends TestCase {
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(DecisionMethodsListTest.class);
 	}
+
 	public void testToXml() {
 		DecisionMethodsList methods = new DecisionMethodsList();
 		try {
-				//methods.loadAllFromPlugins();
+			// methods.loadAllFromPlugins();
 			methods.addDecisionMethod(new SMARTSTree());
-				//TODO for test only, make it as plugin
-				//methods.add(new SicretRules());
-	            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-	            Document doc = builder.newDocument();
-	            Element e = methods.toXML(doc);
-			    doc.appendChild(e);
-	            // Prepare the DOM document for writing
-	            Source source = new DOMSource(doc);
-	    
-	            // Prepare the output file
-	            File file = new File("methods.xml");
-	            Result result = new StreamResult(file);
-	    
-	            // Write the DOM document to the file
-	            Transformer xformer = TransformerFactory.newInstance().newTransformer();
-	            xformer.transform(source, result);			            
+			// TODO for test only, make it as plugin
+			// methods.add(new SicretRules());
+			DocumentBuilder builder = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder();
+			Document doc = builder.newDocument();
+			Element e = methods.toXML(doc);
+			doc.appendChild(e);
+			// Prepare the DOM document for writing
+			Source source = new DOMSource(doc);
+
+			// Prepare the output file
+			File file = new File("methods.xml");
+			Result result = new StreamResult(file);
+
+			// Write the DOM document to the file
+			Transformer xformer = TransformerFactory.newInstance()
+					.newTransformer();
+			xformer.transform(source, result);
 		} catch (Exception x) {
 			x.printStackTrace();
 		}
 	}
-	
+
 }
-
-

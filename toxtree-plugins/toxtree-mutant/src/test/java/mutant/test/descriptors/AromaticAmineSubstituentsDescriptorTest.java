@@ -175,7 +175,7 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	public void testOrder_Ammine39() throws Exception {
 		Object[][] smiles = new Object[][] {
 
-				{ "Nc2ccc3c1ccccc1nc3c2", "MR2", new Double(0.1), "MR3", new Double(0.54), "MR6", new Double(0.1) },
+				{ "NC1=CC=C2C(=C1)[NH]C3=CC=CC=C23", "MR2", new Double(0.1), "MR3", new Double(0.54), "MR6", new Double(0.1) },
 				{ "N2C3=CC=CC=C3(C=1C=CC(N)=CC=12)", "MR2", new Double(0.1), "MR3", new Double(0.54), "MR6",
 						new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
@@ -262,7 +262,7 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	@Test
 	public void testOrder_Ammine82() throws Exception {
-		Object[][] smiles = new Object[][] { { "N2C3=CC=CC=C3(C=1C(N)=CC=CC=12", "MR2", new Double(0.56), "MR3",
+		Object[][] smiles = new Object[][] { { "N2C3=CC=CC=C3(C=1C(N)=CC=CC=12)", "MR2", new Double(0.56), "MR3",
 				new Double(0.54), "MR6", new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}

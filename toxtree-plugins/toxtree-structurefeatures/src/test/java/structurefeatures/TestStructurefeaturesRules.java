@@ -173,7 +173,7 @@ public class TestStructurefeaturesRules {
 
 		RuleNOxide rule = new RuleNOxide();
 		// pyridine-N-oxide
-		String smiles = "O=n1ccccc1";
+		String smiles = "[O-][N+]1=CC=CC=C1";
 		boolean result = rule.verifyRule(createAtomContainer(smiles));
 		Assert.assertTrue(result);
 
@@ -321,7 +321,7 @@ public class TestStructurefeaturesRules {
 		Assert.assertTrue(result);
 
 		// Benzimidazole
-		smiles = "c1cccc2ncnc12";
+		smiles = "C2=C1N=C[NH]C1=CC=C2";
 		result = rule.verifyRule(createAtomContainer(smiles));
 		Assert.assertTrue(result);
 

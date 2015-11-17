@@ -117,7 +117,7 @@ public class RuleVerifyProperty extends AbstractRule implements
 		return getPropertyName() + "[" + getPropertyUnits() + "] "
 				+ getCondition() + " " + nf.format(getProperty());
 	}
-
+	@Override
 	public boolean verifyRule(IAtomContainer mol)
 			throws DecisionMethodException {
 		logger.fine(toString());

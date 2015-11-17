@@ -126,7 +126,7 @@ public class FuncGroupsTest {
 	public void testhydrochlorideOfAmine3() throws Exception {
 
 		QueryAtomContainer q = FunctionalGroups.hydrochlorideOfAmine3(); // tertiary
-		IAtomContainer c = FunctionalGroups.createAtomContainer("oc1c=ccc(c1)=[N+](CC)CC.[Cl-]");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("OC1=CC(CC=C1)=[N+](CC)CC.[Cl-]");
 		try {
 			MolAnalyser.analyse(c);
 		} catch (MolAnalyseException x) {

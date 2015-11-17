@@ -424,8 +424,8 @@ public abstract class AbstractTree extends Observable implements
 			if (nr != m.getNumberOfRules())
 				return false;
 			for (int i = 0; i < nr; i++) {
-				//System.out.print(((DecisionNode)getRule(i)).getRule().getClass().getName());
-				//System.out.println(((DecisionNode)getRule(i)).getRule().getClass().getName());
+				// System.out.print(((DecisionNode)getRule(i)).getRule().getClass().getName());
+				// System.out.println(((DecisionNode)getRule(i)).getRule().getClass().getName());
 				if (!getRule(i).equals(m.getRule(i)))
 					return false;
 			}
@@ -637,6 +637,7 @@ public abstract class AbstractTree extends Observable implements
 		int na = 0;
 		for (int i = 0; i < nr; i++) {
 			IDecisionRule rule = rules.getRule(i);
+			System.out.println(rule.getClass().getName());
 			if (rule.getSelector() == null) {
 
 				na++;

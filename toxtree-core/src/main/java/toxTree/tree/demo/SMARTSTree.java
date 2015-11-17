@@ -25,7 +25,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 package toxTree.tree.demo;
 
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.templates.MoleculeFactory;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionCategory;
 import toxTree.exceptions.DecisionMethodException;
@@ -62,7 +64,9 @@ public class SMARTSTree extends UserDefinedTree {
 			throw new DecisionMethodException(x);
 		}
 		rs.setID("1");
-		rs.setExampleMolecule(MoleculeFactory.makeAlkane(4), false);
+		IAtomContainer a = MoleculeFactory.makeAlkane(4);
+		try {AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(a);} catch (Exception x) {}
+		rs.setExampleMolecule(a, false);
 
 		try {
 			rs.setExampleMolecule(

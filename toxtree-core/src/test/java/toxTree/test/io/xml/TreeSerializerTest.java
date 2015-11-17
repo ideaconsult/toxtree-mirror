@@ -37,6 +37,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 import org.openscience.cdk.qsar.descriptors.molecular.XLogPDescriptor;
 import org.openscience.cdk.templates.MoleculeFactory;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionResult;
 import toxTree.core.IDecisionRule;
@@ -77,8 +78,13 @@ public class TreeSerializerTest {
 		r.setNum(99);
 		r.setTitle("test");
 		r.setExplanation("rule explanation");
-		r.setExampleMolecule(MoleculeFactory.makeBenzene(), true);
-		r.setExampleMolecule(MoleculeFactory.makeAlkane(2), false);
+		IAtomContainer a = MoleculeFactory.makeBenzene();
+		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(a);
+
+		r.setExampleMolecule(a, true);
+		a = MoleculeFactory.makeAlkane(2);
+		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(a);
+		r.setExampleMolecule(a, false);
 
 		FileOutputStream os = new FileOutputStream("rule.xml");
 		XMLEncoder encoder = new XMLEncoder(os);
