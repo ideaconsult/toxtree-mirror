@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
@@ -83,6 +84,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 
 		IAtomContainer c = FunctionalGroups
 				.createAtomContainer("COC=1C(N=C=C)=C(C=CC=1(N=C=O))C=2C=CC(N=C=O)=C(C=2)OC");
+
 		// IAtomContainer c =
 		// FunctionalGroups.createAtomContainer("[H]C([H])C=1C=CC(=CC=1(N=C=O))N=C=O.[H]C([H])C=1C(=CC=CC=1(N=C=O))N=C=O");
 
@@ -94,6 +96,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 
 		IAtomContainerSet sc = ((RuleDerivedAromaticAmines) ruleToTest).detachSubstituent(
 				RuleDerivedAromaticAmines.group1(), c);
+		
 		assertNotNull(sc);
 		Hashtable<String, Integer> results = new Hashtable<String, Integer>();
 		results.put(
@@ -104,6 +107,7 @@ public class RuleDerivedAromaticAminesTest extends TestMutantRules {
 			SmilesGenerator g = SmilesGenerator.generic();
 			for (int i = 0; i < sc.getAtomContainerCount(); i++) {
 				String s = g.create(sc.getAtomContainer(i));
+				
 				System.out.println(s);
 				// assertNotNull(results.get(s));
 				// MFAnalyser mf = new MFAnalyser(sc.getAtomContainer(i));

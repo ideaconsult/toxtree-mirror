@@ -127,7 +127,7 @@ public class SubstituentExtractor {
 
 	public static IAtomContainer cloneDiscardRingAtomAndBonds(
 			IAtomContainer ac, String mark) {
-		IAtomContainer result = new org.openscience.cdk.AtomContainer();
+		IAtomContainer result = ac.getBuilder().newInstance(IAtomContainer.class);
 		Hashtable<IAtom, IAtom> table = new Hashtable<IAtom, IAtom>();
 		List<IBond> forbiddenBonds = new ArrayList<IBond>();
 

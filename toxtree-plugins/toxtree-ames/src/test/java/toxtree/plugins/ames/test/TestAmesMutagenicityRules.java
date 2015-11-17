@@ -40,7 +40,6 @@ import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.openscience.cdk.CDKConstants;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.atomtype.CDKAtomTypeMatcher;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtom;
@@ -62,6 +61,7 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
 import toxtree.ui.tree.actions.NewRuleAction;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.io.MDLWriter;
 import ambit2.smarts.query.ISmartsPattern;
 
@@ -137,7 +137,8 @@ public abstract class TestAmesMutagenicityRules extends TestCase {
 		ArrayList<String> resultsID = new ArrayList<String>();
 		ArrayList<String> missedResults = new ArrayList<String>();
 		// IteratingMDLReader resultsReader = new IteratingMDLReader(results,b);
-		IIteratingChemObjectReader resultsReader = getReader(results, b);
+		IIteratingChemObjectReader<IAtomContainer> resultsReader = getReader(
+				results, b);
 		String tmpDir = String.format("%s/.toxtree/%s/",
 				System.getProperty("java.io.tmpdir"), resultsFolder);
 		try {
@@ -165,30 +166,29 @@ public abstract class TestAmesMutagenicityRules extends TestCase {
 		MDLWriter writerMissed = new MDLWriter(outMissed);
 
 		while (resultsReader.hasNext()) {
-			Object o = resultsReader.next();
-			if (o instanceof IAtomContainer) {
-				long now = System.currentTimeMillis();
-				IAtomContainer a = (IAtomContainer) o;
-				Object id = a.getProperty(compoundID);
-				if (id != null) {
-					resultsID.add(id.toString());
+			IAtomContainer a = resultsReader.next();
 
-				}
+			long now = System.currentTimeMillis();
+			Object id = a.getProperty(compoundID);
+			if (id != null) {
+				resultsID.add(id.toString());
 
-				try {
-					MolAnalyser.analyse(a);
-					if (!rule.verifyRule(a)) {
-						missedResults.add(id.toString());
-						writerMissed.write(a);
-					}
-
-				} catch (Exception x) {
-					x.printStackTrace();
-					// fail(rule.toString() + " " + x.getMessage());
-				}
-				// System.out.println("Elapsed " +
-				// Long.toString(System.currentTimeMillis()-now) + " ms." );
 			}
+
+			try {
+				MolAnalyser.analyse(a);
+				if (!rule.verifyRule(a)) {
+					missedResults.add(id.toString());
+					writerMissed.write(a);
+				}
+
+			} catch (Exception x) {
+				x.printStackTrace();
+				// fail(rule.toString() + " " + x.getMessage());
+			}
+			// System.out.println("Elapsed " +
+			// Long.toString(System.currentTimeMillis()-now) + " ms." );
+
 		}
 		outMissed.flush();
 		outMissed.close();
@@ -396,7 +396,8 @@ public abstract class TestAmesMutagenicityRules extends TestCase {
 	}
 
 	protected int[] match(String smarts, String smiles) throws Exception {
-		SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,SilentChemObjectBuilder.getInstance());
+		SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,
+				SilentChemObjectBuilder.getInstance());
 		SmilesParser sp = new SmilesParser(
 				SilentChemObjectBuilder.getInstance());
 		IAtomContainer atomContainer = sp.parseSmiles(smiles);
@@ -431,6 +432,5 @@ public abstract class TestAmesMutagenicityRules extends TestCase {
 				.getImplementationDetails());
 		assertEquals(ruleToTest, rule2);
 	}
-	
 
 }

@@ -166,8 +166,6 @@ public abstract class DescriptorsTest extends TestCase {
         for (int i=0; i < smiles.length;i++) {
             System.out.println(smiles[i][0]);
             IAtomContainer a = FunctionalGroups.createAtomContainer(smiles[i][0].toString(), false);
-            //AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(a);
-            //CDKHueckelAromaticityDetector.detectAromaticity(a);
 
             MolAnalyser.analyse(a);
             for (int ii=0; ii< a.getAtomCount();ii++)

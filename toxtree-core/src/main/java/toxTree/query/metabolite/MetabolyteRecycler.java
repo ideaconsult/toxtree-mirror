@@ -20,6 +20,7 @@ import org.openscience.cdk.io.CMLWriter;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.query.remote.RemoteCompoundLookup;
@@ -69,6 +70,7 @@ public class   MetabolyteRecycler implements PropertyChangeListener {
 			try {
 				//cfg.process(result);
 				AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(result);
+				CDKHydrogenAdder.getInstance(result.getBuilder()).addImplicitHydrogens(result);
 			//	CDKHueckelAromaticityDetector.detectAromaticity(result);
 			} catch (Exception x) {}
 			

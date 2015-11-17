@@ -27,8 +27,8 @@ package mutant.test;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.BitSet;
-import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Map;
 
 import junit.framework.Assert;
 import mutant.descriptors.AromaticAmineSubstituentsDescriptor;
@@ -276,10 +276,11 @@ public class SubstituentsTest {
 		int r = 0;
 		for (int i = 0; i < lookup.getAtomContainerCount(); i++) {
 			IAtomContainer a = lookup.getAtomContainer(i);
+			System.out.println(a.getProperties());
 			Object mySmiles = a.getProperty("SMILES");
 			if (mySmiles == null)
 				continue;
-			String newSmiles = g.createSMILES((IAtomContainer) a);
+			String newSmiles = g.create(a);
 			if (!newSmiles.equals(mySmiles.toString())) {
 				r++;
 				System.out.print(r);
@@ -406,7 +407,7 @@ public class SubstituentsTest {
 		IAtomContainer a = FunctionalGroups.createAtomContainer(smiles, false);
 		Assert.assertNotNull(a);
 		MolAnalyser.analyse(a);
-		Hashtable<String, IAtomContainerSet> set = extractor.extractSubstituents(a);
+		Map<String, IAtomContainerSet> set = extractor.extractSubstituents(a);
 		Assert.assertEquals(1, set.size());
 		Iterator<IAtomContainerSet> c = set.values().iterator();
 		while (c.hasNext())

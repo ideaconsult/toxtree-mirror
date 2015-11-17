@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxtree.test.plugins.smartcyp;
 
 import java.io.InputStream;
+import java.util.logging.Level;
 
 import junit.framework.Assert;
 
@@ -45,7 +46,6 @@ import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxtree.plugins.smartcyp.SMARTCYPPlugin;
-import ambit2.core.io.FileInputState;
 
 /**
  * TODO Add SMARTCypRulesTest description
@@ -94,10 +94,10 @@ public class SMARTCypRulesTest extends RulesTestCase {
 			MolAnalyser.analyse(mol);
 			return mol;
 		} catch (InvalidSmilesException x) {
-			x.printStackTrace();
+			logger.log(Level.SEVERE, x.getMessage());
 			return null;
 		} catch (MolAnalyseException x) {
-			x.printStackTrace();
+			logger.log(Level.SEVERE, x.getMessage());
 			return null;
 		}
 	}
@@ -113,7 +113,7 @@ public class SMARTCypRulesTest extends RulesTestCase {
 
 	@Test
 	public void testPrintSmartCyp() throws Exception {
-		System.out.println(new SMARTCYPPlugin().getRules());
+		logger.log(Level.INFO,new SMARTCYPPlugin().getRules().toString());
 	}
 
 	/**
@@ -127,28 +127,31 @@ public class SMARTCypRulesTest extends RulesTestCase {
 		rules = new SMARTCYPPlugin();
 		InputStream in = getClass().getClassLoader().getResourceAsStream(
 				"toxtree/test/plugins/smartcyp/bug3389084.sdf");
-		IIteratingChemObjectReader<IAtomContainer> reader = FileInputState
-				.getReader(in, ".sdf");
-		while (reader.hasNext()) {
-			IAtomContainer mol = reader.next();
-			// we have bond order 4 in this sdf
-			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
-			CDKHydrogenAdder.getInstance(mol.getBuilder())
-					.addImplicitHydrogens(mol);
-			Kekulization.kekulize(mol);
-			MolAnalyser.analyse(mol);
-			try {
-				// for (IAtom atom : mol.atoms())
-				// System.out.println(atom.getClass().getName());
-				EquivalentClassPartitioner partitioner = new EquivalentClassPartitioner(
-						mol);
-				classify(mol, rules, rules.getCategories().size());
-			} catch (DecisionResultException x) {
-				Assert.assertEquals("PseudoAtoms are not supported! R", x
-						.getCause().getMessage());
+		IIteratingChemObjectReader<IAtomContainer> reader = new IteratingSDFReader(in, SilentChemObjectBuilder.getInstance());
+		try {
+			while (reader.hasNext()) {
+				IAtomContainer mol = reader.next();
+				// we have bond order 4 in this sdf
+				AtomContainerManipulator
+						.percieveAtomTypesAndConfigureAtoms(mol);
+				CDKHydrogenAdder.getInstance(mol.getBuilder())
+						.addImplicitHydrogens(mol);
+				Kekulization.kekulize(mol);
+				MolAnalyser.analyse(mol);
+				try {
+					// for (IAtom atom : mol.atoms())
+					// System.out.println(atom.getClass().getName());
+					EquivalentClassPartitioner partitioner = new EquivalentClassPartitioner(
+							mol);
+					classify(mol, rules, rules.getCategories().size());
+				} catch (DecisionResultException x) {
+					Assert.assertEquals("PseudoAtoms are not supported! R", x
+							.getCause().getMessage());
+				}
 			}
+		} finally {
+			reader.close();
 		}
-		reader.close();
 
 	}
 
@@ -175,8 +178,8 @@ public class SMARTCypRulesTest extends RulesTestCase {
 		FixBondOrdersTool fbt = new FixBondOrdersTool();
 		InputStream in = getClass().getClassLoader().getResourceAsStream(
 				"toxtree/test/plugins/smartcyp/bad.sdf");
-		IIteratingChemObjectReader<IAtomContainer> reader = new IteratingSDFReader(in,
-				SilentChemObjectBuilder.getInstance());
+		IIteratingChemObjectReader<IAtomContainer> reader = new IteratingSDFReader(
+				in, SilentChemObjectBuilder.getInstance());
 		SmilesGenerator g = SmilesGenerator.isomeric();
 		try {
 			while (reader.hasNext()) {

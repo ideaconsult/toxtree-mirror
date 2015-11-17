@@ -264,6 +264,7 @@ public class SA10_genTest extends TestAmesMutagenicityRules {
 	public void testException() throws Exception {
 		SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		IAtomContainer ac = sp.parseSmiles("CCCC(=O)C=C"); // "OC(=O)C=C");
+		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
 		CDKHydrogenAdder h = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
 		h.addImplicitHydrogens(ac);
 		AtomContainerManipulator.convertImplicitToExplicitHydrogens(ac);

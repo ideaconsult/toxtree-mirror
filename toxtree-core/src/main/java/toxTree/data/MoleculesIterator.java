@@ -228,7 +228,7 @@ public class MoleculesIterator implements IMoleculesIterator {
             	            if ( !(atom instanceof IPseudoAtom) && (atom.getAtomTypeName() != null)) 
             	               hadder.addImplicitHydrogens(mol, atom);
                	   //mol = fbt.kekuliseAromaticRings((IAtomContainer)mol);
-           	       //CDKHueckelAromaticityDetector.detectAromaticity(mol);
+
             	} catch (Exception x) {
             		x.printStackTrace();
             	}

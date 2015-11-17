@@ -565,7 +565,7 @@ public class SMIRKSTest {
 
 	@Test
 	public void testRules() throws Exception {
-		SmilesGenerator g = new SmilesGenerator();
+		SmilesGenerator g = SmilesGenerator.generic().aromatic();
 		SMARTCYPPlugin smartcyp = new SMARTCYPPlugin();
 		File file = new File(
 				getClass()
@@ -587,14 +587,12 @@ public class SMIRKSTest {
 				record++;
 				// if (record>10) break;
 
-				IChemObject mol = reader.next();
+				IAtomContainer mol = reader.next();
 				Object molid = mol.getProperty("ID");
 
-				// if (!molid.equals("fentanyl")) continue;
-				// //http://www.daylight.com/daycgi_tutorials/react.cgi
 
 				mol.setID(molid.toString());
-				hadder.process((IAtomContainer) mol);
+				hadder.process(mol);
 				cfg.process((IAtomContainer) mol);
 				CDKHueckelAromaticityDetector
 						.detectAromaticity((IAtomContainer) mol);
