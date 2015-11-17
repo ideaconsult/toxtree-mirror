@@ -25,7 +25,9 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.aromaticity.Kekulization;
 import org.openscience.cdk.exception.InvalidSmilesException;
+import org.openscience.cdk.graph.invariant.EquivalentClassPartitioner;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
@@ -35,6 +37,7 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.smiles.SmilesParser;
+import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionResultException;
@@ -124,15 +127,21 @@ public class SMARTCypRulesTest extends RulesTestCase {
 		rules = new SMARTCYPPlugin();
 		InputStream in = getClass().getClassLoader().getResourceAsStream(
 				"toxtree/test/plugins/smartcyp/bug3389084.sdf");
-		IIteratingChemObjectReader reader = FileInputState
+		IIteratingChemObjectReader<IAtomContainer> reader = FileInputState
 				.getReader(in, ".sdf");
 		while (reader.hasNext()) {
-			IAtomContainer mol = (IAtomContainer) reader.next();
+			IAtomContainer mol = reader.next();
+			// we have bond order 4 in this sdf
+			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(mol);
+			CDKHydrogenAdder.getInstance(mol.getBuilder())
+					.addImplicitHydrogens(mol);
+			Kekulization.kekulize(mol);
+			MolAnalyser.analyse(mol);
 			try {
-				for (IAtom atom : mol.atoms())
-					System.out.println(atom.getClass().getName());
-				// EquivalentClassPartitioner partitioner = new
-				// EquivalentClassPartitioner(mol);
+				// for (IAtom atom : mol.atoms())
+				// System.out.println(atom.getClass().getName());
+				EquivalentClassPartitioner partitioner = new EquivalentClassPartitioner(
+						mol);
 				classify(mol, rules, rules.getCategories().size());
 			} catch (DecisionResultException x) {
 				Assert.assertEquals("PseudoAtoms are not supported! R", x
@@ -166,13 +175,12 @@ public class SMARTCypRulesTest extends RulesTestCase {
 		FixBondOrdersTool fbt = new FixBondOrdersTool();
 		InputStream in = getClass().getClassLoader().getResourceAsStream(
 				"toxtree/test/plugins/smartcyp/bad.sdf");
-		IIteratingChemObjectReader reader = new IteratingSDFReader(in,
+		IIteratingChemObjectReader<IAtomContainer> reader = new IteratingSDFReader(in,
 				SilentChemObjectBuilder.getInstance());
-		SmilesGenerator g = new SmilesGenerator();
-		g.setUseAromaticityFlag(false);
+		SmilesGenerator g = SmilesGenerator.isomeric();
 		try {
 			while (reader.hasNext()) {
-				IAtomContainer mol = (IAtomContainer) reader.next();
+				IAtomContainer mol = reader.next();
 				int aromaticAtoms = 0;
 				int doubleBonds = 0;
 				for (IAtom atom : mol.atoms()) {
@@ -252,7 +260,6 @@ public class SMARTCypRulesTest extends RulesTestCase {
 		}
 		Assert.assertEquals(7, doubleBonds);
 		Assert.assertEquals(9, aromaticAtoms);
-		
 
 	}
 }

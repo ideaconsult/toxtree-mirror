@@ -38,6 +38,7 @@ import org.openscience.cdk.smiles.SmilesGenerator;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
 
 /**
@@ -47,15 +48,18 @@ import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
  */
 public class RuleHasOnlySaltSulphonateSulphate extends
 		RuleOnlyAllowedSubstructures {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3868442005056778784L;
+
 	protected static transient SmilesGenerator sg = null;
-	protected static final transient String[] Me = new String[] { "Na", "K",
-			"Ca" };
-	protected static final transient String[] Me1 = new String[] { "Na", "K",
-			"Ca", "Mg", "N" };
 
-	protected static transient ArrayList elements = null;
-	private static final long serialVersionUID = 7313277537215733933L;
-
+	protected static ArrayList elements = null;
+	
+	private String[] Me ;
+	private String[] Me1;
+	
 	protected static transient QueryAtomContainer sulphonate = null;
 	protected static transient QueryAtomContainer sulphate = null;
 	protected static transient QueryAtomContainer aminoSulphate = null;
@@ -64,24 +68,21 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 	protected static transient QueryAtomContainer salt2 = null;
 	protected static transient QueryAtomContainer hClAmine = null;
 
-	/**
-	 * 
-	 */
-	public RuleHasOnlySaltSulphonateSulphate() {
-		super();
-		editable = false;
+	protected String[] initMetals() {
+		return new String[] { "Na", "K", "Ca" };
+	}
+	protected String[] initMetals1() {
+		return new String[] { "Na", "K", "Ca", "Mg", "N" };
+	}
+	@Override
+	protected QueryAtomContainers initQuery() {
+
+		query = super.initQuery();
+
+		if (Me==null) Me = initMetals();
+		if (Me1==null) Me1 = initMetals1();
 		sulphonate = FunctionalGroups.sulphonate(Me, false);
 		sulphate = FunctionalGroups.sulphate(null);
-		if (elements == null) {
-			elements = new ArrayList();
-			elements.add("C");
-			elements.add("H");
-			elements.add("O");
-			elements.add("N");
-		}
-		for (int i = 0; i < elements.size(); i++)
-			ids.add(elements.get(i));
-		ids.add("S2");
 		// (a)
 		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid(Me1));
 		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid1(Me1));
@@ -100,6 +101,27 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 		addSubstructure(FunctionalGroups.sulphate(Me));
 		addSubstructure(FunctionalGroups.sulphamate(Me));
 		addSubstructure(FunctionalGroups.sulphamate(null));
+		return query;
+	}
+
+	/**
+	 * 
+	 */
+	public RuleHasOnlySaltSulphonateSulphate() {
+		super();
+		editable = false;
+
+		if (elements == null) {
+			elements = new ArrayList();
+			elements.add("C");
+			elements.add("H");
+			elements.add("O");
+			elements.add("N");
+		}
+		for (int i = 0; i < elements.size(); i++)
+			ids.add(elements.get(i));
+		ids.add("S2");
+
 		id = "4";
 		title = "Elements not listed in Q3 occurs only as a Na,K,Ca,Mg,N salt, sulphamate, sulphonate, sulphate, hydrochloride ...";
 		explanation

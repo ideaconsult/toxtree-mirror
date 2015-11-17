@@ -41,6 +41,7 @@ import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.io.Tools;
 import toxTree.query.FunctionalGroups;
@@ -174,7 +175,7 @@ public class RuleStructuresListTest {
 	@Test
 	public void testBodyMol() throws Exception {
 		ILookupFile lookup = verifyFile("bodymol.sdf");
-		Assert.assertEquals(398, lookup.size());
+		Assert.assertEquals(403, lookup.size());
 		System.out.println(lookup);
 	}
 
@@ -218,7 +219,8 @@ public class RuleStructuresListTest {
 			stream = getClass().getClassLoader().getResourceAsStream(filename);
 			reader = FileInputState.getReader(stream, filename);
 			while (reader.hasNext()) {
-				IAtomContainer ac = (IAtomContainer) reader.next();
+				IAtomContainer ac = reader.next();
+				AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
 				MolAnalyser.analyse(ac);
 				Object title = ac.getProperty(CDKConstants.TITLE);
 				// if (title !=null) System.out.println(title);

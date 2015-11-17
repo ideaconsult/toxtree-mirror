@@ -4,6 +4,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionResult;
 
 /**
@@ -82,6 +83,19 @@ public class TestBugs extends AbstractTreeTest {
 		Assert.assertEquals(1,result.getCategory().getID());
 		explanation = cr.explainRules(result,false).toString();
 		//Assert.assertEquals("1N,2N,3N,5N,6N,7N,16N,17N,19Y,20N,22N,33N",explanation);
+
+		
+	}
+	//
+	@Test
+	public void testNitrile() throws Exception {
+		//Erucamide 
+		IDecisionResult result = classify("c1ccc2c(c1)cc([nH]2)C#N");
+		IDecisionCategory c = result.getCategory();
+		System.out.println(c);
+		String explanation = cr.explainRules(result,false).toString();
+		//Assert.assertEquals("1N,2N,3N,5N,6N,7N,16N,17N,19Y,20N,22N,33N",explanation);
+		System.out.println(explanation);
 
 		
 	}

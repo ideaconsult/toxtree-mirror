@@ -31,6 +31,7 @@ public class TreeSerializerTest  {
 
 	protected static Logger logger = Logger.getLogger(TreeSerializerTest.class.getName());
 	protected Object objectRoundTrip(Object rule,String filename) throws Exception  {		
+		
 			//writing
 			File f = File.createTempFile(filename,"test");
 			ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(f));

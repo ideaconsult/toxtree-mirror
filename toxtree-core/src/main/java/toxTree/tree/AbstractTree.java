@@ -423,9 +423,12 @@ public abstract class AbstractTree extends Observable implements
 			int nr = getNumberOfRules();
 			if (nr != m.getNumberOfRules())
 				return false;
-			for (int i = 0; i < nr; i++)
+			for (int i = 0; i < nr; i++) {
+				//System.out.print(((DecisionNode)getRule(i)).getRule().getClass().getName());
+				//System.out.println(((DecisionNode)getRule(i)).getRule().getClass().getName());
 				if (!getRule(i).equals(m.getRule(i)))
 					return false;
+			}
 
 			// TODO compare transitions
 			return true;
@@ -770,7 +773,9 @@ public abstract class AbstractTree extends Observable implements
 			specVendor = labels.getString("specification_vendor");
 			if (specVendor != null && !"".equals(specVendor))
 				specVendor = "<h5>Specification: " + specVendor + "</h5>";
-		} catch (Exception x) { specVendor = "";}
+		} catch (Exception x) {
+			specVendor = "";
+		}
 		String uri = labels.getString("uri");
 
 		String traindata = labels.containsKey("trainingdata") ? String.format(
@@ -781,10 +786,10 @@ public abstract class AbstractTree extends Observable implements
 				"<h5>Test data: <a href='%s'>%s</a></h5>",
 				labels.getString("testdata"), "Click to retrieve") : "";
 
-		return String.format("<html><body><h3>%s</h3><h5>WWW: <a href='%s'>%s</a></h5><h5>Vendor: <a href='%s'>%s</a></h5>%s%s%s<hr><h3>References:</h3><ol>%s</ol></body></html>",
-				labels.getString("explanation"), uri, uri, vendoruri, vendor,
-				specVendor,
-				traindata, testdata, b.toString());
+		return String
+				.format("<html><body><h3>%s</h3><h5>WWW: <a href='%s'>%s</a></h5><h5>Vendor: <a href='%s'>%s</a></h5>%s%s%s<hr><h3>References:</h3><ol>%s</ol></body></html>",
+						labels.getString("explanation"), uri, uri, vendoruri,
+						vendor, specVendor, traindata, testdata, b.toString());
 
 	}
 
@@ -797,8 +802,7 @@ class TreeSelector implements IAtomContainerHighlights {
 	 */
 	private static final long serialVersionUID = 7753309179379127408L;
 
-	public void addSelector(
-			IAtomContainerHighlights selector) {
+	public void addSelector(IAtomContainerHighlights selector) {
 		selectors.add(selector);
 	}
 

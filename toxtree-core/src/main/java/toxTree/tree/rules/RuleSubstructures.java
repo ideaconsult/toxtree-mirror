@@ -49,19 +49,23 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = -2500957952948758410L;
-	protected QueryAtomContainers query = null;
+	protected transient QueryAtomContainers query = null;
 	protected ArrayList ids = null;	
 	/**
 	 * 
 	 */
 	public RuleSubstructures() {
 		super();
-		query = new QueryAtomContainers();
 		ids = new ArrayList();
 	    ids.add(FunctionalGroups.C);	    
 	    ids.add(FunctionalGroups.CH);
 	    ids.add(FunctionalGroups.CH2);
 	    ids.add(FunctionalGroups.CH3);		
+		query = initQuery();
+	}
+	
+	protected QueryAtomContainers initQuery() {
+		return new QueryAtomContainers();
 	}
 
 	/* (non-Javadoc)
@@ -122,6 +126,7 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 		if (!super.equals(obj)) return false;
 		if (obj instanceof RuleSubstructures) {
 			RuleSubstructures rule = (RuleSubstructures) obj;
+			if (query==null) query = initQuery();
 			if (query.size() != rule.query.size()) return false;
 			else return ids.containsAll(rule.ids);
 		} else return false;

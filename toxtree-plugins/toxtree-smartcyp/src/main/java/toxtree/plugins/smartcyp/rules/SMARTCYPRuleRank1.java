@@ -74,7 +74,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 					// System.out.print(atom.getProperties());
 				}
 			if (!calculated) {
-				AtomContainerManipulator.removeHydrogens(mol);
+				AtomContainerManipulator.suppressHydrogens(mol);
 				newmol = calculate(mol);
 			}
 			MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
