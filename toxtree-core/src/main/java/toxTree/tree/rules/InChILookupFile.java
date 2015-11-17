@@ -17,6 +17,7 @@ import org.openscience.cdk.inchi.InChIGenerator;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolAnalyser;
@@ -81,7 +82,8 @@ public class InChILookupFile implements ILookupFile{
 			stream = new FileInputStream(file);
 			reader = FileInputState.getReader(stream, file.getName());
 			while (reader.hasNext()) {
-				IAtomContainer ac = (IAtomContainer)reader.next();
+				IAtomContainer ac = reader.next();
+				AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
 				MolAnalyser.analyse(ac);
 				//InChI doesn't like aromatic bonds
 				for (IBond bond : ac.bonds()) bond.setFlag(CDKConstants.ISAROMATIC,false);
