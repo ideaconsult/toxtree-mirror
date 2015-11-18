@@ -55,9 +55,7 @@ public class SA11_genTest extends TestMutantRules {
 				"C=CC=O"
 		};
 		for (int i=0; i < smiles.length;i++) {
-			//System.out.print(smiles[i]);
 			assertFalse(verify(smiles[i]));
-			//System.out.println(" ok");
 		}
 		
 	}

@@ -34,6 +34,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import junit.framework.Assert;
@@ -186,8 +187,7 @@ public abstract class TestMutantRules extends TestCase {
 		assertTrue(resultsID.size() > 0);
 
 		if (missedResults.size() > 0) {
-			System.out.print("Rule\t" + rule);
-			System.out.println("\tMissed results\t" + missedResults);
+			logger.log(Level.WARNING,"Rule\t" + rule +"\tMissed results\t" + missedResults);
 		} else
 			f2.delete();
 
@@ -243,12 +243,12 @@ public abstract class TestMutantRules extends TestCase {
 		outWrong.close();
 
 		if (missedhits.size() > 0) {
-			System.out.println("Rule " + rule.getID() + " missed hits\t" + missedhits.size());
-			System.out.println(missedhits);
+			logger.log(Level.WARNING,"Rule " + rule.getID() + " missed hits\t" + missedhits.size());
+			logger.log(Level.WARNING,missedhits.toString());
 		}
 		if (wronghits.size() > 0) {
-			System.out.println("Rule " + rule.getID() + " wrong hits\t" + wronghits.size());
-			System.out.println(wronghits);
+			logger.log(Level.WARNING,"Rule " + rule.getID() + " wrong hits\t" + wronghits.size());
+			logger.log(Level.WARNING,wronghits.toString());
 		} else
 			f.delete();
 		saveRuleAsTree(rule, tmpDir + "/" + getRuleID(rule) + ".tml");
@@ -402,11 +402,9 @@ public abstract class TestMutantRules extends TestCase {
 		Object rule2 = is.readObject();
 		is.close();
 		f.delete();
-		System.out.println(ruleToTest.toString());
-		System.out.println("old");
-		System.out.println(((IImplementationDetails) ruleToTest).getImplementationDetails());
-		System.out.println("new");
-		System.out.println(((IImplementationDetails) rule2).getImplementationDetails());
+		logger.log(Level.INFO,ruleToTest.toString());
+		logger.log(Level.INFO,"old\t"+((IImplementationDetails) ruleToTest).getImplementationDetails());
+		logger.log(Level.INFO,"new\t"+((IImplementationDetails) rule2).getImplementationDetails());
 		assertEquals(ruleToTest, rule2);
 	}
 

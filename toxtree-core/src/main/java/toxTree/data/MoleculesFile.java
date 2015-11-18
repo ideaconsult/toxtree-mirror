@@ -31,6 +31,8 @@ import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.openscience.cdk.ChemObject;
@@ -43,7 +45,6 @@ import org.openscience.cdk.interfaces.IChemObjectListener;
 import org.openscience.cdk.io.listener.IReaderListener;
 import org.openscience.cdk.io.random.RandomAccessReader;
 import org.openscience.cdk.io.random.RandomAccessSDFReader;
-import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
@@ -57,13 +58,12 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet,
 	 * 
 	 */
 	public static String propertyFingerprint = "FINGERPRINT1024";
-	protected SmilesGenerator smigen = SmilesGenerator.generic();
+	protected SmilesGenerator smigen = SmilesGenerator.unique();
 	protected Fingerprinter fp = new Fingerprinter(1024);
 	protected static String NA = "";
 	private static final long serialVersionUID = 4566523260890189354L;
 	protected RandomAccessReader reader;
-	protected FixBondOrdersTool fbt = new FixBondOrdersTool();
-	protected final Hashtable[] updatedProperties;
+	protected final Map[] updatedProperties;
 	private IAtomContainer recordLoaded = null;
 	private int recordLoadedIndex = -1;
 	protected int selectedIndex = -1;
@@ -168,33 +168,37 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet,
 				}
 
 				recordLoaded = (IAtomContainer) reader.readRecord(index);
+				/* should not be needed anymore
 				try {
 					recordLoaded = fbt
 							.kekuliseAromaticRings((IAtomContainer) recordLoaded);
 				} catch (Exception x) {
 
 				}
+				*/
 				// recordLoaded.addListener(this);
 				recordLoadedIndex = index;
 			}
 			// if (bufferProperties && (updatedProperties[index]==null))
 			// updatedProperties[index] = new Hashtable();
-			//TODO this may not work with CDK 1.5.11 !!!!
+			// TODO this may not work with CDK 1.5.11 !!!! - it doesn't , getproperties() returns unmodifiable collection...
 			if (updatedProperties[index] != null) {
-				Map p = recordLoaded.getProperties();
-				Object[] keys = p.keySet().toArray();
-				// this effectively does buffering of properties
-				// Hashtable newp = new Hashtable();
+
+				Object[] keys = recordLoaded.getProperties().keySet().toArray();
+				// not sure what this is for
 				for (int i = 0; i < keys.length; i++) {
 					Object key = keys[i];
 					if ((key == null) || ("".equals(key)))
 						return null;
 
-					Object oldValue = p.get(key);
-					p.remove(key);
-					p.put(key, oldValue);
+					Object oldValue = recordLoaded.getProperty(key);
+					recordLoaded.removeProperty(key);
+					recordLoaded.setProperty(key, oldValue);
 				}
-				p.putAll(updatedProperties[index]);
+				Set<Entry<Object,Object>> newP = updatedProperties[index].entrySet();
+				for (Entry<Object,Object> entry : newP) { 
+					recordLoaded.setProperty(entry.getKey(),entry.getValue());
+				};
 				// recordLoaded.setProperties(p);
 				// recordLoaded.getProperties().putAll(updatedProperties[index]);
 			}
@@ -250,7 +254,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet,
 	public int previousIndex() {
 		return reader.previousIndex();
 	}
-
+	/*
 	public Map getProperties(final int index) {
 		if (updatedProperties[index] == null)
 			return getAtomContainer(index).getProperties();
@@ -261,6 +265,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet,
 			return h;
 		}
 	}
+	*/
 
 	public boolean isBuffered(final int index, final Object key) {
 		if (updatedProperties[index] != null) {
@@ -385,7 +390,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet,
 						setProperty(
 								i,
 								"USMILES",
-								smigen.createSMILES((IAtomContainer) getAtomContainer(i)));
+								smigen.create((IAtomContainer) getAtomContainer(i)));
 					} catch (Exception x) {
 						x.printStackTrace();
 					}
@@ -539,7 +544,7 @@ public class MoleculesFile extends ChemObject implements IAtomContainerSet,
 			}
 			if (index == -1) {
 				logger.fine("Not found "
-						+ smigen.createSMILES((IAtomContainer) mol));
+						+ smigen.create((IAtomContainer) mol));
 			}
 		}
 		logger.fine("</lookup>");

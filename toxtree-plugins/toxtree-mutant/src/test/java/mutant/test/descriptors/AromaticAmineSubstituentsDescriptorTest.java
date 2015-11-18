@@ -1,9 +1,12 @@
 package mutant.test.descriptors;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import junit.framework.Assert;
 import junit.framework.TestCase;
 import mutant.descriptors.AromaticAmineSubstituentsDescriptor;
 
-import org.jmol.util.Logger;
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.DescriptorValue;
@@ -18,6 +21,9 @@ import ambit2.core.smiles.SmilesParserWrapper;
 import ambit2.core.smiles.SmilesParserWrapper.SMILES_PARSER;
 
 public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
+	protected static Logger logger = Logger
+			.getLogger(AromaticAmineSubstituentsDescriptorTest.class.getName());
+
 	protected AromaticAmineSubstituentsDescriptor adescriptor;
 
 	@Override
@@ -30,28 +36,29 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	@Test
 	public void test() throws Exception {
 
-		IAtomContainer a = FunctionalGroups.createAtomContainer("c1(CC)c(O)c(Cl)c(P(=O)(F)F)c(N)c(S)1", false);
+		IAtomContainer a = FunctionalGroups.createAtomContainer(
+				"c1(CC)c(O)c(Cl)c(P(=O)(F)F)c(N)c(S)1", false);
 		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(a);
 		CDKHueckelAromaticityDetector.detectAromaticity(a);
 		DescriptorValue value = adescriptor.calculate(a);
 		IDescriptorResult r = value.getValue();
+		Assert.assertNotNull(r);
 		if (r instanceof DoubleArrayResult) {
 
 			for (int i = 0; i < value.getNames().length; i++) {
-				System.out.print(value.getNames()[i]);
-				System.out.print(" = ");
-				System.out.println(((DoubleArrayResult) r).get(i));
+				logger.log(Level.INFO,value.getNames()[i] + " " + ((DoubleArrayResult) r).get(i));
 			}
 		} else
-			System.out.println(r.getClass().getName());
+			logger.log(Level.INFO, r.getClass().getName());
 
 	}
 
 	@Test
 	public void testChain() throws Exception {
 
-		Object[][] smiles = new Object[][] { { "CCCCC=1C=C(C=CC=1(N))C2=CC=CC=C2", "MR2", new Double(1.96), "MR3",
-				new Double(0.1), "MR6", new Double(0.1) }, };
+		Object[][] smiles = new Object[][] { {
+				"CCCCC=1C=C(C=CC=1(N))C2=CC=CC=C2", "MR2", new Double(1.96),
+				"MR3", new Double(0.1), "MR6", new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -88,7 +95,8 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 		// ammine 195
 		// In the following molecule, the numbering is assigned in order to give
 		// the minimum position number to the second amino group.
-		{ "NC=1C(F)=C(N)C(F)=C(F)C=1(F)", "MR3", new Double(0.54), "MR5", new Double(0.09), "MR6", new Double(0.09) }, };
+		{ "NC=1C(F)=C(N)C(F)=C(F)C=1(F)", "MR3", new Double(0.54), "MR5",
+				new Double(0.09), "MR6", new Double(0.09) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -102,8 +110,9 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	@Test
 	public void testRodo996() throws Exception {
-		Object[][] smiles = new Object[][] { { "CC1=CC3=C(C=C1(N))NC=2C=CC=CC=23", "MR3", new Double(0.1), "MR5",
-				new Double(0.54), "MR6", new Double(0.1) }, };
+		Object[][] smiles = new Object[][] { {
+				"CC1=CC3=C(C=C1(N))NC=2C=CC=CC=23", "MR3", new Double(0.1),
+				"MR5", new Double(0.54), "MR6", new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -116,8 +125,9 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	@Test
 	public void testExtendedAromaticSystem_Rodo105() throws Exception {
-		Object[][] smiles = new Object[][] { { "c1ccc(cc1)Nc2ccc3ccccc3(c2)", "MR2", new Double(0.1), "MR3",
-				new Double(0.8), "MR4", new Double(0.8), "MR5", new Double(0.1), "MR6", new Double(0.1) },
+		Object[][] smiles = new Object[][] { { "c1ccc(cc1)Nc2ccc3ccccc3(c2)",
+				"MR2", new Double(0.1), "MR3", new Double(0.8), "MR4",
+				new Double(0.8), "MR5", new Double(0.1), "MR6", new Double(0.1) },
 		// {"C=1C=CC2=CC(=CC=C2(C=1))NC3=CC=C(C=C3)NC4=CC=C5C=CC=CC5(=C4","MR3",new
 		// Double(0.8),"MR5",new Double(0.1),"MR6",new Double(0.1)},
 		};
@@ -138,8 +148,10 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	@Test
 	public void testRodo1109() throws Exception {
-		Object[][] smiles = new Object[][] { { "CC(=O)NC1=CC=C2C=3C=CC=CC=3(C(=O)C2(=C1))", "MR3", new Double(0.69),
-				"MR5", new Double(0.1), "MR6", new Double(0.1) }, };
+		Object[][] smiles = new Object[][] { {
+				"CC(=O)NC1=CC=C2C=3C=CC=CC=3(C(=O)C2(=C1))", "MR3",
+				new Double(0.69), "MR5", new Double(0.1), "MR6",
+				new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -150,16 +162,19 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	@Test
 	public void testAmmine13() throws Exception {
-		Object[][] smiles = new Object[][] { { "c1cccc(N)c1c2c(N)cccc2", "MR2", new Double(2.98), "MR3",
-				new Double(0.1), "MR6", new Double(0.1) }, };
+		Object[][] smiles = new Object[][] { { "c1cccc(N)c1c2c(N)cccc2", "MR2",
+				new Double(2.98), "MR3", new Double(0.1), "MR6",
+				new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
 	@Test
 	public void testOrtho() throws Exception {
 		Object[][] smiles = new Object[][] {
-				{ "Nc1ccc(O)c(N)c1", "MR2", new Double(0.28), "MR3", new Double(0.1), "MR6", new Double(0.1) },
-				{ "Nc2cccc(c1ccccc1)c2(N)", "MR3", new Double(0.1), "MR2", new Double(2.54), "MR6", new Double(0.54) } };
+				{ "Nc1ccc(O)c(N)c1", "MR2", new Double(0.28), "MR3",
+						new Double(0.1), "MR6", new Double(0.1) },
+				{ "Nc2cccc(c1ccccc1)c2(N)", "MR3", new Double(0.1), "MR2",
+						new Double(2.54), "MR6", new Double(0.54) } };
 		amineGroupSubstituent(smiles);
 
 	}
@@ -175,9 +190,10 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	public void testOrder_Ammine39() throws Exception {
 		Object[][] smiles = new Object[][] {
 
-				{ "NC1=CC=C2C(=C1)[NH]C3=CC=CC=C23", "MR2", new Double(0.1), "MR3", new Double(0.54), "MR6", new Double(0.1) },
-				{ "N2C3=CC=CC=C3(C=1C=CC(N)=CC=12)", "MR2", new Double(0.1), "MR3", new Double(0.54), "MR6",
-						new Double(0.1) }, };
+				{ "NC1=CC=C2C(=C1)[NH]C3=CC=CC=C23", "MR2", new Double(0.1),
+						"MR3", new Double(0.54), "MR6", new Double(0.1) },
+				{ "N2C3=CC=CC=C3(C=1C=CC(N)=CC=12)", "MR2", new Double(0.1),
+						"MR3", new Double(0.54), "MR6", new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -194,10 +210,11 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	@Test
 	public void testOrder_Ammine8() throws Exception {
 		Object[][] smiles = new Object[][] {
-				{ "[H]N2C3=CC=CC=C3(C=1C=CC=C(N)C=12)", "MR2", new Double(0.54), "MR3", new Double(0.56), "MR6",
+				{ "[H]N2C3=CC=CC=C3(C=1C=CC=C(N)C=12)", "MR2",
+						new Double(0.54), "MR3", new Double(0.56), "MR6",
 						new Double(0.1) },
-				{ "N2C3=CC=CC=C3(C=1C=CC=C(N)C=12)", "MR2", new Double(0.54), "MR3", new Double(0.56), "MR6",
-						new Double(0.1) }, };
+				{ "N2C3=CC=CC=C3(C=1C=CC=C(N)C=12)", "MR2", new Double(0.54),
+						"MR3", new Double(0.56), "MR6", new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -208,8 +225,9 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	@Test
 	public void testOrder_Ammine54() throws Exception {
-		Object[][] smiles = new Object[][] { { "NC=1C=CC=C(C=1)C=2C=CC=C(N)C=2", "MR2", new Double(0.1), "MR3",
-				new Double(2.98), "MR6", new Double(0.1) }, };
+		Object[][] smiles = new Object[][] { {
+				"NC=1C=CC=C(C=1)C=2C=CC=C(N)C=2", "MR2", new Double(0.1),
+				"MR3", new Double(2.98), "MR6", new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -225,8 +243,9 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	@Test
 	public void testArbitraryorder_Ammine40() throws Exception {
-		Object[][] smiles = new Object[][] { { "NC2=CC3=CC=CC=4C1=CC=CC=C1C(=C2)C3=4", "MR2", new Double(0.1), "MR3",
-				new Double(0.56), "MR6", new Double(0.1) }, };
+		Object[][] smiles = new Object[][] { {
+				"NC2=CC3=CC=CC=4C1=CC=CC=C1C(=C2)C3=4", "MR2", new Double(0.1),
+				"MR3", new Double(0.56), "MR6", new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -239,15 +258,17 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	@Test
 	public void testAmmine69() throws Exception {
-		Object[][] smiles = new Object[][] { { "NC=1C=NC=2C=CC=CC=2(C=1)", "MR2", new Double(0.1), "MR3",
-				new Double(0.8), "MR6", new Double(0.1) }, };
+		Object[][] smiles = new Object[][] { { "NC=1C=NC=2C=CC=CC=2(C=1)",
+				"MR2", new Double(0.1), "MR3", new Double(0.8), "MR6",
+				new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
 	@Test
 	public void testOrder_Ammine180() throws Exception {
-		Object[][] smiles = new Object[][] { { "Nc1ccc(NCCO)c(c1)[N+](=O)[O-]", "MR2", new Double(0.1), "MR3",
-				new Double(0.74), "MR6", new Double(0.1) }, };
+		Object[][] smiles = new Object[][] { { "Nc1ccc(NCCO)c(c1)[N+](=O)[O-]",
+				"MR2", new Double(0.1), "MR3", new Double(0.74), "MR6",
+				new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -262,8 +283,9 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	@Test
 	public void testOrder_Ammine82() throws Exception {
-		Object[][] smiles = new Object[][] { { "N2C3=CC=CC=C3(C=1C(N)=CC=CC=12)", "MR2", new Double(0.56), "MR3",
-				new Double(0.54), "MR6", new Double(0.1) }, };
+		Object[][] smiles = new Object[][] { {
+				"N2C3=CC=CC=C3(C=1C(N)=CC=CC=12)", "MR2", new Double(0.56),
+				"MR3", new Double(0.54), "MR6", new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -287,22 +309,28 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 		Object[][] smiles = new Object[][] {
 
 				// Rodo 94
-				{ "C=1C=CC(=C(C=1)NC2=NC(=NC(=N2)Cl)Cl)Cl", "LSTM1", new Double(6.12), "B5STM1", new Double(4.49) },
+				{ "C=1C=CC(=C(C=1)NC2=NC(=NC(=N2)Cl)Cl)Cl", "LSTM1",
+						new Double(6.12), "B5STM1", new Double(4.49) },
 
 				// Rodo 457
-				{ "CC2=CC=CC(NC=1C=C(N=C(N=1)SCC(=O)O)Cl)=C2(C)", "LSTM1", new Double(6.83), "B5STM1", new Double(7.28) },
+				{ "CC2=CC=CC(NC=1C=C(N=C(N=1)SCC(=O)O)Cl)=C2(C)", "LSTM1",
+						new Double(6.83), "B5STM1", new Double(7.28) },
 
 				// Rodo 962
-				{ "CCOC1=CC=C(C=C1)NC(=O)CC(C)O", "LSTM1", new Double(5.85), "B5STM1", new Double(4.16) },
+				{ "CCOC1=CC=C(C=C1)NC(=O)CC(C)O", "LSTM1", new Double(5.85),
+						"B5STM1", new Double(4.16) },
 
 				// Rodo 1054
-				{ "CC=2C=CC=C(C)C=2(NC(=O)CN1CCCC1(=O))", "LSTM1", new Double(5.78), "B5STM1", new Double(6.58) },
+				{ "CC=2C=CC=C(C)C=2(NC(=O)CN1CCCC1(=O))", "LSTM1",
+						new Double(5.78), "B5STM1", new Double(6.58) },
 				// Rodo 1051
-				{ "C=1C=CC2=CC(=CC=C2(C=1))NC3=CC=C(C=C3)NC4=CC=C5C=CC=CC5(=C4)", "LSTM1", new Double(10.79), "B5STM1",
-						new Double(7.99) },
+				{
+						"C=1C=CC2=CC(=CC=C2(C=1))NC3=CC=C(C=C3)NC4=CC=C5C=CC=CC5(=C4)",
+						"LSTM1", new Double(10.79), "B5STM1", new Double(7.99) },
 
 				// Rodo 887
-				{ "C1=CC=C(C=C1)NC2=CC=C(C=C2)NC3=CC=CC=C3", "LSTM1", new Double(6.28), "B5STM1", new Double(3.11) },
+				{ "C1=CC=C(C=C1)NC2=CC=C(C=C2)NC3=CC=CC=C3", "LSTM1",
+						new Double(6.28), "B5STM1", new Double(3.11) },
 
 		};
 		amineGroupSubstituent(smiles);
@@ -320,7 +348,8 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	public void testSterimol_Rodo983() throws Exception {
 		Object[][] smiles = new Object[][] {
 		// Rodo 983
-		{ "CC(C)OC1=CC=C(C=C1)NC2=CC=CC=C2", "LSTM1", new Double(9.5), "B5STM1", new Double(4.31) }, };
+		{ "CC(C)OC1=CC=C(C=C1)NC2=CC=CC=C2", "LSTM1", new Double(9.5),
+				"B5STM1", new Double(4.31) }, };
 		amineGroupSubstituent(smiles);
 
 	}
@@ -329,10 +358,14 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	public void testSterimol() throws Exception {
 		Object[][] smiles = new Object[][] {
 
-		{ "CNC1=CC=CC=C1", "LSTM1", new Double(2.87), "B5STM1", new Double(2.04) },
-				{ "CC(=O)NC1=CC2=C(C=C1)C3=CC=CC=C3C2", "LSTM1", new Double(4.06), "B5STM1", new Double(3.13) },
-				{ "CC(C)OC(=O)NC1=CC(=CC=C1)Cl", "LSTM1", new Double(5.97), "B5STM1", new Double(3.43) },
-				{ "CN(C)C(=O)NC1=CC=C(C=C1)Cl", "LSTM1", new Double(4.77), "B5STM1", new Double(4.04) },
+				{ "CNC1=CC=CC=C1", "LSTM1", new Double(2.87), "B5STM1",
+						new Double(2.04) },
+				{ "CC(=O)NC1=CC2=C(C=C1)C3=CC=CC=C3C2", "LSTM1",
+						new Double(4.06), "B5STM1", new Double(3.13) },
+				{ "CC(C)OC(=O)NC1=CC(=CC=C1)Cl", "LSTM1", new Double(5.97),
+						"B5STM1", new Double(3.43) },
+				{ "CN(C)C(=O)NC1=CC=C(C=C1)Cl", "LSTM1", new Double(4.77),
+						"B5STM1", new Double(4.04) },
 		// {"C1=CC=C(C=C1)N=C(N)S","LSTM1",new Double(4.77),"B5STM1",new
 		// Double(4.04)},
 		};
@@ -342,10 +375,12 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	@Test
 	public void testNBenzene() throws Exception {
 		Object[][] smiles = new Object[][] {
-				{ "Nc1ccccc1c2ccccc2(N)", "MR2", new Double(2.98), "MR3", new Double(0.1), "MR5", new Double(0.1),
-						"MR6", new Double(0.1) },
-				{ "Nc1ccc(cc1)c2ccccc2(N)", "MR2", new Double(2.98), "MR3", new Double(0.1), "MR5", new Double(0.1),
-						"MR6", new Double(0.1) }, };
+				{ "Nc1ccccc1c2ccccc2(N)", "MR2", new Double(2.98), "MR3",
+						new Double(0.1), "MR5", new Double(0.1), "MR6",
+						new Double(0.1) },
+				{ "Nc1ccc(cc1)c2ccccc2(N)", "MR2", new Double(2.98), "MR3",
+						new Double(0.1), "MR5", new Double(0.1), "MR6",
+						new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -384,7 +419,8 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 		 * Double(1.96),"MR3",new Double(0.1),"MR4",Double.NaN,"MR5",new
 		 * Double(0.1),"MR6",new Double(0.56)},
 		 */
-		{ "Cc1ccc2ccccc2(c1(N))", "MR2", new Double(0.56), "MR3", new Double(0.1), "MR4", new Double(0.1), "MR5",
+		{ "Cc1ccc2ccccc2(c1(N))", "MR2", new Double(0.56), "MR3",
+				new Double(0.1), "MR4", new Double(0.1), "MR5",
 				new Double(0.8), "MR6", new Double(0.8) },
 
 		};
@@ -395,7 +431,8 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	public void testCyclicNGroup_assubstituent() throws Exception {
 		Object[][] smiles = new Object[][] {
 
-		{ "[H]n2c3ccccc3(c1cccc(N)c12)", "MR2", new Double(0.54), "MR3", new Double(0.56), "MR6", new Double(0.1) }, };
+		{ "[H]n2c3ccccc3(c1cccc(N)c12)", "MR2", new Double(0.54), "MR3",
+				new Double(0.56), "MR6", new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 
 	}
@@ -403,23 +440,31 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	@Test
 	public void testMultipleAromamine() throws Exception {
 		Object[][] smiles = new Object[][] {
-				{ "Nc1cccc(c1)c2cccc(N)c2", "MR2", new Double(0.1), "MR3", new Double(2.98), "MR4", new Double(0.1),
-						"MR5", new Double(0.1), "MR6", new Double(0.1) },
-				{ "CC(C)c1ccc(N)cc1(N)", "MR2", new Double(1.5), "MR3", new Double(0.1), "MR4", new Double(0.1), "MR5",
-						new Double(0.54), "MR6", new Double(0.1) },
-				{ "Cc1cc(N)ccc1(N)", "MR2", new Double(0.56), "MR3", new Double(0.1), "MR4", new Double(0.54), "MR5",
+				{ "Nc1cccc(c1)c2cccc(N)c2", "MR2", new Double(0.1), "MR3",
+						new Double(2.98), "MR4", new Double(0.1), "MR5",
 						new Double(0.1), "MR6", new Double(0.1) },
-				{ "Nc2cccc(c1ccccc1)c2(N)", "MR2", new Double(2.54), "MR3", new Double(0.1), "MR4", new Double(0.1),
-						"MR5", new Double(0.1), "MR6", new Double(0.54) },
-				{ "Nc1cc(c(N)c(c1)Cl)Cl", "MR2", new Double(0.6), "MR3", new Double(0.1), "MR4", new Double(0.54),
-						"MR5", new Double(0.1), "MR6", new Double(0.6) },
-				{ "Nc1cc(c(N)c(c1)Cl)Cl", "MR2", new Double(0.6), "MR3", new Double(0.1), "MR4", new Double(0.54),
-						"MR5", new Double(0.1), "MR6", new Double(0.6) },
-				{ "Nc1ccc(N)c(c1)[N+](=O)[O-]", "MR2", new Double(0.74), "MR3", new Double(0.1), "MR4",
-						new Double(0.54), "MR5", new Double(0.1), "MR6", new Double(0.1) },
+				{ "CC(C)c1ccc(N)cc1(N)", "MR2", new Double(1.5), "MR3",
+						new Double(0.1), "MR4", new Double(0.1), "MR5",
+						new Double(0.54), "MR6", new Double(0.1) },
+				{ "Cc1cc(N)ccc1(N)", "MR2", new Double(0.56), "MR3",
+						new Double(0.1), "MR4", new Double(0.54), "MR5",
+						new Double(0.1), "MR6", new Double(0.1) },
+				{ "Nc2cccc(c1ccccc1)c2(N)", "MR2", new Double(2.54), "MR3",
+						new Double(0.1), "MR4", new Double(0.1), "MR5",
+						new Double(0.1), "MR6", new Double(0.54) },
+				{ "Nc1cc(c(N)c(c1)Cl)Cl", "MR2", new Double(0.6), "MR3",
+						new Double(0.1), "MR4", new Double(0.54), "MR5",
+						new Double(0.1), "MR6", new Double(0.6) },
+				{ "Nc1cc(c(N)c(c1)Cl)Cl", "MR2", new Double(0.6), "MR3",
+						new Double(0.1), "MR4", new Double(0.54), "MR5",
+						new Double(0.1), "MR6", new Double(0.6) },
+				{ "Nc1ccc(N)c(c1)[N+](=O)[O-]", "MR2", new Double(0.74), "MR3",
+						new Double(0.1), "MR4", new Double(0.54), "MR5",
+						new Double(0.1), "MR6", new Double(0.1) },
 
-				{ "Nc1ccc(cc1)c2cccc(N)c2", "MR2", new Double(0.1), "MR3", new Double(2.98), "MR4", new Double(0.1),
-						"MR5", new Double(0.1), "MR6", new Double(0.1) },
+				{ "Nc1ccc(cc1)c2cccc(N)c2", "MR2", new Double(0.1), "MR3",
+						new Double(2.98), "MR4", new Double(0.1), "MR5",
+						new Double(0.1), "MR6", new Double(0.1) },
 
 		};
 		amineGroupSubstituent(smiles);
@@ -435,10 +480,12 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	public void testNaphtalenes() throws Exception {
 		Object[][] smiles = new Object[][] {
-				{ "Nc1ccc2ccccc2(c1)", "MR5", new Double(0.1), "MR3", new Double(0.8), "MR4", new Double(0.8), "MR2",
+				{ "Nc1ccc2ccccc2(c1)", "MR5", new Double(0.1), "MR3",
+						new Double(0.8), "MR4", new Double(0.8), "MR2",
 						new Double(0.1), "MR6", new Double(0.1) },
-				{ "NCCNC2=CC=CC1=CC=CC=C12", "MR5", new Double(0.1), "MR3", new Double(0.8), "MR2", new Double(0.8),
-						"MR6", new Double(0.1) }, };
+				{ "NCCNC2=CC=CC1=CC=CC=C12", "MR5", new Double(0.1), "MR3",
+						new Double(0.8), "MR2", new Double(0.8), "MR6",
+						new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -450,19 +497,23 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	public void testAnthracenes() throws Exception {
 		Object[][] smiles = new Object[][] {
-				{ "Nc1cccc2cc3ccccc3(cc12)", "MR5", new Double(0.1), "MR3", new Double(0.8), "MR2", new Double(0.8),
-						"MR6", new Double(0.1) },
-				{ "Nc1ccc2cc3ccccc3(cc2(c1))", "MR5", new Double(0.1), "MR3", new Double(0.8), "MR2", new Double(0.1),
-						"MR6", new Double(0.1) }, };
+				{ "Nc1cccc2cc3ccccc3(cc12)", "MR5", new Double(0.1), "MR3",
+						new Double(0.8), "MR2", new Double(0.8), "MR6",
+						new Double(0.1) },
+				{ "Nc1ccc2cc3ccccc3(cc2(c1))", "MR5", new Double(0.1), "MR3",
+						new Double(0.8), "MR2", new Double(0.1), "MR6",
+						new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
 	public void testPhenanthrenes() throws Exception {
 		Object[][] smiles = new Object[][] {
-				{ "Nc3cccc2c3(ccc1ccccc12)", "MR5", new Double(0.1), "MR4", new Double(0.1), "MR3", new Double(0.8),
-						"MR2", new Double(0.8), "MR6", new Double(0.1) },
-				{ "Nc3ccc2c(ccc1ccccc12)c3", "MR5", new Double(0.1), "MR3", new Double(0.8), "MR2", new Double(0.1),
-						"MR4", new Double(0.8), "MR6", new Double(0.1) },
+				{ "Nc3cccc2c3(ccc1ccccc12)", "MR5", new Double(0.1), "MR4",
+						new Double(0.1), "MR3", new Double(0.8), "MR2",
+						new Double(0.8), "MR6", new Double(0.1) },
+				{ "Nc3ccc2c(ccc1ccccc12)c3", "MR5", new Double(0.1), "MR3",
+						new Double(0.8), "MR2", new Double(0.1), "MR4",
+						new Double(0.8), "MR6", new Double(0.1) },
 
 		};
 		amineGroupSubstituent(smiles);
@@ -477,12 +528,15 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	public void testPyrenes() throws Exception {
 		Object[][] smiles = new Object[][] {
-				{ "Nc1ccc2ccc3cccc4ccc1c2c34", "MR5", new Double(0.1), "MR3", new Double(0.8), "MR2", new Double(0.8),
-						"MR6", new Double(0.1) },
-				{ "Nc1cc2ccc3cccc4ccc(c1)c2c34", "MR5", new Double(0.8), "MR3", new Double(0.8), "MR2",
-						new Double(0.1), "MR6", new Double(0.1) },
-				{ "Nc1cc4cccc3ccc2cccc1c2c34", "MR5", new Double(0.8), "MR3", new Double(0.8), "MR2", new Double(0.8),
-						"MR6", new Double(0.1) }, };
+				{ "Nc1ccc2ccc3cccc4ccc1c2c34", "MR5", new Double(0.1), "MR3",
+						new Double(0.8), "MR2", new Double(0.8), "MR6",
+						new Double(0.1) },
+				{ "Nc1cc2ccc3cccc4ccc(c1)c2c34", "MR5", new Double(0.8), "MR3",
+						new Double(0.8), "MR2", new Double(0.1), "MR6",
+						new Double(0.1) },
+				{ "Nc1cc4cccc3ccc2cccc1c2c34", "MR5", new Double(0.8), "MR3",
+						new Double(0.8), "MR2", new Double(0.8), "MR6",
+						new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -499,12 +553,15 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	public void test5Crings() throws Exception {
 		Object[][] smiles = new Object[][] {
-				{ "CC(=O)NC3=CC=CC=2CC=1C=CC=CC=1C=23", "MR5", new Double(0.1), "MR3", new Double(0.56), "MR2",
-						new Double(0.56), "MR6", new Double(0.1) },
-				{ "Nc1cccc2c4cccc3cccc(c12)c34", "MR5", new Double(0.1), "MR3", new Double(0.56), "MR2",
-						new Double(0.56), "MR6", new Double(0.1) },
-				{ "Nc1ccc2c4cccc3cccc(c2(c1))c34", "MR5", new Double(0.1), "MR3", new Double(0.56), "MR2",
-						new Double(0.1), "MR6", new Double(0.1) }, };
+				{ "CC(=O)NC3=CC=CC=2CC=1C=CC=CC=1C=23", "MR5", new Double(0.1),
+						"MR3", new Double(0.56), "MR2", new Double(0.56),
+						"MR6", new Double(0.1) },
+				{ "Nc1cccc2c4cccc3cccc(c12)c34", "MR5", new Double(0.1), "MR3",
+						new Double(0.56), "MR2", new Double(0.56), "MR6",
+						new Double(0.1) },
+				{ "Nc1ccc2c4cccc3cccc(c2(c1))c34", "MR5", new Double(0.1),
+						"MR3", new Double(0.56), "MR2", new Double(0.1), "MR6",
+						new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -521,13 +578,15 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	 */
 	public void testMixedNaphtaleneFluorene() throws Exception {
 		Object[][] smiles = new Object[][] {
-				{ "Nc2ccc3cccc4c1ccccc1c2c34", "MR5", new Double(0.1), "MR3", new Double(0.8), "MR2", new Double(0.56),
-						"MR6", new Double(0.1) },
+				{ "Nc2ccc3cccc4c1ccccc1c2c34", "MR5", new Double(0.1), "MR3",
+						new Double(0.8), "MR2", new Double(0.56), "MR6",
+						new Double(0.1) },
 				// When the numbering can go in two opposite directions, the
 				// substituent position with highest steric hindrance is given
 				// the lowest substitution number
-				{ "Nc2cc3cccc4c1ccccc1c(c2)c34", "MR5", new Double(0.8), "MR3", new Double(0.56), "MR2",
-						new Double(0.1), "MR6", new Double(0.1) }, };
+				{ "Nc2cc3cccc4c1ccccc1c(c2)c34", "MR5", new Double(0.8), "MR3",
+						new Double(0.56), "MR2", new Double(0.1), "MR6",
+						new Double(0.1) }, };
 		amineGroupSubstituent(smiles);
 	}
 
@@ -547,13 +606,16 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 	public void testHeterocyclicRings() throws Exception {
 		Object[][] smiles = new Object[][] {
 				// 105
-				{ "Nc1cccc2cccnc12", "MR5", new Double(0.1), "MR3", new Double(0.8), "MR2", new Double(0.65), "MR6",
+				{ "Nc1cccc2cccnc12", "MR5", new Double(0.1), "MR3",
+						new Double(0.8), "MR2", new Double(0.65), "MR6",
 						new Double(0.1) },
 				// 3
-				{ "NC1=CC=CC2=NC3=CC=CC(N)=C3(N=C12)", "MR5", new Double(0.1), "MR3", new Double(0.65), "MR2",
-						new Double(0.65), "MR6", new Double(0.1) },
+				{ "NC1=CC=CC2=NC3=CC=CC(N)=C3(N=C12)", "MR5", new Double(0.1),
+						"MR3", new Double(0.65), "MR2", new Double(0.65),
+						"MR6", new Double(0.1) },
 				// 2
-				{ "NC=1C=CC2=NC=3C(N)=CC=CC=3(N=C2(C=1))", "MR5", new Double(0.1), "MR3", new Double(0.65), "MR2",
+				{ "NC=1C=CC2=NC=3C(N)=CC=CC=3(N=C2(C=1))", "MR5",
+						new Double(0.1), "MR3", new Double(0.65), "MR2",
 						new Double(0.65), "MR6", new Double(0.1) },
 
 		};
@@ -578,8 +640,9 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 		// fail("verify how substituted amine group should be treated (params of amine group + substituent, only substituent, largest substituent, average, etc.)");
 
 		for (int i = 0; i < smiles.length; i++) {
-			Logger.info(smiles[i][0].toString());
-			IAtomContainer a = FunctionalGroups.createAtomContainer(smiles[i][0].toString(), false);
+			logger.log(Level.FINE, smiles[i][0].toString());
+			IAtomContainer a = FunctionalGroups.createAtomContainer(
+					smiles[i][0].toString(), false);
 			// AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(a);
 			// CDKHueckelAromaticityDetector.detectAromaticity(a);
 			MolAnalyser.analyse(a);
@@ -590,7 +653,8 @@ public class AromaticAmineSubstituentsDescriptorTest extends TestCase {
 				for (int j = 0; j < value.getNames().length; j++) {
 					// System.out.println(value.getNames()[j] + " = " +
 					// ((DoubleArrayResult)r).get(j));
-					a.setProperty(value.getNames()[j], ((DoubleArrayResult) r).get(j));
+					a.setProperty(value.getNames()[j],
+							((DoubleArrayResult) r).get(j));
 				}
 				boolean ok = true;
 				for (int j = 1; j < smiles[i].length; j += 2) {

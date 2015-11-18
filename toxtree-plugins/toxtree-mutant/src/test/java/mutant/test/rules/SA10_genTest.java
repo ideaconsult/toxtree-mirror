@@ -99,8 +99,7 @@ public class SA10_genTest extends TestMutantRules {
 		if (sc != null) {
 			SmilesGenerator g = SmilesGenerator.generic();
 			for (int i = 0; i < sc.getAtomContainerCount(); i++) {
-				String s = g.createSMILES((IAtomContainer) sc.getAtomContainer(i));
-				// System.out.println(s);
+				String s = g.create((IAtomContainer) sc.getAtomContainer(i));
 				assertNotNull(results.get(s));
 				IMolecularFormula formula = MolecularFormulaManipulator.getMolecularFormula(sc.getAtomContainer(i));
 				int catoms = MolecularFormulaManipulator.getElementCount(formula,

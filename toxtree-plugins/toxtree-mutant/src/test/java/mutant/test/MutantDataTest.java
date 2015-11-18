@@ -101,7 +101,7 @@ public class MutantDataTest {
 
 			}
 		}
-		System.err.println("Wrong classification of " + (molecules.length - success) + " compounds");
+		logger.log(Level.WARNING, "Wrong classification of " + (molecules.length - success) + " compounds");
 		return success;
 	}
 
@@ -121,7 +121,7 @@ public class MutantDataTest {
 		IDecisionResult result = classify("CC(O)(CS(=O)(=O)C1=CC=C(F)C=C1)C(=O)NC2=CC=C(C(=C2)C(F)(F)F)C(N)=O", "npe",
 				cr);
 
-		System.out.println(result.getAssignedCategories());
+		logger.log(Level.INFO,result.getAssignedCategories().toString());
 	}
 
 	@Test
@@ -165,10 +165,9 @@ public class MutantDataTest {
 
 	public void testCSVFile(String[][] molecules) throws Exception {
 		String filename = "toxTree/test/tree/sicret/BfR_irritation.csv";
-		System.out.println("Testing: " + filename);
-
 		// molecules = new String[118][11];
 		InputStream ins = this.getClass().getClassLoader().getResourceAsStream(filename);
+		Assert.assertNotNull(filename,ins);
 		// FileInputStream ins = new FileInputStream(filename);
 
 		IteratingDelimitedFileReader reader = new IteratingDelimitedFileReader(ins);
@@ -222,20 +221,19 @@ public class MutantDataTest {
 			molCount++;
 		}
 
-		System.out.println("MolCount: " + molCount);
+		logger.log(Level.INFO,"MolCount: " + molCount);
 		// assertEquals(88, molCount);
 	}
 
 	public void testCSVFile1(String[][] molecules) throws Exception {
 		String filename = "toxTree/test/tree/sicret/BfR_corrosion.csv";
-		System.out.println("Testing: " + filename);
 		// InputStream ins =
 		// this.getClass().getClassLoader().getResourceAsStream(filename);
 		// molecules = new String[118][11];
 
 		InputStream ins = this.getClass().getClassLoader().getResourceAsStream(filename);
 		// FileInputStream ins = new FileInputStream(filename);
-
+		Assert.assertNotNull(filename,ins);
 		IteratingDelimitedFileReader reader = new IteratingDelimitedFileReader(ins);
 
 		int molCount = 0;
@@ -291,7 +289,7 @@ public class MutantDataTest {
 			molCount++;
 		}
 
-		System.out.println("MolCount: " + molCount);
+		logger.log(Level.INFO,"MolCount: " + molCount);
 
 	}
 
@@ -331,10 +329,10 @@ public class MutantDataTest {
 	public void test() throws Exception {
 
 		IDecisionResult r = classify("CCC=CC=O", "CCC=CC=O", cr);
-		System.out.println(r.getAssignedCategories());
+		logger.log(Level.INFO,r.getAssignedCategories().toString());
 	}
 
-	@Test
+	
 	public void testReport() throws Exception {
 		BB_CarcMutRules rules = new BB_CarcMutRules();
 		SaveTreeAction a = new SaveTreeAction(rules);

@@ -24,6 +24,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package mutant.test;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.vecmath.Point3d;
 
 import joelib.molecule.JOEAtom;
@@ -47,17 +50,33 @@ import toxTree.tree.rules.smarts.Convertor;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
 import ambit2.core.data.MoleculeTools;
 
+/**
+ * We don't use this smarts parser anymore
+ * 
+ * @author nina
+ * 
+ */
+@Deprecated
 public class JoelibSmartsTest {
+	protected static Logger logger = Logger.getLogger(JoelibSmartsTest.class
+			.getName());
+
 	@Test
 	public void testCDKJoeMolMatch() {
 		IAtomContainer mol = new AtomContainer();
 
-		mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 0
-		mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 1
-		mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 2
-		mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 3
-		mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 4
-		mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.OXYGEN)); // 5
+		mol.addAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 0
+		mol.addAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 1
+		mol.addAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 2
+		mol.addAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 3
+		mol.addAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 4
+		mol.addAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.OXYGEN)); // 5
 
 		mol.addBond(0, 1, IBond.Order.SINGLE); // 1
 		mol.addBond(1, 2, IBond.Order.SINGLE); // 2
@@ -70,13 +89,14 @@ public class JoelibSmartsTest {
 		JOEMol joemol = new JOEMol();
 		String smiles = "CCCCCO";
 		if (!JOESmilesParser.smiToMol(joemol, smiles, "")) {
-			System.err.println("SMILES entry \"" + smiles + "\" could not be loaded.");
+			logger.log(Level.WARNING, "SMILES entry \"" + smiles
+					+ "\" could not be loaded.");
 		}
 		Assert.assertEquals(joemol.toString(), converted.toString());
 
 		JOESmartsPattern smartPatern = new JOESmartsPattern();
 		if (!smartPatern.init("CCCCO")) {
-			System.err.println("Invalid SMARTS pattern.");
+			logger.log(Level.WARNING, "Invalid SMARTS pattern.");
 		}
 
 		Assert.assertTrue(smartPatern.match(converted));
@@ -85,10 +105,13 @@ public class JoelibSmartsTest {
 
 	@Test
 	public void testCDKJoeMol() throws Exception {
-		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder
+				.getInstance());
 
-		mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 0
-		mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.OXYGEN)); // 5
+		mol.addAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 0
+		mol.addAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.OXYGEN)); // 5
 
 		mol.addBond(0, 1, IBond.Order.SINGLE); // 1
 
@@ -107,7 +130,8 @@ public class JoelibSmartsTest {
 
 	@Test
 	public void testAtom() {
-		IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON);
+		IAtom a = MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(),
+				Elements.CARBON);
 		a.setPoint3d(new Point3d(1, 1, 1));
 
 		JOEAtom converted = Convertor.convert(a);
@@ -123,10 +147,13 @@ public class JoelibSmartsTest {
 
 	@Test
 	public void testCDKJoeMolAllC() throws Exception {
-		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+		IAtomContainer mol = MoleculeTools.newMolecule(SilentChemObjectBuilder
+				.getInstance());
 
-		mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 0
-		mol.addAtom(MoleculeTools.newAtom(SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 5
+		mol.addAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 0
+		mol.addAtom(MoleculeTools.newAtom(
+				SilentChemObjectBuilder.getInstance(), Elements.CARBON)); // 5
 
 		mol.addBond(0, 1, IBond.Order.SINGLE); // 1
 
@@ -150,7 +177,10 @@ public class JoelibSmartsTest {
 				{ "Epoxide", "[OX2r3]1[#6r3][#6r3]1", "C1OC1C" },
 				{ "Ketene", "[CX3]=[CX2]=[OX1]", "CC=C=O" },
 				{ "Ketone", "[#6][CX3](=[OX1])[#6]", "C=CC(=O)C" },
-				{ "Alkene", "[CX3;$([H2]),$([H1][#6]),$(C([#6])[#6])]=[CX3;$([H2]),$([H1][#6]),$(C([#6])[#6])]", "C=C" },
+				{
+						"Alkene",
+						"[CX3;$([H2]),$([H1][#6]),$(C([#6])[#6])]=[CX3;$([H2]),$([H1][#6]),$(C([#6])[#6])]",
+						"C=C" },
 				{
 						"Thioamide",
 						"[$([CX3;!R][#6]),$([CX3H;!R])](=[SX1])[#7X3;$([H2]),$([H1][#6;!$(C=[O,N,S])]),$([#7]([#6;!$(C=[O,N,S])])[#6;!$(C=[O,N,S])])]",
@@ -160,13 +190,12 @@ public class JoelibSmartsTest {
 
 		for (int i = 0; i < testSmarts.length; i++) {
 			RuleSMARTSubstructure rule = new RuleSMARTSubstructure();
-			System.out.print(testSmarts[i][0]);
+			logger.log(Level.WARNING,testSmarts[i][0]);
 			rule.addSubstructure(testSmarts[i][1]);
-			IAtomContainer mol = FunctionalGroups.createAtomContainer(testSmarts[i][2], true);
+			IAtomContainer mol = FunctionalGroups.createAtomContainer(
+					testSmarts[i][2], true);
 			// MolAnalyser.analyse(mol);
 			Assert.assertTrue(rule.verifyRule(mol));
-			System.out.println("\tOK");
-
 		}
 
 		/*
