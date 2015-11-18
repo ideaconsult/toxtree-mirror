@@ -300,7 +300,7 @@ public class SubstituentsTest {
 		int r = 0;
 		for (int i = 0; i < lookup.getAtomContainerCount(); i++) {
 			IAtomContainer a = lookup.getAtomContainer(i);
-			logger.log(Level.INFO,a.getProperties().toString());
+			logger.log(Level.FINE,a.getProperties().toString());
 			Object mySmiles = a.getProperty("SMILES");
 			if (mySmiles == null)
 				continue;
@@ -308,14 +308,14 @@ public class SubstituentsTest {
 			if (!newSmiles.equals(mySmiles.toString())) {
 				r++;
 				StringBuilder b = new StringBuilder();
-				b.append(r);
-				b.append("SMILES in file\t");
-				b.append("\t");
+				//b.append(r);
+				//b.append("SMILES in file\t");
+				//b.append("\t");
 				b.append(a.getProperty("#"));
-				b.append("\t");
+				b.append("\n");
 				b.append(mySmiles);
 
-				b.append("\tnew\t");
+				b.append("\n");
 				b.append(newSmiles);
 				logger.log(Level.INFO,b.toString());
 			}
@@ -331,11 +331,11 @@ public class SubstituentsTest {
 		// lookup.setCheckAromaticity(false);
 		MoleculesFile lookup = new MoleculesFile("substituents.sdf",
 				SilentChemObjectBuilder.getInstance(), null);
-		SmilesGenerator g = SmilesGenerator.generic();
+		SmilesGenerator g = SmilesGenerator.unique();
 		for (int k = 0; k < s.getAtomContainerCount(); k++) {
 			System.out.println("Substituent\t" + k);
 			IAtomContainer m = s.getAtomContainer(k);
-			String smiles = g.createSMILES((IAtomContainer) m);
+			String smiles = g.create((IAtomContainer) m);
 			System.out.println(smiles);
 			for (int a = 0; a < m.getAtomCount(); a++) {
 				System.out.print(m.getAtom(a).getSymbol());
