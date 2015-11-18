@@ -69,7 +69,8 @@ import ambit2.core.io.MDLWriter;
 import ambit2.smarts.query.ISmartsPattern;
 
 public abstract class TestMutantRules extends TestCase {
-	protected static Logger logger = Logger.getLogger(TestMutantRules.class.getName());
+	protected static Logger logger = Logger.getLogger(TestMutantRules.class
+			.getName());
 	protected IDecisionRule ruleToTest = null;
 
 	public abstract String getHitsFile();
@@ -94,17 +95,21 @@ public abstract class TestMutantRules extends TestCase {
 		return "iss2_rid.sdf";
 	}
 
-	protected void applyRule(IDecisionRule rule, String resultsfile, String resultsFolder) throws Exception {
+	protected void applyRule(IDecisionRule rule, String resultsfile,
+			String resultsFolder) throws Exception {
 		applyRule(rule, getTestFileName(), resultsfile, resultsFolder);
 	}
 
-	protected void applyRule(IDecisionRule rule, String sourcefile, String resultsfile, String resultsFolder)
-			throws Exception {
-		InputStream in_source = this.getClass().getClassLoader().getResourceAsStream("data/" + sourcefile);
+	protected void applyRule(IDecisionRule rule, String sourcefile,
+			String resultsfile, String resultsFolder) throws Exception {
+		InputStream in_source = this.getClass().getClassLoader()
+				.getResourceAsStream("data/" + sourcefile);
 		Assert.assertNotNull(in_source);
-		InputStream in_results = this.getClass().getClassLoader().getResourceAsStream("data/" + resultsfile);
+		InputStream in_results = this.getClass().getClassLoader()
+				.getResourceAsStream("data/" + resultsfile);
 		Assert.assertNotNull(in_results);
-		applyRule(rule, in_source, in_results, getSubstanceID(), "data/" + resultsFolder);
+		applyRule(rule, in_source, in_results, getSubstanceID(), "data/"
+				+ resultsFolder);
 		in_source.close();
 		in_results.close();
 	}
@@ -117,12 +122,14 @@ public abstract class TestMutantRules extends TestCase {
 		return rule.getID();
 	}
 
-	protected IIteratingChemObjectReader getReader(InputStream stream, IChemObjectBuilder b) {
+	protected IIteratingChemObjectReader getReader(InputStream stream,
+			IChemObjectBuilder b) {
 		return new IteratingSDFReader(stream, b);
 	}
 
-	protected void applyRule(IDecisionRule rule, InputStream source, InputStream results, String compoundID,
-			String resultsFolder) throws Exception {
+	protected void applyRule(IDecisionRule rule, InputStream source,
+			InputStream results, String compoundID, String resultsFolder)
+			throws Exception {
 
 		assertNotNull(source);
 		assertNotNull(results);
@@ -133,23 +140,29 @@ public abstract class TestMutantRules extends TestCase {
 		ArrayList<String> missedResults = new ArrayList<String>();
 		// IteratingMDLReader resultsReader = new IteratingMDLReader(results,b);
 		IIteratingChemObjectReader resultsReader = getReader(results, b);
-		String tmpDir = String.format("%s/.toxtree/%s/", System.getProperty("java.io.tmpdir"), resultsFolder);
+		String tmpDir = String.format("%s/.toxtree/%s/",
+				System.getProperty("java.io.tmpdir"), resultsFolder);
 		try {
-			File f2 = new File(String.format("%s/.toxtree", System.getProperty("java.io.tmpdir")));
+			File f2 = new File(String.format("%s/.toxtree",
+					System.getProperty("java.io.tmpdir")));
 			f2.mkdir();
-			f2 = new File(String.format("%s/.toxtree/data", System.getProperty("java.io.tmpdir")));
+			f2 = new File(String.format("%s/.toxtree/data",
+					System.getProperty("java.io.tmpdir")));
 			f2.mkdir();
-			f2 = new File(String.format("%s/.toxtree/%s/", System.getProperty("java.io.tmpdir"), resultsFolder));
+			f2 = new File(String.format("%s/.toxtree/%s/",
+					System.getProperty("java.io.tmpdir"), resultsFolder));
 			f2.mkdir();
 		} catch (Exception x) {
 			x.printStackTrace();
 		}
 		// String filename_missed_hits = resultsFolder+"/"+getRuleID(rule) +
 		// "_missed_hits.sdf";
-		File f2 = new File(tmpDir, String.format("%s_missed_hits.sdf", getRuleID(rule)));
+		File f2 = new File(tmpDir, String.format("%s_missed_hits.sdf",
+				getRuleID(rule)));
 		if (f2.exists())
 			f2.delete();
-		f2 = new File(tmpDir, String.format("%s_missed_hits.sdf", getRuleID(rule)));
+		f2 = new File(tmpDir, String.format("%s_missed_hits.sdf",
+				getRuleID(rule)));
 		OutputStream outMissed = new FileOutputStream(f2);
 		MDLWriter writerMissed = new MDLWriter(outMissed);
 
@@ -187,7 +200,8 @@ public abstract class TestMutantRules extends TestCase {
 		assertTrue(resultsID.size() > 0);
 
 		if (missedResults.size() > 0) {
-			logger.log(Level.WARNING,"Rule\t" + rule +"\tMissed results\t" + missedResults);
+			logger.log(Level.WARNING, "Rule\t" + rule + "\tMissed results\t"
+					+ missedResults);
 		} else
 			f2.delete();
 
@@ -197,7 +211,8 @@ public abstract class TestMutantRules extends TestCase {
 		// IteratingMDLReader sourceReader = new IteratingMDLReader(source,b);
 
 		IIteratingChemObjectReader sourceReader = getReader(source, b);
-		File f = new File(tmpDir, String.format("%s_wrong_hits.sdf", getRuleID(rule)));
+		File f = new File(tmpDir, String.format("%s_wrong_hits.sdf",
+				getRuleID(rule)));
 		if (f.exists())
 			f.delete();
 		OutputStream outWrong = new FileOutputStream(f);
@@ -243,12 +258,14 @@ public abstract class TestMutantRules extends TestCase {
 		outWrong.close();
 
 		if (missedhits.size() > 0) {
-			logger.log(Level.WARNING,"Rule " + rule.getID() + " missed hits\t" + missedhits.size());
-			logger.log(Level.WARNING,missedhits.toString());
+			logger.log(Level.WARNING, "Rule " + rule.getID() + " missed hits\t"
+					+ missedhits.size());
+			logger.log(Level.WARNING, missedhits.toString());
 		}
 		if (wronghits.size() > 0) {
-			logger.log(Level.WARNING,"Rule " + rule.getID() + " wrong hits\t" + wronghits.size());
-			logger.log(Level.WARNING,wronghits.toString());
+			logger.log(Level.WARNING, "Rule " + rule.getID() + " wrong hits\t"
+					+ wronghits.size());
+			logger.log(Level.WARNING, wronghits.toString());
 		} else
 			f.delete();
 		saveRuleAsTree(rule, tmpDir + "/" + getRuleID(rule) + ".tml");
@@ -262,7 +279,8 @@ public abstract class TestMutantRules extends TestCase {
 		applyRule(ruleToTest, getHitsFile(), getResultsFolder());
 	}
 
-	protected void saveRuleAsTree(IDecisionRule rule, String filename) throws Exception {
+	protected void saveRuleAsTree(IDecisionRule rule, String filename)
+			throws Exception {
 		IDecisionMethod tree = NewRuleAction.treeFromRule(rule);
 		FileOutputStream os = new FileOutputStream(filename);
 		// Thread.currentThread().setContextClassLoader(Introspection.getLoader());
@@ -272,26 +290,32 @@ public abstract class TestMutantRules extends TestCase {
 	}
 
 	public boolean applySmarts(String smarts, String smiles) throws Exception {
-		IAtomContainer ac = toxTree.query.FunctionalGroups.createAtomContainer(smiles, true);
+		IAtomContainer ac = toxTree.query.FunctionalGroups.createAtomContainer(
+				smiles, true);
 		return applySmarts(smarts, ac);
 	}
 
-	public boolean applySmarts(String smarts, IAtomContainer ac) throws Exception {
+	public boolean applySmarts(String smarts, IAtomContainer ac)
+			throws Exception {
 		toxTree.tree.rules.smarts.RuleSMARTSubstructure r = new toxTree.tree.rules.smarts.RuleSMARTSubstructure();
 		r.addSubstructure(smarts);
 		toxTree.query.MolAnalyser.analyse(ac);
 		return r.verifyRule(ac);
 	}
 
-	public boolean verifyRule(IDecisionRule rule, String smiles) throws Exception {
+	public boolean verifyRule(IDecisionRule rule, String smiles)
+			throws Exception {
 
-		IAtomContainer c = toxTree.query.FunctionalGroups.createAtomContainer(smiles);
+		IAtomContainer c = toxTree.query.FunctionalGroups
+				.createAtomContainer(smiles);
 		toxTree.query.MolAnalyser.analyse(c);
 		return rule.verifyRule(c);
 	}
 
-	public int verifySMARTS(AbstractRuleSmartSubstructure rule, String smarts, String smiles) throws Exception {
-		IAtomContainer c = toxTree.query.FunctionalGroups.createAtomContainer(smiles);
+	public int verifySMARTS(AbstractRuleSmartSubstructure rule, String smarts,
+			String smiles) throws Exception {
+		IAtomContainer c = toxTree.query.FunctionalGroups
+				.createAtomContainer(smiles);
 		ISmartsPattern p = rule.createSmartsPattern(smarts, false);
 		toxTree.query.MolAnalyser.analyse(c);
 		return p.match(c);
@@ -307,7 +331,8 @@ public abstract class TestMutantRules extends TestCase {
 		verifyExample(m, answer);
 	}
 
-	protected void verifyExample(IAtomContainer m, boolean answer) throws DecisionMethodException {
+	protected void verifyExample(IAtomContainer m, boolean answer)
+			throws DecisionMethodException {
 		try {
 			MolAnalyser.analyse(m);
 			// for (int i=0; i < m.getAtomCount();i++)
@@ -330,8 +355,10 @@ public abstract class TestMutantRules extends TestCase {
 	}
 
 	public int printAromaticity() throws Exception {
-		IteratingSDFReader resultsReader = new IteratingSDFReader(this.getClass().getClassLoader()
-				.getResourceAsStream("data/" + getHitsFile()), SilentChemObjectBuilder.getInstance());
+		IteratingSDFReader resultsReader = new IteratingSDFReader(this
+				.getClass().getClassLoader()
+				.getResourceAsStream("data/" + getHitsFile()),
+				SilentChemObjectBuilder.getInstance());
 		int aromaticCompounds = 0;
 		while (resultsReader.hasNext()) {
 			Object o = resultsReader.next();
@@ -359,8 +386,10 @@ public abstract class TestMutantRules extends TestCase {
 		return aromaticCompounds;
 	}
 
-	private void findAndConfigureAtomTypesForAllAtoms(IAtomContainer container) throws CDKException {
-		CDKAtomTypeMatcher matcher = CDKAtomTypeMatcher.getInstance(container.getBuilder());
+	private void findAndConfigureAtomTypesForAllAtoms(IAtomContainer container)
+			throws CDKException {
+		CDKAtomTypeMatcher matcher = CDKAtomTypeMatcher.getInstance(container
+				.getBuilder());
 		Iterator<IAtom> atoms = container.atoms().iterator();
 		while (atoms.hasNext()) {
 			IAtom atom = atoms.next();
@@ -377,13 +406,16 @@ public abstract class TestMutantRules extends TestCase {
 	}
 
 	protected int[] match(String smarts, String smiles) throws Exception {
-		SMARTSQueryTool sqt = new SMARTSQueryTool(smarts, SilentChemObjectBuilder.getInstance());
-		SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
+		SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,
+				SilentChemObjectBuilder.getInstance());
+		SmilesParser sp = new SmilesParser(
+				SilentChemObjectBuilder.getInstance());
 		IAtomContainer atomContainer = sp.parseSmiles(smiles);
 		MolAnalyser.analyse(atomContainer);
 		boolean status = sqt.matches(atomContainer);
 		if (status) {
-			return new int[] { sqt.countMatches(), sqt.getUniqueMatchingAtoms().size() };
+			return new int[] { sqt.countMatches(),
+					sqt.getUniqueMatchingAtoms().size() };
 		} else {
 			return new int[] { 0, 0 };
 		}
@@ -399,12 +431,27 @@ public abstract class TestMutantRules extends TestCase {
 
 		// reading
 		ObjectInputStream is = new ObjectInputStream(new FileInputStream(f));
-		Object rule2 = is.readObject();
-		is.close();
-		f.delete();
-		logger.log(Level.INFO,ruleToTest.toString());
-		logger.log(Level.INFO,"old\t"+((IImplementationDetails) ruleToTest).getImplementationDetails());
-		logger.log(Level.INFO,"new\t"+((IImplementationDetails) rule2).getImplementationDetails());
+		Object rule2 = null;
+		try {
+			rule2 = is.readObject();
+			Assert.assertNotNull(rule2);
+
+		} finally {
+			is.close();
+			f.delete();
+		}
+
+		logger.log(Level.INFO, ruleToTest.toString());
+		logger.log(
+				Level.INFO,
+				"old\t"
+						+ ((IImplementationDetails) ruleToTest)
+								.getImplementationDetails());
+		logger.log(
+				Level.INFO,
+				"new\t"
+						+ ((IImplementationDetails) rule2)
+								.getImplementationDetails());
 		assertEquals(ruleToTest, rule2);
 	}
 

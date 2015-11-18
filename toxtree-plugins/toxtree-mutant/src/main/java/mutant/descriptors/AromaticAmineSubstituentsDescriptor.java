@@ -448,11 +448,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
         
     public static QueryAtomContainer aromaticAmine(String mark) {
         QueryAtomContainer query = new QueryAtomContainer(SilentChemObjectBuilder.getInstance()) {
-        	/**
-	     * 
-	     */
-	    private static final long serialVersionUID = -819579792535610163L;
-
+  
 		@Override
         	public String toString() {
         		return getID();
