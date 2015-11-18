@@ -78,9 +78,8 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-
-		query = super.initQuery();
-
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		if (Me == null)
 			Me = initMetals();
 		if (Me1 == null)
@@ -105,7 +104,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 		addSubstructure(FunctionalGroups.sulphate(Me));
 		addSubstructure(FunctionalGroups.sulphamate(Me));
 		addSubstructure(FunctionalGroups.sulphamate(null));
-		return query;
+		return q;
 	}
 
 	/**

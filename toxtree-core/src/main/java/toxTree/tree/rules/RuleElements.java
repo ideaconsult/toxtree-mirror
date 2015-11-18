@@ -24,8 +24,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package toxTree.tree.rules;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 import net.idea.modbcum.i.exceptions.AmbitException;
 
@@ -78,11 +78,11 @@ public class RuleElements extends AbstractRule {
 		elements.setHalogens(halogens);
 	}
 
-	public void setHalogens(HashSet halogens) {
+	public void setHalogens(TreeSet halogens) {
 		elements.setHalogens(halogens);
 	}
 
-	public HashSet gethalogens() {
+	public TreeSet gethalogens() {
 		return elements.getHalogens();
 	}
 

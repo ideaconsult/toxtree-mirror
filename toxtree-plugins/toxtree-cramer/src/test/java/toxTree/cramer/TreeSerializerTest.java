@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import junit.framework.Assert;
@@ -16,9 +17,10 @@ import org.openscience.cdk.templates.MoleculeFactory;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionResult;
+import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleList;
+import toxTree.tree.DecisionNode;
 import toxTree.tree.DecisionNodesList;
-import toxTree.tree.RulesList;
 import toxTree.tree.UserDefinedTree;
 import toxTree.tree.cramer.CramerClass1;
 import toxTree.tree.cramer.CramerClass3;
@@ -54,12 +56,31 @@ public class TreeSerializerTest {
 
 	@Test
 	public void testRulesList() throws Exception {
-		IDecisionRuleList rules = new RulesList();
-		rules.addRule(new RuleCommonComponentOfFood());
-		rules.addRule(new RuleLipinski5());
-		objectRoundTrip(rules);
-		Assert.assertTrue(rules.get(0) instanceof RuleCommonComponentOfFood);
-		Assert.assertTrue(rules.get(1) instanceof RuleLipinski5);
+		CramerRules cr = null;
+		cr = new CramerRules();
+		IDecisionRuleList rules = cr.getRules();
+		int ok = 0;
+		for (int i = 0; i < rules.size(); i++)
+			if (rules.get(i) instanceof DecisionNode) {
+				IDecisionRule rule = ((DecisionNode) rules.get(i)).getRule(); 
+				try {
+					objectRoundTrip(rule);
+					
+					//RuleHasOtherThanC_H_O_N_S2
+					ok ++;
+				} catch (Exception x) {
+					logger.log(Level.SEVERE, "Serializing " + rule);
+					logger.log(Level.SEVERE,x.getMessage(),x);
+				}
+			}
+		Assert.assertEquals(rules.size(), ok);
+		/*
+		 * rules.addRule(new RuleCommonComponentOfFood()); rules.addRule(new
+		 * RuleLipinski5());
+		 */
+
+		// Assert.assertTrue(rules.get(0) instanceof RuleCommonComponentOfFood);
+		// Assert.assertTrue(rules.get(1) instanceof RuleLipinski5);
 	}
 
 	@Test
@@ -103,6 +124,7 @@ public class TreeSerializerTest {
 
 	protected Object objectRoundTrip(Object rule) throws Exception {
 		// writing
+		logger.log(Level.INFO, "Serializing " + rule.getClass().getName());
 		FileOutputStream os = new FileOutputStream(rule.getClass().getName()
 				+ ".xml");
 		XMLEncoder encoder = new XMLEncoder(os);
@@ -117,8 +139,8 @@ public class TreeSerializerTest {
 		decoder.close();
 
 		logger.finer(rule.toString());
-		Assert.assertEquals(rule, rule2);
-		return rule2;
+		if (rule.equals(rule2)) return rule2;
+		else throw new Exception(String.format("Objects are not equal [%s] [%s]", rule,rule2));
 
 	}
 

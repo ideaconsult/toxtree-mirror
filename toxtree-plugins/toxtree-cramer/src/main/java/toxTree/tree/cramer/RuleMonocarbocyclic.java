@@ -70,7 +70,8 @@ public class RuleMonocarbocyclic extends RuleRingAllowedSubstituents {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.alcohol(true));
 		addSubstructure(FunctionalGroups.aldehyde());
 		addSubstructure(FunctionalGroups.acyclic_acetal());
@@ -82,7 +83,7 @@ public class RuleMonocarbocyclic extends RuleRingAllowedSubstituents {
 		addSubstructure(FunctionalGroups.sulphonate(null, false));
 		addSubstructure(FunctionalGroups.sulphamate(me));
 		addSubstructure(FunctionalGroups.sulphamate(null));
-		return query;
+		return q;
 	}
 
 	/*

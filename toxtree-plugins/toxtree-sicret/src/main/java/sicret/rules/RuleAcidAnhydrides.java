@@ -57,11 +57,11 @@ public class RuleAcidAnhydrides extends RuleAnySubstructure {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query =  super.initQuery();
+		setQuery(super.initQuery());
 		QueryAtomContainer q = verhaar.query.FunctionalGroups
 				.createAutoQueryContainer("[*]C(=O)OC(=O)[*]");
 		addSubstructure(q);		
-		return query;
+		return getQuery();
 	}
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}

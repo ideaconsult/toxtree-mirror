@@ -69,11 +69,11 @@ public class Rule143 extends RuleRingAllowedSubstituents implements
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		String[] halogens = { "Cl", "F", "Br", "I" };
 		x = FunctionalGroups.halogenAtBetaFromUnsaturation(halogens);
 		addSubstructure(FunctionalGroups.halogen(halogens));
-		return query;
+		return getQuery();
 	}
 
 	protected IRingSet hasRingsToProcess(IAtomContainer mol)

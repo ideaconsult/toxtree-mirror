@@ -82,9 +82,10 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 	
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.lactone(false));
-		return query;
+		return q;
 	}	
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}

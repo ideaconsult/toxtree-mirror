@@ -92,7 +92,8 @@ public class RuleHeterocyclicComplexSubstituents extends
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.alcohol(false));
 		addSubstructure(FunctionalGroups.aldehyde());
 		addSubstructure(FunctionalGroups.acetal());
@@ -103,7 +104,7 @@ public class RuleHeterocyclicComplexSubstituents extends
 		addSubstructure(FunctionalGroups.sulphide());
 		addSubstructure(FunctionalGroups.methylether());
 		addSubstructure(FunctionalGroups.hydroxy_ring());
-		return query;
+		return q;
 	}
 
 	/*

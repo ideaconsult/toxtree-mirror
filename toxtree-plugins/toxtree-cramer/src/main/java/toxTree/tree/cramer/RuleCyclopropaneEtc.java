@@ -78,7 +78,8 @@ public class RuleCyclopropaneEtc extends RuleRingAllowedSubstituents {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.alcohol(true));
 		addSubstructure(FunctionalGroups.aldehyde());
 		addSubstructure(FunctionalGroups.acetal());
@@ -88,7 +89,7 @@ public class RuleCyclopropaneEtc extends RuleRingAllowedSubstituents {
 		addSubstructure(FunctionalGroups.sulphonate(new String[] { "Na", "K",
 				"Ca" }));
 
-		return query;
+		return q;
 	}
 
 	@Override

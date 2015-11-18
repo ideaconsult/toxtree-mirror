@@ -85,7 +85,8 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 	}
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.carbonate());		
 		addSubstructure(FunctionalGroups.carboxylicAcid());
 		addSubstructure(FunctionalGroups.ester());
@@ -99,7 +100,7 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 		addSubstructure(FunctionalGroups.mercaptan());
 		addSubstructure(FunctionalGroups.primaryAmine(false));
 		addSubstructure(FunctionalGroups.tertiaryAmine());		
-		return query;
+		return q;
 	}
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}

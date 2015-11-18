@@ -70,7 +70,7 @@ public abstract class RuleRingOtherThanAllowedSubstituents extends
 		// other groups as substituents)
 		// if (FunctionalGroups.hasOnlyTheseGroups(mol,query,ids)) return false;
 		// yes, but some other conditions may fail ...
-		FunctionalGroups.hasOnlyTheseGroups(mol, query, ids, true); // just
+		FunctionalGroups.hasOnlyTheseGroups(mol, getQuery(), ids, true); // just
 																	// using it
 																	// to mark
 																	// groups

@@ -237,14 +237,14 @@ public class RuleKroesFig1Q1 extends RuleSubstructures {
 		logger.finer("Polyhalogenated compound\t"
 				+ Integer.toString(halogensFound) + "\thalogens found");
 		// print(mol);
-		for (int i = 0; i < query.getAtomContainerCount(); i++) {
-			logger.finer("Compare with " + query.getAtomContainer(i).getID());
-			if (FunctionalGroups.isSubstance(mol, query.getAtomContainer(i)))
+		for (int i = 0; i < getQuery().getAtomContainerCount(); i++) {
+			logger.finer("Compare with " + getQuery().getAtomContainer(i).getID());
+			if (FunctionalGroups.isSubstance(mol, getQuery().getAtomContainer(i)))
 				return true;
 		}
 
 		logger.fine("Compared with "
-				+ Integer.toString(query.getAtomContainerCount())
+				+ Integer.toString(getQuery().getAtomContainerCount())
 				+ " structures");
 		logger.fine("NOT a " + explanation.toString());
 		return false;

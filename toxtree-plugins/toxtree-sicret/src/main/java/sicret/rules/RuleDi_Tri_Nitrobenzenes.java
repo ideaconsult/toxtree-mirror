@@ -56,7 +56,7 @@ public class RuleDi_Tri_Nitrobenzenes extends RuleAnySubstructure {
 	}
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query =  super.initQuery();
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.createAtomContainer("O=[N+]([O-])c1ccccc1[N+](=O)[O-]",false));
 		addSubstructure(FunctionalGroups.createAtomContainer("O=[N+]([O-])c1ccc(cc1)[N+](=O)[O-]",false));
 		addSubstructure(FunctionalGroups.createAtomContainer("O=N(=O)C1CCCC(C1)N(=O)=O",false));
@@ -64,7 +64,7 @@ public class RuleDi_Tri_Nitrobenzenes extends RuleAnySubstructure {
 		addSubstructure(FunctionalGroups.createAtomContainer("O=N(=O)C1CCCCC1(N(=O)=O)",false));
 		addSubstructure(FunctionalGroups.createAtomContainer("O=[N+]([O-])c1cc(cc(c1)[N+](=O)[O-])[N+](=O)[O-]",false));
 		addSubstructure(FunctionalGroups.createAtomContainer("O=N(=O)C1CC(CC(C1)N(=O)=O)N(=O)=O",false));
-		return query;
+		return getQuery();
 	}
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}

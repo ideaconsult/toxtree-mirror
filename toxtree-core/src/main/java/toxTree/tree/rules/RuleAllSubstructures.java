@@ -55,7 +55,7 @@ public class RuleAllSubstructures extends RuleSubstructures {
 	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
 		logger.fine(getID());
 		try {
-			return FunctionalGroups.hasAllSubstructure(mol,query,false);
+			return FunctionalGroups.hasAllSubstructure(mol,getQuery(),false);
 		} catch (CDKException x) {
 			throw new DecisionMethodException(x);
 		}

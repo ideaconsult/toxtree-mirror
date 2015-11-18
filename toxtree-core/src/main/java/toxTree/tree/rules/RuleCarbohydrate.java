@@ -94,12 +94,13 @@ public class RuleCarbohydrate extends RuleSubstructures {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.alcohol(false));
 		addSubstructure(FunctionalGroups.ether());
 		addSubstructure(FunctionalGroups.aldehyde());
 		addSubstructure(FunctionalGroups.ketone());
-		return query;
+		return q;
 	}
 
 	@Override

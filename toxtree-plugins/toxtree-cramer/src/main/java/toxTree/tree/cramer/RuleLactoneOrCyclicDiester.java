@@ -80,9 +80,10 @@ public class RuleLactoneOrCyclicDiester extends RuleSubstructures {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.lactone(false));
-		return query;
+		return q;
 	}
 
 	/*

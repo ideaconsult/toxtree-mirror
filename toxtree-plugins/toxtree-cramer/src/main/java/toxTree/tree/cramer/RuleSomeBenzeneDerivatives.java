@@ -120,14 +120,15 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.hydroxy1());
 		// addSubstructure(FunctionalGroups.hydroxyEsterSubstituted());
 		addSubstructure(FunctionalGroups.alcohol(false));
 		addSubstructure(FunctionalGroups.ester());
 		addSubstructure(FunctionalGroups.alkoxy()); // alkoxy
 
-		return query;
+		return q;
 	}
 
 	@Override
@@ -269,7 +270,7 @@ public class RuleSomeBenzeneDerivatives extends RuleRingAllowedSubstituents {
 		FunctionalGroups.markCHn(mol);
 		// if entire structure has only allowed groups, return true (can't have
 		// other groups as substituents)
-		FunctionalGroups.hasOnlyTheseGroups(mol, query, ids, false);
+		FunctionalGroups.hasOnlyTheseGroups(mol, getQuery(), ids, false);
 		// logger.fine(FunctionalGroups.mapToString(mol));
 		// otherwise some of the forbidden groups can be in-ring, so
 		// substituents can be fine

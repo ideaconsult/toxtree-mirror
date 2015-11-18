@@ -51,7 +51,7 @@ public class RuleCarbamoylHalide extends RuleAnySubstructure {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		QueryAtomContainer q = FunctionalGroups
 				.createAutoQueryContainer("[*]N([H])C(=O)Cl");
 		addSubstructure(q);
@@ -64,7 +64,7 @@ public class RuleCarbamoylHalide extends RuleAnySubstructure {
 		QueryAtomContainer q3 = FunctionalGroups
 				.createAutoQueryContainer("[*]N([H])C(=O)I");
 		addSubstructure(q3);
-		return query;
+		return getQuery();
 	}
 
 	/**

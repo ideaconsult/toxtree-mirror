@@ -95,7 +95,8 @@ public class RuleRingComplexSubstituents30 extends
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.hydroxy_ring());
 		addSubstructure(FunctionalGroups.methoxy_ring());
 		addSubstructure(FunctionalGroups.alcohol(false));
@@ -104,7 +105,7 @@ public class RuleRingComplexSubstituents30 extends
 		addSubstructure(FunctionalGroups.carboxylicAcid());
 		ester = FunctionalGroups.ester();
 		addSubstructure(ester);
-		return query;
+		return q;
 	}
 
 	/*

@@ -61,8 +61,7 @@ public class RuleOandPQuinones extends RuleAnySubstructure {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
-
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.createAtomContainer(
 				"O=C1C=CC=CC1(=O)", false));
 		addSubstructure(FunctionalGroups.createAtomContainer(
@@ -70,7 +69,7 @@ public class RuleOandPQuinones extends RuleAnySubstructure {
 		// addSubstructure(FunctionalGroups.createAtomContainer("[H]Oc1ccc(cc1)O[H]",false));
 		// addSubstructure(FunctionalGroups.createAtomContainer("[H]Oc1ccccc1(O[H])",false));
 
-		return query;
+		return getQuery();
 	}
 
 	/**

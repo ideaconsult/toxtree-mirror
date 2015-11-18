@@ -74,7 +74,8 @@ public class RuleMonocycloalkanoneEtc extends RuleOnlyAllowedSubstructures {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.alcohol(true));
 		addSubstructure(FunctionalGroups.aldehyde());
 		addSubstructure(FunctionalGroups.acyclic_acetal());
@@ -85,7 +86,7 @@ public class RuleMonocycloalkanoneEtc extends RuleOnlyAllowedSubstructures {
 		addSubstructure(FunctionalGroups.sulphonate(metals));
 		addSubstructure(FunctionalGroups.sulphonate(metals, false));
 		addSubstructure(FunctionalGroups.sulphamate(metals));
-		return query;
+		return q;
 	}
 
 	/**

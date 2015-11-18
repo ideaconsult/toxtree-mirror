@@ -67,9 +67,9 @@ public class SA26 extends RuleAnySubstructure implements IAlertCounter {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.noxide_aromatic());
-		return query;
+		return getQuery();
 	}
 
 	@Override

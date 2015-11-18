@@ -72,7 +72,7 @@ public class RuleAnySubstructure extends RuleSubstructures {
 			throws DecisionMethodException {
 		logger.finer(getID());
 		try {
-			return FunctionalGroups.hasAnySubstructure(mol, query, selected);
+			return FunctionalGroups.hasAnySubstructure(mol, getQuery(), selected);
 		} catch (CDKException x) {
 			throw new DecisionMethodException(x);
 		}

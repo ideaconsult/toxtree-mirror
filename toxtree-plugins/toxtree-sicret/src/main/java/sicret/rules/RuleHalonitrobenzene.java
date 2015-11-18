@@ -51,14 +51,14 @@ public class RuleHalonitrobenzene extends RuleAnySubstructure {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.createAtomContainer(
 				"Clc1ccccc1[N+](=O)[O-]", false));
 		addSubstructure(FunctionalGroups.createAtomContainer(
 				"Clc1cccc(c1)[N+](=O)[O-]", false));
 		addSubstructure(FunctionalGroups.createAtomContainer(
 				"Clc1ccc(cc1)[N+](=O)[O-]", false));
-		return query;
+		return getQuery();
 	}
 
 	/**

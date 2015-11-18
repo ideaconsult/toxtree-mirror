@@ -57,10 +57,10 @@ public class RuleQuaternaryOrganicAmmoniumAndPhosphoniumSalts extends
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.createAtomContainer(
 				"[N+]23(CN1CN(CN(C1)C2)C3)", false));
-		return query;
+		return getQuery();
 	}
 
 	/**

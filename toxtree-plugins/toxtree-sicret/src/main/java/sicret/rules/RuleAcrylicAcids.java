@@ -56,10 +56,10 @@ public class RuleAcrylicAcids extends RuleAllSubstructures {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups
 				.createAtomContainer("C=CC(O)=O", false));
-		return query;
+		return getQuery();
 	}
 
 	/**

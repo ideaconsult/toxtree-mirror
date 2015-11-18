@@ -52,10 +52,10 @@ public class Rule161 extends RuleOnlyAllowedSubstructuresCounter {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.secondaryAmine(true));
 		addSubstructure(FunctionalGroups.tertiaryAmine());
-		return query;
+		return getQuery();
 	}
 
 	@Override

@@ -57,9 +57,9 @@ public class RuleIonicGroups extends RuleSubstructures implements IAlertCounter 
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.ionicGroup());
-		return query;
+		return getQuery();
 	}
 
 	@Override

@@ -88,14 +88,14 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.nitro1double());
 		addSubstructure(FunctionalGroups.nitro2double());
 		addSubstructure(FunctionalGroups.halogen(getHalogens()));
 		if (mainStructure != null)
 			addSubstructure(mainStructure);
 
-		return query;
+		return getQuery();
 	}
 
 	protected String[] getHalogens() {
@@ -137,7 +137,7 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements
 		FunctionalGroups.markCHn(mol);
 		// if entire structure has only allowed groups, return true (can't have
 		// other groups as substituents)
-		if (FunctionalGroups.hasOnlyTheseGroups(mol, query, ids, true)) {
+		if (FunctionalGroups.hasOnlyTheseGroups(mol, getQuery(), ids, true)) {
 			logger.finer("The entire structure consists only of allowed groups");
 			// return true;
 		}

@@ -21,12 +21,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.tree.rules;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -41,45 +40,52 @@ import toxTree.tree.AbstractRuleHilightHits;
 
 /**
  * An abstract class to implement substructure rules
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-8-14
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-8-14
  */
-public abstract class RuleSubstructures extends AbstractRuleHilightHits implements IRuleSubstructures {
+public abstract class RuleSubstructures extends AbstractRuleHilightHits
+		implements IRuleSubstructures {
 	public static transient String MSG_HASGROUP = "Has group\t";
 	/**
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = -2500957952948758410L;
-	protected transient QueryAtomContainers query = null;
-	protected ArrayList<String> ids = null;	
+	private transient QueryAtomContainers query = null;
+	protected ArrayList<String> ids = null;
+
 	/**
 	 * 
 	 */
 	public RuleSubstructures() throws Exception {
 		super();
 		ids = new ArrayList<String>();
-	    ids.add(FunctionalGroups.C);	    
-	    ids.add(FunctionalGroups.CH);
-	    ids.add(FunctionalGroups.CH2);
-	    ids.add(FunctionalGroups.CH3);		
+		ids.add(FunctionalGroups.C);
+		ids.add(FunctionalGroups.CH);
+		ids.add(FunctionalGroups.CH2);
+		ids.add(FunctionalGroups.CH3);
 		query = initQuery();
 	}
-	
+
 	protected QueryAtomContainers initQuery() throws Exception {
 		return new QueryAtomContainers();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.AbstractRule#isImplemented()
 	 */
 	@Override
 	public boolean isImplemented() {
-		return getSubstructuresCount()>0;
+		return getSubstructuresCount() > 0;
 	}
+
 	/**
-	 * The fragment will be added to the list of substructures to be searched for
+	 * The fragment will be added to the list of substructures to be searched
+	 * for
+	 * 
 	 * @param fragment
-	/* (non-Javadoc)
+	 *            /* (non-Javadoc)
 	 * @see toxTree.tree.rules.RuleSubstructures#addSubstructure(IAtomContainer)
 	 */
 	public void addSubstructure(IAtomContainer fragment) {
@@ -89,76 +95,91 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 		notifyObservers();
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.rules.RuleSubstructures#clearSubstructures()
 	 */
 	public void clearSubstructures() {
 		ids.clear();
-	    ids.add(FunctionalGroups.C);	    
-	    ids.add(FunctionalGroups.CH);
-	    ids.add(FunctionalGroups.CH2);
-	    ids.add(FunctionalGroups.CH3);		
-	    setChanged();
-	    notifyObservers();
+		ids.add(FunctionalGroups.C);
+		ids.add(FunctionalGroups.CH);
+		ids.add(FunctionalGroups.CH2);
+		ids.add(FunctionalGroups.CH3);
+		setChanged();
+		notifyObservers();
 	}
+
 	public int getSubstructuresCount() {
 		return query.size();
 	}
+
 	public IAtomContainer getSubstructure(int index) {
-        if (index < query.getAtomContainerCount())
-            return (IAtomContainer) query.get(index);
-        else return null;
+		if (index < getQuery().getAtomContainerCount())
+			return getQuery().get(index);
+		else
+			return null;
 	}
-	/* (non-Javadoc)
-	 * @see toxTree.core.IRuleSubstructures#setSubstructure(int, org.openscience.cdk.interfaces.AtomContainer)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see toxTree.core.IRuleSubstructures#setSubstructure(int,
+	 * org.openscience.cdk.interfaces.AtomContainer)
 	 */
 	public void setSubstructure(int index, IAtomContainer atomContainer) {
-		query.set(index,atomContainer);
+		getQuery().set(index, atomContainer);
 		setChanged();
 		notifyObservers();
 
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.AbstractRule#equals(java.lang.Object)
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (!super.equals(obj)) return false;
+		if (!super.equals(obj))
+			return false;
 		if (obj instanceof RuleSubstructures) {
 			RuleSubstructures rule = (RuleSubstructures) obj;
-			try {
-			if (query==null) query = initQuery();
-			} catch (Exception x) {
-				logger.log(Level.SEVERE, x.getMessage());
+
+			if (getQuery().size() != rule.getQuery().size())
 				return false;
-			}
-			if (query.size() != rule.query.size()) return false;
-			else return ids.containsAll(rule.ids);
-		} else return false;
+			else
+				return ids.containsAll(rule.ids);
+		} else
+			return false;
 	}
-	
+
 	public IAtomContainer removeSubstructure(int index) {
 		IAtomContainer a = getSubstructure(index);
 		if (a != null) {
 			ids.remove(a.getID());
-			query.remove(a);
+			getQuery().remove(a);
 		}
 		setChanged();
 		notifyObservers();
 		return a;
 	}
+
 	public List getSubstructures() {
 		return query;
 	}
+
 	/*
-	@Override
-	public IDecisionRuleEditor getEditor() {
-		return new SubstructureRulePanel(this);
-	}
-	*/
+	 * @Override public IDecisionRuleEditor getEditor() { return new
+	 * SubstructureRulePanel(this); }
+	 */
 
 	public QueryAtomContainers getQuery() {
+		try {
+			if (query == null)
+				query = initQuery();
+		} catch (Exception x) {
+		}
 		return query;
 	}
 
@@ -172,8 +193,8 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 
 	public void setIds(ArrayList ids) {
 		this.ids = ids;
-	}	
-	
+	}
+
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
 			throws DecisionMethodException {
@@ -182,18 +203,18 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 			MolAnalyser.analyse(mol);
 			boolean ok = verifyRule(mol);
 			if (selected != null) {
-				for (IAtom atom: mol.atoms())
-					if (!"H".equals(atom.getSymbol()) && atom.getProperty(FunctionalGroups.ALLOCATED)!=null)
+				for (IAtom atom : mol.atoms())
+					if (!"H".equals(atom.getSymbol())
+							&& atom.getProperty(FunctionalGroups.ALLOCATED) != null)
 						selected.addAtom(atom);
-				
-				for (IBond bond:mol.bonds()) 
-					if ((bond.getProperty(FunctionalGroups.ALLOCATED)!=null) &&
-						 !"H".equals(bond.getAtom(0).getSymbol()) &&
-						 !"H".equals(bond.getAtom(1).getSymbol())
-						 )
-						selected.addBond(bond);				
-			}	
-			
+
+				for (IBond bond : mol.bonds())
+					if ((bond.getProperty(FunctionalGroups.ALLOCATED) != null)
+							&& !"H".equals(bond.getAtom(0).getSymbol())
+							&& !"H".equals(bond.getAtom(1).getSymbol()))
+						selected.addBond(bond);
+			}
+
 			return ok;
 		} catch (Exception x) {
 			throw new DecisionMethodException(x);

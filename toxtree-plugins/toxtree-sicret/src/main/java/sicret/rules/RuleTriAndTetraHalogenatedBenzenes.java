@@ -59,14 +59,14 @@ public class RuleTriAndTetraHalogenatedBenzenes extends RuleAnySubstructure {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.createAtomContainer(
 				"ClC1=CC(Cl)C(Cl)C(Cl)C1", false));
 		addSubstructure(FunctionalGroups.createAtomContainer(
 				"ClC1C=CC(Cl)C(Cl)C1(Cl)", false));
 		addSubstructure(FunctionalGroups.createAtomContainer(
 				"ClC1C=CCC(Cl)C1(Cl)", false));
-		return query;
+		return getQuery();
 	}
 
 	/**

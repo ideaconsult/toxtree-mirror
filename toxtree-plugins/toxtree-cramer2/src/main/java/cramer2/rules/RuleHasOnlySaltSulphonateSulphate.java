@@ -114,7 +114,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 	}
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		if (Me==null) Me = initMetals();
 		if (Me1==null) Me1 = initMetals1();
 		sulphonate = FunctionalGroups.sulphonate(Me, false);
@@ -140,7 +140,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 		addSubstructure(FunctionalGroups.sulphate(Me));
 		addSubstructure(FunctionalGroups.sulphamate(Me));
 		addSubstructure(FunctionalGroups.sulphamate(null));
-		return query;
+		return getQuery();
 	}	
 	/**
 	 * Calls the inherited

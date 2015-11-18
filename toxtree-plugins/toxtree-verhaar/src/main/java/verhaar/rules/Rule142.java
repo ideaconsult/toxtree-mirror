@@ -58,12 +58,12 @@ public class Rule142 extends RuleOnlyAllowedSubstructuresCounter {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		String[] halogens = { "Cl", "Br", "F", "I" };
 		for (int i = 0; i < halogens.length; i++)
 			addSubstructure(FunctionalGroups.ringSubstituted(halogens[i]));
 		addSubstructure(FunctionalGroups.ringSubstituted(null));
-		return query;
+		return getQuery();
 	}
 
 	/*

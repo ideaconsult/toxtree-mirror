@@ -95,7 +95,8 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
 		addSubstructure(FunctionalGroups.hydroxy_ring());
 		addSubstructure(FunctionalGroups.methoxy_ring());
 		addSubstructure(FunctionalGroups.alcohol(false));
@@ -105,7 +106,7 @@ public class RuleOnlyFuncGroupsQ30 extends RuleRingSubstituents {
 		addSubstructure(FunctionalGroups.ester());
 		addSubstructure(FunctionalGroups.acyclic_acetal());
 		addSubstructure(FunctionalGroups.polyoxyethylene(1));
-		return query;
+		return q;
 	}
 
 	protected boolean singleFusedNonAromaticCarbocyclicRing(IAtomContainer mol,

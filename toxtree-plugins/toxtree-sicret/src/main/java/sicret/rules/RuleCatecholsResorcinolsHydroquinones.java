@@ -54,14 +54,14 @@ public class RuleCatecholsResorcinolsHydroquinones extends RuleAnySubstructure {
 
 	@Override
 	protected QueryAtomContainers initQuery() throws Exception {
-		query = super.initQuery();
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.createAtomContainer("OC1=CC(O)=CC=C1",
 				false));
 		addSubstructure(FunctionalGroups.createAtomContainer("OC1=C(O)C=CC=C1",
 				false));
 		addSubstructure(FunctionalGroups.createAtomContainer("OC1=CC=C(O)C=C1",
 				false));
-		return query;
+		return getQuery();
 	}
 
 	/**
