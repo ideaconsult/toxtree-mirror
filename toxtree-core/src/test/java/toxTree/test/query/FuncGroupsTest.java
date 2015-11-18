@@ -289,7 +289,7 @@ public class FuncGroupsTest {
 	public void testSulphonate1() throws Exception {
 		QueryAtomContainer q = FunctionalGroups.sulphonate(null, false);
 
-		Assert.assertTrue(query("O=S1(=O)([O-]1)CCCC", q));
+		Assert.assertTrue(query("O=S(=O)([O-])CCCC", q));
 		/*
 		 * Molecule mol = (Molecule)
 		 * FunctionalGroups.createAtomContainer("O=S1(=O)([O-]1)CCCC",true);

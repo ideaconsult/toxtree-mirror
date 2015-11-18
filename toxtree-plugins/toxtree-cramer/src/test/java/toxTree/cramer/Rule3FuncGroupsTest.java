@@ -44,7 +44,7 @@ import toxTree.tree.cramer.RuleHasOnlySaltSulphonateSulphate;
 public class Rule3FuncGroupsTest extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new Rule3FuncGroups();
 	}
 

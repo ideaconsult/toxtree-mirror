@@ -16,58 +16,71 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package verhaar.rules;
-
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRingSet;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
+import toxTree.query.QueryAtomContainers;
 import verhaar.query.FunctionalGroups;
 import verhaar.rules.helper.RuleOnlyAllowedSubstructuresCounter;
 
 /**
  * Monocyclic compounds substituted with halogens.
- * @author Nina Jeliazkova jeliazkova.nina@gmail.com
- * <b>Modified</b> July 12, 2011
+ * 
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com <b>Modified</b> July 12,
+ *         2011
  */
 public class Rule142 extends RuleOnlyAllowedSubstructuresCounter {
-	protected static transient String[] halogens = {"Cl","Br","F","I"};
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8731063548318963732L;
 
-	public Rule142() {
+	public Rule142() throws Exception {
 		super();
 		id = "1.4.2";
 		setTitle("Be monocyclic compounds substituted with halogens");
 		examples[1] = "c1ccccc1Cl";
 		examples[0] = "c1ccc(cc1)c2ccc(cc2)Cl";
 		editable = false;
-		for (int i=0; i < halogens.length;i++)
-			addSubstructure(FunctionalGroups.ringSubstituted(halogens[i]));
-		addSubstructure(FunctionalGroups.ringSubstituted(null));
+
 		// TODO verify if only directly connected halogens are allowed
 		/*
-		ids.add(FunctionalGroups.C);
-		ids.add(FunctionalGroups.CH);
-		ids.add(FunctionalGroups.CH2);
-		ids.add(FunctionalGroups.CH3);
-		*/
+		 * ids.add(FunctionalGroups.C); ids.add(FunctionalGroups.CH);
+		 * ids.add(FunctionalGroups.CH2); ids.add(FunctionalGroups.CH3);
+		 */
 	}
-	/* (non-Javadoc)
-	 * @see toxTree.tree.rules.RuleRingSubstituents#hasRingsToProcess(org.openscience.cdk.interfaces.AtomContainer)
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		query = super.initQuery();
+		String[] halogens = { "Cl", "Br", "F", "I" };
+		for (int i = 0; i < halogens.length; i++)
+			addSubstructure(FunctionalGroups.ringSubstituted(halogens[i]));
+		addSubstructure(FunctionalGroups.ringSubstituted(null));
+		return query;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * toxTree.tree.rules.RuleRingSubstituents#hasRingsToProcess(org.openscience
+	 * .cdk.interfaces.AtomContainer)
 	 */
 	protected IRingSet hasRingsToProcess(IAtomContainer mol)
 			throws DecisionMethodException {
-		//RingSet rings = super.hasRingsToProcess(mol);
-	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
-	    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
-	    
-	    IRingSet rings = mf.getRingset();
+		// RingSet rings = super.hasRingsToProcess(mol);
+		MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
+		if (mf == null)
+			throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
+
+		IRingSet rings = mf.getRingset();
 		if ((rings == null)) {
 			logger.fine("Acyclic structure");
 			return null;
@@ -75,22 +88,29 @@ public class Rule142 extends RuleOnlyAllowedSubstructuresCounter {
 			logger.fine("Monocyclic\tYES");
 			return rings;
 		} else {
-			logger.fine("More than one ring\t"+rings.getAtomContainerCount());
+			logger.fine("More than one ring\t" + rings.getAtomContainerCount());
 			return null;
 		}
 	}
-	
+
 	public boolean isImplemented() {
 		return true;
 	}
-	/* (non-Javadoc)
-	 * @see toxTree.tree.rules.RuleOnlyAllowedSubstructures#verifyRule(org.openscience.cdk.interfaces.AtomContainer)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * toxTree.tree.rules.RuleOnlyAllowedSubstructures#verifyRule(org.openscience
+	 * .cdk.interfaces.AtomContainer)
 	 */
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
 		logger.finer(toString());
-		if (hasRingsToProcess(mol) != null) 
+		if (hasRingsToProcess(mol) != null)
 			return super.verifyRule(mol);
-		else return false;
+		else
+			return false;
 	}
 
 }

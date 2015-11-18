@@ -23,6 +23,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
@@ -46,10 +47,6 @@ public class RuleAcidAnhydrides extends RuleAnySubstructure {
 	public RuleAcidAnhydrides() throws Exception {
 
 		super();
-		QueryAtomContainer q = verhaar.query.FunctionalGroups
-				.createAutoQueryContainer("[*]C(=O)OC(=O)[*]");
-		addSubstructure(q);
-
 		id = "45";
 		title = "AcidAnhydrides";
 
@@ -58,6 +55,14 @@ public class RuleAcidAnhydrides extends RuleAnySubstructure {
 		editable = false;
 	}
 
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		query =  super.initQuery();
+		QueryAtomContainer q = verhaar.query.FunctionalGroups
+				.createAutoQueryContainer("[*]C(=O)OC(=O)[*]");
+		addSubstructure(q);		
+		return query;
+	}
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */

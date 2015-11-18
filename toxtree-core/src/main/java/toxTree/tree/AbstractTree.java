@@ -637,7 +637,7 @@ public abstract class AbstractTree extends Observable implements
 		int na = 0;
 		for (int i = 0; i < nr; i++) {
 			IDecisionRule rule = rules.getRule(i);
-			System.out.println(rule.getClass().getName());
+			logger.log(Level.FINE,rule.getClass().getName());
 			if (rule.getSelector() == null) {
 
 				na++;

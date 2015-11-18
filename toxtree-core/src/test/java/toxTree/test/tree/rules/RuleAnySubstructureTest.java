@@ -21,10 +21,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.test.tree.rules;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
 import org.openscience.cdk.exception.InvalidSmilesException;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -32,73 +32,35 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 import org.openscience.cdk.templates.MoleculeFactory;
 
-import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
  * TODO add description
- * @author Vedina
- * <b>Modified</b> 2005-8-19
+ * 
+ * @author Vedina <b>Modified</b> 2005-8-19
  */
-public class RuleAnySubstructureTest extends TestCase {
-
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(RuleAnySubstructureTest.class);
-	}
-
-	/*
-	 * @see TestCase#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	/*
-	 * @see TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
-	/**
-	 * Constructor for RuleAnySubstructureTest.
-	 * @param arg0
-	 */
-	public RuleAnySubstructureTest(String arg0) {
-		super(arg0);
-	}
-	public void testRuleAnySubstructure() {
+public class RuleAnySubstructureTest {
+	public void testRuleAnySubstructure() throws Exception {
 		RuleAnySubstructure rule = new RuleAnySubstructure();
 		rule.addSubstructure(MoleculeFactory.makeAlkane(3));
 		IAtomContainer mol = MoleculeFactory.makeAlkane(20);
-		
-		try {
-			assertTrue(rule.verifyRule(mol));
-		} catch (DecisionMethodException x) {
-			fail();
-		}
+
+		Assert.assertTrue(rule.verifyRule(mol));
 		mol = MoleculeFactory.makeBenzene();
-		try {
-			assertFalse(rule.verifyRule(mol));
-		} catch (DecisionMethodException x) {
-			fail();
-		}
-		
-		SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
+
+		Assert.assertFalse(rule.verifyRule(mol));
+
+		SmilesParser sp = new SmilesParser(
+				SilentChemObjectBuilder.getInstance());
 		try {
 			mol = sp.parseSmiles("CCCCCc1ccccc1");
 		} catch (InvalidSmilesException x) {
-			fail();
+			throw x;
 		}
-		try {
-			assertTrue(rule.verifyRule(mol));
-			rule.addSubstructure(MoleculeFactory.makeBenzene());
-			assertTrue(rule.verifyRule(mol));
-		} catch (DecisionMethodException x) {
-			fail();
-		}		
+		Assert.assertTrue(rule.verifyRule(mol));
+		rule.addSubstructure(MoleculeFactory.makeBenzene());
+		Assert.assertTrue(rule.verifyRule(mol));
+
 	}
-	
+
 }

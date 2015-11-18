@@ -23,6 +23,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
@@ -32,32 +33,32 @@ import toxTree.tree.rules.RuleAnySubstructure;
  * @author Martin Martinov <b>Modified</b> Dec 17, 2006
  */
 public class RuleHalonitrobenzene extends RuleAnySubstructure {
-	public final static transient String MSG_18H = "Acyclic group";
 	/**
-	 * Comment for <code>serialVersionUID</code>
-	 */
-	private static final long serialVersionUID = 0;
-
-	/**
-	 * Constructor
 	 * 
 	 */
+	private static final long serialVersionUID = -5706154117097320404L;
+	public final static transient String MSG_18H = "Acyclic group";
 	public RuleHalonitrobenzene() throws Exception {
 
 		super();
-		addSubstructure(FunctionalGroups.createAtomContainer(
-				"Clc1ccccc1[N+](=O)[O-]", false));
-		addSubstructure(FunctionalGroups.createAtomContainer(
-				"Clc1cccc(c1)[N+](=O)[O-]", false));
-		addSubstructure(FunctionalGroups.createAtomContainer(
-				"Clc1ccc(cc1)[N+](=O)[O-]", false));
-
 		id = "64";
 		title = "Halonitrobenzene";
 
 		examples[0] = "c1ccc(cc1)[N+](=O)[O-]";
 		examples[1] = "Clc1ccc(cc1)[N+](=O)[O-]";
 		editable = false;
+	}
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		query = super.initQuery();
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"Clc1ccccc1[N+](=O)[O-]", false));
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"Clc1cccc(c1)[N+](=O)[O-]", false));
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"Clc1ccc(cc1)[N+](=O)[O-]", false));
+		return query;
 	}
 
 	/**

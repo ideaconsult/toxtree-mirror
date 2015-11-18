@@ -15,7 +15,7 @@ import cramer2.rules.RuleBenzeneAnalogues;
 public class RuleBenzeneAnaloguesTest  extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleBenzeneAnalogues();
 	}
 

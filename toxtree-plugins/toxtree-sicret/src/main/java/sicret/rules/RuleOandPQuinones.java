@@ -23,6 +23,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
@@ -50,6 +51,17 @@ public class RuleOandPQuinones extends RuleAnySubstructure {
 	public RuleOandPQuinones() throws Exception {
 		// TODO fix sterically hindered condition (example NO fails)
 		super();
+		id = "39";
+		title = "O and P Quinones";
+
+		examples[0] = "C1C=CC=CC1";
+		examples[1] = "O=C1C=CC=CC1(=O)";
+		editable = false;
+	}
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		query = super.initQuery();
 
 		addSubstructure(FunctionalGroups.createAtomContainer(
 				"O=C1C=CC=CC1(=O)", false));
@@ -58,12 +70,7 @@ public class RuleOandPQuinones extends RuleAnySubstructure {
 		// addSubstructure(FunctionalGroups.createAtomContainer("[H]Oc1ccc(cc1)O[H]",false));
 		// addSubstructure(FunctionalGroups.createAtomContainer("[H]Oc1ccccc1(O[H])",false));
 
-		id = "39";
-		title = "O and P Quinones";
-
-		examples[0] = "C1C=CC=CC1";
-		examples[1] = "O=C1C=CC=CC1(=O)";
-		editable = false;
+		return query;
 	}
 
 	/**

@@ -38,7 +38,7 @@ public class RuleHasOnlySaltSulphonateSulphateTest extends AbstractRuleTest {
 	
 	
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleHasOnlySaltSulphonateSulphate();
 	}
 	@Override

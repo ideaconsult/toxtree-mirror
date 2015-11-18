@@ -24,6 +24,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
 
@@ -41,8 +42,7 @@ public class RuleQuaternaryOrganicAmmoniumAndPhosphoniumSalts extends
 	public RuleQuaternaryOrganicAmmoniumAndPhosphoniumSalts() throws Exception {
 		// TODO fix sterically hindered condition (example NO fails)
 		super();
-		addSubstructure(FunctionalGroups.createAtomContainer(
-				"[N+]23(CN1CN(CN(C1)C2)C3)", false));
+
 		rule = new RuleSMARTSubstructure();
 		String PhosphoniumSalts = "[PX4]c1ccccc1";
 		rule.initSingleSMARTS(rule.getSmartsPatterns(), "1", PhosphoniumSalts);
@@ -53,6 +53,14 @@ public class RuleQuaternaryOrganicAmmoniumAndPhosphoniumSalts extends
 		examples[0] = "c1ccccc1ON";
 		examples[1] = "ClC=CC[N+]23(CN1CN(CN(C1)C2)C3)";
 		editable = false;
+	}
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		query = super.initQuery();
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"[N+]23(CN1CN(CN(C1)C2)C3)", false));
+		return query;
 	}
 
 	/**

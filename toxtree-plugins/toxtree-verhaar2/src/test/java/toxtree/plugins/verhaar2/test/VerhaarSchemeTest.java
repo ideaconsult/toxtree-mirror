@@ -16,8 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxtree.plugins.verhaar2.test;
+
+import java.util.logging.Level;
 
 import junit.framework.Assert;
 
@@ -32,56 +34,58 @@ import toxtree.plugins.verhaar2.VerhaarScheme2;
 
 public class VerhaarSchemeTest extends RulesTestCase {
 
-
 	public VerhaarSchemeTest() throws Exception {
 		super();
 		rules = new VerhaarScheme2();
 
 	}
+
 	@Test
-	public void testReflection() throws Exception  {
-		VerhaarScheme2 vs = (VerhaarScheme2) Class.forName("toxtree.plugins.verhaar2.VerhaarScheme2").newInstance();
+	public void testReflection() throws Exception {
+		VerhaarScheme2 vs = (VerhaarScheme2) Class.forName(
+				"toxtree.plugins.verhaar2.VerhaarScheme2").newInstance();
 		vs.calculate(MoleculeFactory.makeBenzene());
 	}
+
 	@Test
 	public void testVerhaar() throws Exception {
-		VerhaarScheme2 rulesNew = (VerhaarScheme2)objectRoundTrip(rules,"VerhaarScheme");
+		VerhaarScheme2 rulesNew = (VerhaarScheme2) objectRoundTrip(rules,
+				"VerhaarScheme");
 		rules = rulesNew;
 		tryImplementedRules();
 	}
+
 	/**
-	public void testPrintVerhaar() {
-		try {
-			System.out.println(new VerhaarScheme().getRules());
-		} catch (Exception x) {
-			x.printStackTrace();
-		}
-	}
-	*/
+	 * public void testPrintVerhaar() { try { System.out.println(new
+	 * VerhaarScheme().getRules()); } catch (Exception x) { x.printStackTrace();
+	 * } }
+	 */
 	@Test
-	public void testIsCounter() throws Exception  {
-	    System.err.println();
-	    int nr = rules.getNumberOfRules();
-	    int ne = 0;
-	    for (int i = 0; i < nr; i++) {
-	        IDecisionRule rule = rules.getRule(i);
-            try {
-            	IDecisionRule irule = ((DecisionNode) rule).getRule();
-       		    if (irule  instanceof IAlertCounter) {
-       		    	//ok
-       		    } else {
-       		    	if (irule instanceof RuleInitAlertCounter) continue;
-       		    	ne++;
-       		    	System.out.println(rule);
-       		    }
-            } catch (Exception x) {
-                System.err.println(rule.toString() + x.getMessage());
-                ne++;
-            }
-     
-	    }
-	    System.err.println("Number of rules available\t"+ nr);
-	    System.err.println("Number of rules not implementing IAlertCounter\t"+ ne);	    
-	    Assert.assertEquals(0,ne);
-	}		
+	public void testIsCounter() throws Exception {
+
+		int nr = rules.getNumberOfRules();
+		int ne = 0;
+		for (int i = 0; i < nr; i++) {
+			IDecisionRule rule = rules.getRule(i);
+			try {
+				IDecisionRule irule = ((DecisionNode) rule).getRule();
+				if (irule instanceof IAlertCounter) {
+					// ok
+				} else {
+					if (irule instanceof RuleInitAlertCounter)
+						continue;
+					ne++;
+					logger.log(Level.FINE, rule.toString());
+				}
+			} catch (Exception x) {
+				logger.log(Level.SEVERE, rule.toString() + x.getMessage());
+				ne++;
+			}
+
+		}
+		logger.log(Level.INFO, "Number of rules available\t" + nr);
+		logger.log(Level.INFO,
+				"Number of rules not implementing IAlertCounter\t" + ne);
+		Assert.assertEquals(0, ne);
+	}
 }

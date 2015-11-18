@@ -7,7 +7,7 @@ import toxTree.tree.cramer.RuleLactoneOrCyclicDiester;
 public class RuleLactoneOrCyclicDiesterTest extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleLactoneOrCyclicDiester();
 	}
 

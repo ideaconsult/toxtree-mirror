@@ -39,7 +39,7 @@ import toxTree.tree.cramer.RuleKetoneAlcoholEtc;
  */
 public class Rule18Test extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleKetoneAlcoholEtc();
 	}
 

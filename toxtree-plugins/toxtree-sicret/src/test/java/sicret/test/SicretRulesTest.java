@@ -19,6 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package sicret.test;
 
+import java.util.logging.Level;
+
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -115,6 +117,6 @@ public class SicretRulesTest extends RulesTestCase {
 
 	@Test
 	public void testPrintSicret() throws Exception {
-		System.out.println(new SicretRules().getRules());
+		logger.log(Level.INFO, new SicretRules().getRules().toString());
 	}
 }

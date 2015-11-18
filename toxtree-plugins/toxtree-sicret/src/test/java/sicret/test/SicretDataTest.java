@@ -156,7 +156,7 @@ public class SicretDataTest {
 
 			}
 		}
-		System.err.println("Wrong classification of " + (molecules.length - success) + " compounds");
+		logger.log(Level.WARNING,"Wrong classification of " + (molecules.length - success) + " compounds");
 		return success;
 	}
 
@@ -198,28 +198,32 @@ public class SicretDataTest {
 	}
 
 	@Test
-	public void testWriteCompounds() {
+	public void testWriteCompounds() throws Exception {
+		DataOutputStream f = null;
 		try {
-			DataOutputStream f = new DataOutputStream(new FileOutputStream("appendix1.csv"));
+			f = new DataOutputStream(new FileOutputStream("appendix1.csv"));
 			f.writeBytes("SMILES,CLASS,Name,Path\n");
 			// writeCompounds(compoundsClass1,f);
 			// writeCompounds(compoundsClass2,f);
 			// writeCompounds(compoundsClass3,f);
 			// writeCompounds(compoundsClass4,f);
 			// writeCompounds(compoundsClass,f);
-			f.close();
+			
 		} catch (IOException x) {
-			x.printStackTrace();
+			logger.log(Level.SEVERE, x.getMessage());
+		} finally {
+			if (f!=null) f.close();
 		}
 	}
 
 	public void testCSVFile(String[][] molecules) throws Exception {
 		String filename = "toxTree/test/tree/sicret/BfR_irritation.csv";
-		System.out.println("Testing: " + filename);
+		logger.log(Level.FINE,"Testing: " + filename);
 
 		// molecules = new String[118][11];
 
 		InputStream ins = this.getClass().getClassLoader().getResourceAsStream(filename);
+		Assert.assertNotNull(filename,ins);
 		// FileInputStream ins = new FileInputStream(filename);
 
 		IteratingDelimitedFileReader reader = new IteratingDelimitedFileReader(ins);
@@ -273,20 +277,21 @@ public class SicretDataTest {
 			molCount++;
 		}
 
-		System.out.println("MolCount: " + molCount);
+		logger.log(Level.INFO,"MolCount: " + molCount);
 		// assertEquals(88, molCount);
 
 	}
 
 	public void testCSVFile1(String[][] molecules) throws Exception {
 		String filename = "toxTree/test/tree/sicret/BfR_corrosion.csv";
-		System.out.println("Testing: " + filename);
+		logger.log(Level.FINE,"Testing: " + filename);
 		// InputStream ins =
 		// this.getClass().getClassLoader().getResourceAsStream(filename);
 		// molecules = new String[118][11];
 		IteratingDelimitedFileReader reader = null;
 		try {
 			InputStream ins = this.getClass().getClassLoader().getResourceAsStream(filename);
+			Assert.assertNotNull(filename,ins);
 			// FileInputStream ins = new FileInputStream(filename);
 
 			reader = new IteratingDelimitedFileReader(ins);
@@ -345,12 +350,12 @@ public class SicretDataTest {
 				molCount++;
 			}
 
-			System.out.println("MolCount: " + molCount);
+			logger.log(Level.INFO,"MolCount: " + molCount);
 			// assertEquals(88, molCount);
 		} catch (Exception e) {
 			throw e;
 		} finally {
-			reader.close();
+			if (reader!=null) reader.close();
 		}
 	}
 
@@ -376,7 +381,7 @@ public class SicretDataTest {
 					logger.log(Level.SEVERE, x.getMessage(), x);
 				}
 				// logger.warn(molecules[i][0],"\t",molecules[i][2],"\t",result.getCategory()+"\t"+explanation);
-				System.out.println("Number:" + i + " " + result.getCategory() + "\t" + molecules[i][2] + "\t"
+				logger.log(Level.INFO,"Number:" + i + " " + result.getCategory() + "\t" + molecules[i][2] + "\t"
 						+ explanation + "\t" + molecules[i][0]);
 				// System.out.println("Should be\t" + molecules[i][3]);
 

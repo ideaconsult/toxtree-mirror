@@ -23,6 +23,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAllSubstructures;
 
 /**
@@ -45,16 +46,20 @@ public class RuleAcrylicAcids extends RuleAllSubstructures {
 	public RuleAcrylicAcids() throws Exception {
 		// TODO fix sterically hindered condition (example NO fails)
 		super();
-
-		addSubstructure(FunctionalGroups
-				.createAtomContainer("C=CC(O)=O", false));
-
 		id = "38";
 		title = "Acrylic Acids";
 
 		examples[0] = "C=C";
 		examples[1] = "O=C(O)C(=CC)C";
 		editable = false;
+	}
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		query = super.initQuery();
+		addSubstructure(FunctionalGroups
+				.createAtomContainer("C=CC(O)=O", false));
+		return query;
 	}
 
 	/**

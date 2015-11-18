@@ -44,17 +44,20 @@ import ambit2.core.io.IteratingDelimitedFileReader;
 
 public class RuleKroesFig1Q1 extends RuleSubstructures {
 
-	public RuleKroesFig1Q1() {
+	public RuleKroesFig1Q1() throws Exception {
+		super();
 		init();
 		readStream(getConfiguration(), config);
 	}
 
-	public RuleKroesFig1Q1(InputStream stream, String format) {
+	public RuleKroesFig1Q1(InputStream stream, String format) throws Exception {
+		super();
 		init();
 		readStream(stream, format);
 	}
 
-	public RuleKroesFig1Q1(File file) {
+	public RuleKroesFig1Q1(File file) throws Exception{
+		super();
 		init();
 		logger.fine("Will be using file\t" + file.getAbsoluteFile());
 		String f = file.getPath().toLowerCase();

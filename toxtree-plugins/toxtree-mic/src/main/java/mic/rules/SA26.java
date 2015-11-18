@@ -33,6 +33,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.DefaultAlertCounter;
 import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleAnySubstructure;
@@ -52,7 +53,7 @@ public class SA26 extends RuleAnySubstructure implements IAlertCounter {
 	public static String SA26_title = "Aromatic ring N-oxide";
 	protected IAlertCounter alertsCounter = new DefaultAlertCounter();
 
-	public SA26() {
+	public SA26() throws Exception {
 		super();
 		setID("SA26");
 		setTitle(SA26_title);
@@ -62,8 +63,13 @@ public class SA26 extends RuleAnySubstructure implements IAlertCounter {
 		examples[1] = "O=[N+]([O-])C=1C=C[N+]([O-])=CC=1";
 		// "O=[N+]([O-])C5=CC=C2C=CC3=C1C=CC=CC1=[N+]([O-])C=4C=CC5(=C2C3=4)";
 		editable = false;
+	}
 
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		query = super.initQuery();
 		addSubstructure(FunctionalGroups.noxide_aromatic());
+		return query;
 	}
 
 	@Override

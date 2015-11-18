@@ -55,11 +55,11 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 
 	protected static transient SmilesGenerator sg = null;
 
-	protected static ArrayList elements = null;
-	
-	private String[] Me ;
+	protected static ArrayList<String> elements = null;
+
+	private String[] Me;
 	private String[] Me1;
-	
+
 	protected static transient QueryAtomContainer sulphonate = null;
 	protected static transient QueryAtomContainer sulphate = null;
 	protected static transient QueryAtomContainer aminoSulphate = null;
@@ -71,16 +71,20 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 	protected String[] initMetals() {
 		return new String[] { "Na", "K", "Ca" };
 	}
+
 	protected String[] initMetals1() {
 		return new String[] { "Na", "K", "Ca", "Mg", "N" };
 	}
+
 	@Override
-	protected QueryAtomContainers initQuery() {
+	protected QueryAtomContainers initQuery() throws Exception {
 
 		query = super.initQuery();
 
-		if (Me==null) Me = initMetals();
-		if (Me1==null) Me1 = initMetals1();
+		if (Me == null)
+			Me = initMetals();
+		if (Me1 == null)
+			Me1 = initMetals1();
 		sulphonate = FunctionalGroups.sulphonate(Me, false);
 		sulphate = FunctionalGroups.sulphate(null);
 		// (a)
@@ -107,12 +111,12 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 	/**
 	 * 
 	 */
-	public RuleHasOnlySaltSulphonateSulphate() {
+	public RuleHasOnlySaltSulphonateSulphate() throws Exception {
 		super();
 		editable = false;
 
 		if (elements == null) {
-			elements = new ArrayList();
+			elements = new ArrayList<String>();
 			elements.add("C");
 			elements.add("H");
 			elements.add("O");
@@ -171,11 +175,11 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 			IAtom a = mol.getAtom(i);
 			double order = 0;
 			if (a.getSymbol().equals("S")) {
-				List bonds = mol.getConnectedBondsList(a);
+				List<IBond> bonds = mol.getConnectedBondsList(a);
 
 				for (int b = 0; b < bonds.size(); b++) {
-					IBond.Order o = ((IBond) bonds.get(b)).getOrder();
-					if (((IBond) bonds.get(b)).getFlag(CDKConstants.ISAROMATIC))
+					IBond.Order o = bonds.get(b).getOrder();
+					if (bonds.get(b).getFlag(CDKConstants.ISAROMATIC))
 						order += 1.5;
 					else if (o.equals(IBond.Order.SINGLE))
 						order += 1.0;

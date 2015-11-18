@@ -50,7 +50,7 @@ public class RuleAcyclicAcetalEsterOfQ30 extends RuleRingComplexSubstituents30 {
 	 * Constructor
 	 * 
 	 */
-	public RuleAcyclicAcetalEsterOfQ30() {
+	public RuleAcyclicAcetalEsterOfQ30() throws Exception {
 		super();
 		//this checks only for acyclic acetal and ester, 
 		//assumes that molecule already had successfully passed through Q30 

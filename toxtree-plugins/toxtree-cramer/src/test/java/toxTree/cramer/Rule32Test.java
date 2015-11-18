@@ -29,7 +29,7 @@ import toxTree.tree.cramer.Rule32;
 
 public class Rule32Test extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new Rule32();
 	}
 	public void test() throws Exception {

@@ -57,7 +57,7 @@ public abstract class RuleRingSubstituents extends RuleRings {
 	/**
 	 * 
 	 */
-	public RuleRingSubstituents() {
+	public RuleRingSubstituents()  throws Exception{
 		super();
 		clearFlags();
 	}

@@ -43,7 +43,7 @@ public class RuleOnlyAllowedSubstructures extends RuleSubstructures {
 	/**
 	 * 
 	 */
-	public RuleOnlyAllowedSubstructures() {
+	public RuleOnlyAllowedSubstructures() throws Exception {
 		super();
 		
 	}

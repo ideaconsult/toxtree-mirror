@@ -70,7 +70,7 @@ public class RuleAliphaticWithSomeFuncGroupsTest extends AbstractRuleTest {
 	}
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleAliphaticWithSomeFuncGroups();
 	}
 

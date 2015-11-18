@@ -40,7 +40,7 @@ import toxTree.tree.cramer.RuleSomeBenzeneDerivatives;
 public class RuleSomeBenzeneDerivativesTest extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleSomeBenzeneDerivatives();
 	}
 

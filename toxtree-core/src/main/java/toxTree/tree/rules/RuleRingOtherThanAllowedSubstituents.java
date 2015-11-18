@@ -44,25 +44,14 @@ import toxTree.query.FunctionalGroups;
 public abstract class RuleRingOtherThanAllowedSubstituents extends
 		RuleRingSubstituents {
 
-	/**
-	 * Comment for <code>serialVersionUID</code>
-	 */
 	private static final long serialVersionUID = 8494351305392210977L;
 
-	/**
-	 * 
-	 */
-	public RuleRingOtherThanAllowedSubstituents() {
+	public RuleRingOtherThanAllowedSubstituents() throws Exception {
 		super();
 
 	}
 
-	/**
-	 * return true if other than listed substructures are found in a ring
-	 * substituent
-	 * 
-	 * @see toxTree.core.IDecisionRule#verifyRule(IAtomContainer)
-	 */
+	@Override
 	public boolean verifyRule(IAtomContainer mol)
 			throws DecisionMethodException {
 		return verifyRule(mol, null);

@@ -30,6 +30,7 @@ import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.DefaultAlertCounter;
 import toxTree.tree.rules.IAlertCounter;
 import verhaar.query.FunctionalGroups;
@@ -47,9 +48,9 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements
 	protected transient int nitroGroupsCount = 0;
 	protected transient int halogensCount = 0;
 	protected transient String[] halogens = { "Cl", "Br", "F" };
-	protected ArrayList nitroIDs;
-	protected ArrayList phenolIDs;
-	protected ArrayList halogenIDs;
+	protected ArrayList<String> nitroIDs;
+	protected ArrayList<String> phenolIDs;
+	protected ArrayList<String> halogenIDs;
 	protected int maxHalogens = 3;
 	protected int maxNitroGroups = 1;
 	/**
@@ -66,28 +67,35 @@ public class Rule21 extends RuleRingMainStrucSubstituents implements
 				.append("Be non- or weakly acidic phenols; <p>i.e. phenols with one nitro substituent, and / or one to three chlorine substituents, and/or alkyl substituents");
 		examples[0] = "Clc1cc(O)c(Cl)c(Cl)c1(Cl)"; // 4 Cl
 		examples[1] = "O=[N+]([O-])c1cccc(O)c1"; // 1 nitro
-		addSubstructure(FunctionalGroups.nitro1double());
-		addSubstructure(FunctionalGroups.nitro2double());
-		addSubstructure(FunctionalGroups.halogen(getHalogens()));
-		if (mainStructure != null)
-			addSubstructure(mainStructure);
 
 		ids.add(FunctionalGroups.C);
 		ids.add(FunctionalGroups.CH);
 		ids.add(FunctionalGroups.CH2);
 		ids.add(FunctionalGroups.CH3);
 
-		phenolIDs = new ArrayList();
+		phenolIDs = new ArrayList<String>();
 		if (mainStructure != null)
 			phenolIDs.add(mainStructure.getID());
-		nitroIDs = new ArrayList();
+		nitroIDs = new ArrayList<String>();
 		nitroIDs.add(getSubstructure(0).getID());
 		nitroIDs.add(getSubstructure(1).getID());
-		halogenIDs = new ArrayList();
+		halogenIDs = new ArrayList<String>();
 		halogenIDs.add(getSubstructure(2).getID());
 
 		editable = false;
 
+	}
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		query = super.initQuery();
+		addSubstructure(FunctionalGroups.nitro1double());
+		addSubstructure(FunctionalGroups.nitro2double());
+		addSubstructure(FunctionalGroups.halogen(getHalogens()));
+		if (mainStructure != null)
+			addSubstructure(mainStructure);
+
+		return query;
 	}
 
 	protected String[] getHalogens() {

@@ -38,7 +38,7 @@ public class Rule144 extends Rule143 {
 	 */
 	private static final long serialVersionUID = -2147762024464054397L;
 
-	public Rule144() {
+	public Rule144() throws Exception {
 		super();
 		id = "1.4.4";
 		setTitle("Be polycyclic compounds that are unsubstituted or substituted with acyclic structures containing only C&H or complying with rule 1.4.1");

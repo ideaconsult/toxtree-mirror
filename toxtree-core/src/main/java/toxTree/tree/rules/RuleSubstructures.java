@@ -26,6 +26,7 @@ package toxTree.tree.rules;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -50,13 +51,13 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 	 */
 	private static final long serialVersionUID = -2500957952948758410L;
 	protected transient QueryAtomContainers query = null;
-	protected ArrayList ids = null;	
+	protected ArrayList<String> ids = null;	
 	/**
 	 * 
 	 */
-	public RuleSubstructures() {
+	public RuleSubstructures() throws Exception {
 		super();
-		ids = new ArrayList();
+		ids = new ArrayList<String>();
 	    ids.add(FunctionalGroups.C);	    
 	    ids.add(FunctionalGroups.CH);
 	    ids.add(FunctionalGroups.CH2);
@@ -64,7 +65,7 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 		query = initQuery();
 	}
 	
-	protected QueryAtomContainers initQuery() {
+	protected QueryAtomContainers initQuery() throws Exception {
 		return new QueryAtomContainers();
 	}
 
@@ -126,7 +127,12 @@ public abstract class RuleSubstructures extends AbstractRuleHilightHits implemen
 		if (!super.equals(obj)) return false;
 		if (obj instanceof RuleSubstructures) {
 			RuleSubstructures rule = (RuleSubstructures) obj;
+			try {
 			if (query==null) query = initQuery();
+			} catch (Exception x) {
+				logger.log(Level.SEVERE, x.getMessage());
+				return false;
+			}
 			if (query.size() != rule.query.size()) return false;
 			else return ids.containsAll(rule.ids);
 		} else return false;

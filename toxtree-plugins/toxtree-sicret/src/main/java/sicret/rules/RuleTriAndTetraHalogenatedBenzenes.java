@@ -23,6 +23,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
@@ -48,19 +49,24 @@ public class RuleTriAndTetraHalogenatedBenzenes extends RuleAnySubstructure {
 		// TODO fix sterically hindered condition (example NO fails)
 		super();
 
-		addSubstructure(FunctionalGroups.createAtomContainer(
-				"ClC1=CC(Cl)C(Cl)C(Cl)C1", false));
-		addSubstructure(FunctionalGroups.createAtomContainer(
-				"ClC1C=CC(Cl)C(Cl)C1(Cl)", false));
-		addSubstructure(FunctionalGroups.createAtomContainer(
-				"ClC1C=CCC(Cl)C1(Cl)", false));
-
 		id = "70";
 		title = "Tri And Tetra Halogenated Benzenes";
 
 		examples[0] = "C1C=CCC(Cl)C1(Cl)";
 		examples[1] = "ClC1C=CCC(Cl)C1(Cl)";
 		editable = false;
+	}
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		query = super.initQuery();
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"ClC1=CC(Cl)C(Cl)C(Cl)C1", false));
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"ClC1C=CC(Cl)C(Cl)C1(Cl)", false));
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"ClC1C=CCC(Cl)C1(Cl)", false));
+		return query;
 	}
 
 	/**

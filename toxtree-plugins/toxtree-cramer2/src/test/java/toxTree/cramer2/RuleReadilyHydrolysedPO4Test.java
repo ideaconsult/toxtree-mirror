@@ -14,7 +14,7 @@ import cramer2.rules.RuleReadilyHydrolysedPO4;
 public class RuleReadilyHydrolysedPO4Test extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleReadilyHydrolysedPO4();
 	}
 

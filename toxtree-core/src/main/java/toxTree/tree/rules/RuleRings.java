@@ -33,7 +33,7 @@ public abstract class RuleRings extends RuleSubstructures {
      */
     private static final long serialVersionUID = 5753973449345355629L;
 
-    public RuleRings() {
+    public RuleRings() throws Exception {
         super();
     }
 

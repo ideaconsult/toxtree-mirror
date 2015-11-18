@@ -45,7 +45,7 @@ public class RuleAllSubstructures extends RuleSubstructures {
 	/**
 	 * 
 	 */
-	public RuleAllSubstructures() {
+	public RuleAllSubstructures() throws Exception{
 		super();
 	}
 	/**

@@ -22,6 +22,7 @@ package verhaar.rules;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleRingAllowedSubstituents;
 
 public abstract class RuleRingMainStrucSubstituents extends RuleRingAllowedSubstituents {
@@ -33,7 +34,11 @@ public abstract class RuleRingMainStrucSubstituents extends RuleRingAllowedSubst
 
 	public RuleRingMainStrucSubstituents() throws Exception  {
 		super();
-		mainStructure = createMainStructure();
 	}
 	protected abstract QueryAtomContainer createMainStructure() throws CDKException;
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		mainStructure = createMainStructure();
+		return super.initQuery();
+	}
 }

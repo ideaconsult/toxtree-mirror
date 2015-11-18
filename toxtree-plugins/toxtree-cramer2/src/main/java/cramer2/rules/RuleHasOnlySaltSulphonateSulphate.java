@@ -39,6 +39,7 @@ import org.openscience.cdk.smiles.SmilesGenerator;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
 
 /**
@@ -49,10 +50,14 @@ import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
 public class RuleHasOnlySaltSulphonateSulphate extends
 		RuleOnlyAllowedSubstructures {
 	protected static transient SmilesGenerator sg = null;
-	protected static final transient String[] Me = new String[] { "Na", "K",
-			"Ca" };
-	protected static final transient String[] Me1 = new String[] { "Na", "K",
-			"Ca", "Mg", "N" };
+	private String[] Me ;
+	private String[] Me1;
+	protected String[] initMetals() {
+		return new String[] { "Na", "K", "Ca" };
+	}
+	protected String[] initMetals1() {
+		return new String[] { "Na", "K", "Ca", "Mg", "N" };
+	}
 
 	protected static transient ArrayList<String> elements = null;
 	private static final long serialVersionUID = 7313277537215733933L;
@@ -69,7 +74,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 	/**
 	 * 
 	 */
-	public RuleHasOnlySaltSulphonateSulphate() {
+	public RuleHasOnlySaltSulphonateSulphate() throws Exception {
 		super();
 		editable = false;
 		sulphonate = FunctionalGroups.sulphonate(Me, false);
@@ -85,26 +90,7 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 		for (int i = 0; i < elements.size(); i++)
 			ids.add(elements.get(i));
 		ids.add("S2");
-		// (a)
-		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid(Me1));
-		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid1(Me1));
-		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid2(Me1));
-
-		// (b)
-		addSubstructure(FunctionalGroups.sulphateOfAmine(0)); // any
-		for (int i = 1; i <= 3; i++) {
-			// addSubstructure(FunctionalGroups.sulphateOfAmine(i));
-			addSubstructure(FunctionalGroups.hydrochlorideOfAmine(i));
-		}
-		addSubstructure(FunctionalGroups.hydrochlorideOfAmine3());
-		// (c)
-		addSubstructure(FunctionalGroups.sulphonate(Me));
-		addSubstructure(sulphonate);
-		phosphate = FunctionalGroups.phosphate(Me);
-		addSubstructure(phosphate);
-		addSubstructure(FunctionalGroups.sulphate(Me));
-		addSubstructure(FunctionalGroups.sulphamate(Me));
-		addSubstructure(FunctionalGroups.sulphamate(null));
+	
 		id = "4";
 		title = "Elements not listed in Q3 occurs only as a Na,K,Ca,Mg,N salt, phosphate, sulphamate, sulphonate, sulphate, hydrochloride ...";
 		explanation
@@ -126,7 +112,36 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 		examples[1] = "[Na+].[O-]S(=O)(=O)NC1CCCCC1";
 		// examples[1] = "[Na]OS(=O)(=O)NC1CCCCC1";
 	}
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		query = super.initQuery();
+		if (Me==null) Me = initMetals();
+		if (Me1==null) Me1 = initMetals1();
+		sulphonate = FunctionalGroups.sulphonate(Me, false);
+		sulphate = FunctionalGroups.sulphate(null);
+		
+		// (a)
+		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid(Me1));
+		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid1(Me1));
+		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid2(Me1));
 
+		// (b)
+		addSubstructure(FunctionalGroups.sulphateOfAmine(0)); // any
+		for (int i = 1; i <= 3; i++) {
+			// addSubstructure(FunctionalGroups.sulphateOfAmine(i));
+			addSubstructure(FunctionalGroups.hydrochlorideOfAmine(i));
+		}
+		addSubstructure(FunctionalGroups.hydrochlorideOfAmine3());
+		// (c)
+		addSubstructure(FunctionalGroups.sulphonate(Me));
+		addSubstructure(sulphonate);
+		phosphate = FunctionalGroups.phosphate(Me);
+		addSubstructure(phosphate);
+		addSubstructure(FunctionalGroups.sulphate(Me));
+		addSubstructure(FunctionalGroups.sulphamate(Me));
+		addSubstructure(FunctionalGroups.sulphamate(null));
+		return query;
+	}	
 	/**
 	 * Calls the inherited
 	 * {@link toxTree.tree.rules.RuleOnlyAllowedSubstructures#verifyRule(IAtomContainer)}

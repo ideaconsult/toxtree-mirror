@@ -39,7 +39,7 @@ import toxTree.tree.cramer.RuleSimplyBranchedAliphaticHydrocarbon;
  */
 public class RuleSimplyBranchedAliphaticHydrocarbonTest extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return  new RuleSimplyBranchedAliphaticHydrocarbon();
 	}
 	public void test() throws Exception {

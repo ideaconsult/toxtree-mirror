@@ -30,7 +30,7 @@ import toxTree.tree.rules.RuleCarbohydrate;
 public class RuleCarbohydrateTest extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleCarbohydrate();
 	}
 	public void test() throws Exception  {

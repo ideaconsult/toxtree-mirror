@@ -7,7 +7,7 @@ import cramer2.rules.RuleDivalentSulphur;
 public class RuleDivalentSuplhurTest extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleDivalentSulphur();
 	}
 

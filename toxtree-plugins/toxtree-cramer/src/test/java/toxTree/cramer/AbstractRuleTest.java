@@ -47,7 +47,7 @@ public abstract class AbstractRuleTest extends TestCase {
 		rule2test = null;
 		super.tearDown();
 	}
-	protected abstract IDecisionRule createRule();
+	protected abstract IDecisionRule createRule() throws Exception;
 	/**
 	 * 
 	 * @param smiles_and_answer  {{String smiles, Boolean answer},...}

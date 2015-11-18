@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package sicret.rules;
 
 import org.openscience.cdk.interfaces.IAtom;
@@ -30,59 +30,57 @@ import toxTree.tree.rules.RuleAnySubstructure;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
 import ambit2.smarts.query.SMARTSException;
 
-
 /**
  * C10-C20 Aliphatic Alcohols.<br>
- * SMARTS pattern  <ul>
+ * SMARTS pattern
+ * <ul>
  * <li>[AR0][OH]
  * </ul>
+ * 
  * @author Nina Jeliazkova nina@acad.bg
- * @author Martin Martinov
- * <b>Modified</b> Dec 17, 2006
+ * @author Martin Martinov <b>Modified</b> Dec 17, 2006
  */
-public class RuleC10_C20AliphaticAlcohols extends RuleAnySubstructure{
-	public final static transient String MSG_18H="Acyclic group";
-	/**
-     * Comment for <code>serialVersionUID</code>
-     */
-    private static final long serialVersionUID = 0;
+public class RuleC10_C20AliphaticAlcohols extends RuleAnySubstructure {
+	public final static transient String MSG_18H = "Acyclic group";
 
-    /**
+	private static final long serialVersionUID = 0;
+
+	/**
 	 * Constructor
 	 * 
 	 */
-	public RuleC10_C20AliphaticAlcohols() {
+	public RuleC10_C20AliphaticAlcohols() throws Exception {
 
-		super();		
-		
-		
+		super();
 		id = "52";
 		title = "C10_C20AliphaticAlcohols";
-		
 		examples[0] = "OCCCCCCCCC";
-		examples[1] = "OCCCCCCCCCC";	
+		examples[1] = "OCCCCCCCCCC";
 		editable = false;
 	}
+
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
 		logger.finer(toString());
 		RuleSMARTSubstructure rule = new RuleSMARTSubstructure();
 		String C10_C20_Aliphatic_alcohols = "[C][OX2H]";
 		try {
-		rule.initSingleSMARTS(rule.getSmartsPatterns(),"1", C10_C20_Aliphatic_alcohols);
+			rule.initSingleSMARTS(rule.getSmartsPatterns(), "1",
+					C10_C20_Aliphatic_alcohols);
 		} catch (SMARTSException x) {
 			throw new DecisionMethodException(x);
 		}
 		int c = 0;
-		
-		for (int i=0; i < mol.getAtomCount();i++) {
-			IAtom a = mol.getAtom(i);					
+
+		for (int i = 0; i < mol.getAtomCount(); i++) {
+			IAtom a = mol.getAtom(i);
 			if (a.getSymbol().equals("C")) {
-				 c++;
+				c++;
 			}
-				
+
 		}
 		try {
 			MolAnalyser.analyse(mol);
@@ -91,15 +89,19 @@ public class RuleC10_C20AliphaticAlcohols extends RuleAnySubstructure{
 			e.printStackTrace();
 		}
 		MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
-		if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
-		
-		if(rule.verifyRule(mol) && (c >= 10 && c<=20 && !mf.isAromatic()))
+		if (mf == null)
+			throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
+
+		if (rule.verifyRule(mol) && (c >= 10 && c <= 20 && !mf.isAromatic()))
 			return true;
 		else
 			return false;
 
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.AbstractRule#isImplemented()
 	 */
 	public boolean isImplemented() {

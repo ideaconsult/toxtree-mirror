@@ -46,7 +46,7 @@ import ambit2.core.data.MoleculeTools;
  */
 public class RuleHasOnlySaltSulphonateSulphateTest extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleHasOnlySaltSulphonateSulphate();
 	}
 	public void test() throws Exception {
