@@ -332,9 +332,9 @@
 	</reporting>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<ambit.version>3.0.0-SNAPSHOT</ambit.version>
+		<ambit.version>3.0.0</ambit.version>
 		<cdk.version>1.5.11</cdk.version>
 		<junit.version>4.8.1</junit.version>
-		<smartcyp.version>3.0.0-SNAPSHOT</smartcyp.version>
+		<smartcyp.version>3.0.0</smartcyp.version>
 	</properties>
 </project>
