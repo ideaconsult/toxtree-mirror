@@ -1,65 +1,64 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>dk.smartcyp</groupId>
-  <artifactId>smartcyp</artifactId>
-  <packaging>pom</packaging>
-  <name>SMARTCyp </name>
-  <version>1.5.9</version>
-  <repositories>
-    	 <repository>
-        <id>ambit-plovdiv</id>
-        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/thirdparty</url>
-        <snapshots>
-  			<enabled>false</enabled>
-  		</snapshots>
-    </repository>
-    </repositories>
-  <modules>
-  	<module>smartcyp-core</module>
-  	<module>smartcyp-app</module>
-<!--
-  	<module>smartcyp-metabolites</module>
--->
-  </modules>
-  <!-- Where to deploy maven artifacts -->
-   <distributionManagement>
-    <snapshotRepository>
-      <id>ambit-plovdiv-snapshots</id>
-      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>dk.smartcyp</groupId>
+	<artifactId>smartcyp</artifactId>
+	<packaging>pom</packaging>
+	<name>SMARTCyp </name>
+	<version>3.0.0</version>
+	<repositories>
+		<repository>
+			<id>ambit-plovdiv</id>
+			<url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/thirdparty</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<modules>
+		<module>smartcyp-core</module>
+		<module>smartcyp-app</module>
+		<!-- <module>smartcyp-metabolites</module> -->
+	</modules>
+	<!-- Where to deploy maven artifacts -->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ambit-plovdiv-snapshots</id>
+			<url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
 
-    <repository>
-      <id>ambit-plovdiv-releases</id>
-      <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
-    </repository>    
-  </distributionManagement>
-    <dependencies>
-  	
-  	<dependency>
-  		<groupId>junit</groupId>
-  		<artifactId>junit</artifactId>
-  		<version>4.0</version>
-  	</dependency>
-  </dependencies>
-    <description>SMARTCyp </description>
-    <inceptionYear>2010</inceptionYear>
-    <build>
-  	<pluginManagement>
-  		<plugins>
-  			<plugin>
-  				<groupId>org.apache.maven.plugins</groupId>
-  				<artifactId>maven-compiler-plugin</artifactId>
-  				<version>2.3.2</version>
-		        <configuration>
-		          <source>1.6</source>
-		          <target>1.6</target>
-		       </configuration>  				
-  			</plugin>
-  		</plugins>
-  	</pluginManagement>
-  	</build>
-    <properties>
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    	<cdk.version>1.4.11</cdk.version>
-    </properties>	
+		<repository>
+			<id>ambit-plovdiv-releases</id>
+			<url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+		</dependency>
+	</dependencies>
+	<description>SMARTCyp </description>
+	<inceptionYear>2010</inceptionYear>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.3</version>
+					<configuration>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<cdk.version>1.5.11</cdk.version>
+	</properties>
 </project>

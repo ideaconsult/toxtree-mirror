@@ -5,13 +5,13 @@
   <parent>
     <artifactId>smartcyp</artifactId>
     <groupId>dk.smartcyp</groupId>
-    <version>1.5.9</version>
+    <version>3.0.0</version>
   </parent>  
   <modelVersion>4.0.0</modelVersion>
   <groupId>dk.smartcyp</groupId>
   <artifactId>smartcyp-app</artifactId>
   <name>SMARTCyp</name>
-  <version>1.5.9</version>
+  <version>3.0.0</version>
   <dependencies>
   	<dependency>
   		<groupId>dk.smartcyp</groupId>
@@ -28,7 +28,17 @@
 	  <groupId>org.openscience.cdk</groupId>
 	  <artifactId>cdk-renderawt</artifactId>
 	  <version>${cdk.version}</version>
-	</dependency>		
+	</dependency>	
+	<dependency>
+	  <groupId>org.openscience.cdk</groupId>
+	  <artifactId>cdk-legacy</artifactId>
+	  <version>${cdk.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>org.openscience.cdk</groupId>
+	  <artifactId>cdk-sdg</artifactId>
+	  <version>${cdk.version}</version>
+	</dependency>	
   	  	<dependency>
   		<groupId>org.openscience.cdk</groupId>
   		<artifactId>cdk-jchempaint</artifactId>

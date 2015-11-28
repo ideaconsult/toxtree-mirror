@@ -10,7 +10,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
 import org.openscience.cdk.Atom;
-import org.openscience.cdk.MoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 
 import dk.smartcyp.core.MoleculeKU;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
@@ -47,7 +47,7 @@ public class WriteResultsAsCSV {
 
 
 
-	public void writeCSV(MoleculeSet moleculeSet) {
+	public void writeCSV(IAtomContainerSet moleculeSet) {
 
 
 		try {
@@ -63,10 +63,10 @@ public class WriteResultsAsCSV {
 
 
 		// Iterate MoleculKUs
-		for (int moleculeIndex=0; moleculeIndex < moleculeSet.getMoleculeCount(); moleculeIndex++) {
+		for (int moleculeIndex=0; moleculeIndex < moleculeSet.getAtomContainerCount(); moleculeIndex++) {
 
 			// Set variables
-			MoleculeKU moleculeKU = (MoleculeKU) moleculeSet.getMolecule(moleculeIndex);
+			MoleculeKU moleculeKU = (MoleculeKU) moleculeSet.getAtomContainer(moleculeIndex);
 			moleculeID = moleculeKU.getID();
 
 
