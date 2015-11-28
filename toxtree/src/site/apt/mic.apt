@@ -48,7 +48,7 @@ Toxtree Module: Structure Alerts for the in vivo micronucleus assay in rodents
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-mic</artifactId>
-  <version>2.6.13</version>
+  <version>3.0.0</version>
 </dependency>
 +---------------------------------
 

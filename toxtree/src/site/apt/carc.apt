@@ -7,7 +7,7 @@
  -----
  
  
-Toxtree Module: Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity). 
+Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity). 
 
  A decision tree for estimating carcinogenicity and mutagenicity by discriminant analysis and structural rules, based on published in  the document {{{https://eurl-ecvam.jrc.ec.europa.eu/laboratories-research/predictive_toxicology/doc/EUR_23241_EN.pdf}[Benigni 2008]}};
  
@@ -47,7 +47,7 @@ Toxtree Module: Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity).
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-mutant</artifactId>
-  <version>2.6.13</version>
+  <version>3.0.0</version>
 </dependency>
 +---------------------------------
 
