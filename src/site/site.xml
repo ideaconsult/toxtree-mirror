@@ -129,14 +129,9 @@
     <menu name="Home">
       <item name="Toxtree" href="/index.html" />
     </menu>
-<<<<<<< .working
     <menu name="Downloads">
       <item name="Toxtree 2.6.13" href="/download.html#Toxtree_2.6.13" />
-      <item name="Toxtree 2.6.6" href="/download.html#Toxtree_2.6.6" />
-=======
-    <menu name="Downloads">
      <item name="Toxtree 2.6.6" href="/download.html#Toxtree_2.6.6" />
->>>>>>> .merge-right.r1797
       <item name="Toxtree 2.6.0" href="/download.html#Toxtree_2.6.0" />
     </menu>
     <menu name="Plugins">
@@ -178,15 +173,9 @@
     <menu ref="parent"/>
     -->
     <menu name="Related links">
-<<<<<<< .working
-      <item name="AMBIT" href="http://ambit.sourceforge.net" />
-      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net/ambit2" />
-    
-=======
       <item name="AMBIT" href="http://ambit.sourceforge.net" />
       <item name="AMBIT REST web services" href="http://apps.ideaconsult.net/ambit3" />
     
->>>>>>> .merge-right.r1797
     	<item name="Toxtree online" href="http://toxtree.sf.net/predict" />
       <item name="Toxmatch" href="http://toxmatch.sf.net" />
       <item name="ToxPredict" href="http://toxpredict.org" />

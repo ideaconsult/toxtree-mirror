@@ -39,7 +39,7 @@ Toxtree Module: A decision tree for estimating eye irritation and corrosion pote
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-eye</artifactId>
-  <version>2.6.13</version>
+  <version>3.0.0</version>
 </dependency>
 +---------------------------------
 

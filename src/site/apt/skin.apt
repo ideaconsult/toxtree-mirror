@@ -45,7 +45,7 @@ Toxtree Module: A decision tree for  estimating skin irritation and corrosion  p
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-sicret</artifactId>
-  <version>2.6.13</version>
+  <version>3.0.0</version>
 </dependency>
 +---------------------------------
 

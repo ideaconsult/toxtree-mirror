@@ -36,7 +36,7 @@ Toxtree Module: DNA binding alerts
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-dnabinding</artifactId>
-  <version>2.6.13</version>
+  <version>3.0.0</version>
 </dependency>
 +---------------------------------
 

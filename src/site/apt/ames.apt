@@ -44,7 +44,7 @@ Toxtree Module: In vitro mutagenicity (Ames test) alerts by ISS
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-ames</artifactId>
-  <version>2.6.13</version>
+  <version>3.0.0</version>
 </dependency>
 +---------------------------------
 

@@ -101,7 +101,7 @@ public class ToxtreeOptions {
 		Option help = OptionBuilder.withLongOpt("help")
 				.withDescription("This help").create("h");
 
-		//options.addOption(batch);
+		options.addOption(batch);
 		options.addOption(input);
 		options.addOption(output);
 		options.addOption(method);
