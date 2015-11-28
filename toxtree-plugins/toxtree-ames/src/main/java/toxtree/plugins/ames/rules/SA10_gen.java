@@ -30,7 +30,7 @@ import java.util.logging.Level;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
@@ -47,7 +47,7 @@ public class SA10_gen extends StructureAlertCDK {
 	protected static String AB_UNSATURATED_CARBONYLS = "\u03B1,\u03B2 unsaturated carbonyls";
 	protected static String AB_UNSATURATED_CARBONYLS_SMARTS = "[!a,#1;!$(C1(=O)C=CC(=O)C=C1)][#6]([!a,#1;!$(C1(=O)C=CC(=O)C=C1)])!:;=[#6][#6](=O)[!O;!$([#6]1:,=[#6][#6](=O)[#6]:,=[#6][#6](=O)1)]";
     //protected static String AB_UNSATURATED_CARBONYLS_SMARTS = "[!a,#1;!$(C1(=O)C=CC(=O)C=C1)][#6]([!a,#1;!$(C1(=O)C=CC(=O)C=C1)])!:;=[#6][#6](=O)[!O;!$(C1=CC(=O)C=CC(=O)1)]";
-	protected QueryAtomContainer query = FunctionalGroups.ab_unsaturated_carbonyl();
+	protected transient QueryAtomContainer query = FunctionalGroups.ab_unsaturated_carbonyl();
 	public SA10_gen() throws SMARTSException {
 			setContainsAllSubstructures(true);
 			addSubstructure(AB_UNSATURATED_CARBONYLS, AB_UNSATURATED_CARBONYLS_SMARTS); //now aldehydes are included
@@ -79,7 +79,7 @@ public class SA10_gen extends StructureAlertCDK {
 		return ((!CH6SubstituentAtBetaCarbon(mol)) && super.verifyRule(mol));
 	}
 	
-	public IMoleculeSet detachSubstituentAtBetaCarbon(IAtomContainer c) {
+	public IAtomContainerSet detachSubstituentAtBetaCarbon(IAtomContainer c) {
 		List map = FunctionalGroups.getBondMap(c,query,false);
 		FunctionalGroups.markMaps(c,query,map);
 		if (map == null) return null;
@@ -88,7 +88,7 @@ public class SA10_gen extends StructureAlertCDK {
 	public boolean CH6SubstituentAtBetaCarbon(IAtomContainer c) {
 		try {
 			IAtomContainer cc = (IAtomContainer) c.clone();
-			IMoleculeSet sc = detachSubstituentAtBetaCarbon(cc);
+			IAtomContainerSet sc = detachSubstituentAtBetaCarbon(cc);
 			if (sc != null) {
 				for (int i=0;i<sc.getAtomContainerCount();i++) {
 					IAtomContainer a = sc.getAtomContainer(i);

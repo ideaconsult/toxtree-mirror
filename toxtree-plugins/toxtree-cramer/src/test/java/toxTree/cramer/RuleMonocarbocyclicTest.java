@@ -35,7 +35,7 @@ import toxTree.tree.cramer.RuleMonocarbocyclic;
 public class RuleMonocarbocyclicTest extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleMonocarbocyclic();
 	}
 	public void test() throws Exception {

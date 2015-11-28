@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*//**
+ *//**
  * <b>Filename</b> SubstructureTree.java 
  * @author Nina Jeliazkova nina@acad.bg
  * <b>Created</b> 2005-8-5
@@ -31,8 +31,7 @@ package toxTree.tree.demo;
 
 import java.util.logging.Level;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.templates.MoleculeFactory;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
@@ -45,62 +44,62 @@ import toxTree.tree.UserDefinedTree;
 import toxTree.tree.categories.DefaultClass1;
 import toxTree.tree.categories.DefaultClass2;
 import toxTree.tree.rules.RuleAnySubstructure;
-
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 /**
- *  A demo decision tree consisting of a single decision rule , 
- *  which checks for the presence of benzene ring. 
- *  Serves as an illustration of the concept of user-defined tree.
+ * A demo decision tree consisting of a single decision rule , which checks for
+ * the presence of benzene ring. Serves as an illustration of the concept of
+ * user-defined tree.
+ * 
  * @author Nina Jeliazkova <br>
- * <b>Modified</b> 2005-8-5
+ *         <b>Modified</b> 2005-8-5
  */
 public class SubstructureTree extends UserDefinedTree {
-    
-    /**
-     * Comment for <code>serialVersionUID</code>
-     */
-    private static final long serialVersionUID = -4532635398756503555L;
 
-    /**
+	/**
+	 * Comment for <code>serialVersionUID</code>
+	 */
+	private static final long serialVersionUID = -4532635398756503555L;
+
+	/**
      * 
      */
-    public SubstructureTree() throws DecisionMethodException {
-        super(new CategoriesList(),new DecisionNodesList());
-        IDecisionCategory c1 = new DefaultClass1("Doesn't contain substructure",1);
-        IDecisionCategory c2 = new DefaultClass2("Contains substructure",2);
+	public SubstructureTree() throws DecisionMethodException {
+		super(new CategoriesList(), new DecisionNodesList());
+		IDecisionCategory c1 = new DefaultClass1(
+				"Doesn't contain substructure", 1);
+		IDecisionCategory c2 = new DefaultClass2("Contains substructure", 2);
 
-        categories.add(c1);
-        categories.add(c2);
-        
-        
-        IMolecule m = MoleculeFactory.makeBenzene();
-        try {
-        	AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
-        	CDKHueckelAromaticityDetector.detectAromaticity(m);
-        } catch (Exception x) {
-        	logger.log(Level.SEVERE,x.getMessage(),x);
-        }
-        m.setID("benzene");
-        
-        /*
-        IMolecule m = MoleculeFactory.makeAlkane(6);
-        m.setID("hexane");
-        */
-		RuleAnySubstructure rs = new RuleAnySubstructure();
-		rs.addSubstructure(m);
-		rs.setID("1");
-		rs.setTitle("Contains substructure");
-		rs.setExampleMolecule(MoleculeFactory.makeAlkane(4),false);
-		rs.setExampleMolecule(MoleculeFactory.makeBenzene(),true);
-		
-		DecisionNodesList nodes = (DecisionNodesList) rules;
-        nodes.add(new DecisionNode(rs,null,null,c1,c2));
-        
-        
-		setTitle("Demo substructure tree");
-        setExplanation("DEMO decision tree with a single substructure rule.");
-    }
+		categories.add(c1);
+		categories.add(c2);
 
+		IAtomContainer m = MoleculeFactory.makeBenzene();
+		try {
+			AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
+			CDKHueckelAromaticityDetector.detectAromaticity(m);
+		} catch (Exception x) {
+			logger.log(Level.SEVERE, x.getMessage(), x);
+		}
+		m.setID("benzene");
+
+		try {
+			RuleAnySubstructure rs = new RuleAnySubstructure();
+			rs.addSubstructure(m);
+			rs.setID("1");
+			rs.setTitle("Contains substructure");
+			rs.setExampleMolecule(MoleculeFactory.makeAlkane(4), false);
+			rs.setExampleMolecule(MoleculeFactory.makeBenzene(), true);
+
+			DecisionNodesList nodes = (DecisionNodesList) rules;
+			nodes.add(new DecisionNode(rs, null, null, c1, c2));
+
+			setTitle("Demo substructure tree");
+			setExplanation("DEMO decision tree with a single substructure rule.");
+		} catch (DecisionMethodException x) {
+			throw x;
+		} catch (Exception x) {
+			throw new DecisionMethodException(x);
+		}
+	}
 
 }
-

@@ -34,7 +34,7 @@ import toxTree.tree.cramer.RuleMonocycloalkanoneEtc;
  */
 public class RuleMonocycloalkanoneEtcTest extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleMonocycloalkanoneEtc();
 	}
 	public void test() throws Exception  {

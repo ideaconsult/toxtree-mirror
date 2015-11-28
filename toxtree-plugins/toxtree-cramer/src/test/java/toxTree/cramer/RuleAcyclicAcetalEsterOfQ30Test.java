@@ -35,7 +35,7 @@ import toxTree.tree.cramer.RuleAcyclicAcetalEsterOfQ30;
 public class RuleAcyclicAcetalEsterOfQ30Test extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleAcyclicAcetalEsterOfQ30();
 	}
 	public void test() throws Exception {

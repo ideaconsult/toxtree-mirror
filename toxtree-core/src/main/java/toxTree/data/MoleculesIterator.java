@@ -39,21 +39,21 @@ import javax.vecmath.Point2d;
 import javax.vecmath.Vector2d;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
-import org.openscience.cdk.MoleculeSet;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemFile;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.interfaces.IPseudoAtom;
 import org.openscience.cdk.io.DefaultChemObjectWriter;
 import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLV2000Reader;
 import org.openscience.cdk.io.SMILESReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
+import org.openscience.cdk.silent.AtomContainerSet;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.FixBondOrdersTool;
 import org.openscience.cdk.templates.MoleculeFactory;
@@ -70,7 +70,6 @@ import ambit2.core.io.DelimitedFileFormat;
 import ambit2.core.io.DelimitedFileReader;
 import ambit2.core.io.DelimitedFileWriter;
 import ambit2.core.io.MDLWriter;
-import ambit2.core.io.MyIteratingMDLReader;
 import ambit2.core.io.ReaderFactoryExtended;
 
 
@@ -103,7 +102,10 @@ public class MoleculesIterator implements IMoleculesIterator {
 		super();
 		containers = new ListOfAtomContainers();
 		
-        IMolecule molecule = MoleculeFactory.makeAlkane(6);
+        IAtomContainer molecule = MoleculeFactory.makeAlkane(6);
+        try {
+        AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(molecule);
+        } catch (Exception x){}
         molecule.setProperty(AmbitCONSTANTS.NAMES,"Created from SMILES");
         molecule.setProperty(AmbitCONSTANTS.SMILES,"CCCCCC");
         containers.addAtomContainer(molecule);
@@ -213,7 +215,7 @@ public class MoleculesIterator implements IMoleculesIterator {
         containers.clear();
         FixBondOrdersTool fbt = new FixBondOrdersTool();
         IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-        MyIteratingMDLReader reader = new MyIteratingMDLReader(in, builder);
+        IteratingSDFReader reader = new IteratingSDFReader(in, builder);
         int r = 0;
         CDKHydrogenAdder hadder = CDKHydrogenAdder.getInstance(builder);
         while (reader.hasNext()) {
@@ -225,8 +227,8 @@ public class MoleculesIterator implements IMoleculesIterator {
            	       for (IAtom atom : mol.atoms()) 
             	            if ( !(atom instanceof IPseudoAtom) && (atom.getAtomTypeName() != null)) 
             	               hadder.addImplicitHydrogens(mol, atom);
-               	   //mol = fbt.kekuliseAromaticRings((IMolecule)mol);
-           	       //CDKHueckelAromaticityDetector.detectAromaticity(mol);
+               	   //mol = fbt.kekuliseAromaticRings((IAtomContainer)mol);
+
             	} catch (Exception x) {
             		x.printStackTrace();
             	}
@@ -393,31 +395,31 @@ public class MoleculesIterator implements IMoleculesIterator {
 	public String toString() {
 		return filename;
 	}
-	public IMoleculeSet getSetOfAtomContainers() {
-		IMoleculeSet c = new MoleculeSet();
+	public IAtomContainerSet getSetOfAtomContainers() {
+		IAtomContainerSet c = new AtomContainerSet();
 		for (int i=0; i< getContainers().getAtomContainerCount();i++)
 			c.addAtomContainer(getContainers().getAtomContainer(i));
 		return c;
 	}
-	public IMoleculeSet getMoleculeForEdit() throws Exception {
+	public IAtomContainerSet getMoleculeForEdit() throws Exception {
 		IChemObjectBuilder builder4jcp = DefaultChemObjectBuilder.getInstance(); //JCP still works with default builders
 		sdg = null;
 		sdg = new StructureDiagramGenerator();
-		IMoleculeSet m = null;
+		IAtomContainerSet m = null;
 		//JCP crashes if empty molecule is submitted, so let's give it single C atom
 		if ((getMolecule()==null) || (getMolecule().getAtomCount()==0)) {
-			IMolecule mol = MoleculeTools.newMolecule(builder4jcp);
+			IAtomContainer mol = MoleculeTools.newMolecule(builder4jcp);
 			IAtom a = MoleculeTools.newAtom(builder4jcp,"C");
 			a.setPoint2d(new Point2d(0,0));
 			mol.addAtom(a);
 			m = MoleculeTools.newMoleculeSet(builder4jcp);
-			m.addMolecule(mol);
+			m.addAtomContainer(mol);
 		} else {
 			m = ConnectivityChecker.partitionIntoMolecules(getMolecule());
-			//IMoleculeSet m =  new MoleculeSet();
-			for (int i=0; i< m.getMoleculeCount();i++) {
-				IMolecule a = m.getMolecule(i);
-				sdg.setMolecule((IMolecule)a);
+			//IAtomContainerSet m =  new MoleculeSet();
+			for (int i=0; i< m.getAtomContainerCount();i++) {
+				IAtomContainer a = m.getAtomContainer(i);
+				sdg.setMolecule((IAtomContainer)a);
 				sdg.generateCoordinates(new Vector2d(0,1));
 				//clean valencies, otherwise JCP shows valencies (e.g. C(v4) ) on every atom
 				for (IAtom atom : sdg.getMolecule().atoms())

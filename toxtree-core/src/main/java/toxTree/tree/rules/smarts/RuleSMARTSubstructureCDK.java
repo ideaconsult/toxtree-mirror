@@ -30,6 +30,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
+import ambit2.core.data.MoleculeTools;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
 import ambit2.smarts.query.SmartsPatternFactory;
@@ -64,11 +65,7 @@ public class RuleSMARTSubstructureCDK extends AbstractRuleSmartSubstructure<IAto
 		//clear atom properties because of a bug http://sourceforge.net/tracker/index.php?func=detail&aid=1838820&group_id=20024&atid=120024
 		for (int i=0; i < mol.getAtomCount();i++) {
 			IAtom atom = mol.getAtom(i); 
-			Map p = atom.getProperties();
-			Object[] keys = p.keySet().toArray();
-			for (int j=0; j < keys.length-1; j++) {
-				atom.removeProperty(keys[j]);
-			}
+			MoleculeTools.clearProperties(atom);
 		}
 		return ok;
 	}

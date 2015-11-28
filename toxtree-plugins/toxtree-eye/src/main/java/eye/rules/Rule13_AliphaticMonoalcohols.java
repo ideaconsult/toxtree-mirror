@@ -24,19 +24,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import ambit2.rendering.IAtomContainerHighlights;
 import ambit2.smarts.query.SMARTSException;
 import ambit2.smarts.query.SmartsPatternCDK;
 
@@ -77,13 +74,13 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 			logger.finer(getID());
 			int r = smartsPattern.hasSMARTSPattern(mol);
 			if (r == 0) return false;
-			IMoleculeSet chains = extractChains(mol, smartsPattern.getUniqueMatchingAtoms(mol));
+			IAtomContainerSet chains = extractChains(mol, smartsPattern.getUniqueMatchingAtoms(mol));
 			
 			int longchains = 0;
 			int allchains = 0;
-			for (int i=0; i < chains.getMoleculeCount(); i++) 
+			for (int i=0; i < chains.getAtomContainerCount(); i++) 
 				try {
-					int count = countChain(chains.getMolecule(i));
+					int count = countChain(chains.getAtomContainer(i));
 					if (count == 0) continue;
 					allchains++;
 					if ((count >=getMinChainLength()) && (count <=getMaxChainLength()))
@@ -99,7 +96,7 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
     		throw x;
     	}
 	}
-	protected int countChain(IMolecule m) throws DecisionMethodException {
+	protected int countChain(IAtomContainer m) throws DecisionMethodException {
 		int count = 0;
 		for (int j=0; j < m.getAtomCount();j++) {
 			if (m.getAtom(j).getFlag(CDKConstants.ISAROMATIC)) {
@@ -126,7 +123,7 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 	protected int getMaxChainLength() {
 		return 11;
 	}
-	protected IMoleculeSet extractChains(IAtomContainer mol, List<List<Integer>> matchedAtoms) throws DecisionMethodException {
+	protected IAtomContainerSet extractChains(IAtomContainer mol, List<List<Integer>> matchedAtoms) throws DecisionMethodException {
 
 		try {
 			IAtomContainer newmol = (IAtomContainer) mol.clone();
@@ -150,7 +147,7 @@ public class Rule13_AliphaticMonoalcohols extends AbstractRule {
 	}
 	
     @Override
-    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    public IAtomContainerHighlights getSelector() {
     	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
     	try { rule.addSubstructure("C([#1,C])([#1,C])([C])([OX2H])"); } catch (Exception x) {x.printStackTrace();};
     	return rule.getSelector();

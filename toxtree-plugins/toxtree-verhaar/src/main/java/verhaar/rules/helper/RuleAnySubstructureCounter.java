@@ -16,7 +16,7 @@ public class RuleAnySubstructureCounter extends RuleAnySubstructure implements I
 
 	protected IAlertCounter alertsCounter;
 	
-	public RuleAnySubstructureCounter() {
+	public RuleAnySubstructureCounter() throws Exception{
 		super();
 		alertsCounter = new DefaultAlertCounter();
 	}
@@ -24,7 +24,6 @@ public class RuleAnySubstructureCounter extends RuleAnySubstructure implements I
 	public String getImplementationDetails() {
 		StringBuffer b = new StringBuffer();
 		b.append(alertsCounter.getImplementationDetails());
-		
 		return b.toString();
 	}
 

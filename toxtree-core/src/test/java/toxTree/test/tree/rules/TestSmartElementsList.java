@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 package toxTree.test.tree.rules;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 
 import junit.framework.TestCase;
 import toxTree.core.SmartElementsList;
@@ -60,8 +60,8 @@ public class TestSmartElementsList extends TestCase {
 	 */
 	public void testGetHalogens() {
 		SmartElementsList list = new SmartElementsList();
-		HashSet<String> h = list.getHalogens();
-		HashSet<String> hal = new HashSet<String>();
+		TreeSet<String> h = list.getHalogens();
+		TreeSet<String> hal = new TreeSet<String>();
 		hal.add("F");
 		hal.add("Cl");
 		hal.add("Br");
@@ -73,14 +73,14 @@ public class TestSmartElementsList extends TestCase {
 	 * Test method for 'toxTree.core.SmartElementsList.setHalogens(String[])'
 	 */
 	public void testSetHalogens() {
-		HashSet<String> hal = new HashSet<String>();
+		TreeSet<String> hal = new TreeSet<String>();
 		hal.add("F");
 		hal.add("Cl");
 		hal.add("Br");
 		SmartElementsList list = new SmartElementsList();
 		list.add("X");
 		list.setHalogens(hal);
-		HashSet<String> h = list.getHalogens();
+		TreeSet<String> h = list.getHalogens();
 		assertEquals(hal,h);
 		assertTrue(list.contains("Cl"));
 		assertFalse(list.contains("I"));

@@ -3,7 +3,7 @@
   <parent>
     <artifactId>toxtree</artifactId>
     <groupId>toxtree</groupId>
-    <version>2.6.16-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>toxtree-core</artifactId>
@@ -22,6 +22,11 @@
   		<version>${ambit.version}</version>
   	</dependency>
   	<dependency>
+  		<groupId>ambit</groupId>
+  		<artifactId>ambit2-descriptors</artifactId>
+  		<version>${ambit.version}</version>
+  	</dependency>  	
+  	<dependency>
   		<groupId>org.prefuse</groupId>
   		<artifactId>prefuse</artifactId>
   		<version>beta-20060220</version>
@@ -36,13 +41,11 @@
   		<artifactId>ambit2-core</artifactId>
   		<version>${ambit.version}</version>
   	</dependency>
-  	<!-- 
   	<dependency>
   		<groupId>ambit</groupId>
-  		<artifactId>ambit2-ui</artifactId>
+  		<artifactId>ambit2-poi</artifactId>
   		<version>${ambit.version}</version>
-  	</dependency>
-  	 -->
+  	</dependency>  	
 	<dependency>
        <groupId>ambit</groupId>
        <artifactId>ambit2-rendering</artifactId>
@@ -53,7 +56,6 @@
 		<artifactId>ambit2-namestructure</artifactId>
 		<version>${ambit.version}</version>
 	</dependency>
-
 	<dependency>
 		<groupId>toxtree</groupId>
 		<artifactId>toxtree-bundle</artifactId>

@@ -25,7 +25,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package toxTree.tree.rules.smarts;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IRingSet;
 
+import toxTree.exceptions.DecisionMethodException;
+import toxTree.query.MolFlags;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SMARTSException;
 import ambit2.smarts.query.SmartsPatternFactory;
@@ -55,7 +58,11 @@ public class RuleSMARTSSubstructureAmbit extends AbstractRuleSmartSubstructure<I
 				SmartsParser.smarts_nk, smarts, negate);		
 	}	
 
-
+    protected IRingSet hasRingsToProcess(IAtomContainer  mol) throws DecisionMethodException {
+        MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
+        if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
+        return mf.getRingset();
+    }
 }
 
 

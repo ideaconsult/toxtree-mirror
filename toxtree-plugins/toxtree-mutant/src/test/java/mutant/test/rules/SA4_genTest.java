@@ -20,12 +20,15 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package mutant.test.rules;
 
 import mutant.rules.SA4_gen;
 import mutant.test.TestMutantRules;
+
+import org.junit.Test;
+
 import toxTree.core.IDecisionRule;
 
 public class SA4_genTest extends TestMutantRules {
@@ -33,26 +36,25 @@ public class SA4_genTest extends TestMutantRules {
 	protected IDecisionRule createRuleToTest() throws Exception {
 		return new SA4_gen();
 	}
+
 	@Override
 	public String getHitsFile() {
 		return "NA4/sa09_l_iss2.sdf";
 	}
+
 	@Override
 	public String getResultsFolder() {
 		return "NA4";
 	}
+
+	@Test
 	public void testExcludedSubstituents() throws Exception {
-		String[] smiles = {
-				"O=C=CCl",
-				"ClC=CCl",
-		};
-		for (int i=0; i < smiles.length;i++) {
-			//System.out.print(smiles[i]);
+		String[] smiles = { "O=C=CCl", "ClC=CCl", };
+		for (int i = 0; i < smiles.length; i++) {
+			// System.out.print(smiles[i]);
 			assertFalse(verify(smiles[i]));
-			//System.out.println(" ok");
+			// System.out.println(" ok");
 		}
-		
-	}	
+
+	}
 }
-
-

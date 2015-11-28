@@ -30,7 +30,6 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IDecisionRule;
@@ -47,7 +46,7 @@ import ambit2.core.data.MoleculeTools;
  */
 public class RuleHasOnlySaltSulphonateSulphateTest extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleHasOnlySaltSulphonateSulphate();
 	}
 	public void test() throws Exception {
@@ -112,10 +111,10 @@ public class RuleHasOnlySaltSulphonateSulphateTest extends AbstractRuleTest {
 			assertTrue(FunctionalGroups.hasGroup(residues.getAtomContainer(0),
 					FunctionalGroups.primaryAmine(false)));
 	}				
-	public static IMolecule phenazineMethosulphate() 
+	public static IAtomContainer phenazineMethosulphate() 
 	{
 		 IChemObjectBuilder builder = SilentChemObjectBuilder.getInstance();
-		  IMolecule mol = MoleculeTools.newMolecule(builder);  
+		  IAtomContainer mol = MoleculeTools.newMolecule(builder);  
 		  IAtom nq = MoleculeTools.newAtom(builder,Elements.NITROGEN);
 		  nq.setFormalCharge(+1);
 		  mol.addAtom(nq);

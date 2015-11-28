@@ -26,7 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 package toxTree.core;
 
 
-import java.util.HashSet;
+import java.io.Serializable;
+import java.util.TreeSet;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
@@ -44,9 +45,9 @@ import org.openscience.cdk.interfaces.IAtomContainer;
  *
  */
 
-public class SmartElementsList extends HashSet<String>   {
+public class SmartElementsList extends TreeSet<String>  implements Serializable  {
 
-	public HashSet<String> halogens;
+	public TreeSet<String> halogens;
 	public static String halogen = "X";
 	public static String hydrogen = "H";
 	/**
@@ -56,7 +57,7 @@ public class SmartElementsList extends HashSet<String>   {
 
 	public SmartElementsList() {
 		super();
-		halogens = new HashSet<String>();
+		halogens = new TreeSet<String>();
 		halogens.add("F");
 		halogens.add("Cl");
 		halogens.add("Br");
@@ -94,10 +95,10 @@ public class SmartElementsList extends HashSet<String>   {
 	}
 
 
-	public HashSet<String> getHalogens() {
+	public TreeSet<String> getHalogens() {
 		return halogens;
 	}
-	public void setHalogens(HashSet<String> halogens) {
+	public void setHalogens(TreeSet<String> halogens) {
 		this.halogens = halogens;
 	}
 	public void setHalogens(String[] halogens) {
@@ -113,8 +114,11 @@ public class SmartElementsList extends HashSet<String>   {
 	}
 	@Override
 	public boolean equals(Object o) {
+
 		if (o instanceof SmartElementsList) {
-			return super.equals((SmartElementsList)o) && (halogens.equals(((SmartElementsList)o).halogens));
+			SmartElementsList so = (SmartElementsList) o;
+			return toString().equals(o.toString()) && (halogens.toString().equals(so.halogens.toString()));
+			//return super.equals((SmartElementsList)o) && (halogens.equals(((SmartElementsList)o).halogens));
 		} else return false;
 		
 	}

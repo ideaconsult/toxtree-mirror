@@ -30,6 +30,7 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IReaction;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.ReactionException;
@@ -76,6 +77,7 @@ public class RuleAromaticDiazo extends RuleSMARTSubstructureCDK {
 			try {
 			    IReaction r = sr.getMetabolicReaction(0);
 			    IAtomContainerSet sc = SimpleReactions.process(mol,r);
+			    
 			    if ((sc != null) && (sc.getAtomContainerCount()>0)) {
 			    	Object o = mol.getProperty(RuleVerifyAlertsCounter.ALERTSCounter);
 			    	if (o != null)

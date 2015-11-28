@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.tree.rules;
 
 import org.openscience.cdk.exception.CDKException;
@@ -32,8 +32,8 @@ import toxTree.query.FunctionalGroups;
 
 /**
  * Verifies if the molecule has at least one substructure of the list
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-8-14
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-8-14
  */
 public class RuleAnySubstructure extends RuleSubstructures {
 
@@ -41,34 +41,41 @@ public class RuleAnySubstructure extends RuleSubstructures {
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = 7357138717839597543L;
+
 	/**
 	 * 
 	 */
-	public RuleAnySubstructure() {
+	public RuleAnySubstructure() throws Exception {
 		super();
-		
 		explanation.append("Has any substructure of the list.");
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.rules.RuleSubstructures#isImplemented()
 	 */
 	@Override
 	public boolean isImplemented() {
 		return true;
 	}
+
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
-		return verifyRule(mol,null);
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		return verifyRule(mol, null);
 	};
-	public boolean verifyRule(IAtomContainer  mol,IAtomContainer selected) throws DecisionMethodException {
+
+	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
 		logger.finer(getID());
 		try {
-			return FunctionalGroups.hasAnySubstructure(mol,query,selected);
+			return FunctionalGroups.hasAnySubstructure(mol, getQuery(), selected);
 		} catch (CDKException x) {
 			throw new DecisionMethodException(x);
 		}
-		
+
 	}
 }

@@ -15,8 +15,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.interfaces.IPseudoAtom;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
@@ -88,6 +87,10 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
 		}
 		
 	}
+	@Override
+	public void initialise(IChemObjectBuilder builder) {
+		
+	}
 	public DescriptorSpecification getSpecification() {
         return new DescriptorSpecification(
                 "Molar refractivity and Sterimol descriptors of aromatic amine substituents (at postitions 1 to 6 , where amine group is at 1 position)",
@@ -143,7 +146,7 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                 SubstituentPosition place = null;
 			    for (int j=0;j <m.getAtomCount();j++) {
 			    	place = SubstituentExtractor.getSubstituentNumber(mark,m,j);
-                    IMolecule substituent = (IMolecule)m;
+                    IAtomContainer substituent = (IAtomContainer)m;
 
 			    	if (place != null)  
 			    	try {
@@ -205,8 +208,8 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
 		return new DescriptorValue(getSpecification(), getParameterNames(),
 			getParameters(), results, d );
 	}
-	protected IMolecule getAminoGroupSubstituents(IAtomContainer ac,int natom) throws CDKException {
-        IMolecule aminogroup_subst = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
+	protected IAtomContainer getAminoGroupSubstituents(IAtomContainer ac,int natom) throws CDKException {
+        IAtomContainer aminogroup_subst = MoleculeTools.newMolecule(SilentChemObjectBuilder.getInstance());
         List<IAtom> neighbors = ac.getConnectedAtomsList(ac.getAtom(natom));
         
         for (int i=0; i< ac.getAtomCount();i++) {
@@ -243,11 +246,11 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
                 aminogroup_subst.addBond(newBond);
             }
         }
-        IMoleculeSet  s = ConnectivityChecker.partitionIntoMolecules(aminogroup_subst);
-        IMolecule m = null;
+        IAtomContainerSet  s = ConnectivityChecker.partitionIntoMolecules(aminogroup_subst);
+        IAtomContainer m = null;
         int size = 0;
-        for (int i=0; i < s.getMoleculeCount();i++) {
-            IMolecule a = s.getMolecule(i);
+        for (int i=0; i < s.getAtomContainerCount();i++) {
+            IAtomContainer a = s.getAtomContainer(i);
             int asize = 0;
             
             for (int j=0; j < a.getAtomCount();j++)
@@ -444,12 +447,8 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
     }
         
     public static QueryAtomContainer aromaticAmine(String mark) {
-        QueryAtomContainer query = new QueryAtomContainer() {
-        	/**
-	     * 
-	     */
-	    private static final long serialVersionUID = -819579792535610163L;
-
+        QueryAtomContainer query = new QueryAtomContainer(SilentChemObjectBuilder.getInstance()) {
+  
 		@Override
         	public String toString() {
         		return getID();
@@ -478,28 +477,28 @@ public class AromaticAmineSubstituentsDescriptor extends SubstituentsDescriptor 
             //ring[i].setProperty(SubstituentExtractor._RING,SubstituentExtractor.yes);
             query.addAtom(ring[i]);
             if (i>0) {
-                query.addBond(new AromaticQueryBond(ring[i], ring[i-1],CDKConstants.BONDORDER_SINGLE));
+                query.addBond(new AromaticQueryBond(ring[i], ring[i-1],CDKConstants.BONDORDER_SINGLE,query.getBuilder()));
             }
         }
-        query.addBond(new AromaticQueryBond(ring[0], ring[5],CDKConstants.BONDORDER_SINGLE));
-        query.addBond(new OrderQueryBond(ring[0], n, CDKConstants.BONDORDER_SINGLE));
+        query.addBond(new AromaticQueryBond(ring[0], ring[5],CDKConstants.BONDORDER_SINGLE,query.getBuilder()));
+        query.addBond(new OrderQueryBond(ring[0], n, CDKConstants.BONDORDER_SINGLE,query.getBuilder()));
         
         
-        AnyAtom r = new ReallyAnyAtom();
+        AnyAtom r = new ReallyAnyAtom(query.getBuilder());
         r.setSymbol(R);r.setID("R1");
         
-        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE));
-        r = new ReallyAnyAtom();
+        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE,query.getBuilder()));
+        r = new ReallyAnyAtom(query.getBuilder());
         r.setSymbol(R);r.setID("R2");
-        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE));        
+        query.addBond(new OrderQueryBond(r, n, CDKConstants.BONDORDER_SINGLE,query.getBuilder()));        
         //substituents
         
         for (int i=1; i < 6; i++) {
-            AnyAtom any = new ReallyAnyAtom(); any.setSymbol(R);
+            AnyAtom any = new ReallyAnyAtom(query.getBuilder()); any.setSymbol(R);
             SubstituentExtractor.setSubstituentNumber(mark,any,new SubstituentPosition(i+1,false));
             any.setID("Subst"+Integer.toString(i+1));
             query.addAtom(any);
-            query.addBond(new AnyOrderQueryBond(ring[i],any,CDKConstants.BONDORDER_SINGLE));
+            query.addBond(new AnyOrderQueryBond(ring[i],any,CDKConstants.BONDORDER_SINGLE,query.getBuilder()));
         }
         
           return query;
@@ -572,11 +571,10 @@ interface ISubstituentAction<T> {
  *
  */
 class ReallyAnyAtom extends AnyAtom {
-	/**
-     * 
-     */
-    private static final long serialVersionUID = -5287029857329985037L;
-
+	
+    public ReallyAnyAtom(IChemObjectBuilder builder) {
+    	super(builder);
+	}
 	@Override
 	public boolean matches(IAtom atom) {
 		return true;

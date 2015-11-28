@@ -300,7 +300,7 @@ public class TreeResult implements IDecisionResult {
 	public String toString() {
 	    if (decisionMethod == null) return ProgressStatus._eMethodNotAssigned;
 	    switch (status.estimated) {
-	    case COMPLETED: return decisionMethod.toString() + "\t Class\t" + category.toString();
+	    case COMPLETED: return decisionMethod.toString() + "\t Class\t" + category==null?"":category.toString();
 	    default: return status.toString();
 	    }
 	}

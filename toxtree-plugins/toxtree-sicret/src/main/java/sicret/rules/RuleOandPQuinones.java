@@ -16,60 +16,74 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package sicret.rules;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
  * O and P Quinones.<br>
- * Substructures<ul>
+ * Substructures
+ * <ul>
  * <li>O=C1C=CC=CC1(=O)
  * <li>O=C1C=CC(=O)C=C1
  * </ul>
+ * 
  * @author Nina Jeliazkova nina@acad.bg
- * @author Martin Martinov
- * <b>Modified</b> Dec 17, 2006
+ * @author Martin Martinov <b>Modified</b> Dec 17, 2006
  */
 public class RuleOandPQuinones extends RuleAnySubstructure {
-	public final static transient String MSG_18H="Acyclic group";
+	public final static transient String MSG_18H = "Acyclic group";
 	/**
-     * Comment for <code>serialVersionUID</code>
-     */
-    private static final long serialVersionUID = 0;
+	 * Comment for <code>serialVersionUID</code>
+	 */
+	private static final long serialVersionUID = 0;
 
-    /**
+	/**
 	 * Constructor
 	 * 
 	 */
-	public RuleOandPQuinones() {
-		//TODO fix sterically hindered condition (example NO fails)
+	public RuleOandPQuinones() throws Exception {
+		// TODO fix sterically hindered condition (example NO fails)
 		super();
-		
-		
-		addSubstructure(FunctionalGroups.createAtomContainer("O=C1C=CC=CC1(=O)",false));
-		addSubstructure(FunctionalGroups.createAtomContainer("O=C1C=CC(=O)C=C1",false));
-		//addSubstructure(FunctionalGroups.createAtomContainer("[H]Oc1ccc(cc1)O[H]",false));
-		//addSubstructure(FunctionalGroups.createAtomContainer("[H]Oc1ccccc1(O[H])",false));
-		
 		id = "39";
 		title = "O and P Quinones";
-		
-		examples[0] = "C1C=CC=CC1";	
+
+		examples[0] = "C1C=CC=CC1";
 		examples[1] = "O=C1C=CC=CC1(=O)";
 		editable = false;
 	}
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		setQuery(super.initQuery());
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"O=C1C=CC=CC1(=O)", false));
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"O=C1C=CC(=O)C=C1", false));
+		// addSubstructure(FunctionalGroups.createAtomContainer("[H]Oc1ccc(cc1)O[H]",false));
+		// addSubstructure(FunctionalGroups.createAtomContainer("[H]Oc1ccccc1(O[H])",false));
+
+		return getQuery();
+	}
+
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.finer(toString());		
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		logger.finer(toString());
 		return super.verifyRule(mol);
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.AbstractRule#isImplemented()
 	 */
 	public boolean isImplemented() {

@@ -31,7 +31,7 @@ import verhaar.rules.Rule13;
 
 public class Rule13Test extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new Rule13();
 	}
 	public void test() throws Exception {

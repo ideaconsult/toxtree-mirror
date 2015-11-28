@@ -7,7 +7,7 @@ import cramer2.rules.RuleUnchargedOrganophosphates;
 public class RuleUnchargedOrganophosphatesTest extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleUnchargedOrganophosphates();
 	}
 

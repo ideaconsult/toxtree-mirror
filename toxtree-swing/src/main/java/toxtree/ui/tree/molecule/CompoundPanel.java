@@ -42,17 +42,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.query.MyAssociationBond;
 import toxTree.tree.ProgressStatus;
 import toxtree.data.DataContainer;
 import toxtree.ui.molecule.NavigationPanel;
 import toxtree.ui.molecule.PropertyPanel;
+import ambit2.rendering.IAtomContainerHighlights;
 import ambit2.ui.Panel2D;
 
 
@@ -60,7 +58,7 @@ import ambit2.ui.Panel2D;
 
 /**
  * A {@link javax.swing.JPanel} descendant, displaying 2D structure diagram of the molecule at the bottom
- * and a table with molecule properties read by {@link org.openscience.cdk.interfaces.Molecule#getProperties() }
+ * and a table with molecule properties read by {@link org.openscience.cdk.interfaces.Molecule#getRecordProperties() }
  * @author Nina Jeliazkova <br>
  * <b>Modified</b> 2005-4-30
  */
@@ -195,7 +193,7 @@ public class CompoundPanel extends JPanel implements   Observer, PropertyChangeL
 
     	            display();
     	        } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_selected.toString())) {
-    	        	picturePanel.setSelector((IProcessor<IAtomContainer,IChemObjectSelection>)evt.getNewValue());	
+    	        	picturePanel.setSelector((IAtomContainerHighlights)evt.getNewValue());	
     	        } else if (evt.getPropertyName().equals(Panel2D.property_name.panel2d_molecule.toString())) {
     	        	
     	        	IAtomContainer mol = (IAtomContainer)evt.getNewValue();

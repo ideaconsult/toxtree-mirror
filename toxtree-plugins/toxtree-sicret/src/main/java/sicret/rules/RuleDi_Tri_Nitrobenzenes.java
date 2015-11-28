@@ -24,6 +24,7 @@ import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
@@ -33,19 +34,29 @@ import toxTree.tree.rules.RuleAnySubstructure;
  * <b>Modified</b> Dec 17, 2006
  */
 public class RuleDi_Tri_Nitrobenzenes extends RuleAnySubstructure {
-	public final static transient String MSG_18H="Acyclic group";
 	/**
-     * Comment for <code>serialVersionUID</code>
-     */
-    private static final long serialVersionUID = 0;
+	 * 
+	 */
+	private static final long serialVersionUID = 727457812604632292L;
+	public final static transient String MSG_18H="Acyclic group";
 
     /**
 	 * Constructor
 	 * 
 	 */
-	public RuleDi_Tri_Nitrobenzenes() {
+	public RuleDi_Tri_Nitrobenzenes()  throws Exception {
 
 		super();		
+		
+		id = "57";
+		title = "Di_Tri_Nitrobenzenes";
+		examples[0] = "O=N(=O)C1C(CC(C1)N(=O)=O)N(=O)=O";
+		examples[1] = "O=N(=O)C1CC(CC(C1)N(=O)=O)N(=O)=O";	
+		editable = false;
+	}
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		setQuery(super.initQuery());
 		addSubstructure(FunctionalGroups.createAtomContainer("O=[N+]([O-])c1ccccc1[N+](=O)[O-]",false));
 		addSubstructure(FunctionalGroups.createAtomContainer("O=[N+]([O-])c1ccc(cc1)[N+](=O)[O-]",false));
 		addSubstructure(FunctionalGroups.createAtomContainer("O=N(=O)C1CCCC(C1)N(=O)=O",false));
@@ -53,12 +64,7 @@ public class RuleDi_Tri_Nitrobenzenes extends RuleAnySubstructure {
 		addSubstructure(FunctionalGroups.createAtomContainer("O=N(=O)C1CCCCC1(N(=O)=O)",false));
 		addSubstructure(FunctionalGroups.createAtomContainer("O=[N+]([O-])c1cc(cc(c1)[N+](=O)[O-])[N+](=O)[O-]",false));
 		addSubstructure(FunctionalGroups.createAtomContainer("O=N(=O)C1CC(CC(C1)N(=O)=O)N(=O)=O",false));
-		
-		id = "57";
-		title = "Di_Tri_Nitrobenzenes";
-		examples[0] = "O=N(=O)C1C(CC(C1)N(=O)=O)N(=O)=O";
-		examples[1] = "O=N(=O)C1CC(CC(C1)N(=O)=O)N(=O)=O";	
-		editable = false;
+		return getQuery();
 	}
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}

@@ -20,69 +20,78 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package toxTree.test;
 
 import java.io.File;
 import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
 import org.junit.Test;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IChemObjectBuilder;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.data.MoleculesFile;
 import toxTree.io.Tools;
-import ambit2.core.io.MyIteratingMDLReader;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
-public class MoleculesFileTest  {
+public class MoleculesFileTest {
+	protected static Logger logger = Logger.getLogger(MoleculesFileTest.class
+			.getName());
 	@Test
-	public void test() throws Exception  {
+	public void test() throws Exception {
 
-			IChemObjectBuilder b = SilentChemObjectBuilder.getInstance();
-			File file = Tools.getFileFromResource("substituents.sdf");
-			MoleculesFile mf = new MoleculesFile(file,b);
-			File file1 = Tools.getFileFromResource("substituents.sdf");
-			MyIteratingMDLReader reader = new MyIteratingMDLReader(new FileReader(file1),b);
-			int record=0;
-            int found = 0;
-			while (reader.hasNext()) {
-				Object o = reader.next();
-				if (o instanceof IAtomContainer) {
-                    AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms((IAtomContainer)o);
-					boolean aromatic = CDKHueckelAromaticityDetector.detectAromaticity((IAtomContainer)o);
-					long now = System.currentTimeMillis();
-					System.out.print(record);
-                    System.out.print('\t');                    
-                    System.out.print(((IAtomContainer)o).getProperty("#"));                    
-					System.out.print('\t');
-					System.out.print(((IAtomContainer)o).getProperty("SMILES"));
-					System.out.print("\tAromatic ");
-					System.out.print(aromatic);
-					System.out.print('\t');
-					int index = mf.indexOf("SMILES",((IAtomContainer)o).getProperty("SMILES"));
-					if (index >-1) {
-						System.out.print("found ");
-						System.out.print(System.currentTimeMillis()-now);
-						System.out.print(" ms\tMR\t");
-						System.out.print(mf.getAtomContainer(index).getProperty("MR"));
-                        System.out.print(" ms\tB5STM\t");
-                        System.out.println(mf.getAtomContainer(index).getProperty("B5STM"));                        
-                        found++;
-					} else System.out.println("not found"); 
-					record++;
+		File file = Tools.getFileFromResource("substituents.sdf");
+		MoleculesFile mf = new MoleculesFile(file,
+				SilentChemObjectBuilder.getInstance());
+		File file1 = Tools.getFileFromResource("substituents.sdf");
+		IteratingSDFReader reader = new IteratingSDFReader(
+				new FileReader(file1), SilentChemObjectBuilder.getInstance());
+		int record = 0;
+		int found = 0;
+		while (reader.hasNext()) {
+			Object o = reader.next();
+			if (o instanceof IAtomContainer) {
+				AtomContainerManipulator
+						.percieveAtomTypesAndConfigureAtoms((IAtomContainer) o);
+				boolean aromatic = CDKHueckelAromaticityDetector
+						.detectAromaticity((IAtomContainer) o);
+				long now = System.currentTimeMillis();
 
-				}
-				
+				StringBuilder b = new StringBuilder();
+				b.append(record);
+				b.append('\t');
+				b.append(((IAtomContainer) o).getProperty("#"));
+				b.append('\t');
+				b.append(((IAtomContainer) o).getProperty("SMILES"));
+				b.append("\tAromatic ");
+				b.append(aromatic);
+				b.append('\t');
+				int index = mf.indexOf("SMILES",
+						((IAtomContainer) o).getProperty("SMILES"));
+				if (index > -1) {
+					b.append("found ");
+					b.append(System.currentTimeMillis() - now);
+					b.append(" ms\tMR\t");
+					b.append(mf.getAtomContainer(index).getProperty("MR"));
+					b.append(" ms\tB5STM\t");
+					b.append(mf.getAtomContainer(index).getProperty("B5STM"));
+					found++;
+				} else
+					b.append("not found");
+				logger.log(Level.INFO, b.toString());
+				record++;
+
 			}
-			Assert.assertEquals(record,found);
+
+		}
+		Assert.assertEquals(record, found);
 
 	}
 }
-
-

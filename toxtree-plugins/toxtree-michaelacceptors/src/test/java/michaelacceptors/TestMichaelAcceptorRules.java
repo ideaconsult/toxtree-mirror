@@ -286,7 +286,7 @@ public  class TestMichaelAcceptorRules  {
 			 for (int i=0;i< smiles_asertFalse.length;i++){
 				 smile = smiles_asertFalse[i];
 				 result = verifyRule(rule,smile);
-				 if (result) System.out.println(smile);
+				 //if (result) System.out.println(smile);
 				 
 			 }
 			 return result;

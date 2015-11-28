@@ -21,12 +21,11 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.cramer;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
-import org.openscience.cdk.interfaces.IMolecule;
 import org.openscience.cdk.isomorphism.UniversalIsomorphismTester;
 
 import toxTree.core.IDecisionRule;
@@ -40,76 +39,55 @@ import toxTree.tree.cramer.RuleHasOnlySaltSulphonateSulphate;
 
 /**
  * @author nina
- *
+ * 
  */
 public class Rule3FuncGroupsTest extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new Rule3FuncGroups();
 	}
 
 	@Override
 	public void test() throws Exception {
-	    Object[][] answer = {
-            	{"CC(=O)CCC(O)=O",new Boolean(false)},
-            	{"[H]OC(=O)C([H])([H])C([H])([H])C(=O)C([H])([H])[H]",new Boolean(false)},
-	    };
-	    ruleTest(answer); 
-		
-	}
+		Object[][] answer = {
+				{ "CC(=O)CCC(O)=O", new Boolean(false) },
+				{ "[H]OC(=O)C([H])([H])C([H])([H])C(=O)C([H])([H])[H]",
+						new Boolean(false) }, };
+		ruleTest(answer);
 
+	}
 
 	public void testSalt() throws Exception {
-		IMolecule acid_original = (IMolecule)FunctionalGroups.createAtomContainer("CC(=O)CCC(=O)O");
+		IAtomContainer acid_original = (IAtomContainer) FunctionalGroups
+				.createAtomContainer("CC(=O)CCC(=O)O");
 		assertFalse(verify(acid_original));
-		
-    	IMolecule mol = (IMolecule)FunctionalGroups.createAtomContainer("CC(=O)CCC(=O)[O-].[Na+]");
-    	RuleHasOnlySaltSulphonateSulphate rule4 = new RuleHasOnlySaltSulphonateSulphate();
-       	MolAnalyser.analyse(mol);
-       	assertTrue(rule4.verifyRule(mol));
-       	
+
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups
+				.createAtomContainer("CC(=O)CCC(=O)[O-].[Na+]");
+		RuleHasOnlySaltSulphonateSulphate rule4 = new RuleHasOnlySaltSulphonateSulphate();
+		MolAnalyser.analyse(mol);
+		assertTrue(rule4.verifyRule(mol));
+
 		MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
-		if (mf == null) throw new DecisionMethodException(AbstractRule.ERR_STRUCTURENOTPREPROCESSED);
-		
+		if (mf == null)
+			throw new DecisionMethodException(
+					AbstractRule.ERR_STRUCTURENOTPREPROCESSED);
+
 		IAtomContainerSet acid = mf.getResidues();
 		assertNotNull(acid);
-		assertEquals(1,acid.getAtomContainerCount());
-		
-		assertTrue(UniversalIsomorphismTester.isIsomorph(acid_original,acid.getAtomContainer(0)));
-		assertFalse(verify(acid.getAtomContainer(0)));	
-                
+		assertEquals(1, acid.getAtomContainerCount());
+		UniversalIsomorphismTester uit = new UniversalIsomorphismTester();
+		assertTrue(uit.isIsomorph(acid_original, acid.getAtomContainer(0)));
+		assertFalse(verify(acid.getAtomContainer(0)));
+
 	}
+
 	protected boolean verify(IAtomContainer a) throws Exception {
 
 		FunctionalGroups.clearMarks(a);
 		MolAnalyser.analyse(a);
-		/*
-		for (int i=0;i < a.getAtomCount(); i++) { 
-			//if ("H".equals(a.getAtom(i).getSymbol())) {
 
-				System.out.print(a.getAtom(i).getSymbol());
-				System.out.print('\t');
-				System.out.print(a.getAtom(i).getAtomTypeName());
-				System.out.print('\t');				
-				System.out.print(a.getAtom(i).getCharge());
-				System.out.print('\t');				
-				System.out.print(a.getAtom(i).getFormalCharge());
-				System.out.print('\t');				
-				System.out.print(a.getAtom(i).getFormalNeighbourCount());
-				System.out.print('\t');				
-				System.out.print(a.getAtom(i).getBondOrderSum());
-				System.out.print('\t');				
-				System.out.print(a.getAtom(i).getHybridization());
-				System.out.print('\t');				
-				System.out.print(a.getAtom(i).getHydrogenCount());
-				System.out.print('\t');				
-				System.out.print(a.getAtom(i).getValency());
-				System.out.print('\t');
-				System.out.print(a.getAtom(i).getProperties());				
-				System.out.println();
-			}
-			*/
 		return rule2test.verifyRule(a);
 	}
 }

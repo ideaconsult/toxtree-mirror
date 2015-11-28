@@ -16,7 +16,7 @@ import toxTree.tree.cramer.RuleHasOtherThanC_H_O_N_S2;
 public class RuleHasOtherThanC_H_O_N_S2Test extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 
 		return new RuleHasOtherThanC_H_O_N_S2();
 	}

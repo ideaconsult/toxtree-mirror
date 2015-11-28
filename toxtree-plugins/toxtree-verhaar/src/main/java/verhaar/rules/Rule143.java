@@ -16,9 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package verhaar.rules;
-
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRingSet;
@@ -26,6 +25,7 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.DefaultAlertCounter;
 import toxTree.tree.rules.IAlertCounter;
 import toxTree.tree.rules.RuleRingAllowedSubstituents;
@@ -33,68 +33,93 @@ import verhaar.query.FunctionalGroups;
 
 /**
  * 
- * Monocyclic compounds that are unsubstituted or substituted with acyclic structures containing only C&H or complying with rule {@link Rule141}.
- * @author Nina Jeliazkova jeliazkova.nina@gmail.com
- * <b>Modified</b> July 12, 2011
+ * Monocyclic compounds that are unsubstituted or substituted with acyclic
+ * structures containing only C&H or complying with rule {@link Rule141}.
+ * 
+ * @author Nina Jeliazkova jeliazkova.nina@gmail.com <b>Modified</b> July 12,
+ *         2011
  */
-public class Rule143 extends RuleRingAllowedSubstituents  implements IAlertCounter {
+public class Rule143 extends RuleRingAllowedSubstituents implements
+		IAlertCounter {
 	protected IAlertCounter alertsCounter;
-	protected QueryAtomContainer x ;
-	protected String[] halogens = {"Cl","F","Br","I"}; 
+	protected transient QueryAtomContainer x;
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4746595221282769930L;
 
-	public Rule143() {
+	public Rule143() throws Exception {
 		super();
 		alertsCounter = new DefaultAlertCounter();
 		id = "1.4.3";
 		setTitle("Be monocyclic compounds that are unsubstituted or substituted with acyclic structures containing only C&H or complying with rule 1.4.1");
-		explanation.append(
-				"Note that compounds containing benzylic halogens do NOT comply with rule 1.4.1, and thus cannot be considered narcotic chemicals"
-				);
+		explanation
+				.append("Note that compounds containing benzylic halogens do NOT comply with rule 1.4.1, and thus cannot be considered narcotic chemicals");
 		examples[0] = "c1ccccc1CCCC=CCCl";
-		examples[1] = "c1ccccc1CCCCCCl"; 
+		examples[1] = "c1ccccc1CCCCCCl";
 		editable = false;
-		x =  FunctionalGroups.halogenAtBetaFromUnsaturation(halogens);
+
 		ids.add(FunctionalGroups.C);
 		ids.add(FunctionalGroups.CH);
 		ids.add(FunctionalGroups.CH2);
 		ids.add(FunctionalGroups.CH3);
-		addSubstructure( FunctionalGroups.halogen(halogens));
+
 	}
-	
-	protected IRingSet hasRingsToProcess(IAtomContainer  mol) throws DecisionMethodException {
-		
-	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
-	    if (mf == null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
-	    FunctionalGroups.markCHn(mol);
-	    IRingSet rings = mf.getRingset();
-	    if (rings == null) return null;
-	    if (rings.getAtomContainerCount() > 1) {
-	    	logger.fine("Monocyclic\tNO\t"+rings.getAtomContainerCount());
-	    	return null; //monocyclic
-	    } else {
-	    	logger.fine("Monocyclic\tYES");
-	    	return rings;
-	    }
-	    
-	}	
-	/* (non-Javadoc)
-	 * @see toxTree.tree.rules.RuleRingAllowedSubstituents#substituentIsAllowed(org.openscience.cdk.interfaces.AtomContainer, int[])
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		setQuery(super.initQuery());
+		String[] halogens = { "Cl", "F", "Br", "I" };
+		x = FunctionalGroups.halogenAtBetaFromUnsaturation(halogens);
+		addSubstructure(FunctionalGroups.halogen(halogens));
+		return getQuery();
+	}
+
+	protected IRingSet hasRingsToProcess(IAtomContainer mol)
+			throws DecisionMethodException {
+
+		MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
+		if (mf == null)
+			throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
+		FunctionalGroups.markCHn(mol);
+		IRingSet rings = mf.getRingset();
+		if (rings == null)
+			return null;
+		if (rings.getAtomContainerCount() > 1) {
+			logger.fine("Monocyclic\tNO\t" + rings.getAtomContainerCount());
+			return null; // monocyclic
+		} else {
+			logger.fine("Monocyclic\tYES");
+			return rings;
+		}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * toxTree.tree.rules.RuleRingAllowedSubstituents#substituentIsAllowed(org
+	 * .openscience.cdk.interfaces.AtomContainer, int[])
 	 */
 	public boolean substituentIsAllowed(IAtomContainer a, int[] place)
 			throws DecisionMethodException {
 		// TODO Auto-generated method stub
 		return super.substituentIsAllowed(a, place);
 	}
-	/* (non-Javadoc)
-	 * @see toxTree.tree.rules.RuleRingAllowedSubstituents#verifyRule(org.openscience.cdk.interfaces.AtomContainer)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * toxTree.tree.rules.RuleRingAllowedSubstituents#verifyRule(org.openscience
+	 * .cdk.interfaces.AtomContainer)
 	 */
-	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
 		logger.finer(toString());
-		if (FunctionalGroups.hasGroup(mol,x)) {
+		if (FunctionalGroups.hasGroup(mol, x)) {
 			logger.finer("Do not comply with rule 1.4.1");
 			return false;
 		} else {
@@ -102,18 +127,22 @@ public class Rule143 extends RuleRingAllowedSubstituents  implements IAlertCount
 			if (super.verifyRule(mol)) {
 				incrementCounter(mol);
 				return true;
-			} else return false;
+			} else
+				return false;
 		}
-		
+
 	}
+
 	public boolean isImplemented() {
 		return true;
 	}
+
 	@Override
 	public void incrementCounter(IAtomContainer mol) {
 		alertsCounter.incrementCounter(mol);
-		
+
 	}
+
 	@Override
 	public String getImplementationDetails() {
 		StringBuffer b = new StringBuffer();

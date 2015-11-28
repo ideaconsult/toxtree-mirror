@@ -20,64 +20,78 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package mutant.test;
 
 import java.util.List;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 import mutant.rules.RuleDAMutagenicityAromaticAmines;
 
+import org.junit.Test;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
-public class RuleDAMutagenicityAromaticAminesTest extends TestCase {
-	public void testHasDescriptors()  throws Exception {
+public class RuleDAMutagenicityAromaticAminesTest {
+	@Test
+	public void testHasDescriptors() throws Exception {
 		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
 		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertEquals(6,d.size());
+		Assert.assertNotNull(d);
+		Assert.assertEquals(6, d.size());
 	}
-	public void testDescriptorEHOMOImplemented()  throws Exception {
+
+	@Test
+	public void testDescriptorEHOMOImplemented() throws Exception {
 		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
 		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(0));
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(0));
 	}
-	public void testDescriptorELUMOImplemented() throws Exception  {
+
+	@Test
+	public void testDescriptorELUMOImplemented() throws Exception {
 		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
 		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(1));
-	}	
-	public void testDescriptorMR2Implemented() throws Exception  {
-		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(2));
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(1));
 	}
-	public void testDescriptorMR3Implemented()  throws Exception {
+
+	@Test
+	public void testDescriptorMR2Implemented() throws Exception {
 		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
 		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(3));
-	}	
-	public void testDescriptorMR6Implemented()  throws Exception {
-		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(4));
-	}	
-	public void testDescriptorIdistImplemented()  throws Exception {
-		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(5));
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(2));
 	}
+
+	@Test
+	public void testDescriptorMR3Implemented() throws Exception {
+		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(3));
+	}
+
+	@Test
+	public void testDescriptorMR6Implemented() throws Exception {
+		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(4));
+	}
+
+	@Test
+	public void testDescriptorIdistImplemented() throws Exception {
+		RuleDAMutagenicityAromaticAmines rule = new RuleDAMutagenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(5));
+	}
+
+	@Test
 	public void testVerifyRule() {
-		fail("Not implemented");
+		Assert.fail("Not implemented");
 	}
 
 }
-
-

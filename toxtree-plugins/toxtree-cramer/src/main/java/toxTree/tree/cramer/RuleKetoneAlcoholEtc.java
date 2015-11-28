@@ -158,7 +158,7 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 	    if (mf.isAcetylenic()) return true;;
 		//h)
 	    logger.finer("Q18 h)");
-		if (mf.isAliphatic() && !mf.isAlicyclic()) {
+		if (mf.isAliphatic() && !mf.isAlicyclic()) try {
 			//ketone, ketal, ketoalcohol as in h)
 			
 			QueryAtomContainer qKetone4 = FunctionalGroups.createQuery("CCCCC(=O)C","Ketone with >=4 C");
@@ -204,6 +204,8 @@ public class RuleKetoneAlcoholEtc extends AbstractRule {
 				return true;
 			} else logger.finer(qKetal4.getID()+"\tNO");			
 
+		} catch (Exception x) {
+			throw new DecisionMethodException(x);
 		}
 		
 		//i)

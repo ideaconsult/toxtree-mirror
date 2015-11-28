@@ -28,7 +28,6 @@ import junit.framework.TestCase;
 
 import org.apache.log4j.Logger;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
 
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
@@ -47,7 +46,7 @@ public abstract class AbstractRuleTest extends TestCase {
 		rule2test = null;
 		super.tearDown();
 	}
-	protected abstract IDecisionRule createRule();
+	protected abstract IDecisionRule createRule() throws Exception;
 	/**
 	 * 
 	 * @param smiles_and_answer  {{String smiles, Boolean answer},...}
@@ -57,7 +56,7 @@ public abstract class AbstractRuleTest extends TestCase {
 
         int success = 0;
 	    for (int i = 0; i < smiles_and_answer.length; i++) {
-	    	IMolecule mol = (IMolecule)FunctionalGroups.createAtomContainer(smiles_and_answer[i][0].toString());
+	    	IAtomContainer mol = (IAtomContainer)FunctionalGroups.createAtomContainer(smiles_and_answer[i][0].toString());
 	        if (mol != null) {
 	            	MolAnalyser.analyse(mol);
 	                Boolean b = (Boolean) smiles_and_answer[i][1];

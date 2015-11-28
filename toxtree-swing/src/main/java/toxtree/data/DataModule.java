@@ -38,12 +38,14 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 import org.openscience.cdk.DefaultChemObjectBuilder;
+import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemModel;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
+import org.openscience.cdk.tools.CDKHydrogenAdder;
+import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.exceptions.DecisionMethodException;
@@ -148,7 +150,7 @@ public abstract class DataModule extends Observable implements Serializable, Obs
     */
 
     public void editMolecule(boolean editable, JFrame frame) {
-    	IMoleculeSet molecule4edit = null;
+    	IAtomContainerSet molecule4edit = null;
     	try {
     		molecule4edit = dataContainer.containers.getMoleculeForEdit();
     		
@@ -165,24 +167,30 @@ public abstract class DataModule extends Observable implements Serializable, Obs
 					private static final long serialVersionUID = -492805673357520991L;
 
 					@Override
-					public IMolecule okAction() {
+					public IAtomContainer okAction() {
 						
 						result = JOptionPane.OK_OPTION;
 						setVisible(false);
 					        
 						
 						IChemObjectBuilder builder4toxtree = SilentChemObjectBuilder.getInstance();
-					    IMolecule updatedMolecule = builder4toxtree.newInstance(IMolecule.class);
+					    IAtomContainer updatedMolecule = builder4toxtree.newInstance(IAtomContainer.class);
 					        
-					    IMoleculeSet m = jcpep.getChemModel().getMoleculeSet();  
+					    IAtomContainerSet m = jcpep.getChemModel().getMoleculeSet();  
 					    //copy  
 					    for (int i=0; i < m.getAtomContainerCount(); i++)  {
-					          updatedMolecule.add(MoleculeTools.copyChangeBuilders(m.getMolecule(i),builder4toxtree));
+					          updatedMolecule.add(MoleculeTools.copyChangeBuilders(m.getAtomContainer(i),builder4toxtree));
 					    }
 
                         getDataContainer().setEnabled(true);
-                        SmilesGenerator g = new SmilesGenerator(true);
-                        updatedMolecule.setProperty("SMILES",g.createSMILES(updatedMolecule));
+                        SmilesGenerator g = SmilesGenerator.generic();
+                        try {
+                        	AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(updatedMolecule);
+                        	CDKHydrogenAdder.getInstance(builder4toxtree).addImplicitHydrogens(updatedMolecule);
+                        	updatedMolecule.setProperty("SMILES",g.create(updatedMolecule));
+                        } catch (Exception x) {
+                        	x.printStackTrace();
+                        }
                                                 
                         getDataContainer().setMolecule(updatedMolecule);
                         getActions().allActionsEnable(true);

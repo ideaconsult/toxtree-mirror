@@ -7,6 +7,7 @@ import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionResult;
+import toxTree.query.MolAnalyser;
 import toxTree.tree.cramer.CramerRules;
 
 public class AbstractTreeTest {
@@ -25,6 +26,7 @@ public class AbstractTreeTest {
 		
 		SmilesParser parser = new SmilesParser(SilentChemObjectBuilder.getInstance());
 		IAtomContainer ac  = parser.parseSmiles(smiles);
+		MolAnalyser.analyse(ac);
 		result.classify(ac);
 		return result;
 	}

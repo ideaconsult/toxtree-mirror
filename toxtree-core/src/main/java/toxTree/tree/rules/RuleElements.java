@@ -24,11 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package toxTree.tree.rules;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 import net.idea.modbcum.i.exceptions.AmbitException;
-import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IElement;
@@ -42,6 +41,7 @@ import toxTree.core.SmartElementsList;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import ambit2.core.data.MoleculeTools;
+import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * Verifies if the molecule consists of only allowed elements
@@ -78,11 +78,11 @@ public class RuleElements extends AbstractRule {
 		elements.setHalogens(halogens);
 	}
 
-	public void setHalogens(HashSet halogens) {
+	public void setHalogens(TreeSet halogens) {
 		elements.setHalogens(halogens);
 	}
 
-	public HashSet gethalogens() {
+	public TreeSet gethalogens() {
 		return elements.getHalogens();
 	}
 
@@ -234,8 +234,8 @@ public class RuleElements extends AbstractRule {
 		this.mode = mode;
 	}
 
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	public IAtomContainerHighlights getSelector() {
+		return new IAtomContainerHighlights() {
 			/**
 		     * 
 		     */

@@ -30,7 +30,7 @@ import toxTree.tree.cramer.RuleOnlyFuncGroupsQ30;
 public class RuleOnlyFuncGroupsQ30Test extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleOnlyFuncGroupsQ30();
 	}
 	@Override

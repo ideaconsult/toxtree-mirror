@@ -3,7 +3,6 @@ package mutant.test.rules;
 import mutant.rules.SA29_gen;
 import mutant.test.TestMutantRules;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.SSSRFinder;
@@ -16,6 +15,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import toxTree.core.IDecisionRule;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class SA29_genTest extends TestMutantRules {
 
@@ -36,7 +36,7 @@ public class SA29_genTest extends TestMutantRules {
 	
 	public int CDKSmarts(String smarts, String smiles) throws Exception  {
 
-	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
+	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,SilentChemObjectBuilder.getInstance());
         
 	   SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 	        	

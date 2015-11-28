@@ -12,6 +12,7 @@ import toxTree.exceptions.DecisionMethodException;
 import toxTree.exceptions.MolAnalyseException;
 import toxTree.query.MolAnalyser;
 import ambit2.core.data.MoleculeTools;
+import ambit2.rendering.IAtomContainerHighlights;
 
 public abstract class AbstractRuleHilightHits extends AbstractRule {
 
@@ -20,8 +21,8 @@ public abstract class AbstractRuleHilightHits extends AbstractRule {
 	 */
 	private static final long serialVersionUID = -6028214376570266393L;
 
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	public IAtomContainerHighlights getSelector() {
+		return new IAtomContainerHighlights() {
 			public IChemObjectSelection process(IAtomContainer mol)
 					throws AmbitException {
 				try {

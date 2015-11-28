@@ -7,7 +7,7 @@ import verhaar.rules.Rule25;
 public class Rule25Test extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new Rule25();
 	}
 

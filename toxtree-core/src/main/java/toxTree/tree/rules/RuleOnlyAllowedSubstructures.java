@@ -43,7 +43,7 @@ public class RuleOnlyAllowedSubstructures extends RuleSubstructures {
 	/**
 	 * 
 	 */
-	public RuleOnlyAllowedSubstructures() {
+	public RuleOnlyAllowedSubstructures() throws Exception {
 		super();
 		
 	}
@@ -57,7 +57,7 @@ public class RuleOnlyAllowedSubstructures extends RuleSubstructures {
 		logger.finer(toString());
 	    FunctionalGroups.markCHn(mol);	    
 	    //if entire structure has only allowed groups, return true 
-	    return (FunctionalGroups.hasOnlyTheseGroups(mol,query,ids,true,selected)) ;
+	    return (FunctionalGroups.hasOnlyTheseGroups(mol,getQuery(),ids,true,selected)) ;
 	}
 	/* (non-Javadoc)
 	 * @see toxTree.tree.rules.RuleSubstructures#isImplemented()
