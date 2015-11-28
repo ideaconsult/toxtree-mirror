@@ -26,6 +26,9 @@ package mutant.test.rules;
 
 import mutant.rules.SA17_nogen;
 import mutant.test.TestMutantRules;
+
+import org.junit.Test;
+
 import toxTree.core.IDecisionRule;
 
 public class SA17_nogenTest extends TestMutantRules {
@@ -41,6 +44,7 @@ public class SA17_nogenTest extends TestMutantRules {
 	public String getResultsFolder() {
 		return "NA17";
 	}
+	@Test
 	public void test_Overlap16() throws Exception {
 		Object[][] smiles = {
 				{"NC(=S)OC",new Boolean(false)},

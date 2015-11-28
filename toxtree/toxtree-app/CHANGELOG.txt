@@ -1,10 +1,10 @@
 CHANGE LOG
 
-    * Toxtree-v2.6.13 
+    * Toxtree-v3.0.0-SNAPSHOT 
 
-    - updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.5.0;
+    - updated to CDK 1.5.10;
 
-    - updated to ambit-2.7.3;
+    - updated to ambit-3.0.0;
 
     - fixed remote query issue
     

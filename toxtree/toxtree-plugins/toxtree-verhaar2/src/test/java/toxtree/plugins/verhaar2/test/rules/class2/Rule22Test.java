@@ -30,7 +30,7 @@ import verhaar.rules.Rule22;
 
 public class Rule22Test extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new Rule22();
 	}
 	public void test() throws Exception {

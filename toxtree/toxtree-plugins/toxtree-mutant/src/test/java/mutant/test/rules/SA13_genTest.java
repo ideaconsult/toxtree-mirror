@@ -20,12 +20,15 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package mutant.test.rules;
 
 import mutant.rules.SA13_gen;
 import mutant.test.TestMutantRules;
+
+import org.junit.Test;
+
 import toxTree.core.IDecisionRule;
 
 public class SA13_genTest extends TestMutantRules {
@@ -34,37 +37,33 @@ public class SA13_genTest extends TestMutantRules {
 	protected IDecisionRule createRuleToTest() throws Exception {
 		return new SA13_gen();
 	}
+
 	@Override
 	public String getHitsFile() {
 		return "NA13/sa06_l_iss2.sdf";
 	}
+
 	@Override
 	public String getResultsFolder() {
 		return "NA13";
 	}
+
 	/**
 	 * Overlap with SA22_gen
-	 *
+	 * 
 	 */
-	public void testSA22_separate() {
-		try {
-			assertTrue(verifyRule(ruleToTest,"NNCCCCCCN=NN"));
-		} catch (Exception x) {
-			fail(x.getMessage());
-		}
-	}		
+	@Test
+	public void testSA22_separate() throws Exception {
+		assertTrue(verifyRule(ruleToTest, "NNCCCCCCN=NN"));
+	}
+
 	/**
 	 * Overlap with SA22_gen
-	 *
+	 * 
 	 */
-	public void testSA22_embedding() {
-		try {
-			assertFalse(verifyRule(ruleToTest,"CN=NN"));
-		} catch (Exception x) {
-			fail(x.getMessage());
-		}
-	}	
-	
+	@Test
+	public void testSA22_embedding() throws Exception {
+		assertFalse(verifyRule(ruleToTest, "CN=NN"));
+	}
+
 }
-
-

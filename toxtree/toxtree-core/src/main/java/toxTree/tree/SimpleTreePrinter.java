@@ -20,7 +20,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package toxTree.tree;
 
@@ -35,30 +35,37 @@ import toxTree.core.IDecisionRule;
 import toxTree.core.IProcessRule;
 import toxTree.exceptions.DecisionMethodIOException;
 
-public class SimpleTreePrinter extends AbstractTreeWriter implements IProcessRule {
-	
+public class SimpleTreePrinter extends AbstractTreeWriter implements
+		IProcessRule {
+
 	protected char delimiter = '\t';
-	protected SmilesGenerator g = new SmilesGenerator(true);
+	protected SmilesGenerator g = SmilesGenerator.generic();
 
 	public char getDelimiter() {
 		return delimiter;
 	}
+
 	public void setDelimiter(char delimiter) {
 		this.delimiter = delimiter;
 	}
+
 	public SimpleTreePrinter() {
 		this(System.out);
 	}
+
 	public SimpleTreePrinter(OutputStream outputStream) {
 		super(outputStream);
 	}
+
 	public SimpleTreePrinter(Writer output) {
 		super(output);
 	}
-	public Object process(IDecisionMethod method, IDecisionRule rule) throws DecisionMethodIOException {
-		
+
+	public Object process(IDecisionMethod method, IDecisionRule rule)
+			throws DecisionMethodIOException {
+
 		try {
-			
+
 			writer.write('"');
 			writer.write(rule.getID());
 			writer.write('"');
@@ -67,57 +74,55 @@ public class SimpleTreePrinter extends AbstractTreeWriter implements IProcessRul
 			writer.write(rule.getTitle());
 			writer.write('"');
 			writer.write(delimiter);
-			
-	    	final boolean[] answers = {true,false};
-	    	for (int i=0; i < answers.length;i++) {
-	    		IDecisionCategory category = method.getCategory(rule, answers[i]);
-	    		IDecisionRule nextrule = method.getBranch(rule, answers[i]);
 
-	    		if (category != null) {
-	    			writer.write('"');
-	    			writer.write(category.toString());
-	    			writer.write('"');
-	    		} else {
-	    			writer.write(' ');
-	    		}
-	    		writer.write(delimiter);
-	    		if (nextrule != null) {
-	    			writer.write('"');
-	    			writer.write(nextrule.getID());
-	    			writer.write('"');
-	    		} else {
-	    			writer.write(' ');
-	    		}
-    			writer.write(delimiter);
+			final boolean[] answers = { true, false };
+			for (int i = 0; i < answers.length; i++) {
+				IDecisionCategory category = method.getCategory(rule,
+						answers[i]);
+				IDecisionRule nextrule = method.getBranch(rule, answers[i]);
 
-	    	}
-	    	writer.write('\n');
-            return null;
+				if (category != null) {
+					writer.write('"');
+					writer.write(category.toString());
+					writer.write('"');
+				} else {
+					writer.write(' ');
+				}
+				writer.write(delimiter);
+				if (nextrule != null) {
+					writer.write('"');
+					writer.write(nextrule.getID());
+					writer.write('"');
+				} else {
+					writer.write(' ');
+				}
+				writer.write(delimiter);
+
+			}
+			writer.write('\n');
+			return null;
 		} catch (Exception x) {
-			throw new DecisionMethodIOException(getClass().getName(),x);
+			throw new DecisionMethodIOException(getClass().getName(), x);
 		}
-		
+
 	}
-    
 
-
-	public void init(IDecisionMethod tree) throws DecisionMethodIOException{
+	public void init(IDecisionMethod tree) throws DecisionMethodIOException {
 		try {
-			String[] header = {"ID","Title","if YES then assign label","if YES then go to rule","if NO then assign label","if NO then go to rule"};
-			
-			for (int i=0; i < header.length;i++) {
-				if (i>0)
+			String[] header = { "ID", "Title", "if YES then assign label",
+					"if YES then go to rule", "if NO then assign label",
+					"if NO then go to rule" };
+
+			for (int i = 0; i < header.length; i++) {
+				if (i > 0)
 					writer.write(delimiter);
-				
+
 				writer.write(header[i]);
-			}	
+			}
 			writer.write('\n');
 		} catch (Exception x) {
 			throw new DecisionMethodIOException(x);
 		}
 	}
 
-
 }
-
-

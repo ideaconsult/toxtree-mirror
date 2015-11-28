@@ -26,7 +26,6 @@ package toxtree.plugins.ames.test.rules;
 
 import java.util.Iterator;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -38,6 +37,7 @@ import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import toxTree.core.IDecisionRule;
 import toxtree.plugins.ames.rules.SA27_gen;
 import toxtree.plugins.ames.test.TestAmesMutagenicityRules;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class SA27_genTest extends TestAmesMutagenicityRules {
 
@@ -128,7 +128,7 @@ public class SA27_genTest extends TestAmesMutagenicityRules {
         h.addImplicitHydrogens(mol);
         AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
         CDKHueckelAromaticityDetector.detectAromaticity(mol);
-        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
+        SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,SilentChemObjectBuilder.getInstance());
         return sqt.matches(mol);
     }
 

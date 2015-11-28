@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxtree.plugins.ames.test.rules;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
+
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.ringsearch.SSSRFinder;
@@ -39,6 +39,7 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxtree.plugins.ames.rules.SA29_gen;
 import toxtree.plugins.ames.test.TestAmesMutagenicityRules;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class SA29_genTest extends TestAmesMutagenicityRules {
 
@@ -59,7 +60,7 @@ public class SA29_genTest extends TestAmesMutagenicityRules {
 	
 	public int CDKSmarts(String smarts, String smiles) throws Exception  {
 
-	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts);
+	   SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,SilentChemObjectBuilder.getInstance());
         
 	   SmilesParser sp = new SmilesParser(SilentChemObjectBuilder.getInstance());
 	        	

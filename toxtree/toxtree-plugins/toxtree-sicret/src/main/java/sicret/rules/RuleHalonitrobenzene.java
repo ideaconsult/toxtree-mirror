@@ -16,61 +16,66 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package sicret.rules;
-
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
  * Halonitrobenzene.
-
+ * 
  * @author Nina Jeliazkova nina@acad.bg
- * @author Martin Martinov
- * <b>Modified</b> Dec 17, 2006
+ * @author Martin Martinov <b>Modified</b> Dec 17, 2006
  */
 public class RuleHalonitrobenzene extends RuleAnySubstructure {
-	public final static transient String MSG_18H="Acyclic group";
 	/**
-     * Comment for <code>serialVersionUID</code>
-     */
-    private static final long serialVersionUID = 0;
-
-    /**
-	 * Constructor
 	 * 
 	 */
-	public RuleHalonitrobenzene() {
+	private static final long serialVersionUID = -5706154117097320404L;
+	public final static transient String MSG_18H = "Acyclic group";
+	public RuleHalonitrobenzene() throws Exception {
 
-		super();		
-		addSubstructure(FunctionalGroups.createAtomContainer("Clc1ccccc1[N+](=O)[O-]",false));
-		addSubstructure(FunctionalGroups.createAtomContainer("Clc1cccc(c1)[N+](=O)[O-]",false));
-		addSubstructure(FunctionalGroups.createAtomContainer("Clc1ccc(cc1)[N+](=O)[O-]",false));
-	
-		
+		super();
 		id = "64";
 		title = "Halonitrobenzene";
-		
+
 		examples[0] = "c1ccc(cc1)[N+](=O)[O-]";
-		examples[1] = "Clc1ccc(cc1)[N+](=O)[O-]";		
+		examples[1] = "Clc1ccc(cc1)[N+](=O)[O-]";
 		editable = false;
 	}
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		setQuery(super.initQuery());
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"Clc1ccccc1[N+](=O)[O-]", false));
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"Clc1cccc(c1)[N+](=O)[O-]", false));
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"Clc1ccc(cc1)[N+](=O)[O-]", false));
+		return getQuery();
+	}
+
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.finer(toString());		
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		logger.finer(toString());
 		return super.verifyRule(mol);
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.AbstractRule#isImplemented()
 	 */
 	public boolean isImplemented() {
 		return true;
 	}
 }
-

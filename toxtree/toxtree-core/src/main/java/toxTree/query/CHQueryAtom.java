@@ -26,6 +26,7 @@ package toxTree.query;
 
 
 import org.openscience.cdk.interfaces.IAtom;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.SymbolQueryAtom;
 
 /**
@@ -50,8 +51,8 @@ public class CHQueryAtom extends SymbolQueryAtom {
 	/**
 	 * 
 	 */
-	public CHQueryAtom() {
-		super();
+	public CHQueryAtom(IChemObjectBuilder builder) {
+		super(builder);
 		
 	}
 

@@ -36,20 +36,20 @@ INTRODUCTION
     Chemosphere 25, 471-491);
 
     - A decision tree for  estimating skin irritation and corrosion  potential,
-    based on rules published in ‚ÄúThe Skin Irritation Corrosion Rules Estimation
+    based on rules published in ìThe Skin Irritation Corrosion Rules Estimation
     Tool  (SICRET),  John  D. Walker,  Ingrid  Gerner,  Etje Hulzebos,  Kerstin
-    Schlegel, QSAR Comb. Sci. 2005, 24, pp. 378-384‚Äù;
+    Schlegel, QSAR Comb. Sci. 2005, 24, pp. 378-384î;
 
     - A decision  tree for estimating  eye irritation and  corrosion potential,
-    based on rules published in ‚ÄúAssessment of the eye irritating properties of
+    based on rules published in ìAssessment of the eye irritating properties of
     chemicals by applying alternatives to  the Draize rabbit eye test:  the use
     of  QSARs and  in vitro  tests for  the classification  of eye  irritation,
     Ingrid  Gerner,  Manfred  Liebsch   &  Horst  Spielmann,  Alternatives   to
-    Laboratory Animals, 2005, 33, pp. 215-237‚Äù;
+    Laboratory Animals, 2005, 33, pp. 215-237î;
 
     - A decision tree for estimating carcinogenicity and mutagenicity, based on
-    the rules  published in  the document:  ‚ÄúThe Benigni  / Bossa  rulebase for
-    mutagenicity and carcinogenicity ‚Äì a module of Toxtree‚Äù, by R. Benigni,  C.
+    the rules  published in  the document:  ìThe Benigni  / Bossa  rulebase for
+    mutagenicity and carcinogenicity ñ a module of Toxtreeî, by R. Benigni,  C.
     Bossa, N. Jeliazkova, T. Netzeva, and A. Worth. European Commission  report
     EUR 23241 EN;
 
@@ -64,8 +64,8 @@ INTRODUCTION
     biodegradability of the chemical. Installation and user manuals  available;
 
     - Structure Alerts for the in vivo micronucleus assay in rodents, based  on
-    the rules, published in the document ‚ÄúDevelopment of structural alerts  for
-    the in vivo  micronucleus assay in  rodents‚Äù, by Romualdo  Benigni, Cecilia
+    the rules, published in the document ìDevelopment of structural alerts  for
+    the in vivo  micronucleus assay in  rodentsî, by Romualdo  Benigni, Cecilia
     Bossa, Olga Tcheremenskaia and Andrew Worth, European Commission report EUR
     23844 EN;
 
@@ -82,7 +82,7 @@ INTRODUCTION
     contains structural alerts, able to identify Michael Acceptors, as  defined
     in 	T. Wayne Schultz, Jason W. Yarbrough, Robert S. Hunter, Aynur O. Aptula
     (2007) Verification  of the  Structural Alerts for Michael Acceptors. Chem.
-    Res. Toxicol. 20, 1359-1363;
+    Res. Toxicol. 20, 1359ñ1363;
 
     -  Skin  sensitization alerts,  as  per Enoch  SJ,  Madden JC,  Cronin  MT,
     Identification of mechanisms of toxic action for skin sensitisation using a
@@ -91,13 +91,13 @@ INTRODUCTION
     -  SMARTCyp  - Cytochrome  P450  - Mediated  Metabolism,  implementation of
     Patrik Rydberg, David E. Gloriam, Jed Zaretzki, Curt Breneman, Lars  Olsen,
     SMARTCyp:  A  2D Method  for  Prediction of  Cytochrome  P450-Mediated Drug
-    Metabolism, ACS Med. Chem. Lett., 2010, 1 (3), pp 96‚Äì100;
+    Metabolism, ACS Med. Chem. Lett., 2010, 1 (3), pp 96ñ100;
 
     -  Kroes TTC  decision tree  - Kroes,  R., Renwick,  A.G., Cheeseman,  M., 
     Kleiner, J., Mangelsdorf, I., Piersma, A., Schilter, B., Schlatter, J., van
     Schothorst, F., Vos, J.G.,  Wurtzen, G. (2004). Structure  based thresholds
     of  toxicological concern  (TTC): guidance  for application  to substances 
-    present at low levels in the diet. Food Chem. Toxicol. 42, 65‚Äì83;
+    present at low levels in the diet. Food Chem. Toxicol. 42, 65ñ83;
 
     - Modified Verhaar scheme for  predicting toxicity mode of actions  - rules
     reordered, according to S.J. Enoch, M. Hewitt, M.T.D. Cronin, S. Azam, J.C.
@@ -200,11 +200,11 @@ REDISTRIBUTION
 
 CHANGE LOG
 
-    * Toxtree-v2.6.13 
+    * Toxtree-v3.0.0-SNAPSHOT 
 
-    - updated to Open Parser for Systematic IUPAC Nomenclature (OPSIN) 1.6.0;
+    - updated to CDK 1.5.10;
 
-    - updated to ambit-2.7.3;
+    - updated to ambit-3.0.0;
 
     - fixed remote query issue
     

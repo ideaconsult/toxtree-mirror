@@ -14,7 +14,7 @@ public class RuleOnlyAllowedSubstructuresCounter extends RuleOnlyAllowedSubstruc
 	private static final long serialVersionUID = -3700379077322343876L;
 	protected IAlertCounter alertsCounter;
 	
-	public RuleOnlyAllowedSubstructuresCounter() {
+	public RuleOnlyAllowedSubstructuresCounter() throws Exception {
 		super();
 		alertsCounter = new DefaultAlertCounter();
 	}

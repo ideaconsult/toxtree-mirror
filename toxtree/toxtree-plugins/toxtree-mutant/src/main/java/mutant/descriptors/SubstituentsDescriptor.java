@@ -13,6 +13,7 @@ import org.openscience.cdk.qsar.DescriptorValue;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 import org.openscience.cdk.qsar.result.DoubleArrayResult;
 import org.openscience.cdk.qsar.result.IDescriptorResult;
+import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 public abstract class SubstituentsDescriptor implements IMolecularDescriptor {
 	protected transient static Logger logger = Logger.getLogger(SubstituentsDescriptor.class.getName()); 
@@ -79,7 +80,7 @@ public abstract class SubstituentsDescriptor implements IMolecularDescriptor {
 	}
 	public Object getParameterType(String arg0) {
 		if (paramNames[0].equals(arg0))
-			return new QueryAtomContainer();
+			return new QueryAtomContainer(SilentChemObjectBuilder.getInstance());
 		else if (paramNames[1].equals(arg0)) return new String[] {};
 		else return null;
 	}

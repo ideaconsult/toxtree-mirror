@@ -34,7 +34,7 @@ import toxTree.tree.cramer.RuleRingComplexSubstituents30;
  */
 public class RuleRingComplexSubstituents30Test extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return  new RuleRingComplexSubstituents30();
 	}
 	public void testRule() throws Exception{

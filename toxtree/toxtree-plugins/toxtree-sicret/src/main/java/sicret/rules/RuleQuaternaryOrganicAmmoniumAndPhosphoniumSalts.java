@@ -16,67 +16,74 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package sicret.rules;
-
-import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 import toxTree.tree.rules.smarts.RuleSMARTSubstructure;
-import ambit2.smarts.query.SMARTSException;
-
 
 /**
  * Rule Quaternary Organic Ammonium And Phosphonium Salts<br>
  * 
  * @author Nina Jeliazkova nina@acad.bg
- * @author Martin Martinov
- * <b>Modified</b> Dec 17, 2006
+ * @author Martin Martinov <b>Modified</b> Dec 17, 2006
  */
-public class RuleQuaternaryOrganicAmmoniumAndPhosphoniumSalts extends RuleAnySubstructure {
+public class RuleQuaternaryOrganicAmmoniumAndPhosphoniumSalts extends
+		RuleAnySubstructure {
 	private static final long serialVersionUID = 0;
 	RuleSMARTSubstructure rule = null;
-	public RuleQuaternaryOrganicAmmoniumAndPhosphoniumSalts() {
-		//TODO fix sterically hindered condition (example NO fails)
+
+	public RuleQuaternaryOrganicAmmoniumAndPhosphoniumSalts() throws Exception {
+		// TODO fix sterically hindered condition (example NO fails)
 		super();
-		try {
-			addSubstructure(FunctionalGroups.createAtomContainer("[N+]23(CN1CN(CN(C1)C2)C3)",false));	
-			rule = new RuleSMARTSubstructure();
-			String PhosphoniumSalts = "[PX4]c1ccccc1";
-			rule.initSingleSMARTS(rule.getSmartsPatterns(),"1", PhosphoniumSalts);
-			
-			id = "56";
-			title = "Quaternary Organic Ammonium And Phosphonium Salts";
-			
-			examples[0] = "c1ccccc1ON";
-			examples[1] = "ClC=CC[N+]23(CN1CN(CN(C1)C2)C3)";	
-			editable = false;
-		} catch (SMARTSException x) {
-			logger.log(Level.SEVERE,x.getMessage(),x);
-		}
+
+		rule = new RuleSMARTSubstructure();
+		String PhosphoniumSalts = "[PX4]c1ccccc1";
+		rule.initSingleSMARTS(rule.getSmartsPatterns(), "1", PhosphoniumSalts);
+
+		id = "56";
+		title = "Quaternary Organic Ammonium And Phosphonium Salts";
+
+		examples[0] = "c1ccccc1ON";
+		examples[1] = "ClC=CC[N+]23(CN1CN(CN(C1)C2)C3)";
+		editable = false;
 	}
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		setQuery(super.initQuery());
+		addSubstructure(FunctionalGroups.createAtomContainer(
+				"[N+]23(CN1CN(CN(C1)C2)C3)", false));
+		return getQuery();
+	}
+
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
 		logger.finer(toString());
-		int c = 0;		
-		for (int i=0; i < mol.getAtomCount();i++) {
-			IAtom a = mol.getAtom(i);				
+		int c = 0;
+		for (int i = 0; i < mol.getAtomCount(); i++) {
+			IAtom a = mol.getAtom(i);
 			if (a.getSymbol().equals("Cl")) {
-				 c++;
-				 
+				c++;
+
 			}
-			
+
 		}
-		return ((super.verifyRule(mol) || rule.verifyRule(mol))   && c > 0);
+		return ((super.verifyRule(mol) || rule.verifyRule(mol)) && c > 0);
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.AbstractRule#isImplemented()
 	 */
 	public boolean isImplemented() {

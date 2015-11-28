@@ -26,11 +26,11 @@ package toxtree.plugins.ames.test.descriptors;
 import java.util.List;
 
 import org.junit.Test;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.query.FunctionalGroups;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SmartsPatternCDK;
 

@@ -26,11 +26,9 @@ package toxTree.tree;
 
 import java.io.Serializable;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
+import ambit2.rendering.IAtomContainerHighlights;
 import toxTree.core.IDecisionCategory;
 import toxTree.core.IDecisionRule;
 
@@ -234,7 +232,7 @@ public class RuleResult implements Serializable {
 		
 		return explain(true).toString();
 	}
-	IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+	IAtomContainerHighlights getSelector() {
 		return getRule().getSelector();
 	}
 }

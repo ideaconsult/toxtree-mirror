@@ -29,33 +29,30 @@
 
 package mutant.test;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.query.MolAnalyser;
 import ambit2.smarts.query.SmartsPatternCDK;
 
-public class SMARTSTest extends TestCase {
+public class SMARTSTest {
 
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
 
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-    public void test() throws Exception {
-        //"[cR1r6]!@[cR1r6]"
-        String smarts = "c1ccccc1!@c2ccccc2";
-        assertEquals(0,match(smarts,"C=1C=CC=2NC(=CC=2(C=1))C=3C=CC=C(C=3)Cl"));
-        assertTrue(match(smarts,"c1ccccc1-c2ccccc2")>0);
-    }
-    public int match(String smarts, String smiles) throws Exception {
-        IAtomContainer mol = toxTree.query.FunctionalGroups.createAtomContainer(smiles);
-        MolAnalyser.analyse(mol);
-        SmartsPatternCDK sm = new SmartsPatternCDK();
-        sm.setSmarts(smarts);
-        return sm.match(mol);
-    }    
+	@Test
+	public void test() throws Exception {
+		// "[cR1r6]!@[cR1r6]"
+		String smarts = "c1ccccc1!@c2ccccc2";
+		Assert.assertEquals(0, match(smarts, "C=1C=CC=2NC(=CC=2(C=1))C=3C=CC=C(C=3)Cl"));
+		Assert.assertTrue(match(smarts, "c1ccccc1-c2ccccc2") > 0);
+	}
+
+	public int match(String smarts, String smiles) throws Exception {
+		IAtomContainer mol = toxTree.query.FunctionalGroups.createAtomContainer(smiles);
+		MolAnalyser.analyse(mol);
+		SmartsPatternCDK sm = new SmartsPatternCDK();
+		sm.setSmarts(smarts);
+		return sm.match(mol);
+	}
 }

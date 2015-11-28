@@ -30,7 +30,6 @@ import java.io.ObjectInputStream;
 import java.util.logging.Level;
 
 import net.idea.modbcum.i.exceptions.AmbitException;
-import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -42,6 +41,7 @@ import toxTree.exceptions.DRuleNotImplemented;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.Tools;
 import toxTree.tree.AbstractRule;
+import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * A rule, which returns true if the query is isomorphic to one of the
@@ -167,8 +167,8 @@ public class RuleStructuresList extends AbstractRule {
 		return ok;
 	}
 
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	public IAtomContainerHighlights getSelector() {
+		return new IAtomContainerHighlights() {
 			/**
 		     * 
 		     */

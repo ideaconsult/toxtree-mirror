@@ -20,117 +20,136 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package mutant.test;
 
 import java.util.List;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 import mutant.rules.RuleDACancerogenicityAromaticAmines;
 
-import org.openscience.cdk.exception.CDKException;
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IReaction;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
-import toxTree.exceptions.ReactionException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 import toxTree.query.SimpleReactions;
 
-public class RuleDACancerogenicityAromaticAminesTest extends TestCase {
-
-	public void testVerifyRule() throws Exception  {
-		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();	
-		IMolecule mol = (IMolecule) FunctionalGroups.createAtomContainer("CC(O)(CS(=O)(=O)C1=CC=C(F)C=C1)C(=O)NC2=CC=C(C(=C2)C(F)(F)F)C(N)=O","test");
+public class RuleDACancerogenicityAromaticAminesTest {
+	@Test
+	public void testVerifyRule() throws Exception {
+		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups
+				.createAtomContainer(
+						"CC(O)(CS(=O)(=O)C1=CC=C(F)C=C1)C(=O)NC2=CC=C(C(=C2)C(F)(F)F)C(N)=O",
+						"test");
 		MolAnalyser.analyse(mol);
 		rule.verifyRule(mol);
 	}
-	public void testHasDescriptors() {
+
+	@Test
+	public void testHasDescriptors() throws Exception {
 		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
 		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertEquals(10,d.size());
-	}
-	public void testDescriptorLRImplemented() {
-		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(0));
-	}
-	public void testDescriptorB5RImplemented() {
-		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(1));
-	}	
-	public void testDescriptorEHOMOImplemented() {
-		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(2));
-	}
-	public void testDescriptorELUMOImplemented() {
-		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(3));
-	}	
-	public void testDescriptorMR3Implemented() {
-		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(4));
-	}		
-	public void testDescriptorMR5Implemented() {
-		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(5));
+		Assert.assertNotNull(d);
+		Assert.assertEquals(10, d.size());
 	}
 
-	public void testDescriptorMR6Implemented() {
+	@Test
+	public void testDescriptorLRImplemented() throws Exception {
 		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
 		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(6));
-	}	
-	public void testDescriptorIAnImplemented() {
-		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(7));
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(0));
 	}
-	public void testDescriptorINO2Implemented() {
+
+	@Test
+	public void testDescriptorB5RImplemented() throws Exception {
 		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
 		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(8));
-	}	
-	public void testDescriptorIBiBrImplemented() {
-		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
-		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
-		assertNotNull(d);
-		assertNotNull(d.get(9));
-	}	
-	public void testAromaticDiAzo() {
-		try {
-			SimpleReactions sr = new SimpleReactions();
-			IReaction r = sr.getMetabolicReaction(0);
-			IAtomContainer mol = FunctionalGroups.createAtomContainer("Cc1ccc(cc1)N=Nc2ccccc2",true);
-			IMoleculeSet products = SimpleReactions.process(mol,r);
-			assertNotNull(products);
-			assertEquals(2,products.getAtomContainerCount());
-		} catch (CDKException x) {
-			fail(x.getMessage());
-		} catch (ReactionException x) {
-			fail(x.getMessage());
-		}
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(1));
 	}
-	
+
+	@Test
+	public void testDescriptorEHOMOImplemented() throws Exception {
+		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(2));
+	}
+
+	@Test
+	public void testDescriptorELUMOImplemented() throws Exception {
+		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(3));
+	}
+
+	@Test
+	public void testDescriptorMR3Implemented() throws Exception {
+		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(4));
+	}
+
+	@Test
+	public void testDescriptorMR5Implemented() throws Exception {
+		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(5));
+	}
+
+	@Test
+	public void testDescriptorMR6Implemented() throws Exception {
+		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(6));
+	}
+
+	@Test
+	public void testDescriptorIAnImplemented() throws Exception {
+		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(7));
+	}
+
+	@Test
+	public void testDescriptorINO2Implemented() throws Exception {
+		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(8));
+	}
+
+	@Test
+	public void testDescriptorIBiBrImplemented() throws Exception {
+		RuleDACancerogenicityAromaticAmines rule = new RuleDACancerogenicityAromaticAmines();
+		List<IMolecularDescriptor> d = rule.getModel().getDescriptors();
+		Assert.assertNotNull(d);
+		Assert.assertNotNull(d.get(9));
+	}
+
+	@Test
+	public void testAromaticDiAzo() throws Exception {
+
+		SimpleReactions sr = new SimpleReactions();
+		IReaction r = sr.getMetabolicReaction(0);
+		IAtomContainer mol = FunctionalGroups.createAtomContainer(
+				"Cc1ccc(cc1)N=Nc2ccccc2", true);
+		IAtomContainerSet products = SimpleReactions.process(mol, r);
+		Assert.assertNotNull(products);
+		Assert.assertEquals(2, products.getAtomContainerCount());
+
+	}
+
 }
-
-

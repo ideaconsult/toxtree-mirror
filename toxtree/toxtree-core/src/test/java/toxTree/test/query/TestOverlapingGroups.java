@@ -21,63 +21,61 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.test.query;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
+import junit.framework.Assert;
 
+import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 
+public class TestOverlapingGroups {
 
-public class TestOverlapingGroups extends TestCase {
-	public  TestOverlapingGroups() {
-		
+	public void doTest(String smiles) throws Exception {
+		// 1N,2N,3N,5N,6N,7N,16N,17N,19Y,20Y,21N,18N
+		QueryAtomContainer q1 = FunctionalGroups.ester();
+		IAtomContainer mol = (IAtomContainer) FunctionalGroups
+				.createAtomContainer(smiles);
+
+		try {
+			MolAnalyser.analyse(mol);
+		} catch (Exception x) {
+			throw x;
+		}
+		List list = FunctionalGroups.getUniqueBondMap(mol, q1, false);
+		FunctionalGroups.markMaps(mol, q1, list);
+		QueryAtomContainer q2 = FunctionalGroups.polyoxyethylene(1);
+		list = FunctionalGroups.getUniqueBondMap(mol, q2, false);
+		FunctionalGroups.markMaps(mol, q2, list);
+
+		ArrayList ids = new ArrayList();
+		ids.add(q1.getID());
+		ids.add(q2.getID());
+
+		ids.add(FunctionalGroups.C);
+		ids.add(FunctionalGroups.CH);
+		ids.add(FunctionalGroups.CH2);
+		ids.add(FunctionalGroups.CH3);
+		FunctionalGroups.markCHn(mol);
+
+		boolean ok = FunctionalGroups.hasMarkedOnlyTheseGroups(mol, ids);
+		Assert.assertTrue(ok);
 	}
-	
-	
-	public void doTest(String smiles) {
-	    //1N,2N,3N,5N,6N,7N,16N,17N,19Y,20Y,21N,18N        
-	    QueryAtomContainer q1 = FunctionalGroups.ester(); 
-	    IAtomContainer mol = (IAtomContainer) FunctionalGroups.createAtomContainer(smiles);
-	    
-	    try {
-	    	MolAnalyser.analyse(mol);
-	    } catch (Exception x) {
-	    	x.printStackTrace();
-	    }
-	    List  list = FunctionalGroups.getUniqueBondMap(mol,q1,false);
-	    FunctionalGroups.markMaps(mol,q1,list);
-	    QueryAtomContainer q2 = FunctionalGroups.polyoxyethylene(1);
-	    list = FunctionalGroups.getUniqueBondMap(mol,q2,false);
-	    FunctionalGroups.markMaps(mol,q2,list);
-	 
-    
-	    ArrayList ids = new ArrayList();
-	    ids.add(q1.getID());
-	    ids.add(q2.getID());
-	    
-        
-	    ids.add(FunctionalGroups.C);	    
-	    ids.add(FunctionalGroups.CH);
-	    ids.add(FunctionalGroups.CH2);
-	    ids.add(FunctionalGroups.CH3);
-	    FunctionalGroups.markCHn(mol);
-	    
-	    boolean ok = FunctionalGroups.hasMarkedOnlyTheseGroups(mol,ids);
-	    assertTrue(ok);
-	}
-	
-	public void test1() {
+
+	@Test
+	public void test1() throws Exception {
 		doTest("COCCOC(=O)C=C");
 	}
-	public void test2() {
+
+	@Test
+	public void test2() throws Exception {
 		doTest("C=CC(=O)OCCOC");
-	}	
+	}
 }

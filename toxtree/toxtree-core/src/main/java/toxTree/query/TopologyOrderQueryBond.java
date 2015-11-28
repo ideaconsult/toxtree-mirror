@@ -21,32 +21,29 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.query;
-
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 
 /**
  * The same as {@link org.openscience.cdk.isomorphism.matchers.OrderQueryBond}
  * with additional condition to be acyclic or cyclic.
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-8-17
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-8-17
  */
 public class TopologyOrderQueryBond extends OrderQueryBond {
-	protected boolean inRing = false; 
-	/**
-	 * Comment for <code>serialVersionUID</code>
-	 */
-	private static final long serialVersionUID = 2152216425045457981L;
+	protected boolean inRing = false;
+
 	/**
 	 * 
 	 */
-	public TopologyOrderQueryBond() {
-		super();
+	public TopologyOrderQueryBond(IChemObjectBuilder builder) {
+		super(builder);
 	}
 
 	/**
@@ -54,23 +51,29 @@ public class TopologyOrderQueryBond extends OrderQueryBond {
 	 * @param arg1
 	 * @param arg2
 	 */
-	public TopologyOrderQueryBond(IQueryAtom arg0, IQueryAtom arg1, IBond.Order arg2) {
-		super(arg0, arg1, arg2);
+	public TopologyOrderQueryBond(IQueryAtom arg0, IQueryAtom arg1,
+			IBond.Order arg2, IChemObjectBuilder builder) {
+		super(arg0, arg1, arg2, builder);
 	}
-	public TopologyOrderQueryBond(IQueryAtom arg0, IQueryAtom arg1, IBond.Order arg2, boolean inRing) {
-		super(arg0, arg1, arg2);
+
+	public TopologyOrderQueryBond(IQueryAtom arg0, IQueryAtom arg1,
+			IBond.Order arg2, boolean inRing, IChemObjectBuilder builder) {
+		super(arg0, arg1, arg2, builder);
 		this.inRing = inRing;
-	}	
-	/* (non-Javadoc)
-	 * @see org.openscience.cdk.isomorphism.matchers.OrderQueryBond#matches(org.openscience.cdk.interfaces.Bond)
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.openscience.cdk.isomorphism.matchers.OrderQueryBond#matches(org.
+	 * openscience.cdk.interfaces.Bond)
 	 */
-	
+
 	@Override
 	public boolean matches(IBond arg0) {
-		return super.matches(arg0) && (
-		(arg0.getFlag(CDKConstants.ISINRING) && inRing) ||
-		(!arg0.getFlag(CDKConstants.ISINRING) && !inRing)
-		);
+		return super.matches(arg0)
+				&& ((arg0.getFlag(CDKConstants.ISINRING) && inRing) || (!arg0
+						.getFlag(CDKConstants.ISINRING) && !inRing));
 	}
 
 	/**
@@ -79,8 +82,10 @@ public class TopologyOrderQueryBond extends OrderQueryBond {
 	public boolean isInRing() {
 		return inRing;
 	}
+
 	/**
-	 * @param inRing The inRing to set.
+	 * @param inRing
+	 *            The inRing to set.
 	 */
 	public void setInRing(boolean inRing) {
 		this.inRing = inRing;

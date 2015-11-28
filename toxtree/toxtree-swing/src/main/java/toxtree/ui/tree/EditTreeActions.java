@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxtree.ui.tree;
 
 import java.awt.Component;
@@ -58,9 +58,9 @@ public class EditTreeActions extends ActionMap {
 	public final static String ACTION_MODIFYYESCATEGORY = "ModifyYesCategory";
 
 	public final static String ACTION_MODIFYNOCATEGORY = "ModifyNoCategory";
-	
+
 	public final static String ACTION_MODIFYEXPLANATION = "Modify explanation";
-	
+
 	public final static String ACTION_NEWRULE = "New rule";
 
 	public final static String ACTION_VERIFY = "Delete rule";
@@ -71,7 +71,6 @@ public class EditTreeActions extends ActionMap {
 
 	public final static String ACTION_EDITCATEGORY = "Edit category";
 	public final static String ACTION_VERIFYUNUSED = "Remove unused";
-	
 
 	protected IDecisionMethod tree;
 
@@ -114,11 +113,13 @@ public class EditTreeActions extends ActionMap {
 
 	protected ActionMap createCategoryActions() {
 		ActionMap a = new ActionMap();
-		a.put(ACTION_NEWCATEGORY,
-				new SelectCategoryFromListAction(tree, ACTION_NEWCATEGORY));
-		a.put(ACTION_EDITCATEGORY, new EditCategoryAction(tree,ACTION_EDITCATEGORY));
-		a.put(ACTION_VERIFYUNUSED, new VerifyUnusedCategories(tree,ACTION_VERIFYUNUSED));
-		
+		a.put(ACTION_NEWCATEGORY, new SelectCategoryFromListAction(tree,
+				ACTION_NEWCATEGORY));
+		a.put(ACTION_EDITCATEGORY, new EditCategoryAction(tree,
+				ACTION_EDITCATEGORY));
+		a.put(ACTION_VERIFYUNUSED, new VerifyUnusedCategories(tree,
+				ACTION_VERIFYUNUSED));
+
 		return a;
 	}
 
@@ -134,11 +135,11 @@ public class EditTreeActions extends ActionMap {
 
 	protected ActionMap createTreeActions() {
 		ActionMap a = new ActionMap();
-		a.put(ACTION_MODIFYEXPLANATION, 
-				new EditTreeExplanation(tree,"Modify tree caption"));
-        a.put("Save tree", new SaveTreeAction(tree, "Save"));
+		a.put(ACTION_MODIFYEXPLANATION, new EditTreeExplanation(tree,
+				"Modify tree caption"));
+		a.put("Save tree", new SaveTreeAction(tree, "Save"));
 		return a;
-	}	
+	}
 
 	public ActionMap getCategoryActions() {
 		return categoryActions;
@@ -174,14 +175,14 @@ public class EditTreeActions extends ActionMap {
 		for (int i = 0; i < keys.length; i++) {
 			Action a = treeNodeActions.get(keys[i]);
 			if (a instanceof INodeAction)
-				((INodeAction) treeNodeActions.get(keys[i])).setDecisionNode(node);
+				((INodeAction) treeNodeActions.get(keys[i]))
+						.setDecisionNode(node);
 			else if (a instanceof IRuleAction)
-				((IRuleAction) treeNodeActions.get(keys[i]))
-						.setRule(node.getRule());
+				((IRuleAction) treeNodeActions.get(keys[i])).setRule(node
+						.getRule());
 		}
-		
-		
-		keys =ruleActions.keys();
+
+		keys = ruleActions.keys();
 		for (int i = 0; i < keys.length; i++) {
 			Action a = ruleActions.get(keys[i]);
 			if (a instanceof SetBranchAction)
@@ -190,48 +191,51 @@ public class EditTreeActions extends ActionMap {
 				((IRuleAction) ruleActions.get(keys[i]))
 						.setRule(node.getRule());
 		}
-		
-		
+
 	}
+
 	public void setCategory(IDecisionCategory category) {
 		Object[] keys = categoryActions.keys();
 		for (int i = 0; i < keys.length; i++) {
 			Action a = categoryActions.get(keys[i]);
 			if (a instanceof ICategoryAction)
 				((ICategoryAction) a).setCategory(category);
-				//((IRuleAction) a).setRule(node.getRule());
+			// ((IRuleAction) a).setRule(node.getRule());
 		}
-		
-	}	
+
+	}
+
 	public void setRule(IDecisionRule rule) {
 		Object[] keys = treeNodeActions.keys();
 		for (int i = 0; i < keys.length; i++) {
 			Action a = treeNodeActions.get(keys[i]);
 			if (a instanceof IRuleAction)
 				((IRuleAction) a).setRule(rule);
-				//((IRuleAction) a).setRule(node.getRule());
+			// ((IRuleAction) a).setRule(node.getRule());
 		}
-		
+
 		keys = ruleActions.keys();
 		for (int i = 0; i < keys.length; i++) {
 			Action a = ruleActions.get(keys[i]);
 			if (a instanceof IRuleAction)
 				((IRuleAction) a).setRule(rule);
-				//((IRuleAction) a).setRule(node.getRule());
+			// ((IRuleAction) a).setRule(node.getRule());
 		}
-		
+
 	}
-	
+
 	public void setParentComponent(ActionMap actions, Component parent) {
 		Object[] keys = actions.keys();
 		for (int i = 0; i < keys.length; i++) {
 			Action a = actions.get(keys[i]);
-			a.putValue(AbstractTreeAction.PARENTKEY,parent);
+			a.putValue(AbstractTreeAction.PARENTKEY, parent);
 		}
-	}	
+	}
+
 	public synchronized ActionMap getTreeActions() {
 		return treeActions;
 	}
+
 	public synchronized void setTreeActions(ActionMap treeActions) {
 		this.treeActions = treeActions;
 	}

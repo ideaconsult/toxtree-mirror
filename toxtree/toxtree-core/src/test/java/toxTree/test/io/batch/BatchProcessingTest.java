@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.test.io.batch;
 
 import java.io.File;
@@ -44,17 +44,16 @@ import toxTree.io.batch.ChemObjectBatchProcessing;
 
 /**
  * TODO add description
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-9-4
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-9-4
  */
-public class BatchProcessingTest  {
+public class BatchProcessingTest {
 
 	protected transient static Logger logger = Logger.getLogger(BatchProcessingTest.class.getName());
 
-
 	@Before
 	public void setUp() throws Exception {
-        Introspection.setLoader(getClass().getClassLoader());
+		Introspection.setLoader(getClass().getClassLoader());
 	}
 
 	@Test
@@ -68,70 +67,66 @@ public class BatchProcessingTest  {
 	@Test
 	public void testRoundTrip() throws Exception {
 		URL url1 = this.getClass().getClassLoader().getResource("data/Misc/hbMolecules.sdf");
-			ChemObjectBatchProcessing bp = new ChemObjectBatchProcessing(url1.getFile(),
-					"results.sdf");
-				Assert.assertEquals(bp.getStatus(),BatchProcessing.STATUS_NOTSTARTED);			
+		ChemObjectBatchProcessing bp = new ChemObjectBatchProcessing(url1.getFile(), "results.sdf");
+		Assert.assertEquals(bp.getStatus(), BatchProcessing.STATUS_NOTSTARTED);
 
-				//writing
-				File fwrite = bp.createConfigFile();
-				bp.setConfigFile(fwrite);
-				bp.saveConfig();
-				bp.close();
-				String filename = fwrite.getAbsolutePath();
-				logger.fine("Temporary file created\t"+filename);
-				
-				//reading
-				File fread = new File(filename);
-				
-				BatchProcessing newBP = (BatchProcessing)BatchFactory.createFromConfig(fread);
-				
-				Assert.assertEquals(bp,newBP);
-				
-				newBP.addObserver(new Observer() {
-					public void update(Observable o, Object arg) {
-						BatchProcessing b = (BatchProcessing) o;
-						if (b.getReadRecordsCount() == 20)
-							try {
-								//cancel batch job
-								b.deleteObserver(this);
-								b.cancel();
-								//save configuration
-								b.saveConfig();
-								Assert.assertEquals(b.getStatus(),BatchProcessing.STATUS_ABORTED);
-								Assert.assertEquals(b.getReadRecordsCount(),20);
-								Assert.assertEquals(b.getWrittenRecordsCount(),20);
-								b.close();
-								
-								File configFile = b.getConfigFile();
-								BatchProcessing b1 =(BatchProcessing)BatchFactory.createFromConfig(configFile);
-								Assert.assertEquals(b1.getStatus(),BatchProcessing.STATUS_ABORTED);
-								Assert.assertEquals(b1.getReadRecordsCount(),20);
-								Assert.assertEquals(b1.getWrittenRecordsCount(),20);
-								
-								b1.start();
-								Assert.assertEquals(b1.getStatus(),BatchProcessing.STATUS_FINISHED);
-								Assert.assertEquals(b1.getReadRecordsCount(),37);
-								Assert.assertEquals(b1.getWrittenRecordsCount(),37);
-								
-								configFile.delete();
-								//trying to create from nonexistent config file
-								try {
-									BatchFactory.createFromConfig(configFile);
-								} catch (BatchProcessingException x) {
-									logger.log(Level.SEVERE,x.getMessage(),x);
-									Assert.assertTrue(true);
-								}	
-																
-								
-							} catch (BatchProcessingException x) {
-								Assert.fail(x.getMessage());
-							}
+		// writing
+		File fwrite = bp.createConfigFile();
+		bp.setConfigFile(fwrite);
+		bp.saveConfig();
+		bp.close();
+		String filename = fwrite.getAbsolutePath();
+		logger.fine("Temporary file created\t" + filename);
 
+		// reading
+		File fread = new File(filename);
+
+		BatchProcessing newBP = (BatchProcessing) BatchFactory.createFromConfig(fread);
+
+		Assert.assertEquals(bp, newBP);
+
+		newBP.addObserver(new Observer() {
+			public void update(Observable o, Object arg) {
+				BatchProcessing b = (BatchProcessing) o;
+				if (b.getReadRecordsCount() == 20)
+					try {
+						// cancel batch job
+						b.deleteObserver(this);
+						b.cancel();
+						// save configuration
+						b.saveConfig();
+						Assert.assertEquals(b.getStatus(), BatchProcessing.STATUS_ABORTED);
+						Assert.assertEquals(b.getReadRecordsCount(), 20);
+						Assert.assertEquals(b.getWrittenRecordsCount(), 20);
+						b.close();
+
+						File configFile = b.getConfigFile();
+						BatchProcessing b1 = (BatchProcessing) BatchFactory.createFromConfig(configFile);
+						Assert.assertEquals(b1.getStatus(), BatchProcessing.STATUS_ABORTED);
+						Assert.assertEquals(b1.getReadRecordsCount(), 20);
+						Assert.assertEquals(b1.getWrittenRecordsCount(), 20);
+
+						b1.start();
+						Assert.assertEquals(b1.getStatus(), BatchProcessing.STATUS_FINISHED);
+						Assert.assertEquals(b1.getReadRecordsCount(), 37);
+						Assert.assertEquals(b1.getWrittenRecordsCount(), 37);
+
+						configFile.delete();
+						// trying to create from nonexistent config file
+						try {
+							BatchFactory.createFromConfig(configFile);
+						} catch (BatchProcessingException x) {
+							logger.log(Level.SEVERE, x.getMessage(), x);
+							Assert.assertTrue(true);
+						}
+
+					} catch (BatchProcessingException x) {
+						Assert.fail(x.getMessage());
 					}
-				});
-				newBP.start();				
-				
-			
+
+			}
+		});
+		newBP.start();
 
 	}
 

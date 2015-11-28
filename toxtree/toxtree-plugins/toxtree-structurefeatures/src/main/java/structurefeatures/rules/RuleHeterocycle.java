@@ -18,8 +18,9 @@ public class RuleHeterocycle extends RuleSMARTSSubstructureAmbit {
 			//heteroamino
 			super.initSingleSMARTS(super.smartsPatterns,"4", "[$([nX3](:*):*),$([nX2](:*):*),$([#7X2]=*),$([NX3](=*)=*),$([#7X3+](-*)=*),$([#7X3+H]=*)]");
 			//pyrazine
-			super.initSingleSMARTS(super.smartsPatterns,"5", "[$([N=C1[#6]:,=[#6]C(=[C,N])[#6]:,=[#6]1])],$(a-[N=C1[#6]:,=[#6]C(=[C,N])[#6]:,=[#6]1])]");
-			
+			//super.initSingleSMARTS(super.smartsPatterns,"5", "[$([N=C1[#6]:,=[#6]C(=[C,N])[#6]:,=[#6]1])],$(a-[N=C1[#6]:,=[#6]C(=[C,N])[#6]:,=[#6]1])]");
+			//gives Incorrect bond expression: [$([N=C1[#6]:,=[#6]C(=[C,N])[#6]:,=[#6]1])],
+			super.initSingleSMARTS(super.smartsPatterns,"5","c1cnccn1");
 			
 			id = "16";
 			title = "Heterocycle";

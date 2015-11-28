@@ -21,31 +21,27 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.query;
 
 import org.openscience.cdk.Bond;
 import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 import org.openscience.cdk.isomorphism.matchers.OrderQueryBond;
 
 /**
  * TODO add description
- * @author Vedina
- * <b>Modified</b> 2005-8-19
+ * 
+ * @author Vedina <b>Modified</b> 2005-8-19
  */
 public class SingleOrDoubleQueryBond extends OrderQueryBond {
 
 	/**
-	 * Comment for <code>serialVersionUID</code>
-	 */
-	private static final long serialVersionUID = -6456640796754649040L;
-
-	/**
 	 * 
 	 */
-	public SingleOrDoubleQueryBond() {
-		super();
+	public SingleOrDoubleQueryBond(IChemObjectBuilder builder) {
+		super(builder);
 
 	}
 
@@ -53,15 +49,15 @@ public class SingleOrDoubleQueryBond extends OrderQueryBond {
 	 * @param atom1
 	 * @param atom2
 	 */
-	public SingleOrDoubleQueryBond(IQueryAtom atom1, IQueryAtom atom2) {
-		super(atom1, atom2,CDKConstants.BONDORDER_SINGLE);
+	public SingleOrDoubleQueryBond(IQueryAtom atom1, IQueryAtom atom2,
+			IChemObjectBuilder builder) {
+		super(atom1, atom2, CDKConstants.BONDORDER_SINGLE, builder);
 	}
+
 	public boolean matches(Bond bond) {
-		return
-			((this.getOrder() == CDKConstants.BONDORDER_SINGLE) || 
-			(this.getOrder() == CDKConstants.BONDORDER_DOUBLE)) 
-			&&
-			((bond.getOrder() == CDKConstants.BONDORDER_SINGLE) || 
-					(bond.getOrder() == CDKConstants.BONDORDER_DOUBLE));			
-    };
+		return ((this.getOrder() == CDKConstants.BONDORDER_SINGLE) || (this
+				.getOrder() == CDKConstants.BONDORDER_DOUBLE))
+				&& ((bond.getOrder() == CDKConstants.BONDORDER_SINGLE) || (bond
+						.getOrder() == CDKConstants.BONDORDER_DOUBLE));
+	};
 }

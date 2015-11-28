@@ -61,7 +61,7 @@ public class RuleSimplyBranchedAliphaticHydrocarbon extends RuleCarbohydrate {
 	 * Constructor
 	 * 
 	 */
-	public RuleSimplyBranchedAliphaticHydrocarbon() {
+	public RuleSimplyBranchedAliphaticHydrocarbon() throws Exception{
 		super();
 		id = "5";
 		title = "Simply branched aliphatic hydrocarbon or a common carbohydrate";

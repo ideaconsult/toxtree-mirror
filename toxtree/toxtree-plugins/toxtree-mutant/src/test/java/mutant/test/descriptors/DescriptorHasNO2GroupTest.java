@@ -31,17 +31,15 @@ package mutant.test.descriptors;
 
 import mutant.descriptors.DescriptorHasNO2Group;
 
+import org.junit.After;
+import org.junit.Before;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
 public class DescriptorHasNO2GroupTest extends DescriptorsTest {
-
-    protected void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
         super.setUp();
         addPropertiesToTest("I(NO2)_expected","I(NO2)");        
-    }
-
-    protected void tearDown() throws Exception {
-        super.tearDown();
     }
 
     @Override

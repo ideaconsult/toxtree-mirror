@@ -53,19 +53,18 @@ import org.openscience.cdk.inchi.InChIGeneratorFactory;
 import org.openscience.cdk.inchi.InChIToStructure;
 import org.openscience.cdk.index.CASNumber;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.query.FunctionalGroups;
 import toxTree.query.remote.RemoteCompoundLookup;
+import uk.ac.cam.ch.wwmm.opsin.NameToStructure;
 import ambit2.base.config.Preferences;
 import ambit2.base.data.Property;
 import ambit2.core.config.AmbitCONSTANTS;
 import ambit2.core.data.EINECS;
-import ambit2.namestructure.Name2StructureProcessor;
 
 /**
  * A {@link javax.swing.JPanel} to enter a SMILES. Now it supports a history of entered SMILES that can be 
@@ -260,23 +259,21 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	
 	    		} else {
 	    			errormsg = String.format(labels.getString(_labels.error_inchi.name()),input);
-	    			Name2StructureProcessor p = new Name2StructureProcessor();
+	    		    NameToStructure nts = NameToStructure.getInstance();
+	    		    String smiles = null;
 	    			try {
-	    				a = p.process(input);
+	    				smiles = nts.parseToSmiles(input);
+	    				a = FunctionalGroups.createAtomContainer(smiles,false);
+	    				a.setProperty(AmbitCONSTANTS.SMILES,smiles);
+	    	    		a.setProperty(CDKConstants.COMMENT,labels.getString(_labels.createdByOpsin.name()));
+	    		    	a.setProperty(AmbitCONSTANTS.NAMES,input);
+	    		    	a.setID(input);
 	    			} catch (Exception x) {
 	    	    		a = null;
 	    	    		errormsg = x.getMessage();
 	    			}
-	    			if (a != null) {
-	    	    		a.setProperty(CDKConstants.COMMENT,labels.getString(_labels.createdByOpsin.name()));
-	    		    	a.setProperty(AmbitCONSTANTS.NAMES,input);
-	    		    	a.setID(input);
-	    		    	if (a instanceof IMolecule) 
-	    		    	try { 
-	    		    		SmilesGenerator g = new SmilesGenerator(); 
-	    		    		a.setProperty(AmbitCONSTANTS.SMILES, g.createSMILES((IMolecule)a));
-	    		    	} catch (Exception x) {};
-	    			} else 
+	    			if (a == null) {
+
 	    				if (Preferences.getProperty(Preferences.REMOTELOOKUP).equals("true")) {
 	    					a =  retrieveRemote(input);
 	    					if (a!=null) {
@@ -292,7 +289,7 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 	    					errormsg = String.format("%s '%s' entered. Name to structure conversion failed. Please enable remote queries via 'Method/Decision Tree Options/Remote query' menu.",
 	    							"Name",input);
 	    				}
-	    				
+	    			}	
 	    		}
 	    	} catch (Exception x) {
 	    		a = null;
@@ -301,18 +298,18 @@ public class SmilesEntryPanel extends StructureEntryPanel implements ItemListene
 		}
     	
     	if (a != null) {
-    		if (a instanceof IMolecule) 
+    		if (a instanceof IAtomContainer) 
 	            try {
 	            	if (sdg == null) sdg = new StructureDiagramGenerator();
 	            	if (ConnectivityChecker.isConnected(a)) {
-	                    sdg.setMolecule((IMolecule)a);
+	                    sdg.setMolecule((IAtomContainer)a);
 	                    sdg.generateCoordinates(new Vector2d(0,1));
 	                    a = sdg.getMolecule();            		
 	            	} else {
-		            	IMoleculeSet molecules = ConnectivityChecker.partitionIntoMolecules(a);            	
+		            	IAtomContainerSet molecules = ConnectivityChecker.partitionIntoMolecules(a);            	
 		                a.removeAllElements();
-		        		for (int i=0; i< molecules.getMoleculeCount();i++) {
-		       				sdg.setMolecule(molecules.getMolecule(i));
+		        		for (int i=0; i< molecules.getAtomContainerCount();i++) {
+		       				sdg.setMolecule(molecules.getAtomContainer(i));
 		       				sdg.generateCoordinates(new Vector2d(0,1));
 		       				a.add(sdg.getMolecule());
 		        		}

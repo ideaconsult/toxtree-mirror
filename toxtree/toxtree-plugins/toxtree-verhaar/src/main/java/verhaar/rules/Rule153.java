@@ -33,8 +33,8 @@ import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
  * <b>Modified</b> July 12, 2011
  */
 public class Rule153 extends RuleSMARTSSubstructureAmbit {
-	QueryAtomContainer phenol = null;
-	QueryAtomContainer benzylAlcohol = null;
+	transient QueryAtomContainer  phenol = null;
+	transient QueryAtomContainer benzylAlcohol = null;
 	/**
 	 * 
 	 */

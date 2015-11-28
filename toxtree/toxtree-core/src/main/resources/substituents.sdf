@@ -8,7 +8,7 @@
 M  END
 
 > <SMILES>
-[*]Br
+*Br
 
 > <Position>
 _
@@ -17,7 +17,7 @@ _
 3.82
 
 > <Group>
-""-Br""
+-Br
 
 > <MR>
 0.89
@@ -48,7 +48,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*][Si](Br)(Br)Br
+*[Si](Br)(Br)Br
 
 > <Position>
 _
@@ -57,7 +57,7 @@ _
 4.55
 
 > <Group>
-""-SiBr3""
+-SiBr3
 
 > <MR>
 3.28
@@ -82,7 +82,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]Cl
+*Cl
 
 > <Position>
 
@@ -91,7 +91,7 @@ M  END
 3.52
 
 > <Group>
-""-Cl""
+-Cl
 
 > <MR>
 0.6
@@ -120,7 +120,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)Cl
+*S(=O)Cl
 
 > <Position>
 _
@@ -160,7 +160,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)Cl
+*S(=O)(=O)Cl
 
 > <Position>
 _
@@ -169,7 +169,7 @@ _
 3.89
 
 > <Group>
-""-SO2Cl""
+-SO2Cl
 
 > <MR>
 1.37
@@ -196,7 +196,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]SCl
+*SCl
 
 > <Position>
 _
@@ -205,7 +205,7 @@ _
 4.06
 
 > <Group>
-""-SCl""
+-SCl
 
 > <MR>
 1.38
@@ -236,7 +236,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(=O)(Cl)Cl
+*P(=O)(Cl)Cl
 
 > <Position>
 _
@@ -274,7 +274,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(Cl)Cl
+*P(Cl)Cl
 
 > <Position>
 _
@@ -283,7 +283,7 @@ _
 4.14
 
 > <Group>
-""-PCl2""
+-PCl2
 
 > <MR>
 2.14
@@ -314,7 +314,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(=S)(Cl)Cl
+*P(=S)(Cl)Cl
 
 > <Position>
 _
@@ -354,7 +354,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*][Si](Cl)(Cl)Cl
+*[Si](Cl)(Cl)Cl
 
 > <Position>
 _
@@ -363,7 +363,7 @@ _
 4.35
 
 > <Group>
-""-SiCl3""
+-SiCl3
 
 > <MR>
 2.38
@@ -388,7 +388,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]F
+*F
 
 > <Position>
 _
@@ -397,7 +397,7 @@ _
 2.65
 
 > <Group>
-""-F""
+-F
 
 > <MR>
 0.09
@@ -426,7 +426,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)F
+*S(=O)F
 
 > <Position>
 _
@@ -466,7 +466,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)F
+*S(=O)(=O)F
 
 > <Position>
 _
@@ -475,7 +475,7 @@ _
 3.33
 
 > <Group>
-""-SO2F""
+-SO2F
 
 > <MR>
 0.86
@@ -506,7 +506,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(=O)(F)F
+*P(=O)(F)F
 
 > <Position>
 _
@@ -544,7 +544,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(F)F
+*P(F)F
 
 > <Position>
 _
@@ -553,7 +553,7 @@ _
 3.55
 
 > <Group>
-""-PF2""
+-PF2
 
 > <MR>
 1.1
@@ -584,7 +584,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*][Si](F)(F)F
+*[Si](F)(F)F
 
 > <Position>
 _
@@ -593,7 +593,7 @@ _
 
 
 > <Group>
-""-SiF3""
+-SiF3
 
 > <MR>
 0.76
@@ -612,7 +612,7 @@ $$$$
   CDK    7/26/07,16:26
 
   5  4  0  0  0  0  0  0  0  0999 V2000
-  397.0000  650.0000    0.0000 C  0  0  0  0  0  0  0  0  0  0  0  0
+  397.0000  650.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
   372.0000  675.0000    0.0000 F   0  0  0  0  0  0  0  0  0  0  0  0
   387.6825  615.2267    0.0000 *   0  0  0  0  0  0  0  0  0  0  0  0
   431.7733  659.3175    0.0000 F   0  0  0  0  0  0  0  0  0  0  0  0
@@ -624,7 +624,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(F)(F)F
+*C(F)(F)F
 
 > <Position>
 _
@@ -633,7 +633,7 @@ _
 
 
 > <Group>
-"-CF3"
+-CF3
 
 > <MR>
 0.5
@@ -658,7 +658,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]I
+*I
 
 > <Position>
 _
@@ -667,7 +667,7 @@ _
 4.23
 
 > <Group>
-""-I""
+-I
 
 > <MR>
 1.39
@@ -694,7 +694,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N=O
+*N=O
 
 > <Position>
 _
@@ -703,7 +703,7 @@ _
 3.44
 
 > <Group>
-""-N=O""
+-N=O
 
 > <MR>
 0.52
@@ -734,7 +734,7 @@ M  CHG  1   4  -1
 M  END
 
 > <SMILES>
-[*][N+](=O)[O-]
+*[N+](=O)[O-]
 
 > <Position>
 _
@@ -743,7 +743,7 @@ _
 3.44
 
 > <Group>
-"-NO2"
+-NO2
 
 > <MR>
 0.74
@@ -772,7 +772,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N=N#N
+*N=N#N
 
 > <Position>
 _
@@ -781,7 +781,7 @@ _
 4.62
 
 > <Group>
-""-N=N#N""
+"-N=N#N"
 
 > <MR>
 1.02
@@ -806,7 +806,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*][H]
+*[H]
 
 > <Position>
 _
@@ -815,7 +815,7 @@ _
 2.06
 
 > <Group>
-""-H""
+"-H"
 
 > <MR>
 0.1
@@ -842,7 +842,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]O[H]
+*O[H]
 
 > <Position>
 _
@@ -851,7 +851,7 @@ _
 2.74
 
 > <Group>
-""-OH""
+"-OH"
 
 > <MR>
 0.28
@@ -884,7 +884,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)O[H]
+*S(=O)(=O)O[H]
 
 > <Position>
 _
@@ -893,7 +893,7 @@ _
 3.97
 
 > <Group>
-""-SO3H""
+"-SO3H"
 
 > <MR>
 1.04
@@ -920,7 +920,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S[H]
+*S[H]
 
 > <Position>
 _
@@ -929,7 +929,7 @@ _
 3.47
 
 > <Group>
-""-SH""
+"-SH"
 
 > <MR>
 0.92
@@ -958,7 +958,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])[H]
+*N([H])[H]
 
 > <Position>
 _
@@ -967,7 +967,7 @@ _
 2.78
 
 > <Group>
-""-NH2""
+"-NH2"
 
 > <MR>
 0.54
@@ -998,7 +998,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])O[H]
+*N([H])O[H]
 
 > <Position>
 _
@@ -1007,7 +1007,7 @@ _
 3.87
 
 > <Group>
-""-NHOH""
+"-NHOH"
 
 > <MR>
 0.72
@@ -1042,13 +1042,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)N([H])[H]
+*S(=O)(=O)N([H])[H]
 
 > <Position>
 _
 
 > <Group>
-""-SO2NH2""
+"-SO2NH2"
 
 > <LSTM>
 4.02
@@ -1086,7 +1086,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(=O)(O[H])O[H]
+*P(=O)(O[H])O[H]
 
 > <Position>
 -
@@ -1128,7 +1128,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])N([H])[H]
+*N([H])N([H])[H]
 
 > <Position>
 -
@@ -1137,7 +1137,7 @@ M  END
 3.47
 
 > <Group>
-""-NHNH2""
+"-NHNH2"
 
 > <MR>
 0.84
@@ -1168,7 +1168,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(Br)(Br)Br
+*C(Br)(Br)Br
 
 > <Position>
 -
@@ -1177,7 +1177,7 @@ M  END
 4.09
 
 > <Group>
-""-CBr3""
+"-CBr3"
 
 > <MR>
 2.88
@@ -1206,13 +1206,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)Cl
+*C(=O)Cl
 
 > <Position>
 -
 
 > <Group>
-""-COCl""
+"-COCl"
 
 > <LSTM>
 3.83
@@ -1246,7 +1246,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(Cl)(Cl)Cl
+*C(Cl)(Cl)Cl
 
 > <Position>
 -
@@ -1255,7 +1255,7 @@ M  END
 3.89
 
 > <Group>
-""-CCl3""
+"-CCl3"
 
 > <MR>
 2.01
@@ -1284,7 +1284,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)F
+*C(=O)F
 
 > <Position>
 -
@@ -1293,7 +1293,7 @@ M  END
 3.53
 
 > <Group>
-""-COF""
+"-COF"
 
 > <MR>
 0.54
@@ -1320,7 +1320,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C#N
+*C#N
 
 > <Position>
 -
@@ -1329,7 +1329,7 @@ M  END
 4.23
 
 > <Group>
-""-CN""
+"-CN"
 
 > <MR>
 0.63
@@ -1358,7 +1358,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N=C=O
+*N=C=O
 
 > <Position>
 -
@@ -1396,7 +1396,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N=C=S
+*N=C=S
 
 > <Position>
 -
@@ -1439,13 +1439,13 @@ M  CHG  1   6  -1
 M  END
 
 > <SMILES>
-[*]C([H])([H])O[O-]
+*C([H])([H])O[O-]
 
 > <Position>
 -
 
 > <Group>
-""-COO-""
+"-COO-"
 
 > <LSTM>
 3.53
@@ -1477,7 +1477,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=O
+*C([H])=O
 
 > <Position>
 -
@@ -1486,7 +1486,7 @@ M  END
 3.53
 
 > <Group>
-""-CH=O""
+"-CH=O"
 
 > <MR>
 0.69
@@ -1517,7 +1517,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)O[H]
+*C(=O)O[H]
 
 > <Position>
 -
@@ -1526,7 +1526,7 @@ M  END
 3.91
 
 > <Group>
-""-COOH""
+"-COOH"
 
 > <MR>
 0.69
@@ -1557,7 +1557,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])Br
+*C([H])([H])Br
 
 > <Position>
 -
@@ -1566,7 +1566,7 @@ M  END
 4.09
 
 > <Group>
-""-CH2Br""
+"-CH2Br"
 
 > <MR>
 1.34
@@ -1597,7 +1597,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])Cl
+*C([H])([H])Cl
 
 > <Position>
 -
@@ -1606,7 +1606,7 @@ M  END
 3.89
 
 > <Group>
-""-CH2Cl""
+"-CH2Cl"
 
 > <MR>
 1.05
@@ -1637,7 +1637,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])F
+*C([H])([H])F
 
 > <Position>
 -
@@ -1646,7 +1646,7 @@ M  END
 3.3
 
 > <Group>
-""-CH2F""
+"-CH2F"
 
 > <MR>
 0.54
@@ -1677,7 +1677,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])I
+*C([H])([H])I
 
 > <Position>
 -
@@ -1686,7 +1686,7 @@ M  END
 4.36
 
 > <Group>
-""-CH2I""
+"-CH2I"
 
 > <MR>
 1.86
@@ -1719,7 +1719,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)N([H])[H]
+*C(=O)N([H])[H]
 
 > <Position>
 -
@@ -1728,7 +1728,7 @@ M  END
 4.06
 
 > <Group>
-""-CONH2""
+"-CONH2"
 
 > <MR>
 0.98
@@ -1761,7 +1761,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C([H])=O
+*N([H])C([H])=O
 
 > <Position>
 -
@@ -1770,7 +1770,7 @@ M  END
 4.22
 
 > <Group>
-""-NHCHO""
+"-NHCHO"
 
 > <MR>
 1.03
@@ -1805,7 +1805,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)N([H])O[H]
+*C(=O)N([H])O[H]
 
 > <Position>
 -
@@ -1814,7 +1814,7 @@ M  END
 4.73
 
 > <Group>
-""-CONHOH""
+"-CONHOH"
 
 > <MR>
 1.12
@@ -1845,7 +1845,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])[H]
+*C([H])([H])[H]
 
 > <Position>
 -
@@ -1854,7 +1854,7 @@ M  END
 2.87
 
 > <Group>
-""-CH3""
+"-CH3"
 
 > <MR>
 0.56
@@ -1891,7 +1891,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C(=O)N([H])[H]
+*N([H])C(=O)N([H])[H]
 
 > <Position>
 -
@@ -1900,7 +1900,7 @@ M  END
 5.06
 
 > <Group>
-""-NHCONH2""
+"-NHCONH2"
 
 > <MR>
 1.37
@@ -1937,7 +1937,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C(N([H])[H])=S
+*N([H])C(=S)N([H])[H]
 
 > <Position>
 -
@@ -1946,7 +1946,7 @@ M  END
 5.06
 
 > <Group>
-""-NHCSNH2""
+"-NHCSNH2"
 
 > <MR>
 2.22
@@ -1979,7 +1979,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])O[H]
+*C([H])([H])O[H]
 
 > <Position>
 -
@@ -1988,7 +1988,7 @@ M  END
 3.97
 
 > <Group>
-""-CH2OH""
+"-CH2OH"
 
 > <MR>
 0.72
@@ -2021,7 +2021,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC([H])([H])[H]
+*OC([H])([H])[H]
 
 > <Position>
 -
@@ -2030,7 +2030,7 @@ M  END
 3.98
 
 > <Group>
-""-OCH3""
+"-OCH3"
 
 > <MR>
 0.79
@@ -2067,13 +2067,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)C([H])([H])[H]
+*S(=O)(=O)C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-""-SO2CH3""
+"-SO2CH3"
 
 > <LSTM>
 4.11
@@ -2109,7 +2109,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])S[H]
+*C([H])([H])S[H]
 
 > <Position>
 -
@@ -2118,7 +2118,7 @@ M  END
 4.47
 
 > <Group>
-""-CH2SH""
+"-CH2SH"
 
 > <MR>
 1.39
@@ -2151,7 +2151,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]SC([H])([H])[H]
+*SC([H])([H])[H]
 
 > <Position>
 -
@@ -2160,7 +2160,7 @@ M  END
 4.3
 
 > <Group>
-""-SCH3""
+"-SCH3"
 
 > <MR>
 1.38
@@ -2195,7 +2195,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])N([H])[H]
+*C([H])([H])N([H])[H]
 
 > <Position>
 -
@@ -2204,7 +2204,7 @@ M  END
 4.02
 
 > <Group>
-""-CH2NH2""
+"-CH2NH2"
 
 > <MR>
 0.91
@@ -2239,7 +2239,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C([H])([H])[H]
+*N([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -2248,7 +2248,7 @@ M  END
 3.53
 
 > <Group>
-""-NHCH3""
+"-NHCH3"
 
 > <MR>
 1.03
@@ -2287,7 +2287,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C(=N[H])N([H])[H]
+*N([H])C(=N[H])N([H])[H]
 
 > <Position>
 -
@@ -2327,7 +2327,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)C#N
+*C(=O)C#N
 
 > <Position>
 -
@@ -2336,7 +2336,7 @@ M  END
 3.94
 
 > <Group>
-""-COCN""
+"-COCN"
 
 > <MR>
 1.18
@@ -2369,7 +2369,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C(Cl)Cl
+*C([H])=C(Cl)Cl
 
 > <Position>
 -
@@ -2378,7 +2378,7 @@ M  END
 5.75
 
 > <Group>
-""-CH=CCl2""
+"-CH=CCl2"
 
 > <MR>
 2.09
@@ -2411,7 +2411,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C#N
+*C([H])([H])C#N
 
 > <Position>
 -
@@ -2420,7 +2420,7 @@ M  END
 3.99
 
 > <Group>
-""-CH2CN""
+"-CH2CN"
 
 > <MR>
 1.01
@@ -2453,7 +2453,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])[H]
+*C([H])=C([H])[H]
 
 > <Position>
 -
@@ -2462,7 +2462,7 @@ M  END
 4.29
 
 > <Group>
-""-CH=CH2""
+"-CH=CH2"
 
 > <MR>
 1.1
@@ -2497,13 +2497,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)C([H])([H])[H]
+*C(=O)C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-""-COCH3""
+"-COCH3"
 
 > <LSTM>
 4.06
@@ -2543,7 +2543,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)OC([H])([H])[H]
+*C(=O)OC([H])([H])[H]
 
 > <Position>
 -
@@ -2552,7 +2552,7 @@ M  END
 4.73
 
 > <Group>
-""-COOCH3""
+"-COOCH3"
 
 > <MR>
 1.29
@@ -2589,7 +2589,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C(=O)O[H]
+*C([H])([H])C(=O)O[H]
 
 > <Position>
 -
@@ -2598,7 +2598,7 @@ M  END
 4.74
 
 > <Group>
-""-CH2COOH""
+"-CH2COOH"
 
 > <MR>
 1.19
@@ -2635,7 +2635,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])Br
+*C([H])([H])C([H])([H])Br
 
 > <Position>
 -
@@ -2644,7 +2644,7 @@ M  END
 5.87
 
 > <Group>
-""-CH2CH2Br""
+"-CH2CH2Br"
 
 > <MR>
 1.8
@@ -2681,7 +2681,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(C([H])([H])[H])Br
+*C([H])(Br)C([H])([H])[H]
 
 > <Position>
 -
@@ -2690,7 +2690,7 @@ M  END
 4.09
 
 > <Group>
-""-CHBrCH3""
+"-CHBrCH3"
 
 > <MR>
 1.8
@@ -2727,7 +2727,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])Cl
+*C([H])([H])C([H])([H])Cl
 
 > <Position>
 -
@@ -2736,7 +2736,7 @@ M  END
 5.57
 
 > <Group>
-""-CH2CH2Cl""
+"-CH2CH2Cl"
 
 > <MR>
 1.51
@@ -2773,7 +2773,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(C([H])([H])[H])Cl
+*C([H])(Cl)C([H])([H])[H]
 
 > <Position>
 -
@@ -2782,7 +2782,7 @@ M  END
 3.89
 
 > <Group>
-""-CHClCH3""
+"-CHClCH3"
 
 > <MR>
 1.51
@@ -2819,7 +2819,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])F
+*C([H])([H])C([H])([H])F
 
 > <Position>
 -
@@ -2828,7 +2828,7 @@ M  END
 4.7
 
 > <Group>
-""-CH2CH2F""
+"-CH2CH2F"
 
 > <MR>
 0.93
@@ -2865,7 +2865,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])I
+*C([H])([H])C([H])([H])I
 
 > <Position>
 -
@@ -2874,7 +2874,7 @@ M  END
 6.28
 
 > <Group>
-""-CH2CH2I""
+"-CH2CH2I"
 
 > <MR>
 2.32
@@ -2911,7 +2911,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(C([H])([H])[H])I
+*C([H])(I)C([H])([H])[H]
 
 > <Position>
 -
@@ -2920,7 +2920,7 @@ M  END
 4.36
 
 > <Group>
-""-CHICH3""
+"-CHICH3"
 
 > <MR>
 2.32
@@ -2959,7 +2959,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)N([H])C([H])([H])[H]
+*C(=O)N([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -2968,7 +2968,7 @@ M  END
 5
 
 > <Group>
-""-CONHCH3""
+"-CONHCH3"
 
 > <MR>
 1.46
@@ -3007,7 +3007,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C(=O)N([H])[H]
+*C([H])([H])C(=O)N([H])[H]
 
 > <Position>
 -
@@ -3016,7 +3016,7 @@ M  END
 4.58
 
 > <Group>
-""-CH2CONH2""
+"-CH2CONH2"
 
 > <MR>
 1.44
@@ -3055,7 +3055,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C(=O)C([H])([H])[H]
+*N([H])C(=O)C([H])([H])[H]
 
 > <Position>
 -
@@ -3064,7 +3064,7 @@ M  END
 5.09
 
 > <Group>
-""-NHCOCH3""
+"-NHCOCH3"
 
 > <MR>
 1.49
@@ -3103,7 +3103,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=NOC([H])([H])[H]
+*C([H])=NOC([H])([H])[H]
 
 > <Position>
 -
@@ -3112,7 +3112,7 @@ M  END
 
 
 > <Group>
-""-CH=N-OCH3""
+"-CH=N-OCH3"
 
 > <MR>
 1.57
@@ -3153,7 +3153,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])N(=O)=O
+*C([H])([H])C([H])([H])N(=O)=O
 
 > <Position>
 -
@@ -3162,7 +3162,7 @@ M  END
 5.49
 
 > <Group>
-""-CH2CH2NO2""
+"-CH2CH2NO2"
 
 > <MR>
 1.6
@@ -3199,7 +3199,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -3208,7 +3208,7 @@ M  END
 4.11
 
 > <Group>
-""-CH2 CH3""
+"-CH2 CH3"
 
 > <MR>
 1.03
@@ -3247,7 +3247,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])O[H]
+*C([H])([H])C([H])([H])O[H]
 
 > <Position>
 -
@@ -3256,7 +3256,7 @@ M  END
 4.79
 
 > <Group>
-""-CH2CH2OH""
+"-CH2CH2OH"
 
 > <MR>
 1.18
@@ -3295,7 +3295,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(O[H])C([H])([H])[H]
+*C([H])(O[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -3343,7 +3343,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])OC([H])([H])[H]
+*C([H])([H])OC([H])([H])[H]
 
 > <Position>
 -
@@ -3352,7 +3352,7 @@ M  END
 4.78
 
 > <Group>
-""-CH2OCH3""
+"-CH2OCH3"
 
 > <MR>
 1.21
@@ -3391,13 +3391,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC([H])([H])C([H])([H])[H]
+*OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-""-Oet""
+"-Oet"
 
 > <LSTM>
 4.8
@@ -3441,7 +3441,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(O[H])C([H])([H])O[H]
+*C([H])(O[H])C([H])([H])O[H]
 
 > <Position>
 -
@@ -3493,7 +3493,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])S(=O)(=O)C([H])([H])[H]
+*C([H])([H])S(=O)(=O)C([H])([H])[H]
 
 > <Position>
 -
@@ -3502,7 +3502,7 @@ M  END
 4.92
 
 > <Group>
-""-CH2SO2CH3""
+"-CH2SO2CH3"
 
 > <MR>
 1.81
@@ -3545,13 +3545,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)C([H])([H])C([H])([H])[H]
+*S(=O)(=O)C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-""-SO2Et""
+"-SO2Et"
 
 > <LSTM>
 4.92
@@ -3593,7 +3593,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])SC([H])([H])[H]
+*C([H])([H])SC([H])([H])[H]
 
 > <Position>
 -
@@ -3602,7 +3602,7 @@ M  END
 5.37
 
 > <Group>
-""-CH2SCH3""
+"-CH2SCH3"
 
 > <MR>
 1.84
@@ -3641,7 +3641,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]SC([H])([H])C([H])([H])[H]
+*SC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -3650,7 +3650,7 @@ M  END
 5.16
 
 > <Group>
-""-Set""
+"-Set"
 
 > <MR>
 1.84
@@ -3691,7 +3691,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N(C([H])([H])[H])C([H])([H])[H]
+*N(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -3741,7 +3741,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C([H])([H])C([H])([H])[H]
+*N([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -3750,7 +3750,7 @@ M  END
 4.83
 
 > <Group>
-""-NHEt""
+"-NHEt"
 
 > <MR>
 1.5
@@ -3797,7 +3797,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)N(C([H])([H])[H])C([H])([H])[H]
+*S(=O)(=O)N(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -3853,7 +3853,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(=O)(OC([H])([H])[H])OC([H])([H])[H]
+*P(=O)(OC([H])([H])[H])OC([H])([H])[H]
 
 > <Position>
 -
@@ -3911,7 +3911,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OP(=O)(OC([H])([H])[H])OC([H])([H])[H]
+*OP(=O)(OC([H])([H])[H])OC([H])([H])[H]
 
 > <Position>
 -
@@ -3955,7 +3955,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C#CC([H])([H])[H]
+*C#CC([H])([H])[H]
 
 > <Position>
 -
@@ -3999,7 +3999,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C#C[H]
+*C([H])([H])C#C[H]
 
 > <Position>
 -
@@ -4008,7 +4008,7 @@ M  END
 3.99
 
 > <Group>
-""-CH2C_=CH""
+"-CH2C_=CH"
 
 > <MR>
 1.29
@@ -4045,7 +4045,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C([H])=O
+*C([H])=C([H])C([H])=O
 
 > <Position>
 -
@@ -4054,7 +4054,7 @@ M  END
 5.76
 
 > <Group>
-""-CH=CH-CHO""
+"-CH=CH-CHO"
 
 > <MR>
 1.69
@@ -4093,7 +4093,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C(=O)O[H]
+*C([H])=C([H])C(=O)O[H]
 
 > <Position>
 -
@@ -4102,7 +4102,7 @@ M  END
 6.15
 
 > <Group>
-""-CH=CH-COOH""
+"-CH=CH-COOH"
 
 > <MR>
 1.79
@@ -4142,7 +4142,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1([H])(C([H])([H])C1([H])([H]))
+*C1([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -4192,7 +4192,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C(=O)C([H])([H])[H]
+*C([H])([H])C(=O)C([H])([H])[H]
 
 > <Position>
 -
@@ -4201,7 +4201,7 @@ M  END
 4.54
 
 > <Group>
-""-CH2COCH3""
+"-CH2COCH3"
 
 > <MR>
 1.51
@@ -4242,7 +4242,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C([H])([H])O[H]
+*C([H])=C([H])C([H])([H])O[H]
 
 > <Position>
 -
@@ -4251,7 +4251,7 @@ M  END
 6.2
 
 > <Group>
-""-CH=CH-CH2OH""
+"-CH=CH-CH2OH"
 
 > <MR>
 1.72
@@ -4292,7 +4292,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)C([H])([H])C([H])([H])[H]
+*C(=O)C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -4301,7 +4301,7 @@ M  END
 4.87
 
 > <Group>
-""-COEt""
+"-COEt"
 
 > <MR>
 1.58
@@ -4344,7 +4344,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)OC([H])([H])C([H])([H])[H]
+*C(=O)OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -4353,7 +4353,7 @@ M  END
 5.95
 
 > <Group>
-""-COOEt""
+"-COOEt"
 
 > <MR>
 1.75
@@ -4396,7 +4396,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])OC(=O)C([H])([H])[H]
+*C([H])([H])OC(=O)C([H])([H])[H]
 
 > <Position>
 -
@@ -4448,7 +4448,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C(=O)O[H]
+*C([H])([H])C([H])([H])C(=O)O[H]
 
 > <Position>
 -
@@ -4457,7 +4457,7 @@ M  END
 5.97
 
 > <Group>
-""-CH2CH2COOH""
+"-CH2CH2COOH"
 
 > <MR>
 1.65
@@ -4504,7 +4504,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C(=O)OC([H])([H])C([H])([H])[H]
+*N([H])C(=O)OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -4513,7 +4513,7 @@ M  END
 7.25
 
 > <Group>
-""-NHCOOEt""
+"-NHCOOEt"
 
 > <MR>
 2.12
@@ -4556,7 +4556,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(C([H])([H])[H])C([H])([H])[H]
+*C([H])(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -4608,7 +4608,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -4617,7 +4617,7 @@ M  END
 4.92
 
 > <Group>
-""-CH2CH2CH3""
+"-CH2CH2CH3"
 
 > <MR>
 1.5
@@ -4662,7 +4662,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])O[H]
+*C([H])([H])C([H])([H])C([H])([H])O[H]
 
 > <Position>
 -
@@ -4671,7 +4671,7 @@ M  END
 
 
 > <Group>
-""-CH2CH2CH2OH""
+"-CH2CH2CH2OH"
 
 > <MR>
 1.5
@@ -4716,7 +4716,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])(O[H])C([H])([H])[H]
+*C([H])([H])C([H])(O[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -4770,13 +4770,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])OC([H])([H])C([H])([H])[H]
+*C([H])([H])OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-""-CH2OEt""
+"-CH2OEt"
 
 > <LSTM>
 6.01
@@ -4824,7 +4824,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])OC([H])([H])[H]
+*C([H])([H])C([H])([H])OC([H])([H])[H]
 
 > <Position>
 -
@@ -4833,7 +4833,7 @@ M  END
 5.55
 
 > <Group>
-""-CH2CH2OCH3""
+"-CH2CH2OCH3"
 
 > <MR>
 1.67
@@ -4878,7 +4878,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC([H])(C([H])([H])[H])C([H])([H])[H]
+*OC([H])(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -4932,7 +4932,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC([H])([H])C([H])([H])C([H])([H])[H]
+*OC([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -4941,7 +4941,7 @@ M  END
 6.05
 
 > <Group>
-""-OCH2CH2CH3""
+"-OCH2CH2CH3"
 
 > <MR>
 1.71
@@ -4990,7 +4990,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*][Si](C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]
+*[Si](C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -5039,7 +5039,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1OC([H])=C([H])C=1([H])
+*C=1OC([H])=C([H])C1[H]
 
 > <Position>
 -
@@ -5079,7 +5079,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C([H])S1
+*C=1SC([H])=C([H])C1[H]
 
 > <Position>
 -
@@ -5128,7 +5128,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])SC=1([H])
+*C1=C([H])SC([H])=C1[H]
 
 > <Position>
 -
@@ -5193,7 +5193,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C2=C([H])C([H])=C([H])C([H])=C2(C=1([H]))
+*C=1C([H])=C([H])C2=C([H])C([H])=C([H])C([H])=C2C1[H]
 
 > <Position>
 -
@@ -5244,7 +5244,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N1C([H])=C([H])C([H])=C1([H])
+*N1C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -5294,7 +5294,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C([H])=C([H])[H]
+*C([H])=C([H])C([H])=C([H])[H]
 
 > <Position>
 -
@@ -5303,7 +5303,7 @@ M  END
 6.53
 
 > <Group>
-–CH=CH-CH=CH2 E
+ï¿½CH=CH-CH=CH2 E
 
 > <MR>
 
@@ -5344,7 +5344,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C#C[H]
+*C([H])([H])C([H])([H])C#C[H]
 
 > <Position>
 -
@@ -5353,7 +5353,7 @@ M  END
 6.71
 
 > <Group>
-–CH2CH2C_=CH
+ï¿½CH2CH2C_=CH
 
 > <MR>
 1.75
@@ -5396,13 +5396,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C(=O)C([H])([H])[H]
+*C([H])=C([H])C(=O)C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–CH=CHCOCH3
+ï¿½CH=CHCOCH3
 
 > <LSTM>
 
@@ -5450,13 +5450,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C(=O)OC([H])([H])[H]
+*C([H])=C([H])C(=O)OC([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–CH=CHCOOCH3
+ï¿½CH=CHCOOCH3
 
 > <MR>
 2.27
@@ -5501,13 +5501,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])C#N
+*C([H])([H])C([H])([H])C([H])([H])C#N
 
 > <Position>
 -
 
 > <Group>
-–CH2CH2CH2CN
+ï¿½CH2CH2CH2CN
 
 > <LSTM>
 6.04
@@ -5555,7 +5555,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(C#N)(C([H])([H])[H])C([H])([H])[H]
+*C(C#N)(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -5564,7 +5564,7 @@ M  END
 4.11
 
 > <Group>
-–C(CN)(CH3)2
+ï¿½C(CN)(CH3)2
 
 > <MR>
 1.91
@@ -5613,7 +5613,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N(C(=O)C([H])([H])[H])C(=O)C([H])([H])[H]
+*N(C(=O)C([H])([H])[H])C(=O)C([H])([H])[H]
 
 > <Position>
 -
@@ -5622,7 +5622,7 @@ M  END
 4.45
 
 > <Group>
-–N(COCH3)2
+ï¿½N(COCH3)2
 
 > <MR>
 2.48
@@ -5668,13 +5668,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C1([H])(C([H])([H])C1([H])([H]))
+*C([H])([H])C1([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–CH2-cyclopropyl
+ï¿½CH2-cyclopropyl
 
 > <LSTM>
 5.14
@@ -5722,7 +5722,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])=C([H])[H]
+*C([H])([H])C([H])([H])C([H])=C([H])[H]
 
 > <Position>
 -
@@ -5731,7 +5731,7 @@ M  END
 6.35
 
 > <Group>
-–CH2CH2CH=CH2
+ï¿½CH2CH2CH=CH2
 
 > <MR>
 1.91
@@ -5776,7 +5776,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])=C([H])C([H])([H])[H]
+*C([H])([H])C([H])=C([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -5785,7 +5785,7 @@ M  END
 5.89
 
 > <Group>
-–CH2CH=CHCH3    E
+ï¿½CH2CH=CHCH3    E
 
 > <MR>
 1.91
@@ -5830,7 +5830,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C(C([H])([H])[H])C([H])([H])[H]
+*C([H])=C(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -5839,7 +5839,7 @@ M  END
 5.1
 
 > <Group>
-–CH=C(CH3)2
+ï¿½CH=C(CH3)2
 
 > <MR>
 2.03
@@ -5884,7 +5884,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C([H])([H])C([H])([H])[H]
+*C([H])=C([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -5893,7 +5893,7 @@ M  END
 6.35
 
 > <Group>
-–CH=CHEt E
+ï¿½CH=CHEt E
 
 > <MR>
 2.03
@@ -5939,7 +5939,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1([H])(C([H])([H])C([H])([H])C1([H])([H]))
+*C1([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -6001,7 +6001,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C([H])([H])C(=O)OC([H])([H])C([H])([H])[H]
+*N([H])C([H])([H])C(=O)OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -6010,7 +6010,7 @@ M  END
 7.91
 
 > <Group>
-–NHCH2COOEt
+ï¿½NHCH2COOEt
 
 > <MR>
 2.69
@@ -6061,13 +6061,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])OC([H])([H])C([*])([H])[H]
+*C([H])([H])C([H])([H])OC([H])([H])C(*)([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–CH2CH2OCH2CH2-
+ï¿½CH2CH2OCH2CH2-
 
 > <LSTM>
 
@@ -6119,13 +6119,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–CH2CH2CH2CH3
+ï¿½CH2CH2CH2CH3
 
 > <LSTM>
 6.17
@@ -6177,7 +6177,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(C([H])([H])[H])C([H])([H])C([H])([H])[H]
+*C([H])(C([H])([H])[H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -6186,7 +6186,7 @@ M  END
 4.92
 
 > <Group>
-–CHCH2(CH3)2
+ï¿½CHCH2(CH3)2
 
 > <MR>
 1.96
@@ -6235,7 +6235,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]
+*C(C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -6244,7 +6244,7 @@ M  END
 4.11
 
 > <Group>
-–C(CH3)3
+ï¿½C(CH3)3
 
 > <MR>
 1.96
@@ -6295,7 +6295,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])OC([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -6304,7 +6304,7 @@ M  END
 6.85
 
 > <Group>
-–CH2CH2OEt
+ï¿½CH2CH2OEt
 
 > <MR>
 2.13
@@ -6355,7 +6355,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*OC([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -6364,7 +6364,7 @@ M  END
 6.86
 
 > <Group>
-–OCH2 CH2 CH2 CH3
+ï¿½OCH2 CH2 CH2 CH3
 
 > <MR>
 2.17
@@ -6419,13 +6419,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(OC([H])([H])[H])(OC([H])([H])[H])OC([H])([H])[H]
+*C(OC([H])([H])[H])(OC([H])([H])[H])OC([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–C(OCH3)3
+ï¿½C(OCH3)3
 
 > <LSTM>
 4.78
@@ -6479,13 +6479,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]SC([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*SC([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–SCH2CH2CH2CH3
+ï¿½SCH2CH2CH2CH3
 
 > <LSTM>
 7.06
@@ -6541,7 +6541,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N(C([H])([H])C([H])([H])[H])C([H])([H])C([H])([H])[H]
+*N(C([H])([H])C([H])([H])[H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -6550,7 +6550,7 @@ M  END
 4.83
 
 > <Group>
-–N(Et)2
+ï¿½N(Et)2
 
 > <MR>
 2.48
@@ -6603,13 +6603,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*N([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–NHCH2CH2CH2CH3
+ï¿½NHCH2CH2CH2CH3
 
 > <LSTM>
 6.88
@@ -6671,7 +6671,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
+*P(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -6680,7 +6680,7 @@ M  END
 6.26
 
 > <Group>
-–P(=O)(OEt)2
+ï¿½P(=O)(OEt)2
 
 > <MR>
 3.12
@@ -6741,7 +6741,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OP(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
+*OP(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -6750,7 +6750,7 @@ M  END
 6.99
 
 > <Group>
-–OP(=O)(OEt)2
+ï¿½OP(=O)(OEt)2
 
 > <MR>
 3.28
@@ -6794,7 +6794,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=NC([H])=C([H])C([H])=C1([H])
+*C=1N=C([H])C([H])=C([H])C1[H]
 
 > <Position>
 -
@@ -6847,7 +6847,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])N=C([H])C=1([H])
+*C1=C([H])C([H])=NC([H])=C1[H]
 
 > <Position>
 -
@@ -6908,7 +6908,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1([H])(C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*C1([H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -6971,7 +6971,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1(O[H])(C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*C1(O[H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -7031,7 +7031,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC1([H])(C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*OC1([H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -7095,7 +7095,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -7104,7 +7104,7 @@ M  END
 6.97
 
 > <Group>
-–(CH2)4CH3 /Am/
+ï¿½(CH2)4CH3 /Am/
 
 > <MR>
 2.42
@@ -7159,7 +7159,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(C([H])([H])[H])(C([H])([H])[H])C([H])([H])C([H])([H])[H]
+*C(C([H])([H])[H])(C([H])([H])[H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -7168,7 +7168,7 @@ M  END
 4.92
 
 > <Group>
-–C(Et)(CH3)2
+ï¿½C(Et)(CH3)2
 
 > <MR>
 2.42
@@ -7223,7 +7223,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C(C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]
+*C([H])([H])C(C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -7232,7 +7232,7 @@ M  END
 4.89
 
 > <Group>
-–CH2C(CH3)3
+ï¿½CH2C(CH3)3
 
 > <MR>
 2.42
@@ -7289,7 +7289,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*OC([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -7298,7 +7298,7 @@ M  END
 8.11
 
 > <Group>
-–OAm
+ï¿½OAm
 
 > <MR>
 2.63
@@ -7355,7 +7355,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC([H])([H])C([H])([H])C([H])(C([H])([H])[H])C([H])([H])[H]
+*OC([H])([H])C([H])([H])C([H])(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -7364,7 +7364,7 @@ M  END
 6.86
 
 > <Group>
-–OCH2CH2CH(CH3)2
+ï¿½OCH2CH2CH(CH3)2
 
 > <MR>
 2.63
@@ -7423,7 +7423,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
+*P(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -7432,7 +7432,7 @@ M  END
 7.1
 
 > <Group>
-–CH2P(=O)(OEt)2
+ï¿½CH2P(=O)(OEt)2
 
 > <MR>
 3.58
@@ -7478,7 +7478,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C(=C(C(=C(C=1Cl)Cl)Cl)Cl)Cl
+*C1=C(Cl)C(Cl)=C(Cl)C(Cl)=C1Cl
 
 > <Position>
 -
@@ -7487,7 +7487,7 @@ M  END
 7.74
 
 > <Group>
-–C6Cl5
+ï¿½C6Cl5
 
 > <MR>
 4.95
@@ -7533,7 +7533,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C(F)C(F)=C(F)C(F)=C1(F)
+*C1=C(F)C(F)=C(F)C(F)=C1F
 
 > <Position>
 -
@@ -7542,7 +7542,7 @@ M  END
 6.87
 
 > <Group>
-–C6F5
+ï¿½C6F5
 
 > <MR>
 2.4
@@ -7600,13 +7600,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C(=C(C(=C1([H]))N(=O)=O)N(=O)=O)N(=O)=O
+*C1=C([H])C(=C(C(=C1[H])N(=O)=O)N(=O)=O)N(=O)=O
 
 > <Position>
 -
 
 > <Group>
-–C6H2(NO2)3
+ï¿½C6H2(NO2)3
 
 > <MR>
 4.22
@@ -7652,13 +7652,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C([H])=C(F)C=1([H])
+*C=1C([H])=C([H])C([H])=C(F)C1[H]
 
 > <Position>
 m
 
 > <Group>
-–C6H4F
+ï¿½C6H4F
 
 > <MR>
 2.52
@@ -7704,7 +7704,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(F)C([H])=C1([H])
+*C1=C([H])C([H])=C(F)C([H])=C1[H]
 
 > <Position>
 p
@@ -7713,7 +7713,7 @@ p
 6.87
 
 > <Group>
-–C6H4F
+ï¿½C6H4F
 
 > <MR>
 2.52
@@ -7763,7 +7763,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C([H])=C(C=1([H]))N(=O)=O
+*C=1C([H])=C([H])C([H])=C(C1[H])N(=O)=O
 
 > <Position>
 o,m
@@ -7772,7 +7772,7 @@ o,m
 
 
 > <Group>
-–C6H4NO2
+ï¿½C6H4NO2
 
 > <MR>
 3.17
@@ -7822,13 +7822,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C(=C([H])C=1([H]))N(=O)=O
+*C1=C([H])C([H])=C(C([H])=C1[H])N(=O)=O
 
 > <Position>
 p
 
 > <Group>
-–C6H4NO2
+ï¿½C6H4NO2
 
 > <LSTM>
 7.66
@@ -7883,7 +7883,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC=1C([H])=C([H])C(=C([H])C=1([H]))N(=O)=O
+*OC1=C([H])C([H])=C(C([H])=C1[H])N(=O)=O
 
 > <Position>
 p
@@ -7892,7 +7892,7 @@ p
 5.01
 
 > <Group>
-–OC6H4NO2-p
+ï¿½OC6H4NO2-p
 
 > <MR>
 3.45
@@ -7946,7 +7946,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N=NC=1C([H])=C([H])C(=C([H])C=1([H]))N(=O)=O
+*N=NC1=C([H])C([H])=C(C([H])=C1[H])N(=O)=O
 
 > <Position>
 p
@@ -7955,7 +7955,7 @@ p
 
 
 > <Group>
-–N=N-C6H4NO2-p
+ï¿½N=N-C6H4NO2-p
 
 > <MR>
 3.76
@@ -8001,7 +8001,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C([H])=C([H])C=1([H])
+*C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -8010,7 +8010,7 @@ M  END
 6.28
 
 > <Group>
-–C6H5 /Ph/
+ï¿½C6H5 /Ph/
 
 > <MR>
 2.54
@@ -8060,7 +8060,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N=NC1=C([H])C([H])=C([H])C([H])=C1([H])
+*N=NC1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -8069,7 +8069,7 @@ M  END
 8.43
 
 > <Group>
-–N=N-Ph
+ï¿½N=N-Ph
 
 > <MR>
 3.13
@@ -8121,13 +8121,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N=N(=O)C1=C([H])C([H])=C([H])C([H])=C1([H])
+*N=N(=O)C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–N=N(=O)-Ph
+ï¿½N=N(=O)-Ph
 
 > <MR>
 3.31
@@ -8181,7 +8181,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C1=C([H])C([H])=C(C([H])=C1([H]))N(=O)=O
+*N([H])C1=C([H])C([H])=C(C([H])=C1[H])N(=O)=O
 
 > <Position>
 p
@@ -8190,7 +8190,7 @@ p
 
 
 > <Group>
-–NH-C6H4NO2-p
+ï¿½NH-C6H4NO2-p
 
 > <MR>
 3.64
@@ -8238,7 +8238,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(O[H])C([H])=C1([H])
+*C1=C([H])C([H])=C(O[H])C([H])=C1[H]
 
 > <Position>
 o,m,p
@@ -8247,7 +8247,7 @@ o,m,p
 
 
 > <Group>
-–C6H4OH
+ï¿½C6H4OH
 
 > <MR>
 2.72
@@ -8295,7 +8295,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC1=C([H])C([H])=C([H])C([H])=C1([H])
+*OC1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -8304,7 +8304,7 @@ M  END
 4.51
 
 > <Group>
-–OPh
+ï¿½OPh
 
 > <MR>
 2.77
@@ -8356,7 +8356,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)C1=C([H])C([H])=C([H])C([H])=C1([H])
+*S(=O)(=O)C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -8365,7 +8365,7 @@ M  END
 5.86
 
 > <Group>
-–SO2Ph
+ï¿½SO2Ph
 
 > <MR>
 3.32
@@ -8419,7 +8419,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OS(=O)(=O)C1=C([H])C([H])=C([H])C([H])=C1([H])
+*OS(=O)(=O)C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -8428,7 +8428,7 @@ M  END
 8.2
 
 > <Group>
-–OSO2Ph
+ï¿½OSO2Ph
 
 > <MR>
 3.67
@@ -8476,7 +8476,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]SC1=C([H])C([H])=C([H])C([H])=C1([H])
+*SC1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -8485,7 +8485,7 @@ M  END
 4.57
 
 > <Group>
-–SPh
+ï¿½SPh
 
 > <MR>
 3.43
@@ -8535,13 +8535,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C([H])=C(C=1([H]))N([H])[H]
+*C=1C([H])=C([H])C([H])=C(N([H])[H])C1[H]
 
 > <Position>
 m
 
 > <Group>
-–C6H4NH2
+ï¿½C6H4NH2
 
 > <LSTM>
 
@@ -8594,7 +8594,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C(=C([H])C=1([H]))N([H])[H]
+*C1=C([H])C([H])=C(N([H])[H])C([H])=C1[H]
 
 
 > <Position>
@@ -8604,7 +8604,7 @@ p
 7
 
 > <Group>
-–C6H4NH2
+ï¿½C6H4NH2
 
 > <MR>
 2.98
@@ -8654,7 +8654,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C([H])C([H])=C1N([H])[H]
+*C1=C([H])C([H])=C([H])C([H])=C1N([H])[H]
 
 > <Position>
 o
@@ -8663,7 +8663,7 @@ o
 7
 
 > <Group>
-–C6H4NH2
+ï¿½C6H4NH2
 
 > <MR>
 2.98
@@ -8713,7 +8713,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*N([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -8722,7 +8722,7 @@ M  END
 4.53
 
 > <Group>
-–NHPh
+ï¿½NHPh
 
 > <MR>
 3
@@ -8778,7 +8778,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C(=C([H])C=1([H]))S(=O)(=O)N([H])[H]
+*C1=C([H])C([H])=C(C([H])=C1[H])S(=O)(=O)N([H])[H]
 
 > <Position>
 p
@@ -8787,7 +8787,7 @@ p
 
 
 > <Group>
-–C6H4SO2NH2-p
+ï¿½C6H4SO2NH2-p
 
 > <MR>
 3.66
@@ -8841,7 +8841,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C([H])=C(C=1([H]))N([H])N([H])[H]
+*C=1C([H])=C([H])C([H])=C(C1[H])N([H])N([H])[H]
 
 > <Position>
 m,p
@@ -8850,7 +8850,7 @@ m,p
 
 
 > <Group>
-–C6H4NHNH2
+ï¿½C6H4NHNH2
 
 > <MR>
 3.28
@@ -8904,7 +8904,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1([H])(C([H])([H])C([H])=C([H])C([H])([H])C1([H])([H]))
+*C1([H])C([H])([H])C([H])=C([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -8971,7 +8971,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1([H])(C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*C1([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -9040,7 +9040,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC1([H])(C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*OC1([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -9119,7 +9119,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC1([H])(OC([H])(C([H])([H])O[H])C([H])(O[H])C([H])(O[H])C1([H])(O[H]))
+*OC1([H])OC([H])(C([H])([H])O[H])C([H])(O[H])C([H])(O[H])C1([H])O[H]
 
 > <Position>
 -
@@ -9186,13 +9186,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–(CH2)5CH3   /Hex/
+ï¿½(CH2)5CH3   /Hex/
 
 > <LSTM>
 8.22
@@ -9258,7 +9258,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*OC([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -9267,7 +9267,7 @@ M  END
 8.93
 
 > <Group>
-–OHex
+ï¿½OHex
 
 > <MR>
 3.07
@@ -9330,7 +9330,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC([H])(C([H])([H])[H])C(C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]
+*OC([H])(C([H])([H])[H])C(C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -9339,7 +9339,7 @@ M  END
 6.05
 
 > <Group>
-–OCH(CH3)C(CH3)3
+ï¿½OCH(CH3)C(CH3)3
 
 > <MR>
 3.07
@@ -9404,7 +9404,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])C([H])([H])N(C([H])([H])[H])C([H])([H])[H]
+*C([H])([H])C([H])([H])C([H])([H])C([H])([H])N(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -9413,7 +9413,7 @@ M  END
 8.13
 
 > <Group>
-–CH2CH2CH2CH2N(CH3)2
+ï¿½CH2CH2CH2CH2N(CH3)2
 
 > <MR>
 3.27
@@ -9484,7 +9484,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])P(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])P(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -9493,7 +9493,7 @@ M  END
 8.31
 
 > <Group>
-–(CH2)2P(=O)(OEt)2
+ï¿½(CH2)2P(=O)(OEt)2
 
 > <MR>
 4.05
@@ -9564,13 +9564,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(C([H])([H])[H])P(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
+*C([H])(C([H])([H])[H])P(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–CH(CH3)P(=O)(OEt)2
+ï¿½CH(CH3)P(=O)(OEt)2
 
 > <LSTM>
 7.1
@@ -9644,13 +9644,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(=O)(OC([H])([H])C([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])C([H])([H])[H]
+*P(=O)(OC([H])([H])C([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–P(=O)(OCH2CH2CH3)2
+ï¿½P(=O)(OCH2CH2CH3)2
 
 > <LSTM>
 7.07
@@ -9738,13 +9738,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(OP(=O)(OC([H])([H])C([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])C([H])([H])[H])C([H])([H])[H]
+*C([H])(OP(=O)(OC([H])([H])C([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–CH(CH3)OP(=O)(OEt)2
+ï¿½CH(CH3)OP(=O)(OEt)2
 
 > <MR>
 4.14
@@ -9829,7 +9829,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])OC([H])([H])P(=O)(OC([H])([H])C([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])C([H])([H])[H]
+*C([H])([H])OC([H])([H])P(=O)(OC([H])([H])C([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -9838,7 +9838,7 @@ M  END
 8.97
 
 > <Group>
-–CH2OCH2P(=O)(OEt)2
+ï¿½CH2OCH2P(=O)(OEt)2
 
 > <MR>
 4.21
@@ -9886,7 +9886,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C#N)C([H])=C1([H])
+*C1=C([H])C([H])=C(C#N)C([H])=C1[H]
 
 > <Position>
 m,p
@@ -9895,7 +9895,7 @@ m,p
 
 
 > <Group>
-–C6H4CN-(m- or p-)
+ï¿½C6H4CN-(m- or p-)
 
 > <MR>
 3.07
@@ -9945,7 +9945,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C(=O)C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -9954,7 +9954,7 @@ M  END
 5.81
 
 > <Group>
-–COPh
+ï¿½COPh
 
 > <MR>
 3.03
@@ -10006,7 +10006,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))C(=O)O[H]
+*C1=C([H])C([H])=C(C([H])=C1[H])C(=O)O[H]
 
 > <Position>
 m,p
@@ -10015,7 +10015,7 @@ m,p
 
 
 > <Group>
-–C6H4COOH-(m- or p-)
+ï¿½C6H4COOH-(m- or p-)
 
 > <MR>
 3.13
@@ -10067,7 +10067,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)OC=1C([H])=C([H])C([H])=C([H])C=1([H])
+*C(=O)OC1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -10076,7 +10076,7 @@ M  END
 8.13
 
 > <Group>
-–COOPh
+ï¿½COOPh
 
 > <MR>
 3.02
@@ -10128,7 +10128,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC(=O)C1=C([H])C([H])=C([H])C([H])=C1([H])
+*OC(=O)C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -10137,7 +10137,7 @@ M  END
 8.15
 
 > <Group>
-–OC(=O)-Ph
+ï¿½OC(=O)-Ph
 
 > <MR>
 3.23
@@ -10195,7 +10195,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)C1=C([H])C([H])=C(C([H])=C1([H]))C(=O)O[H]
+*S(=O)(=O)C1=C([H])C([H])=C(C([H])=C1[H])C(=O)O[H]
 
 > <Position>
 p
@@ -10204,7 +10204,7 @@ p
 
 
 > <Group>
-–SO2C6H4COOH-p
+ï¿½SO2C6H4COOH-p
 
 > <MR>
 4.01
@@ -10256,7 +10256,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C1=C([H])C([H])=C(C([H])=C1([H]))Cl
+*C([H])([H])C1=C([H])C([H])=C(Cl)C([H])=C1[H]
 
 > <Position>
 p
@@ -10265,7 +10265,7 @@ p
 5.29
 
 > <Group>
-–CH2C6H4Cl-p
+ï¿½CH2C6H4Cl-p
 
 > <MR>
 3.5
@@ -10317,7 +10317,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=NC1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])=NC1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -10326,7 +10326,7 @@ M  END
 8.5
 
 > <Group>
-–CH=NPh
+ï¿½CH=NPh
 
 > <MR>
 3.3
@@ -10378,13 +10378,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N=C([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*N=C([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–N=CHPh
+ï¿½N=CHPh
 
 > <LSTM>
 8.4
@@ -10441,7 +10441,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)N([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C(=O)N([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -10450,7 +10450,7 @@ M  END
 8.24
 
 > <Group>
-–C(=O)NHPh
+ï¿½C(=O)NHPh
 
 > <MR>
 3.54
@@ -10504,7 +10504,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C(=O)C1=C([H])C([H])=C([H])C([H])=C1([H])
+*N([H])C(=O)C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -10513,7 +10513,7 @@ M  END
 8.4
 
 > <Group>
-–NHC(=O)Ph
+ï¿½NHC(=O)Ph
 
 > <MR>
 3.46
@@ -10569,13 +10569,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C1=C([H])C([H])=C(C([H])=C1([H]))N(=O)=O
+*C([H])([H])C1=C([H])C([H])=C(C([H])=C1[H])N(=O)=O
 
 > <Position>
 p
 
 > <Group>
-–CH2C6H4NO2-p
+ï¿½CH2C6H4NO2-p
 
 > <LSTM>
 
@@ -10630,7 +10630,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))C([H])([H])[H]
+*C1=C([H])C([H])=C(C([H])=C1[H])C([H])([H])[H]
 
 > <Position>
 o,m
@@ -10639,7 +10639,7 @@ o,m
 
 
 > <Group>
-–C6H4CH3 –(o-,m- or p-)
+ï¿½C6H4CH3 ï¿½(o-,m- or p-)
 
 > <MR>
 3
@@ -10691,7 +10691,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -10700,7 +10700,7 @@ M  END
 4.62
 
 > <Group>
-–CH2Ph
+ï¿½CH2Ph
 
 > <MR>
 3
@@ -10758,13 +10758,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N=NC=1C([H])=C(C([H])=C([H])C=1(O[H]))C([H])([H])[H]
+*N=NC1=C([H])C(=C([H])C([H])=C1O[H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–N=N-C6H3(5-CH3,2-OH)
+ï¿½N=N-C6H3(5-CH3,2-OH)
 
 > <MR>
 3.75
@@ -10818,13 +10818,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C(OC([H])([H])[H])=C([H])C=1([H])
+*C1=C([H])C([H])=C(OC([H])([H])[H])C([H])=C1[H]
 
 > <Position>
 o,m
 
 > <Group>
-–C6H4OCH3-(o-,m- or p-)
+ï¿½C6H4OCH3-(o-,m- or p-)
 
 > <MR>
 3.17
@@ -10876,13 +10876,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–CH2OPh
+ï¿½CH2OPh
 
 > <LSTM>
 8.19
@@ -10939,7 +10939,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(O[H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])(O[H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -10948,7 +10948,7 @@ M  END
 4.62
 
 > <Group>
-–CH(OH)Ph
+ï¿½CH(OH)Ph
 
 > <MR>
 3.15
@@ -11002,7 +11002,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC1=C([H])C([H])=C(C([H])=C1([H]))C([H])([H])[H]
+*OC1=C([H])C([H])=C(C([H])=C1[H])C([H])([H])[H]
 
 > <Position>
 p
@@ -11011,7 +11011,7 @@ p
 5.29
 
 > <Group>
-–OC6H4CH3-p
+ï¿½OC6H4CH3-p
 
 > <MR>
 3.17
@@ -11065,7 +11065,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OC([H])([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*OC([H])([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -11074,7 +11074,7 @@ M  END
 8.2
 
 > <Group>
-–OCH2Ph
+ï¿½OCH2Ph
 
 > <MR>
 3.22
@@ -11132,7 +11132,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)C1=C([H])C([H])=C(C([H])=C1([H]))C([H])([H])[H]
+*S(=O)(=O)C1=C([H])C([H])=C(C([H])=C1[H])C([H])([H])[H]
 
 > <Position>
 p
@@ -11141,7 +11141,7 @@ p
 
 
 > <Group>
-–O2SC6H4CH3-p
+ï¿½O2SC6H4CH3-p
 
 > <MR>
 3.78
@@ -11201,7 +11201,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]OS(=O)(=O)C1=C([H])C([H])=C(C([H])=C1([H]))C([H])([H])[H]
+*OS(=O)(=O)C1=C([H])C([H])=C(C([H])=C1[H])C([H])([H])[H]
 
 > <Position>
 p
@@ -11210,7 +11210,7 @@ p
 
 
 > <Group>
-–OSO2C6H4CH3-p
+ï¿½OSO2C6H4CH3-p
 
 > <MR>
 4.13
@@ -11270,7 +11270,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]S(=O)(=O)C1=C([H])C([H])=C(OC([H])([H])[H])C([H])=C1([H])
+*S(=O)(=O)C1=C([H])C([H])=C(OC([H])([H])[H])C([H])=C1[H]
 
 > <Position>
 p
@@ -11279,7 +11279,7 @@ p
 
 
 > <Group>
-–O2SC6H4OCH3-p
+ï¿½O2SC6H4OCH3-p
 
 > <MR>
 4
@@ -11333,7 +11333,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])SC1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])([H])SC1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -11342,7 +11342,7 @@ M  END
 8.67
 
 > <Group>
-–CH2SPh
+ï¿½CH2SPh
 
 > <MR>
 3.79
@@ -11396,7 +11396,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]SC([H])([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*SC([H])([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -11405,7 +11405,7 @@ M  END
 8.5
 
 > <Group>
-–SCH2Ph
+ï¿½SCH2Ph
 
 > <MR>
 3.79
@@ -11461,7 +11461,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))N([H])C([H])([H])[H]
+*C1=C([H])C([H])=C(C([H])=C1[H])N([H])C([H])([H])[H]
 
 > <Position>
 m,p
@@ -11470,7 +11470,7 @@ m,p
 
 
 > <Group>
-–C6H4NHCH3-(m- or p-)
+ï¿½C6H4NHCH3-(m- or p-)
 
 > <MR>
 3.47
@@ -11526,7 +11526,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N(C1=C([H])C([H])=C([H])C([H])=C1([H]))C([H])([H])[H]
+*N(C1=C([H])C([H])=C([H])C([H])=C1[H])C([H])([H])[H]
 
 > <Position>
 -
@@ -11535,7 +11535,7 @@ M  END
 4.53
 
 > <Group>
-–N(CH3)Ph
+ï¿½N(CH3)Ph
 
 > <MR>
 3.52
@@ -11591,13 +11591,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N([H])C1=C([H])C([H])=C(C([H])=C1([H]))C([H])([H])[H]
+*N([H])C1=C([H])C([H])=C(C([H])=C1[H])C([H])([H])[H]
 
 > <Position>
 p
 
 > <Group>
-–NHC6H4CH3-p
+ï¿½NHC6H4CH3-p
 
 > <LSTM>
 
@@ -11664,7 +11664,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1([H])(C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*C1([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -11734,7 +11734,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1(C([H])([H])[H])(C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*C1(C([H])([H])[H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -11807,7 +11807,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C1([H])(C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*C([H])([H])C1([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -11816,7 +11816,7 @@ M  END
 6.09
 
 > <Group>
-–CH2cyclohexyl
+ï¿½CH2cyclohexyl
 
 > <MR>
 3.13
@@ -11881,13 +11881,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(C([H])([H])C(=O)C([H])([H])[H])C([H])([H])C([H])([H])C([H])([H])[H]
+*C([H])(C([H])([H])C(=O)C([H])([H])[H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–CH(CH2CH2CH3)CH2COCH3
+ï¿½CH(CH2CH2CH3)CH2COCH3
 
 > <LSTM>
 
@@ -11956,7 +11956,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1([H])(C([H])([H])C([H])([H])C([H])([H])C([H])(OC([H])([H])[H])C1([H])([H]))
+*C1([H])C([H])([H])C([H])([H])C([H])([H])C([H])(OC([H])([H])[H])C1([H])[H]
 
 > <Position>
 -
@@ -12029,13 +12029,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])C([H])([H])C(=O)OC([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])C([H])([H])C([H])([H])C(=O)OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–(CH2)4COOEt
+ï¿½(CH2)4COOEt
 
 > <MR>
 3.51
@@ -12102,7 +12102,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -12111,7 +12111,7 @@ M  END
 9.03
 
 > <Group>
-–(CH2)6CH3    /Hept/
+ï¿½(CH2)6CH3    /Hept/
 
 > <MR>
 3.35
@@ -12188,13 +12188,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])P(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])C([H])([H])P(=O)(OC([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–(CH2)3-P(=O)(OEt)2
+ï¿½(CH2)3-P(=O)(OEt)2
 
 > <MR>
 4.51
@@ -12252,7 +12252,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C1=C([H])C([H])=C(C([H])=C1([H]))N(=O)=O
+*C([H])=C([H])C1=C([H])C([H])=C(C([H])=C1[H])N(=O)=O
 
 > <Position>
 p
@@ -12261,7 +12261,7 @@ p
 
 
 > <Group>
-–C=CC6H4NO2-p
+ï¿½C=CC6H4NO2-p
 
 > <MR>
 3.95
@@ -12311,7 +12311,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C#CC1=C([H])C([H])=C([H])C([H])=C1([H])
+*C#CC1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -12320,7 +12320,7 @@ M  END
 8.88
 
 > <Group>
-– CCPh
+ï¿½ CCPh
 
 > <MR>
 3.32
@@ -12392,7 +12392,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C2=C([H])C3=C([H])C([H])=C([H])C([H])=C3(C([H])=C2(C=1([H])))
+*C1=C([H])C([H])=C2C([H])=C3C([H])=C([H])C([H])=C([H])C3=C([H])C2=C1[H]
 
 > <Position>
 -
@@ -12470,7 +12470,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C3C(=C1([H]))C([H])=C([H])C=2C([H])=C([H])C([H])=C([H])C=23
+*C1=C([H])C([H])=C2C(C([H])=C([H])C3=C([H])C([H])=C([H])C([H])=C32)=C1[H]
 
 > <Position>
 -
@@ -12532,7 +12532,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C1=C([H])C([H])=C(N=C=O)C([H])=C1([H])
+*C([H])([H])C1=C([H])C([H])=C(N=C=O)C([H])=C1[H]
 
 > <Position>
 p
@@ -12541,7 +12541,7 @@ p
 
 
 > <Group>
-–CH2C6H4N=C=O-p
+ï¿½CH2C6H4N=C=O-p
 
 > <MR>
 3.78
@@ -12599,7 +12599,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C1=C([H])C([H])=C(C([H])=C1([H]))N(=O)=O
+*C([H])=C([H])C1=C([H])C([H])=C(C([H])=C1[H])N(=O)=O
 
 > <Position>
 p
@@ -12608,7 +12608,7 @@ p
 
 
 > <Group>
-–CH=CHC6H4NO2-p
+ï¿½CH=CHC6H4NO2-p
 
 > <MR>
 4.05
@@ -12662,13 +12662,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])=C([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–CH=CHPh
+ï¿½CH=CHPh
 
 > <MR>
 3.42
@@ -12726,7 +12726,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N(C1=C([H])C([H])=C(C#N)C([H])=C1([H]))C([H])([H])[H]
+*N(C1=C([H])C([H])=C(C#N)C([H])=C1[H])C([H])([H])[H]
 
 > <Position>
 p
@@ -12735,7 +12735,7 @@ p
 
 
 > <Group>
-–N(CH3)C6H4CN-p
+ï¿½N(CH3)C6H4CN-p
 
 > <MR>
 4.05
@@ -12795,13 +12795,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=NN([H])C(=O)C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])=NN([H])C(=O)C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–CH=NNHCOPh
+ï¿½CH=NNHCOPh
 
 > <MR>
 4.21
@@ -12857,13 +12857,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))C(=O)C([H])([H])[H]
+*C1=C([H])C([H])=C(C([H])=C1[H])C(=O)C([H])([H])[H]
 
 > <Position>
 p
 
 > <Group>
-–C6H4COCH3-p
+ï¿½C6H4COCH3-p
 
 > <MR>
 3.49
@@ -12921,13 +12921,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))C(=O)OC([H])([H])[H]
+*C1=C([H])C([H])=C(C([H])=C1[H])C(=O)OC([H])([H])[H]
 
 > <Position>
 p
 
 > <Group>
-–C6H4COOCH3-p
+ï¿½C6H4COOCH3-p
 
 > <MR>
 3.64
@@ -12985,13 +12985,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(=O)OC([H])([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C(=O)OC([H])([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–COOCH2Ph
+ï¿½COOCH2Ph
 
 > <MR>
 3.72
@@ -13049,13 +13049,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])OC(=O)C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])([H])OC(=O)C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–CH2OOCPh
+ï¿½CH2OOCPh
 
 > <MR>
 3.72
@@ -13127,7 +13127,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C3C([H])=C([H])C([H])=C([H])C3(=C([H])C2=C([H])C([H])=C([H])C([H])=C12)
+*C1=C2C([H])=C([H])C([H])=C([H])C2=C([H])C3=C([H])C([H])=C([H])C([H])=C13
 
 > <Position>
 -
@@ -13205,7 +13205,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C2=C([H])C1=C([H])C([H])=C([H])C([H])=C1C=3C([H])=C([H])C([H])=C([H])C2=3
+*C1=C([H])C2=C([H])C([H])=C([H])C([H])=C2C3=C([H])C([H])=C([H])C([H])=C13
 
 > <Position>
 -
@@ -13271,13 +13271,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))N([H])C(=O)C([H])([H])[H]
+*C1=C([H])C([H])=C(C([H])=C1[H])N([H])C(=O)C([H])([H])[H]
 
 > <Position>
 p
 
 > <Group>
-–C6H4NHCOCH3-p
+ï¿½C6H4NHCOCH3-p
 
 > <MR>
 3.93
@@ -13337,7 +13337,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C(=O)N([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])([H])C(=O)N([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -13346,7 +13346,7 @@ M  END
 6.95
 
 > <Group>
-–CH2CONHPh
+ï¿½CH2CONHPh
 
 > <MR>
 3.93
@@ -13406,7 +13406,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N=C([H])C1=C([H])C([H])=C(OC([H])([H])[H])C([H])=C1([H])
+*N=C([H])C1=C([H])C([H])=C(OC([H])([H])[H])C([H])=C1[H]
 
 > <Position>
 p
@@ -13415,7 +13415,7 @@ p
 
 
 > <Group>
-–N=CHC6H4OCH3-p
+ï¿½N=CHC6H4OCH3-p
 
 > <MR>
 3.93
@@ -13473,13 +13473,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))C([H])([H])C([H])([H])[H]
+*C1=C([H])C([H])=C(C([H])=C1[H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 m,p
 
 > <Group>
-–C6H4Et-(m- or p-)
+ï¿½C6H4Et-(m- or p-)
 
 > <LSTM>
 
@@ -13540,13 +13540,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(C1=C([H])C([H])=C([H])C([H])=C1([H]))C([H])([H])[H]
+*C([H])(C1=C([H])C([H])=C([H])C([H])=C1[H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–CH(CH3)Ph
+ï¿½CH(CH3)Ph
 
 > <MR>
 3.47
@@ -13604,7 +13604,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])([H])C([H])([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -13613,7 +13613,7 @@ M  END
 8.33
 
 > <Group>
-–CH2CH2Ph
+ï¿½CH2CH2Ph
 
 > <MR>
 3.46
@@ -13673,13 +13673,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])OC1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])([H])C([H])([H])OC1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–CH2CH2OPh
+ï¿½CH2CH2OPh
 
 > <MR>
 3.64
@@ -13739,7 +13739,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(OC([H])([H])C([H])([H])[H])C([H])=C1([H])
+*C1=C([H])C([H])=C(OC([H])([H])C([H])([H])[H])C([H])=C1[H]
 
 > <Position>
 p
@@ -13748,7 +13748,7 @@ p
 
 
 > <Group>
-–C6H4OEt-p
+ï¿½C6H4OEt-p
 
 > <MR>
 3.64
@@ -13808,13 +13808,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])(OC([H])([H])[H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])(OC([H])([H])[H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–CH(OCH3)Ph
+ï¿½CH(OCH3)Ph
 
 > <MR>
 3.64
@@ -13874,13 +13874,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))SC([H])([H])C([H])([H])[H]
+*C1=C([H])C([H])=C(SC([H])([H])C([H])([H])[H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–C6H4SEt-p
+ï¿½C6H4SEt-p
 
 > <MR>
 4.26
@@ -13940,13 +13940,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])SC([H])([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])([H])SC([H])([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–CH2SCH2Ph
+ï¿½CH2SCH2Ph
 
 > <MR>
 4.26
@@ -14006,7 +14006,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]SC([H])([H])C([H])([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*SC([H])([H])C([H])([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
@@ -14015,7 +14015,7 @@ M  END
 6.47
 
 > <Group>
-–SCH2CH2Ph
+ï¿½SCH2CH2Ph
 
 > <MR>
 4.26
@@ -14077,7 +14077,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))N(C([H])([H])[H])C([H])([H])[H]
+*C1=C([H])C([H])=C(C([H])=C1[H])N(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 p
@@ -14086,7 +14086,7 @@ p
 7.75
 
 > <Group>
-–C6H4N(CH3)2-p
+ï¿½C6H4N(CH3)2-p
 
 > <MR>
 3.99
@@ -14148,7 +14148,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C([H])=C(C=1([H]))N([H])C([H])([H])C([H])([H])[H]
+*C=1C([H])=C([H])C([H])=C(C1[H])N([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 m,p
@@ -14157,7 +14157,7 @@ m,p
 
 
 > <Group>
-–C6H4NHEt-m
+ï¿½C6H4NHEt-m
 
 > <MR>
 3.99
@@ -14219,13 +14219,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N(C1=C([H])C([H])=C([H])C([H])=C1([H]))C([H])([H])C([H])([H])[H]
+*N(C1=C([H])C([H])=C([H])C([H])=C1[H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-–N(Et)Ph
+ï¿½N(Et)Ph
 
 > <MR>
 3.99
@@ -14287,13 +14287,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N(C1=C([H])C([H])=C(C([H])=C1([H]))C([H])([H])[H])C([H])([H])[H]
+*N(C1=C([H])C([H])=C(C([H])=C1[H])C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 p
 
 > <Group>
-–N(CH3)C6H4CH3-p
+ï¿½N(CH3)C6H4CH3-p
 
 > <MR>
 3.99
@@ -14357,13 +14357,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N(C1=C([H])C([H])=C(OC([H])([H])[H])C([H])=C1([H]))C([H])([H])[H]
+*N(C1=C([H])C([H])=C(OC([H])([H])[H])C([H])=C1[H])C([H])([H])[H]
 
 > <Position>
 p
 
 > <Group>
-–N(CH3)C6H4OCH3-p
+ï¿½N(CH3)C6H4OCH3-p
 
 > <MR>
 4.17
@@ -14433,7 +14433,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1([H])(C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*C1([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -14512,7 +14512,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -14521,7 +14521,7 @@ M  END
 10.27
 
 > <Group>
-–(CH2)7CH3   /n-Octyl/ /n-Oct/
+ï¿½(CH2)7CH3   /n-Octyl/ /n-Oct/
 
 > <MR>
 3.82
@@ -14604,13 +14604,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(=O)(OC([H])([H])C([H])([H])C([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*P(=O)(OC([H])([H])C([H])([H])C([H])([H])C([H])([H])[H])OC([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
 
 > <Group>
-""-  P(=O)(OCH2CH2CH2CH3)2   /-P(=O)(OBu)2/""
+"-  P(=O)(OCH2CH2CH2CH3)2   /-P(=O)(OBu)2/"
 
 > <MR>
 4.97
@@ -14668,13 +14668,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])=C([H])C(=O)C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])=C([H])C(=O)C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–CH=CHCOPh
+ï¿½CH=CHCOPh
 
 > <MR>
 4.03
@@ -14750,7 +14750,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1([H])(C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*C1([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -14815,7 +14815,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C([H])C2=C([H])C([H])=C([H])C([H])=C12
+*C1=C([H])C([H])=C([H])C2=C([H])C([H])=C([H])C([H])=C12
 
 > <Position>
 -
@@ -14883,7 +14883,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C2=C([H])C([H])=C([H])C([H])=C2(C=1([H]))
+*C=1C([H])=C([H])C2=C([H])C([H])=C([H])C([H])=C2C1[H]
 
 > <Position>
 -
@@ -14962,13 +14962,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1=C([H])C([H])=C([H])C([H])=C1([H])
+*C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1=C([H])C([H])=C([H])C([H])=C1[H]
 
 > <Position>
 -
 
 > <Group>
-–(CH2)4Ph
+ï¿½(CH2)4Ph
 
 > <MR>
 4.39
@@ -15038,13 +15038,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))C(C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]
+*C1=C([H])C([H])=C(C([H])=C1[H])C(C([H])([H])[H])(C([H])([H])[H])C([H])([H])[H]
 
 > <Position>
 p
 
 > <Group>
-–C6H4C(CH3)3-p
+ï¿½C6H4C(CH3)3-p
 
 > <MR>
 4.39
@@ -15111,7 +15111,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=1C([H])=C([H])C(=C([H])C=1([H]))C=2C([H])=C([H])C([H])=C([H])C=2([H])
+*C1=C([H])C([H])=C(C([H])=C1[H])C2=C([H])C([H])=C([H])C([H])=C2[H]
 
 > <Position>
 p
@@ -15120,7 +15120,7 @@ p
 10.5
 
 > <Group>
-–C6H4Ph-p    /p-Biphenylyl/
+ï¿½C6H4Ph-p    /p-Biphenylyl/
 
 > <MR>
 4.97
@@ -15191,13 +15191,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C2=C([H])C([H])=C(N=NC1=C([H])C([H])=C([H])C([H])=C1([H]))C([H])=C2([H])
+*C1=C([H])C([H])=C(N=NC2=C([H])C([H])=C([H])C([H])=C2[H])C([H])=C1[H]
 
 > <Position>
 p
 
 > <Group>
-–C6H4N=NPh-p
+ï¿½C6H4N=NPh-p
 
 > <MR>
 5.56
@@ -15265,7 +15265,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C=2C([H])=C([H])C=3(OC1=C([H])C([H])=C([H])C([H])=C1([H]))(=C=3(C=2([H])))
+*C1=C([H])C([H])=C(OC2=C([H])C([H])=C([H])C([H])=C2[H])(C(=C1[H]))
 
 > <Position>
 p,m
@@ -15274,7 +15274,7 @@ p,m
 
 
 > <Group>
-–C6H4OPh-p/or - m/
+ï¿½C6H4OPh-p/or - m/
 
 > <MR>
 5.25
@@ -15345,7 +15345,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]N(C1=C([H])C([H])=C([H])C([H])=C1([H]))C2=C([H])C([H])=C([H])C([H])=C2([H])
+*N(C1=C([H])C([H])=C([H])C([H])=C1[H])C2=C([H])C([H])=C([H])C([H])=C2[H]
 
 > <Position>
 -
@@ -15354,7 +15354,7 @@ M  END
 5.77
 
 > <Group>
-–N(Ph)2
+ï¿½N(Ph)2
 
 > <MR>
 5.5
@@ -15425,13 +15425,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]P(C1=C([H])C([H])=C([H])C([H])=C1([H]))C2=C([H])C([H])=C([H])C([H])=C2([H])
+*P(C1=C([H])C([H])=C([H])C([H])=C1[H])C2=C([H])C([H])=C([H])C([H])=C2[H]
 
 > <Position>
 -
 
 > <Group>
-–P(Ph)2
+ï¿½P(Ph)2
 
 > <MR>
 6.05
@@ -15525,7 +15525,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1([H])(C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])([H]))
+*C1([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C1([H])[H]
 
 > <Position>
 -
@@ -15628,7 +15628,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
+*C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])C([H])([H])[H]
 
 > <Position>
 -
@@ -15637,7 +15637,7 @@ M  END
 14.38
 
 > <Group>
-–(CH2)11CH3  /n-Dodecyl/
+ï¿½(CH2)11CH3  /n-Dodecyl/
 
 > <MR>
 5.68
@@ -15710,7 +15710,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))C(=O)OC2=C([H])C([H])=C([H])C([H])=C2([H])
+*C1=C([H])C([H])=C(C([H])=C1[H])C(=O)OC2=C([H])C([H])=C([H])C([H])=C2[H]
 
 > <Position>
 p
@@ -15719,7 +15719,7 @@ p
 
 
 > <Group>
-–C6H4COOPh-p
+ï¿½C6H4COOPh-p
 
 > <MR>
 5.67
@@ -15794,7 +15794,7 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))C(=O)N([H])C2=C([H])C([H])=C([H])C([H])=C2([H])
+*C1=C([H])C([H])=C(C([H])=C1[H])C(=O)N([H])C2=C([H])C([H])=C([H])C([H])=C2[H]
 
 > <Position>
 m,p
@@ -15803,7 +15803,7 @@ m,p
 
 
 > <Group>
-–C6H4CONHPh-(m- or p-)
+ï¿½C6H4CONHPh-(m- or p-)
 
 > <MR>
 5.97
@@ -15882,13 +15882,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C([H])([H])P(=O)(C1=C([H])C([H])=C([H])C([H])=C1([H]))C2=C([H])C([H])=C([H])C([H])=C2([H])
+*C([H])([H])P(=O)(C1=C([H])C([H])=C([H])C([H])=C1[H])C2=C([H])C([H])=C([H])C([H])=C2[H]
 
 > <Position>
 -
 
 > <Group>
-–CH2P(=O)(Ph)2
+ï¿½CH2P(=O)(Ph)2
 
 > <MR>
 6.39
@@ -15982,13 +15982,13 @@ $$$$
 M  END
 
 > <SMILES>
-[*]C(C1=C([H])C([H])=C([H])C([H])=C1([H]))(C2=C([H])C([H])=C([H])C([H])=C2([H]))C3=C([H])C([H])=C([H])C([H])=C3([H])
+*C(C1=C([H])C([H])=C([H])C([H])=C1[H])(C2=C([H])C([H])=C([H])C([H])=C2[H])C3=C([H])C([H])=C([H])C([H])=C3[H]
 
 > <Position>
 -
 
 > <Group>
-–C(Ph)3
+ï¿½C(Ph)3
 
 > <MR>
 7.87
@@ -16047,10 +16047,10 @@ M  END
 -
 
 > <Group>
-[*]C(=O)OC([H])(C([H])([H])[H])C([H])([H])[H]
+*C(=O)OC([H])(C([H])([H])[H])C([H])([H])[H]
 
 > <SMILES>
-[*]C(=O)OC([H])(C([H])([H])[H])C([H])([H])[H]
+*C(=O)OC([H])(C([H])([H])[H])C([H])([H])[H]
 
 $$$$
 
@@ -16093,10 +16093,10 @@ M  END
 -
 
 > <Group>
-[*]C(=O)N(C([H])([H])[H])C([H])([H])[H]
+*C(=O)N(C([H])([H])[H])C([H])([H])[H]
 
 > <SMILES>
-[*]C(=O)N(C([H])([H])[H])C([H])([H])[H]
+*C(=O)N(C([H])([H])[H])C([H])([H])[H]
 
 $$$$
 
@@ -16129,13 +16129,13 @@ M  END
 -
 
 > <Group>
-[H]N([H])C(=[*])S[H]
+[H]N([H])C(=*)S[H]
 
 > <SMILES>
-[*]=C(N([H])[H])S[H]
+*=C(S[H])N([H])[H]
 
 $$$$
-[*]C(=O)C(F)(F)F
+*C(=O)C(F)(F)F
   CDK    2/16/08,17:9
 
   7  6  0  0  0  0  0  0  0  0999 V2000
@@ -16165,10 +16165,10 @@ M  END
 -
 
 > <Group>
-[*]C(=O)C(F)(F)F
+*C(=O)C(F)(F)F
 
 > <SMILES>
-[*]C(=O)C(F)(F)F
+*C(=O)C(F)(F)F
 
 $$$$
 
@@ -16209,7 +16209,7 @@ M  END
 Rodo94
 
 > <SMILES>
-[*]C1=NC(=NC(=N1)Cl)Cl
+*C1=NC(Cl)=NC(Cl)=N1
 
 
 $$$$
@@ -16267,7 +16267,7 @@ M  END
 Rodo 457
 
 > <SMILES>
-[*]C1=NC(=NC(=C1([H]))Cl)SC([H])([H])C(=O)O[H]
+*C=1N=C(N=C(Cl)C1[H])SC([H])([H])C(=O)O[H]
 
 $$$$
 
@@ -16317,7 +16317,7 @@ M  END
 Rodo 962
 
 > <SMILES>
-[*]C(=O)C([H])([H])C([H])(O[H])C([H])([H])[H]
+*C(=O)C([H])([H])C([H])(O[H])C([H])([H])[H]
 
 $$$$
 
@@ -16402,7 +16402,7 @@ M  END
 Rodo 1051
 
 > <SMILES>
-[*]C=1C([H])=C([H])C(=C([H])C=1([H]))N([H])C2=C([H])C([H])=C3C([H])=C([H])C([H])=C([H])C3(=C2([H]))
+*C1=C([H])C([H])=C(C([H])=C1[H])N([H])C=2C([H])=C([H])C3=C([H])C([H])=C([H])C([H])=C3C2[H]
 
 $$$$
 
@@ -16461,7 +16461,7 @@ M  END
 Rodo 1054
 
 > <SMILES>
-[*]C(=O)C([H])([H])N1C(=O)C([H])([H])C([H])([H])C1([H])([H])
+*C(=O)C([H])([H])N1C(=O)C([H])([H])C([H])([H])C1([H])[H]
 
 $$$$
 
@@ -16528,7 +16528,7 @@ M  END
 Rodo 983
 
 > <SMILES>
-[H]C1=C([H])C(OC([H])(C([H])([H])[H])C([H])([H])[H])=C([H])C([H])=C1([*])
+*C1=C([H])C([H])=C(OC([H])(C([H])([H])[H])C([H])([H])[H])C([H])=C1[H]
 
 $$$$
 
@@ -16600,6 +16600,6 @@ M  END
 Rodo 887
 
 > <SMILES>
-[*]C1=C([H])C([H])=C(C([H])=C1([H]))N([H])C2=C([H])C([H])=C([H])C([H])=C2([H])
+*C1=C([H])C([H])=C(C([H])=C1[H])N([H])C2=C([H])C([H])=C([H])C([H])=C2[H]
 
 $$$$

@@ -51,7 +51,6 @@ import java.util.logging.Logger;
 import javax.swing.JComponent;
 
 import net.idea.modbcum.i.exceptions.AmbitException;
-import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -77,6 +76,7 @@ import toxTree.query.MolAnalyser;
 import toxTree.ui.EditorFactory;
 import toxTree.ui.tree.categories.CategoriesRenderer;
 import ambit2.rendering.CompoundImageTools;
+import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * An astract class, implementing {@link toxTree.core.IDecisionMethod}
@@ -423,9 +423,12 @@ public abstract class AbstractTree extends Observable implements
 			int nr = getNumberOfRules();
 			if (nr != m.getNumberOfRules())
 				return false;
-			for (int i = 0; i < nr; i++)
+			for (int i = 0; i < nr; i++) {
+				// System.out.print(((DecisionNode)getRule(i)).getRule().getClass().getName());
+				// System.out.println(((DecisionNode)getRule(i)).getRule().getClass().getName());
 				if (!getRule(i).equals(m.getRule(i)))
 					return false;
+			}
 
 			// TODO compare transitions
 			return true;
@@ -634,6 +637,7 @@ public abstract class AbstractTree extends Observable implements
 		int na = 0;
 		for (int i = 0; i < nr; i++) {
 			IDecisionRule rule = rules.getRule(i);
+			logger.log(Level.FINE,rule.getClass().getName());
 			if (rule.getSelector() == null) {
 
 				na++;
@@ -644,6 +648,7 @@ public abstract class AbstractTree extends Observable implements
 					if (a == null)
 						continue;
 				} catch (Exception x) {
+					logger.log(Level.WARNING, x.getMessage(), x);
 					continue;
 				}
 				IChemObjectSelection hit = rule.getSelector().process(a);
@@ -688,7 +693,7 @@ public abstract class AbstractTree extends Observable implements
 	public BufferedImage getImage(IAtomContainer mol, String ruleID, int width,
 			int height, boolean atomnumbers) throws AmbitException {
 		IDecisionRuleList rules = getRules();
-		IProcessor<IAtomContainer, IChemObjectSelection> selector = null;
+		IAtomContainerHighlights selector = null;
 
 		for (int i = 0; i < rules.size(); i++) {
 			IDecisionRule rule = rules.get(i);
@@ -764,6 +769,14 @@ public abstract class AbstractTree extends Observable implements
 		}
 		String vendor = labels.getString("vendor");
 		String vendoruri = labels.getString("vendoruri");
+		String specVendor = "";
+		try {
+			specVendor = labels.getString("specification_vendor");
+			if (specVendor != null && !"".equals(specVendor))
+				specVendor = "<h5>Specification: " + specVendor + "</h5>";
+		} catch (Exception x) {
+			specVendor = "";
+		}
 		String uri = labels.getString("uri");
 
 		String traindata = labels.containsKey("trainingdata") ? String.format(
@@ -774,26 +787,23 @@ public abstract class AbstractTree extends Observable implements
 				"<h5>Test data: <a href='%s'>%s</a></h5>",
 				labels.getString("testdata"), "Click to retrieve") : "";
 
-		return String.format("<html><body>"
-				+ "<h3>%s</h3><h5>WWW: <a href='%s'>%s</a></h5>"
-				+ "<h5>Vendor: <a href='%s'>%s</a></h5>" + "%s%s"
-				+ "<hr><h3>References:</h3><ol>%s</ol>" + "</body></html>",
-				labels.getString("explanation"), uri, uri, vendoruri, vendor,
-				traindata, testdata, b.toString());
+		return String
+				.format("<html><body><h3>%s</h3><h5>WWW: <a href='%s'>%s</a></h5><h5>Vendor: <a href='%s'>%s</a></h5>%s%s%s<hr><h3>References:</h3><ol>%s</ol></body></html>",
+						labels.getString("explanation"), uri, uri, vendoruri,
+						vendor, specVendor, traindata, testdata, b.toString());
 
 	}
 
 }
 
-class TreeSelector implements IProcessor<IAtomContainer, IChemObjectSelection> {
-	protected List<IProcessor<IAtomContainer, IChemObjectSelection>> selectors = new ArrayList<IProcessor<IAtomContainer, IChemObjectSelection>>();
+class TreeSelector implements IAtomContainerHighlights {
+	protected List<IAtomContainerHighlights> selectors = new ArrayList<IAtomContainerHighlights>();
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7753309179379127408L;
 
-	public void addSelector(
-			IProcessor<IAtomContainer, IChemObjectSelection> selector) {
+	public void addSelector(IAtomContainerHighlights selector) {
 		selectors.add(selector);
 	}
 
@@ -813,7 +823,7 @@ class TreeSelector implements IProcessor<IAtomContainer, IChemObjectSelection> {
 		Collection<IAtomContainer> set = new ArrayList<IAtomContainer>();
 		MultiSelection<IAtomContainer> ms = new MultiSelection<IAtomContainer>(
 				set);
-		for (IProcessor<IAtomContainer, IChemObjectSelection> selector : selectors)
+		for (IAtomContainerHighlights selector : selectors)
 			try {
 				set.add(selector.process(target).getConnectedAtomContainer());
 			} catch (Exception x) {

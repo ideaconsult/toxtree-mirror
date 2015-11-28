@@ -82,7 +82,7 @@ public class ToxtreeDataIOTest {
             // test the molecule
             IMolecule mol = som.getMolecule(0);
             assertNotNull(mol);
-   //         assertTrue(GeometryTools.has3DCoordinates(mol));
+   //         assertTrue(GeometryUtil.has3DCoordinates(mol));
         } catch (Exception e) {
         	e.printStackTrace();
             fail(e.toString());

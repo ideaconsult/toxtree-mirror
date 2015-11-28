@@ -38,6 +38,7 @@ import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.io.IChemObjectWriter;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.io.iterator.IteratingSMILESReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
@@ -45,7 +46,6 @@ import ambit2.core.io.DelimitedFileFormat;
 import ambit2.core.io.DelimitedFileWriter;
 import ambit2.core.io.IteratingDelimitedFileReader;
 import ambit2.core.io.MDLWriter;
-import ambit2.core.io.MyIteratingMDLReader;
 
 
 /**
@@ -102,14 +102,14 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 			String fname = file.filename.toLowerCase(); 
 			if (fname.endsWith(extensions[SDF_INDEX]))
 				if (monitor)
-					return new MyIteratingMDLReader(new ProgressMonitorInputStream(
+					return new IteratingSDFReader(new ProgressMonitorInputStream(
                                 null,
                                 "Reading " + file.getFile().getName(),
                                 new FileInputStream(file.getFile())),SilentChemObjectBuilder.getInstance());
 				else
-					return new MyIteratingMDLReader(new FileInputStream(file.getFile()),SilentChemObjectBuilder.getInstance());
+					return new IteratingSDFReader(new FileInputStream(file.getFile()),SilentChemObjectBuilder.getInstance());
 			else if (fname.endsWith(extensions[SMI_INDEX])) 
-				return new IteratingSMILESReader(new FileInputStream(file.getFile()));
+				return new IteratingSMILESReader(new FileInputStream(file.getFile()),SilentChemObjectBuilder.getInstance());
 			else if (fname.endsWith(extensions[CSV_INDEX]))
 				return new IteratingDelimitedFileReader(new FileInputStream(file.getFile()));
 			else if (fname.endsWith(extensions[TXT_INDEX]))

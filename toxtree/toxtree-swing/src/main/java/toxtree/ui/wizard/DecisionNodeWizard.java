@@ -71,7 +71,7 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 	    }
 
 	    @Override
-	    IDecisionRule getRule() {
+	    IDecisionRule getRule() throws Exception {
 		return new RuleAllSubstructures();
 	    }
 	},
@@ -82,7 +82,7 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 	    }
 
 	    @Override
-	    IDecisionRule getRule() {
+	    IDecisionRule getRule() throws Exception {
 		return new RuleAnySubstructure();
 	    }
 	},
@@ -93,7 +93,7 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 	    }
 
 	    @Override
-	    IDecisionRule getRule() {
+	    IDecisionRule getRule() throws Exception {
 		return new RuleSMARTSubstructure();
 	    }
 	},
@@ -104,7 +104,7 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 	    }
 
 	    @Override
-	    IDecisionRule getRule() {
+	    IDecisionRule getRule() throws Exception {
 		return new RuleStructuresList();
 	    }
 	},
@@ -115,7 +115,7 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 	    }
 
 	    @Override
-	    IDecisionRule getRule() {
+	    IDecisionRule getRule() throws Exception {
 		return new RuleAromatic();
 	    }
 	},
@@ -126,7 +126,7 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 	    }
 
 	    @Override
-	    IDecisionRule getRule() {
+	    IDecisionRule getRule() throws Exception {
 		try {
 		    return (IDecisionRule) Introspection.loadCreateObject("toxTree.tree.cramer.RuleHeteroaromatic");
 		} catch (Exception x) {
@@ -142,7 +142,7 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 	    }
 
 	    @Override
-	    IDecisionRule getRule() {
+	    IDecisionRule getRule() throws Exception {
 		return new RuleManyAromaticRings();
 	    }
 	},
@@ -153,7 +153,7 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 	    }
 
 	    @Override
-	    IDecisionRule getRule() {
+	    IDecisionRule getRule() throws Exception {
 		return new RuleDescriptorRange();
 	    }
 	},
@@ -164,7 +164,7 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 	    }
 
 	    @Override
-	    IDecisionRule getRule() {
+	    IDecisionRule getRule() throws Exception {
 		return new RuleVerifyProperty();
 	    }
 	},
@@ -175,11 +175,11 @@ public class DecisionNodeWizard extends DecisionTreeWizard implements ListSelect
 	    }
 
 	    @Override
-	    IDecisionRule getRule() {
+	    IDecisionRule getRule() throws Exception {
 		return new RuleMolecularMassRange();
 	    }
 	};
-	abstract IDecisionRule getRule();
+	abstract IDecisionRule getRule() throws Exception;
     };
 
     protected static String[] pages = { "options", "categoryoptions", "ruleoptions", "panel", "details",

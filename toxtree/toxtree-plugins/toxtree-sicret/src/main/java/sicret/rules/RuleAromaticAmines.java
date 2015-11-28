@@ -43,7 +43,7 @@ public class RuleAromaticAmines extends RuleAnySubstructure {
 	/**
 	 * 
 	 */
-	public RuleAromaticAmines() {
+	public RuleAromaticAmines() throws Exception {
 		super();
 		id = "61";
 		title = "AromaticAmines";		

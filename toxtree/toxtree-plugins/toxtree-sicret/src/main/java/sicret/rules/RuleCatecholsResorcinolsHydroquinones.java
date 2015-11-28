@@ -16,54 +16,66 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package sicret.rules;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
  * Catechols, Resorcinols Hydroquinones.<br>
+ * 
  * @author Nina Jeliazkova nina@acad.bg
- * @author Martin Martinov
- * <b>Modified</b> Dec 17, 2006
+ * @author Martin Martinov <b>Modified</b> Dec 17, 2006
  */
 public class RuleCatecholsResorcinolsHydroquinones extends RuleAnySubstructure {
 	/**
-     * Comment for <code>serialVersionUID</code>
-     */
-    private static final long serialVersionUID = 0;
+	 * Comment for <code>serialVersionUID</code>
+	 */
+	private static final long serialVersionUID = 0;
 
-    /**
+	/**
 	 * Constructor
 	 * 
 	 */
-	public RuleCatecholsResorcinolsHydroquinones() {
-		//TODO fix sterically hindered condition (example NO fails)
+	public RuleCatecholsResorcinolsHydroquinones() throws Exception {
+		// TODO fix sterically hindered condition (example NO fails)
 		super();
-
-		addSubstructure(FunctionalGroups.createAtomContainer("OC1=CC(O)=CC=C1",false));	
-		addSubstructure(FunctionalGroups.createAtomContainer("OC1=C(O)C=CC=C1",false));
-		addSubstructure(FunctionalGroups.createAtomContainer("OC1=CC=C(O)C=C1",false));
-		
 		id = "43";
 		title = "CatecholsResorcinolsHydroquinones";
-		
 		examples[0] = "OC1=CC=C(N)C=C";
-		examples[1] = "OC1=C(O)C=CC=C1";	
+		examples[1] = "OC1=C(O)C=CC=C1";
 		editable = false;
 	}
+
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		setQuery(super.initQuery());
+		addSubstructure(FunctionalGroups.createAtomContainer("OC1=CC(O)=CC=C1",
+				false));
+		addSubstructure(FunctionalGroups.createAtomContainer("OC1=C(O)C=CC=C1",
+				false));
+		addSubstructure(FunctionalGroups.createAtomContainer("OC1=CC=C(O)C=C1",
+				false));
+		return getQuery();
+	}
+
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
-		logger.finer(toString());		
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
+		logger.finer(toString());
 		return super.verifyRule(mol);
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.AbstractRule#isImplemented()
 	 */
 	public boolean isImplemented() {

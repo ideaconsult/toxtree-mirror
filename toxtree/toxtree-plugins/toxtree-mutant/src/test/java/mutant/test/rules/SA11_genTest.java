@@ -27,11 +27,13 @@ package mutant.test.rules;
 import mutant.rules.SA11_gen;
 import mutant.test.TestMutantRules;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.junit.Test;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
 import toxTree.core.IDecisionRule;
+import toxTree.query.MolAnalyser;
 
 public class SA11_genTest extends TestMutantRules {
 	@Override
@@ -46,14 +48,14 @@ public class SA11_genTest extends TestMutantRules {
 	public String getResultsFolder() {
 		return "NA11";
 	}
+	
+	@Test
 	public void testOverlap_SA10() throws Exception {
 		String[] smiles = {
 				"C=CC=O"
 		};
 		for (int i=0; i < smiles.length;i++) {
-			//System.out.print(smiles[i]);
 			assertFalse(verify(smiles[i]));
-			//System.out.println(" ok");
 		}
 		
 	}
@@ -63,7 +65,8 @@ public class SA11_genTest extends TestMutantRules {
 	 */
 	public void test_bug3138569() throws Exception {
 		SmilesParser p = new SmilesParser(SilentChemObjectBuilder.getInstance());
-		IMolecule m = p.parseSmiles("C=O");
+		IAtomContainer m = p.parseSmiles("C=O");
+		MolAnalyser.analyse(m);
 		verifyExample(m, false);
 		
 	}

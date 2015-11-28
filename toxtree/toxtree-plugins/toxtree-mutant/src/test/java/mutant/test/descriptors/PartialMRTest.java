@@ -25,17 +25,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 package mutant.test.descriptors;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.Test;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.query.FunctionalGroups;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.SmartsPatternCDK;
 
 public class PartialMRTest  {
+	protected static Logger logger = Logger.getLogger(PartialMRTest.class
+			.getName());
+
 	@Test
 	public void test() {
 		
@@ -85,7 +90,7 @@ public class PartialMRTest  {
 */                 
             };
         for (int i=0; i < smiles.length;i++) {
-            System.out.println(smiles[i][0]);
+        	logger.log(Level.FINE,smiles[i][0].toString());
             IAtomContainer a = FunctionalGroups.createAtomContainer(smiles[i][0].toString(), false);
             AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(a);
             CDKHueckelAromaticityDetector.detectAromaticity(a);

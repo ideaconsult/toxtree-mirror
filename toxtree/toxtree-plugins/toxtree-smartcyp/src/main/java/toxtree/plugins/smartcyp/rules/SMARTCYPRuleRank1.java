@@ -3,7 +3,6 @@ package toxtree.plugins.smartcyp.rules;
 import net.idea.modbcum.i.exceptions.AmbitException;
 import net.idea.modbcum.i.processors.IProcessor;
 
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -19,8 +18,10 @@ import toxTree.query.MolFlags;
 import toxTree.tree.RuleResult;
 import toxTree.ui.tree.categories.CategoriesRenderer;
 import ambit2.core.data.MoleculeTools;
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.core.processors.structure.HydrogenAdderProcessor;
 import ambit2.rendering.CompoundImageTools;
+import ambit2.rendering.IAtomContainerHighlights;
 import dk.smartcyp.core.MoleculeKU;
 import dk.smartcyp.core.MoleculeKU.SMARTCYP_PROPERTY;
 import dk.smartcyp.core.SMARTSData;
@@ -73,7 +74,7 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 					// System.out.print(atom.getProperties());
 				}
 			if (!calculated) {
-				AtomContainerManipulator.removeHydrogens(mol);
+				AtomContainerManipulator.suppressHydrogens(mol);
 				newmol = calculate(mol);
 			}
 			MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
@@ -147,12 +148,12 @@ public class SMARTCYPRuleRank1 extends MetaboliteGenerator {
 	}
 
 	@Override
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-		return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	public IAtomContainerHighlights getSelector() {
+		return new IAtomContainerHighlights() {
 			/**
 		     * 
 		     */
-		    private static final long serialVersionUID = -2848526389291041910L;
+			private static final long serialVersionUID = -2848526389291041910L;
 
 			public IChemObjectSelection process(IAtomContainer mol)
 					throws AmbitException {

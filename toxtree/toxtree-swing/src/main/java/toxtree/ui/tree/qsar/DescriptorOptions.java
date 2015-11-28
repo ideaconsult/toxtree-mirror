@@ -20,7 +20,7 @@ GNU Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
-*/
+ */
 
 package toxtree.ui.tree.qsar;
 
@@ -33,14 +33,13 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.qsar.DescriptorSpecification;
 import org.openscience.cdk.qsar.IDescriptor;
 
-
 public class DescriptorOptions extends OptionsPanel<IDescriptor> {
-	protected static String[] s = {"<html><i>Specification</i></html>",
+	protected static String[] s = { "<html><i>Specification</i></html>",
 			"<html><i>Implementation Title</i></html>",
 			"<html><i>Implementation Identifier</i></html>",
-			"<html><i>Implementation Vendor</i></html>"};
-	protected Dimension dim = new Dimension(Integer.MAX_VALUE,18);
-	protected Dimension dimmin = new Dimension(100,18);
+			"<html><i>Implementation Vendor</i></html>" };
+	protected Dimension dim = new Dimension(Integer.MAX_VALUE, 18);
+	protected Dimension dimmin = new Dimension(100, 18);
 	/**
 	 * 
 	 */
@@ -50,51 +49,73 @@ public class DescriptorOptions extends OptionsPanel<IDescriptor> {
 	public int getHeaderRows() {
 		return 4;
 	}
+
 	@Override
 	public JLabel createHeaderLabel(int index) {
 		return new JLabel(s[index]);
 	}
+
 	@Override
 	public JFormattedTextField createHeaderTextField(int i) {
 		JFormattedTextField t = new JFormattedTextField();
 		t.setEditable(false);
 		t.setPreferredSize(dim);
 		t.setMinimumSize(dimmin);
-		if (getObject()!=null) {
-			DescriptorSpecification s = getObject().getSpecification();
+		if (getObject() != null) {
+			DescriptorSpecification s = (DescriptorSpecification) getObject()
+					.getSpecification();
 			switch (i) {
-			case 0: {t.setText(s.getSpecificationReference()); break;}
-			case 1: {t.setText(s.getImplementationTitle());break;}
-			case 2: {t.setText(s.getImplementationIdentifier());break;}
-			case 3: {t.setText(s.getImplementationVendor());break;}
+			case 0: {
+				t.setText(s.getSpecificationReference());
+				break;
+			}
+			case 1: {
+				t.setText(s.getImplementationTitle());
+				break;
+			}
+			case 2: {
+				t.setText(s.getImplementationIdentifier());
+				break;
+			}
+			case 3: {
+				t.setText(s.getImplementationVendor());
+				break;
+			}
 			}
 			t.setToolTipText(t.getText());
 		}
 		return t;
 	}
+
 	@Override
 	public int getDataRows() {
-		if (getObject() == null) return 0;
-		else return getObject().getParameterNames().length;
+		if (getObject() == null)
+			return 0;
+		else
+			return getObject().getParameterNames().length;
 	}
+
 	@Override
 	public JFormattedTextField createDataTextField(int i) {
 		StringBuffer b = new StringBuffer();
 		Object[] params = getObject().getParameters();
-		
+
 		if (params[i] instanceof Object[]) {
-			for (int j=0; j < ((Object[]) params[i]).length; j++) {
-				if (j>0) b.append(',');
+			for (int j = 0; j < ((Object[]) params[i]).length; j++) {
+				if (j > 0)
+					b.append(',');
 				b.append(((Object[]) params[i])[j].toString());
 			}
 		} else if (params[i] instanceof QueryAtomContainer) {
-			b.append(((QueryAtomContainer)params[i]).getID());
-		} else b.append(params[i].toString()); 
+			b.append(((QueryAtomContainer) params[i]).getID());
+		} else
+			b.append(params[i].toString());
 		JFormattedTextField t = new JFormattedTextField(b.toString());
 		t.setPreferredSize(dim);
 		t.setMinimumSize(dimmin);
 		return t;
 	}
+
 	@Override
 	public JLabel createDataLabel(int i) {
 		String[] names = getObject().getParameterNames();
@@ -102,5 +123,3 @@ public class DescriptorOptions extends OptionsPanel<IDescriptor> {
 	}
 
 }
-
-

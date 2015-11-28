@@ -48,7 +48,7 @@ import ambit2.core.io.MDLWriter;
 public class ToxTreeBatchProcessing extends ChemObjectBatchProcessing {
 	
 	protected transient IDecisionMethod decisionMethod;
-	protected IDecisionResult decisionResult;
+	protected transient IDecisionResult decisionResult;
 	
     protected String decisionMethodFile = "decisiontree.tml";
 	
@@ -185,6 +185,7 @@ public class ToxTreeBatchProcessing extends ChemObjectBatchProcessing {
 			os.writeObject(this);
 			os.close();
 		} catch (IOException x) {
+			x.printStackTrace();
 			throw new BatchProcessingException(x);
 		}
 	}

@@ -16,18 +16,18 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package verhaar.query;
-
 
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IBond;
+import org.openscience.cdk.interfaces.IChemObjectBuilder;
 import org.openscience.cdk.isomorphism.matchers.IQueryAtom;
 
 /**
  * A fix until {@link AromaticQueryBond} is fixed
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-10-30
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-10-30
  */
 public class AromaticQueryBond extends
 		org.openscience.cdk.isomorphism.matchers.smarts.AromaticQueryBond {
@@ -40,9 +40,8 @@ public class AromaticQueryBond extends
 	/**
 	 * 
 	 */
-	public AromaticQueryBond() {
-		super();
-		// TODO Auto-generated constructor stub
+	public AromaticQueryBond(IChemObjectBuilder builder) {
+		super(builder);
 	}
 
 	/**
@@ -50,14 +49,17 @@ public class AromaticQueryBond extends
 	 * @param atom2
 	 * @param order
 	 */
-	public AromaticQueryBond(IQueryAtom atom1, IQueryAtom atom2) {
-		super(atom1, atom2, IBond.Order.SINGLE); //TODO bond order doesn't matter
+	public AromaticQueryBond(IQueryAtom atom1, IQueryAtom atom2,
+			IChemObjectBuilder builder) {
+		super(atom1, atom2, IBond.Order.SINGLE, builder); // TODO bond order
+															// doesn't matter
 		// TODO Auto-generated constructor stub
 	}
+
 	public boolean matches(IBond bond) {
-        if (bond.getFlag(CDKConstants.ISAROMATIC)) {
-            return true;
-        }
-        return false;
-    };
+		if (bond.getFlag(CDKConstants.ISAROMATIC)) {
+			return true;
+		}
+		return false;
+	};
 }

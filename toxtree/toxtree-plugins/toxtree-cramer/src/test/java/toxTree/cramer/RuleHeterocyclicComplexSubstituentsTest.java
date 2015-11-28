@@ -35,7 +35,7 @@ import toxTree.tree.cramer.RuleHeterocyclicComplexSubstituents;
 public class RuleHeterocyclicComplexSubstituentsTest extends AbstractRuleTest {
 	 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleHeterocyclicComplexSubstituents();
 	}
 	public void test() throws Exception  {

@@ -6,7 +6,7 @@ import java.io.OutputStream;
 
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IDecisionResult;
@@ -20,21 +20,24 @@ public class ToxTreeAppTest {
 		CramerRules rules = new CramerRules();
 		IDecisionResult result = rules.createDecisionResult();
 		result.setDecisionMethod(rules);
-		InputStream in = this.getClass().getClassLoader().getResourceAsStream("toxtree/apps/test.sdf");
-		IteratingMDLReader reader = new IteratingMDLReader(in,SilentChemObjectBuilder.getInstance());
+		InputStream in = this.getClass().getClassLoader()
+				.getResourceAsStream("toxtree/apps/test.sdf");
+		IteratingSDFReader reader = new IteratingSDFReader(in,
+				SilentChemObjectBuilder.getInstance());
 		OutputStream out = new FileOutputStream("result.sdf");
 		MDLWriter writer = new MDLWriter(out);
 		while (reader.hasNext()) {
-			IAtomContainer molecule = ((IAtomContainer)reader.next());
+			IAtomContainer molecule = ((IAtomContainer) reader.next());
 			result.classify(molecule);
 			result.assignResult(molecule);
 			for (String resultProperty : result.getResultPropertyNames())
-				System.out.println(String.format("%s=%s",resultProperty,molecule.getProperty(resultProperty)));
+				System.out.println(String.format("%s=%s", resultProperty,
+						molecule.getProperty(resultProperty)));
 			writer.setSdFields(molecule.getProperties());
 			writer.write(molecule);
 		}
 		reader.close();
 		out.close();
-		
+
 	}
 }

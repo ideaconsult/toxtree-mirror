@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package toxTree.cramer;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.core.IDecisionRule;
 import toxTree.exceptions.MolAnalyseException;
@@ -39,7 +39,7 @@ import toxTree.tree.cramer.RuleSimplyBranchedAliphaticHydrocarbon;
  */
 public class RuleSimplyBranchedAliphaticHydrocarbonTest extends AbstractRuleTest {
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return  new RuleSimplyBranchedAliphaticHydrocarbon();
 	}
 	public void test() throws Exception {
@@ -52,7 +52,7 @@ public class RuleSimplyBranchedAliphaticHydrocarbonTest extends AbstractRuleTest
 	            
 	            };
 	    
-	    IMolecule m = (IMolecule) FunctionalGroups.createAtomContainer((String)answer[2][0]);
+	    IAtomContainer m = (IAtomContainer) FunctionalGroups.createAtomContainer((String)answer[2][0]);
 	    try {
 	    MolAnalyser.analyse(m);
 	    } catch (MolAnalyseException  x) {

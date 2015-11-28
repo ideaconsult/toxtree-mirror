@@ -28,7 +28,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.Icon;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 
 import toxTree.tree.rules.RuleSubstructures;
 
@@ -38,15 +38,15 @@ public class RuleDeleteSubstructureAction extends RuleMoleculeEditAction {
      */
     private static final long serialVersionUID = -4045206486346175089L;
     protected int selectedIndex = -1;
-    public RuleDeleteSubstructureAction(IMolecule molecule) {
+    public RuleDeleteSubstructureAction(IAtomContainer molecule) {
         this(molecule,"Delete");
     }
 
-    public RuleDeleteSubstructureAction(IMolecule molecule, String arg0) {
+    public RuleDeleteSubstructureAction(IAtomContainer molecule, String arg0) {
         this(molecule, arg0,null);
     }
 
-    public RuleDeleteSubstructureAction(IMolecule molecule, String arg0,
+    public RuleDeleteSubstructureAction(IAtomContainer molecule, String arg0,
             Icon arg1) {
         super(molecule, arg0, arg1);
     }

@@ -26,11 +26,12 @@ package mutant.test.descriptors;
 
 import mutant.descriptors.AromaticAmineSubstituentsDescriptor;
 
+import org.junit.Before;
 import org.openscience.cdk.qsar.IMolecularDescriptor;
 
 public class MRTest extends DescriptorsTest {
-	@Override
-	protected void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		super.setUp();
 		addPropertiesToTest("mr2", "MR2");
 		addPropertiesToTest("mr3", "MR3");

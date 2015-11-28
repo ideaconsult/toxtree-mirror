@@ -5,7 +5,12 @@ import java.util.logging.Level;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
 import ambit2.smarts.query.SMARTSException;
 public class RuleBenzene extends RuleSMARTSSubstructureAmbit {
-	private static final long serialVersionUID = 0;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2365998863316858613L;
+
 	public RuleBenzene() {
 		super();		
 		try {

@@ -2,7 +2,7 @@ package toxTree.cramer2;
 
 import junit.framework.Assert;
 
-import org.openscience.cdk.interfaces.IMolecule;
+import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesParser;
 
@@ -15,7 +15,7 @@ import cramer2.rules.RuleBenzeneAnalogues;
 public class RuleBenzeneAnaloguesTest  extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleBenzeneAnalogues();
 	}
 
@@ -35,7 +35,7 @@ public class RuleBenzeneAnaloguesTest  extends AbstractRuleTest {
 	   SmilesParser smi = new SmilesParser(SilentChemObjectBuilder.getInstance());
 	   
 	   for (Object[] row : answer) {
-		   IMolecule testMol = smi.parseSmiles(row[0].toString());
+		   IAtomContainer testMol = smi.parseSmiles(row[0].toString());
 		   int result = p.match(testMol);
 		   System.out.println(row[0] + "\t"+result);
 		   Assert.assertTrue(result>0);

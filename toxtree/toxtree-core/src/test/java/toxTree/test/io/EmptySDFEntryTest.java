@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.test.io;
 
 import java.util.List;
@@ -30,66 +30,61 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.openscience.cdk.ChemFile;
-import org.openscience.cdk.Molecule;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IChemFile;
 import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.io.MDLV2000Reader;
-import org.openscience.cdk.io.iterator.IteratingMDLReader;
+import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.tools.manipulator.ChemFileManipulator;
 
 public class EmptySDFEntryTest {
 	@Test
 	public void testEmptyEntry() throws Exception {
-			MDLV2000Reader reader = new MDLV2000Reader(
-					this.getClass().getClassLoader().getResourceAsStream("data/Misc/emptyStructure.sdf"));
-        	IChemFile content = (IChemFile)reader.read((IChemObject)new ChemFile());
-        	List c = ChemFileManipulator.getAllAtomContainers(content);
-        	Assert.assertNotNull(c);
-        	Assert.assertEquals(2,c.size());
-        	IAtomContainer a = (IAtomContainer)c.get(1);
-        	Assert.assertEquals(0,a.getAtomCount());
-        	Assert.assertEquals(0,a.getBondCount());
+		MDLV2000Reader reader = new MDLV2000Reader(this.getClass()
+				.getClassLoader()
+				.getResourceAsStream("data/Misc/emptyStructure.sdf"));
+		IChemFile content = (IChemFile) reader
+				.read((IChemObject) new ChemFile());
+		List c = ChemFileManipulator.getAllAtomContainers(content);
+		Assert.assertNotNull(c);
+		Assert.assertEquals(2, c.size());
+		IAtomContainer a = (IAtomContainer) c.get(1);
+		Assert.assertEquals(0, a.getAtomCount());
+		Assert.assertEquals(0, a.getBondCount());
 
 	}
+
 	/*
-	public void testEmptyEntry30() {
-		try {
-			MDLReader reader = new MDLReader(new FileInputStream("toxTree/data/Misc/CPDBAS_v2a_1451_1Mar05_fixed.sdf"));
-        	ChemFile content = (ChemFile)reader.read((ChemObject)new ChemFile());
-        	List c = ChemFileManipulator.getAllAtomContainers(content);
-        	assertNotNull(c);
-        	assertTrue(c.size()>29);
-        	IAtomContainer a = (IAtomContainer) c.get(29);
-        	assertEquals(0,a.getAtomCount());
-        	assertEquals(0,a.getBondCount());
-        	
-		} catch (IOException x) {
-			x.printStackTrace();
-			fail();
-		} catch (CDKException x) {
-			x.printStackTrace();
-			fail();
-		}
-	}
-	*/
+	 * public void testEmptyEntry30() { try { MDLReader reader = new
+	 * MDLReader(new
+	 * FileInputStream("toxTree/data/Misc/CPDBAS_v2a_1451_1Mar05_fixed.sdf"));
+	 * ChemFile content = (ChemFile)reader.read((ChemObject)new ChemFile());
+	 * List c = ChemFileManipulator.getAllAtomContainers(content);
+	 * assertNotNull(c); assertTrue(c.size()>29); IAtomContainer a =
+	 * (IAtomContainer) c.get(29); assertEquals(0,a.getAtomCount());
+	 * assertEquals(0,a.getBondCount());
+	 * 
+	 * } catch (IOException x) { x.printStackTrace(); fail(); } catch
+	 * (CDKException x) { x.printStackTrace(); fail(); } }
+	 */
 	@Test
 	public void testEmptyEntryIteratingReader() throws Exception {
 
-			IteratingMDLReader reader = new IteratingMDLReader(
-					this.getClass().getClassLoader().getResourceAsStream("data/Misc/emptyStructure.sdf"),
-					SilentChemObjectBuilder.getInstance());
-            int molCount = 0;
-            while (reader.hasNext()) {
-                Object object = reader.next();
-                Assert.assertNotNull(object);
-                Assert.assertTrue(object instanceof Molecule);
-                molCount++;
-            }
-            
-            Assert.assertEquals(2,molCount);
+		IteratingSDFReader reader = new IteratingSDFReader(this.getClass()
+				.getClassLoader()
+				.getResourceAsStream("data/Misc/emptyStructure.sdf"),
+				SilentChemObjectBuilder.getInstance());
+		int molCount = 0;
+		while (reader.hasNext()) {
+			Object object = reader.next();
+			Assert.assertNotNull(object);
+			Assert.assertTrue(object instanceof IAtomContainer);
+			molCount++;
+		}
+
+		Assert.assertEquals(2, molCount);
 
 	}
-	
+
 }

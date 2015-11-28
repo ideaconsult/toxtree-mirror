@@ -52,7 +52,7 @@ public class UserDefinedTreeTest {
 	public int count = 0;
 	
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		count = 0;
 		UserDefinedTree tree = new UserDefinedTree();
 		tree.addObserver(new Observer() {
@@ -72,7 +72,7 @@ public class UserDefinedTreeTest {
 		Assert.assertEquals(3,count);
 	}
 	@Test
-	public void testTreeLayout() {
+	public void testTreeLayout() throws Exception {
 		count = 0;
 		UserDefinedTree tree = new UserDefinedTree();
 		TreeLayout treeLayout = new TreeLayout(tree);

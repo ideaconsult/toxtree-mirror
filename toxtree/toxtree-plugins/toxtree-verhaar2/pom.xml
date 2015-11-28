@@ -4,7 +4,7 @@
   <parent>
     <artifactId>toxtree-plugins</artifactId>
     <groupId>toxtree</groupId>
-    <version>2.6.16-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>toxtree-verhaar2</artifactId>
   <name>Toxtree module: Modified Verhaar scheme</name>

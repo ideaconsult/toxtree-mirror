@@ -38,6 +38,7 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 
 /**
@@ -47,7 +48,7 @@ import toxTree.tree.rules.RuleAnySubstructure;
  */
 public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 	//protected transient QueryAtomContainer lactoneBreakable = null;
-	protected QueryAtomContainer lactoneUnsaturated = null;
+	protected transient QueryAtomContainer lactoneUnsaturated = null;
 	
 	/**
      * Comment for <code>serialVersionUID</code>
@@ -58,9 +59,8 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 	 * Constructor
 	 * 
 	 */
-	public RuleLactonesFusedOrUnsaturated() {
+	public RuleLactonesFusedOrUnsaturated() throws Exception {
 		super();
-		addSubstructure(FunctionalGroups.lactone(false));
 		lactoneUnsaturated = FunctionalGroups.lactone(true);
 		id = "48";
 		title = "Lactone, fused to another ring, or 5- or 6-membered a,b-unsaturated lactone?";
@@ -71,6 +71,12 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 		examples[1] = "O=C1OCCC1(=C)";
 		editable = false;
 	}
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		setQuery(super.initQuery());
+		addSubstructure(FunctionalGroups.lactone(false));
+		return getQuery();
+	}	
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */

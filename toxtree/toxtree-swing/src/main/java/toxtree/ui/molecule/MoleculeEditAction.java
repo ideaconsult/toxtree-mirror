@@ -37,19 +37,19 @@ import javax.swing.JOptionPane;
 import javax.vecmath.Vector2d;
 
 import org.openscience.cdk.ChemModel;
-import org.openscience.cdk.MoleculeSet;
-import org.openscience.cdk.aromaticity.CDKHueckelAromaticityDetector;
-import org.openscience.cdk.geometry.GeometryTools;
+import org.openscience.cdk.geometry.GeometryUtil;
 import org.openscience.cdk.graph.ConnectivityChecker;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemModel;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
+import org.openscience.cdk.silent.AtomContainer;
+import org.openscience.cdk.silent.AtomContainerSet;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 import org.openscience.jchempaint.JChemPaintPanel;
 
+import ambit2.core.helper.CDKHueckelAromaticityDetector;
 import ambit2.jchempaint.editor.AbstractMoleculeAction;
 import ambit2.jchempaint.editor.JChemPaintDialog;
 
@@ -60,7 +60,7 @@ import ambit2.jchempaint.editor.JChemPaintDialog;
  * <b>Modified</b> 2005-10-23
  */
 public class MoleculeEditAction extends AbstractMoleculeAction {
-	protected IMoleculeSet molecules;
+	protected IAtomContainerSet molecules;
 	protected IChemModel jcpModel;
 	protected StructureDiagramGenerator sdg = null;
 	protected Component parentComponent=null;
@@ -115,10 +115,10 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
     	    		int value = ((Integer) pane.getValue()).intValue();
     	    		if (value == 0) { //ok
     	    	    	molecules = jcpep.getChemModel().getMoleculeSet();
-    	    	    	if (molecule == null)  molecule = new org.openscience.cdk.Molecule(); 
+    	    	    	if (molecule == null)  molecule = new AtomContainer(); 
     	    	    	else 	molecule.removeAllElements();
     	    	        for (int i=0; i < molecules.getAtomContainerCount(); i++) 
-    	    	            molecule.add(molecules.getMolecule(i));
+    	    	            molecule.add(molecules.getAtomContainer(i));
     	    	        
     	    	        updateMolecule(molecule);
     	    	        return;
@@ -171,24 +171,24 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
 		}
 	}
 
-	protected IMoleculeSet getMoleculeForEdit(IAtomContainer atomContainer) throws Exception {
+	protected IAtomContainerSet getMoleculeForEdit(IAtomContainer atomContainer) throws Exception {
 		if (atomContainer == null) return null;
 		if (atomContainer instanceof QueryAtomContainer) {
 			return null;
 		}
 		
-		IMoleculeSet molecules = ConnectivityChecker.partitionIntoMolecules(atomContainer);
+		IAtomContainerSet molecules = ConnectivityChecker.partitionIntoMolecules(atomContainer);
 		
-		IMoleculeSet m =  new MoleculeSet();
-		for (int i=0; i< molecules.getMoleculeCount();i++) {
-			IMolecule a = molecules.getMolecule(i);
-			if (!GeometryTools.has2DCoordinates(a)) {
+		IAtomContainerSet m =  new AtomContainerSet();
+		for (int i=0; i< molecules.getAtomContainerCount();i++) {
+			IAtomContainer a = molecules.getAtomContainer(i);
+			if (!GeometryUtil.has2DCoordinates(a)) {
 				if (sdg == null) sdg = new StructureDiagramGenerator();
-				sdg.setMolecule((IMolecule)a);
+				sdg.setMolecule((IAtomContainer)a);
 				sdg.generateCoordinates(new Vector2d(0,1));
 				molecules.replaceAtomContainer(i,sdg.getMolecule());
 			}
-			m.addMolecule(molecules.getMolecule(i));
+			m.addAtomContainer(molecules.getAtomContainer(i));
 		}
 		return m;		
 	}
@@ -224,7 +224,7 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
                     private static final long serialVersionUID = -492805673357520991L;
 
                     @Override
-                    public IMolecule okAction() {
+                    public IAtomContainer okAction() {
                         updateMolecule(super.okAction());
                         molecules = jcpep.getChemModel().getMoleculeSet();
 
@@ -235,7 +235,7 @@ public class MoleculeEditAction extends AbstractMoleculeAction {
 */
                         dispose();
                         jcpDialog = null;
-                        return (IMolecule)molecule;
+                        return (IAtomContainer)molecule;
                     };
                     
                     @Override

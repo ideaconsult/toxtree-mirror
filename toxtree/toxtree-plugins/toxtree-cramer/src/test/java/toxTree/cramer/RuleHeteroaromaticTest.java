@@ -35,7 +35,7 @@ import toxTree.tree.cramer.RuleHeteroaromatic;
 public class RuleHeteroaromaticTest extends AbstractRuleTest {
 
 	@Override
-	protected IDecisionRule createRule() {
+	protected IDecisionRule createRule() throws Exception {
 		return new RuleHeteroaromatic();
 	}
 

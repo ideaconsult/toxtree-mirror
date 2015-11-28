@@ -19,20 +19,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 package verhaar.rules;
 
+import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleRingAllowedSubstituents;
 
 public abstract class RuleRingMainStrucSubstituents extends RuleRingAllowedSubstituents {
-	protected QueryAtomContainer mainStructure = null;
+	protected transient QueryAtomContainer mainStructure = null;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6483397620197083015L;
 
-	public RuleRingMainStrucSubstituents() {
+	public RuleRingMainStrucSubstituents() throws Exception  {
 		super();
-		mainStructure = createMainStructure();
 	}
-	protected abstract QueryAtomContainer createMainStructure();
+	protected abstract QueryAtomContainer createMainStructure() throws CDKException;
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		mainStructure = createMainStructure();
+		return super.initQuery();
+	}
 }

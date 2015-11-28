@@ -5,8 +5,8 @@
       <question>Which is the latest Toxtree version?</question>
       <answer>
         <p>
-          <a href='http://toxtree.sourceforge.net/download.html#Toxtree_2.6.13'>Toxtree 2.6.13</a> is the latest stable release.
-          The latest development version is ToxTree 3.0.0-SNAPSHOT (<a href="http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~3.0.0-SNAPSHOT~~">Maven repository</a>). 
+          <a href='http://toxtree.sourceforge.net/download.html#Toxtree_3.0.0'>Toxtree 3.0.0</a> is the latest stable release.
+          The latest development version is ToxTree 3.0.1-SNAPSHOT (<a href="http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~3.0.1-SNAPSHOT~~">Maven repository</a>). 
         </p>
       </answer>
     </faq>
@@ -129,28 +129,7 @@ The dataset service accepts common chemical data formats for upload via HTTP POS
         </p>
       </answer>
     </faq>
-    <faq id="K3">
-      <question>How to launch Toxtree from the command line, with options to define input, optuput and selecting the decision tree?</question>
-      <answer>
-        <p>
-       		Available since Toxtree 2.6.13.
-        </p>
-        <ul>
-        	<li> Use the command line opion -n (--noui) and the following options
-<source>     
-java -jar Toxtree-2.6.13.jar -h
 
- -h,--help                This help
- -i,--input file_name     Input file
- -m,--module class_name        Class name
- -n,--noui                Command line only, do not start UI
- -o,--output file_name    Output file
-</source>          
-		</li>
-		 </ul>
- 
-      </answer>
-    </faq>
 
   </part>
 </faqs>

@@ -13,7 +13,7 @@ import toxtree.plugins.kroes.rules.RuleKroesFig1Q1;
  */
 public class RuleKroesFig1Q1Test {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		RuleKroesFig1Q1 rule = new RuleKroesFig1Q1();
 		Assert.assertEquals(3,rule.getSubstructures().size());
 	}

@@ -33,7 +33,7 @@ import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
  * <b>Modified</b> July 12, 2011
  */
 public class Rule154 extends RuleSMARTSSubstructureAmbit {
-	QueryAtomContainer ketone_a_b_unsaturated = null;
+	transient QueryAtomContainer ketone_a_b_unsaturated = null;
 	/**
 	 * 
 	 */

@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package cramer2.rules;
 
 import java.util.ArrayList;
@@ -31,47 +31,53 @@ import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.config.Elements;
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IBond;
-import org.openscience.cdk.interfaces.IMolecule;
-import org.openscience.cdk.interfaces.IMoleculeSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import org.openscience.cdk.smiles.SmilesGenerator;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleOnlyAllowedSubstructures;
 
 /**
  * Rule 4 of the Cramer scheme (see {@link cramer2.CramerRulesExtendedExtended})
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-8-23
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-8-23
  */
 public class RuleHasOnlySaltSulphonateSulphate extends
 		RuleOnlyAllowedSubstructures {
-	protected static transient SmilesGenerator sg= null;
-	protected static final transient String[] Me = new String[]{"Na","K","Ca"};	
-	protected static final transient String[] Me1 = new String[]{"Na","K","Ca","Mg","N"};
-	
+	protected static transient SmilesGenerator sg = null;
+	private String[] Me ;
+	private String[] Me1;
+	protected String[] initMetals() {
+		return new String[] { "Na", "K", "Ca" };
+	}
+	protected String[] initMetals1() {
+		return new String[] { "Na", "K", "Ca", "Mg", "N" };
+	}
+
 	protected static transient ArrayList<String> elements = null;
 	private static final long serialVersionUID = 7313277537215733933L;
-	
+
 	protected static transient QueryAtomContainer phosphate = null;
 	protected static transient QueryAtomContainer sulphonate = null;
 	protected static transient QueryAtomContainer sulphate = null;
 	protected static transient QueryAtomContainer aminoSulphate = null;
 	protected static transient QueryAtomContainer salt = null;
 	protected static transient QueryAtomContainer salt1 = null;
-	protected static transient QueryAtomContainer salt2 = null;	
+	protected static transient QueryAtomContainer salt2 = null;
 	protected static transient QueryAtomContainer hClAmine = null;
-	
+
 	/**
 	 * 
 	 */
-	public RuleHasOnlySaltSulphonateSulphate() {
+	public RuleHasOnlySaltSulphonateSulphate() throws Exception {
 		super();
 		editable = false;
-		sulphonate = FunctionalGroups.sulphonate(Me,false);
+		sulphonate = FunctionalGroups.sulphonate(Me, false);
 		sulphate = FunctionalGroups.sulphate(null);
 		if (elements == null) {
 			elements = new ArrayList<String>();
@@ -79,201 +85,266 @@ public class RuleHasOnlySaltSulphonateSulphate extends
 			elements.add("H");
 			elements.add("O");
 			elements.add("N");
-			elements.add("P");//jeroen
+			elements.add("P");// jeroen
 		}
-		for (int i=0; i < elements.size(); i++) ids.add(elements.get(i));
+		for (int i = 0; i < elements.size(); i++)
+			ids.add(elements.get(i));
 		ids.add("S2");
-		//(a)
+	
+		id = "4";
+		title = "Elements not listed in Q3 occurs only as a Na,K,Ca,Mg,N salt, phosphate, sulphamate, sulphonate, sulphate, hydrochloride ...";
+		explanation
+				.append("<html>Do all elements not listed in Q3 occur only as <UL>");
+		explanation
+				.append("<LI>(a) a Na,K,Ca,Mg or N salt of a carboxylic acid, or");
+		explanation
+				.append("<LI>(b) a sulphate or hydrochloride of an amine, or");
+		explanation
+				.append("<LI>(c) a Na,K, or Ca sulphonate, sulphamate or sulphate?");
+		explanation.append("</UL>");
+		explanation
+				.append("If the answer is yes, treat as free acid, amine, unsulphonated or unsulphated compound, except for the purposes of Q24 and Q33.");
+		explanation
+				.append("<p>This is intended to let through, for further consideration, certain acid,amine, sulphonate and sulphate salts. Sulphamate salts are treated as such because they are not readily hydrolised.");
+		explanation.append("</html>");
+
+		examples[0] = "C(Cl)(Cl)Cl";
+		examples[1] = "[Na+].[O-]S(=O)(=O)NC1CCCCC1";
+		// examples[1] = "[Na]OS(=O)(=O)NC1CCCCC1";
+	}
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		setQuery(super.initQuery());
+		if (Me==null) Me = initMetals();
+		if (Me1==null) Me1 = initMetals1();
+		sulphonate = FunctionalGroups.sulphonate(Me, false);
+		sulphate = FunctionalGroups.sulphate(null);
+		
+		// (a)
 		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid(Me1));
 		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid1(Me1));
-		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid2(Me1));		
+		addSubstructure(FunctionalGroups.saltOfCarboxylicAcid2(Me1));
 
-		//(b)
-		addSubstructure(FunctionalGroups.sulphateOfAmine(0)); //any
-	    for (int i=1; i <=3; i++) {
-	    	//addSubstructure(FunctionalGroups.sulphateOfAmine(i));
-	    	addSubstructure(FunctionalGroups.hydrochlorideOfAmine(i));
-	    }
-    	addSubstructure(FunctionalGroups.hydrochlorideOfAmine3());
-	    //(c)	
+		// (b)
+		addSubstructure(FunctionalGroups.sulphateOfAmine(0)); // any
+		for (int i = 1; i <= 3; i++) {
+			// addSubstructure(FunctionalGroups.sulphateOfAmine(i));
+			addSubstructure(FunctionalGroups.hydrochlorideOfAmine(i));
+		}
+		addSubstructure(FunctionalGroups.hydrochlorideOfAmine3());
+		// (c)
 		addSubstructure(FunctionalGroups.sulphonate(Me));
 		addSubstructure(sulphonate);
 		phosphate = FunctionalGroups.phosphate(Me);
 		addSubstructure(phosphate);
 		addSubstructure(FunctionalGroups.sulphate(Me));
 		addSubstructure(FunctionalGroups.sulphamate(Me));
-		addSubstructure(FunctionalGroups.sulphamate(null));		
-		id="4";
-		title = "Elements not listed in Q3 occurs only as a Na,K,Ca,Mg,N salt, phosphate, sulphamate, sulphonate, sulphate, hydrochloride ...";
-		explanation.append("<html>Do all elements not listed in Q3 occur only as <UL>");
-		explanation.append("<LI>(a) a Na,K,Ca,Mg or N salt of a carboxylic acid, or");
-		explanation.append("<LI>(b) a sulphate or hydrochloride of an amine, or");
-		explanation.append("<LI>(c) a Na,K, or Ca sulphonate, sulphamate or sulphate?");
-		explanation.append("</UL>");
-		explanation.append("If the answer is yes, treat as free acid, amine, unsulphonated or unsulphated compound, except for the purposes of Q24 and Q33.");
-		explanation.append("<p>This is intended to let through, for further consideration, certain acid,amine, sulphonate and sulphate salts. Sulphamate salts are treated as such because they are not readily hydrolised.");
-		explanation.append("</html>");
-		
-		examples[0] = "C(Cl)(Cl)Cl";
-		examples[1] = "[Na+].[O-]S(=O)(=O)NC1CCCCC1";
-		//examples[1] = "[Na]OS(=O)(=O)NC1CCCCC1";
-	}
-	/** 
-	 * Calls the inherited {@link toxTree.tree.rules.RuleOnlyAllowedSubstructures#verifyRule(IAtomContainer)}
-	 * Removes sulphonate and sulphate groups if any by {@link FunctionalGroups#detachGroup(IAtomContainer, QueryAtomContainer)}
-	 * and sets molflag property of a molecule to mf.setResidue(residue);
-	 * This makes subsequent rules to work with the residue rather than with the original molecule
-	 * If a rule needs the original structure instead, it can get it by getProperty(MolFlags.PARENT)
-	 * See for example Q24 and Q33
-	 * TODO treat hydrochloride of amine as free amine
+		addSubstructure(FunctionalGroups.sulphamate(null));
+		return getQuery();
+	}	
+	/**
+	 * Calls the inherited
+	 * {@link toxTree.tree.rules.RuleOnlyAllowedSubstructures#verifyRule(IAtomContainer)}
+	 * Removes sulphonate and sulphate groups if any by
+	 * {@link FunctionalGroups#detachGroup(IAtomContainer, QueryAtomContainer)}
+	 * and sets molflag property of a molecule to mf.setResidue(residue); This
+	 * makes subsequent rules to work with the residue rather than with the
+	 * original molecule If a rule needs the original structure instead, it can
+	 * get it by getProperty(MolFlags.PARENT) See for example Q24 and Q33 TODO
+	 * treat hydrochloride of amine as free amine
 	 * 
 	 */
 	@Override
 	public boolean verifyRule(IAtomContainer mol, IAtomContainer selected)
 			throws DecisionMethodException {
-		
-		FunctionalGroups.mark(mol,elements);
-		//take care of divalent S
-		for (int i=0; i < mol.getAtomCount();i++) {
+
+		FunctionalGroups.mark(mol, elements);
+		// take care of divalent S
+		for (int i = 0; i < mol.getAtomCount(); i++) {
 			IAtom a = mol.getAtom(i);
 			double order = 0;
 			if (a.getSymbol().equals("S")) {
-					List bonds = mol.getConnectedBondsList(a);
-					
-					for (int b=0;b<bonds.size();b++) {
-                        IBond.Order o = ((IBond) bonds.get(b)).getOrder();
-                        if (((IBond) bonds.get(b)).getFlag(CDKConstants.ISAROMATIC)) order += 1.5;
-                        else if (o.equals(IBond.Order.SINGLE)) order += 1.0;
-                        else if (o.equals(IBond.Order.DOUBLE)) order += 2.0;
-                        else if (o.equals(IBond.Order.TRIPLE)) order += 3.0;
-                        else if (o.equals(IBond.Order.QUADRUPLE)) order += 4.0;
-                    }    
-					/*
-                	https://sourceforge.net/tracker/?func=detail&aid=3020065&group_id=20024&atid=120024
-                    order = order + a.getHydrogenCount();
-                	*/
-					order = order + a.getImplicitHydrogenCount();
+				List bonds = mol.getConnectedBondsList(a);
 
-                    if ((order-2) < 0.1) a.setProperty("S2",new Integer(i));
-					else logger.finer("Found S valency "+Double.toString(order));
+				for (int b = 0; b < bonds.size(); b++) {
+					IBond.Order o = ((IBond) bonds.get(b)).getOrder();
+					if (((IBond) bonds.get(b)).getFlag(CDKConstants.ISAROMATIC))
+						order += 1.5;
+					else if (o.equals(IBond.Order.SINGLE))
+						order += 1.0;
+					else if (o.equals(IBond.Order.DOUBLE))
+						order += 2.0;
+					else if (o.equals(IBond.Order.TRIPLE))
+						order += 3.0;
+					else if (o.equals(IBond.Order.QUADRUPLE))
+						order += 4.0;
+				}
+				/*
+				 * https://sourceforge.net/tracker/?func=detail&aid=3020065&group_id
+				 * =20024&atid=120024 order = order + a.getHydrogenCount();
+				 */
+				order = order + a.getImplicitHydrogenCount();
+
+				if ((order - 2) < 0.1)
+					a.setProperty("S2", new Integer(i));
+				else
+					logger.finer("Found S valency " + Double.toString(order));
 			}
-		}		
-		if (super.verifyRule(mol,null)) {
+		}
+		if (super.verifyRule(mol, null)) {
 			IAtomContainer residue = null;
 			try {
-			    residue = (IAtomContainer) mol.clone();
+				residue = (IAtomContainer) mol.clone();
 			} catch (CloneNotSupportedException x) {
-			    throw new DecisionMethodException(x);
+				throw new DecisionMethodException(x);
 			}
-			IMoleculeSet residues = null;
-			
+			IAtomContainerSet residues = null;
+
 			Object detached = null;
-			
-			if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.SULPHONATE)) {
+
+			if (FunctionalGroups.hasGroupMarked(mol,
+					FunctionalGroups.SULPHONATE)) {
 				detached = FunctionalGroups.SULPHONATE;
-				FunctionalGroups.clearMark(residue,detached);
-				if (sulphonate == null) sulphonate = FunctionalGroups.sulphonate(Me,false);
-				residues = FunctionalGroups.detachGroup(residue,sulphonate);
+				FunctionalGroups.clearMark(residue, detached);
+				if (sulphonate == null)
+					sulphonate = FunctionalGroups.sulphonate(Me, false);
+				residues = FunctionalGroups.detachGroup(residue, sulphonate);
 				residues.setID("Unsulphonated ");
-			} else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.PHOSPHATE)) {
-				
-				for (IAtom atom:mol.atoms()) {
-					if (atom.getSymbol().equals(Elements.PHOSPHORUS.getSymbol()) && 
-						(atom.getProperty(FunctionalGroups.PHOSPHATE)==null))
+			} else if (FunctionalGroups.hasGroupMarked(mol,
+					FunctionalGroups.PHOSPHATE)) {
+
+				for (IAtom atom : mol.atoms()) {
+					if (atom.getSymbol()
+							.equals(Elements.PHOSPHORUS.getSymbol())
+							&& (atom.getProperty(FunctionalGroups.PHOSPHATE) == null))
 						return false;
 				}
 				/*
-				detached = FunctionalGroups.PHOSPHATE;
-				FunctionalGroups.clearMark(residue,detached);				
-				if (phosphate == null) phosphate = FunctionalGroups.phosphate(Me);	
-				residues = FunctionalGroups.detachGroup(residue,phosphate);
-				if (residues!=null)
-					residues.setID("Without phosphate ");
-					*/
-			} else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.SULPHATE)) {
+				 * detached = FunctionalGroups.PHOSPHATE;
+				 * FunctionalGroups.clearMark(residue,detached); if (phosphate
+				 * == null) phosphate = FunctionalGroups.phosphate(Me); residues
+				 * = FunctionalGroups.detachGroup(residue,phosphate); if
+				 * (residues!=null) residues.setID("Without phosphate ");
+				 */
+			} else if (FunctionalGroups.hasGroupMarked(mol,
+					FunctionalGroups.SULPHATE)) {
 				detached = FunctionalGroups.SULPHATE;
-				FunctionalGroups.clearMark(residue,detached);				
-				if (sulphate == null) sulphate = FunctionalGroups.sulphate(null);	
-				residues = FunctionalGroups.detachGroup(residue,sulphate);
+				FunctionalGroups.clearMark(residue, detached);
+				if (sulphate == null)
+					sulphate = FunctionalGroups.sulphate(null);
+				residues = FunctionalGroups.detachGroup(residue, sulphate);
 				residues.setID("Unsulphated ");
-			}  else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.SULPHATE_OF_AMINE)) {
+			} else if (FunctionalGroups.hasGroupMarked(mol,
+					FunctionalGroups.SULPHATE_OF_AMINE)) {
 				detached = FunctionalGroups.SULPHATE_OF_AMINE;
-				FunctionalGroups.clearMark(residue,detached);
-				if (aminoSulphate == null) aminoSulphate = FunctionalGroups.sulphateOfAmineBreakable();
-				residues = FunctionalGroups.detachGroup(residue,aminoSulphate);
+				FunctionalGroups.clearMark(residue, detached);
+				if (aminoSulphate == null)
+					aminoSulphate = FunctionalGroups.sulphateOfAmineBreakable();
+				residues = FunctionalGroups.detachGroup(residue, aminoSulphate);
 				residues.setID("Amine ");
-			}  else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.CARBOXYLIC_ACID_SALT)) {
-		
-				detached = FunctionalGroups.CARBOXYLIC_ACID_SALT;
-				FunctionalGroups.clearMark(residue,detached);				
-				if (salt == null) salt = FunctionalGroups.saltOfCarboxylicAcidBreakable(Me1);
-				residues = FunctionalGroups.detachGroup(residue,salt);
-				if (residues == null) {
-					if (salt1 == null) salt1 = FunctionalGroups.saltOfCarboxylicAcidBreakable1(Me1);
-					residues = FunctionalGroups.detachGroup(residue,salt1);
-					if (residues != null) residues.setID("Acid ");
-					else {
-						if (salt2 == null) salt2 = FunctionalGroups.saltOfCarboxylicAcidBreakable2(Me1);
-						residues = FunctionalGroups.detachGroup(residue,salt2);
-						if (residues != null) residues.setID("Acid ");
-					}
-				} else 	residues.setID("Acid ");
+			} else if (FunctionalGroups.hasGroupMarked(mol,
+					FunctionalGroups.CARBOXYLIC_ACID_SALT)) {
 
-			}  else if (FunctionalGroups.hasGroupMarked(mol,FunctionalGroups.HYDROCHLORIDE_OF_AMINE)) {
+				detached = FunctionalGroups.CARBOXYLIC_ACID_SALT;
+				FunctionalGroups.clearMark(residue, detached);
+				if (salt == null)
+					salt = FunctionalGroups.saltOfCarboxylicAcidBreakable(Me1);
+				residues = FunctionalGroups.detachGroup(residue, salt);
+				if (residues == null) {
+					if (salt1 == null)
+						salt1 = FunctionalGroups
+								.saltOfCarboxylicAcidBreakable1(Me1);
+					residues = FunctionalGroups.detachGroup(residue, salt1);
+					if (residues != null)
+						residues.setID("Acid ");
+					else {
+						if (salt2 == null)
+							salt2 = FunctionalGroups
+									.saltOfCarboxylicAcidBreakable2(Me1);
+						residues = FunctionalGroups.detachGroup(residue, salt2);
+						if (residues != null)
+							residues.setID("Acid ");
+					}
+				} else
+					residues.setID("Acid ");
+
+			} else if (FunctionalGroups.hasGroupMarked(mol,
+					FunctionalGroups.HYDROCHLORIDE_OF_AMINE)) {
 
 				detached = FunctionalGroups.HYDROCHLORIDE_OF_AMINE;
-				FunctionalGroups.clearMark(residue,detached);				
-				if (hClAmine == null) hClAmine = FunctionalGroups.hydrochlorideOfAmineBreakable();
-				residues = FunctionalGroups.detachGroup(residue,hClAmine);
+				FunctionalGroups.clearMark(residue, detached);
+				if (hClAmine == null)
+					hClAmine = FunctionalGroups.hydrochlorideOfAmineBreakable();
+				residues = FunctionalGroups.detachGroup(residue, hClAmine);
 				residues.setID("Amine ");
-				
+
 			}
 			if (residues != null) {
 				MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
-				if (mf ==null) throw new DecisionMethodException(ERR_STRUCTURENOTPREPROCESSED);
-					/* this will make subsequent rules to work with the residue rather than with the original molecule
-					*  If a rule needs the original structure instead, it can get it by getProperty(MolFlags.PARENT)
-					*/
-	//				residue.setProperty(MolFlags.PARENT,mol);
-	//				mf.addResidue(residue);
-				mf.setResidues(null);  //clear residues if any
-				for (int i=0; i< residues.getAtomContainerCount();i++) {
-					IMolecule a = residues.getMolecule(i);
-					if (FunctionalGroups.hasGroupMarked(a,detached.toString())) 
-						if (detached.equals(FunctionalGroups.CARBOXYLIC_ACID_SALT) ||
-							detached.equals(FunctionalGroups.HYDROCHLORIDE_OF_AMINE)								
-								) {
+				if (mf == null)
+					throw new DecisionMethodException(
+							ERR_STRUCTURENOTPREPROCESSED);
+				/*
+				 * this will make subsequent rules to work with the residue
+				 * rather than with the original molecule If a rule needs the
+				 * original structure instead, it can get it by
+				 * getProperty(MolFlags.PARENT)
+				 */
+				// residue.setProperty(MolFlags.PARENT,mol);
+				// mf.addResidue(residue);
+				mf.setResidues(null); // clear residues if any
+				for (int i = 0; i < residues.getAtomContainerCount(); i++) {
+					IAtomContainer a = residues.getAtomContainer(i);
+					if (FunctionalGroups.hasGroupMarked(a, detached.toString()))
+						if (detached
+								.equals(FunctionalGroups.CARBOXYLIC_ACID_SALT)
+								|| detached
+										.equals(FunctionalGroups.HYDROCHLORIDE_OF_AMINE)) {
 
 						} else {
-							logger.finer("Skipping residue\t"+FunctionalGroups.mapToString(a));
-							continue;							
+							logger.finer("Skipping residue\t"
+									+ FunctionalGroups.mapToString(a));
+							continue;
 						}
-					else 
-						if (detached.equals(FunctionalGroups.CARBOXYLIC_ACID_SALT) ||
-							detached.equals(FunctionalGroups.HYDROCHLORIDE_OF_AMINE)								
-								) {
-							logger.finer("Skipping residue\t"+FunctionalGroups.mapToString(a));
-							continue;							
-						}
-					
-					if (sg == null) sg = new SmilesGenerator(true);
-					if (!residueIDHidden)  {
-						a.setID(residues.getID() + sg.createSMILES(a)); 
-						/*if set to smth different than mol.getId() will affect path representation 
-						(not the decision!) which makes it difficult to automatically compare with the path from the paper :)
-						*/ 
-					 
-					} else a.setID(mol.getID());
-					logger.finer("Subsequent rules will proceed on\t"+residues.getID()+" part of the compound.");
-			
+					else if (detached
+							.equals(FunctionalGroups.CARBOXYLIC_ACID_SALT)
+							|| detached
+									.equals(FunctionalGroups.HYDROCHLORIDE_OF_AMINE)) {
+						logger.finer("Skipping residue\t"
+								+ FunctionalGroups.mapToString(a));
+						continue;
+					}
+
+					if (sg == null)
+						sg = SmilesGenerator.generic();
+					if (!residueIDHidden) {
+						a.setID(residues.getID() + sg.createSMILES(a));
+						/*
+						 * if set to smth different than mol.getId() will affect
+						 * path representation (not the decision!) which makes
+						 * it difficult to automatically compare with the path
+						 * from the paper :)
+						 */
+
+					} else
+						a.setID(mol.getID());
+					logger.finer("Subsequent rules will proceed on\t"
+							+ residues.getID() + " part of the compound.");
+
 					FunctionalGroups.clearMarks(a);
-					a.setProperty(MolFlags.PARENT,mol); //very important for the rules to be able to get the original structure if needed
+					a.setProperty(MolFlags.PARENT, mol); // very important for
+															// the rules to be
+															// able to get the
+															// original
+															// structure if
+															// needed
 					mf.addResidue(a);
-					
+
 				}
 			}
 			return true;
-		} else return false;
+		} else
+			return false;
 	}
 
 }

@@ -29,7 +29,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import net.idea.modbcum.i.exceptions.AmbitException;
-import net.idea.modbcum.i.processors.IProcessor;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.qsar.IDescriptor;
@@ -41,6 +40,7 @@ import toxTree.core.Introspection;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.tree.AbstractRule;
 import ambit2.core.data.MoleculeTools;
+import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * An abstract class to allow for descriptor analysis
@@ -112,8 +112,8 @@ public abstract class RuleDescriptor extends AbstractRule {
 		return ok;
 	}
 
-	public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
-	return new IProcessor<IAtomContainer, IChemObjectSelection>() {
+	public IAtomContainerHighlights getSelector() {
+	return new IAtomContainerHighlights() {
 			/**
 		     * 
 		     */

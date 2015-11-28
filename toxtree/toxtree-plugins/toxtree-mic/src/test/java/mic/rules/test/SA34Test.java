@@ -9,23 +9,27 @@ import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
 
 public class SA34Test extends AbstractRuleTest {
-	
-	
-		public void test() throws Exception {
-		Object[][] answer = {
-				{"[S-]C(=S)N",Boolean.FALSE},
-		};
-		
-		for (int i=0; i < answer.length;i++) {
+
+	public void test() throws Exception {
+		Object[][] answer = { { "[S-]C(=S)N", Boolean.FALSE }, };
+
+		for (int i = 0; i < answer.length; i++) {
 			IAtomContainer a = FunctionalGroups.createAtomContainer(answer[i][0].toString());
-			
+
 			MolAnalyser.analyse(a);
-			assertEquals((Boolean)answer[i][1],(Boolean)rule2test.verifyRule(a));
+			assertEquals((Boolean) answer[i][1], (Boolean) rule2test.verifyRule(a));
 		}
 	}
 
-		@Override
-		protected IDecisionRule createRule() {
-			return new SA34();
-		}
+	@Override
+	protected IDecisionRule createRule() {
+		return new SA34();
+	}
+	
+	
+	/**
+	 * TODO add test for
+	 * /http://sourceforge.net/p/toxtree/bugs/79/
+	 */ 
+	
 }

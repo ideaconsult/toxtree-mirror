@@ -35,8 +35,6 @@ package toxTree.tree.cramer;
 import java.util.List;
 import java.util.logging.Level;
 
-import net.idea.modbcum.i.processors.IProcessor;
-
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
@@ -44,13 +42,14 @@ import org.openscience.cdk.interfaces.IBond;
 import org.openscience.cdk.interfaces.IRing;
 import org.openscience.cdk.interfaces.IRingSet;
 import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
-import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleAnySubstructure;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * Rule 9 of the Cramer scheme (see {@link toxTree.tree.cramer.CramerRules})
@@ -58,21 +57,16 @@ import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
  * @version 0.1, 2005-5-2
  */
 public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
-	protected static transient QueryAtomContainer lactoneBreakable = null;
-	protected static QueryAtomContainer lactoneUnsaturated = null;
-	
 	/**
-     * Comment for <code>serialVersionUID</code>
-     */
-    private static final long serialVersionUID = 4333357476318163143L;
-
-    /**
-	 * Constructor
 	 * 
 	 */
-	public RuleLactonesFusedOrUnsaturated() {
+	private static final long serialVersionUID = 7838501504594198746L;
+	protected static transient QueryAtomContainer lactoneBreakable = null;
+	protected static transient QueryAtomContainer lactoneUnsaturated = null;
+
+	public RuleLactonesFusedOrUnsaturated() throws Exception {
 		super();
-		addSubstructure(FunctionalGroups.lactone(false));
+
 		lactoneUnsaturated = FunctionalGroups.lactone(true);
 		id = "9";
 		title = "Lactone, fused to another ring, or 5- or 6-membered a,b-unsaturated lactone?";
@@ -85,6 +79,14 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 		examples[1] = "CC1COC1=O";
 		editable = false;
 	}
+	
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
+		addSubstructure(FunctionalGroups.lactone(false));
+		return q;
+	}	
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
@@ -174,7 +176,7 @@ public class RuleLactonesFusedOrUnsaturated extends RuleAnySubstructure {
 	}
 	
     @Override
-    public IProcessor<IAtomContainer, IChemObjectSelection> getSelector() {
+    public IAtomContainerHighlights getSelector() {
     	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
     	try { rule.addSubstructure("O@C(=[O;R0])"); } catch (Exception x) {x.printStackTrace();};
     	return rule.getSelector();

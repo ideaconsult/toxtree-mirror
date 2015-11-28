@@ -33,6 +33,7 @@ import org.openscience.cdk.isomorphism.matchers.QueryAtomContainer;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolFlags;
+import toxTree.query.QueryAtomContainers;
 import toxTree.tree.rules.RuleSubstructures;
 
 /**
@@ -64,21 +65,8 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 	 * Constructor
 	 * 
 	 */
-	public RuleAliphaticWithSomeFuncGroups() {
+	public RuleAliphaticWithSomeFuncGroups() throws Exception {
 		super();
-		addSubstructure(FunctionalGroups.carbonate());		
-		addSubstructure(FunctionalGroups.carboxylicAcid());
-		addSubstructure(FunctionalGroups.ester());
-		addSubstructure(FunctionalGroups.aldehyde());
-		addSubstructure(FunctionalGroups.alcohol(false));
-		
-		addSubstructure(FunctionalGroups.ketone());
-		addSubstructure(FunctionalGroups.acetal());
-		addSubstructure(FunctionalGroups.thioester());
-		addSubstructure(FunctionalGroups.sulphide());
-		addSubstructure(FunctionalGroups.mercaptan());
-		addSubstructure(FunctionalGroups.primaryAmine(false));
-		addSubstructure(FunctionalGroups.tertiaryAmine());
 		
 		id = "20";
 		title = "Aliphatic with some functional groups (see explanation)";
@@ -94,6 +82,25 @@ public class RuleAliphaticWithSomeFuncGroups extends RuleSubstructures {
 		examples[0] = "CC(=O)CCC(C)=O";
 		examples[1] = "CC(=O)C(O)=O";
 		editable = false;
+	}
+	@Override
+	protected QueryAtomContainers initQuery() throws Exception {
+		QueryAtomContainers q = super.initQuery();
+		setQuery(q);
+		addSubstructure(FunctionalGroups.carbonate());		
+		addSubstructure(FunctionalGroups.carboxylicAcid());
+		addSubstructure(FunctionalGroups.ester());
+		addSubstructure(FunctionalGroups.aldehyde());
+		addSubstructure(FunctionalGroups.alcohol(false));
+		
+		addSubstructure(FunctionalGroups.ketone());
+		addSubstructure(FunctionalGroups.acetal());
+		addSubstructure(FunctionalGroups.thioester());
+		addSubstructure(FunctionalGroups.sulphide());
+		addSubstructure(FunctionalGroups.mercaptan());
+		addSubstructure(FunctionalGroups.primaryAmine(false));
+		addSubstructure(FunctionalGroups.tertiaryAmine());		
+		return q;
 	}
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
