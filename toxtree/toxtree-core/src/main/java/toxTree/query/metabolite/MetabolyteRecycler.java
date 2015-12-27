@@ -17,6 +17,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.io.CMLWriter;
+import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -28,7 +29,6 @@ import ambit2.base.config.Preferences;
 import ambit2.base.data.Property;
 import ambit2.core.config.AmbitCONSTANTS;
 import ambit2.core.data.MoleculeTools;
-import ambit2.core.io.MDLWriter;
 import ambit2.core.processors.structure.AtomConfigurator;
 import ambit2.core.processors.structure.InchiProcessor;
 
@@ -172,7 +172,7 @@ public class   MetabolyteRecycler implements PropertyChangeListener {
 	protected IAtomContainer quick_and_dirty_viamol(IAtomContainer ac) {
 		try {
 			StringWriter mol = new StringWriter();
-			MDLWriter wri = new MDLWriter();
+			SDFWriter wri = new SDFWriter();
 			wri.setWriter(mol);
 			wri.write(ac);
 			

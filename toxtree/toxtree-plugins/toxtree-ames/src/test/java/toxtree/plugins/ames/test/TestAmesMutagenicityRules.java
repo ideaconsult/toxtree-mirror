@@ -46,6 +46,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomType;
 import org.openscience.cdk.interfaces.IChemObjectBuilder;
+import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -62,7 +63,6 @@ import toxTree.query.MolAnalyser;
 import toxTree.tree.rules.smarts.AbstractRuleSmartSubstructure;
 import toxtree.ui.tree.actions.NewRuleAction;
 import ambit2.core.helper.CDKHueckelAromaticityDetector;
-import ambit2.core.io.MDLWriter;
 import ambit2.smarts.query.ISmartsPattern;
 
 public abstract class TestAmesMutagenicityRules extends TestCase {
@@ -163,7 +163,7 @@ public abstract class TestAmesMutagenicityRules extends TestCase {
 		f2 = new File(tmpDir, String.format("%s_missed_hits.sdf",
 				getRuleID(rule)));
 		OutputStream outMissed = new FileOutputStream(f2);
-		MDLWriter writerMissed = new MDLWriter(outMissed);
+		SDFWriter writerMissed = new SDFWriter(outMissed);
 
 		while (resultsReader.hasNext()) {
 			IAtomContainer a = resultsReader.next();
@@ -214,7 +214,7 @@ public abstract class TestAmesMutagenicityRules extends TestCase {
 		if (f.exists())
 			f.delete();
 		OutputStream outWrong = new FileOutputStream(f);
-		MDLWriter writerWrong = new MDLWriter(outWrong);
+		SDFWriter writerWrong = new SDFWriter(outWrong);
 
 		while (sourceReader.hasNext()) {
 			Object o = sourceReader.next();
@@ -229,7 +229,7 @@ public abstract class TestAmesMutagenicityRules extends TestCase {
 					if (rule.verifyRule(a)) {
 						if (resultsID.indexOf(id.toString()) == -1) {
 							wronghits.add(id.toString());
-							writerWrong.writeMolecule(a);
+							writerWrong.write(a);
 						}
 					} else {
 						if (resultsID.indexOf(id.toString()) > -1) {

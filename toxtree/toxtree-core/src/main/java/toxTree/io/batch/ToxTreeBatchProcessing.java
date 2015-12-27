@@ -33,12 +33,12 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.io.SDFWriter;
 
 import toxTree.core.IDecisionMethod;
 import toxTree.core.IDecisionResult;
 import toxTree.core.Introspection;
 import toxTree.exceptions.DecisionResultException;
-import ambit2.core.io.MDLWriter;
 
 /**
  * A {@link toxTree.io.batch.ChemObjectBatchProcessing} descendant , where processing is performed by {@link toxTree.core.IDecisionMethod} 
@@ -114,9 +114,6 @@ public class ToxTreeBatchProcessing extends ChemObjectBatchProcessing {
 	@Override
 	public void writeRecord() throws BatchProcessingException {
 		logger.finer("Write record");
-		if (writer instanceof MDLWriter) {
-			((MDLWriter) writer).setSdFields(chemObject.getProperties());
-		}
 		super.writeRecord();
 	}
 	/**
