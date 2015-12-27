@@ -37,6 +37,7 @@ import javax.swing.ProgressMonitorInputStream;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IChemObject;
 import org.openscience.cdk.io.IChemObjectWriter;
+import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.io.iterator.IteratingSMILESReader;
@@ -45,7 +46,6 @@ import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import ambit2.core.io.DelimitedFileFormat;
 import ambit2.core.io.DelimitedFileWriter;
 import ambit2.core.io.IteratingDelimitedFileReader;
-import ambit2.core.io.MDLWriter;
 
 
 /**
@@ -171,8 +171,8 @@ public class ChemObjectBatchProcessing extends BatchProcessing  {
 		boolean append = outputFile.currentRecord>0;
 		try {
 			if (fname.endsWith(extensions[SDF_INDEX])) {
-				writer = new MDLWriter(new FileOutputStream(outputFile.getFile(),append));
-				((MDLWriter) writer).dontWriteAromatic();
+				writer = new SDFWriter(new FileOutputStream(outputFile.getFile(),append));
+				//((SDFWriter) writer).dontWriteAromatic();
 			} else if (fname.endsWith(extensions[CSV_INDEX])) 
 				writer = new DelimitedFileWriter(new FileOutputStream(outputFile.getFile(),append));
 			else if ((fname.endsWith(extensions[TXT_INDEX]))) 

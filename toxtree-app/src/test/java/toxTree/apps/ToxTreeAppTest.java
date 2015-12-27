@@ -6,12 +6,12 @@ import java.io.OutputStream;
 
 import org.junit.Test;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
 import toxTree.core.IDecisionResult;
 import toxTree.tree.cramer.CramerRules;
-import ambit2.core.io.MDLWriter;
 
 public class ToxTreeAppTest {
 
@@ -25,7 +25,7 @@ public class ToxTreeAppTest {
 		IteratingSDFReader reader = new IteratingSDFReader(in,
 				SilentChemObjectBuilder.getInstance());
 		OutputStream out = new FileOutputStream("result.sdf");
-		MDLWriter writer = new MDLWriter(out);
+		SDFWriter writer = new SDFWriter(out);
 		while (reader.hasNext()) {
 			IAtomContainer molecule = ((IAtomContainer) reader.next());
 			result.classify(molecule);
@@ -33,7 +33,6 @@ public class ToxTreeAppTest {
 			for (String resultProperty : result.getResultPropertyNames())
 				System.out.println(String.format("%s=%s", resultProperty,
 						molecule.getProperty(resultProperty)));
-			writer.setSdFields(molecule.getProperties());
 			writer.write(molecule);
 		}
 		reader.close();

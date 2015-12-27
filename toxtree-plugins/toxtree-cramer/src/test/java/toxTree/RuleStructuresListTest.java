@@ -37,6 +37,7 @@ import org.junit.Test;
 import org.openscience.cdk.AtomContainer;
 import org.openscience.cdk.CDKConstants;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.io.iterator.IIteratingChemObjectReader;
 import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
@@ -51,7 +52,6 @@ import toxTree.tree.rules.ILookupFile;
 import toxTree.tree.rules.InChILookupFile;
 import toxTree.tree.rules.RuleStructuresList;
 import ambit2.core.io.FileInputState;
-import ambit2.core.io.MDLWriter;
 
 /**
  * Test for {@link RuleStructuresList}
@@ -97,9 +97,8 @@ public class RuleStructuresListTest {
 	@Test
 	public void testMDLWriterWriteProperties() throws Exception {
 
-		MDLWriter writer = new MDLWriter(new FileOutputStream(new File(
+		SDFWriter writer = new SDFWriter(new FileOutputStream(new File(
 				"bodymol.test.sdf")));
-		writer.dontWriteAromatic();
 		SmilesGenerator gen = SmilesGenerator.generic();
 
 		// adenine NC1=C2N=CN=C2N=CN1
@@ -108,8 +107,7 @@ public class RuleStructuresListTest {
 				.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
 
 		MolAnalyser.analyse(c);
-		c.setProperty("SMILES", gen.createSMILES((IAtomContainer) c));
-		writer.setSdFields(c.getProperties());
+		c.setProperty("SMILES", gen.create((IAtomContainer) c));
 		writer.write(c);
 		System.out.print(c.getProperty("NAME"));
 		System.out.print("\t");
@@ -122,9 +120,8 @@ public class RuleStructuresListTest {
 	@Test
 	public void testBug() throws Exception {
 
-		MDLWriter writer = new MDLWriter(new FileOutputStream(new File(
+		SDFWriter writer = new SDFWriter(new FileOutputStream(new File(
 				"bodymol.test.sdf")));
-		writer.dontWriteAromatic();
 		SmilesGenerator gen = SmilesGenerator.generic();
 		IAtomContainer c = FunctionalGroups
 				.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
@@ -158,8 +155,7 @@ public class RuleStructuresListTest {
 						System.out.println(m.getBondCount());
 
 					}
-					m.setProperty("SMILES", gen.createSMILES(m));
-					writer.setSdFields(m.getProperties());
+					m.setProperty("SMILES", gen.create(m));
 					writer.write(m);
 				} catch (Exception x) {
 					x.printStackTrace();

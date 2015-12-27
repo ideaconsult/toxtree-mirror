@@ -18,6 +18,7 @@ import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IAtomContainerSet;
 import org.openscience.cdk.interfaces.IChemObject;
+import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
@@ -31,7 +32,6 @@ import toxtree.plugins.smartcyp.SMARTCYPPlugin;
 import ambit2.core.data.IStructureDiagramHighlights;
 import ambit2.core.data.MoleculeTools;
 import ambit2.core.helper.CDKHueckelAromaticityDetector;
-import ambit2.core.io.MDLWriter;
 import ambit2.core.processors.structure.AtomConfigurator;
 import ambit2.core.processors.structure.HydrogenAdderProcessor;
 import ambit2.rendering.CompoundImageTools;
@@ -265,13 +265,13 @@ public class SMIRKSTest {
 								"toxtree/test/plugins/smartcyp/3A4_substrates.sdf")
 						.getFile());
 
-		MDLWriter[] writers = new MDLWriter[SMARTCYPReaction.values().length];
+		SDFWriter[] writers = new SDFWriter[SMARTCYPReaction.values().length];
 
 		File masterFile = new File(String.format(
 				"%s/targets_and_reaction_products.sdf", file.getParentFile()));
 		if (masterFile.exists())
 			masterFile.delete();
-		MDLWriter masterWriter = new MDLWriter(new FileOutputStream(masterFile));
+		SDFWriter masterWriter = new SDFWriter(new FileOutputStream(masterFile));
 
 		File htmlFile = new File(String.format(
 				"%s/targets_and_reaction_products.html", file.getParentFile()));
@@ -311,8 +311,7 @@ public class SMIRKSTest {
 				CDKHueckelAromaticityDetector
 						.detectAromaticity((IAtomContainer) mol);
 
-				masterWriter.setSdFields(mol.getProperties());
-				masterWriter.writeMolecule((IAtomContainer) mol);
+				masterWriter.write(mol);
 
 				htmlFileWriter.write(String.format("<h3><a name='%s'>%s</a>",
 						molid, molid));
@@ -361,9 +360,7 @@ public class SMIRKSTest {
 									"<img src='%s'><br>", uri, uri));
 							htmlFileWriter.write("</td>");
 
-							masterWriter.setSdFields(set.getAtomContainer(i)
-									.getProperties());
-							masterWriter.writeMolecule(set.getAtomContainer(i));
+							masterWriter.write(set.getAtomContainer(i));
 						}
 					} else {
 						htmlFileWriter.write("<td border='2'>No products</td>");
@@ -382,7 +379,7 @@ public class SMIRKSTest {
 						System.out.println(output);
 						if (output.exists())
 							output.delete();
-						writers[reaction.ordinal()] = new MDLWriter(
+						writers[reaction.ordinal()] = new SDFWriter(
 								new FileOutputStream(output));
 					}
 					IAtomContainer c = (IAtomContainer) ((IAtomContainer) mol)
@@ -431,11 +428,9 @@ public class SMIRKSTest {
 												uri, imguri, smiles, smiles));
 						htmlFileWriter.write("</td>");
 
-						MDLWriter writer = writers[reaction.ordinal()];
-						writer.setSdFields(mol.getProperties());
-						writer.writeMolecule((IAtomContainer) mol);
-						writer.setSdFields(c.getProperties());
-						writer.writeMolecule(c);
+						SDFWriter writer = writers[reaction.ordinal()];
+						writer.write(mol);
+						writer.write(c);
 
 						// masterWriter.setSdFields(c.getProperties());
 						// masterWriter.writeMolecule(c) ;
@@ -465,7 +460,7 @@ public class SMIRKSTest {
 			htmlFileWriter.write("</body></html>");
 		} finally {
 			reader.close();
-			for (MDLWriter writer : writers)
+			for (SDFWriter writer : writers)
 				if (writer != null)
 					writer.close();
 			masterWriter.close();

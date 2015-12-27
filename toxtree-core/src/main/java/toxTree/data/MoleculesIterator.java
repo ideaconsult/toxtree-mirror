@@ -50,6 +50,8 @@ import org.openscience.cdk.interfaces.IPseudoAtom;
 import org.openscience.cdk.io.DefaultChemObjectWriter;
 import org.openscience.cdk.io.ISimpleChemObjectReader;
 import org.openscience.cdk.io.MDLV2000Reader;
+import org.openscience.cdk.io.ReaderFactory;
+import org.openscience.cdk.io.SDFWriter;
 import org.openscience.cdk.io.SMILESReader;
 import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.layout.StructureDiagramGenerator;
@@ -69,8 +71,6 @@ import ambit2.core.data.MoleculeTools;
 import ambit2.core.io.DelimitedFileFormat;
 import ambit2.core.io.DelimitedFileReader;
 import ambit2.core.io.DelimitedFileWriter;
-import ambit2.core.io.MDLWriter;
-import ambit2.core.io.ReaderFactoryExtended;
 
 
 /**
@@ -241,7 +241,7 @@ public class MoleculesIterator implements IMoleculesIterator {
         currentNo = 0;
     }
     public List openFile(File input) throws ToxTreeIOException {
-        ReaderFactoryExtended factory = new ReaderFactoryExtended();
+        ReaderFactory factory = new ReaderFactory();
         filename = input.getAbsolutePath();
         try {
         if (!input.isDirectory()) {
@@ -311,12 +311,11 @@ public class MoleculesIterator implements IMoleculesIterator {
     public void saveFile(File output) throws ToxTreeIOException {
     	DefaultChemObjectWriter writer = null;
     	String filename = "";
-    	MDLWriter mdlWriter = null;
+    	SDFWriter mdlWriter = null;
     	try {
     		filename = output.toString();
 	    	if (filename.toLowerCase().endsWith(".sdf")) { 
-	    		mdlWriter = new MDLWriter(new FileWriter(output));
-	    		mdlWriter.dontWriteAromatic();
+	    		mdlWriter = new SDFWriter(new FileWriter(output));
 	    		writer = mdlWriter;
 	    	} else	if (filename.toLowerCase().endsWith(".csv")) { 
 		    	writer = new DelimitedFileWriter(new FileWriter(output));
@@ -337,9 +336,6 @@ public class MoleculesIterator implements IMoleculesIterator {
 	    			if (ac !=null) {
 	    				c++;
 	    				logger.finer("Writing compound \t"+Integer.toString(record));
-	    				if (mdlWriter != null) {
-	    					mdlWriter.setSdFields(ac.getProperties());
-	    				}
 	    				try {
 	    					writer.write(ac);
 	    				} catch (Exception x) {
