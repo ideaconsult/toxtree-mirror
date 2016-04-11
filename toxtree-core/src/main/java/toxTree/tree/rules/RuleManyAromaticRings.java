@@ -21,22 +21,26 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-*/
+ */
 package toxTree.tree.rules;
 
+import org.openscience.cdk.CDKConstants;
+import org.openscience.cdk.graph.Cycles;
+import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
+import org.openscience.cdk.interfaces.IRingSet;
 
-import ambit2.rendering.IAtomContainerHighlights;
 import toxTree.core.IRuleRange;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.query.MolFlags;
 import toxTree.tree.AbstractRule;
 import toxTree.tree.rules.smarts.RuleSMARTSSubstructureAmbit;
+import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * Verifies if there are many aromatic rings
- * @author Nina Jeliazkova
- * <b>Modified</b> 2005-8-19
+ * 
+ * @author Nina Jeliazkova <b>Modified</b> 2005-8-19
  */
 public class RuleManyAromaticRings extends AbstractRule implements IRuleRange {
 	protected double minValue = 1;
@@ -45,6 +49,7 @@ public class RuleManyAromaticRings extends AbstractRule implements IRuleRange {
 	 * Comment for <code>serialVersionUID</code>
 	 */
 	private static final long serialVersionUID = 8793386207062962918L;
+
 	/**
 	 * 
 	 */
@@ -52,69 +57,103 @@ public class RuleManyAromaticRings extends AbstractRule implements IRuleRange {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer  mol) throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol)
+			throws DecisionMethodException {
 		logger.finer(toString());
-	    //should be set via MolAnalyser
-	    MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
-	    double rings =  mf.getAromaticRings();
-	    return (rings > minValue) && (rings < maxValue);
+		// should be set via MolAnalyser
+		// MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
+		// double rings = mf.getAromaticRings();
+		try {
+			IRingSet rings = Cycles.essential(mol).toRingSet();
+			int aromatic_rings = 0;
+			for (IAtomContainer ring : rings.atomContainers()) {
+				boolean aromatic = true;
+				for (IAtom atom : ring.atoms())
+					if (!atom.getFlag(CDKConstants.ISAROMATIC)) {
+						aromatic = false;
+						break;
+					}
+				aromatic_rings += aromatic ? 1 : 0;
+
+			}
+			return (aromatic_rings > minValue) && (aromatic_rings < maxValue);
+		} catch (Exception x) {
+			MolFlags mf = (MolFlags) mol.getProperty(MolFlags.MOLFLAGS);
+			double rings = mf.getAromaticRings();
+			return (rings > minValue) && (rings < maxValue);
+		}
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see toxTree.tree.AbstractRule#isImplemented()
 	 */
 	@Override
 	public boolean isImplemented() {
 		return true;
 	}
+
 	public void setMinValue(double min) {
 		this.minValue = min;
 		setChanged();
 		notifyObservers();
-		
+
 	}
+
 	public void setMaxValue(double max) {
 		this.maxValue = max;
 		setChanged();
 		notifyObservers();
-		
+
 	}
+
 	public double getMinValue() {
 		return minValue;
 	}
+
 	public double getMaxValue() {
 		return maxValue;
 	}
+
 	/*
-	@Override
-	public IDecisionRuleEditor getEditor() {
-		RuleRangeEditor e = new RuleRangeEditor(this);
-		e.setRule(this);
-		e.setSetPropertyEditable(false);
-		return e;
-	}
-	*/
+	 * @Override public IDecisionRuleEditor getEditor() { RuleRangeEditor e =
+	 * new RuleRangeEditor(this); e.setRule(this);
+	 * e.setSetPropertyEditable(false); return e; }
+	 */
 	public Object getProperty() {
 		return "Number of aromatic rings";
 	}
+
 	public void setProperty(Object value) {
 		// TODO Auto-generated method stub
-		
-	}	
+
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof RuleManyAromaticRings)
-			return (getMaxValue()== ((RuleManyAromaticRings)obj).getMaxValue()) &&
-				(getMinValue()== ((RuleManyAromaticRings)obj).getMinValue());
-		else return false;
+			return (getMaxValue() == ((RuleManyAromaticRings) obj)
+					.getMaxValue())
+					&& (getMinValue() == ((RuleManyAromaticRings) obj)
+							.getMinValue());
+		else
+			return false;
 	}
-	
-    @Override
-    public IAtomContainerHighlights getSelector() {
-    	RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
-    	try { rule.addSubstructure("a:a"); } catch (Exception x) {x.printStackTrace();};
-    	return rule.getSelector();
-    }	
+
+	@Override
+	public IAtomContainerHighlights getSelector() {
+		RuleSMARTSSubstructureAmbit rule = new RuleSMARTSSubstructureAmbit();
+		try {
+			rule.addSubstructure("a:a");
+		} catch (Exception x) {
+			x.printStackTrace();
+		}
+		;
+		return rule.getSelector();
+	}
 }
