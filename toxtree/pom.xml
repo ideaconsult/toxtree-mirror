@@ -5,7 +5,7 @@
 	<groupId>toxtree</groupId>
 	<artifactId>toxtree</artifactId>
 	<name>Toxtree</name>
-	<version>3.0.0-SNAPSHOT</version>
+	<version>3.0.0</version>
 	<packaging>pom</packaging>
 	<description>Toxtree is a full-featured and flexible user-friendly open source application, which is able to estimate toxic hazard by applying a decision tree approach. Toxtree could be applied to datasets from various compatible file types. User-defined molecular structures are also supported - they could be entered by SMILES, or by using the built-in 2D structure diagram editor.</description>
 	<url>http://toxtree.sourceforge.net</url>
@@ -347,7 +347,7 @@
 	</reporting>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<ambit.version>3.0.2-SNAPSHOT</ambit.version>
+		<ambit.version>3.0.2</ambit.version>
 		<cdk.version>1.5.12</cdk.version>
 		<junit.version>4.8.1</junit.version>
 		<smartcyp.version>3.0.1</smartcyp.version>
