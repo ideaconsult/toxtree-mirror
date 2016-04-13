@@ -3,7 +3,7 @@
   <parent>
     <artifactId>toxtree-plugins</artifactId>
     <groupId>toxtree</groupId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.0</version>
   </parent>
   <artifactId>toxtree-dnabinding</artifactId>
   <name>Toxtree module: DNA binding</name>
