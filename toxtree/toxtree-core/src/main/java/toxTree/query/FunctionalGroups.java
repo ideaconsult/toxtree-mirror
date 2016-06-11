@@ -4853,9 +4853,9 @@ public class FunctionalGroups {
 				AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(a);
 				CDKHydrogenAdder.getInstance(a.getBuilder())
 						.addImplicitHydrogens(a);
-				AtomContainerManipulator.convertImplicitToExplicitHydrogens(a);
+				MoleculeTools.convertImplicitToExplicitHydrogens(a);
 			} catch (Exception x) {
-				logger.log(Level.WARNING,x.getMessage());
+				logger.log(Level.WARNING, x.getMessage());
 			}
 			return ConnectivityChecker.partitionIntoMolecules(a);
 		} else
