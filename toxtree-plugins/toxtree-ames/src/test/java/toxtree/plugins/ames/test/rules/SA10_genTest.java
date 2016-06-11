@@ -267,7 +267,7 @@ public class SA10_genTest extends TestAmesMutagenicityRules {
 		AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
 		CDKHydrogenAdder h = CDKHydrogenAdder.getInstance(SilentChemObjectBuilder.getInstance());
 		h.addImplicitHydrogens(ac);
-		AtomContainerManipulator.convertImplicitToExplicitHydrogens(ac);
+		MoleculeTools.convertImplicitToExplicitHydrogens(ac);
 		/**
 		 * This runs fine
 		 */

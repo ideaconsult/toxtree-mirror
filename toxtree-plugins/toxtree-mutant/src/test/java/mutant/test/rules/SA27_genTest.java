@@ -14,6 +14,7 @@ import org.openscience.cdk.tools.CDKHydrogenAdder;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
 
 import toxTree.core.IDecisionRule;
+import ambit2.core.data.MoleculeTools;
 import ambit2.core.helper.CDKHueckelAromaticityDetector;
 
 public class SA27_genTest extends TestMutantRules {
@@ -122,7 +123,7 @@ public class SA27_genTest extends TestMutantRules {
 		CDKHydrogenAdder h = CDKHydrogenAdder.getInstance(mol.getBuilder());
 
 		h.addImplicitHydrogens(mol);
-		AtomContainerManipulator.convertImplicitToExplicitHydrogens(mol);
+		MoleculeTools.convertImplicitToExplicitHydrogens(mol);
 		CDKHueckelAromaticityDetector.detectAromaticity(mol);
 		SMARTSQueryTool sqt = new SMARTSQueryTool(smarts,
 				SilentChemObjectBuilder.getInstance());
