@@ -52,7 +52,7 @@
 			<url>scp://shell.sourceforge.net/home/project-web/toxtree/htdocs</url>
 		</site>
 		<snapshotRepository>
-			<id>nexus-idea-plovdiv-snapshots</id>
+			<id>nexus-idea-snapshots</id>
 			<url>https://nexus.ideaconsult.net/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<repository>
