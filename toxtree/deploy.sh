@@ -4,7 +4,7 @@ cp toxtree-app/toxtree-plugins.properties dist
 cp toxtree-app/target/Toxtree-$1.jar dist
 mkdir dist/ext
 rm dist/ext/*
-cp toxtree-app/index.properties dist
+cp toxtree-app/index.properties dist/ext
 cp toxtree-plugins/toxtree-ames/target/*$1.jar dist/ext
 cp toxtree-plugins/toxtree-cramer/target/*$1.jar dist/ext
 cp toxtree-plugins/toxtree-cramer2/target/*$1.jar dist/ext
