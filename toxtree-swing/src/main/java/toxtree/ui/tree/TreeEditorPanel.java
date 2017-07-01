@@ -318,7 +318,7 @@ public class TreeEditorPanel extends JPanel implements IDecisionMethodEditor {
     }
     protected ImageIcon getIcon() {
         try {
-        return Tools.getImage("bird.gif");
+        return Tools.getImage(Tools._logo);
         } catch (Exception x) {
             return null;
         }

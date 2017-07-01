@@ -40,6 +40,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import toxTree.core.Introspection;
+import toxTree.io.Tools;
 import toxTree.tree.DecisionMethodsList;
 import toxtree.data.DataModule;
 import toxtree.data.ToxTreeModule;
@@ -197,7 +198,7 @@ public class ToxTreeApp extends CompoundMethodApplication {
 	@Override
 	protected ImageIcon getIcon() {
 		URL iconURL = ToxTreeApp.class.getClassLoader().getResource(
-				"toxTree/ui/tree/images/bird.gif");
+				Tools._img_path+ Tools._icon);
 		if (iconURL != null) {
 			return new ImageIcon(iconURL);
 			// mainFrame.setIconImage(toxTreeIcon.getImage());

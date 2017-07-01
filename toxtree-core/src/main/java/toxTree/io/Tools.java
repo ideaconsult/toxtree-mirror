@@ -10,6 +10,9 @@ import toxTree.core.Introspection;
 import ambit2.base.io.DownloadTool;
 
 public class Tools {
+	public static final String _img_path = "toxTree/ui/tree/images/";
+	public static final String _logo = "butterfly.png";
+	public static final String _icon = "icon.png";
 	protected Tools() {}
 	
 	/**
@@ -56,7 +59,7 @@ public class Tools {
 		
 	    public static ImageIcon getImage(String filename)  {
 	        try {
-	           URL iconURL = Introspection.getLoader().getResource("toxTree/ui/tree/images/"+filename);
+	           URL iconURL = Introspection.getLoader().getResource(_img_path + filename);
 	           if (iconURL != null) 
 	                  return new ImageIcon(iconURL);
 	           else return null;

@@ -2,7 +2,7 @@
 <project name="Toxtree">
   <bannerLeft>
     <name>Toxtree</name>
-    <src>images/toxtree-logo.gif</src>
+    <src>images/toxtree-logo.png</src>
     <href>index.html</href>
   </bannerLeft>
   <body>
