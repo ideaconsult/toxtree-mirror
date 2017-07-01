@@ -118,7 +118,7 @@ public class AboutAction extends DataModuleAction {
         b.append(String.format("<tr><th>Support:</th><td>%s</td></tr>","<a a href='http://toxtree.sourceforge.net/issue-tracking.html'>Issue tracking</a></a>"));
         b.append(String.format("<tr><th></th><td>%s</td></tr>","<a href='http://www.ideaconsult.net'>http://www.ideaconsult.net</a>"));
         b.append(String.format("<tr><th></th><td>%s</td></tr>","<a href='http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree'>JRC Computational Toxicology</a>"));
-        b.append(String.format("<tr><th></th><td>%s</td></tr>","<a href='mailto:jeliazkova.nina@gmail.com'>e-mail</a>"));
+        b.append(String.format("<tr><th></th><td>%s</td></tr>","<a href='mailto:support@ideaconsult.net>e-mail</a>"));
 
         b.append("</table>");
     	
@@ -127,7 +127,7 @@ public class AboutAction extends DataModuleAction {
         
     	ImageIcon toxTreeIcon = null;
 		try {
-			toxTreeIcon = Tools.getImage("bird.gif");
+			toxTreeIcon = Tools.getImage(Tools._logo);
         } catch (Exception x) {
             toxTreeIcon = null;
         }

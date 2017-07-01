@@ -29,7 +29,7 @@
 
 			<brand>
 				<name><![CDATA[   
-      <img src='images/toxtree-logo.gif'>
+      <img src='images/toxtree-logo.png'>
       ]]></name>
 				<href>http://toxtree.sf.net</href>
 			</brand>
@@ -197,7 +197,7 @@
       <topBarIcon>
         <name>Toxtree</name>
         <alt>Toxtree</alt>
-        <src>/images/toxtree-logo.gif</src>
+        <src>/images/toxtree-logo.png</src>
         <href>/index.html</href>
       </topBarIcon>
       <googleSearch>
