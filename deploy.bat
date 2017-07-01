@@ -1,11 +1,11 @@
-#deploy 3.0.0
+#deploy 3.2.0
 mkdir dist
 del dist\*
 copy toxtree-app\toxtree-plugins.properties dist
 copy toxtree-app\target\Toxtree-%1.jar dist
 mkdir dist\ext
 del dist\ext\*
-copy toxtree-app\index.properties dist
+copy toxtree-app\index.properties dist\ext
 copy toxtree-plugins\toxtree-ames\target\*%1.jar dist\ext
 copy toxtree-plugins\toxtree-cramer\target\*%1.jar dist\ext
 copy toxtree-plugins\toxtree-cramer2\target\*%1.jar dist\ext

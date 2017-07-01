@@ -212,7 +212,7 @@ public class Introspection {
 				if (file.exists()) {
 					if (file.getName().toLowerCase().endsWith(".jar")
 							&& file.getName().toLowerCase().startsWith("tox"))
-
+						logger.log(Level.INFO, String.format("%s",file.getAbsolutePath()));
 						files.add(file);
 				} else
 					logger.log(
