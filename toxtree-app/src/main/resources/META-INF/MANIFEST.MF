@@ -6,6 +6,7 @@ Specification-Vendor: Ideaconsult Ltd
 Package-Title: toxTree.apps
 Package-Version: ${project.version}
 Package-Vendor: Ideaconsult Ltd
+Vendor: Ideaconsult Ltd
 Implementation-Title: Toxtree (Estimation of Toxic Hazard - A Decision Tree Approach)
-Implementation-Version: ${project.version}
+Implementation-Version: ${project.version}-${buildNumber}-${timestamp}
 Implementation-Vendor: Ideaconsult Ltd
