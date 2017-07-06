@@ -93,7 +93,7 @@ public class AboutAction extends DataModuleAction {
 		b.append("<table width='100%'>");
     	Package self = Package.getPackage(packageName);
     	b.append(String.format("<tr><th>Title</th><td>%s</td></tr>",self.getImplementationTitle()));
-    	b.append(String.format("<tr><th>Vendor</th><td>%s</td></tr>",self.getImplementationVendor()));
+    	b.append(String.format("<tr><th>Vendor</th><td>%s</td></tr>","www.ideaconsult.net"));
     	b.append(String.format("<tr><th>Version</th><td>%s</td></tr>",self.getImplementationVersion()));
         b.append("</table>");
         //cramer rules implementation
@@ -117,7 +117,7 @@ public class AboutAction extends DataModuleAction {
         
         b.append(String.format("<tr><th>Support:</th><td>%s</td></tr>","<a a href='http://toxtree.sourceforge.net/issue-tracking.html'>Issue tracking</a></a>"));
         b.append(String.format("<tr><th></th><td>%s</td></tr>","<a href='http://www.ideaconsult.net'>http://www.ideaconsult.net</a>"));
-        b.append(String.format("<tr><th></th><td>%s</td></tr>","<a href='http://ihcp.jrc.ec.europa.eu/our_labs/computational_toxicology/qsar_tools/toxtree'>JRC Computational Toxicology</a>"));
+        b.append(String.format("<tr><th></th><td>%s</td></tr>","<a href='https://ec.europa.eu/jrc/en/scientific-tool/toxtree-tool'>JRC Computational Toxicology</a>"));
         b.append(String.format("<tr><th></th><td>%s</td></tr>","<a href='mailto:support@ideaconsult.net>e-mail</a>"));
 
         b.append("</table>");
