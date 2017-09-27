@@ -56,7 +56,7 @@ Toxtree Module: Structure Alerts for the in vivo micronucleus assay in rodents
 		
 +---------------------------------
    <repository>
-        <id>ambit-plovdiv-releases</id>
-        <url>http://ambit.uni-plovdiv.bg:8083/nexus/content/repositories/releases</url>
+        <id>ambit-releases</id>
+        <url>https://nexus.ideaconsult.net/content/repositories/releases</url>
     </repository>
 +---------------------------------  

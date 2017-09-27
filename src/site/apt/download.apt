@@ -61,7 +61,7 @@
       
       * {{{https://sourceforge.net/p/toxtree/svn/1623/tree/tags/2.6.6/}Source code}}  
       
-      * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~2.6.6~~}Maven repository}}
+      * {{{https://nexus.ideaconsult.net/index.html#nexus-search;gav~toxtree~~2.6.6~~}Maven repository}}
       
 
 
@@ -108,7 +108,7 @@
       
       * {{{https://sourceforge.net/p/toxtree/svn/1623/tree/tags/2.6.0/}Source code}}  
       
-      * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~2.6.0~~}Maven repository}}
+      * {{{https://nexus.ideaconsult.net#nexus-search;gav~toxtree~~2.6.0~~}Maven repository}}
       
 
 {Toxtree-2.5.4} 
@@ -160,7 +160,7 @@
         
     * {{{https://sourceforge.net/p/toxtree/svn/1623/tree/tags/2.5.4}Source code}}  
       
-    * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~2.5.4~~}Maven repository}}   
+    * {{{https://nexus.ideaconsult.net/index.html#nexus-search;gav~toxtree~~2.5.4~~}Maven repository}}   
     
 {Toxtree-2.5.1} 
 
@@ -191,7 +191,7 @@
     
     * {{{https://sourceforge.net/p/toxtree/svn/1623/tree/tags/2.5.1}Source code}}  
       
-    * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~2.5.1~~}Maven repository}}    
+    * {{{https://nexus.ideaconsult.net/index.html#nexus-search;gav~toxtree~~2.5.1~~}Maven repository}}    
     
 {Toxtree-2.5.0} 
 
@@ -249,7 +249,7 @@
       
       * {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags/2.5.0}Source code}}  
       
-      * {{{http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~2.5.0~~}Maven repository}}
+      * {{{https://nexus.ideaconsult.net/index.html#nexus-search;gav~toxtree~~2.5.0~~}Maven repository}}
       
       
 {Toxtree-2.2.0} 
