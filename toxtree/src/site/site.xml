@@ -26,7 +26,7 @@
 			<highlightJs>true</highlightJs>
 			<smoothScroll>true</smoothScroll>
 			<highlightJsTheme>github</highlightJsTheme>
-
+			<skinAttribution>false</skinAttribution>
 			<brand>
 				<name><![CDATA[   
       <img src='images/toxtree-logo.png'>
@@ -108,6 +108,31 @@
 				</<related>
 				 -->
 			</pages>
+			
+			<endContent>
+				<!--
+      <div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-24983132-1'}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+        <script>
+  (function() {
+    var cx = '003845121398893549215:uyznkyyvppa';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<gcse:search></gcse:search>
+-->
+        
+      </endContent>
 		</reflowSkin>
 	</custom>
 
