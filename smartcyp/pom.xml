@@ -50,8 +50,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.3</version>
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
+						<source>${sourceVersion}</source>
+						<target>${sourceVersion}</target>
 					</configuration>
 				</plugin>
 			</plugins>
@@ -61,4 +61,52 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<cdk.version>1.5.13</cdk.version>
 	</properties>
+	<profiles>
+	<profile>
+			<id>JRE6</id>
+			<activation>
+				<jdk>1.6</jdk>
+			</activation>
+			<properties>
+				<sourceVersion>1.6</sourceVersion>
+			</properties>
+		</profile>
+		<profile>
+			<id>JRE7</id>
+			<activation>
+				<jdk>1.7</jdk>
+			</activation>
+			<properties>
+				<sourceVersion>1.7</sourceVersion>
+			</properties>
+		</profile>
+		<profile>
+			<id>JRE8</id>
+			<activation>
+				<jdk>1.8</jdk>
+			</activation>
+			<properties>
+				<sourceVersion>1.8</sourceVersion>
+			</properties>
+		</profile>
+		<profile>
+			<id>JRE9</id>
+			<activation>
+				<jdk>1.9</jdk>
+			</activation>
+			<properties>
+				<sourceVersion>1.9</sourceVersion>
+			</properties>
+		</profile>		
+		<profile>
+			<!-- http://stackoverflow.com/questions/15886209/maven-is-not-working-in-java-8-when-javadoc-tags-are-incomplete -->
+			<id>disable-java8-doclint</id>
+			<activation>
+				<jdk>[1.8,)</jdk>
+			</activation>
+			<properties>
+				<additionalparam>-Xdoclint:none</additionalparam>
+			</properties>
+		</profile>	
+	</profiles>		
 </project>
