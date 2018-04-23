@@ -67,9 +67,11 @@ public class MoleculesFileTest {
 				StringBuilder b = new StringBuilder();
 				b.append(record);
 				b.append('\t');
-				b.append(((IAtomContainer) o).getProperty("#"));
+				Object val = ((IAtomContainer) o).getProperty("#");
+				b.append(val==null?"":val.toString());
 				b.append('\t');
-				b.append(((IAtomContainer) o).getProperty("SMILES"));
+				val = ((IAtomContainer) o).getProperty("SMILES");
+				b.append(val==null?"":val.toString());
 				b.append("\tAromatic ");
 				b.append(aromatic);
 				b.append('\t');
@@ -79,9 +81,11 @@ public class MoleculesFileTest {
 					b.append("found ");
 					b.append(System.currentTimeMillis() - now);
 					b.append(" ms\tMR\t");
-					b.append(mf.getAtomContainer(index).getProperty("MR"));
+					val = mf.getAtomContainer(index).getProperty("MR");
+					b.append(val==null?"":val.toString());
 					b.append(" ms\tB5STM\t");
-					b.append(mf.getAtomContainer(index).getProperty("B5STM"));
+					val = mf.getAtomContainer(index).getProperty("B5STM");
+					b.append(val==null?"":val.toString());
 					found++;
 				} else
 					b.append("not found");

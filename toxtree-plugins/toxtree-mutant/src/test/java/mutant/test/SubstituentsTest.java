@@ -223,19 +223,25 @@ public class SubstituentsTest {
 				StringBuilder b = new StringBuilder();
 				b.append(record);
 				b.append('\t');
-				b.append(((IAtomContainer) o).getProperty("#"));
+				Object val = ((IAtomContainer) o).getProperty("#");
+				b.append(val==null?"":val.toString());
 				b.append('\t');
-				b.append(((IAtomContainer) o).getProperty("SMILES"));
+				val = ((IAtomContainer) o).getProperty("SMILES");
+				b.append(val==null?"":val.toString());
 				b.append('\t');
-				b.append(((IAtomContainer) o).getProperty("Group"));
+				val = ((IAtomContainer) o).getProperty("Group");
+				b.append(val==null?"":val.toString());
 				b.append('\t');
 				b.append("B5STM\t");
-				b.append(((IAtomContainer) o).getProperty("B5STM"));
+				val = ((IAtomContainer) o).getProperty("B5STM");
+				b.append(val==null?"":val.toString());
 				b.append("B1STM\t");
-				b.append(((IAtomContainer) o).getProperty("B1STM"));
+				val = ((IAtomContainer) o).getProperty("B1STM");
+				b.append(val==null?"":val.toString());
 				b.append("MR\t");
 
-				b.append(((IAtomContainer) o).getProperty("MR"));
+				val = ((IAtomContainer) o).getProperty("MR");
+				b.append(val==null?"":val.toString());
 				b.append("\nFingerprint\t");
 				b.append(lookup.getFingerprint((IAtomContainer) o));
 				b.append("\nSMILES generated ");
@@ -311,7 +317,8 @@ public class SubstituentsTest {
 				//b.append(r);
 				//b.append("SMILES in file\t");
 				//b.append("\t");
-				b.append(a.getProperty("#"));
+				Object val = a.getProperty("#");
+				b.append(val==null?"":val.toString());
 				b.append("\n");
 				b.append(mySmiles);
 
