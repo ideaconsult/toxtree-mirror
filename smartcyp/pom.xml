@@ -5,7 +5,7 @@
 	<artifactId>smartcyp</artifactId>
 	<packaging>pom</packaging>
 	<name>SMARTCyp </name>
-	<version>3.0.1</version>
+	<version>3.0.2</version>
 	<repositories>
 		<repository>
 			<id>nexus-idea</id>
@@ -50,8 +50,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.3</version>
 					<configuration>
-						<source>1.7</source>
-						<target>1.7</target>
+						<source>1.8</source>
+						<target>1.8</target>
 					</configuration>
 				</plugin>
 			</plugins>
@@ -59,6 +59,6 @@
 	</build>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<cdk.version>1.5.12</cdk.version>
+		<cdk.version>1.5.13</cdk.version>
 	</properties>
 </project>

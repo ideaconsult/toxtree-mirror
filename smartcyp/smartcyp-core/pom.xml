@@ -5,7 +5,7 @@
   <parent>
     <artifactId>smartcyp</artifactId>
     <groupId>dk.smartcyp</groupId>
-    <version>3.0.1</version>
+    <version>3.0.2</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>smartcyp-core</artifactId>

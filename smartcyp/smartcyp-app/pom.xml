@@ -5,13 +5,13 @@
   <parent>
     <artifactId>smartcyp</artifactId>
     <groupId>dk.smartcyp</groupId>
-    <version>3.0.1</version>
+    <version>3.0.2</version>
   </parent>  
   <modelVersion>4.0.0</modelVersion>
   <groupId>dk.smartcyp</groupId>
   <artifactId>smartcyp-app</artifactId>
   <name>SMARTCyp</name>
-  <version>3.0.1</version>
+  <version>3.0.2</version>
   <dependencies>
   	<dependency>
   		<groupId>dk.smartcyp</groupId>
