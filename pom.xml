@@ -360,6 +360,6 @@
 		<ambit.version>3.2.0-SNAPSHOT</ambit.version>
 		<cdk.version>1.5.13</cdk.version>
 		<junit.version>4.8.1</junit.version>
-		<smartcyp.version>3.0.1</smartcyp.version>
+		<smartcyp.version>3.0.2</smartcyp.version>
 	</properties>
 </project>
