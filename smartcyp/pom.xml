@@ -109,4 +109,13 @@
 			</properties>
 		</profile>	
 	</profiles>		
+	<scm>
+		<url>https://svn.code.sf.net/p/toxtree/svn/trunk/smartcyp</url>
+		<connection>scm:svn:https://svn.code.sf.net/p/toxtree/svn/trunk/smartcyp</connection>
+		<developerConnection>scm:svn+ssh://USERNAME@svn.code.sf.net/p/toxtree/svn/trunk/smartcyp</developerConnection>
+		<tag>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags</tag>
+	</scm>
+	<issueManagement>
+		<url>http://sourceforge.net/p/toxtree/bugs</url>
+	</issueManagement>
 </project>
