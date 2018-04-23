@@ -109,7 +109,8 @@ public class RuleStructuresListTest {
 		MolAnalyser.analyse(c);
 		c.setProperty("SMILES", gen.create((IAtomContainer) c));
 		writer.write(c);
-		System.out.print(c.getProperty("NAME"));
+		Object val = c.getProperty("NAME");
+		System.out.print(val==null?"":val.toString());
 		System.out.print("\t");
 		System.out.print(c.getAtomCount());
 		System.out.print("\t");
@@ -148,7 +149,8 @@ public class RuleStructuresListTest {
 						ok = true;
 						;
 					} else {
-						System.out.print(m.getProperty("NAME"));
+						Object val = m.getProperty("NAME");
+						System.out.print(val==null?"":val.toString());
 						System.out.print("\t");
 						System.out.print(m.getAtomCount());
 						System.out.print("\t");

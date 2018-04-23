@@ -133,7 +133,8 @@ public abstract class DescriptorsTest  {
 						errors++;
 					}
 				} catch (Exception x) {
-					System.err.println(mol.getProperty(strucID));
+					Object val = mol.getProperty(strucID);
+					System.out.print(val==null?"":val.toString());
 					writer.write(mol);
 					errors++;
 					x.printStackTrace();
