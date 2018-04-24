@@ -210,29 +210,29 @@ public class SubstituentsTest {
 					} else {
 						System.err.print(record);
 						System.err.print('\t');
-						System.err.print(((IAtomContainer) o).getProperty("#"));
+						System.err.print(String.format("%s",((IAtomContainer) o).getProperty("#")));
 						System.err.print('\t');
-						System.err.print(((IAtomContainer) o)
-								.getProperty("SMILES"));
+						System.err.print(String.format("%s",((IAtomContainer) o)
+								.getProperty("SMILES")));
 						System.err.print('\t');
-						System.err.print(((IAtomContainer) o)
-								.getProperty("Group"));
+						System.err.print(String.format("%s",((IAtomContainer) o)
+								.getProperty("Group")));
 						System.err.print('\t');
 						System.err.print("B5STM\t");
-						System.err.print(((IAtomContainer) o)
-								.getProperty("B5STM"));
+						System.err.print(String.format("%s",((IAtomContainer) o)
+								.getProperty("B5STM")));
 						System.err.print("B1STM\t");
-						System.err.print(((IAtomContainer) o)
-								.getProperty("B1STM"));
+						System.err.print(String.format("%s",((IAtomContainer) o)
+								.getProperty("B1STM")));
 						System.err.print("MR\t");
 
 						System.err
-								.print(((IAtomContainer) o).getProperty("MR"));
+								.print(String.format("%s",((IAtomContainer) o).getProperty("MR")));
 						System.err.print("\nFingerprint\t");
 						System.err.print(lookup
 								.getFingerprint((IAtomContainer) o));
 						System.err.print("\nSMILES generated ");
-						System.err.print(g.createSMILES((IAtomContainer) o));
+						System.err.print(g.create((IAtomContainer) o));
 						System.err.print("\nFingerprint in file\t");
 						System.err.print(lookup.getProperty(record,
 								MoleculesFile.propertyFingerprint));
@@ -299,12 +299,12 @@ public class SubstituentsTest {
 			Object mySmiles = a.getProperty("SMILES");
 			if (mySmiles == null)
 				continue;
-			String newSmiles = g.createSMILES((IAtomContainer) a);
+			String newSmiles = g.create((IAtomContainer) a);
 			if (!newSmiles.equals(mySmiles.toString())) {
 				r++;
 				System.out.print(r);
 				System.out.print("\t");
-				System.out.print(a.getProperty("#"));
+				System.out.print(String.format("%s",a.getProperty("#")));
 				System.out.print("\t");
 				System.out.print(mySmiles);
 
