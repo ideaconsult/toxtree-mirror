@@ -1,7 +1,7 @@
 /*
-Copyright Ideaconsult Ltd. (C) 2005-2009 
+Copyright Ideaconsult Ltd. (C) 2005-2018 
 
-Contact: nina@acad.bg
+Contact: support@ideaconsult.net
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,8 +30,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.openscience.cdk.AtomContainer;
@@ -43,7 +41,10 @@ import org.openscience.cdk.io.iterator.IteratingSDFReader;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 import org.openscience.cdk.smiles.SmilesGenerator;
 import org.openscience.cdk.tools.manipulator.AtomContainerManipulator;
+import org.openscience.cdk.tools.manipulator.AtomTypeManipulator;
 
+import ambit2.core.io.FileInputState;
+import junit.framework.Assert;
 import toxTree.io.Tools;
 import toxTree.query.FunctionalGroups;
 import toxTree.query.MolAnalyser;
@@ -51,7 +52,6 @@ import toxTree.tree.cramer.RuleCommonComponentOfFood;
 import toxTree.tree.rules.ILookupFile;
 import toxTree.tree.rules.InChILookupFile;
 import toxTree.tree.rules.RuleStructuresList;
-import ambit2.core.io.FileInputState;
 
 /**
  * Test for {@link RuleStructuresList}
@@ -59,8 +59,7 @@ import ambit2.core.io.FileInputState;
  * @author Nina Jeliazkova <b>Modified</b> 2009-6-17
  */
 public class RuleStructuresListTest {
-	public static Logger logger = Logger.getLogger(RuleStructuresListTest.class
-			.getName());
+	public static Logger logger = Logger.getLogger(RuleStructuresListTest.class.getName());
 
 	@Before
 	public void setUp() throws Exception {
@@ -72,8 +71,7 @@ public class RuleStructuresListTest {
 		RuleStructuresList rule = new RuleStructuresList("bodymol.sdf");
 		Assert.assertTrue(rule.isImplemented());
 		// default file
-		IAtomContainer c = FunctionalGroups
-				.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
 		MolAnalyser.analyse(c);
 		Assert.assertTrue(rule.verifyRule(c));
 	}
@@ -81,8 +79,7 @@ public class RuleStructuresListTest {
 	// CSCCCN=C=S
 	@Test
 	public void testCachedRule() throws Exception {
-		RuleCommonComponentOfFood rule = new RuleCommonComponentOfFood(
-				new File("foodmol.sdf"));
+		RuleCommonComponentOfFood rule = new RuleCommonComponentOfFood(new File("foodmol.sdf"));
 		Assert.assertTrue(rule.isImplemented());
 		// default file
 		IAtomContainer c = FunctionalGroups.createAtomContainer("O=C(C(=O)C)C");
@@ -97,20 +94,18 @@ public class RuleStructuresListTest {
 	@Test
 	public void testMDLWriterWriteProperties() throws Exception {
 
-		SDFWriter writer = new SDFWriter(new FileOutputStream(new File(
-				"bodymol.test.sdf")));
+		SDFWriter writer = new SDFWriter(new FileOutputStream(new File("bodymol.test.sdf")));
 		SmilesGenerator gen = SmilesGenerator.generic();
 
 		// adenine NC1=C2N=CN=C2N=CN1
 		// guanine NC1=NC2=C(NC=N2)C(=O)N1
-		IAtomContainer c = FunctionalGroups
-				.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
 
 		MolAnalyser.analyse(c);
 		c.setProperty("SMILES", gen.create((IAtomContainer) c));
 		writer.write(c);
 		Object val = c.getProperty("NAME");
-		System.out.print(val==null?"":val.toString());
+		System.out.print(val == null ? "" : val.toString());
 		System.out.print("\t");
 		System.out.print(c.getAtomCount());
 		System.out.print("\t");
@@ -121,19 +116,15 @@ public class RuleStructuresListTest {
 	@Test
 	public void testBug() throws Exception {
 
-		SDFWriter writer = new SDFWriter(new FileOutputStream(new File(
-				"bodymol.test.sdf")));
+		SDFWriter writer = new SDFWriter(new FileOutputStream(new File("bodymol.test.sdf")));
 		SmilesGenerator gen = SmilesGenerator.generic();
-		IAtomContainer c = FunctionalGroups
-				.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
+		IAtomContainer c = FunctionalGroups.createAtomContainer("NC1=NC2=C(NC=N2)C(=O)N1");
 		MolAnalyser.analyse(c);
 
 		IIteratingChemObjectReader reader;
 
-		InputStream in = this.getClass().getClassLoader()
-				.getResourceAsStream("bodymol.sdf");
-		reader = new IteratingSDFReader(in,
-				SilentChemObjectBuilder.getInstance());
+		InputStream in = this.getClass().getClassLoader().getResourceAsStream("bodymol.sdf");
+		reader = new IteratingSDFReader(in, SilentChemObjectBuilder.getInstance());
 		int r = 0;
 		boolean ok = false;
 		while (reader.hasNext()) {
@@ -143,6 +134,7 @@ public class RuleStructuresListTest {
 			if (o instanceof IAtomContainer) {
 				IAtomContainer m = (IAtomContainer) o;
 				try {
+					AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(m);
 					MolAnalyser.analyse(m);
 					// hadder.addExplicitHydrogensToSatisfyValency(m);
 					if (FunctionalGroups.isSubstance(m, c)) {
@@ -150,12 +142,13 @@ public class RuleStructuresListTest {
 						;
 					} else {
 						Object val = m.getProperty("NAME");
-						System.out.print(val==null?"":val.toString());
+						/*
+						System.out.print(val == null ? "" : val.toString());
 						System.out.print("\t");
 						System.out.print(m.getAtomCount());
 						System.out.print("\t");
 						System.out.println(m.getBondCount());
-
+						*/
 					}
 					m.setProperty("SMILES", gen.create(m));
 					writer.write(m);
@@ -179,11 +172,10 @@ public class RuleStructuresListTest {
 
 	@Test
 	public void testBodyMolInchi() throws Exception {
-		ILookupFile lookup = new InChILookupFile(
-				Tools.getFileFromResourceSilent("bodymol.inchi"));
+		ILookupFile lookup = new InChILookupFile(Tools.getFileFromResourceSilent("bodymol.inchi"));
 		lookup = verifyFile(lookup, "bodymol.sdf");
-		Assert.assertEquals(398, lookup.size());
-
+		Assert.assertEquals(403, lookup.size());
+//InChI=1S/C10H13N5O4/c11-8-5-9(13-2-12-8)15(3-14-5)10-7(18)6(17)4(1-16)19-10/h2-4,6-7,10,16-18H,1H2,(H2,11,12,13)
 	}
 
 	@Test
@@ -195,8 +187,7 @@ public class RuleStructuresListTest {
 
 	@Test
 	public void testFoodMolInChi() throws Exception {
-		ILookupFile lookup = new InChILookupFile(
-				Tools.getFileFromResourceSilent("foodmol.inchi"));
+		ILookupFile lookup = new InChILookupFile(Tools.getFileFromResourceSilent("foodmol.inchi"));
 		lookup = verifyFile(lookup, "foodmol.sdf");
 		// System.out.println(lookup);
 		Assert.assertEquals(104, lookup.size());
@@ -206,104 +197,32 @@ public class RuleStructuresListTest {
 		return verifyFile(null, filename);
 	}
 
-	protected ILookupFile verifyFile(ILookupFile lookupFile, String filename)
-			throws Exception {
+	protected ILookupFile verifyFile(ILookupFile lookupFile, String filename) throws Exception {
 		URL url = getClass().getClassLoader().getResource(filename);
-		ILookupFile lookup = lookupFile == null ? new InChILookupFile(new File(
-				url.getFile())) : lookupFile;
-		InputStream stream = null;
-		IIteratingChemObjectReader<IAtomContainer> reader = null;
-		try {
-			stream = getClass().getClassLoader().getResourceAsStream(filename);
-			reader = FileInputState.getReader(stream, filename);
+		ILookupFile lookup = lookupFile == null ? new InChILookupFile(new File(url.getFile())) : lookupFile;
+
+		try (IIteratingChemObjectReader<IAtomContainer> reader = FileInputState
+				.getReader(getClass().getClassLoader().getResourceAsStream(filename), filename)) {
+
 			while (reader.hasNext()) {
 				IAtomContainer ac = reader.next();
+				ac = AtomContainerManipulator.removeNonChiralHydrogens(ac);
 				AtomContainerManipulator.percieveAtomTypesAndConfigureAtoms(ac);
 				MolAnalyser.analyse(ac);
+				ac = AtomContainerManipulator.removeHydrogens(ac);
 				Object title = ac.getProperty(CDKConstants.TITLE);
-				// if (title !=null) System.out.println(title);
-				Assert.assertTrue(title == null ? "" : title.toString(),
-						lookup.find(ac));
+
+				Assert.assertTrue(title == null ? "" : title.toString(), lookup.find(ac));
 			}
 		} catch (Exception x) {
 			throw x;
 		} finally {
-			try {
-				if (reader != null)
-					reader.close();
-			} catch (Exception x) {
-			}
-			try {
-				if (stream != null)
-					stream.close();
-			} catch (Exception x) {
-			}
+
 		}
 		return lookup;
 	}
 
-	/*
-	 * protected void verifyFile(String filename) throws Exception { IChemFile m
-	 * = null; InputStream in =
-	 * getClass().getClassLoader().getResourceAsStream(filename); MDLReader
-	 * reader = new MDLReader(in); m = (IChemFile)reader.read((IChemObject)new
-	 * ChemFile()); reader.close();
-	 * 
-	 * List c = ChemFileManipulator.getAllAtomContainers(m);
-	 * 
-	 * Assert.assertNotNull(c); int okCount = 0; int allCount = 0; try {
-	 * 
-	 * for (int i=0;i < c.size();i++) { IAtomContainer a = (IAtomContainer
-	 * )c.get(i); MolAnalyser.analyse(a); } for (int i=0;i < c.size();i++) { if
-	 * (((IAtomContainer)c.get(i)).getAtomCount() == 0) break; allCount++;
-	 * IAtomContainer a = (IAtomContainer ) ((IAtomContainer )
-	 * c.get(i)).clone(); if (a.getProperty("NAME") != null)
-	 * a.setID(a.getProperty("NAME").toString()); else if
-	 * (a.getProperty("TITLE") != null)
-	 * a.setID(a.getProperty("TITLE").toString());
-	 * 
-	 * MolAnalyser.analyse(a);
-	 * 
-	 * boolean ok = false;
-	 * 
-	 * for (int j=0;j < c.size();j++) { IAtomContainer a1 = (IAtomContainer
-	 * )c.get(i); if (a.getAtomCount() != a1.getAtomCount()) {
-	 * logger.debug("Atom count does not match at record\t"
-	 * +Integer.toString(j),"\t", Integer.toString(a.getAtomCount()),"\t",
-	 * Integer.toString(a1.getAtomCount())); continue; } if (a.getBondCount() !=
-	 * a1.getBondCount()) {
-	 * logger.debug("Bond count does not match at record\t"+
-	 * Integer.toString(j),"\t", Integer.toString(a.getBondCount()),"\t",
-	 * Integer.toString(a1.getBondCount())); continue; } try { if
-	 * (UniversalIsomorphismTester.isIsomorph(a,a1)) { ok = true;
-	 * logger.info("Found\t"
-	 * +a.getProperty("NAME")+"\tatoms\t"+a.getAtomCount()+"\tbonds\t"
-	 * +a.getBondCount());
-	 * //System.out.println(FunctionalGroups.mapToString(a));
-	 * //System.out.println(FunctionalGroups.mapToString(a1)); } else if
-	 * (a.getProperty("NAME").equals(a1.getProperty("NAME"))) {
-	 * logger.info("NOT Found\t"
-	 * +a.getProperty("NAME")+"\tatoms\t"+a.getAtomCount
-	 * ()+"\tbonds\t"+a.getBondCount());
-	 * 
-	 * //System.out.println(FunctionalGroups.mapToString(a)); //printBonds(a);
-	 * //System.out.println(FunctionalGroups.mapToString(a1));
-	 * 
-	 * //printBonds(a1); } } catch (CDKException x) { //x.printStackTrace(); } }
-	 * if (ok) okCount++; if (!ok) {
-	 * 
-	 * 
-	 * 
-	 * } }
-	 * 
-	 * } catch (Exception x) { //x.printStackTrace();
-	 * 
-	 * }
-	 * 
-	 * Assert.assertEquals(okCount,allCount);
-	 * 
-	 * }
-	 */
+
 	protected void printBonds(AtomContainer m) {
 		for (int i = 0; i < m.getBondCount(); i++)
 			if (m.getBond(i).getFlag(CDKConstants.ISAROMATIC))
