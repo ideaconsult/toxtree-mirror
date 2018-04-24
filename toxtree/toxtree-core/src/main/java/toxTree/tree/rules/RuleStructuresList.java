@@ -29,19 +29,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.logging.Level;
 
-import net.idea.modbcum.i.exceptions.AmbitException;
-
+import org.apache.commons.io.FilenameUtils;
 import org.openscience.cdk.exception.CDKException;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
 
+import ambit2.rendering.IAtomContainerHighlights;
+import net.idea.modbcum.i.exceptions.AmbitException;
 import toxTree.core.Introspection;
 import toxTree.exceptions.DRuleNotImplemented;
 import toxTree.exceptions.DecisionMethodException;
 import toxTree.io.Tools;
 import toxTree.tree.AbstractRule;
-import ambit2.rendering.IAtomContainerHighlights;
 
 /**
  * A rule, which returns true if the query is isomorphic to one of the
@@ -84,7 +84,8 @@ public class RuleStructuresList extends AbstractRule {
 			}
 			logger.log(Level.SEVERE, x.getMessage(), x);
 		}
-		setExplanation("Returns true if the query is isomorphic to one of the structures loaded from a preconfigured file of a type SDF, SMI, CSV ");
+		setExplanation(
+				"Returns true if the query is isomorphic to one of the structures loaded from a preconfigured file of a type SDF, SMI, CSV ");
 		setTitle("Exact search");
 
 	}
@@ -92,8 +93,7 @@ public class RuleStructuresList extends AbstractRule {
 	/**
 	 * {@link toxTree.core.IDecisionRule#verifyRule(IAtomContainer)}
 	 */
-	public boolean verifyRule(IAtomContainer mol)
-			throws DecisionMethodException {
+	public boolean verifyRule(IAtomContainer mol) throws DecisionMethodException {
 		if (lookupFile == null)
 			throw new DRuleNotImplemented();
 		return lookupFile.find(mol);
@@ -107,7 +107,7 @@ public class RuleStructuresList extends AbstractRule {
 	 */
 	@Override
 	public boolean isImplemented() {
-		return lookupFile.isEnabled();
+		return lookupFile != null && lookupFile.isEnabled();
 	}
 
 	/**
@@ -122,9 +122,12 @@ public class RuleStructuresList extends AbstractRule {
 	 *            The file to set.
 	 */
 
-	public synchronized void setFile(File file) throws CDKException,
-			IOException {
-		lookupFile = new LookupFile(file);
+	public synchronized void setFile(File file) throws CDKException, IOException {
+		String ext = FilenameUtils.getExtension(file.getName());
+		if ("inchi".equals(ext))
+			lookupFile = new InChILookupFile(file);
+		else
+			lookupFile = new LookupFile(file);
 		setFilename(file.getAbsolutePath());
 
 		logger.fine("Will be using file\t" + file.getAbsoluteFile());
@@ -139,8 +142,7 @@ public class RuleStructuresList extends AbstractRule {
 	 * @Override public IDecisionRuleEditor getEditor() { return new
 	 *           RuleStructuresPanel(this); }
 	 */
-	private void readObject(ObjectInputStream in) throws IOException,
-			ClassNotFoundException {
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
 		in.defaultReadObject();
 		try {
 			lookupFile = new LookupFile(getFilename());
@@ -158,9 +160,8 @@ public class RuleStructuresList extends AbstractRule {
 		this.filename = filename;
 	}
 
-	public boolean verifyRule(
-			org.openscience.cdk.interfaces.IAtomContainer mol,
-			IAtomContainer selected) throws DecisionMethodException {
+	public boolean verifyRule(org.openscience.cdk.interfaces.IAtomContainer mol, IAtomContainer selected)
+			throws DecisionMethodException {
 		boolean ok = verifyRule(mol);
 		if (ok && (selected != null))
 			selected.add(mol);
@@ -170,12 +171,11 @@ public class RuleStructuresList extends AbstractRule {
 	public IAtomContainerHighlights getSelector() {
 		return new IAtomContainerHighlights() {
 			/**
-		     * 
-		     */
-		    private static final long serialVersionUID = 1941242188425144120L;
+			 * 
+			 */
+			private static final long serialVersionUID = 1941242188425144120L;
 
-			public IChemObjectSelection process(IAtomContainer mol)
-					throws AmbitException {
+			public IChemObjectSelection process(IAtomContainer mol) throws AmbitException {
 				// try {
 				// IAtomContainer selected =
 				// SilentChemObjectBuilder.getInstance().newAtomContainer();
