@@ -31,7 +31,7 @@ public class RuleCommonComponentOfFood extends RuleStructuresList {
 	 * 
 	 */
 	public RuleCommonComponentOfFood() {
-		 super("foodmol.sdf");
+		 super("foodmol.inchi");
 		 init();
 	}
 	public RuleCommonComponentOfFood(File file) {		
