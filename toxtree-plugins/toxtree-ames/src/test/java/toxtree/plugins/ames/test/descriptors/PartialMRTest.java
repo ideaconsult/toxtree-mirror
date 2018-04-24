@@ -114,7 +114,7 @@ public class PartialMRTest  {
             for (int j=0; j < a.getAtomCount(); j++) {
         		System.out.print(a.getAtom(j).getSymbol());
         		System.out.print('[');
-        		System.out.print(a.getAtom(j).getProperty("PARTIAL_MR"));
+        		System.out.print(String.format("%s",a.getAtom(j).getProperty("PARTIAL_MR")));
         		System.out.print(']');
         		System.out.print('\t');
             }

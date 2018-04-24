@@ -143,7 +143,7 @@ public abstract class DescriptorsTest extends TestCase {
 					errors ++;
 				}	
 			} catch (Exception x) {
-                System.err.println(mol.getProperty(strucID));                
+                System.err.println(String.format("%s",mol.getProperty(strucID)));                
                 writer.write(mol);
 				errors ++;
 				x.printStackTrace();
