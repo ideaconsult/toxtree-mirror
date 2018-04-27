@@ -26,8 +26,9 @@ package toxtree.ui;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -42,15 +43,15 @@ public class HashtableModel extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = 7658905911850280047L;
 	protected String[] columnNames = {"ID","SMARTS",};
-	protected Hashtable table;
+	protected Map table;
 	protected ArrayList keys;
 	protected boolean[] enabled;
     boolean includeTranslated = true;
 	
-    public HashtableModel(Hashtable table) {
+    public HashtableModel(Map table) {
         this(table,true);
     }
-	public HashtableModel(Hashtable table, boolean includeTranslated) {
+	public HashtableModel(Map table, boolean includeTranslated) {
 		super();
 		keys = new ArrayList();
 		enabled = null;
@@ -121,7 +122,7 @@ public class HashtableModel extends AbstractTableModel {
             return columnIndex ==0;
     }
 
-	public Hashtable getTable() {
+	public Map getTable() {
 		if (enabled != null)
 			for (int i=0; i < enabled.length; i++) 
 				if (!enabled[i]) {
@@ -131,14 +132,14 @@ public class HashtableModel extends AbstractTableModel {
 		return table;
 	}
 
-	public void setTable(Hashtable table) {
+	public void setTable(Map table) {
 	    this.table = table;
 	    
 		keys.clear();
 		if (table != null) {
-			Enumeration e = table.keys();
-			while (e.hasMoreElements()) {
-				Object key = e.nextElement();
+			Iterator e = table.keySet().iterator();
+			while (e.hasNext()) {
+				Object key = e.next();
 				if (accept(key))
 				keys.add(key);
 			}	

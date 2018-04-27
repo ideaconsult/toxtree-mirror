@@ -28,6 +28,7 @@
 package com.molecularnetworks.start.rules;
 
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.logging.Level;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -95,11 +96,11 @@ public class RuleTwoTerminalDoubleBondsOnUnbranched extends RuleSMARTSubstructur
 	    logger.finer("Not a possible hit due to the prescreen step.");
 	    return false;
 	}
-	Enumeration e = smartsPatterns.keys();
+	Iterator e = smartsPatterns.keySet().iterator();
 	boolean is_true = false;
 	String temp_id = "";
-	while (e.hasMoreElements()) {
-	    temp_id = e.nextElement().toString();
+	while (e.hasNext()) {
+	    temp_id = e.next().toString();
 	    ISmartsPattern pattern = smartsPatterns.get(temp_id);
 	    if (null == pattern) {
 		throw new DecisionMethodException("ID '" + id + "' is missing in " + getClass().getName());

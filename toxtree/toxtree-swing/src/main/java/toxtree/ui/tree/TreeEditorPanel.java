@@ -301,7 +301,9 @@ public class TreeEditorPanel extends JPanel implements IDecisionMethodEditor {
     	        }
     		}
     	});        
+		try {
         frame.setIconImage(getIcon().getImage());
+		} catch (Exception x) {}
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().add(this);
         frame.setTitle(method.getTitle());

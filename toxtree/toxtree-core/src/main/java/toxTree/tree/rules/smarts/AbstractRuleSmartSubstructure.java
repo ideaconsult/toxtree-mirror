@@ -24,24 +24,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA
 
 package toxTree.tree.rules.smarts;
 
-import java.util.Enumeration;
 import java.util.Hashtable;
-
-import net.idea.modbcum.i.exceptions.AmbitException;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.renderer.selection.IChemObjectSelection;
 import org.openscience.cdk.renderer.selection.SingleSelection;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
 
-import toxTree.exceptions.DecisionMethodException;
-import toxTree.query.MolAnalyser;
-import toxTree.tree.AbstractRule;
 import ambit2.core.data.MoleculeTools;
 import ambit2.rendering.IAtomContainerHighlights;
 import ambit2.smarts.query.ISmartsPattern;
 import ambit2.smarts.query.ISmartsPatternFactory;
 import ambit2.smarts.query.SMARTSException;
+import net.idea.modbcum.i.exceptions.AmbitException;
+import toxTree.exceptions.DecisionMethodException;
+import toxTree.query.MolAnalyser;
+import toxTree.tree.AbstractRule;
 
 public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule implements IRuleSMARTSubstructures,
 		ISmartsPatternFactory {
@@ -51,7 +51,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 	 * 
 	 */
 	private static final long serialVersionUID = -3546551840533459896L;
-	protected Hashtable<String, ISmartsPattern<T>> smartsPatterns;
+	protected Map<String, ISmartsPattern<T>> smartsPatterns;
 	protected boolean containsAllSubstructures = false;
 	protected transient ISmartsPattern final_and_patch = null;
 
@@ -164,11 +164,11 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 				return false;
 			}
 
-			Enumeration e = smartsPatterns.keys();
+			Iterator e = smartsPatterns.keySet().iterator();
 			boolean is_true = false;
 			String temp_id = "";
-			while (e.hasMoreElements()) {
-				temp_id = e.nextElement().toString();
+			while (e.hasNext()) {
+				temp_id = e.next().toString();
 
 				ISmartsPattern pattern = smartsPatterns.get(temp_id);
 				if (pattern == null) {
@@ -265,7 +265,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 		table.remove(id);
 	}
 
-	public void initSingleSMARTS(Hashtable<String, ISmartsPattern<T>> table, String id, String smartPattern)
+	public void initSingleSMARTS(Map<String, ISmartsPattern<T>> table, String id, String smartPattern)
 			throws SMARTSException {
 		ISmartsPattern smarts = createSmartsPattern(smartPattern, false);
 		table.put(id, smarts);
@@ -288,7 +288,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 		this.containsAllSubstructures = allSmarts;
 	}
 
-	public Hashtable<String, ISmartsPattern<T>> getSmartsPatterns() {
+	public Map<String, ISmartsPattern<T>> getSmartsPatterns() {
 		return smartsPatterns;
 	}
 
@@ -299,10 +299,10 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 	public String getImplementationDetails() {
 		StringBuffer b = new StringBuffer();
 		b.append("\t\tName\tSMARTS\n");
-		Enumeration<String> keys = smartsPatterns.keys();
+		Iterator<String> keys = smartsPatterns.keySet().iterator();
 		String op = null;
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
+		while (keys.hasNext()) {
+			String key = keys.next();
 			ISmartsPattern sp = smartsPatterns.get(key);
 			printCondition(b, op, key, sp);
 			if (containsAllSubstructures())
@@ -365,10 +365,10 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 		if (r.smartsPatterns.size() != smartsPatterns.size())
 			return false;
 
-		Enumeration<String> keys = smartsPatterns.keys();
+		Iterator<String> keys = smartsPatterns.keySet().iterator();
 
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
+		while (keys.hasNext()) {
+			String key = keys.next();
 			ISmartsPattern sp = smartsPatterns.get(key);
 			if (!sp.equals(r.smartsPatterns.get(key)))
 				return false;
