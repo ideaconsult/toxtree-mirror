@@ -5,9 +5,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
 
+import ambit2.base.interfaces.IStructureRecord;
+import ambit2.core.io.RawIteratingSDFReader;
+import ambit2.core.processors.structure.MoleculeReader;
+import ambit2.smarts.query.ISmartsPattern;
 import toxTree.core.IDecisionRule;
 import toxTree.core.IDecisionRuleList;
 import toxTree.exceptions.DecisionMethodException;
@@ -16,10 +22,6 @@ import toxTree.query.MolAnalyser;
 import toxTree.tree.MultiLabelDecisionNode;
 import toxTree.tree.rules.StructureAlert;
 import toxtree.plugins.skinsensitisation.SkinSensitisationPlugin;
-import ambit2.base.interfaces.IStructureRecord;
-import ambit2.core.io.RawIteratingSDFReader;
-import ambit2.core.processors.structure.MoleculeReader;
-import ambit2.smarts.query.ISmartsPattern;
 
 public class SplitByAlerts {
 	Hashtable<String, String> sa_folders = new Hashtable<String, String>();
@@ -139,11 +141,11 @@ public class SplitByAlerts {
 							
 							if (rule instanceof StructureAlert) {
 								
-								Hashtable<String, ISmartsPattern<IAtomContainer>> smartsPatterns = ((StructureAlert)rule).getSmartsPatterns();
-								Enumeration<String> smarts = smartsPatterns.keys();
-								while (smarts.hasMoreElements()) {
+								Map<String, ISmartsPattern<IAtomContainer>> smartsPatterns = ((StructureAlert)rule).getSmartsPatterns();
+								Iterator<String> smarts = smartsPatterns.keySet().iterator();
+								while (smarts.hasNext()) {
 									
-									ISmartsPattern<IAtomContainer> smartsPattern = smartsPatterns.get(smarts.nextElement());
+									ISmartsPattern<IAtomContainer> smartsPattern = smartsPatterns.get(smarts.next());
 									int result = smartsPattern.hasSMARTSPattern(mol);
 									
 									if (result>0) {
