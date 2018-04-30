@@ -1,0 +1,59 @@
+ -----
+ Revised Cramer Decision Tree
+ -----
+ Nina Jeliazkova
+ -----
+ 2018/05/01
+ -----
+
+Revised Cramer Decision Tree
+
+  TBD
+  
+  Available since {{{./download.html#Toxtree-v3.1.0}ToxTree 3.1.0}}
+  
+  Screenshots: {{{./images/cramer3/screen.jpg}Main screen}} , {{{./images/cramer3/tree.jpg}Decision tree}}
+
+[images/cramer3/thumb.jpg]
+
+* Comparison with {{{./cramer.html}Cramer rules}}
+
+  TBD
+   
+* Reference
+
+ [Cramer, 1978] Cramer GM, Ford RA, Hall RL (1978) Estimation of Toxic Hazard - A Decision Tree Approach. J. Cosmet. Toxicol. 16, 255-276.
+
+ [TBD, 2018] TBD
+ 
+
+* Forum
+
+ {{{http://sourceforge.net/forum/forum.php?forum_id=867719}Cramer rules forum}}
+ 
+* For developers
+ 
+	* Source 
+
+ {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-cramer3}source code}} 
+ 
+ 	* {{{http://maven.apache.org/}Maven}} artifact 
+   		
+   		Artifact
+   		
++---------------------------------    
+<dependency>
+  <groupId>toxtree</groupId>
+  <artifactId>toxtree-cramer2</artifactId>
+  <version>3.1.0</version>
+</dependency>
++---------------------------------
+
+		Repository
+		
++---------------------------------
+   <repository>
+        <id>ambit-releases</id>
+        <url>https://nexus.ideaconsult.net/content/repositories/releases</url>
+    </repository>
++--------------------------------- 

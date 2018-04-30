@@ -3,9 +3,34 @@
  -----
  Nina Jeliazkova
  -----
- 2014/06/15
+ 2018/05/01
  -----
 
+{Toxtree-3.1.0} 
+
+ <<Toxtree-v3.1.0 is a stable release including new features and bug fixes.>> 
+ 
+ 	* {{{https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.3.1.0/Toxtree-v3.1.0-setup.exe/download}Windows installer}}  (source and executable, Windows)
+
+	* {{{https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.3.1.0/Toxtree-v3.1.0-setup.exe/download}ZIP archive}}  (source and executable, platform independent)
+	
+   * <<Change log>>
+    
+      * build date 01 May 2018
+
+      * New plugin {{{./cramer3.html}<<Revised Cramer Decision Tree>>}}
+            
+      * updated to {{{http://ambit.sf.net}AMBIT-3.2.0}}     
+	
+      * updated to {{{http://cdk.sf.net}cdk 1.5.13}};
+
+      * bug fixes
+      
+      * build with JDK 8
+      
+      * Updated installer 	
+ 
+ 
 {Toxtree-2.6.13} 
 
  <<Toxtree-v2.6.13 is a bug fix release>>

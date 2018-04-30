@@ -69,7 +69,9 @@ The  Toxtree  application  is suitable  for a  standalone PC and can run on any 
 
 ## Plugins
 	
-[Toxtree-2.6.6](./download.html#Toxtree_2.6.6) is distributed with 17 plugins:
+[Toxtree-3.1.0](./download.html#Toxtree_3.1.0) is distributed with 18 plugins:
+
+- [**Revised Cramer Decision Tree**](./cramer3.html)
 
 - [**Cramer  rules**](./cramer.html) and [**Cramer  rules with  extensions**](./cramer2.html)
 
@@ -115,6 +117,8 @@ Toxtree has  been   designed with  flexible capabilities  for future  extensions
 ---
 
 ### Download
+
+>[**Toxtree 3.1.0**](download.html#Toxtree_3.1.0)
 
 >[**Toxtree 2.6.13**](download.html#Toxtree_2.6.13)
 
