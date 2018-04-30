@@ -155,13 +155,15 @@ function googleTranslateElementInit() {
       <item name="Toxtree" href="/index.html" />
     </menu>
     <menu name="Downloads">
-      <item name="Toxtree 2.6.13" href="/download.html#Toxtree_2.6.13" />
+     <item name="Toxtree 3.1.0" href="/download.html#Toxtree_3.1.0" />
+     <item name="Toxtree 2.6.13" href="/download.html#Toxtree_2.6.13" />
      <item name="Toxtree 2.6.6" href="/download.html#Toxtree_2.6.6" />
       <item name="Toxtree 2.6.0" href="/download.html#Toxtree_2.6.0" />
     </menu>
     <menu name="Plugins">
       <item name="Cramer rules" href="/cramer.html" />
       <item name="Extended Cramer rules" href="/cramer2.html" />
+      <item name="Revised Cramer Decision Tree" href="/cramer3.html" />
       <item name="Verhaar scheme" href="/verhaar.html" />
       <item name="Modified Verhaar scheme" href="/verhaar2.html" />
       <item name="Skin irritation" href="skin.html" />
