@@ -26,6 +26,7 @@ package toxTree.tree.rules.smarts;
 
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.openscience.cdk.interfaces.IAtomContainer;
@@ -57,7 +58,7 @@ public abstract class AbstractRuleSmartSubstructure<T> extends AbstractRule impl
 
 	public AbstractRuleSmartSubstructure() {
 		super();
-		smartsPatterns = new Hashtable<String, ISmartsPattern<T>>();
+		smartsPatterns = new LinkedHashMap<String, ISmartsPattern<T>>();
 		explanation = new StringBuffer();
 		explanation.append("Returns true if the query contains substructures specified by SMARTS patterns.");
 		setTitle("Substructure by SMARTS patterns.");
