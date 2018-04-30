@@ -1,163 +1,153 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<description>Toxtree Application - "Estimation of Toxic Hazard - A Decision Tree Approach"</description>
-  <parent>
-    <artifactId>toxtree</artifactId>
-    <groupId>toxtree</groupId>
-    <version>3.1.0-SNAPSHOT</version>
-  </parent>
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>toxtree-app</artifactId>
-  <name>ToxTree</name>
-  <dependencies>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-core</artifactId>
-  		<version>${project.version}</version>
-  	</dependency>
+	<parent>
+		<artifactId>toxtree</artifactId>
+		<groupId>toxtree</groupId>
+		<version>3.1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>toxtree-app</artifactId>
+	<name>ToxTree</name>
+	<dependencies>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-swing</artifactId>
-  		<version>${project.version}</version>
-  	</dependency>  	
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-kroes</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-mutant</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-ames</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-cramer2</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-sicret</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-cramer</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-verhaar</artifactId>
-  		<version>${project.version}</version>
-  		<type>jar</type>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-smartcyp</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-michaelacceptors</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-skinsensitisation</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-biodegradation</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>dk.smartcyp</groupId>
-  		<artifactId>smartcyp-core</artifactId>
-  		<version>${smartcyp.version}</version>
-  		<scope>compile</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-functional_groups</artifactId>
-  		<version>${project.version}</version>
-  		<type>jar</type>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-verhaar2</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-<!--
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-search</artifactId>
-  		<version>${project.version}</version>
-  		<type>jar</type>
-  		<scope>provided</scope>
-  	</dependency>
--->
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-eye</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-mic</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-moa</artifactId>
-  		<version>${project.version}</version>
-  		<type>jar</type>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-proteinbinding</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>
-	<dependency>
-  		<groupId>toxtree</groupId>
-  		<artifactId>toxtree-dnabinding</artifactId>
-  		<version>${project.version}</version>
-  		<scope>provided</scope>
-  	</dependency>  	
-  	  	<!-- JChemPaint still uses NoNotify builders and if not loaded throws ClassNotFound exceptions 
-  	  	<dependency>
-  	  		<groupId>org.openscience.cdk</groupId>
-  	  		<artifactId>cdk-nonotify</artifactId>
-  	  		<version>${cdk.version}</version>
-  	  		<scope>compile</scope>
-  	  	</dependency>  	
--->
-  	  	
-  </dependencies>
-    <build>
-  	<plugins>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-swing</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-kroes</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-mutant</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-ames</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-cramer2</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-sicret</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-cramer</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-verhaar</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-smartcyp</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-michaelacceptors</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-skinsensitisation</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-biodegradation</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>dk.smartcyp</groupId>
+			<artifactId>smartcyp-core</artifactId>
+			<version>${smartcyp.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-functional_groups</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-verhaar2</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- <dependency> <groupId>toxtree</groupId> <artifactId>toxtree-search</artifactId> 
+			<version>${project.version}</version> <type>jar</type> <scope>provided</scope> 
+			</dependency> -->
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-eye</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-mic</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-moa</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-proteinbinding</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-dnabinding</artifactId>
+			<version>${project.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- JChemPaint still uses NoNotify builders and if not loaded throws ClassNotFound 
+			exceptions <dependency> <groupId>org.openscience.cdk</groupId> <artifactId>cdk-nonotify</artifactId> 
+			<version>${cdk.version}</version> <scope>compile</scope> </dependency> -->
+
+	</dependencies>
+	<build>
+		<plugins>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.6</version>
@@ -171,11 +161,11 @@
 						<configuration>
 							<descriptorRefs>
 								<descriptorRef>
-								jar-with-dependencies
+									jar-with-dependencies
 								</descriptorRef>
 							</descriptorRefs>
 							<finalName>Toxtree-${project.version}</finalName>
-        					<appendAssemblyId>false</appendAssemblyId>
+							<appendAssemblyId>false</appendAssemblyId>
 							<archive>
 								<manifestFile>target/classes/META-INF/MANIFEST.MF</manifestFile>
 							</archive>
@@ -183,9 +173,31 @@
 					</execution>
 				</executions>
 			</plugin>
-  	</plugins>
-  </build>
-    <properties>
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		</plugins>
+		<pluginManagement>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<revisionOnScmFailure>-${maven.build.timestamp}</revisionOnScmFailure>
+					<doCheck>false</doCheck>
+					<doUpdate>false</doUpdate>
+					<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+					<locale>US</locale>
+				</configuration>
+			</plugin>
+		</pluginManagement>
+	</build>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 </project>
