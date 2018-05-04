@@ -1,0 +1,4 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ9D,,O=C1C=C2CC=CC2O1
+toxtree.tree.cramer3.rules.RuleQ9D,,O=C1OC(CS)C1C
+toxtree.tree.cramer3.rules.RuleQ9D,,CC1c2ccccc2OC1=O

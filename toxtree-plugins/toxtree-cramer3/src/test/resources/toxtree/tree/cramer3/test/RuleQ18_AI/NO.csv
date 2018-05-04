@@ -1,0 +1,21 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ18AI,A,C1(=C(C(=O)C(=C(Cl)Cl)C1=O)Cl)Cl
+toxtree.tree.cramer3.rules.RuleQ18AI,B allyl alcohol,C=CCCCO
+toxtree.tree.cramer3.rules.RuleQ18AI,ester of B allyl alcohol,COC(=O)C(C)CC=C
+toxtree.tree.cramer3.rules.RuleQ18AI,C allyl mercaptan,CC=CCCC(C=C)CS
+toxtree.tree.cramer3.rules.RuleQ18AI,C allyl thioester,C=CC(OC(=O)c1ccccc1)CS
+toxtree.tree.cramer3.rules.RuleQ18AI,C allyl polisulfide,C=CCSCCSC
+toxtree.tree.cramer3.rules.RuleQ18AI,D allyl amine,NCC(C=C)c1ccccc1
+toxtree.tree.cramer3.rules.RuleQ18AI,E acrolein,CC(=CCC=O)c1ccccc1
+toxtree.tree.cramer3.rules.RuleQ18AI,E methacrolein,OC(C)C1CCC(C=CC=O)C1
+toxtree.tree.cramer3.rules.RuleQ18AI,F acrylic acid,O=C(O)C(C=C)C(=O)O
+toxtree.tree.cramer3.rules.RuleQ18AI,F methacrylic acid,CC=CC(=O)O
+toxtree.tree.cramer3.rules.RuleQ18AI,G acetylenic substance,CC=CC(C)CC=C
+toxtree.tree.cramer3.rules.RuleQ18AI,H,CC(O)C(C(C)CC)C(CO)C(C)C(C)C
+toxtree.tree.cramer3.rules.RuleQ18AI,I,O=C(C(=O)CCC)C1CCCCC1
+https://bitbucket.org/vedina/cramer3/issues/48/,,O=CC=CC=CC
+https://bitbucket.org/vedina/cramer3/issues/48/,,O=CC=CCCC=CC
+https://bitbucket.org/vedina/cramer3/issues/48/,,OCC=CCCC=CCC
+https://bitbucket.org/vedina/cramer3/issues/48/,,OCC=CC=CCCCCC
+https://bitbucket.org/vedina/cramer3/issues/48/,,OCC=C(CCC=C(C)C)C
+https://bitbucket.org/vedina/cramer3/issues/48/,,O=CC=CCCCCCCC

@@ -1,0 +1,8 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ25,Q25,CCOc1c(F)cc(c(CO)c1N)C(C)=C(C)C
+toxtree.tree.cramer3.rules.RuleQ25,Q25,O=S(C)(=O)c1cc(c(cc1C(C)=O)C(O)CC)C=O
+toxtree.tree.cramer3.rules.RuleQ25,#20,CCCCC(CC)COC(=O)C1=C(C=CC=C1)C(=O)OCC(CC)CCCC
+https://bitbucket.org/vedina/cramer3/issues/54,mercaptans,Sc(c(ccc1)C)c1C
+https://bitbucket.org/vedina/cramer3/issues/54,mercaptans,SC(C)c1ccccc1
+https://bitbucket.org/vedina/cramer3/issues/54,,O=C\C(=C/C(C)CC)c1ccccc1
+https://bitbucket.org/vedina/cramer3/issues/54,,O=C\C(=C/C(C)CC)c1ccccc1

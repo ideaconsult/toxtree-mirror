@@ -1,0 +1,3 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ21,,O=C1C=C(C)CCC1=C(C)C
+toxtree.tree.cramer3.rules.RuleQ21,,CC(C)C=C1CCC(=CC1=O)C(C)C

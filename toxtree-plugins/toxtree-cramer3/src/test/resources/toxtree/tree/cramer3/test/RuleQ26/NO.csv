@@ -1,0 +1,4 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ26,,CC(C)C1=CC=CC=C1
+https://bitbucket.org/vedina/cramer3/issues/55,,O(c(ccc(c1)CCC)c1)C
+https://bitbucket.org/vedina/cramer3/issues/55,,O(c(ccc(c1)C)c1)C

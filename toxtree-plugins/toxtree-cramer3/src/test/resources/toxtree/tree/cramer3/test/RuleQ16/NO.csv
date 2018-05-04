@@ -1,0 +1,8 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ16,A,CC(O)(CC(C)C(C)C(=O)O)C(O)C
+toxtree.tree.cramer3.rules.RuleQ16,B,COC(C)(CCC(C)(CC)C(C)=O)OC
+toxtree.tree.cramer3.rules.RuleQ16,C,OC(C)(C)CC(O)(C)C(C)OC
+https://bitbucket.org/vedina/cramer3/issues/46,simple aliphatic mercaptans and monosulfides,SCC(C)C
+https://bitbucket.org/vedina/cramer3/issues/46,simple aliphatic mercaptans and monosulfides,SCCC(C)C
+https://bitbucket.org/vedina/cramer3/issues/46,simple aliphatic mercaptans and monosulfides,SCCCCCC
+https://bitbucket.org/vedina/cramer3/issues/46,Acylenic,O=C(OC)C#CCCCCCC

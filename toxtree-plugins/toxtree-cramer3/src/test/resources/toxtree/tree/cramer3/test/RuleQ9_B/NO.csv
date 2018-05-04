@@ -1,0 +1,7 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ9b,fused to one or more than one aromatic or heteroaromatic ring with which the lactone is conjugated,O=C1OC(Cl)C2C(Cl)=COCC12
+toxtree.tree.cramer3.rules.RuleQ9b3,3-membered or 4-membered ring lactone,COC1OC(OC)C1=O
+toxtree.tree.cramer3.rules.RuleQ9b3,3-membered or 4-membered ring lactone,O=C1OC(C)C=C1CS
+https://bitbucket.org/vedina/cramer3/issues/41/,,O=C1C=CC=C(CCCCC)O1
+https://bitbucket.org/vedina/cramer3/issues/41/,,O=C1C=CCC(O1)CCCCC
+https://bitbucket.org/vedina/cramer3/issues/41/,,O1C(=O)C=CC1

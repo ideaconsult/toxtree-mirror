@@ -1,0 +1,23 @@
+Rule,FG,SMILES
+#toxtree.tree.cramer3.rules.RuleQ3,aliphatic secondary amine aromatic secondary amine (N-containing heterocyclic compounds are NOT included in this group),CCOC(=O)N
+#toxtree.tree.cramer3.rules.RuleQ3,aliphatic secondary amine aromatic secondary amine (N-containing heterocyclic compounds are NOT included in this group),N1CC1
+#toxtree.tree.cramer3.rules.RuleQ3,aliphatic secondary amine aromatic secondary amine (N-containing heterocyclic compounds are NOT included in this group),CC(C1=CC=CC=C1)N
+#toxtree.tree.cramer3.rules.RuleQ3,aliphatic secondary amine aromatic secondary amine (N-containing heterocyclic compounds are NOT included in this group),C1COCCN1CCCN
+#toxtree.tree.cramer3.rules.RuleQ3,CN- ( cyano),OC(CC=N)CC(=O)OCC
+#toxtree.tree.cramer3.rules.RuleQ3,N-NO (N-nitroso),O=NC1NCNC1=O
+#toxtree.tree.cramer3.rules.RuleQ3,R-NO (nitroso),Oc2ccc1ccccc1s2N=O
+#toxtree.tree.cramer3.rules.RuleQ3,CH2N2 (diazo),CC(CC(NC)C(=C)O)C(=O)\C=N\N
+#toxtree.tree.cramer3.rules.RuleQ3,RN=NNH2 (trazeno),N1=CC=CNN1
+#toxtree.tree.cramer3.rules.RuleQ3,RN3 (azide),Cc1ccc(NC[N+]#N)cc1
+#toxtree.tree.cramer3.rules.RuleQ3,RNCO (isocyanate),C(=NS(=O)(=O)Cl)=O
+#toxtree.tree.cramer3.rules.RuleQ3,RNHCOOR (carbamate),COC(=O)NS(=O)(=O)C1=CC=C(C=C1)N 
+#toxtree.tree.cramer3.rules.RuleQ3,">C=NR2 , >C=NH2 (iminium ions)",C(C(=O)O)N=N
+#toxtree.tree.cramer3.rules.RuleQ3,chloride or sulfate salt of a primary or tertiary amine,[Cl-].CC(C)C(C)[NH2+]C
+#toxtree.tree.cramer3.rules.RuleQ3,Thioamide (RC=SNR),S=C(CN)Cn1cccc1
+#toxtree.tree.cramer3.rules.RuleQ3,thiocarbamide (NHC=SNH),CCN(CC)C(=N)SC1=CC=C(C=C1)Cl
+#toxtree.tree.cramer3.rules.RuleQ3,thiocarbamates (RNC=SOR) or (RNC=OSR),CC(C)N(C)C(=S)COC
+#toxtree.tree.cramer3.rules.RuleQ3,dithiocarbamates (RNHC=SSR),CC(C)SCC(=S)N(C)C
+#toxtree.tree.cramer3.rules.RuleQ3,carbon disulfide (S=C=S),CS(C)=CS(C)(C)CCC
+https://bitbucket.org/vedina/cramer3/issues/38,a,O=C(NCCO)C(O)C
+https://bitbucket.org/vedina/cramer3/issues/38,a,O=C(NC1CCCCC1C)c2c(F)c(F)c(F)c(F)c2F
+https://bitbucket.org/vedina/cramer3/issues/38,a,O=C(NC1CC1)C2CC(C)CCC2C(C)C

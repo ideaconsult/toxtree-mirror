@@ -1,0 +1,9 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ25,OK,CCOc1cc(c(cc1O)C(C)=C(C)C)C(=O)O
+toxtree.tree.cramer3.rules.RuleQ25,#20 sulphide,CSc1cc(c(cc1C(C)=O)C(O)CC)C=O
+toxtree.tree.cramer3.rules.RuleQ25,#27 Zingerone,O=C(CCc(ccc(O)c1OC)c1)C
+toxtree.tree.cramer3.rules.RuleQ25,"#27 2,6-Xylenol",Oc(c(ccc1)C)c1C
+toxtree.tree.cramer3.rules.RuleQ25,"#27 p-Tolyl 3-methylbutyrate",O=C(Oc(ccc(c1)C)c1)CC(C)C
+toxtree.tree.cramer3.rules.RuleQ25,"#27,2,4,6-Trimethylphenol",Oc(c(cc(c1)C)C)c1C
+https://bitbucket.org/vedina/cramer3/issues/54/,,CCCC(SCc1ccccc1)SCc2ccccc2
+https://bitbucket.org/vedina/cramer3/issues/54/,should be treated as neutral following Q5,c1ccc(cc1)CC(=O)C(=O)[O-].[Na+]

@@ -1,0 +1,36 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",CCC(CC)C(=O)OCCOCCOCCOC(=O)C(CC)CC
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",CC(=C)C(OC(=O)C)OC(=O)C
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",C=CC(=O)OCCCCOC(=O)C=C
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",CC(C)(C)C1=CC(=CC(=C1)C(=O)OC)C(=O)OC
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",C(=O)OC(=O)OC(=O)O
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",CCC(COC(=O)C(=C)C)(COC(=O)C(=C)C)COC(=O)C(=C)C
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",CC(COC(=O)CS)(COC(=O)CS)COC(=O)CS 
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",CCCCC(CC)C(=O)N(CCN(CC(=O)OCC)CC(=O)OCC)CC(=O)OCC
+toxtree.tree.cramer3.rules.RuleQ1,orthoester,CC1(OCC2C(O1)C(C(C(O2)OC3(C(C(C(O3)CO)O)O)CO)O)O)OC
+toxtree.tree.cramer3.rules.RuleQ1,thioester,CC(=O)SCCF
+toxtree.tree.cramer3.rules.RuleQ1,thioester,CC(=O)SC1=CC=C(C=C1)Cl
+toxtree.tree.cramer3.rules.RuleQ1,thioester,C(C(C(=O)O)N)SC(=O)CN
+toxtree.tree.cramer3.rules.RuleQ1,thioester,Clc1ccc(cc1)C(=O)SCC
+toxtree.tree.cramer3.rules.RuleQ1,thioester,O=C1SCCC1C
+toxtree.tree.cramer3.rules.RuleQ1,acetal,CCOC(CC(OCC)OCC)OCC
+toxtree.tree.cramer3.rules.RuleQ1,acetal,COC1=CC=C(C=C1)C(OC)OC
+toxtree.tree.cramer3.rules.RuleQ1,ketal,COC(COC(=O)C1=CC=CC=C1)(CF)OC
+toxtree.tree.cramer3.rules.RuleQ1,ketal,CCOC(=O)CC1(OCC(O1)C)C
+toxtree.tree.cramer3.rules.RuleQ1,ketal,C1OC2=C(O1)C=C(C=C2)C=O
+toxtree.tree.cramer3.rules.RuleQ1,ketal,C1CC2(CCC1=O)OCCO2
+toxtree.tree.cramer3.rules.RuleQ1,hemiacetal ,CCCCC(O)OC
+toxtree.tree.cramer3.rules.RuleQ1,hemiketal,CCC(O)(CC)OCC
+toxtree.tree.cramer3.rules.RuleQ1,polysulfide ,C(#N)SSSC#N
+toxtree.tree.cramer3.rules.RuleQ1,polysulfide ,CSCSSSCSC
+toxtree.tree.cramer3.rules.RuleQ1,polysulfide ,C(=O)(SSSC(=O)Cl)Cl
+toxtree.tree.cramer3.rules.RuleQ1,polysulfide ,CO[Si](CCSSSSCC[Si](OC)(OC)OC)(OC)OC
+toxtree.tree.cramer3.rules.RuleQ1,polysulfide ,CC1(C2CCC3(C1C2)CSSSSS3)C
+toxtree.tree.cramer3.rules.RuleQ1,polysulfide ,CN(C)C(=S)SSSSSSC(=S)N(C)C
+toxtree.tree.cramer3.rules.RuleQ1,sulfoxide,CC(CN1C2=CC=CC=C2S(=O)C3=CC=CC=C31)N(C)C
+toxtree.tree.cramer3.rules.RuleQ1,sulfoxide,CCS(=O)C(=O)N1CCCCCC1
+toxtree.tree.cramer3.rules.RuleQ1,sulfoxide,CS(=O)CCC(C(=O)O)N
+toxtree.tree.cramer3.rules.RuleQ1,sulfoxide,CC1=CC=C(C=C1)S(=O)C
+toxtree.tree.cramer3.rules.RuleQ1,formate,O=COCC
+toxtree.tree.cramer3.rules.RuleQ1,sulfoxide,O=S(C)Cc1ccc(C)cc1
+toxtree.tree.cramer3.rules.RuleQ1,orthoester,COC(OC)(OC)C(=C)C

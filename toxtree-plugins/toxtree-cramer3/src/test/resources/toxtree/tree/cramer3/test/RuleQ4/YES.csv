@@ -1,0 +1,5 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ4,"elements other than C, H, O, N, divalent S, trivalent S as sulfoxide, pentavalent P bonded only to O with at least one -P-O- M+ or -P-OH moiety",CS(=O)CCF
+toxtree.tree.cramer3.rules.RuleQ4,"elements other than C, H, O, N, divalent S, trivalent S as sulfoxide, pentavalent P bonded only to O with at least one -P-O- M+ or -P-OH moiety",C1=N[C+](N=C1)P(=O)(O)O
+toxtree.tree.cramer3.rules.RuleQ4,"elements other than C, H, O, N, divalent S, trivalent S as sulfoxide, pentavalent P bonded only to O with at least one -P-O- M+ or -P-OH moiety",C=CCP(=O)(O)O
+toxtree.tree.cramer3.rules.RuleQ4,"elements other than C, H, O, N, divalent S, trivalent S as sulfoxide, pentavalent P bonded only to O with at least one -P-O- M+ or -P-OH moiety",C(CSP(=O)(O)O)N

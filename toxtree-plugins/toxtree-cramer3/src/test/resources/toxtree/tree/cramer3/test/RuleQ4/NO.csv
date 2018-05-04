@@ -1,0 +1,6 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ4,"elements other than C, H, O, N, divalent S, trivalent S as sulfoxide, pentavalent P bonded only to O with at least one -P-O- M+ or -P-OH moiety",CC1=CC=CS1=O
+toxtree.tree.cramer3.rules.RuleQ4,"elements other than C, H, O, N, divalent S, trivalent S as sulfoxide, pentavalent P bonded only to O with at least one -P-O- M+ or -P-OH moiety",[O-][P+](=O)OP(=O)([O-])[O-]
+toxtree.tree.cramer3.rules.RuleQ4,"elements other than C, H, O, N, divalent S, trivalent S as sulfoxide, pentavalent P bonded only to O with at least one -P-O- M+ or -P-OH moiety",C(C(=O)C(C=O)O)OP(=O)(O)O[Na]
+toxtree.tree.cramer3.rules.RuleQ4,"thiazoles should return No. See issue #18",S1C=NC=C1
+toxtree.tree.cramer3.rules.RuleQ4,"thiophene should return No. See issue #18",S1C=CC=C1
