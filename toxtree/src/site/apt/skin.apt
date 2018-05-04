@@ -3,7 +3,7 @@
  -----
  Nina Jeliazkova
  -----
- 2013/03/31
+ 2018/05/04
  ----- 
  
 Toxtree Module: A decision tree for  estimating skin irritation and corrosion  potential
@@ -45,7 +45,7 @@ Toxtree Module: A decision tree for  estimating skin irritation and corrosion  p
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-sicret</artifactId>
-  <version>3.0.0</version>
+  <version>3.1.0</version>
 </dependency>
 +---------------------------------
 

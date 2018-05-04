@@ -3,7 +3,7 @@ Structure Alerts for the in vivo micronucleus assay in rodents
  -----
  Nina Jeliazkova
  -----
- 2013/03/31
+ 2018/05/04
  -----
  
 Toxtree Module: Structure Alerts for the in vivo micronucleus assay in rodents
@@ -48,7 +48,7 @@ Toxtree Module: Structure Alerts for the in vivo micronucleus assay in rodents
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-mic</artifactId>
-  <version>3.0.0</version>
+  <version>3.1.0</version>
 </dependency>
 +---------------------------------
 

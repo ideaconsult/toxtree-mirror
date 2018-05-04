@@ -3,7 +3,7 @@ Structural Alerts for Functional Group Identification (ISSFUNC)
  -----
  Nina Jeliazkova
  -----
- 2013/03/31
+ 2018/05/04
  -----
  
 Toxtree Module: Structural Alerts for Functional Group Identification (ISSFUNC)
@@ -40,7 +40,7 @@ Toxtree Module: Structural Alerts for Functional Group Identification (ISSFUNC)
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-issfunc</artifactId>
-  <version>3.0.0</version>
+  <version>3.1.0</version>
 </dependency>
 +---------------------------------
 
