@@ -3,7 +3,7 @@
  -----
  Nina Jeliazkova
  -----
- 2013/03/31
+ 2018/05/04
  -----
 
 
@@ -55,7 +55,7 @@ Toxtree Module: Cramer rules
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-cramer</artifactId>
-  <version>3.0.0</version>
+  <version>3.1.0</version>
 </dependency>
 +---------------------------------
 

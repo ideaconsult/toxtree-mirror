@@ -3,7 +3,7 @@
  -----
  Nina Jeliazkova
  -----
- 2013/03/31
+ 2018/05/04
  -----
  
  
@@ -44,7 +44,7 @@ Toxtree Module: Verhaar scheme for predicting toxicity mode of action
 <dependency>
   <groupId>toxtree</groupId>
   <artifactId>toxtree-verhaar</artifactId>
-  <version>3.0.0</version>
+  <version>3.1.0</version>
 </dependency>
 +---------------------------------
 
