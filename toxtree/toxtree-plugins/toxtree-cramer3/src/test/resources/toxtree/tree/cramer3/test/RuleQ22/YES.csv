@@ -1,0 +1,4 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ22,,C1CC2CCCCCC2CC1
+cedrol, has 11 carbons in its ring structure,OC(C(CC(C1CC2)(C2C)C3)C1(C)C)(C3)C) 
+Cubebol,10 carbons in the ring structure,CC(C)[C@@H]1CC[C@@H](C)C23CC[C@](C)(O)[C@@H]3[C@@H]12

@@ -3,7 +3,7 @@
   <parent>
     <artifactId>toxtree</artifactId>
     <groupId>toxtree</groupId>
-    <version>3.1.0-SNAPSHOT</version>
+    <version>3.1.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>toxtree-plugins</artifactId>
@@ -13,6 +13,7 @@
   <modules>
     <module>toxtree-cramer</module>
     <module>toxtree-cramer2</module>
+    <module>toxtree-cramer3</module>
     <module>toxtree-eye</module>
     <module>toxtree-sicret</module>
     <module>toxtree-verhaar</module>

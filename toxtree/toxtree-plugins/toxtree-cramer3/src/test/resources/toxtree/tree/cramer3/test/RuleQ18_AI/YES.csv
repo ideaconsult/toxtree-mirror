@@ -1,0 +1,25 @@
+Rule,FG,SMILES
+#toxtree.tree.cramer3.rules.RuleQ18AI,A,CCCCCC(=O)C(=O)C
+toxtree.tree.cramer3.rules.RuleQ18AI,A,C1CC1C(=O)C(=O)C2=CC=CC=C2F
+toxtree.tree.cramer3.rules.RuleQ18AI,B allyl alcohol,CCC=CCO
+toxtree.tree.cramer3.rules.RuleQ18AI,ester of B allyl alcohol,C=CCOC(=O)C=C
+toxtree.tree.cramer3.rules.RuleQ18AI,ester of B allyl alcohol,CCC(=O)OCC=C
+toxtree.tree.cramer3.rules.RuleQ18AI,ester of B allyl alcohol,C=CCOC(=O)C[N+]#[C-]
+toxtree.tree.cramer3.rules.RuleQ18AI,ester of B allyl alcohol,CC=CC(=O)OCC=C
+toxtree.tree.cramer3.rules.RuleQ18AI,C allyl mercaptan,CCCCC(C=C)S
+toxtree.tree.cramer3.rules.RuleQ18AI,C allyl mercaptan,ClC(C(S)C=C)c1ccccc1
+toxtree.tree.cramer3.rules.RuleQ18AI,C allyl thioester,C=CC(SC(=O)c1ccccc1)CC
+toxtree.tree.cramer3.rules.RuleQ18AI,C allyl polisulfide,C=CCSSSSC
+toxtree.tree.cramer3.rules.RuleQ18AI,D allyl amine,NC(C=C)c1ccccc1
+toxtree.tree.cramer3.rules.RuleQ18AI,E acrolein,CC(=CC=O)c1cc(O)ccc1
+toxtree.tree.cramer3.rules.RuleQ18AI,E methacrolein,OC(C)C1CCC(C=C(C)C=O)C1
+toxtree.tree.cramer3.rules.RuleQ18AI,F acrylic acid,C=C(C(=O)O)F
+toxtree.tree.cramer3.rules.RuleQ18AI,F methacrylic acid,C1CC(=C1)C(=O)O
+toxtree.tree.cramer3.rules.RuleQ18AI,G acetylenic substance,COC(=O)C#CC(=O)OC
+toxtree.tree.cramer3.rules.RuleQ18AI,H acyclic gamma diketone,CC(C)C(=O)CC(C)C(C)=O
+toxtree.tree.cramer3.rules.RuleQ18AI,H acyclic gamma diol,CC(O)CC(CO)C(C)C(C)C
+toxtree.tree.cramer3.rules.RuleQ18AI,H hexane,CCCCCC
+toxtree.tree.cramer3.rules.RuleQ18AI,H 2-hexanol,CC(O)CCCC
+toxtree.tree.cramer3.rules.RuleQ18AI,"H 2,5-hexanedione",CC(=O)CCC(C)=O
+toxtree.tree.cramer3.rules.RuleQ18AI,"H 3,6-heptandione",CC(=O)CCC(=O)CC
+toxtree.tree.cramer3.rules.RuleQ18AI,I,O=C(CC)C(=O)C1CCOC1

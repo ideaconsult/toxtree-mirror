@@ -1,0 +1,4 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ13,,CC1=C(SC2=C1C=C(C=C2)Cl)S(=O)(=O)Cl
+toxtree.tree.cramer3.rules.RuleQ13,,C1=CSC2=C1SC=C2
+toxtree.tree.cramer3.rules.RuleQ13,,C1COC2=CSC=C2O1

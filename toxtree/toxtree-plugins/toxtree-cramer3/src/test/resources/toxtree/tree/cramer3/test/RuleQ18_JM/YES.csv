@@ -1,0 +1,16 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ18,J,CCCCCCC(CO)CCCC
+toxtree.tree.cramer3.rules.RuleQ18,K,C=C(O)C(O)C(C)C
+toxtree.tree.cramer3.rules.RuleQ18,L,CC(N)C(=O)C=CC
+toxtree.tree.cramer3.rules.RuleQ18,M,CC(C)SSSSC1CCCCC1
+toxtree.tree.cramer3.rules.RuleQ18,M,O=C(SC)C1CCCC1
+toxtree.tree.cramer3.rules.RuleQ18,Yes example,CCCCCCC(CCCCCCC)C=O
+toxtree.tree.cramer3.rules.RuleQ18,Yes example,C=CC(=O)CCC
+toxtree.tree.cramer3.rules.RuleQ18,Yes example,CCC\C=C\C=O
+toxtree.tree.cramer3.rules.RuleQ18,Yes example,CCCCCS
+toxtree.tree.cramer3.rules.RuleQ18,J (chain 5),CCCCCC=O
+https://bitbucket.org/vedina/cramer3/issues/49/,L,O=CC(=CCC)C
+https://bitbucket.org/vedina/cramer3/issues/49/,L,O=CC(=CCC(C)C)C(C)C
+https://bitbucket.org/vedina/cramer3/issues/49/,L,CCC(C=O)=CCCCC
+https://bitbucket.org/vedina/cramer3/issues/49/,,C1(=O)C=C(C)C(=CC=CC)C(C)(C)C1
+https://bitbucket.org/vedina/cramer3/issues/49/,,OC1(/C=C/C(C)O)C(C)=CC(=O)CC1(C)C

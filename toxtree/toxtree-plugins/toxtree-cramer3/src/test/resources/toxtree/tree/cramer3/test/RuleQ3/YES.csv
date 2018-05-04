@@ -1,0 +1,47 @@
+Rule,FG,SMILES
+#toxtree.tree.cramer3.rules.RuleQ3,"aliphatic secondary amine aromatic secondary amine (N-containing heterocyclic compounds are NOT included in this group)",COCCNCCOC
+#toxtree.tree.cramer3.rules.RuleQ3,"aliphatic secondary amine aromatic secondary amine (N-containing heterocyclic compounds are NOT included in this group)",COC1=CC=C(C=C1)NC2=CC=C(C=C2)OC
+#toxtree.tree.cramer3.rules.RuleQ3,"aliphatic secondary amine aromatic secondary amine (N-containing heterocyclic compounds are NOT included in this group)",CC1=CC(=NN1)NC
+#toxtree.tree.cramer3.rules.RuleQ3,"aliphatic secondary amine aromatic secondary amine (N-containing heterocyclic compounds are NOT included in this group)",C1=NC2=C(N1)C(=NC=N2)NC
+#toxtree.tree.cramer3.rules.RuleQ3,CN- ( cyano),N#Cc1ccccc1
+#toxtree.tree.cramer3.rules.RuleQ3,CN- ( cyano),CCOC(=O)CC(CC#N)O
+#toxtree.tree.cramer3.rules.RuleQ3,CN- ( cyano),C1=CC(=C(C=C1N)C(F)(F)F)C#N
+#toxtree.tree.cramer3.rules.RuleQ3,N-NO (N-nitroso),CCN(C(=O)N)N=O
+#toxtree.tree.cramer3.rules.RuleQ3,N-NO (N-nitroso),C1CN(C(=O)N1)N=O
+#toxtree.tree.cramer3.rules.RuleQ3,N-NO (N-nitroso),CN1CCN(CC1)N=O
+#toxtree.tree.cramer3.rules.RuleQ3,R-NO (nitroso),C1=CC=C2C(=C1)C=CC(=C2N=O)O
+#toxtree.tree.cramer3.rules.RuleQ3,R-NO (nitroso),CN1C(=C(C(=O)N(C1=O)C)N=O)N
+#toxtree.tree.cramer3.rules.RuleQ3,CH2N2 (diazo),[Cl-].N#[N+]c1ccccc1
+#toxtree.tree.cramer3.rules.RuleQ3,CH2N2 (diazo),O=C(CC[C@H](N)C(O)=O)\C=[N+]=[N-]
+#toxtree.tree.cramer3.rules.RuleQ3,CH2N2 (diazo),CCOC(=O)C=[N+]=[N-]
+#toxtree.tree.cramer3.rules.RuleQ3,CH2N2 (diazo),[N-]=[N+]=C[Si](C)(C)C
+#toxtree.tree.cramer3.rules.RuleQ3,RN=NNH2 (trazeno),NN=NC1=CC=C(C=C1)C(=O)NCC(=O)O
+#toxtree.tree.cramer3.rules.RuleQ3,RN=NNH2 (trazeno),n1cccnn1
+#toxtree.tree.cramer3.rules.RuleQ3,RN3 (azide),C1=CC(=CC=C1C(=O)N=[N+]=[N-])[N+](=O)[O-]
+#toxtree.tree.cramer3.rules.RuleQ3,RNCO (isocyanate),CC1=CC=C(C=C1)N=C=O
+#toxtree.tree.cramer3.rules.RuleQ3,RNCO (isocyanate),CC(=C)C(=O)OCCN=C=O
+#toxtree.tree.cramer3.rules.RuleQ3,RNCO (isocyanate),CC(C)(C)C1=CC=C(C=C1)N=C=O
+#toxtree.tree.cramer3.rules.RuleQ3,RNHCOOR (carbamate),CC(C)OC(=O)NC1=CC(=CC=C1)Cl
+#toxtree.tree.cramer3.rules.RuleQ3,RNHCOOR (carbamate),CC(C)(C)OC(=O)NC1CC(C1)N
+#toxtree.tree.cramer3.rules.RuleQ3,"Quaternary N  (e.g., RNO2, nitro) except for N+-O- (N-oxides)",C[N+](C)(C)CC(=O)O.Cl
+#toxtree.tree.cramer3.rules.RuleQ3,"Quaternary N  (e.g., RNO2, nitro) except for N+-O- (N-oxides)",CC(C[N+](C)(C)C)OC(=O)C
+#toxtree.tree.cramer3.rules.RuleQ3,"Quaternary N  (e.g., RNO2, nitro) except for N+-O- (N-oxides)",CC[N+](C)(C)C1=CC(=CC=C1)O.[Cl-]
+#toxtree.tree.cramer3.rules.RuleQ3,">C=NR2 , >C=NH2 (iminium ions)",C1CC(=[NH2+])C1
+#toxtree.tree.cramer3.rules.RuleQ3,">C=NR2 , >C=NH2 (iminium ions)",C1C[NH+]=C(NC1O)N
+#toxtree.tree.cramer3.rules.RuleQ3,chloride or sulfate salt of a primary or tertiary amine,[Cl-].CC[NH+](CC)CC(C)C
+#toxtree.tree.cramer3.rules.RuleQ3,chloride or sulfate salt of a primary or tertiary amine,[Cl-].CC(C)C(C)CCC[NH3+]
+#toxtree.tree.cramer3.rules.RuleQ3,chloride or sulfate salt of a primary or tertiary amine,CCCNOS(=O)(=O)ONCCC
+#toxtree.tree.cramer3.rules.RuleQ3,chloride or sulfate salt of a primary or tertiary amine,O=S(=O)(O[N+](C)(C)CCC)O[N+](C)(C)CCC
+#toxtree.tree.cramer3.rules.RuleQ3,Thioamide (RC=SNR),C(C(=S)N)C(=S)N
+#toxtree.tree.cramer3.rules.RuleQ3,Thioamide (RC=SNR),CC1=CC(=CC(=N1)C)C(=S)NCC
+#toxtree.tree.cramer3.rules.RuleQ3,thiocarbamide (NHC=SNH),C1=CC=C(C=C1)NC(=S)N
+#toxtree.tree.cramer3.rules.RuleQ3,thiocarbamide (NHC=SNH),C=CCNC(=S)N
+#toxtree.tree.cramer3.rules.RuleQ3,thiocarbamide (NHC=SNH),C(=S)(N)NOCl
+#toxtree.tree.cramer3.rules.RuleQ3,thiocarbamates (RNC=SOR) or (RNC=OSR),C1=CC=C(C=C1)OC(=S)N
+#toxtree.tree.cramer3.rules.RuleQ3,thiocarbamates (RNC=SOR) or (RNC=OSR),CCCN(CC)C(=S)OCCC
+#toxtree.tree.cramer3.rules.RuleQ3,dithiocarbamates (RNHC=SSR),CCSC(=S)NC
+#toxtree.tree.cramer3.rules.RuleQ3,dithiocarbamates (RNHC=SSR),CN(C)C(=S)SCC#N
+#toxtree.tree.cramer3.rules.RuleQ3,carbon disulfide (S=C=S),CS(C)=C=S(C)CCC
+https://bitbucket.org/vedina/cramer3/issues/38,b,Cc1c([nH]cn1)CSCCN/C(=N/C)/NC#N
+https://bitbucket.org/vedina/cramer3/issues/38,b,Cc1ccc(c(n1)O)C#N
+https://bitbucket.org/vedina/cramer3/issues/38,c,C[N+](C)(C)CCO.[Cl-]

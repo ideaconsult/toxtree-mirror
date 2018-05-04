@@ -1,0 +1,4 @@
+Rule,FG,SMILES
+#toxtree.tree.cramer3.rules.RuleQ19,this is not aromatic, why it's here?,C1=CC=C(C(=O)C=C1)O
+toxtree.tree.cramer3.rules.RuleQ19,,C1=CC=C2C(=C1)N=CS2
+toxtree.tree.cramer3.rules.RuleQ19,,C1(=NN=C(S1)S(=O)(=O)N)N

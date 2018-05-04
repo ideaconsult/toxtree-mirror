@@ -1,0 +1,13 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ9C,cyclic diester,CC1OC(=O)C(C)OC1=O
+toxtree.tree.cramer3.rules.RuleQ9C,lactone,O=C1OC(C)C(C)=C1C
+toxtree.tree.cramer3.rules.RuleQ9C,lactone,O=C1C=C(C)CC(C)O1
+toxtree.tree.cramer3.rules.RuleQ9C,lactone derived from saturated hydroxyacid unfused to any other ring system,O=C1CCC(C)(C=C)O1
+https://bitbucket.org/vedina/cramer3/issues/24,lactone derived from unsaturated alpha hydroxyacid unfused to any other ring system,O=C1C=CC(C)(C=C)O1
+toxtree.tree.cramer3.rules.RuleQ9C,lactone derived from unsaturated beta hydroxyacid unfused to any other ring system https://bitbucket.org/vedina/cramer3/issues/24/rule-9c-9d#comment-20730948,O=C1CCC(C)(C=C)O1
+https://bitbucket.org/vedina/cramer3/issues/42,,O=C(OC(=C1)C)C1
+https://bitbucket.org/vedina/cramer3/issues/42,,O=C(OC(CCC1C)C(C)C)C1
+https://bitbucket.org/vedina/cramer3/issues/42,,O=C(OCCCCCCCCCCCCC1)C1
+https://bitbucket.org/vedina/cramer3/issues/42,,O1C(=O)CCCCC1CCCCCC
+toxtree.tree.cramer3.rules.RuleQ9C,cyclic diester,O=C1C(OC)C(C)C(=O)OC1C
+#toxtree.tree.cramer3.rules.RuleQ9C,this is almost as the example no!fused rings,O=C1OC(C)C=2CCCCC1=2

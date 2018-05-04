@@ -1,0 +1,9 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",C1C2(COS(=O)O1)COS(=O)OC2
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",CCOP(=S)(OCC)SCSCSP(=S)(OCC)OCC 
+toxtree.tree.cramer3.rules.RuleQ1,"(carbon-based ester, including di-and tri-esters)",CS(=O)(=O)OC1=C(C(=CC=C1)OS(=O)(=O)C)OS(=O)(=O)C 
+toxtree.tree.cramer3.rules.RuleQ1,thioester,C(=CCl)C(=O)OSOC(=O)C=CCl
+toxtree.tree.cramer3.rules.RuleQ1,acetal,CCOC(CCCN1C(=O)CCC1=O)SCC
+toxtree.tree.cramer3.rules.RuleQ1,hemiacetal ,CCCCC(O)(O)OC
+toxtree.tree.cramer3.rules.RuleQ1,hemiketal,CCC(O)(OC)OCC
+toxtree.tree.cramer3.rules.RuleQ1,polysulfide ,C1SCSCS1

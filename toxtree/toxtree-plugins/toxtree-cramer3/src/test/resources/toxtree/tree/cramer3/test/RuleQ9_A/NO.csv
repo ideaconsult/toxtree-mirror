@@ -1,0 +1,3 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ9A,cyclic diester (yes?),O=C1C(OC)C(C)C(=O)OC1C
+toxtree.tree.cramer3.rules.RuleQ9A,lactone,O=C1COCCCC1

@@ -1,0 +1,3 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ27,Q27,CCOC(=O)C1=C(C=CC=C1)C(=O)OCC
+https://bitbucket.org/vedina/cramer3/issues/56,Q27,O=C(OCCOc(cccc1)c1)C(C)C

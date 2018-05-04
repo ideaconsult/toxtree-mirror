@@ -1,0 +1,8 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ8,Hemiketal hydrolysis Q15,OC1(C)CCCO1
+toxtree.tree.cramer3.rules.RuleQ8,Hemiketal hydrolysis Q20,OC12CCCCC2CCCO1
+toxtree.tree.cramer3.rules.RuleQ8,Hemiketal hydrolysis Q23,OC1(C)Cc2ccccc2CO1
+toxtree.tree.cramer3.rules.RuleQ8,"cyclic hemiacetal, acetal, hemiketal, ketal",CC(C)C(C)C1COC(O)C1
+toxtree.tree.cramer3.rules.RuleQ8,"cyclic hemiacetal, acetal, hemiketal, ketal",CCCC1(O)CC(C(C)O1)C(C)CCl
+toxtree.tree.cramer3.rules.RuleQ8,"cyclic hemiacetal, acetal, hemiketal, ketal",CCCCCCC1OCC(O1)CO
+toxtree.tree.cramer3.rules.RuleQ8,"cyclic hemiacetal, acetal, hemiketal, ketal",CC1(OCCO1)CCI

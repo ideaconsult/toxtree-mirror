@@ -1,0 +1,21 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ16,,CC(=O)OC
+toxtree.tree.cramer3.rules.RuleQ16,A,OC(C(C(C)C(C)C(=O)OC)C=O)C(C)O
+toxtree.tree.cramer3.rules.RuleQ16,B,COC(C)(CCCC(C)=O)OC
+toxtree.tree.cramer3.rules.RuleQ16,C,CCOC(CCC(C)(O)C(CN)OCCOCCOCCO)OC
+toxtree.tree.cramer3.rules.RuleQ16,C,CC(=O)SCC(C(=O)N(C)C)
+toxtree.tree.cramer3.rules.RuleQ16,C,CO
+https://bitbucket.org/vedina/cramer3/issues/46/,linear non-aromatic mercaptans,C(C(C)=O)S
+https://bitbucket.org/vedina/cramer3/issues/46/,linear non-aromatic mercaptans,C(C(=O)C)CS
+https://bitbucket.org/vedina/cramer3/issues/46/,,S(CCCN)C
+https://bitbucket.org/vedina/cramer3/issues/46/,,C(=O)CC(CCC)SC
+https://bitbucket.org/vedina/cramer3/issues/46/,,S(C)CCC(=O)C(=O)O
+https://bitbucket.org/vedina/cramer3/issues/46/,,O=C(CCSC)C
+https://bitbucket.org/vedina/cramer3/issues/46/,,CC(=O)C(C)SC
+https://bitbucket.org/vedina/cramer3/issues/46/,,CC(=O)CC(C)SC
+https://bitbucket.org/vedina/cramer3/issues/46/,,CC(=O)CC(C)(S)CC
+https://bitbucket.org/vedina/cramer3/issues/46/,,O=C(CCCCC)C
+https://bitbucket.org/vedina/cramer3/issues/46/,,O=C(CCCC)CC
+https://bitbucket.org/vedina/cramer3/issues/46/,monoketones,C=CC(=O)C\C=C\CC
+https://bitbucket.org/vedina/cramer3/issues/46/,monoketones,CC(=O)CCCCCCCC=C
+https://bitbucket.org/vedina/cramer3/issues/46/,monoketones,O=C(C=CC)C

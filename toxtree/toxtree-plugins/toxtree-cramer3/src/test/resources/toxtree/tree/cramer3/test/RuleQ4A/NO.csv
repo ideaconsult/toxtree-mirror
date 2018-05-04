@@ -1,0 +1,2 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ4A,"no halogen positioned either alpha or beta with respect to an ether oxygen or oxygenated functional group (alcohol, including phenol, ketone, aldehyde, acid, ester, acetal, or ketal)",OCC1=CC=C(C=C1)S(=O)(=O)CCCl

@@ -1,0 +1,15 @@
+Rule,FG,SMILES
+ok toxtree.tree.cramer3.rules.RuleQ6,I,CC(=C)C(C)=C(C)C(C)=C(C)C=C
+ok toxtree.tree.cramer3.rules.RuleQ6,II,CC1=CCC(CC1)C(=C)C
+ok toxtree.tree.cramer3.rules.RuleQ6,III,OC[C@H]1OC(O)[C@H](O)[C@@H](O)[C@@H]1O
+ok https://bitbucket.org/vedina/cramer3/issues/39,monocyclic terpene hydrocarbons,C(=CCC(=C1)C)(C1)C(C)C
+ok https://bitbucket.org/vedina/cramer3/issues/39,monocyclic terpene hydrocarbons,C(=C(CCC=C(C)C)C)(CCC(=C1)C)C1
+ok https://bitbucket.org/vedina/cramer3/issues/39,bicyclic terpene hydrocarbons,C(=CCCC(C(C(C1(C)C)C2)C1)=C)(C2)C
+ok https://bitbucket.org/vedina/cramer3/issues/39,bicyclic terpene hydrocarbons,C(C(C(CC1)C)(CC(C(=C)C)C2)C)(=C1)C2
+ok https://bitbucket.org/vedina/cramer3/issues/39,bicyclic terpene hydrocarbons,C(C(CC1C2)C1(C)C)(=C2)C
+not ok doesn't find isoprene units, ok https://bitbucket.org/vedina/cramer3/issues/39,bicyclic terpene hydrocarbons,C(C(CC1C2)C2)(C1(C)C)=C
+not ok doesn't find isoprene units,II,C1(=C)C(C)(C)C2CC1CC2
+not ok doesn't find isoprene units,II,C\1=C\C(C)C2CC/12C(C)C
+OK, 10 carbon terpene examples C10H16,CC1=CCC(CC1)C(=C)C
+OK,15 carbon terpene examples C15H24,C\1=C/C(C)(C)C/C=C(/CC/C=C(/C/1)C)C
+not ok due to presence of oxygen 10 carbon terpene examples C10H16,C\C1=C\CC(CC1)C(O)(C)C

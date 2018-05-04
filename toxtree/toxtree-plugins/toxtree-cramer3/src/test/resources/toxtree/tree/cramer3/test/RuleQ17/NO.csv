@@ -1,0 +1,5 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ17,Rule17,NCC(C(=O)S)c1ccccc1
+https://bitbucket.org/vedina/cramer3/issues/47,,O=C(C)SC(CCOC(=O)C)CCC
+falsepositive as in 032017 comments,,O=C1OCC(CC)C1=O
+falsepositive as in 032017 comments,,OCC(=O)C(=O)O

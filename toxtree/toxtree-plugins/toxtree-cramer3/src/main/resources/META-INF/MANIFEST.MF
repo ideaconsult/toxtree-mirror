@@ -1,0 +1,10 @@
+Manifest-version: ${project.version}
+Specification-Title: Revised Cramer Decision Tree 
+Specification-Version: 02-2015
+Specification-Vendor: Verto solutions
+Implementation-Title: Revised Cramer Decision Tree
+Implementation-Version: ${project.version}
+Implementation-Vendor: Ideaconsult Ltd.
+Package-Title: cramer3
+Package-Version: ${project.version}
+Package-Vendor: Ideaconsult

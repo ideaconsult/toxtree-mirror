@@ -1,0 +1,11 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ11,"",CC(CCC)C(CCC)C2CC(NC12CCCC1)c3ccccc3
+toxtree.tree.cramer3.rules.RuleQ11,"3,5 -Dimethyl-2-isobutylpyrazine",Cc1nc(C)cnc1CC(C)C
+toxtree.tree.cramer3.rules.RuleQ11,"Cyclohexylmethyl pyrazine",n(ccnc1CC(CCCC2)C2)c1
+toxtree.tree.cramer3.rules.RuleQ11,"5-Isopropyl-2-methylpyrazine",n(c(cnc1C(C)C)C)c1
+https://bitbucket.org/vedina/cramer3/issues/43/,,o1cccc1COC
+https://bitbucket.org/vedina/cramer3/issues/43/,,O=CC=CC(OC=C1)=C1
+https://bitbucket.org/vedina/cramer3/issues/43/,,O1C(C=C(CC)C=O)=CC=C1
+https://bitbucket.org/vedina/cramer3/issues/43/,,O=C(OCCC)C=CC(OC=C1)=C1
+https://bitbucket.org/vedina/cramer3/issues/43/,,O=C(C)/C=C/c1ccc(C)o1
+https://bitbucket.org/vedina/cramer3/issues/43/,,O1C(COCC)=CC=C1

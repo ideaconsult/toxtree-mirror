@@ -1,0 +1,146 @@
+{
+	"OPTIONS": {
+		"properties": {
+			"atomtypes": false,
+			"transformations": false,
+			"sparse": true
+		}
+	},
+	"REACTIONS": [
+		{
+			"NAME": "O-",
+			"CLASS": "uncharge",
+			"SMIRKS": "[O-;X1:1]>>[O:1][H]",
+			"order": 11,
+			"USE": true,
+			"precondition": {
+				"atomtype": [
+					"O.minus2",
+					"O.minus",
+					"O.minus.co2"
+				]
+			}
+		},
+		{
+			"NAME": "Na",
+			"CLASS": "metals",
+			"SMIRKS": "[Na+]>>",
+			"USE": true,
+			"order": 21,
+			"precondition": {
+				"atom": [
+					"Na"
+				]
+			}
+		},
+		{
+			"NAME": "K",
+			"CLASS": "metals",
+			"SMIRKS": "[K+]>>",
+			"USE": true,
+			"order": 22,
+			"precondition": {
+				"atom": [
+					"K"
+				]
+			}
+		},
+		{
+			"NAME": "Ca",
+			"CLASS": "metals",
+			"SMIRKS": "[Ca++]>>",
+			"USE": true,
+			"order": 23,
+			"precondition": {
+				"atom": [
+					"Ca"
+				]
+			}
+		},
+		{
+			"NAME": "Mg",
+			"CLASS": "metals",
+			"SMIRKS": "[Mg++]>>",
+			"USE": true,
+			"order": 23,
+			"precondition": {
+				"atom": [
+					"Mg"
+				]
+			}
+		},
+		{
+			"NAME": "Al",
+			"CLASS": "metals",
+			"SMIRKS": "[Al+3]>>",
+			"USE": true,
+			"order": 24,
+			"precondition": {
+				"atom": [
+					"Al"
+				]
+			}
+		},
+		{
+			"NAME": "Mn",
+			"CLASS": "metals",
+			"SMIRKS": "[Mn+2]>>",
+			"USE": true,
+			"order": 25,
+			"precondition": {
+				"atom": [
+					"Mn"
+				]
+			}
+		},
+		{
+			"NAME": "Zn",
+			"CLASS": "metals",
+			"SMIRKS": "[Zn+2]>>",
+			"USE": true,
+			"order": 26,
+			"precondition": {
+				"atom": [
+					"Zn"
+				]
+			}
+		},
+		{
+			"NAME": "Cu",
+			"CLASS": "metals",
+			"SMIRKS": "[Cu+2]>>",
+			"USE": true,
+			"order": 27,
+			"precondition": {
+				"atom": [
+					"Cu"
+				]
+			}
+		},
+		{
+			"NAME": "Fe",
+			"CLASS": "metals",
+			"SMIRKS": "[Fe+2]>>",
+			"USE": true,
+			"order": 28,
+			"precondition": {
+				"atom": [
+					"Fe"
+				]
+			}
+		},
+		{
+			"NAME": "NH4",
+			"CLASS": "nh4",
+			"SMIRKS": "[N+:1]([H:2])([H:3])([H:4])([H:5])[*-:6]>>[N:1]([H:2])([H:3])([H:4]).[H:5][*:6]",
+			"comments" : "help needed",
+			"USE": true,
+			"order": 29,
+			"precondition": {
+				"atom": [
+					"N"
+				]
+			}
+		}
+	]
+}

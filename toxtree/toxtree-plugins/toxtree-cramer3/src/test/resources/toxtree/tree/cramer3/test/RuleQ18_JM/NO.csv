@@ -1,0 +1,14 @@
+Rule,FG,SMILES
+toxtree.tree.cramer3.rules.RuleQ18,J,CC(CC)C(O)CC
+toxtree.tree.cramer3.rules.RuleQ18,K,CC(C)C(C)(O)C=C
+toxtree.tree.cramer3.rules.RuleQ18,L,CC(CC)C(=O)C=C(C)C
+toxtree.tree.cramer3.rules.RuleQ18,M,CSSSCC(S)CCSC(=O)CC
+toxtree.tree.cramer3.rules.RuleQ18,J (chain 2),CCC=O
+toxtree.tree.cramer3.rules.RuleQ18,J (chain 3),CCCC=O
+toxtree.tree.cramer3.rules.RuleQ18,J (chain 4),CCCCC=O
+https://bitbucket.org/vedina/cramer3/issues/49/,,COCCC(C)(C)S
+https://bitbucket.org/vedina/cramer3/issues/49/,,SC(C)C(C)SC(C)C(O)C
+https://bitbucket.org/vedina/cramer3/issues/49/,,O=CCC(S)CCC
+https://bitbucket.org/vedina/cramer3/issues/49/,,O=C(O)CCS
+https://bitbucket.org/vedina/cramer3/issues/49/,,O=C(OCC(CCCC)CC)CCS
+https://bitbucket.org/vedina/cramer3/issues/49/,,OC(=O)C=CCC
