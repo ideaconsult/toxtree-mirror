@@ -36,7 +36,7 @@ Schilter, B., Schlatter, J., van Schothorst, F., Vos, J.G., W�rtzen, G. (2004)
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-				<skip>false</skip>
+				<skip>true</skip>
 				<disableXmlReport>true</disableXmlReport>
         		<argLine>-Xmx1024m</argLine>
 				</configuration>
