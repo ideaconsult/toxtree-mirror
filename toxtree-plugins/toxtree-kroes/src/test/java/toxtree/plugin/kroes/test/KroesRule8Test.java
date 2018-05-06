@@ -43,6 +43,7 @@ public class KroesRule8Test {
 		IDecisionResult r = tree.createDecisionResult();
 		Preferences.setProperty(Preferences.STOP_AT_UNKNOWNATOMTYPES,"true");
 		IAtomContainer mol = FunctionalGroups.createAtomContainer("CCCCCCCC");
+		mol.setProperty("DailyIntake", 1);
 		Assert.assertFalse(rule.verifyRule(mol));
 		r.classify(mol);
 		r.assignResult(mol);
