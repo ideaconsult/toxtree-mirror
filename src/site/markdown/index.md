@@ -4,6 +4,12 @@
 
 Cramer rules
 
+#### [Revised Cramer Decision Tree ][cramer3]
+
+![Revised Cramer Decision Tree](images/cramer3/screen.jpg "Revised Cramer Decision Tree") 
+
+Revised Cramer Decision Tree
+
 #### [In vitro mutagenicity (Ames test) alerts by ISS][ames]
 
 ![In vitro mutagenicity (Ames test) alerts by ISS](images/ames/screen.jpg "In vitro mutagenicity (Ames test) alerts by ISS") 
