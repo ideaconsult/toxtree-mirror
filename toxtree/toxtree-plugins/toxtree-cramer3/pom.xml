@@ -195,13 +195,13 @@
 	</reporting>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<toxtree.version>3.1.0</toxtree.version>
+		<toxtree.version>3.2.0-SNAPSHOT</toxtree.version>
 		<ambit.version>3.2.0-SNAPSHOT</ambit.version>
 		<junit.version>4.8.1</junit.version>
 	</properties>
 	<parent>
 		<groupId>toxtree</groupId>
 		<artifactId>toxtree-plugins</artifactId>
-		<version>3.1.0</version>
+		<version>3.2.0-SNAPSHOT</version>
 	</parent>
 </project>
