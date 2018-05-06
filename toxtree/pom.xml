@@ -120,6 +120,13 @@
 			</roles>
 		</developer>
 		<developer>
+			<id>svetla</id>
+			<name>Svetlana Avramove</name>
+			<roles>
+				<role>Plugin: Revised Cramer Decision Tree</role>
+			</roles>
+		</developer>
+		<developer>
 			<id>vedrin</id>
 			<name>Vedrin Jeliazkov</name>
 			<roles>
