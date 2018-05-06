@@ -79,7 +79,8 @@
 				<role>Plugin: Structure alerts for Michael Acceptors</role>
 				<role>Plugin: Kroes TTC decision tree</role>
 				<role>Plugin: Compound lookup</role>
-				<role>QA and integration of puugins</role>
+				<role>Plugin: Revised Cramer Decision Tree</role>
+				<role>QA and integration of plugins</role>
 			</roles>
 		</developer>
 		<developer>
@@ -121,11 +122,18 @@
 		</developer>
 		<developer>
 			<id>svetla</id>
-			<name>Svetlana Avramove</name>
+			<name>Svetlana Avramova</name>
 			<roles>
 				<role>Plugin: Revised Cramer Decision Tree</role>
 			</roles>
 		</developer>
+		<developer>
+			<id>ntk73</id>
+			<name>Nikolay Kochev</name>
+			<roles>
+				<role>Plugin: Revised Cramer Decision Tree</role>
+			</roles>
+		</developer>		
 		<developer>
 			<id>vedrin</id>
 			<name>Vedrin Jeliazkov</name>
