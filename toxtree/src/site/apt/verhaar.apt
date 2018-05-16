@@ -34,7 +34,7 @@ Toxtree Module: Verhaar scheme for predicting toxicity mode of action
  
 	* Source 
 
- {{{http://toxtree.svn.sourceforge.net/viewvc/toxtree/plugins/verhaar/}source code}} 
+ {{{https://sourceforge.net/p/toxtree/git/ci/master/tree/toxtree/toxtree-plugins/verhaar/}source code}} 
  
 	 	* {{{http://maven.apache.org/}Maven}} artifact 
    		

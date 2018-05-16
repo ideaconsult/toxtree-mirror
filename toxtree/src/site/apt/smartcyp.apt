@@ -30,9 +30,9 @@ Toxtree Module: SMARTCyp - Cytochrome P450-Mediated Drug Metabolism
 
 	* Source 
 
- {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/smartcyp}SMARTCyp source code}}
+ {{{https://sourceforge.net/p/toxtree/git/ci/master/tree/smartcyp}SMARTCyp source code}}
   
- {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-smartcyp} SMARTCyp ToxTree module source code}}
+ {{{https://sourceforge.net/p/toxtree/git/ci/master/tree/toxtree/toxtree-plugins/toxtree-smartcyp} SMARTCyp ToxTree module source code}}
  
 	* {{{http://maven.apache.org/}Maven}} artifact 
    		

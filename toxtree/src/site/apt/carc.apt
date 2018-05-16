@@ -37,7 +37,7 @@ Benigni/ Bossa rulebase (for mutagenicity and cancerogenicity).
   
 	* Source 
 
- 	{{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-mutant}source code}}
+ 	{{{https://sourceforge.net/p/toxtree/git/ci/master/tree/toxtree/toxtree-plugins/toxtree-mutant}source code}}
  
 	* {{{http://maven.apache.org/}Maven}} artifact 
    		

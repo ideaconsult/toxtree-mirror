@@ -62,7 +62,7 @@
 	</distributionManagement>
 	<inceptionYear>2004</inceptionYear>
 	<issueManagement>
-		<system>Subversion</system>
+		<system>Git</system>
 		<url>http://sourceforge.net/p/toxtree/bugs</url>
 	</issueManagement>
 	<developers>
@@ -133,7 +133,7 @@
 			<roles>
 				<role>Plugin: Revised Cramer Decision Tree</role>
 			</roles>
-		</developer>		
+		</developer>
 		<developer>
 			<id>vedrin</id>
 			<name>Vedrin Jeliazkov</name>
@@ -151,12 +151,22 @@
 				<role>Plugin: Skin sensitisation alerts</role>
 			</roles>
 		</developer>
+		<developer>
+			<id>luchesar</id>
+			<name>Luchesar Iliev</name>
+			<roles>
+				<role>Quality assurance</role>
+				<role>Design</role>
+				<role>Security</role>
+			</roles>
+			<url>http://bg.linkedin.com/in/luchesar</url>
+		</developer>
 	</developers>
 	<scm>
-		<connection>scm:svn:https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</connection>
-		<developerConnection>scm:svn+ssh://USERNAME@svn.code.sf.net/p/toxtree/svn/trunk/toxtree</developerConnection>
-		<tag>scm:svn:https://toxtree.svn.sourceforge.net/svnroot/toxtree/tags</tag>
-		<url>https://svn.code.sf.net/p/toxtree/svn/trunk/toxtree</url>
+		<connection>scm:git:git://git.code.sf.net/p/toxtree/git toxtree-git</connection>
+		<developerConnection>scm:git:ssh://USER@git.code.sf.net/p/toxtree/git toxtree-git</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://sourceforge.net/p/toxtree/git/ci/master/tree/</url>
 	</scm>
 	<mailingLists>
 		<mailingList>
@@ -331,12 +341,12 @@
 						</execution>
 					</executions>
 					<configuration>
-					<source>${sourceVersion}</source>
-					<aggregate>false</aggregate>
-					<additionalparam>-Xdoclint:none</additionalparam>
-					<failOnError>false</failOnError>
+						<source>${sourceVersion}</source>
+						<aggregate>false</aggregate>
+						<additionalparam>-Xdoclint:none</additionalparam>
+						<failOnError>false</failOnError>
 
-				</configuration>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -378,7 +388,7 @@
 		<smartcyp.version>3.0.2</smartcyp.version>
 	</properties>
 	<profiles>
-	<profile>
+		<profile>
 			<id>JRE6</id>
 			<activation>
 				<jdk>1.6</jdk>
@@ -413,7 +423,7 @@
 			<properties>
 				<sourceVersion>1.9</sourceVersion>
 			</properties>
-		</profile>		
+		</profile>
 		<profile>
 			<!-- http://stackoverflow.com/questions/15886209/maven-is-not-working-in-java-8-when-javadoc-tags-are-incomplete -->
 			<id>disable-java8-doclint</id>
@@ -423,6 +433,10 @@
 			<properties>
 				<additionalparam>-Xdoclint:none</additionalparam>
 			</properties>
-		</profile>	
-	</profiles>	
+		</profile>
+	</profiles>
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>https://jenkins.ideaconsult.net</url>
+	</ciManagement>
 </project>

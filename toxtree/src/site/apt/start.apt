@@ -35,7 +35,7 @@ Toxtree Module: START biodegradation  and persistence plug-in
 
    * Source
 	  
-	    {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-biodegradation}https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-biodegradation}}
+	    {{{https://sourceforge.net/p/toxtree/git/ci/master/tree/toxtree/toxtree-plugins/toxtree-biodegradation}https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-biodegradation}}
 	
    * {{{http://maven.apache.org/}Maven}} artifact 
    		

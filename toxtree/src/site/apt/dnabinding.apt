@@ -26,7 +26,7 @@ Toxtree Module: DNA binding alerts
 
 	* Source 
 
- {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-dnabindng}source code}}
+ {{{https://sourceforge.net/p/toxtree/git/ci/master/tree/toxtree/toxtree-plugins/toxtree-dnabindng}source code}}
  
 	* {{{http://maven.apache.org/}Maven}} artifact 
    		

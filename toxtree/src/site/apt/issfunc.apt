@@ -30,7 +30,7 @@ Toxtree Module: Structural Alerts for Functional Group Identification (ISSFUNC)
   
 	* Source 
 
- {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-functional_groups}source code}}
+ {{{https://sourceforge.net/p/toxtree/git/ci/master/tree/toxtree/toxtree-plugins/toxtree-functional_groups}source code}}
  
 	* {{{http://maven.apache.org/}Maven}} artifact 
    		

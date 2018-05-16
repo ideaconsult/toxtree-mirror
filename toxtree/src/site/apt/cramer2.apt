@@ -47,7 +47,7 @@ Toxtree Module: Cramer rules
  
 	* Source 
 
- {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-cramer2}source code}} 
+ {{{https://sourceforge.net/p/toxtree/git/ci/master/tree/toxtree/toxtree-plugins/toxtree-cramer2}source code}} 
  
  	* {{{http://maven.apache.org/}Maven}} artifact 
    		

@@ -27,7 +27,7 @@ Toxtree Module: Skin sensitisation reactivity domains
 
 	* Source 
 
- {{{https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-skinsensitisation}source code}}
+ {{{https://sourceforge.net/p/toxtree/git/ci/master/tree/toxtree/toxtree-plugins/toxtree-skinsensitisation}source code}}
  
 	* {{{http://maven.apache.org/}Maven}} artifact 
    		
