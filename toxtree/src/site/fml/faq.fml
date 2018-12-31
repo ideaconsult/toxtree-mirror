@@ -5,8 +5,8 @@
       <question>Which is the latest Toxtree version?</question>
       <answer>
         <p>
-          <a href='http://toxtree.sourceforge.net/download.html#Toxtree_3.0.0'>Toxtree 3.0.0</a> is the latest stable release.
-          The latest development version is ToxTree 3.0.1-SNAPSHOT (<a href="http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~toxtree~~3.0.1-SNAPSHOT~~">Maven repository</a>). 
+          <a href='http://toxtree.sourceforge.net/download.html#Toxtree_3.1.0'>Toxtree 3.1.0</a> is the latest stable release.
+          The latest development version is ToxTree 3.2.0-SNAPSHOT (<a href="https://nexus.ideaconsult.net/#nexus-search;gav~toxtree~~3.2.0-SNAPSHOT~~">Maven repository</a>). 
         </p>
       </answer>
     </faq>
@@ -17,7 +17,7 @@
      The list of supported file formats can be found in the <a href="http://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.2.5.0/Toxtree_user_manual.pdf/download">user manual</a>. 
      A brief list of the most common formats follows: 
      <ul>
-     <li><i>filename.SDF</i> is <a href="http://accelrys.com/products/informatics/cheminformatics/ctfile-formats/no-fee.php">Structure Data Format</a></li>
+     <li><i>filename.SDF</i> is <a href="https://en.wikipedia.org/wiki/Chemical_table_file#SDF">Structure Data Format</a></li>
      <li><i>filename.CSV</i> is comma delimited text file,with mandatory header row. 
      A column,containing SMILES, should have title "SMILES". The number,titles and order of the columns are arbitrary. <a href='https://toxtree.svn.sourceforge.net/svnroot/toxtree/trunk/toxtree/toxtree-plugins/toxtree-cramer/src/test/resources/Cramer/CramerRules.csv'>Example</a></li>
      <source>
@@ -67,8 +67,8 @@ Acetoin,513-86-0,CC(O)C(C)=O
         <p>
           <ul>
           <li>Java standalone example
-<a href="http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;classname~CramerRules">Toxtree</a> and 
-<a href="http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;gav~org.openscience.cdk~~1.4.11~~">CDK</a> dependencies are available via <a href="http://ambit.uni-plovdiv.bg:8083/nexus/index.html#nexus-search;quick~toxtree">Maven</a> repository. 
+<a href="https://nexus.ideaconsult.net/#nexus-search;classname~CramerRules">Toxtree</a> and 
+<a href="https://nexus.ideaconsult.net/#nexus-search;gav~org.openscience.cdk~~1.4.11~~">CDK</a> dependencies up to v1.4.11 are available via <a href="https://nexus.ideaconsult.net/#nexus-search;quick~toxtree">Maven</a> repository. 
 Examples how to use Apache Maven for Java project management <a href="http://ideaconsult.github.com/examples-maven/">here</a>. 
 More Toxtree examples <a href="http://ideaconsult.github.com/examples-toxtree/">coming soon</a>.
 </li>
@@ -117,11 +117,11 @@ public class ToxTreeAppTest {
 </source>
 		 <li>
 		 OpenTox API web services.<br/>
-Toxtree modules are avalable as <a href="http://apps.ideaconsult.net:8080/ambit2/model?max=25">OpenTox REST API web services</a>. 
-The example assumes your dataset is uploaded to an <a href="http://apps.ideaconsult.net:8080/ambit2/dataset?max=25">OpenTox dataset service</a>.
+Toxtree modules are avalable as <a href="http://apps.ideaconsult.net/ambit2/model?max=25">OpenTox REST API web services</a>. 
+The example assumes your dataset is uploaded to an <a href="http://apps.ideaconsult.net/ambit2/dataset?max=25">OpenTox dataset service</a>.
 <source>
 curl -X POST -d "dataset_uri=http://apps.ideaconsult.net:8080/ambit2/dataset/{yourdataset}" \
-                http://apps.ideaconsult.net:8080/ambit2/model/2 
+                http://apps.ideaconsult.net/ambit2/model/2 
 </source>
 The dataset service accepts common chemical data formats for upload via HTTP POST calls. More OpenTox <a href="http://ambit.sourceforge.net/api.html">API examples</a>.
 		 </li>

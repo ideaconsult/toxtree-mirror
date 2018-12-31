@@ -1,166 +1,79 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <project name="Toxtree">
-
-	<bannerLeft>
-		<name></name>
-	</bannerLeft>
-	<bannerRight>
-		<name>Toxtree</name>
-		<href>index.html</href>
-	</bannerRight>
-	<googleAnalyticsAccountId>UA-24983132-1</googleAnalyticsAccountId>
-	<publishDate position="bottom" format="yyyy-MM-dd" />
-	<version position="bottom" />
-	<poweredBy>
-		<logo name="SourceForge" href="http://sourceforge.net/projects/toxtree"
-			img="http://sflogo.sourceforge.net/sflogo.php?group_id=152702&amp;type=12" />
-	</poweredBy>
-	<skin>
-		<groupId>lt.velykis.maven.skins</groupId>
-		<artifactId>reflow-maven-skin</artifactId>
-		<version>1.1.1</version>
-	</skin>
-	<custom>
-		<reflowSkin>
-			<theme>bootswatch-cosmo</theme>
-			<highlightJs>true</highlightJs>
-			<smoothScroll>true</smoothScroll>
-			<highlightJsTheme>github</highlightJsTheme>
-			<skinAttribution>false</skinAttribution>
-			<brand>
-				<name><![CDATA[   
-      <img src='images/toxtree-logo.png'>
-      ]]></name>
-				<href>http://toxtree.sf.net</href>
-			</brand>
-			<slogan></slogan>
-			<titleTemplate>%2$s | %1$s</titleTemplate>
-			<toc></toc>
-			<topNav></topNav>
-			<bottomNav>
-				<column>Downloads|docs|reports</column>
-				<column>Plugins</column>
-			</bottomNav>
-			<bottomDescription>
-				Toxtree - Toxic Hazard Estimation by decision tree approach
-			</bottomDescription>
-			<pages>
-				<index>
-					<shortTitle></shortTitle>
-					<bannerRight>
-						<name></name>
-						<href></href>
-					</bannerRight>
-
-					<shortTitle></shortTitle>
-					<breadcrumbs>false</breadcrumbs>
-					<toc>false</toc>
-					<markPageHeader>false</markPageHeader>
-					<sections>
-						<carousel />
-						<columns>1</columns>
-						<body />
-						<sidebar />
-					</sections>
-				</index>
-				<home>
-					<shortTitle>Toxtree | Home</shortTitle>
-					<sections>
-						<columns>2</columns>
-					</sections>
-				</home>
-				<downloads>
-					<shortTitle>Toxtree | Downloads</shortTitle>
-					<sections>
-						<thumbs>2</thumbs>
-					</sections>
-				</downloads>
-				<plugins>
-					<shortTitle>Toxtree | Plugins</shortTitle>
-					<sections>
-						<columns>1</columns>
-					</sections>
-				</plugins>
-				<docs>
-					<shortTitle>Toxtree | Documentation</shortTitle>
-					<sections>
-						<thumbs>2</thumbs>
-					</sections>
-				</docs>
-				<publications>
-					<shortTitle>Toxtree | Publications</shortTitle>
-					<sections>
-						<body/>
-					</sections>
-				</publications>
-				<support>
-					<shortTitle>Toxtree | Support</shortTitle>
-					<sections>
-						<columns>2</columns>
-					</sections>
-				</support>
-				<!-- 
-				<related>
-					<shortTitle>Toxtree | Related</shortTitle>
-					<sections>
-						<thumbs>3</thumbs>
-					</sections>
-				</<related>
-				 -->
-			</pages>
-			
-			<endContent>
-				<!--
-      <div id="google_translate_element"></div><script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-24983132-1'}, 'google_translate_element');
-}
-</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <bannerLeft>
+    <name></name>
+  </bannerLeft>
+  <bannerRight>
+    <name>Toxtree</name>
+    <href>index.html</href>
+  </bannerRight>
+  <googleAnalyticsAccountId>UA-24983132-1</googleAnalyticsAccountId>
+  <publishDate position="bottom" format="yyyy-MM-dd" />
+  <version position="bottom" />
+  <poweredBy>
+    <logo name="SourceForge" href="http://sourceforge.net/projects/toxtree" img="http://sflogo.sourceforge.net/sflogo.php?group_id=152702&amp;type=12" />
+  </poweredBy>
+  <skin>
+    <groupId>com.bernardomg.maven.skins</groupId>
+    <artifactId>docs-maven-skin</artifactId>
+    <version>1.3.2</version>
+  </skin>
+  <custom>
+  	
+    <skinConfig>
+      <customStyle>static/css/custom.css</customStyle>
+      <keywords>Toxtree</keywords>
+      <descriptionUrl>Toxtree - Toxic Hazard Estimation by decision tree approach</descriptionUrl>
+      <twitterSite>@10705013</twitterSite>
+      <topNav>
+        <menu>Downloads</menu>
+        <menu>Plugins</menu>
+        <menu>Support</menu>
+        <menu>Publications</menu>
+      </topNav>
+      <bottomNav>
+        <menu>Project info</menu>
+        <menu>Related</menu>
+        <menu>Support</menu>
+        <menu>Social</menu>
+        <menu>Donations</menu>
         
-        <script>
-  (function() {
-    var cx = '003845121398893549215:uyznkyyvppa';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-
-<gcse:search></gcse:search>
--->
-        
-      </endContent>
-		</reflowSkin>
-	</custom>
-
+      </bottomNav>
+      <iconNav>
+        <menu>Icons</menu>
+      </iconNav>
+    </skinConfig>
+  </custom>
   <body>
-		<head>
-			<link rel="author" href="https://plus.google.com/+NinaJeliazkova" />
-			<meta name="description" content="Toxtree" />
+    <head>
+      <!--		
+			<meta name="description" content="Toxtree" ></meta>
 			<meta name="keywords"
 				content="Toxtree" />
 			<meta name="author" content="Nina Jeliazkova" />
 			<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-		</head>
+			-->
+    </head>
+    <!--		
 		<links>
 			<item name="Toxtree - Toxic Hazard Estimation by decision tree approach" href="/index.html" />
 			<item name="Downloads" href="/download.html" />
 			<item name="Support" href="/intro.html" />
 			<item name="Publications" href="pubs_citetoxtree.html" />
-		</links>		
-    <menu name="Home">
-      <item name="Toxtree" href="/index.html" />
+		</links>
+			
+				
+    <menu name="Home" inherit="top">
+      <item name="Toxtree" img="./images/toxtree-logo.png" href="/index.html" />
     </menu>
-    <menu name="Downloads">
-     <item name="Toxtree 3.1.0" href="/download.html#Toxtree_3.1.0" />
-     <item name="Toxtree 2.6.13" href="/download.html#Toxtree_2.6.13" />
-     <item name="Toxtree 2.6.6" href="/download.html#Toxtree_2.6.6" />
-      <item name="Toxtree 2.6.0" href="/download.html#Toxtree_2.6.0" />
+    	-->
+    <menu name="Downloads" inherit="top" >
+      <item name="Toxtree 3.1.0" href="/download.html#Toxtree_3.1.0" />
+      <item name="Toxtree 2.6.13" href="/download2.html#Toxtree_2.6.13" />
+      <item name="Toxtree 2.6.6" href="/download2.html#Toxtree_2.6.6" />
+      <item name="Toxtree 2.6.0" href="/download2.html#Toxtree_2.6.0" />
     </menu>
-    <menu name="Plugins">
+    <menu name="Plugins" inherit="top">
       <item name="Cramer rules" href="/cramer.html" />
       <item name="Extended Cramer rules" href="/cramer2.html" />
       <item name="Revised Cramer Decision Tree" href="/cramer3.html" />
@@ -180,67 +93,42 @@ function googleTranslateElementInit() {
       <item name="Kroes TTC decision tree" href="/kroes.html" />
       <item name="In vitro mutagenicity (Ames test)" href="/ames.html" />
     </menu>
-    <menu name="Support">
-      <item name="Support and feedback" href="/intro.html" />
-      <item name="FAQ" href="/faq.html" />
-      <item name="G+ page" href="https://plus.google.com/b/102898313049050824023/102898313049050824023/posts" />
-      <item name="LinkedIn group" href="http://www.linkedin.com/groups/Toxtree-4140613" />
-      <item name="Bug reports" href="/issue-tracking.html" />
+    <menu name="Publications" inherit="top">
+      <item name="How to cite Toxtree" href="./pubs_citetoxtree.html" />
+      <item name="Toxtree citations" href="./pubs_usage.html" />
+     
     </menu>
-    <menu name="Publications">
-      <item name="How to cite Toxtree" href="/pubs_citetoxtree.html" />
-      <item name="Toxtree citations" href="/pubs_usage.html" />
-      <item name="Toxtree evaluations" href="/pubs_eval.html" />
+    <menu name="Documentation" inherit="top">
+      <item name="FAQ" href="faq.html" />
     </menu>
-    <menu name="Documentation">
-     <item name="FAQ" href="faq.html" />
-    </menu>    
-    <!--
-    <menu ref="modules" />
-    <menu ref="parent"/>
-    -->
-    <menu name="Related links">
-      <item name="AMBIT" href="http://ambit.sourceforge.net" />
-      <item name="AMBIT REST web services" href="http://apps.ideaconsult.net/ambit3" />
-    
-    	<item name="Toxtree online" href="http://toxtree.sf.net/predict" />
-      <item name="Toxmatch" href="http://toxmatch.sf.net" />
-      <item name="ToxPredict" href="http://toxpredict.org" />
-      <item name="jToxKit" href="https://github.com/ideaconsult/Toxtree.js" />
-      <item name="SMILES quiz" href="http://tinyurl.com/smilesquiz" />
+    <menu name="Icons" inherit="top">
+      <item name="Toxtree" img="./images/toxtree-logo.png" href="index.html" />
     </menu>
 
-     <menu name="Maven documentation" ref="reports" inherit="bottom" />    
+    <menu name="Project info" inherit="bottom" >
+      <item name="Info" href="./project-info.html" />
+      <item name="Code" href="./source-repository.html" />
+      <item name="License" href="./license.html" />
+    </menu>
+    <menu name="Support" inherit="bottom" >
+    	<item name="Support and feedback" href="/intro.html" />
+    	<item name="FAQ" href="./faq.html" />
+    	<item name="Issue tracking" href="./issue-tracking.html" />
+    </menu>
+	<menu name="Social" inherit="bottom">
+		<item name="Twitter" href="https://twitter.com/10705013" />
+		<item name="G+" href="https://plus.google.com/b/102898313049050824023/102898313049050824023/posts" />
+		<item name="LinkedIn group" href="http://www.linkedin.com/groups/Toxtree-4140613" />
+     </menu>    
+     <menu name="Donations" inherit="bottom">
+     	<item name="Donations" href="https://sourceforge.net/p/toxtree/wiki/Donations/" />
+     </menu>
+        
+    <menu name="Related">
+      <item name="AMBIT" href="http://ambit.sourceforge.net" />
+      <item name="jToxKit" href="https://github.com/ideaconsult/Toxtree.js" />
+    </menu>
+    <menu name="Reports" ref="reports" inherit="bottom" />
   </body>
-  
-	  
-  <!--  
-  <custom>
-    <fluidoSkin>
-      <topBarEnabled>true</topBarEnabled>
-      <topBarContainerStyle>width: 90%;</topBarContainerStyle>
-      <navBarStyle>navbar-inverse</navBarStyle>
-      <sideBarEnabled>false</sideBarEnabled>
-      <topBarIcon>
-        <name>Toxtree</name>
-        <alt>Toxtree</alt>
-        <src>/images/toxtree-logo.png</src>
-        <href>/index.html</href>
-      </topBarIcon>
-      <googleSearch>
-        <sitesearch>http://toxtree.sourceforge.net</sitesearch>
-      </googleSearch>
-      <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
-      <twitter>
-        <user>10705013</user>
-        <showUser>false</showUser>
-        <showFollowers>false</showFollowers>
-      </twitter>
-      <ohloh>
-        <projectId>toxtree</projectId>
-        <widget>stats</widget>
-      </ohloh>
-    </fluidoSkin>
-  </custom>
-  -->
+
 </project>

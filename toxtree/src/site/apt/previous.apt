@@ -3,7 +3,7 @@
  -----
  Nina Jeliazkova
  -----
- 2013/03/31
+ 2018-05-04
  -----
 
 
@@ -356,12 +356,12 @@
 
 ---------------------
 
-    - minor enhancements of the installer;
+    * minor enhancements of the installer;
 
-    - updated README.
+    * updated README.
 
 {Toxtree-v0.01} (build date 24 Aug 2005):
 
-    - first public beta-release of the Toxtree application.
+    * first public beta-release of the Toxtree application.
   
 
