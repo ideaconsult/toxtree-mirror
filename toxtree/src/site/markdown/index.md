@@ -28,8 +28,18 @@ Toxtree has  been   designed with  flexible capabilities  for future  extensions
 **Try Toxtree online**
 
 - [http://toxtree.sf.net/predict](http://toxtree.sourceforge.net/predict)
-
-![Toxtree online](images/toxtree_1.png "Toxtree online")
+<span>
+<picture>
+   <source 
+      media="(min-width: 650px)"
+      srcset="images/toxtree_online.png"/>
+   <source 
+      media="(min-width: 465px)"
+      srcset="images/toxtree_thumb_online.png" />
+   <img src="images/toxtree_online.png" 
+   alt="Toxtree online"/>
+</picture>
+</span>
 
 
 **Plugins**
