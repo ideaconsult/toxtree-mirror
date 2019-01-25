@@ -42,7 +42,7 @@ public class RuleHasOnlyC_H_O_Halogen extends RuleAllAllowedElements {
 	setComparisonMode(RuleElements.modeAllSpecifiedElements);
 	title = "Group CHal (C,H,O,F,Cl,Br or I )";
 	explanation = new StringBuffer();
-	explanation.append("Does the structure contain elements other than C,O,Halogen?");
+	explanation.append("Does the structure contain only elements  C,O,Halogen?");
 	id = "33";
 	examples[0] = "CC=O";
 	examples[1] = "ClCC=O";

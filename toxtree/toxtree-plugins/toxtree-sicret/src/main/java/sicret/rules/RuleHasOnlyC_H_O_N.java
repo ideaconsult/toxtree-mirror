@@ -42,7 +42,7 @@ public class RuleHasOnlyC_H_O_N extends RuleAllAllowedElements {
 			setComparisonMode(RuleElements.modeAllSpecifiedElements);
 		title = "Group CN (C,H,O,N)";
 		explanation = new StringBuffer();
-		explanation.append("Does the structure contain elements other than C,O,N?");
+		explanation.append("Does the structure contain only elements C,O,N?");
 		id = "9";
 		examples[0] = "O=C=O";
 		examples[1] = "O=CN";

@@ -45,7 +45,7 @@ public class RuleHasOnlyC_H_O_N_Halogen extends RuleAllAllowedElements {
 	setComparisonMode(RuleElements.modeAllSpecifiedElements);
 	title = "Group CNHal (C,H,O,N,F,Cl,Br or I )";
 	explanation = new StringBuffer();
-	explanation.append("Does the structure contain elements other than C,O,N,Halogen?");
+	explanation.append("Does the structure contain only elements C,O,N,Halogen?");
 	id = "19";
 	examples[0] = "O=C(N)C";
 	examples[1] = "O=C(N)CCl";

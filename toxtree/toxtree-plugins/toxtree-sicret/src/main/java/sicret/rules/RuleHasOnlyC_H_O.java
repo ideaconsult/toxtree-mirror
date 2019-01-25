@@ -43,7 +43,7 @@ public class RuleHasOnlyC_H_O extends RuleAllAllowedElements {
 		setComparisonMode(RuleElements.modeAllSpecifiedElements);
 	title = "Group C (C,H,O)";
 	explanation = new StringBuffer();
-	explanation.append("Does the structure contain elements other than C,O");
+	explanation.append("Does the structure contain only elements C,O");
 	id = "4";
 	examples[0] = "O=CCl";
 	examples[1] = "O=C=O";
