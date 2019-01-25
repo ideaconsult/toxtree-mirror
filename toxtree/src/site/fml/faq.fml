@@ -69,8 +69,7 @@ Acetoin,513-86-0,CC(O)C(C)=O
           <li>Java standalone example
 <a href="https://nexus.ideaconsult.net/#nexus-search;classname~CramerRules">Toxtree</a> and 
 <a href="https://nexus.ideaconsult.net/#nexus-search;gav~org.openscience.cdk~~1.4.11~~">CDK</a> dependencies up to v1.4.11 are available via <a href="https://nexus.ideaconsult.net/#nexus-search;quick~toxtree">Maven</a> repository. 
-Examples how to use Apache Maven for Java project management <a href="http://ideaconsult.github.com/examples-maven/">here</a>. 
-More Toxtree examples <a href="http://ideaconsult.github.com/examples-toxtree/">coming soon</a>.
+Examples how to use Apache Maven for Java project management <a href="http://ideaconsult.github.com/examples-maven/">here</a>.  <a href="https://github.com/ideaconsult/examples-toxtree">More Toxtree examples</a>.
 </li>
 <source>
 import java.io.FileOutputStream;
@@ -130,6 +129,56 @@ The dataset service accepts common chemical data formats for upload via HTTP POS
       </answer>
     </faq>
 
+  <faq id="K3">
+      <question>How to use Toxtree on command line only (headless, without UI) and select specific module?</question>
+      <answer>
+        <ul>
+		<li>For headless Toxtree, use the option -n</li>
+		<li>To select a module, use option -m</li>
+        </ul>
+<source>
+	java -jar Toxtree-3.1.0.1851.jar --help
+	 -b,--batch [file]     Batch file
+	 -h,--help             This help
+	 -i,--input [file]     Input file
+	 -m,--module [class]   Full class name of a Toxtree plugin 
+	 -n,--noui             Command line only, do not start UI
+	 -o,--output [file]    Output file
+</source>	 
+<p>Example:</p>
 
+<source>
+ java -jar Toxtree-3.1.0.1851.jar -n -i test.csv -o out.csv  
+ java -jar Toxtree-3.1.0.1851.jar -i test.csv -n -o out.csv -m toxtree.plugins.ames.AmesMutagenicityRules
+    		 
+</source>        
+
+<p> The full class names are as follow:
+</p>
+<ul>
+<li>toxtree.plugins.ames.AmesMutagenicityRules</li>
+<li>com.molecularnetworks.start.BiodegradationRules</li>
+<li>toxTree.tree.cramer.CramerRules</li>
+<li>cramer2.CramerRulesWithExtensions</li>
+<li>toxtree.tree.cramer3.RevisedCramerDecisionTree</li>
+<li>toxtree.plugins.dnabinding.DNABindingPlugin</li>
+<li>eye.EyeIrritationRules</li>
+<li>toxtree.plugins.func.FuncRules</li>
+<li>toxtree.plugins.kroes.Kroes1Tree</li>
+<li>mic.MICRules</li>
+<li>michaelacceptors.MichaelAcceptorRules</li>
+<li>toxtree.plugins.moa.MOARules</li>
+<li>mutant.BB_CarcMutRules</li>
+<li>toxtree.plugins.proteinbinding.ProteinBindingPlugin</li>
+<li>sicret.SicretRules</li>
+<li>toxtree.plugins.smartcyp.SMARTCYPPlugin</li>
+<li>verhaar.VerhaarScheme</li>
+<li>verhaar2.VerhaarScheme2</li>
+</ul>
+      </answer>
+    </faq>        
+
+
+ 
   </part>
 </faqs>
