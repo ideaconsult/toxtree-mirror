@@ -26,6 +26,13 @@
 			<artifactId>toxtree-cramer</artifactId>
 			<version>${toxtree.version}</version>
 		</dependency>
+		<dependency> <!-- reuse src/test/java code from cramer -->
+			<groupId>toxtree</groupId>
+			<artifactId>toxtree-cramer</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+			<classifier>tests</classifier>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
@@ -77,20 +84,8 @@
 		</license>
 	</licenses>
 	<build>
-	        <!-- 
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-
-         <excludes>
-          <exclude>**/*.properties</exclude>
-        </excludes>
-      
-      </resource>
-    
-    </resources>
-         -->
+		<!-- <resources> <resource> <directory>src/main/resources</directory> <filtering>true</filtering> 
+			<excludes> <exclude>**/*.properties</exclude> </excludes> </resource> </resources> -->
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -127,7 +122,6 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>2.4</version>
 					<executions>
 						<execution>
 							<id>attach-sources</id>
@@ -160,7 +154,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.6</version>
 				<executions>
 					<execution>
 						<goals>

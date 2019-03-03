@@ -27,7 +27,7 @@ public class RuleQ5 extends RuleSMARTSSubstructureAmbit implements IRuleSMARTS {
 	 * 
 	 */
 	private static final long serialVersionUID = 154980850401771648L;
-	protected SMIRKSProcessor neutraliser;
+	protected transient SMIRKSProcessor neutraliser;
 
 	/*
 	 * 5. Do all the elements not listed in 4 or 4A occur only as: A. sodium,

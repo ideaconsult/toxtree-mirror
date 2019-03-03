@@ -1,15 +1,14 @@
 package toxtree.tree.cramer3.rules;
 
-import java.util.Enumeration;
 import java.util.Iterator;
 
 import org.openscience.cdk.interfaces.IAtom;
 import org.openscience.cdk.interfaces.IAtomContainer;
 import org.openscience.cdk.interfaces.IRing;
 
+import ambit2.smarts.query.SMARTSException;
 import toxTree.exceptions.DecisionMethodException;
 import toxtree.tree.BundleRuleResource;
-import ambit2.smarts.query.SMARTSException;
 
 public class RuleQ11 extends RuleRingsSMARTSSubstituents implements IRuleSMARTS {
 	private static final String tag = RuleQ11.class.getName();

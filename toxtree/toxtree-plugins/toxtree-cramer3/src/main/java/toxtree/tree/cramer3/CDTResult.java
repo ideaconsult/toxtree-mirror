@@ -73,7 +73,7 @@ public class CDTResult extends TreeResult {
     }
     @Override
     public String[] getResultPropertyNames() {
-    	return new String[] {"RevisedCDT"};
+    	return new String[] {getDecisionMethod().getTitle()};
     }
     
 }

@@ -24,7 +24,7 @@ public class RuleQ2 extends RuleSMARTSSubstructureAmbit implements IRuleSMARTS {
 	 */
 	private static final long serialVersionUID = -5440009983989446835L;
 	protected Set<String> lookupSMILES = new TreeSet<String>();
-	protected InchiProcessor processor;
+	protected transient InchiProcessor processor;
 
 	public RuleQ2() throws CDKException, AmbitException, MolAnalyseException {
 		super();
