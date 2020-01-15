@@ -4,7 +4,7 @@ NEW! Available since [ToxTree 3.1.0](./download.html#Toxtree-v3.1.0)
 
 An updated/revised Cramer decision tree for the allocation of substances of known structure into class I, II or III based on potential oral toxicity.
 
-Developed by [IdeaConsult Ltd. Sofia, Bulgaria](https://www.ideaconsult.net) for the [International Organization of the Flavor Industry (IOFI)](http://www.iofi.org/) and the [Flavor and Manufacturers Association (FEMA)](https://www.femaflavor.org/)
+Developed by [IdeaConsult Ltd. Sofia, Bulgaria](https://www.ideaconsult.net) for the [International Organization of the Flavor Industry (IOFI)](http://www.iofi.org/) and the [Flavor and Extract Manufacturers Association (FEMA)](https://www.femaflavor.org/)
   
 Screenshots: [Main screen](./images/cramer3/screen.jpg) , [Decision tree](./images/cramer3/tree.jpg)
 
