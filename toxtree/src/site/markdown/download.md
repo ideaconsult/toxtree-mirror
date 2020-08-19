@@ -4,9 +4,9 @@
 
  [Toxtree-v3.1.0 is a stable release including new features and bug fixes](https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.3.1.0/) 
  
-- [Windows installer](https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.3.1.0/Toxtree-v3.1.0-setup.exe/download) (source and executable, Windows)
+- [Windows installer](https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.3.1.0/Toxtree-v3.1.0.1851-setup.exe/download) (source and executable, Windows)
 
-- [ZIP archive](https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.3.1.0/Toxtree-v3.1.0-setup.exe/download)  (source and executable, platform independent)
+- [ZIP archive](https://sourceforge.net/projects/toxtree/files/toxtree/Toxtree-v.3.1.0/Toxtree-v3.1.0.1851.zip/download)  (source and executable, platform independent)
 
 ![Revised Cramer Decision Tree](images/cramer3/thumb.jpg)
 	
