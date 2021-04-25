@@ -31,12 +31,12 @@
 		<repository>
 			<id>mvnrepository</id>
 			<name>mvnrepository</name>
-			<url>http://mvnrepository.com/</url>
+			<url>https://mvnrepository.com/</url>
 		</repository>
 		<!-- jgoodies libs are here -->
 		<!-- <repository> <id>CDK repository</id> <name>CDK repository</name> <url>http://pele.farmbio.uu.se/maven2/</url> 
 			</repository> <repository> <id>wwmm</id> <name>UCC Maven Repository</name> 
-			<url>http://wwmm.ch.cam.ac.uk/maven2</url> </repository> -->
+			<url>https://wwmm.ch.cam.ac.uk/maven2</url> </repository> -->
 	</repositories>
 	<modules>
 		<module>toxtree-core</module>
