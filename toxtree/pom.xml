@@ -15,28 +15,51 @@
 	</organization>
 	<repositories>
 		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<url>https://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
 			<id>nexus-idea</id>
 			<url>https://nexus.ideaconsult.net/content/repositories/thirdparty</url>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+
 		</repository>
 		<repository>
 			<id>nexus-idea-releases</id>
 			<url>https://nexus.ideaconsult.net/content/repositories/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
 		</repository>
 		<repository>
 			<id>nexus-idea-snapshots</id>
 			<url>https://nexus.ideaconsult.net/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
 		</repository>
-		<!-- <id>website_ambit</id> <url>http://ambit.sourceforge.net/jars</url> 
-			</repository> -->
 		<repository>
 			<id>mvnrepository</id>
 			<name>mvnrepository</name>
 			<url>https://mvnrepository.com/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
-		<!-- jgoodies libs are here -->
-		<!-- <repository> <id>CDK repository</id> <name>CDK repository</name> <url>http://pele.farmbio.uu.se/maven2/</url> 
-			</repository> <repository> <id>wwmm</id> <name>UCC Maven Repository</name> 
-			<url>https://wwmm.ch.cam.ac.uk/maven2</url> </repository> -->
 	</repositories>
 	<modules>
 		<module>toxtree-core</module>
@@ -394,44 +417,12 @@
 		<cdk.version>2.1.1</cdk.version>
 		<junit.version>4.8.1</junit.version>
 		<smartcyp.version>3.1.0-SNAPSHOT</smartcyp.version>
+		<sourceVersion>1.8</sourceVersion>
+		<maven.compiler.source>${sourceVersion}</maven.compiler.source>
+        <maven.compiler.target>${sourceVersion}</maven.compiler.target>		
 	</properties>
 	<profiles>
-		<profile>
-			<id>JRE6</id>
-			<activation>
-				<jdk>1.6</jdk>
-			</activation>
-			<properties>
-				<sourceVersion>1.6</sourceVersion>
-			</properties>
-		</profile>
-		<profile>
-			<id>JRE7</id>
-			<activation>
-				<jdk>1.7</jdk>
-			</activation>
-			<properties>
-				<sourceVersion>1.7</sourceVersion>
-			</properties>
-		</profile>
-		<profile>
-			<id>JRE8</id>
-			<activation>
-				<jdk>1.8</jdk>
-			</activation>
-			<properties>
-				<sourceVersion>1.8</sourceVersion>
-			</properties>
-		</profile>
-		<profile>
-			<id>JRE9</id>
-			<activation>
-				<jdk>1.9</jdk>
-			</activation>
-			<properties>
-				<sourceVersion>1.9</sourceVersion>
-			</properties>
-		</profile>
+		
 		<profile>
 			<!-- http://stackoverflow.com/questions/15886209/maven-is-not-working-in-java-8-when-javadoc-tags-are-incomplete -->
 			<id>disable-java8-doclint</id>
