@@ -189,8 +189,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<toxtree.version>4.1.0-SNAPSHOT</toxtree.version>
-		<ambit.version>4.0.1-SNAPSHOT</ambit.version>
-		<junit.version>4.8.1</junit.version>
+		<ambit.version>4.1.0-SNAPSHOT</ambit.version>
+		<junit.version>[4.13.1,)</junit.version>
 	</properties>
 	<parent>
 		<groupId>toxtree</groupId>
